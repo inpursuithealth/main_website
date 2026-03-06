@@ -42,7 +42,7 @@
           <a href="leadership.html">Leadership</a>
         </div>
       </div>
-      <a id="iph-cta" href="investor.html">Invest</a>
+      <a id="iph-cta" href="investor-portal.html">Invest</a>
     </nav>
     <button id="iph-toggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
