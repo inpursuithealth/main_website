@@ -1,0 +1,1938 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TETRA Conductor™ — Model-Agnostic AI Orchestration | InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-deep: #060E1A;
+  --navy-mid: #112240;
+  --navy-card: #0D1B32;
+  --gold: #C5A44E;
+  --gold-light: #D4B96A;
+  --gold-bright: #E8D48B;
+  --gold-dim: rgba(197,164,78,0.08);
+  --gold-border: rgba(197,164,78,0.18);
+  --white: #FFFFFF;
+  --off-white: #F0EDE6;
+  --cream: #FAF8F4;
+  --text-muted: rgba(255,255,255,0.45);
+  --text-mid: rgba(255,255,255,0.65);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Instrument Sans', sans-serif;
+  background: var(--navy-deep);
+  color: var(--white);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: var(--navy-deep); }
+::-webkit-scrollbar-thumb { background: var(--gold-border); border-radius: 2px; }
+
+/* ===== NAV ===== */
+.top-bar {
+  background: rgba(6,14,26,0.92);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--gold-border);
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 1000;
+  transition: box-shadow 0.3s ease;
+}
+.top-bar.scrolled { box-shadow: 0 4px 40px rgba(0,0,0,0.5); }
+.top-bar-inner {
+  max-width: 1400px; margin: 0 auto; padding: 0 40px;
+  display: flex; justify-content: space-between;
+  align-items: center; height: 64px;
+}
+.top-bar-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 32px; height: 32px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-radius: 6px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Instrument Serif', serif;
+  font-size: 14px; color: var(--navy-deep); font-weight: 400;
+}
+.top-bar-wordmark {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; color: var(--gold); letter-spacing: 0.5px;
+}
+.top-bar-nav {
+  display: flex; align-items: center; gap: 0;
+}
+.nav-item {
+  position: relative; padding: 20px 14px;
+  font-size: 11px; font-weight: 500; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--text-muted);
+  text-decoration: none; transition: color 0.3s ease;
+  cursor: pointer; background: none; border: none; font-family: inherit;
+}
+.nav-item:hover, .nav-item.active { color: var(--gold); }
+.nav-item::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px; background: var(--gold);
+  transition: width 0.3s ease;
+}
+.nav-item:hover::after, .nav-item.active::after { width: 60%; }
+.nav-cta {
+  margin-left: 24px;
+  padding: 9px 22px;
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--gold);
+  font-size: 11px; font-weight: 600; letter-spacing: 1.5px;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+.nav-cta:hover { background: var(--gold-dim); border-color: var(--gold); }
+
+/* ===== HERO ===== */
+.hero {
+  padding: 160px 40px 80px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+/* hero canvas bg handled by JS */
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 18px;
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold);
+  background: rgba(197,164,78,0.05);
+  margin-bottom: 32px;
+  position: relative; z-index: 2;
+  animation: fadeUp 1s ease both;
+}
+.hero-badge-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  animation: blink 2s ease-in-out infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+.hero h1 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(42px, 6vw, 80px);
+  font-weight: 400; line-height: 1.08;
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+  position: relative; z-index: 2;
+  animation: fadeUp 1s ease 0.15s both;
+}
+.hero h1 em { font-style: italic; color: var(--gold); }
+.hero-sub-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(18px, 2.5vw, 26px);
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+  margin-bottom: 36px;
+  position: relative; z-index: 2;
+  animation: fadeUp 1s ease 0.25s both;
+}
+.hero-desc {
+  font-size: 18px; color: var(--text-mid); line-height: 1.75;
+  max-width: 640px; margin: 0 auto 52px;
+  position: relative; z-index: 2;
+  animation: fadeUp 1s ease 0.35s both;
+}
+.hero-actions {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  position: relative; z-index: 2;
+  animation: fadeUp 1s ease 0.45s both;
+}
+.btn-gold {
+  padding: 14px 36px;
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy-deep);
+  font-size: 12px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 4px;
+  border: none; cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 8px 32px rgba(197,164,78,0.2);
+}
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 12px 48px rgba(197,164,78,0.35); }
+.btn-outline {
+  padding: 14px 36px;
+  background: transparent;
+  color: var(--white);
+  font-size: 12px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  border-radius: 4px;
+  border: 1px solid rgba(255,255,255,0.15);
+  transition: all 0.3s ease;
+}
+.btn-outline:hover { border-color: var(--gold-border); color: var(--gold); background: var(--gold-dim); }
+
+/* ===== METRICS BAR ===== */
+.metrics-bar {
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  background: rgba(17,34,64,0.4);
+  backdrop-filter: blur(8px);
+  padding: 28px 40px;
+}
+.metrics-inner {
+  max-width: 1200px; margin: 0 auto;
+  display: flex; justify-content: space-around; align-items: center;
+  flex-wrap: wrap; gap: 24px;
+}
+.metric-item { text-align: center; }
+.metric-value {
+  font-family: 'Instrument Serif', serif;
+  font-size: 28px; color: var(--gold); line-height: 1;
+  display: block; margin-bottom: 4px;
+}
+.metric-label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 600;
+}
+.metric-divider {
+  width: 1px; height: 40px;
+  background: var(--gold-border);
+}
+
+/* ===== SECTION SHARED ===== */
+.section-overline {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 20px; display: block;
+}
+.section-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(30px, 3.5vw, 52px);
+  font-weight: 400; line-height: 1.12;
+  letter-spacing: -0.02em; margin-bottom: 24px;
+}
+.section-headline em { font-style: italic; color: var(--gold); }
+.section-desc {
+  font-size: 17px; color: var(--text-mid); line-height: 1.75;
+  max-width: 660px;
+}
+.gold-text { color: var(--gold); }
+
+/* ===== STACK SECTION ===== */
+.stack-section {
+  padding: 100px 40px;
+  position: relative;
+}
+.stack-inner {
+  max-width: 1200px; margin: 0 auto;
+}
+.stack-header {
+  text-align: center; margin-bottom: 72px;
+}
+.stack-diagram {
+  display: flex; flex-direction: column; gap: 0;
+  max-width: 800px; margin: 0 auto;
+  position: relative;
+}
+.stack-layer {
+  display: flex; align-items: stretch;
+  border: 1px solid var(--gold-border);
+  border-bottom: none;
+  background: var(--navy-card);
+  position: relative;
+  cursor: default;
+  transition: all 0.3s ease;
+}
+.stack-layer:first-child { border-radius: 12px 12px 0 0; }
+.stack-layer:last-child { border-bottom: 1px solid var(--gold-border); border-radius: 0 0 12px 12px; }
+.stack-layer::before {
+  content: ''; position: absolute;
+  left: 0; top: 0; bottom: 0; width: 3px;
+  background: transparent; transition: background 0.3s;
+}
+.stack-layer:hover::before { background: var(--gold); }
+.stack-layer.conductor { 
+  background: linear-gradient(135deg, rgba(197,164,78,0.06) 0%, rgba(17,34,64,0.8) 100%);
+  border-color: rgba(197,164,78,0.4);
+}
+.stack-layer.conductor::before { background: var(--gold); }
+.stack-layer-num {
+  width: 56px; min-height: 80px;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid var(--gold-border);
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px; color: var(--text-muted);
+  flex-shrink: 0;
+}
+.conductor .stack-layer-num { color: var(--gold); }
+.stack-layer-content {
+  flex: 1; padding: 20px 28px;
+  display: flex; align-items: center; gap: 24px;
+}
+.stack-layer-info { flex: 1; }
+.stack-layer-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; line-height: 1.2; margin-bottom: 4px;
+}
+.stack-layer-role {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 600;
+}
+.conductor .stack-layer-role { color: var(--gold); }
+.stack-layer-desc {
+  font-size: 13px; color: var(--text-muted); line-height: 1.5;
+  max-width: 380px; margin-top: 6px;
+}
+.stack-layer-badge {
+  flex-shrink: 0;
+  padding: 5px 12px;
+  border-radius: 100px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+  border: 1px solid var(--gold-border);
+  color: var(--text-muted);
+  background: transparent;
+}
+.conductor .stack-layer-badge {
+  background: linear-gradient(135deg, var(--gold), var(--gold-light));
+  color: var(--navy-deep); border-color: transparent;
+}
+.stack-arrow {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: -14px; z-index: 10;
+  width: 26px; height: 26px;
+  background: var(--navy-mid);
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: var(--gold);
+}
+
+/* ===== ORCHESTRATOR VISUAL ===== */
+.orch-section {
+  padding: 100px 40px;
+  background: rgba(17,34,64,0.3);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+.orch-inner { max-width: 1200px; margin: 0 auto; }
+.orch-header {
+  text-align: center; margin-bottom: 60px;
+}
+.orch-stage {
+  position: relative; width: 100%; max-width: 860px;
+  height: 580px; margin: 0 auto 40px;
+}
+.orch-canvas {
+  position: absolute; inset: 0; z-index: 1;
+}
+.orch-orbit {
+  position: absolute; top: 50%; left: 50%;
+  border-radius: 50%; pointer-events: none;
+}
+.orch-orbit.r1 { width: 180px; height: 180px; margin: -90px 0 0 -90px; border: 1px solid rgba(197,164,78,0.06); }
+.orch-orbit.r2 { width: 320px; height: 320px; margin: -160px 0 0 -160px; border: 1px dashed rgba(197,164,78,0.04); }
+.orch-orbit.r3 { width: 480px; height: 480px; margin: -240px 0 0 -240px; border: 1px solid rgba(197,164,78,0.02); }
+.orch-hub {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%); z-index: 20;
+}
+.orch-hub-core {
+  width: 140px; height: 140px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 35%, #112240 0%, #060E1A 100%);
+  border: 1.5px solid rgba(197,164,78,0.4);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  position: relative;
+  box-shadow:
+    0 0 0 6px rgba(197,164,78,0.03),
+    0 0 0 14px rgba(197,164,78,0.01),
+    0 0 80px rgba(197,164,78,0.08);
+}
+.orch-hub-ring {
+  position: absolute; inset: -10px; border-radius: 50%;
+  border: 1px solid rgba(197,164,78,0.12);
+  animation: hubPulse 4s ease-in-out infinite;
+}
+.orch-hub-ring-2 {
+  position: absolute; inset: -22px; border-radius: 50%;
+  border: 1px solid rgba(197,164,78,0.05);
+  animation: hubPulse 4s ease-in-out infinite 2s;
+}
+@keyframes hubPulse {
+  0%,100%{opacity:0.3;transform:scale(1)}
+  50%{opacity:1;transform:scale(1.02)}
+}
+.orch-hub-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 15px; color: var(--gold);
+  letter-spacing: 2px; line-height: 1; text-align: center;
+}
+.orch-hub-sub {
+  font-size: 8px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: rgba(197,164,78,0.4);
+  margin-top: 6px; text-align: center;
+}
+.orch-hub-indicator {
+  font-size: 9px; color: var(--gold);
+  margin-top: 8px; text-align: center;
+  min-height: 14px; transition: opacity 0.3s ease;
+  letter-spacing: 1px; text-transform: uppercase;
+  font-weight: 600; opacity: 0.8;
+}
+.orch-node {
+  position: absolute; z-index: 10;
+  display: flex; align-items: center;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.orch-node-pill {
+  display: flex; flex-direction: column; align-items: center;
+  padding: 12px 16px;
+  background: rgba(13,27,50,0.95);
+  border: 1px solid rgba(197,164,78,0.14);
+  border-radius: 8px;
+  transition: all 0.4s ease;
+  min-width: 88px; text-align: center;
+  gap: 4px;
+  backdrop-filter: blur(8px);
+}
+.orch-node-icon { 
+  width: 24px; height: 24px; margin: 0 auto 3px;
+  display: flex; align-items: center; justify-content: center;
+}
+.orch-node-icon svg { 
+  width: 15px; height: 15px; 
+  stroke: rgba(255,255,255,0.25);
+  transition: stroke 0.4s ease;
+}
+.orch-node.active .orch-node-icon svg { stroke: rgba(197,164,78,0.7); }
+.orch-node.primary .orch-node-icon svg { stroke: var(--gold); }
+.orch-node-name {
+  font-size: 9px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: var(--text-muted);
+  transition: color 0.4s;
+}
+.orch-node-sub {
+  font-size: 8px; color: rgba(255,255,255,0.25);
+  letter-spacing: 0.5px; line-height: 1.3;
+}
+.orch-node.active .orch-node-pill {
+  border-color: rgba(197,164,78,0.4);
+  background: rgba(197,164,78,0.07);
+}
+.orch-node.active .orch-node-name { color: rgba(197,164,78,0.9); }
+.orch-node.primary .orch-node-pill {
+  border-color: var(--gold);
+  background: rgba(197,164,78,0.12);
+  box-shadow: 0 0 20px rgba(197,164,78,0.15);
+  transform: scale(1.06);
+}
+.orch-node.primary .orch-node-name { color: var(--gold); }
+
+/* Scenario buttons */
+.orch-scenarios {
+  display: flex; justify-content: center; gap: 8px;
+  flex-wrap: wrap; margin-bottom: 16px;
+}
+.orch-sc-btn {
+  padding: 8px 18px;
+  background: transparent;
+  border: 1px solid var(--gold-border);
+  color: var(--text-muted);
+  font-size: 11px; font-weight: 600; letter-spacing: 1px;
+  text-transform: uppercase;
+  border-radius: 4px; cursor: pointer;
+  transition: all 0.3s ease; font-family: inherit;
+}
+.orch-sc-btn:hover { border-color: var(--gold-border); color: var(--gold-light); }
+.orch-sc-btn.active { background: var(--gold-dim); border-color: var(--gold); color: var(--gold); }
+.orch-sc-label {
+  text-align: center; font-size: 12px; color: var(--text-muted);
+  letter-spacing: 1px;
+}
+.orch-sc-label span {
+  color: var(--gold-light); font-weight: 600;
+  transition: opacity 0.3s ease;
+}
+
+/* ===== NARRATIVE ===== */
+.narrative-section {
+  padding: 100px 40px;
+}
+.narrative-inner {
+  max-width: 800px; margin: 0 auto;
+}
+.narrative-intro {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(22px, 2.5vw, 30px);
+  line-height: 1.4; color: var(--off-white);
+  margin-bottom: 48px; font-style: italic;
+  border-left: 2px solid var(--gold);
+  padding-left: 32px;
+}
+.narrative-body p {
+  font-size: 17px; color: var(--text-mid);
+  line-height: 1.8; margin-bottom: 24px;
+}
+.narrative-body strong { color: var(--white); font-weight: 600; }
+.narrative-quote {
+  margin: 48px 0;
+  padding: 36px 40px;
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0;
+  position: relative;
+}
+.narrative-quote::before {
+  content: '\201C';
+  font-family: 'Instrument Serif', serif;
+  font-size: 80px; color: rgba(197,164,78,0.1);
+  position: absolute; top: 8px; left: 16px; line-height: 1;
+}
+.narrative-quote p {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; color: var(--off-white);
+  line-height: 1.5; font-style: italic;
+  position: relative; z-index: 1; margin-bottom: 16px;
+}
+.narrative-quote cite {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); font-style: normal; font-weight: 700;
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-section {
+  padding: 100px 40px;
+  background: rgba(11,22,40,0.5);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+.how-inner { max-width: 1100px; margin: 0 auto; }
+.how-header { text-align: center; margin-bottom: 72px; }
+.how-steps {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 2px; position: relative;
+}
+.how-step {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  padding: 36px 28px;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.how-step:first-child { border-radius: 12px 0 0 12px; }
+.how-step:last-child { border-radius: 0 12px 12px 0; }
+.how-step:hover {
+  background: rgba(197,164,78,0.04);
+  border-color: rgba(197,164,78,0.35);
+  transform: translateY(-4px);
+  z-index: 2;
+}
+.how-step-arrow {
+  position: absolute; right: -14px; top: 50%;
+  transform: translateY(-50%);
+  width: 26px; height: 26px;
+  background: var(--navy-deep);
+  border: 1px solid var(--gold-border);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 10px; color: var(--gold); z-index: 3;
+}
+.how-step:last-child .how-step-arrow { display: none; }
+.how-step-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 48px; color: rgba(197,164,78,0.12);
+  line-height: 1; margin-bottom: 20px;
+}
+
+.how-step h4 {
+  font-size: 16px; font-weight: 700; margin-bottom: 10px;
+  color: var(--white);
+}
+.how-step p {
+  font-size: 13px; color: var(--text-muted); line-height: 1.65;
+}
+.how-step-tag {
+  display: inline-block; margin-bottom: 8px;
+  padding: 3px 10px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 9px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold); font-weight: 700;
+}
+
+/* ===== USE CASES ===== */
+.use-section {
+  padding: 100px 40px;
+}
+.use-inner { max-width: 1200px; margin: 0 auto; }
+.use-header { text-align: center; margin-bottom: 72px; }
+.use-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+  background: var(--gold-border); border-radius: 14px; overflow: hidden;
+}
+.use-card {
+  background: var(--navy-card);
+  padding: 36px 32px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+.use-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.use-card:hover { background: rgba(197,164,78,0.04); }
+.use-card:hover::before { opacity: 1; }
+
+.use-card h4 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; margin-bottom: 10px; color: var(--white);
+}
+.use-card-scenario {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--gold); font-weight: 700; margin-bottom: 14px;
+  display: block;
+}
+.use-card p {
+  font-size: 13px; color: var(--text-muted); line-height: 1.65;
+  margin-bottom: 20px;
+}
+.use-routing {
+  background: rgba(6,14,26,0.6);
+  border: 1px solid var(--gold-border);
+  border-radius: 8px; padding: 14px 16px;
+}
+.use-routing-label {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 700; margin-bottom: 8px; display: block;
+}
+.use-routing-flow {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+}
+.use-routing-flow span {
+  font-size: 11px; color: var(--gold-light); font-weight: 600;
+}
+.use-routing-flow .arrow { color: var(--text-muted); font-size: 10px; }
+
+/* ===== ARCH COMPARE ===== */
+.compare-section {
+  padding: 100px 40px;
+  background: rgba(17,34,64,0.4);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+.compare-inner { max-width: 1100px; margin: 0 auto; }
+.compare-header { text-align: center; margin-bottom: 64px; }
+.compare-table {
+  display: grid; grid-template-columns: 1fr 1.1fr 1.1fr;
+  gap: 0; border: 1px solid var(--gold-border);
+  border-radius: 14px; overflow: hidden;
+}
+.compare-col { background: var(--navy-card); }
+.compare-col.tetra { background: linear-gradient(180deg, rgba(197,164,78,0.06) 0%, var(--navy-card) 100%); }
+.compare-header-cell {
+  padding: 28px 28px 24px;
+  border-bottom: 1px solid var(--gold-border);
+}
+.compare-header-cell.attr { background: rgba(6,14,26,0.5); }
+.compare-col-tag {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 700; margin-bottom: 8px; display: block;
+}
+.compare-col.tetra .compare-col-tag { color: var(--gold); }
+.compare-col:not(.tetra) .compare-col-tag { color: var(--text-muted); }
+.compare-col-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 20px; color: var(--white);
+}
+.compare-row {
+  display: contents;
+}
+.compare-cell {
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(197,164,78,0.05);
+  font-size: 13px; line-height: 1.5;
+}
+.compare-cell.attr {
+  color: var(--text-muted); font-weight: 600;
+  font-size: 11px; letter-spacing: 0.5px;
+  background: rgba(6,14,26,0.3);
+}
+.compare-cell .yes { 
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  background: rgba(74,222,128,0.08); border: 1px solid rgba(74,222,128,0.2);
+  color: #4ade80; font-weight: 700; font-size: 11px; letter-spacing: 0.5px;
+  margin-right: 4px; vertical-align: middle;
+}
+.compare-cell .no { 
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  background: rgba(248,113,113,0.06); border: 1px solid rgba(248,113,113,0.15);
+  color: #f87171; font-weight: 700; font-size: 11px; letter-spacing: 0.5px;
+  margin-right: 4px; vertical-align: middle;
+}
+.compare-cell .partial { 
+  display: inline-block; padding: 2px 8px; border-radius: 3px;
+  background: rgba(251,191,36,0.06); border: 1px solid rgba(251,191,36,0.15);
+  color: #fbbf24; font-weight: 700; font-size: 11px; letter-spacing: 0.5px;
+  margin-right: 4px; vertical-align: middle;
+}
+.tetra .compare-cell { border-bottom-color: rgba(197,164,78,0.08); }
+
+/* ===== VALUE STRIP ===== */
+.value-section {
+  padding: 100px 40px;
+}
+.value-inner { max-width: 1200px; margin: 0 auto; }
+.value-header { text-align: center; margin-bottom: 72px; }
+.value-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+}
+.value-card {
+  background: var(--navy-card);
+  border: 1px solid var(--gold-border);
+  border-left: 3px solid transparent;
+  border-radius: 14px; padding: 36px 32px;
+  transition: all 0.3s ease; position: relative; overflow: hidden;
+}
+.value-card:hover { border-left-color: var(--gold); }
+.value-card::after {
+  content: ''; position: absolute;
+  bottom: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent);
+  opacity: 0; transition: opacity 0.3s;
+}
+.value-card:hover { transform: translateY(-6px); border-color: rgba(197,164,78,0.35); box-shadow: 0 20px 60px rgba(0,0,0,0.3); }
+.value-card:hover::after { opacity: 1; }
+.value-card-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 52px; color: rgba(197,164,78,0.1);
+  line-height: 1; margin-bottom: 16px;
+}
+
+.value-card h4 {
+  font-size: 18px; font-weight: 700; margin-bottom: 12px; color: var(--white);
+}
+.value-card p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.7;
+}
+.value-highlight {
+  display: inline-block; margin-top: 16px;
+  padding: 4px 12px;
+  background: var(--gold-dim);
+  border: 1px solid var(--gold-border);
+  border-radius: 100px;
+  font-size: 11px; color: var(--gold); font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== FEDERAL CREDS ===== */
+.creds-section {
+  padding: 100px 40px;
+  background: rgba(17,34,64,0.4);
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+}
+.creds-inner { max-width: 1100px; margin: 0 auto; }
+.creds-header { text-align: center; margin-bottom: 64px; }
+.creds-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 2px;
+  background: var(--gold-border); border-radius: 12px; overflow: hidden;
+}
+.cred-card {
+  background: var(--navy-card); padding: 40px 28px; text-align: center;
+}
+.cred-num {
+  font-family: 'Instrument Serif', serif;
+  font-size: 44px; color: var(--gold); line-height: 1; margin-bottom: 8px;
+}
+.cred-label {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--white); font-weight: 700; margin-bottom: 12px; display: block;
+}
+.cred-desc {
+  font-size: 13px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* ===== FAQ ===== */
+.faq-section {
+  padding: 100px 40px;
+}
+.faq-inner { max-width: 820px; margin: 0 auto; }
+.faq-header { text-align: center; margin-bottom: 64px; }
+.faq-item {
+  border: 1px solid var(--gold-border);
+  border-left: 3px solid transparent;
+  border-radius: 10px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: var(--navy-card);
+  transition: border-left-color 0.3s ease;
+}
+.faq-item:has(.faq-q.open) { border-left-color: var(--gold); }
+.faq-q {
+  width: 100%; padding: 24px 28px;
+  display: flex; align-items: center; justify-content: space-between; gap: 16px;
+  background: none; border: none; color: var(--white);
+  font-size: 16px; font-weight: 600; text-align: left;
+  cursor: pointer; font-family: inherit;
+  transition: color 0.3s ease;
+}
+.faq-q:hover { color: var(--gold-light); }
+.faq-q.open { color: var(--gold); }
+.faq-icon {
+  width: 24px; height: 24px; flex-shrink: 0;
+  border: 1px solid var(--gold-border); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; color: var(--gold);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.faq-q.open .faq-icon { transform: rotate(45deg); background: var(--gold-dim); }
+.faq-a {
+  max-height: 0; overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0 28px;
+}
+.faq-a.open {
+  max-height: 400px;
+  padding: 0 28px 24px;
+}
+.faq-a p {
+  font-size: 15px; color: var(--text-mid); line-height: 1.75;
+}
+.faq-a strong { color: var(--gold-light); font-weight: 600; }
+
+/* ===== CTA ===== */
+.cta-section {
+  padding: 120px 40px;
+  text-align: center;
+  position: relative; overflow: hidden;
+  background: var(--navy-mid);
+  border-top: 1px solid var(--gold-border);
+}
+.cta-section::before {
+  content: '';
+  position: absolute; bottom: -200px; left: 50%; transform: translateX(-50%);
+  width: 800px; height: 500px;
+  background: radial-gradient(ellipse, rgba(197,164,78,0.06), transparent 70%);
+  pointer-events: none;
+}
+.cta-inner { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+.cta-inner h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(32px, 4vw, 56px);
+  line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 24px;
+}
+.cta-inner h2 em { font-style: italic; color: var(--gold); }
+.cta-inner p {
+  font-size: 17px; color: var(--text-mid); line-height: 1.75; margin-bottom: 48px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: var(--navy-deep);
+  border-top: 1px solid var(--gold-border);
+  padding: 48px 40px 32px;
+}
+.footer-inner {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 16px; margin-bottom: 32px;
+}
+.footer-brand {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; color: var(--gold);
+}
+.footer-tagline {
+  font-size: 10px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--text-muted); font-weight: 700;
+}
+.footer-nav {
+  max-width: 1400px; margin: 0 auto 24px;
+  display: flex; flex-wrap: wrap; gap: 24px;
+}
+.footer-nav a {
+  font-size: 12px; color: var(--text-muted); text-decoration: none;
+  letter-spacing: 0.5px; transition: color 0.3s;
+}
+.footer-nav a:hover { color: var(--gold-light); }
+.footer-legal {
+  max-width: 1400px; margin: 0 auto;
+  display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  padding-top: 20px; border-top: 1px solid rgba(197,164,78,0.05);
+}
+.footer-legal span {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+}
+
+/* ===== REVEAL ===== */
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ===== ANIM ===== */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(24px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .top-bar-nav { display: none; }
+  .how-steps { grid-template-columns: 1fr 1fr; }
+  .how-step:nth-child(2) { border-radius: 0 12px 0 0; }
+  .how-step:nth-child(3) { border-radius: 0 0 0 12px; }
+  .how-step:last-child { border-radius: 0 0 12px 0; }
+  .how-step:first-child { border-radius: 12px 0 0 0; }
+  .how-step:nth-child(even) .how-step-arrow { display: none; }
+  .value-grid { grid-template-columns: 1fr 1fr; }
+  .use-grid { grid-template-columns: 1fr; }
+  .creds-grid { grid-template-columns: 1fr 1fr; }
+  .compare-table { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .hero, .stack-section, .orch-section, .narrative-section,
+  .how-section, .use-section, .compare-section,
+  .value-section, .creds-section, .faq-section, .cta-section { padding-left: 20px; padding-right: 20px; }
+  .metrics-inner { gap: 16px; }
+  .metric-divider { display: none; }
+  .value-grid, .creds-grid { grid-template-columns: 1fr; }
+  .how-steps { grid-template-columns: 1fr; }
+  .how-step:first-child, .how-step:last-child { border-radius: 0; }
+  .how-step:first-child { border-radius: 12px 12px 0 0; }
+  .how-step:last-child { border-radius: 0 0 12px 12px; }
+  .how-step-arrow { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="top-bar" id="topBar">
+  <div class="top-bar-inner">
+    <a href="https://www.inpursuithealth.com/" class="top-bar-brand">
+      <div class="brand-mark">I</div>
+      <span class="top-bar-wordmark">InPursuit Health</span>
+    </a>
+    <nav class="top-bar-nav">
+      <a href="https://www.inpursuithealth.com/tetra" class="nav-item">TETRA</a>
+      <a href="#stack" class="nav-item">The Stack</a>
+      <a href="#orchestration" class="nav-item">How It Works</a>
+      <a href="#use-cases" class="nav-item">Use Cases</a>
+      <a href="#faq" class="nav-item">FAQ</a>
+    </nav>
+    <a href="mailto:info@inpursuithealth.com" class="nav-cta">Request Demo</a>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <canvas id="heroCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;"></canvas>
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Now Naming the Category</div>
+  <h1>Every AI model has a ceiling.<br><em>TETRA Conductor™</em> has none.</h1>
+  <p class="hero-sub-name">Model-Agnostic AI Orchestration Infrastructure</p>
+  <p class="hero-desc">The intelligent routing layer that sits between clinical need and AI capability — evaluating in real-time which model, which agent, which intelligence is best for this patient, this data, this moment. AI models become as easy to change as shoes. The infrastructure beneath them never moves.</p>
+  <div class="hero-actions">
+    <a href="mailto:info@inpursuithealth.com" class="btn-gold">Request a Demo</a>
+    <a href="#stack" class="btn-outline">See Where It Fits ↓</a>
+  </div>
+</section>
+
+<!-- METRICS BAR -->
+<div class="metrics-bar">
+  <div class="metrics-inner">
+    <div class="metric-item">
+      <span class="metric-value">135K</span>
+      <span class="metric-label">Writes / Second</span>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <span class="metric-value">108K</span>
+      <span class="metric-label">Queries / Second</span>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <span class="metric-value">8B+</span>
+      <span class="metric-label">Transactions (5-Day Stress Test)</span>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <span class="metric-value">140M+</span>
+      <span class="metric-label">Beneficiaries (CMS Approved)</span>
+    </div>
+    <div class="metric-divider"></div>
+    <div class="metric-item">
+      <span class="metric-value">&lt;200ms</span>
+      <span class="metric-label">Routing Decision Latency</span>
+    </div>
+  </div>
+</div>
+
+<!-- STACK PLACEMENT -->
+<section class="stack-section" id="stack">
+  <div class="stack-inner">
+    <div class="stack-header reveal">
+      <span class="section-overline">The TETRA Suite</span>
+      <h2 class="section-headline">Where does TETRA Conductor™<br>sit in the <em>stack?</em></h2>
+      <p class="section-desc" style="margin: 0 auto; text-align: center;">TETRA is a suite of purpose-built infrastructure layers. Each product does one thing — extraordinarily well. TETRA Conductor™ is the orchestration layer: it sits above the data fabric and exchange infrastructure (layers 1–2), and below the security and supervisory governance layers (layers 4–5). It is the intelligence that decides <em>which AI</em> gets the work.</p>
+    </div>
+
+    <div class="stack-diagram reveal">
+
+      <!-- Layer 1: Foundation -->
+      <div class="stack-layer" style="position:relative;">
+        <div class="stack-layer-num">1</div>
+        <div class="stack-layer-content">
+          <div class="stack-layer-info">
+            <div class="stack-layer-name">TETRA™</div>
+            <div class="stack-layer-role">Data Fabric Foundation · On-Premise · Cloud · Edge</div>
+            <div class="stack-layer-desc">The foundation. The data fabric that unifies disparate systems, eliminates silos, and provides the unified data substrate that every other layer operates on. 135K writes/sec. 1B+ cached records. Battle-tested in DoD and VA environments.</div>
+          </div>
+          <div class="stack-layer-badge">Foundation</div>
+        </div>
+        <div class="stack-arrow">↓</div>
+      </div>
+
+      <!-- Layer 2: Ex -->
+      <div class="stack-layer" style="position:relative;">
+        <div class="stack-layer-num">2</div>
+        <div class="stack-layer-content">
+          <div class="stack-layer-info">
+            <div class="stack-layer-name">TETRA Ex™</div>
+            <div class="stack-layer-role">Exchange Layer · TEFCA / QHIN · HIE Mesh</div>
+            <div class="stack-layer-desc">The network. Federates health data across TEFCA-compliant networks, HIE mesh, and payer/provider ecosystems. Clinical data flows in. AI-ready data flows out.</div>
+          </div>
+          <div class="stack-layer-badge">Exchange</div>
+        </div>
+        <div class="stack-arrow">↓</div>
+      </div>
+
+      <!-- Layer 3: CONDUCTOR — highlighted -->
+      <div class="stack-layer conductor" style="position:relative;">
+        <div class="stack-layer-num">3</div>
+        <div class="stack-layer-content">
+          <div class="stack-layer-info">
+            <div class="stack-layer-name">TETRA Conductor™ <span style="font-size:11px;color:var(--gold);letter-spacing:2px;">← YOU ARE HERE</span></div>
+            <div class="stack-layer-role">Model-Agnostic AI Orchestration · Intelligent Routing</div>
+            <div class="stack-layer-desc">The conductor. Evaluates clinical context in real-time and routes each interaction to the optimal AI model, agent, or capability. No vendor lock. No single ceiling. Just the right intelligence, every time.</div>
+          </div>
+          <div class="stack-layer-badge">Orchestration</div>
+        </div>
+        <div class="stack-arrow" style="background:var(--navy-mid);border-color:var(--gold);">↓</div>
+      </div>
+
+      <!-- Layer 4: Aegis -->
+      <div class="stack-layer" style="position:relative;">
+        <div class="stack-layer-num">4</div>
+        <div class="stack-layer-content">
+          <div class="stack-layer-info">
+            <div class="stack-layer-name">TETRA Aegis™</div>
+            <div class="stack-layer-role">Security · Zero-Trust · HIPAA / NIST Compliance</div>
+            <div class="stack-layer-desc">The shield. FIPS-compliant cryptography, role-based access controls, zero-trust architecture, and immutable audit logging across all layers.</div>
+          </div>
+          <div class="stack-layer-badge">Security</div>
+        </div>
+        <div class="stack-arrow">↓</div>
+      </div>
+
+      <!-- Layer 5: Sentinel -->
+      <div class="stack-layer">
+        <div class="stack-layer-num">5</div>
+        <div class="stack-layer-content">
+          <div class="stack-layer-info">
+            <div class="stack-layer-name">TETRA Sentinel™</div>
+            <div class="stack-layer-role">Supervisory AI · AI Governance</div>
+            <div class="stack-layer-desc">The watchdog. Intercepts, classifies, risk-scores, and mediates every AI interaction before a byte of sensitive data is exposed. The AI that watches AI.</div>
+          </div>
+          <div class="stack-layer-badge">Governance</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="reveal" style="text-align:center;margin-top:36px;font-size:13px;color:var(--text-muted);letter-spacing:1px;">Each layer is independently licensable. TETRA Conductor™ can operate on the full TETRA stack or integrate with existing data infrastructure.</p>
+  </div>
+</section>
+
+<!-- ORCHESTRATION VISUAL -->
+<section class="orch-section" id="orchestration">
+  <div class="orch-inner">
+    <div class="orch-header reveal">
+      <span class="section-overline">Live Routing Intelligence</span>
+      <h2 class="section-headline" style="text-align:center;">The Conductor evaluates every<br>clinical moment in <em>real-time.</em></h2>
+      <p class="section-desc" style="text-align:center;margin:0 auto 48px;">Select a clinical scenario to watch TETRA Conductor™ route to the optimal AI capability. Primary routing shown in gold. Supporting integrations in amber.</p>
+    </div>
+
+    <div class="orch-scenarios">
+      <button class="orch-sc-btn active" data-sc="medication">Medication Review</button>
+      <button class="orch-sc-btn" data-sc="cardiac">Cardiac Alert</button>
+      <button class="orch-sc-btn" data-sc="wellness">Wellness Check-In</button>
+      <button class="orch-sc-btn" data-sc="surgery">Surgical Pre-Auth</button>
+      <button class="orch-sc-btn" data-sc="navigation">Care Navigation</button>
+    </div>
+
+    <div class="orch-stage" id="orchStage">
+      <canvas class="orch-canvas" id="orchCanvas"></canvas>
+
+      <div class="orch-orbit r1"></div>
+      <div class="orch-orbit r2"></div>
+      <div class="orch-orbit r3"></div>
+
+      <!-- NODES — positioned via CSS absolute, spread around hub -->
+      <!-- Top -->
+      <div class="orch-node" data-nid="clinical" style="top:4%;left:50%;transform:translateX(-50%);">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="8" cy="8" r="6"/><path d="M5 8h6M8 5v6"/></svg></span>
+          <span class="orch-node-name">Clinical AI</span>
+          <span class="orch-node-sub">Reasoning</span>
+        </div>
+      </div>
+      <!-- Top-right -->
+      <div class="orch-node" data-nid="pharma" style="top:14%;right:10%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="2" width="10" height="12" rx="1"/><path d="M6 6h4M6 9h4M6 12h2"/></svg></span>
+          <span class="orch-node-name">Rx Intel</span>
+          <span class="orch-node-sub">Medication AI</span>
+        </div>
+      </div>
+      <!-- Right -->
+      <div class="orch-node" data-nid="imaging" style="top:40%;right:2%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="12" height="12" rx="1"/><circle cx="8" cy="8" r="3"/></svg></span>
+          <span class="orch-node-name">Imaging AI</span>
+          <span class="orch-node-sub">Radiology</span>
+        </div>
+      </div>
+      <!-- Bottom-right -->
+      <div class="orch-node" data-nid="cost" style="bottom:14%;right:10%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 12l3-4 3 2 3-5 3 3"/><path d="M2 14h12"/></svg></span>
+          <span class="orch-node-name">Cost AI</span>
+          <span class="orch-node-sub">Price Transparency</span>
+        </div>
+      </div>
+      <!-- Bottom -->
+      <div class="orch-node" data-nid="records" style="bottom:4%;left:50%;transform:translateX(-50%);">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h10v2H3zM3 7h10v2H3zM3 11h6v2H3z"/></svg></span>
+          <span class="orch-node-name">EHR Bridge</span>
+          <span class="orch-node-sub">Universal Connect</span>
+        </div>
+      </div>
+      <!-- Bottom-left -->
+      <div class="orch-node" data-nid="nlp" style="bottom:14%;left:10%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 4h12v6H9l-3 3v-3H2z"/></svg></span>
+          <span class="orch-node-name">Patient NLP</span>
+          <span class="orch-node-sub">Conversational</span>
+        </div>
+      </div>
+      <!-- Left -->
+      <div class="orch-node" data-nid="monitor" style="top:40%;left:2%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 8c1-3 2-4 3-4s2 2 3 4 2 4 3 4 2-1 3-4"/></svg></span>
+          <span class="orch-node-name">Wearables</span>
+          <span class="orch-node-sub">Real-Time Vitals</span>
+        </div>
+      </div>
+      <!-- Top-left -->
+      <div class="orch-node" data-nid="safety" style="top:14%;left:10%;">
+        <div class="orch-node-pill">
+          <span class="orch-node-icon"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 2L3 4v4c0 3 2.5 5.5 5 6 2.5-.5 5-3 5-6V4z"/></svg></span>
+          <span class="orch-node-name">Safety AI</span>
+          <span class="orch-node-sub">TETRA Sentinel™</span>
+        </div>
+      </div>
+
+      <!-- Hub -->
+      <div class="orch-hub">
+        <div class="orch-hub-core">
+          <div class="orch-hub-ring"></div>
+          <div class="orch-hub-ring-2"></div>
+          <div class="orch-hub-name">TETRA<br>Conductor™</div>
+          <div class="orch-hub-sub">Orchestration</div>
+          <div class="orch-hub-indicator" id="orchIndicator">Routing...</div>
+        </div>
+      </div>
+    </div>
+
+    <p class="orch-sc-label">Active scenario: <span id="orchLabel">Medication Review</span></p>
+  </div>
+</section>
+
+<!-- NARRATIVE -->
+<section class="narrative-section">
+  <div class="narrative-inner">
+    <p class="narrative-intro reveal">The healthcare industry is about to make the same mistake it has made before — locking into a single AI the way it once locked into a single EHR, a single BI platform, a single claims system.</p>
+
+    <div class="narrative-body reveal">
+      <p><strong>Consider what has happened in just the last 18 months.</strong> GPT-4 was the undisputed standard. Then Claude surpassed it in reasoning. Gemini made significant moves in multimodal understanding. Open-source models like Llama began competing — and in some domains, winning. Any organization that hardwired itself to a single model is already rearchitecting. And that's just the foundation layer.</p>
+
+      <p>At the clinical reasoning level, the divergence is even sharper. <span class="gold-text">One model might excel at medication interaction analysis. Another at interpreting wearable ECG data. Another at patient communication in Spanish.</span> The idea that a single AI will be best at everything, for every patient, in every clinical moment, is already obsolete — and yet that is exactly how most healthcare AI is being built today.</p>
+
+      <p><strong>TETRA Conductor™ takes a fundamentally different position.</strong> Built on a Modular Open Systems Approach, TETRA Conductor™ is the intelligent routing infrastructure that sits between clinical need and AI capability — evaluating in real-time which model, which agent, which capability is best suited for this specific patient, this specific data type, this specific clinical decision. AI models become as interchangeable as instruments in an orchestra. The Conductor never changes.</p>
+
+      <div class="narrative-quote">
+        <p>"Human-in-the-loop is essentially human-on-the-hook, because the truth is clinicians find it very difficult to detect AI errors. Any system that relies solely on human oversight is not feasible and almost certain to fail."</p>
+        <cite>ARPA-H Program Manager — ADVOCATE Initiative</cite>
+      </div>
+
+      <p>That insight has a critical corollary the industry is still catching up to: <strong>a supervisory agent built on the same AI model it is supposed to supervise cannot reliably detect that model's errors.</strong> It shares the same blind spots, the same failure modes, the same architectural vulnerabilities. You need the supervisor to be structurally independent from the thing it supervises. TETRA Conductor™ routes to any model. TETRA Sentinel™ watches all of them. Neither is ever the same architecture as what it oversees.</p>
+
+      <p>TETRA Conductor™ is the only orchestration layer that guarantees that independence. It doesn't compete with clinical AI agents. <span class="gold-text">It is the infrastructure that makes all of them safe, deployable, and replaceable</span> — regardless of which foundation model they're built on, regardless of which vendor built them, regardless of what comes next.</p>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section" id="how-it-works">
+  <div class="how-inner">
+    <div class="how-header reveal">
+      <span class="section-overline">Under the Hood</span>
+      <h2 class="section-headline" style="text-align:center;">Four decisions. <em>Under 200 milliseconds.</em></h2>
+      <p class="section-desc" style="text-align:center;margin:0 auto;">Every clinical interaction passes through the same four-stage routing pipeline before a single token reaches an AI model.</p>
+    </div>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="how-step-arrow">→</div>
+        <div class="how-step-tag">Stage 01</div>
+        <div class="how-step-num">01</div>        <h4>Context Capture</h4>
+        <p>TETRA Conductor™ intercepts the clinical request at the interaction layer — capturing intent, data type, patient context, urgency level, and regulatory constraints before any routing decision is made.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-arrow">→</div>
+        <div class="how-step-tag">Stage 02</div>
+        <div class="how-step-num">02</div>        <h4>Capability Matching</h4>
+        <p>A real-time evaluation engine scores available AI models and agents against the specific task requirements — matching modality strengths, latency SLAs, compliance requirements, and clinical evidence alignment.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-arrow">→</div>
+        <div class="how-step-tag">Stage 03</div>
+        <div class="how-step-num">03</div>        <h4>Optimal Routing</h4>
+        <p>The highest-scored capability receives the routed request — with automatically generated context enrichment, data normalization, and output format specification. TETRA Aegis™ and Sentinel™ ride alongside every call.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-step-tag">Stage 04</div>
+        <div class="how-step-num">04</div>        <h4>Output & Learning</h4>
+        <p>Every routed interaction is logged with full provenance, timing, model version, and outcome signals. The routing engine continuously refines its model based on actual clinical performance — not just benchmark scores.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- USE CASES -->
+<section class="use-section" id="use-cases">
+  <div class="use-inner">
+    <div class="use-header reveal">
+      <span class="section-overline">Clinical Use Cases</span>
+      <h2 class="section-headline" style="text-align:center;">Different moments demand<br><em>different intelligence.</em></h2>
+      <p class="section-desc" style="text-align:center;margin:0 auto;">TETRA Conductor™ evaluates the clinical context and routes to the model that wins — not the model your vendor sold you.</p>
+    </div>
+    <div class="use-grid reveal">
+      <div class="use-card">        <span class="use-card-scenario">Medication Management</span>
+        <h4>Drug Interaction Analysis</h4>
+        <p>A patient on 12 concurrent medications requires pre-discharge reconciliation. TETRA Conductor™ routes to a specialized pharmacogenomics model with superior interaction training, not the general-purpose LLM used for documentation.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Clinical Request</span><span class="arrow">→</span>
+            <span>Rx Intel AI</span><span class="arrow">+</span>
+            <span>TETRA Sentinel™</span>
+          </div>
+        </div>
+      </div>
+      <div class="use-card">        <span class="use-card-scenario">Emergency Response</span>
+        <h4>Cardiac Event Detection</h4>
+        <p>Wearable data triggers an anomaly signal. TETRA Conductor™ simultaneously routes to a real-time vitals analysis model, initiates an EHR context pull, and escalates to the clinical AI for rapid decision support — in parallel, not in sequence.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Wearable Alert</span><span class="arrow">→</span>
+            <span>Vitals AI + EHR + Clinical AI</span>
+          </div>
+        </div>
+      </div>
+      <div class="use-card">        <span class="use-card-scenario">Patient Communication</span>
+        <h4>Multilingual Care Navigation</h4>
+        <p>A Spanish-speaking patient asks a complex post-op question. TETRA Conductor™ routes to the model with the highest validated Spanish medical accuracy — not the fastest response — and wraps the output through compliance verification before delivery.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Patient Query</span><span class="arrow">→</span>
+            <span>Multilingual NLP</span><span class="arrow">→</span>
+            <span>Sentinel™ Check</span>
+          </div>
+        </div>
+      </div>
+      <div class="use-card">        <span class="use-card-scenario">Diagnostics</span>
+        <h4>Imaging Interpretation</h4>
+        <p>A radiology image enters the workflow. TETRA Conductor™ routes to the imaging-specialized model for primary interpretation, then cross-routes the output to a clinical reasoning model for contextual correlation with the patient's longitudinal record.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Image Input</span><span class="arrow">→</span>
+            <span>Imaging AI</span><span class="arrow">→</span>
+            <span>Clinical Correlation</span>
+          </div>
+        </div>
+      </div>
+      <div class="use-card">        <span class="use-card-scenario">Value-Based Care</span>
+        <h4>Risk Stratification</h4>
+        <p>A population health query requires risk stratification across 4,000 attributed patients. TETRA Conductor™ routes to the population health AI with the strongest CKD and MSK comorbidity training — then integrates outputs with CMS ACCESS Model reporting requirements.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Population Query</span><span class="arrow">→</span>
+            <span>Risk AI + CMS Formatter</span>
+          </div>
+        </div>
+      </div>
+      <div class="use-card">        <span class="use-card-scenario">Prior Authorization</span>
+        <h4>Surgical Pre-Authorization</h4>
+        <p>A surgical pre-auth request arrives with payer requirements. TETRA Conductor™ routes the clinical evidence to a pre-auth specialist model, the cost data to pricing AI, and coordinates their outputs into a single submission — reducing denial rates and manual effort.</p>
+        <div class="use-routing">
+          <span class="use-routing-label">Conductor Routing</span>
+          <div class="use-routing-flow">
+            <span>Auth Request</span><span class="arrow">→</span>
+            <span>Pre-Auth AI + Cost AI + Aegis™</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE COMPARE -->
+<section class="compare-section" id="architecture">
+  <div class="compare-inner">
+    <div class="compare-header reveal">
+      <span class="section-overline">Architecture</span>
+      <h2 class="section-headline" style="text-align:center;">Why model-agnostic isn't a feature.<br>It's a <em>safety requirement.</em></h2>
+      <p class="section-desc" style="text-align:center;margin:0 auto;">Every competitor who arrives already married to one AI model has already chosen their ceiling. Here's what that decision actually costs.</p>
+    </div>
+    <div class="compare-table reveal">
+      <!-- Header row -->
+      <div class="compare-header-cell attr" style="background:rgba(6,14,26,0.5);">
+        <span class="compare-col-tag" style="opacity:0;">–</span>
+        <div class="compare-col-title" style="font-size:14px;color:var(--text-muted);">Capability</div>
+      </div>
+      <div class="compare-col compare-header-cell" style="background:rgba(255,100,100,0.04);">
+        <span class="compare-col-tag">Single-Model Architecture</span>
+        <div class="compare-col-title">Locked In. Locked Down.</div>
+      </div>
+      <div class="compare-col tetra compare-header-cell">
+        <span class="compare-col-tag">TETRA Conductor™</span>
+        <div class="compare-col-title">Model-Agnostic. Future-Proof.</div>
+      </div>
+
+      <div class="compare-cell attr">Supervisor Independence</div>
+      <div class="compare-cell"><span class="no">No —</span> Supervisor shares the model's blind spots</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> Architecturally independent supervisory layer</div>
+
+      <div class="compare-cell attr">Model Upgrades</div>
+      <div class="compare-cell"><span class="no">No —</span> Requires full rearchitecting (months/years)</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> New models integrate in weeks, not quarters</div>
+
+      <div class="compare-cell attr">Per-Task Optimization</div>
+      <div class="compare-cell"><span class="no">No —</span> One model for every clinical task</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> Routes to optimal AI per data type, per decision</div>
+
+      <div class="compare-cell attr">Vendor Leverage</div>
+      <div class="compare-cell"><span class="no">No —</span> Pricing leverage shifts to vendor over time</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> No lock-in — leverage stays with the platform owner</div>
+
+      <div class="compare-cell attr">Federal Validation</div>
+      <div class="compare-cell"><span class="partial">Partial —</span> Commercial-only track records</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> DoD, VA, CMS validated — 95% interoperability</div>
+
+      <div class="compare-cell attr">Parallel Routing</div>
+      <div class="compare-cell"><span class="no">No —</span> Sequential model calls only</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> Simultaneous multi-model orchestration</div>
+
+      <div class="compare-cell attr">MOSA Compliance</div>
+      <div class="compare-cell"><span class="no">No —</span> Proprietary, closed architecture</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> MOSA-native — DoD Modular Open Systems aligned</div>
+
+      <div class="compare-cell attr">Audit & Provenance</div>
+      <div class="compare-cell"><span class="partial">Partial —</span> Basic logging</div>
+      <div class="compare-col tetra compare-cell"><span class="yes">Yes —</span> Immutable routing logs with full decision provenance</div>
+
+      <div class="compare-cell attr" style="border-bottom:none;">Clinical Validation Time</div>
+      <div class="compare-cell" style="border-bottom:none;"><span class="no">No —</span> 5-year enterprise commitments before deployment</div>
+      <div class="compare-col tetra compare-cell" style="border-bottom:none;"><span class="yes">Yes —</span> Proven at scale — deploy in weeks</div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE -->
+<section class="value-section">
+  <div class="value-inner">
+    <div class="value-header reveal">
+      <span class="section-overline">The Value</span>
+      <h2 class="section-headline" style="text-align:center;">Three reasons TETRA Conductor™<br>is not a feature. It's a <em>category.</em></h2>
+    </div>
+    <div class="value-grid reveal">
+      <div class="value-card">
+        <div class="value-card-num">01</div>        <h4>Never Locked In Again</h4>
+        <p>The AI model landscape will keep evolving. New specialized models will emerge. Existing ones will degrade, raise prices, or get acquired. TETRA Conductor™ means those decisions happen at the vendor level — not at your architecture level. Your infrastructure doesn't move when the AI market does.</p>
+        <span class="value-highlight">AI as a commodity, not a commitment</span>
+      </div>
+      <div class="value-card">
+        <div class="value-card-num">02</div>        <h4>Right AI, Right Moment</h4>
+        <p>No single model is the best at medication interactions, imaging interpretation, multilingual communication, and population risk stratification simultaneously. The organizations that win in AI-powered healthcare are the ones routing to the right capability for each clinical moment — not the ones with the best single-model contract.</p>
+        <span class="value-highlight">Specialized intelligence, unified delivery</span>
+      </div>
+      <div class="value-card">
+        <div class="value-card-num">03</div>        <h4>Infrastructure That Doesn't Flinch</h4>
+        <p>Born in the Department of Defense. Proven in VA clinical environments. Approved by CMS for 140M+ beneficiaries. Benchmarked against IBM, Oracle, SAP, Informatica, and six others in a formal federal Analysis of Alternatives — and selected. TETRA Conductor™ runs on infrastructure that has already answered the hard questions under real operational pressure.</p>
+        <span class="value-highlight">Federal-grade trust. Commercial speed.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEDERAL CREDENTIALS -->
+<section class="creds-section" id="credentials">
+  <div class="creds-inner">
+    <div class="creds-header reveal">
+      <span class="section-overline">Federal Validation</span>
+      <h2 class="section-headline" style="text-align:center;">We didn't start in a garage.<br>We started in the <em>Department of Defense.</em></h2>
+      <p class="section-desc" style="text-align:center;margin:0 auto;">TETRA Conductor™ runs on the same infrastructure that federalized DoD and VA health data — outperforming IBM, Oracle, SAP, and Informatica in a formal Analysis of Alternatives. These aren't benchmarks. They're production results.</p>
+    </div>
+    <div class="creds-grid reveal">
+      <div class="cred-card">
+        <div class="cred-num">135K</div>
+        <span class="cred-label">Writes / Second</span>
+        <p class="cred-desc">Validated production throughput in enterprise stress testing — 8B+ transactions over a 5-day continuous run.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-num">1B+</div>
+        <span class="cred-label">Cached Records</span>
+        <p class="cred-desc">In-memory data substrate supporting sub-200ms routing decisions across massive longitudinal patient datasets.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-num">140M+</div>
+        <span class="cred-label">Beneficiaries</span>
+        <p class="cred-desc">CMS Health Tech Ecosystem approval grants direct access to Medicare and Medicaid population infrastructure.</p>
+      </div>
+      <div class="cred-card">
+        <div class="cred-num">#1</div>
+        <span class="cred-label">DoD Analysis of Alternatives</span>
+        <p class="cred-desc">Selected over IBM, Oracle, SAP, Informatica, and six other enterprise platforms in a formal federal AoA evaluation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section" id="faq">
+  <div class="faq-inner">
+    <div class="faq-header reveal">
+      <span class="section-overline">Common Questions</span>
+      <h2 class="section-headline" style="text-align:center;">Frequently asked by people<br>who think <em>deeply</em> about this.</h2>
+    </div>
+    <div class="faq-list reveal">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How is TETRA Conductor™ different from a standard API gateway or model router?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>A standard API gateway routes based on static rules — URL patterns, rate limits, authentication. A model router picks between predefined endpoints based on a configuration file. <strong>TETRA Conductor™ is an intelligent orchestration layer</strong> that evaluates clinical context, patient data type, regulatory requirements, urgency level, and model performance history in real-time before making a routing decision. It also handles parallel routing across multiple models simultaneously, enriches context before dispatch, normalizes outputs after return, and logs immutable decision provenance for compliance. It's the difference between a traffic light and an air traffic control system.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What AI models does TETRA Conductor™ support?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>By design, TETRA Conductor™ is <strong>model-agnostic</strong> — it supports any AI model accessible via API or on-premise deployment. This includes OpenAI (GPT series), Anthropic (Claude), Google (Gemini), Meta (Llama), Mistral, and any domain-specific clinical AI — whether deployed on public cloud, private cloud, or on-premise within a health system's firewall. TETRA Conductor™ is also forward-compatible: as new models emerge, they are addable as routing targets without rearchitecting the orchestration layer itself.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does TETRA Conductor™ relate to TETRA Sentinel™? Are they the same thing?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>They are distinct products that operate at different layers of the TETRA stack — and their separation is intentional. <strong>TETRA Conductor™</strong> is the orchestration layer: it decides which AI model receives each request, based on clinical context and capability matching. <strong>TETRA Sentinel™</strong> is the supervisory governance layer: it watches AI behavior, intercepts sensitive data, risk-scores interactions, and enforces compliance policy. A Conductor without a Sentinel has no safety oversight. A Sentinel without a Conductor has no routing intelligence. Together, they form the complete AI infrastructure layer — one decides where work goes, the other ensures that work is safe.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Can TETRA Conductor™ run without the full TETRA stack?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>Yes. TETRA Conductor™ is independently licensable and can be deployed as an orchestration layer over existing data infrastructure. That said, performance and capability are substantially enhanced when running on the full TETRA stack — particularly the TETRA™ data fabric (which provides the unified data substrate for context enrichment) and TETRA Ex™ (which provides the TEFCA/QHIN connectivity for comprehensive patient record access). The full stack enables Conductor to make significantly more informed routing decisions because it has access to complete longitudinal patient data, not just the data available at the point of API call.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          How does TETRA Conductor™ handle HIPAA compliance when routing PHI to third-party AI models?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>TETRA Conductor™ operates within a zero-trust architecture and applies TETRA Aegis™ security controls at every routing call. Before any request is dispatched to a third-party model, <strong>TETRA Sentinel™ performs pre-transmission classification and redaction</strong> — stripping or tokenizing PHI according to configurable policy profiles. Conductor maintains routing logs with full decision provenance under TETRA Aegis™ immutable audit infrastructure, satisfying HIPAA Security Rule §164.312 and NIST SP 800-171 technical safeguard requirements. Additionally, Conductor routing decisions can be configured to restrict PHI-containing requests to BAA-covered model endpoints only — preventing accidental exposure to non-compliant model providers.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          What does deployment look like? How long does implementation take?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>TETRA Conductor™ deploys via a lightweight middleware layer — <strong>no rip-and-replace of existing EHR or clinical systems.</strong> Integration uses standard APIs with pre-built connectors for major EHR platforms (Epic, Cerner, Meditech), HL7 FHIR endpoints, and common AI model APIs. The TETRA stack's pre-built commercially hardened components mean change deployment time is measured in days, not months. Most initial deployments achieve first routing scenarios live within 2–4 weeks, with full production configuration typically complete in 6–10 weeks depending on complexity of existing data infrastructure and number of AI integrations required.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          If a better AI model launches tomorrow, how hard is it to add it to TETRA Conductor™?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">
+          <p>That is precisely the value proposition. Adding a new AI model to TETRA Conductor™'s routing pool requires <strong>a new model connector — not a new architecture.</strong> Once added, it becomes immediately available as a routing target, and the Conductor's evaluation engine automatically begins scoring it against live clinical routing criteria. Existing model connections, clinical workflows, compliance configurations, and data pipelines are untouched. New models integrate in weeks. Your organization's clinical infrastructure is never again held hostage to a vendor's roadmap, pricing decisions, or model deprecation cycle.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <span class="section-overline">Get Started</span>
+    <h2>The infrastructure beneath the AI<br>matters more than <em>the AI itself.</em></h2>
+    <p>Whether you're a health system evaluating clinical AI deployment, a technology partner building on TETRA infrastructure, or an investor evaluating the foundational layer of healthcare's AI transformation — TETRA Conductor™ is the architecture that makes it all work.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a class="btn-gold" href="mailto:info@inpursuithealth.com">Request a Demo →</a>
+      <a class="btn-outline" href="https://www.inpursuithealth.com/">Visit InPursuit Health</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">InPursuit Health</div>
+    <div class="footer-tagline">Harness the Power of Your Data™</div>
+  </div>
+  <nav class="footer-nav">
+    <a href="https://www.inpursuithealth.com/">Home</a>
+    <a href="https://www.inpursuithealth.com/tetra">TETRA</a>
+    <a href="https://www.inpursuithealth.com/">Provider Solutions</a>
+    <a href="https://www.inpursuithealth.com/">Partner Network</a>
+    <a href="https://www.inpursuithealth.com/">About Us</a>
+    <a href="https://www.inpursuithealth.com/">Leadership</a>
+    <a href="mailto:info@inpursuithealth.com">Contact</a>
+  </nav>
+  <div class="footer-legal">
+    <span>© 2026 InPursuit Health, LLC. All rights reserved. Patent pending.</span>
+    <span>TETRA™, TETRA Ex™, TETRA Aegis™, TETRA Conductor™, TETRA Sentinel™ are trademarks of InPursuit Health, LLC. Results Matter™ · Harness the Power of Your Data™</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll shadow
+window.addEventListener('scroll', function() {
+  document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10);
+});
+
+// Scroll reveal
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(function(el) { revealObs.observe(el); });
+
+// Smooth scroll anchors
+document.querySelectorAll('a[href^="#"]').forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    e.preventDefault();
+    var t = document.querySelector(a.getAttribute('href'));
+    if (t) window.scrollTo({ top: t.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+  });
+});
+
+// FAQ Toggle
+function toggleFaq(btn) {
+  var ans = btn.nextElementSibling;
+  var isOpen = btn.classList.contains('open');
+  document.querySelectorAll('.faq-q').forEach(function(b) {
+    b.classList.remove('open');
+    b.nextElementSibling.classList.remove('open');
+  });
+  if (!isOpen) { btn.classList.add('open'); ans.classList.add('open'); }
+}
+
+// ===== ORCHESTRATION CANVAS =====
+(function() {
+  var scenarios = {
+    medication: { label: 'Medication Review', active: ['pharma','clinical','records','safety'], primary: 'pharma', desc: 'Routing to Rx Intelligence AI' },
+    cardiac:    { label: 'Cardiac Alert',      active: ['monitor','clinical','safety','records'], primary: 'monitor', desc: 'Routing to Vitals + Clinical AI' },
+    wellness:   { label: 'Wellness Check-In',  active: ['monitor','nlp','imaging','records'], primary: 'nlp', desc: 'Routing to Patient NLP' },
+    surgery:    { label: 'Surgical Pre-Auth',  active: ['clinical','cost','records','safety'], primary: 'clinical', desc: 'Routing to Clinical + Cost AI' },
+    navigation: { label: 'Care Navigation',    active: ['nlp','records','clinical','cost'], primary: 'nlp', desc: 'Routing to Patient NLP' }
+  };
+
+  var current = 'medication';
+  var canvas = document.getElementById('orchCanvas');
+  var stage = document.getElementById('orchStage');
+  var ctx = canvas ? canvas.getContext('2d') : null;
+  var pulses = [];
+  if (!canvas || !ctx) return;
+
+  function resize() {
+    var r = stage.getBoundingClientRect();
+    canvas.width = r.width;
+    canvas.height = r.height;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  function nodeCenter(node) {
+    var pill = node.querySelector('.orch-node-pill');
+    var sr = stage.getBoundingClientRect();
+    var pr = pill.getBoundingClientRect();
+    return { x: pr.left + pr.width/2 - sr.left, y: pr.top + pr.height/2 - sr.top };
+  }
+
+  function hubCenter() {
+    var sr = stage.getBoundingClientRect();
+    return { x: sr.width/2, y: sr.height/2 };
+  }
+
+  function spawnPulse(node, isPrimary) {
+    var hub = hubCenter();
+    var nc = nodeCenter(node);
+    var outbound = Math.random() > 0.45;
+    pulses.push({
+      fx: outbound ? hub.x : nc.x, fy: outbound ? hub.y : nc.y,
+      tx: outbound ? nc.x : hub.x, ty: outbound ? nc.y : hub.y,
+      progress: 0, speed: isPrimary ? 0.007 + Math.random()*0.003 : 0.005 + Math.random()*0.003,
+      isPrimary: isPrimary
+    });
+  }
+
+  function draw() {
+    resize();
+    var hub = hubCenter();
+    var sc = scenarios[current];
+    var nodes = document.querySelectorAll('.orch-node');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    nodes.forEach(function(node) {
+      var nc = nodeCenter(node);
+      var id = node.dataset.nid;
+      var isPrimary = id === sc.primary;
+      var isActive = sc.active.includes(id);
+
+      if (isPrimary) {
+        ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(nc.x, nc.y);
+        ctx.strokeStyle = 'rgba(197,164,78,0.08)'; ctx.lineWidth = 10; ctx.setLineDash([]); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(nc.x, nc.y);
+        ctx.strokeStyle = 'rgba(197,164,78,0.28)'; ctx.lineWidth = 1.5; ctx.stroke();
+      } else if (isActive) {
+        ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(nc.x, nc.y);
+        ctx.strokeStyle = 'rgba(197,164,78,0.08)'; ctx.lineWidth = 1; ctx.setLineDash([]); ctx.stroke();
+      } else {
+        ctx.beginPath(); ctx.moveTo(hub.x, hub.y); ctx.lineTo(nc.x, nc.y);
+        ctx.strokeStyle = 'rgba(197,164,78,0.02)'; ctx.lineWidth = 0.5; ctx.setLineDash([3,6]); ctx.stroke();
+      }
+      ctx.setLineDash([]);
+    });
+
+    // spawn pulses
+    if (Math.random() < 0.04) {
+      var activeNodes = Array.from(nodes).filter(function(n) { return sc.active.includes(n.dataset.nid); });
+      if (activeNodes.length) {
+        var n = activeNodes[Math.floor(Math.random()*activeNodes.length)];
+        var isPrim = n.dataset.nid === sc.primary;
+        spawnPulse(n, isPrim);
+        if (isPrim && Math.random() > 0.5) spawnPulse(n, true);
+      }
+    }
+
+    // draw pulses
+    for (var i = pulses.length-1; i >= 0; i--) {
+      var p = pulses[i];
+      p.progress += p.speed;
+      if (p.progress >= 1) { pulses.splice(i,1); continue; }
+      var px = p.fx + (p.tx-p.fx)*p.progress;
+      var py = p.fy + (p.ty-p.fy)*p.progress;
+      var a = p.progress < 0.1 ? p.progress*8 : p.progress > 0.85 ? (1-p.progress)*5 : 0.6;
+      var size = p.isPrimary ? 2.8 : 1.8;
+      ctx.beginPath(); ctx.arc(px, py, size*4, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(197,164,78,'+(a*0.08)+')'; ctx.fill();
+      ctx.beginPath(); ctx.arc(px, py, size, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(197,164,78,'+a+')'; ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  function setScenario(name) {
+    current = name;
+    var sc = scenarios[name];
+    document.querySelectorAll('.orch-sc-btn').forEach(function(b) {
+      b.classList.toggle('active', b.dataset.sc === name);
+    });
+    document.querySelectorAll('.orch-node').forEach(function(node) {
+      var id = node.dataset.nid;
+      node.classList.remove('active','primary');
+      if (id === sc.primary) node.classList.add('primary');
+      else if (sc.active.includes(id)) node.classList.add('active');
+    });
+    var lbl = document.getElementById('orchLabel');
+    var ind = document.getElementById('orchIndicator');
+    lbl.style.opacity = '0';
+    ind.style.opacity = '0';
+    setTimeout(function() {
+      lbl.textContent = sc.label; lbl.style.opacity = '1';
+      ind.textContent = sc.desc; ind.style.opacity = '1';
+    }, 200);
+    pulses.length = 0;
+  }
+
+  document.querySelectorAll('.orch-sc-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      setScenario(btn.dataset.sc);
+      clearInterval(autoTimer);
+      setTimeout(startAuto, 20000);
+    });
+  });
+
+  var autoTimer;
+  function startAuto() {
+    var keys = Object.keys(scenarios); var idx = 0;
+    autoTimer = setInterval(function() { idx = (idx+1)%keys.length; setScenario(keys[idx]); }, 5000);
+  }
+
+  setScenario('medication');
+  draw();
+  startAuto();
+})();
+
+// ===== HERO ORCHESTRATION CANVAS =====
+(function() {
+  var canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, nodes = [], connections = [], pulseRings = [];
+  var lastBeat = 0, beatIndex = 0;
+  var beatPeriods = [900, 1200, 900, 1800];
+  var time = 0;
+
+  var COLORS = [
+    {r:197,g:164,b:78},
+    {r:212,g:185,b:106},
+    {r:232,g:212,b:139},
+    {r:255,g:240,b:180},
+    {r:170,g:130,b:50},
+    {r:140,g:100,b:30}
+  ];
+
+  function rgba(c,a){ return 'rgba('+c.r+','+c.g+','+c.b+','+a+')'; }
+
+  function resize(){
+    var p = canvas.parentElement.getBoundingClientRect();
+    W = canvas.width = p.width;
+    H = canvas.height = p.height;
+  }
+
+  function Node(){}
+  Node.prototype.init = function(){
+    this.x = Math.random()*W;
+    this.y = Math.random()*H;
+    this.vx = (Math.random()-0.5)*0.18;
+    this.vy = (Math.random()-0.5)*0.18;
+    this.baseR = 1.2 + Math.random()*1.8;
+    this.ci = Math.floor(Math.random()*COLORS.length);
+    this.baseAlpha = 0.06 + Math.random()*0.1;
+    this.pulse = 0;
+    this.decay = 0.016 + Math.random()*0.01;
+    this.phase = Math.random()*Math.PI*2;
+    this.group = Math.floor(Math.random()*6);
+  };
+  Node.prototype.update = function(){
+    this.x += this.vx; this.y += this.vy;
+    if(this.x<-20) this.vx+=0.008; if(this.x>W+20) this.vx-=0.008;
+    if(this.y<-20) this.vy+=0.008; if(this.y>H+20) this.vy-=0.008;
+    if(this.pulse>0){ this.pulse-=this.decay; if(this.pulse<0) this.pulse=0; }
+  };
+  Node.prototype.fire = function(v){ this.pulse=Math.min(1,this.pulse+v); };
+  Node.prototype.draw = function(){
+    var p=this.pulse;
+    var breathe=0.5+0.5*Math.sin(time*0.0007+this.phase);
+    var a=this.baseAlpha*(0.4+0.6*breathe)+p*0.8;
+    var r=this.baseR+p*5;
+    var col=COLORS[this.ci];
+    if(a>0.05){
+      var g=ctx.createRadialGradient(this.x,this.y,0,this.x,this.y,r*5);
+      g.addColorStop(0,rgba(col,a*0.25));
+      g.addColorStop(1,rgba(col,0));
+      ctx.beginPath(); ctx.arc(this.x,this.y,r*7,0,Math.PI*2);
+      ctx.fillStyle=g; ctx.fill();
+    }
+    ctx.beginPath(); ctx.arc(this.x,this.y,r,0,Math.PI*2);
+    ctx.fillStyle=rgba(col,Math.min(1,a)); ctx.fill();
+    if(p>0.5){
+      ctx.beginPath(); ctx.arc(this.x,this.y,r*0.35,0,Math.PI*2);
+      ctx.fillStyle=rgba(COLORS[3],p*0.9); ctx.fill();
+    }
+  };
+
+  function Conn(a,b){
+    this.a=a; this.b=b; this.alive=true;
+    this.alpha=0; this.age=0;
+    this.lifespan=200+Math.random()*280;
+    this.pp=0; this.pv=0; this.pd=1;
+  }
+  Conn.prototype.update=function(){
+    this.age++;
+    if(this.age>this.lifespan){this.alive=false; return;}
+    var lf=this.age/this.lifespan;
+    var ta=lf<0.15?lf/0.15:lf>0.75?(1-(lf-0.75)/0.25):1;
+    this.alpha+=(ta*0.1-this.alpha)*0.1;
+    if(this.pv>0){
+      this.pp+=0.022*this.pd; this.pv-=0.009;
+      if(this.pv<0)this.pv=0;
+      if(this.pp>1||this.pp<0)this.pv=0;
+    }
+    var cf=(this.a.pulse+this.b.pulse)*0.35;
+    if(cf>0.12&&Math.random()<0.25){
+      this.pv=cf; this.pp=Math.random()<0.5?0:1; this.pd=this.pp===0?1:-1;
+    }
+  };
+  Conn.prototype.draw=function(){
+    var dx=this.b.x-this.a.x, dy=this.b.y-this.a.y;
+    var g=ctx.createLinearGradient(this.a.x,this.a.y,this.b.x,this.b.y);
+    var ca=COLORS[this.a.ci], cb=COLORS[this.b.ci];
+    g.addColorStop(0,rgba(ca,this.alpha*(0.25+this.a.pulse*0.5)));
+    g.addColorStop(1,rgba(cb,this.alpha*(0.25+this.b.pulse*0.5)));
+    ctx.beginPath(); ctx.moveTo(this.a.x,this.a.y); ctx.lineTo(this.b.x,this.b.y);
+    ctx.strokeStyle=g; ctx.lineWidth=0.5+(this.a.pulse+this.b.pulse)*0.7; ctx.stroke();
+    if(this.pv>0.05){
+      var px=this.a.x+dx*this.pp, py=this.a.y+dy*this.pp;
+      var gr=ctx.createRadialGradient(px,py,0,px,py,9);
+      gr.addColorStop(0,rgba(COLORS[3],this.pv*0.85));
+      gr.addColorStop(1,rgba(COLORS[3],0));
+      ctx.beginPath(); ctx.arc(px,py,9,0,Math.PI*2); ctx.fillStyle=gr; ctx.fill();
+      ctx.beginPath(); ctx.arc(px,py,1.8,0,Math.PI*2);
+      ctx.fillStyle=rgba(COLORS[3],this.pv); ctx.fill();
+    }
+  };
+
+  function Ring(x,y,col){
+    this.x=x; this.y=y; this.r=0; this.max=60+Math.random()*60;
+    this.a=0.3; this.col=col; this.alive=true; this.spd=2+Math.random()*1.5;
+  }
+  Ring.prototype.update=function(){
+    this.r+=this.spd; this.a=0.5*(1-this.r/this.max);
+    if(this.r>=this.max) this.alive=false;
+  };
+  Ring.prototype.draw=function(){
+    ctx.beginPath(); ctx.arc(this.x,this.y,this.r,0,Math.PI*2);
+    ctx.strokeStyle=rgba(this.col,this.a); ctx.lineWidth=1; ctx.stroke();
+  };
+
+  function manage(){
+    connections=connections.filter(function(c){return c.alive;});
+    if(connections.length<28&&Math.random()<0.04){
+      var a=nodes[Math.floor(Math.random()*nodes.length)];
+      var near=nodes.filter(function(n){
+        if(n===a)return false;
+        var dx=n.x-a.x,dy=n.y-a.y;
+        return dx*dx+dy*dy<120*120;
+      });
+      if(near.length){
+        var b=near[Math.floor(Math.random()*near.length)];
+        var exists=connections.some(function(c){return(c.a===a&&c.b===b)||(c.a===b&&c.b===a);});
+        if(!exists) connections.push(new Conn(a,b));
+      }
+    }
+  }
+
+  function beat(now){
+    var period=beatPeriods[beatIndex%beatPeriods.length];
+    if(now-lastBeat<period) return;
+    lastBeat=now; beatIndex++;
+    var grp=beatIndex%6;
+    var wave=beatIndex%3;
+    var cx=W/2, cy=H*0.45;
+    nodes.forEach(function(n){
+      var fire=wave===2||(wave===1&&(n.group===grp||n.group===(grp+1)%6||n.group===(grp+2)%6))||(wave===0&&(n.group===grp||n.group===(grp+3)%6));
+      if(!fire) return;
+      var dist=Math.sqrt(Math.pow(n.x-cx,2)+Math.pow(n.y-cy,2));
+      var delay=(dist/Math.sqrt(cx*cx+cy*cy))*220;
+      (function(nd,dl){
+        setTimeout(function(){
+          var iv=wave===2?0.35+Math.random()*0.25:0.2+Math.random()*0.2;
+          nd.fire(iv);
+          if(iv>0.85&&Math.random()<0.08) pulseRings.push(new Ring(nd.x,nd.y,COLORS[nd.ci]));
+        },dl);
+      })(n,delay);
+    });
+    if(wave===2) pulseRings.push(new Ring(cx,cy-40,COLORS[3]));
+  }
+
+  var lastTime=0;
+  function frame(now){
+    requestAnimationFrame(frame);
+    var dt=now-lastTime; lastTime=now; time=now;
+    ctx.fillStyle='rgba(6,14,26,0.25)';
+    ctx.fillRect(0,0,W,H);
+    beat(now);
+    manage();
+    connections.forEach(function(c){c.update();c.draw();});
+    pulseRings=pulseRings.filter(function(r){return r.alive;});
+    pulseRings.forEach(function(r){r.update();r.draw();});
+    nodes.forEach(function(n){n.update();n.draw();});
+    // vignette — keep center readable
+    var vg=ctx.createRadialGradient(W/2,H*0.45,80,W/2,H*0.45,Math.max(W,H)*0.7);
+    vg.addColorStop(0,'rgba(6,14,26,0)');
+    vg.addColorStop(0.35,'rgba(6,14,26,0.15)');
+    vg.addColorStop(1,'rgba(6,14,26,0.75)');
+    ctx.fillStyle=vg; ctx.fillRect(0,0,W,H);
+  }
+
+  function init(){
+    resize();
+    var count=Math.min(60,Math.floor((W*H)/16000));
+    nodes=[];
+    for(var i=0;i<count;i++){var n=new Node(); n.init(); nodes.push(n);}
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener('resize',function(){
+    resize();
+    nodes.forEach(function(n){if(n.x>W||n.y>H) n.init();});
+  });
+
+  setTimeout(init,80);
+})();
+
+</script>
+</body>
+</html>

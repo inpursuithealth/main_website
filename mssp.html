@@ -1,0 +1,1488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medicare Shared Savings Program (MSSP) — InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;
+  --gold:#C99700;--gold-light:#DAAB1E;--gold-bright:#F0C445;
+  --white:#FFFFFF;--off-white:#F0EDE6;--cream:#FAF8F4;
+  --red:#B22234;--red-deep:#8B1A29;
+  --text-dark:#1A1A2E;--text-muted:#6B7280;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:90vh;background:var(--navy-deep);overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(17,34,64,0.8),var(--navy-deep) 70%);}
+.hero-grid{position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(rgba(201,151,0,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,0,0.4) 1px,transparent 1px);background-size:60px 60px;animation:gridShift 20s linear infinite;}
+@keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
+.hero-content{position:relative;z-index:2;max-width:1000px;width:100%;margin:0 auto;padding:80px 40px 60px;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.2);border-radius:24px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.hero-badge .pulse-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:dotPulse 2s ease-in-out infinite;}
+@keyframes dotPulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.hero-content h1{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,64px);font-weight:400;color:var(--white);line-height:1.12;margin-bottom:24px;}
+.hero-content h1 em{font-style:italic;color:var(--gold);}
+.hero-tagline{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:20px;max-width:620px;margin-left:auto;margin-right:auto;}
+.hero-tagline-bold{font-family:'Instrument Serif',serif;font-size:19px;color:var(--gold-light);line-height:1.5;margin-bottom:40px;font-style:italic;}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:40px;}
+.hero-stat{text-align:center;position:relative;}
+.hero-stat::after{content:'';position:absolute;right:-24px;top:6px;bottom:6px;width:1px;background:rgba(201,151,0,0.15);}
+.hero-stat:last-child::after{display:none;}
+.hero-stat-num{font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,52px);color:var(--gold);line-height:1;margin-bottom:6px;}
+.hero-stat-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);max-width:160px;}
+.hero-cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+
+/* ===== GOLD TICKER ===== */
+.gold-ticker{background:var(--gold);overflow:hidden;padding:14px 0;position:relative;z-index:2;}
+.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.ticker-item{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--navy-deep);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:16px;}
+.ticker-item::before{content:'★';font-size:8px;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== HERO COHORT ===== */
+.hero-cohort{margin:36px auto 32px;max-width:640px;}
+.hero-cohort-inner{display:flex;align-items:stretch;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;}
+.hero-cohort-col{flex:1;padding:24px 28px;text-align:center;}
+.hero-cohort-col.active{background:rgba(201,151,0,0.04);border-right:1px solid rgba(255,255,255,0.06);}
+.hero-cohort-divider{width:1px;background:rgba(255,255,255,0.06);}
+.hero-cohort-label{font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;}
+.hero-cohort-col.active .hero-cohort-label{color:var(--gold);}
+.hero-cohort-deadline{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:14px;}
+.hero-cohort-deadline strong{color:rgba(255,255,255,0.7);}
+.hero-cohort-col.active .hero-cohort-deadline strong{color:var(--gold);}
+.hero-cohort-clock{display:flex;align-items:center;justify-content:center;gap:4px;}
+.hc-block{text-align:center;}
+.hc-num{font-family:'Instrument Serif',serif;font-size:28px;color:var(--white);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;line-height:1;}
+.hc-unit{font-size:8px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.hc-sep{color:rgba(201,151,0,0.3);font-size:20px;margin:0 2px;padding-bottom:14px;}
+.hero-cohort-note{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;max-width:220px;margin:0 auto;}
+.hero-cohort-note strong{color:rgba(255,255,255,0.6);}
+@media(max-width:600px){
+  .hero-cohort-inner{flex-direction:column;}
+  .hero-cohort-col.active{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .hero-cohort-divider{display:none;}
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-section{background:var(--white);padding:100px 40px;}
+.how-inner{max-width:1000px;margin:0 auto;}
+.how-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:start;margin:56px 0 48px;}
+.how-step{text-align:center;padding:0 16px;}
+.how-step-num{width:56px;height:56px;border-radius:50%;background:var(--navy-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);}
+.how-step-title{font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.how-step-body{font-size:14px;color:var(--text-muted);line-height:1.6;}
+.how-step-body strong{color:var(--text-dark);}
+.how-arrow{display:flex;align-items:center;justify-content:center;padding-top:14px;}
+.how-arrow svg{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5;opacity:0.4;}
+.how-math{background:var(--navy-deep);border-radius:12px;padding:32px 40px;text-align:center;max-width:800px;margin:0 auto;}
+.how-math-formula{font-family:'Instrument Serif',serif;font-size:clamp(18px,2.2vw,26px);color:var(--white);line-height:1.5;margin-bottom:8px;}
+.how-math-formula em{color:var(--gold);font-style:italic;}
+.how-math-example{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.how-math-example strong{color:var(--gold);font-weight:600;}
+.how-note{font-size:13px;color:var(--text-muted);text-align:center;margin-top:28px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7;}
+/* Accelerators */
+.accel-section{background:var(--cream);padding:80px 40px;}
+.accel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:48px auto 0;}
+.accel-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:28px 24px;transition:all 0.3s;position:relative;overflow:hidden;}
+.accel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
+.accel-card:hover::before{transform:scaleX(1);}
+.accel-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06);}
+.accel-card-title{font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:6px;}
+.accel-card-body{font-size:13px;color:var(--text-muted);line-height:1.6;}
+.accel-card-body strong{color:var(--gold);}
+@media(max-width:768px){
+  .how-steps{grid-template-columns:1fr;gap:24px;}
+  .how-arrow{transform:rotate(90deg);padding:0;}
+  .accel-grid{grid-template-columns:1fr;}
+}
+
+/* ===== CMS REQUIREMENTS ===== */
+.req-section{background:var(--cream);padding:100px 40px;}
+.req-inner{max-width:1000px;margin:0 auto;}
+.req-intro{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:700px;margin:0 auto 48px;text-align:center;}
+.req-intro strong{color:var(--text-dark);}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;background:var(--white);}
+.req-col-head{padding:16px 28px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.req-col-head.cms{background:#F0F4F8;color:#4A5568;border-bottom:1px solid rgba(0,0,0,0.06);}
+.req-col-head.ip{background:var(--navy-deep);color:var(--gold);border-bottom:1px solid rgba(0,0,0,0.06);}
+.req-row{display:contents;}
+.req-cell{padding:20px 28px;border-bottom:1px solid rgba(0,0,0,0.04);display:flex;align-items:flex-start;gap:12px;}
+.req-cell.cms-cell{background:var(--white);}
+.req-cell.ip-cell{background:rgba(201,151,0,0.02);}
+.req-cell:last-child{border-bottom:none;}
+.req-icon{flex-shrink:0;margin-top:2px;}
+.req-cell-title{font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:3px;}
+.req-cell-body{font-size:12px;color:var(--text-muted);line-height:1.5;}
+.ip-cell .req-cell-title{color:var(--navy);}
+.req-ding{text-align:center;padding:48px 40px;background:var(--navy-deep);border-radius:12px;margin-top:32px;}
+.req-ding-head{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);margin-bottom:8px;}
+.req-ding-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:600px;margin:0 auto;}
+.req-ding-sub strong{color:rgba(255,255,255,0.7);}
+
+/* ===== FAQ ===== */
+.faq-section{background:var(--white);padding:100px 40px;}
+.faq-inner{max-width:800px;margin:0 auto;}
+.faq-item{border-bottom:1px solid rgba(0,0,0,0.06);}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;-webkit-user-select:none;user-select:none;}
+.faq-q-text{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);line-height:1.4;flex:1;}
+.faq-q-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(201,151,0,0.08);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;}
+.faq-q-icon svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2;}
+.faq-item.open .faq-q-icon{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-item.open .faq-a{max-height:600px;}
+.faq-a-inner{padding:0 0 24px;font-size:14px;color:var(--text-muted);line-height:1.7;}
+.faq-a-inner strong{color:var(--text-dark);}
+
+/* ===== SERVICE TIERS ===== */
+.tiers-section{background:var(--navy-deep);padding:100px 40px;position:relative;overflow:hidden;}
+.tiers-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,151,0,0.04) 0%,transparent 60%);}
+.tiers-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1;}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.tier-card-v2{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:32px 28px;text-align:center;position:relative;transition:all 0.3s;}
+.tier-card-v2:hover{transform:translateY(-4px);border-color:rgba(201,151,0,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
+.tier-card-v2.featured{background:rgba(201,151,0,0.04);border-color:rgba(201,151,0,0.2);}
+.tier-card-v2.featured::before{content:'MOST COMMON';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy-deep);font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 14px;border-radius:3px;}
+.tier-v2-name{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:4px;}
+.tier-v2-pct{font-family:'Instrument Serif',serif;font-size:42px;color:var(--gold);line-height:1;margin:16px 0 4px;}
+.tier-v2-pct span{font-size:18px;color:rgba(255,255,255,0.3);}
+.tier-v2-sublabel{font-size:10px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;}
+.tier-v2-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:16px;}
+.tier-v2-includes{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;text-align:left;border-top:1px solid rgba(255,255,255,0.04);padding-top:16px;}
+.tier-v2-includes strong{color:rgba(255,255,255,0.35);}
+.tiers-footnote{text-align:center;font-size:11px;color:rgba(255,255,255,0.2);margin-top:24px;line-height:1.6;}
+
+/* ===== APPLY / RESOURCES ===== */
+.apply-section{background:var(--navy-deep);padding:100px 40px;position:relative;overflow:hidden;}
+.apply-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(201,151,0,0.04) 0%,transparent 60%);}
+.apply-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.apply-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:40px;margin-bottom:20px;text-align:center;}
+.apply-card-icon{margin-bottom:16px;}
+.apply-card-title{font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);margin-bottom:8px;}
+.apply-card-body{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:600px;margin:0 auto 24px;}
+.apply-card-body strong{color:rgba(255,255,255,0.65);}
+.apply-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all 0.3s;}
+.apply-btn:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.apply-resources{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.apply-resource{display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:10px;text-decoration:none;transition:all 0.25s;}
+.apply-resource:hover{border-color:rgba(201,151,0,0.15);background:rgba(201,151,0,0.03);}
+.apply-resource-icon{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(201,151,0,0.06);border-radius:8px;}
+.apply-resource-text{flex:1;}
+.apply-resource-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.apply-resource-sub{font-size:10px;color:rgba(255,255,255,0.25);}
+@media(max-width:768px){
+  .tiers-grid{grid-template-columns:1fr;}
+  .apply-resources{grid-template-columns:1fr;}
+}
+
+/* ===== SECTIONS ===== */
+.section{padding:100px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-overline{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-headline{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:20px;}
+.section-headline em{font-style:italic;color:var(--gold);}
+.section-desc{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-bottom:48px;}
+.dark-section{background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden;}
+.dark-section::before{content:'';position:absolute;top:0;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(201,151,0,0.04) 0%,transparent 70%);pointer-events:none;}
+.dark-section .section-headline{color:var(--white);}
+.dark-section .section-desc{color:rgba(255,255,255,0.5);}
+
+/* ===== DELTA SECTION ===== */
+.delta-section{background:var(--cream);}
+.delta-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px;}
+.delta-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:40px 36px;transition:all 0.4s ease;position:relative;overflow:hidden;}
+.delta-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.06);}
+.delta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s ease;}
+.delta-card:hover::before{transform:scaleX(1);}
+.delta-card.with{border-color:rgba(201,151,0,0.2);}
+.delta-card.with::before{transform:scaleX(1);background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.delta-card-tag{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;}
+.delta-card.with .delta-card-tag{color:var(--gold);}
+.delta-card-amount{font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,48px);color:var(--navy);line-height:1;margin-bottom:8px;}
+.delta-card.with .delta-card-amount{color:var(--gold);}
+.delta-card-note{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.5;}
+.delta-breakdown{list-style:none;}
+.delta-breakdown li{font-size:13px;color:var(--text-muted);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;}
+.delta-breakdown li:last-child{border-bottom:none;}
+.delta-breakdown li span:last-child{font-weight:600;color:var(--text-dark);}
+.delta-card.with .delta-breakdown li span:last-child{color:var(--gold);}
+
+.delta-callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.delta-callout{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:28px 24px;text-align:center;transition:all 0.3s;}
+.delta-callout:hover{border-color:rgba(201,151,0,0.3);box-shadow:0 8px 32px rgba(201,151,0,0.06);transform:translateY(-4px);}
+.delta-callout-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+.delta-callout-val{font-family:'Instrument Serif',serif;font-size:42px;color:var(--gold);line-height:1;margin-bottom:6px;}
+.delta-callout-sub{font-size:12px;color:var(--text-muted);}
+.delta-callout.decline{border-color:rgba(178,34,52,0.15);}
+.delta-callout.decline .delta-callout-label{color:var(--red);}
+.delta-callout.decline .delta-callout-val{color:var(--red);font-size:32px;}
+.delta-callout.decline .delta-callout-sub{color:rgba(178,34,52,0.6);}
+.delta-example-note{font-size:12px;color:var(--text-muted);text-align:center;margin-top:28px;font-style:italic;}
+
+/* ===== TRACK CARDS ===== */
+.tracks-section{background:var(--white);}
+.tracks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.track-card{background:var(--cream);border:1px solid rgba(0,0,0,0.04);border-radius:12px;padding:32px 24px;transition:all 0.4s;position:relative;overflow:hidden;}
+.track-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
+.track-card:hover::before{transform:scaleX(1);}
+.track-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.06);border-color:rgba(201,151,0,0.2);}
+.track-icon{margin-bottom:16px;line-height:0;}
+.track-name{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:6px;}
+.track-pmpm{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.track-pmpm span{font-size:13px;color:var(--text-muted);font-family:'Instrument Sans',sans-serif;}
+.track-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+
+/* ===== QUOTE BANNER ===== */
+.quote-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.quote-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,151,0,0.06) 0%,transparent 60%);}
+.quote-content{position:relative;z-index:1;max-width:900px;margin:0 auto;}
+.quote-text{font-family:'Instrument Serif',serif;font-size:clamp(20px,2.5vw,28px);color:var(--white);line-height:1.45;margin-bottom:16px;}
+.quote-text em{color:var(--gold);font-style:italic;}
+.quote-attrib{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+
+/* ===== WHAT WE PROVIDE ===== */
+.provide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.provide-card{background:rgba(17,34,64,0.6);border:1px solid rgba(201,151,0,0.08);border-radius:8px;padding:36px 28px;transition:all 0.3s;}
+.provide-card:hover{border-color:rgba(201,151,0,0.2);transform:translateY(-4px);}
+.provide-card-icon{width:48px;height:48px;border-radius:50%;background:rgba(201,151,0,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.provide-card h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:8px;}
+.provide-card p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+
+/* Federal badges */
+.federal-row{display:flex;justify-content:center;gap:48px;margin-top:56px;flex-wrap:wrap;}
+.federal-badge{text-align:center;}
+.federal-badge-icon{margin-bottom:8px;line-height:0;}
+.federal-badge-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.federal-badge-detail{font-size:12px;color:rgba(255,255,255,0.35);}
+
+/* ===== CALCULATOR ===== */
+
+/* ===== BUTTONS ===== */
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all 0.3s;border:none;cursor:pointer;font-family:inherit;}
+.btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:1.5px solid rgba(201,151,0,0.4);transition:all 0.3s;cursor:pointer;font-family:inherit;}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,151,0,0.08);transform:translateY(-2px);}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:1.5px solid rgba(201,151,0,0.3);transition:all 0.3s;cursor:pointer;font-family:inherit;}
+.btn-outline-dark:hover{border-color:var(--gold);background:rgba(201,151,0,0.06);transform:translateY(-2px);}
+
+/* ═══════════════════════════════════════
+   CALCULATOR SPLIT LAYOUT
+   (preserved from original calculator)
+═══════════════════════════════════════ */
+.split{display:flex;min-height:100vh;background:var(--navy-deep);}
+.split-left{width:420px;min-width:420px;background:var(--navy);border-right:1px solid rgba(201,151,0,0.08);display:flex;flex-direction:column;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+.split-left::-webkit-scrollbar{width:3px;}
+.split-left::-webkit-scrollbar-thumb{background:rgba(201,151,0,0.15);border-radius:3px;}
+.split-right{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:700px;}
+.split-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(201,151,0,0.05),transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(201,151,0,0.02),transparent 40%);}
+
+/* Calculator panel styles */
+.panel-section{padding:20px 28px 14px;}
+.panel-section+.panel-section{border-top:1px solid rgba(255,255,255,0.04);position:relative;}
+.panel-section+.panel-section::before{content:'';position:absolute;top:-1px;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,151,0,0.08),transparent);}
+.panel-title{font-family:'Instrument Serif',serif;font-size:15px;color:var(--white);margin-bottom:4px;letter-spacing:0.2px;}
+.panel-sub{font-size:11px;color:rgba(255,255,255,0.22);line-height:1.6;margin-bottom:16px;}
+.npi-wrap{display:flex;gap:8px;}
+.npi-input{flex:1;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:var(--white);font-size:14px;font-family:inherit;letter-spacing:1px;outline:none;transition:border-color 0.2s;}
+.npi-input:focus{border-color:rgba(201,151,0,0.4);box-shadow:0 0 0 3px rgba(201,151,0,0.06);}
+.npi-input::placeholder{color:rgba(255,255,255,0.15);letter-spacing:0;}
+.npi-btn{padding:12px 20px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:all 0.25s;white-space:nowrap;}
+.npi-btn:hover{background:var(--gold-bright);transform:translateY(-1px);}
+.npi-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.npi-status{font-size:10px;margin-top:8px;min-height:14px;}
+.npi-status.error{color:#ef4444;}.npi-status.loading{color:var(--gold);}
+.provider-badge{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.1);border-radius:10px;margin-top:16px;display:none;transition:all 0.4s;}
+.provider-badge.visible{display:flex;animation:badgeIn 0.5s ease both;}
+@keyframes badgeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pb-icon{width:36px;height:36px;border-radius:50%;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pb-info{flex:1;min-width:0;}
+.pb-name{font-size:13px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pb-detail{font-size:10px;color:rgba(255,255,255,0.25);margin-top:1px;}
+.pb-cms{font-size:8px;margin-top:5px;padding:3px 8px;border-radius:4px;display:inline-block;letter-spacing:0.3px;}
+.pb-cms.found{background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.1);color:var(--gold);}
+.pb-cms.missing{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.2);}
+
+/* Sliders */
+.slider-group{margin-bottom:12px;}
+.slider-row{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.slider-label{font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.slider-val{font-size:12px;font-weight:700;color:var(--gold);min-width:52px;text-align:right;font-variant-numeric:tabular-nums;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--gold) var(--fill,50%),rgba(255,255,255,0.06) var(--fill,50%));transition:opacity 0.2s;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 1px 6px rgba(201,151,0,0.3);cursor:pointer;transition:box-shadow 0.2s,transform 0.15s;}
+input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(201,151,0,0.12),0 2px 8px rgba(201,151,0,0.3);transform:scale(1.1);}
+.slider-note{font-size:8px;color:rgba(255,255,255,0.12);margin-bottom:10px;display:flex;align-items:center;gap:4px;}
+.slider-note .cms-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+/* Tier selector */
+.tier-section{padding:14px 28px 20px;border-top:1px solid rgba(255,255,255,0.04);}
+.tier-title{font-family:'Instrument Serif',serif;font-size:14px;color:var(--white);margin-bottom:4px;}
+.tier-sub{font-size:9px;color:rgba(255,255,255,0.2);margin-bottom:14px;}
+.tier-cards{display:flex;flex-direction:column;gap:8px;}
+.tier-card{padding:14px 16px 14px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
+.tier-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.3s;border-radius:10px 0 0 10px;}
+.tier-card:hover{background:rgba(255,255,255,0.04);transform:translateX(2px);}
+.tier-card.active{border-color:rgba(201,151,0,0.3);background:rgba(201,151,0,0.04);}
+.tier-card.active::before{background:linear-gradient(180deg,var(--gold),rgba(201,151,0,0.3));}
+.tier-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.tier-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);transition:color 0.3s;}
+.tier-card.active .tier-name{color:var(--white);}
+.tier-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,0.18);font-variant-numeric:tabular-nums;transition:color 0.3s;}
+.tier-card.active .tier-pct{color:var(--gold);}
+.tier-desc{font-size:10px;color:rgba(255,255,255,0.13);line-height:1.5;transition:color 0.3s;}
+.tier-card.active .tier-desc{color:rgba(255,255,255,0.3);}
+.tier-includes{font-size:9px;color:rgba(255,255,255,0.1);margin-top:6px;line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.tier-card.active .tier-includes{max-height:120px;opacity:1;color:rgba(201,151,0,0.35);}
+
+/* ─── ENVELOPE ─── */
+.envelope-scene{position:relative;z-index:1;perspective:1200px;width:520px;height:380px;}
+.envelope-wrap{position:relative;width:100%;height:100%;transform-style:preserve-3d;}
+.envelope{position:absolute;inset:0;background:linear-gradient(170deg,#F5F0E8 0%,#EDE7DA 30%,#E4DCCC 70%,#DDD5C5 100%);border-radius:6px;box-shadow:0 25px 80px rgba(0,0,0,0.4),0 8px 32px rgba(0,0,0,0.2);overflow:hidden;}
+.envelope::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;}
+.envelope::after{content:'';position:absolute;inset:0;border:2px solid transparent;border-image:linear-gradient(135deg,rgba(201,151,0,0.12),rgba(201,151,0,0.35),rgba(212,185,106,0.4),rgba(201,151,0,0.15)) 1;pointer-events:none;z-index:6;}
+.envelope-flap{position:absolute;top:-1px;left:0;right:0;height:180px;background:linear-gradient(170deg,#EDE7DA 0%,#E4DCCC 60%,#DDD5C5 100%);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform 0.9s cubic-bezier(0.4,0,0.15,1);z-index:3;}
+.envelope-flap::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(255,255,255,0.15),transparent 60%);pointer-events:none;}
+.wax-seal{position:absolute;top:108px;left:50%;transform:translateX(-50%);z-index:4;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#DAAB1E,#C99700 30%,#A07800 65%,#7A5C00 90%);box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:all 0.9s;display:flex;align-items:center;justify-content:center;animation:sealBreathe 4s ease-in-out infinite;}
+.wax-seal svg{width:22px;height:22px;fill:rgba(255,255,255,0.55);}
+@keyframes sealBreathe{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.03)}}
+.envelope-border{position:absolute;inset:14px;border:1px solid rgba(201,151,0,0.12);border-radius:2px;pointer-events:none;z-index:1;}
+.letter{position:absolute;left:22px;right:22px;bottom:22px;top:170px;background:var(--white);border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.06);z-index:2;transition:transform 0.9s cubic-bezier(0.4,0,0.15,1) 0.12s;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:28px 24px 20px;}
+.letter::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));opacity:0.6;}
+.letter-monogram{font-family:'Instrument Serif',serif;font-size:11px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;position:relative;z-index:1;}
+.letter-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:14px;position:relative;z-index:1;}
+.letter-heading{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy-deep);text-align:center;line-height:1.35;margin-bottom:10px;position:relative;z-index:1;}
+.letter-subtext{font-size:9px;color:rgba(10,22,40,0.3);text-align:center;line-height:1.6;max-width:280px;position:relative;z-index:1;}
+.envelope-scene.opened .envelope-flap{transform:rotateX(180deg);}
+.envelope-scene.opened .wax-seal{opacity:0;transform:translateX(-50%) scale(0.4) rotate(-15deg);animation:none;}
+.envelope-scene.opened .letter{transform:translateY(-195px);box-shadow:0 16px 56px rgba(0,0,0,0.15);}
+.envelope-cta{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:5;padding:14px 32px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:all 0.3s;box-shadow:0 4px 20px rgba(201,151,0,0.3);white-space:nowrap;}
+.envelope-cta:hover{background:var(--gold-bright);transform:translateX(-50%) translateY(-2px);}
+.envelope-scene.opened .envelope-cta{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px);}
+.envelope-scene.waiting .envelope-cta{display:none;}
+.envelope-scene.waiting .wax-seal{animation:sealBreathe 4s ease-in-out infinite;}
+.envelope-scene.waiting .letter-heading::after{content:'Enter your NPI to begin';font-family:'Instrument Sans',sans-serif;display:block;font-size:10px;color:rgba(10,22,40,0.2);font-weight:400;margin-top:10px;letter-spacing:0.5px;}
+.split-right::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,rgba(201,151,0,0.15),transparent),radial-gradient(1px 1px at 70% 20%,rgba(201,151,0,0.1),transparent),radial-gradient(1px 1px at 40% 70%,rgba(201,151,0,0.12),transparent),radial-gradient(1px 1px at 80% 60%,rgba(201,151,0,0.08),transparent);background-size:300px 300px;animation:dustDrift 30s linear infinite;pointer-events:none;z-index:0;}
+@keyframes dustDrift{0%{transform:translate(0,0)}50%{transform:translate(-15px,10px)}100%{transform:translate(0,0)}}
+
+/* ─── OFFER PANEL ─── */
+.offer-panel{position:absolute;inset:0;z-index:10;background:var(--navy-deep);opacity:0;pointer-events:none;transition:opacity 0.5s ease 0.5s;overflow-y:auto;padding:40px 48px;}
+.offer-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 10%,var(--gold) 30%,var(--gold-light) 50%,var(--gold) 70%,transparent 90%);opacity:0;transition:opacity 0.6s ease 1s;}
+.offer-panel.visible{opacity:1;pointer-events:all;}
+.offer-panel.visible::before{opacity:1;}
+.offer-panel::-webkit-scrollbar{width:4px;}
+.offer-panel::-webkit-scrollbar-thumb{background:rgba(201,151,0,0.12);border-radius:4px;}
+.offer-panel .est-banner,.offer-panel .offer-head,.offer-panel .rev-grid,.offer-panel .vbc-story,.offer-panel .app-pipeline,.offer-panel .countdown-inline,.offer-panel .offer-cta-wrap{opacity:0;transform:translateY(12px);transition:all 0.5s ease;}
+.offer-panel.visible .est-banner{opacity:1;transform:translateY(0);transition-delay:0s;}
+.offer-panel.visible .offer-head{opacity:1;transform:translateY(0);transition-delay:0.1s;}
+.offer-panel.visible .rev-grid{opacity:1;transform:translateY(0);transition-delay:0.2s;}
+.offer-panel.visible .vbc-story{opacity:1;transform:translateY(0);transition-delay:0.35s;}
+.offer-panel.visible .app-pipeline{opacity:1;transform:translateY(0);transition-delay:0.45s;}
+.offer-panel.visible .countdown-inline{opacity:1;transform:translateY(0);transition-delay:0.55s;}
+.offer-panel.visible .offer-cta-wrap{opacity:1;transform:translateY(0);transition-delay:0.6s;}
+
+.offer-head{text-align:center;margin-bottom:36px;}
+.offer-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.offer-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:dotPulse 2s ease infinite;}
+.offer-title{font-family:'Instrument Serif',serif;font-size:clamp(22px,2.5vw,30px);color:var(--white);line-height:1.2;margin-bottom:6px;}
+.offer-title em{font-style:italic;color:var(--gold);}
+.offer-subtitle{font-size:11px;color:rgba(255,255,255,0.25);}
+
+.rev-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:start;margin-bottom:32px;}
+.rev-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;overflow:hidden;}
+.rev-card.current{opacity:0.7;}
+.rev-card.optimized{border-color:rgba(201,151,0,0.2);background:rgba(201,151,0,0.03);}
+.rev-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:6px;}
+.rev-card.optimized .rev-label{color:rgba(201,151,0,0.5);}
+.rev-amount{font-family:'Instrument Serif',serif;font-size:32px;color:var(--white);line-height:1;margin-bottom:4px;}
+.rev-card.optimized .rev-amount{color:var(--gold);}
+.rev-detail{font-size:9px;color:rgba(255,255,255,0.15);margin-bottom:14px;}
+.rev-line{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:11px;}
+.rev-line+.rev-line{border-top:1px solid rgba(255,255,255,0.03);}
+.rev-line-name{color:rgba(255,255,255,0.3);}
+.rev-line-val{font-weight:600;color:rgba(255,255,255,0.25);font-variant-numeric:tabular-nums;}
+.rev-card.optimized .rev-line-val{color:rgba(201,151,0,0.7);}
+.rev-section{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.1);margin:10px 0 4px;}
+.rev-card.optimized .rev-section{color:rgba(201,151,0,0.25);}
+
+.rev-arrow{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:40px;}
+.rev-arrow-circle{width:42px;height:42px;border-radius:50%;background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;}
+.rev-arrow-circle svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;}
+.rev-arrow-gap{font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);font-weight:400;white-space:nowrap;}
+.rev-arrow-sub{font-size:8px;color:rgba(255,255,255,0.15);text-align:center;white-space:nowrap;line-height:1.4;}
+
+.est-banner{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:rgba(201,151,0,0.03);border:1px solid rgba(201,151,0,0.08);border-left:2px solid rgba(201,151,0,0.25);border-radius:2px 10px 10px 2px;margin-bottom:32px;}
+.est-banner-icon{flex-shrink:0;margin-top:2px;}
+.est-banner-text{font-size:9px;color:rgba(255,255,255,0.28);line-height:1.7;}
+.est-banner-text strong{color:rgba(255,255,255,0.5);font-weight:600;}
+
+.vbc-story{margin:32px 0;padding:24px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:14px;position:relative;overflow:hidden;}
+.vbc-story::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(201,151,0,0.15) 30%,rgba(201,151,0,0.2) 50%,rgba(201,151,0,0.15) 70%,transparent 95%);}
+.vbc-story-head{font-family:'Instrument Serif',serif;font-size:17px;color:var(--white);margin-bottom:5px;}
+.vbc-story-sub{font-size:10px;color:rgba(255,255,255,0.22);line-height:1.7;margin-bottom:18px;}
+.vbc-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.vbc-pill{padding:6px 12px;background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.1);border-radius:20px;font-size:10px;color:rgba(201,151,0,0.6);display:flex;align-items:center;gap:5px;}
+.vbc-pill .dot{width:5px;height:5px;border-radius:50%;}
+.vbc-pill .dot.access{background:var(--gold);}
+.vbc-pill .dot.ffs{background:rgba(255,255,255,0.2);}
+.vbc-row{display:flex;gap:12px;margin-bottom:8px;}
+.vbc-block{flex:1;padding:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:10px;}
+.vbc-block-label{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.15);margin-bottom:4px;}
+.vbc-block.gold{border-color:rgba(201,151,0,0.12);background:rgba(201,151,0,0.03);}
+.vbc-block.gold .vbc-block-label{color:rgba(201,151,0,0.4);}
+.vbc-block-val{font-family:'Instrument Serif',serif;font-size:24px;color:var(--white);line-height:1;}
+.vbc-block.gold .vbc-block-val{color:var(--gold);}
+.vbc-block-note{font-size:8px;color:rgba(255,255,255,0.12);margin-top:2px;}
+.vbc-block.gold .vbc-block-note{color:rgba(201,151,0,0.3);}
+.vbc-footnote{font-size:8px;color:rgba(255,255,255,0.1);margin-top:4px;text-align:center;}
+
+.app-pipeline{margin:36px 0;}
+.app-pipeline-head{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);text-align:center;margin-bottom:4px;}
+.app-pipeline-sub{font-size:10px;color:rgba(255,255,255,0.2);text-align:center;margin-bottom:28px;line-height:1.6;}
+.app-step{position:relative;padding:20px 24px 20px 72px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;margin-bottom:12px;transition:all 0.3s;}
+.app-step:hover{background:rgba(255,255,255,0.025);border-color:rgba(201,151,0,0.1);}
+.app-step-num{position:absolute;left:20px;top:20px;width:36px;height:36px;border-radius:50%;background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:15px;color:var(--gold);}
+.app-step-connector{position:absolute;left:37px;top:56px;bottom:-12px;width:1px;background:linear-gradient(180deg,rgba(201,151,0,0.15),transparent);}
+.app-step:last-child .app-step-connector{display:none;}
+.app-step-title{font-family:'Instrument Serif',serif;font-size:14px;color:var(--white);margin-bottom:3px;}
+.app-step-desc{font-size:10px;color:rgba(255,255,255,0.25);line-height:1.6;margin-bottom:10px;}
+.app-step-detail{font-size:9px;color:rgba(255,255,255,0.15);line-height:1.7;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;display:none;}
+.app-step.expanded .app-step-detail{display:block;}
+.app-step-toggle{font-size:9px;color:var(--gold);cursor:pointer;display:inline-flex;align-items:center;gap:4px;opacity:0.6;transition:opacity 0.2s;}
+.app-step-toggle:hover{opacity:1;}
+.app-step-btn{display:inline-block;margin-top:10px;padding:8px 20px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:all 0.25s;cursor:pointer;}
+.app-step-btn:hover{background:rgba(201,151,0,0.15);border-color:rgba(201,151,0,0.3);}
+.app-step-btn.primary{background:var(--gold);color:var(--navy-deep);border:none;padding:10px 28px;font-size:10px;}
+.app-step-btn.primary:hover{background:var(--gold-bright);transform:translateY(-1px);}
+.app-checklist{margin:8px 0 0;padding:0;list-style:none;}
+.app-checklist li{font-size:9px;color:rgba(255,255,255,0.2);padding:3px 0;display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.app-checklist li::before{content:'';display:inline-block;width:8px;height:8px;border:1px solid rgba(201,151,0,0.2);border-radius:2px;flex-shrink:0;margin-top:2px;}
+.app-checklist li.done{color:rgba(201,151,0,0.4);}
+.app-checklist li.done::before{background:rgba(201,151,0,0.15);border-color:rgba(201,151,0,0.3);}
+.app-what-we-handle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.app-col{padding:12px;background:rgba(255,255,255,0.015);border-radius:8px;}
+.app-col-label{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,151,0,0.3);margin-bottom:6px;}
+.app-col.provider .app-col-label{color:rgba(255,255,255,0.15);}
+.app-col li::before{display:none;}
+
+.offer-cta-wrap{text-align:center;margin:28px 0 20px;}
+.offer-cta{display:inline-block;padding:14px 40px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;text-decoration:none;transition:all 0.3s;}
+.offer-cta:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.offer-fine{font-size:9px;color:rgba(255,255,255,0.12);text-align:center;margin-top:8px;line-height:1.5;}
+.countdown-inline{display:flex;align-items:center;justify-content:center;gap:4px;margin:24px 0;}
+.cd-block{background:rgba(201,151,0,0.05);border:1px solid rgba(201,151,0,0.08);border-radius:6px;padding:8px 12px;text-align:center;min-width:52px;}
+.cd-num{font-family:'Instrument Serif',serif;font-size:20px;color:var(--gold);line-height:1;}
+.cd-unit{font-size:7px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-top:2px;}
+.cd-sep{color:rgba(201,151,0,0.15);font-size:18px;font-weight:300;}
+
+.meth{margin-top:40px;border-top:1px solid rgba(255,255,255,0.04);padding-top:24px;position:relative;}
+.meth-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 0;user-select:none;transition:opacity 0.2s;}
+.meth-toggle:hover{opacity:0.85;}
+.meth-toggle-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.15);transition:color 0.2s;}
+.meth-toggle:hover .meth-toggle-label{color:rgba(201,151,0,0.4);}
+.meth-toggle-icon{width:16px;height:16px;stroke:rgba(255,255,255,0.15);fill:none;stroke-width:2;transition:transform 0.35s,stroke 0.2s;}
+.meth-toggle:hover .meth-toggle-icon{stroke:rgba(201,151,0,0.4);}
+.meth-toggle.open .meth-toggle-icon{transform:rotate(180deg);}
+.meth-body{display:none;padding:20px 0 0;}
+.meth-toggle.open+.meth-body{display:block;animation:methIn 0.4s ease both;}
+@keyframes methIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.meth-section{margin-bottom:24px;}
+.meth-section-title{font-family:'Instrument Serif',serif;font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;}
+.meth-text{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-bottom:8px;}
+.meth-text strong{color:rgba(255,255,255,0.35);font-weight:600;}
+.meth-table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px;}
+.meth-table th{text-align:left;font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.12);padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.meth-table td{padding:6px 8px;color:rgba(255,255,255,0.25);border-bottom:1px solid rgba(255,255,255,0.02);vertical-align:top;}
+.meth-table td:first-child{color:rgba(255,255,255,0.35);font-weight:500;white-space:nowrap;}
+.meth-disclosure{font-size:9px;color:rgba(255,255,255,0.12);line-height:1.7;padding:12px 14px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);border-radius:8px;}
+
+/* Footer */
+.site-footer{background:var(--navy-deep);border-top:1px solid rgba(201,151,0,0.1);padding:48px 40px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-wordmark{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);letter-spacing:1px;}
+.footer-legal{font-size:11px;color:rgba(255,255,255,0.3);}
+.footer-disclaimer{max-width:1200px;margin:24px auto 0;font-size:10px;color:rgba(255,255,255,0.15);line-height:1.6;}
+.footer-tagline{text-align:center;margin-top:24px;font-family:'Instrument Serif',serif;font-size:13px;color:rgba(201,151,0,0.3);letter-spacing:2px;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero-stats{gap:32px;}
+  .hero-stat::after{display:none;}
+  .delta-grid{grid-template-columns:1fr;}
+  .delta-callouts{grid-template-columns:1fr;}
+  .tracks-grid{grid-template-columns:1fr 1fr;}
+  .provide-grid{grid-template-columns:1fr;}
+  .federal-row{gap:32px;}
+  .split{flex-direction:column;}
+  .split-left{width:100%;min-width:0;position:relative;top:0;height:auto;}
+  .split-right{min-height:500px;}
+  .envelope-scene{width:90%;max-width:460px;height:340px;}
+  .rev-grid{grid-template-columns:1fr;gap:12px;}
+  .rev-arrow{flex-direction:row;padding:0;}
+  .offer-panel{padding:24px 20px;}
+}
+@media(max-width:768px){
+  .section{padding:60px 20px;}
+  .hero-content{padding:60px 20px 40px;}
+  .tracks-grid{grid-template-columns:1fr;}
+  .panel-section{padding:20px 16px 16px;}
+  .tier-section{padding:16px;}
+  .envelope-scene{height:300px;}
+  .quote-banner{padding:60px 20px;}
+}
+</style>
+
+<!-- Nav injected by nav.js -->
+<script src="nav.js"></script>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><div class="pulse-dot"></div>Medicare Shared Savings Program (MSSP)</div>
+    <h1>MSSP: Already in an ACO?<br><em>Are you winning?</em></h1>
+    <p class="hero-tagline">The Medicare Shared Savings Program is America's largest ACO model — 477 ACOs serving 11.2 million Medicare beneficiaries, generating $2.1 billion in net savings in 2023 alone. But 37% of ACOs don't earn shared savings at all. The difference between participating and performing is data infrastructure.</p>
+    <p class="hero-tagline-bold">InPursuit Health provides the TETRA orchestration layer that turns MSSP participation into MSSP performance.</p>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">$2.1B</div><div class="hero-stat-label">Net Savings Generated (2023)</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">477</div><div class="hero-stat-label">Participating ACOs</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">11.2M</div><div class="hero-stat-label">Medicare Beneficiaries</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">63%</div><div class="hero-stat-label">ACOs Generating Savings</div></div>
+    </div>
+    <div class="hero-cta-row">
+      <a class="apply-btn" href="https://calendly.com/inpursuit" target="_blank" style="padding:14px 32px;font-size:14px;">Schedule Your Discovery Call</a>
+      <a href="#calculator" style="padding:14px 32px;font-size:13px;color:rgba(255,255,255,0.5);border:1px solid rgba(255,255,255,0.1);border-radius:6px;text-decoration:none;font-weight:600;transition:all 0.3s;">Estimate Your Savings</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GOLD TICKER ===== -->
+<div class="gold-ticker">
+  <div class="ticker-track">
+    <div class="ticker-item">Medicare Shared Savings Program</div>
+    <div class="ticker-item">477 ACOs Nationwide</div>
+    <div class="ticker-item">$2.1 Billion Net Savings (2023)</div>
+    <div class="ticker-item">BASIC &amp; ENHANCED Tracks Available</div>
+    <div class="ticker-item">Powered by TETRA Infrastructure</div>
+    <div class="ticker-item">Zero Upfront Cost</div>
+    <div class="ticker-item">Results Matter&trade;</div>
+    <div class="ticker-item">Medicare Shared Savings Program</div>
+    <div class="ticker-item">477 ACOs Nationwide</div>
+    <div class="ticker-item">$2.1 Billion Net Savings (2023)</div>
+    <div class="ticker-item">BASIC &amp; ENHANCED Tracks Available</div>
+    <div class="ticker-item">Powered by TETRA Infrastructure</div>
+    <div class="ticker-item">Zero Upfront Cost</div>
+    <div class="ticker-item">Results Matter&trade;</div>
+  </div>
+</div>
+
+<!-- ===== HOW TETRA DRIVES MSSP PERFORMANCE ===== -->
+<section class="how-section">
+  <div class="how-inner">
+    <p class="section-overline reveal" style="text-align:center;">How TETRA Drives MSSP Performance</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:700px;margin:0 auto 0;">Five savings levers. <em>One infrastructure.</em></h2>
+    <p style="text-align:center;font-size:15px;color:var(--text-muted);max-width:640px;margin:16px auto 48px;line-height:1.7;" class="reveal">Every dollar of MSSP shared savings traces back to a specific clinical intervention. TETRA powers each one.</p>
+
+    <div style="display:flex;flex-direction:column;gap:0;" class="reveal">
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-bottom:none;border-radius:10px 10px 0 0;overflow:hidden;">
+        <div style="padding:14px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);background:rgba(201,151,0,0.04);">Savings Lever</div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:14px 20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--navy);background:rgba(10,22,40,0.02);">What TETRA Does</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-bottom:none;">
+        <div style="padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:4px;">Avoidable Admissions</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">80 per 1,000 beneficiaries are preventable. Each costs Medicare $14,400.</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:12px;color:var(--text-dark);line-height:1.6;"><strong>TETRA Aegis&trade;</strong> monitors chronic patients in real time via RPM device feeds. AI-driven risk alerts fire when vitals trend toward crisis — triggering clinical intervention before the ER visit happens. Care gap dashboards flag patients overdue for medication adjustments, lab work, or follow-up visits.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-bottom:none;">
+        <div style="padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:4px;">Avoidable ED Visits</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">162 per 1,000 are treatable in primary care. Each costs $1,850.</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:12px;color:var(--text-dark);line-height:1.6;"><strong>TETRA Ex&trade;</strong> connects your ACO's patient roster to regional HIE data in real time. ADT alerts notify your care team within minutes of an ED presentation — enabling same-day follow-up calls and next-day PCP appointments that prevent repeat visits.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-bottom:none;">
+        <div style="padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:4px;">30-Day Readmissions</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">15.5% national rate. TCM within 14 days cuts this 25-40%.</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:12px;color:var(--text-dark);line-height:1.6;"><strong>TETRA&trade;</strong> ingests hospital discharge feeds (ADT/HL7) and auto-generates TCM worklists for your care coordinators — patient name, discharge diagnosis, medications changed, and a 14-day callback window. Automated scheduling triggers ensure no discharged patient falls through the cracks.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-bottom:none;">
+        <div style="padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:4px;">SNF Spend Optimization</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">19% of discharges go to SNF. Average episode: $14,040.</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:12px;color:var(--text-dark);line-height:1.6;"><strong>TETRA&trade;</strong> aggregates SNF quality, readmission, and cost data across your market to build a preferred network scorecard. Your discharge planners see real-time SNF performance rankings — steering patients to facilities with shorter stays, lower readmission rates, and better outcomes.</div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr auto 1fr;gap:0;border:1px solid rgba(0,0,0,0.06);border-radius:0 0 10px 10px;">
+        <div style="padding:16px 20px;">
+          <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:4px;">Risk Coding Accuracy</div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6;">Each 0.01 RAF increase raises your benchmark $129/bene/year.</div>
+        </div>
+        <div style="width:1px;background:rgba(0,0,0,0.06);"></div>
+        <div style="padding:16px 20px;">
+          <div style="font-size:12px;color:var(--text-dark);line-height:1.6;"><strong>TETRA Aegis&trade;</strong> scans every patient's problem list against CMS-HCC categories and flags suspected gaps before every AWV. Your physicians see a pre-visit summary of HCC opportunities — conditions already documented in the chart that weren't captured in the last 12-month RAF sweep.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="how-math" style="margin-top:40px;">
+      <div class="how-math-formula"><em>Benchmark</em> &minus; <em>Actual Spend</em> = Gross Savings &times; <em>Sharing Rate</em> = Your Check</div>
+      <div class="how-math-example">Example: 8,000 beneficiaries &times; $12,900 per capita = <strong>$103.2M benchmark</strong>. Save 5% (<strong>$5.16M</strong>) &times; 75% ENHANCED sharing = <strong>$3.87M to your ACO</strong>.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT MAKES THE CHECK BIGGER ===== -->
+<section class="accel-section">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-overline reveal" style="text-align:center;">Performance Drivers</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:700px;margin:0 auto;">What separates the <em>best-performing ACOs</em> from the rest.</h2>
+    <div class="accel-grid reveal">
+      <div class="accel-card">
+        <div class="accel-card-title">Avoidable ED Visits</div>
+        <p class="accel-card-body">30% of Medicare ED visits are avoidable. Real-time care gap alerts and nurse triage lines reduce unnecessary emergency utilization — the single largest savings driver.</p>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Hospital Readmissions</div>
+        <p class="accel-card-body">TCM visits within 14 days of discharge cut readmissions by 25-40%. TETRA automates discharge notification and follow-up scheduling so no patient falls through.</p>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Chronic Disease Control</div>
+        <p class="accel-card-body">Patients with controlled A1c, BP, and medication adherence cost 35% less annually. TETRA's RPM integration and care coordination close the gap between visits.</p>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Risk Coding Accuracy</div>
+        <p class="accel-card-body">Under-coded patients lower your benchmark. TETRA's AI flags HCC gaps at every AWV, ensuring your RAF reflects true patient complexity — and your benchmark reflects reality.</p>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">SNF &amp; Post-Acute Steering</div>
+        <p class="accel-card-body">Post-acute care is 40% of episode cost. Data-driven SNF selection and home health routing reduce length of stay while maintaining outcomes.</p>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Quality Score Maximization</div>
+        <p class="accel-card-body">APP Plus requires 6-11 measures by 2028. Higher quality scores unlock higher sharing rates. TETRA automates eCQM/Medicare CQM reporting and tracks every measure in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<div class="split" id="calculator">
+  <div style="display:grid;grid-template-columns:1fr 1fr;min-height:100vh;">
+    <!-- LEFT: Inputs -->
+    <div style="background:var(--navy-deep);padding:28px 24px;display:flex;flex-direction:column;gap:0;overflow-y:auto;">
+      <div class="panel-section">
+        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:4px;">MSSP Revenue &amp; Savings Model</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);margin-bottom:4px;">Dual Revenue Stream &middot; Category-Level Build-Up</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.12);line-height:1.5;margin-bottom:10px;">Two revenue streams, one infrastructure. FFS programs you bill directly + shared savings from TCOC reduction. Same interventions drive both.</div>
+      </div>
+
+      <!-- NPI LOOKUP -->
+      <div class="panel-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;">Provider Lookup</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px;">
+          <input class="npi-input" id="npiInput" type="text" placeholder="10-digit NPI" maxlength="10" inputmode="numeric" style="flex:1;padding:10px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:6px;color:var(--white);font-size:14px;font-family:'Instrument Sans',sans-serif;" onkeydown="if(event.key==='Enter')runLookup()">
+          <button id="npiBtn" onclick="runLookup()" style="padding:10px 18px;background:rgba(201,151,0,0.12);border:1px solid rgba(201,151,0,0.3);border-radius:6px;color:var(--gold);font-size:11px;font-weight:700;cursor:pointer;font-family:'Instrument Sans',sans-serif;white-space:nowrap;">Look Up</button>
+        </div>
+        <div id="npiStatus" style="font-size:10px;color:rgba(255,255,255,0.3);min-height:14px;"></div>
+        <div id="providerBadge" style="display:none;margin-top:10px;padding:12px 14px;background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.12);border-radius:8px;">
+          <div id="pbName" style="font-family:'Instrument Serif',serif;font-size:15px;color:var(--white);">--</div>
+          <div id="pbDetail" style="font-size:10px;color:rgba(255,255,255,0.35);margin-top:2px;">--</div>
+          <div id="pbCms" style="font-size:9px;margin-top:6px;color:rgba(201,151,0,0.5);">--</div>
+          <div id="pbRisk" style="font-size:9px;color:rgba(255,255,255,0.2);margin-top:2px;display:none;"></div>
+        </div>
+      </div>
+
+      <!-- ACO Profile -->
+      <div class="panel-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;">ACO Profile</div>
+        <div class="slider-row"><span class="slider-label">Attributed Beneficiaries</span><span class="slider-val" id="beneVal">8,000</span></div>
+        <input type="range" id="beneSlider" min="5000" max="100000" step="1000" value="8000" oninput="calc()">
+        <div style="height:6px;"></div>
+        <div class="slider-row"><span class="slider-label">Chronic Condition Prevalence</span><span class="slider-val" id="chronVal">68%</span></div>
+        <input type="range" id="chronSlider" min="30" max="90" step="1" value="68" oninput="calc()">
+        <div style="font-size:9px;color:rgba(255,255,255,0.1);margin-top:2px;">% of panel with 2+ chronic conditions (national avg: 68%)</div>
+      </div>
+
+      <!-- Stream 1: FFS Billing -->
+      <div class="panel-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(78,140,255,0.6);margin-bottom:4px;">Stream 1 &mdash; FFS Care Management Revenue</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.15);margin-bottom:8px;">100% yours. Same interventions that drive TCOC savings.</div>
+
+        <div class="slider-row"><span class="slider-label">Annual Wellness Visits (AWV)</span><span class="slider-val" id="awvVal">30%</span></div>
+        <input type="range" id="awvSlider" min="10" max="65" step="1" value="30" oninput="calc()">
+        <div style="font-size:9px;color:rgba(78,140,255,0.25);margin-top:2px;">Avg: 28%. Target: 45-60%. $282/visit.</div>
+        <div id="awvNote" style="font-size:9px;color:rgba(201,151,0,0.4);margin-top:2px;"></div>
+        <div style="height:6px;"></div>
+
+        <div class="slider-row"><span class="slider-label">CCM Enrollment (of chronic panel)</span><span class="slider-val" id="ccmVal">8%</span></div>
+        <input type="range" id="ccmSlider" min="2" max="30" step="1" value="8" oninput="calc()">
+        <div style="font-size:9px;color:rgba(78,140,255,0.25);margin-top:2px;">Avg: 5%. Target: 15-25%. $62/mo.</div>
+        <div id="ccmNote" style="font-size:9px;color:rgba(201,151,0,0.4);margin-top:2px;"></div>
+        <div style="height:6px;"></div>
+
+        <div class="slider-row"><span class="slider-label">RPM Enrollment (of chronic panel)</span><span class="slider-val" id="rpmVal">5%</span></div>
+        <input type="range" id="rpmSlider" min="0" max="20" step="1" value="5" oninput="calc()">
+        <div style="font-size:9px;color:rgba(78,140,255,0.25);margin-top:2px;">Avg: 2%. Target: 10-18%. ~$84/mo.</div>
+        <div id="rpmNote" style="font-size:9px;color:rgba(201,151,0,0.4);margin-top:2px;"></div>
+        <div style="height:6px;"></div>
+
+        <div class="slider-row"><span class="slider-label">TCM Capture Rate</span><span class="slider-val" id="tcmVal">3%</span></div>
+        <input type="range" id="tcmSlider" min="0" max="12" step="1" value="3" oninput="calc()">
+        <div style="font-size:9px;color:rgba(78,140,255,0.25);margin-top:2px;">Post-discharge within 14 days. $260 avg.</div>
+        <div id="tcmNote" style="font-size:9px;color:rgba(201,151,0,0.4);margin-top:2px;"></div>
+        <div style="height:6px;"></div>
+
+        <div class="slider-row"><span class="slider-label">BHI Enrollment (of chronic panel)</span><span class="slider-val" id="bhiVal">2%</span></div>
+        <input type="range" id="bhiSlider" min="0" max="15" step="1" value="2" oninput="calc()">
+        <div style="font-size:9px;color:rgba(78,140,255,0.25);margin-top:2px;">99484 at $52/mo per patient.</div>
+        <div id="bhiNote" style="font-size:9px;color:rgba(201,151,0,0.4);margin-top:2px;"></div>
+      </div>
+
+      <!-- Stream 2: Shared Savings Levers -->
+      <div class="panel-section">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,151,0,0.5);margin-bottom:4px;">Stream 2 &mdash; TCOC Reduction &rarr; Shared Savings</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.15);margin-bottom:8px;">Each lever uses published utilization baselines and evidence-based targets.</div>
+
+        <div class="slider-row"><span class="slider-label">Avoidable Admission Reduction</span><span class="slider-val" id="ipVal">15%</span></div>
+        <input type="range" id="ipSlider" min="0" max="30" step="1" value="15" oninput="calc()">
+        <div style="font-size:9px;color:rgba(201,151,0,0.2);margin-top:2px;">80/1K avoidable (AHRQ). $14,400 avg.</div>
+        <div style="height:4px;"></div>
+
+        <div class="slider-row"><span class="slider-label">Avoidable ED Reduction</span><span class="slider-val" id="edVal">12%</span></div>
+        <input type="range" id="edSlider" min="0" max="25" step="1" value="12" oninput="calc()">
+        <div style="font-size:9px;color:rgba(201,151,0,0.2);margin-top:2px;">162/1K avoidable (NYUED). $1,850 avg.</div>
+        <div style="height:4px;"></div>
+
+        <div class="slider-row"><span class="slider-label">Readmission Reduction</span><span class="slider-val" id="readmitVal">20%</span></div>
+        <input type="range" id="readmitSlider" min="0" max="40" step="2" value="20" oninput="calc()">
+        <div style="font-size:9px;color:rgba(201,151,0,0.2);margin-top:2px;">15.5% rate. $15,200 avg. TCM cuts 25-40%.</div>
+        <div style="height:4px;"></div>
+
+        <div class="slider-row"><span class="slider-label">SNF Spend Reduction</span><span class="slider-val" id="snfVal">12%</span></div>
+        <input type="range" id="snfSlider" min="0" max="25" step="1" value="12" oninput="calc()">
+        <div style="font-size:9px;color:rgba(201,151,0,0.2);margin-top:2px;">19% of discharges &rarr; SNF. $14,040 avg episode.</div>
+        <div style="height:4px;"></div>
+
+        <div class="slider-row"><span class="slider-label">RAF Benchmark Uplift</span><span class="slider-val" id="rafVal">+0.03</span></div>
+        <input type="range" id="rafSlider" min="0" max="8" step="1" value="3" oninput="calc()">
+        <div style="font-size:9px;color:rgba(201,151,0,0.2);margin-top:2px;">$129/bene/yr per 0.01 improvement.</div>
+      </div>
+
+      <!-- Track + Tier -->
+      <div class="panel-section" style="border-top:1px solid rgba(255,255,255,0.04);padding-top:16px;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;">MSSP Track</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;">
+          <button onclick="setTrack('basic1')" id="tBasic1" style="padding:6px 10px;font-size:9px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;color:rgba(255,255,255,0.4);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">BASIC 1-Sided (50%)</button>
+          <button onclick="setTrack('basicE')" id="tBasicE" style="padding:6px 10px;font-size:9px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.3);border-radius:5px;color:var(--gold);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">BASIC Level E (50/40)</button>
+          <button onclick="setTrack('enhanced')" id="tEnhanced" style="padding:6px 10px;font-size:9px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;color:rgba(255,255,255,0.4);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">ENHANCED (75/40-75)</button>
+        </div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:10px;">InPursuit Tier</div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button onclick="setTier(65)" id="t65" style="padding:6px 10px;font-size:9px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;color:rgba(255,255,255,0.4);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">Full Svc 65%</button>
+          <button onclick="setTier(70)" id="t70" style="padding:6px 10px;font-size:9px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.3);border-radius:5px;color:var(--gold);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">Supported 70%</button>
+          <button onclick="setTier(75)" id="t75" style="padding:6px 10px;font-size:9px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:5px;color:rgba(255,255,255,0.4);cursor:pointer;font-family:'Instrument Sans',sans-serif;font-weight:600;">Infra 75%</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Before/After Revenue Comparison -->
+    <div style="background:var(--navy-mid);padding:40px 28px;display:flex;flex-direction:column;overflow-y:auto;">
+
+      <!-- Estimator Banner -->
+      <div class="est-banner" style="display:flex;align-items:flex-start;gap:12px;padding:14px 16px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:10px;margin-bottom:20px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(201,151,0,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div style="font-size:9px;color:rgba(255,255,255,0.2);line-height:1.7;"><strong style="color:rgba(201,151,0,0.5);">Revenue Estimator &mdash; Not a Guarantee.</strong> This projection uses CMS-published reimbursement rates, NPI-level Medicare billing data (where available), specialty benchmarks, and published TCOC reduction research. All figures are illustrative estimates. A validated projection using live claims data will be prepared during your discovery engagement.</div>
+      </div>
+
+      <!-- Offer Header -->
+      <div class="offer-head" style="text-align:center;margin-bottom:28px;">
+        <div class="offer-tag"><span class="offer-tag-dot"></span> Your MSSP Revenue Projection</div>
+        <div class="offer-title">MSSP Is Just the Beginning.<br><em>We Optimize Everything.</em></div>
+        <div class="offer-subtitle" id="offerProviderLine">Enter your NPI to see your personalized projection</div>
+      </div>
+
+      <!-- REVENUE GRID: Before / Arrow / After -->
+      <div class="rev-grid">
+        <!-- CURRENT -->
+        <div class="rev-card current">
+          <div class="rev-label" id="curLabel">Current Estimated Capture</div>
+          <div class="rev-amount" id="curTotal">$0</div>
+          <div class="rev-detail" id="curDetail">Annual FFS care mgmt + shared savings</div>
+          <div class="rev-section">Fee-for-Service Programs &middot; 100% Yours</div>
+          <div class="rev-line"><span class="rev-line-name">Annual Wellness</span><span class="rev-line-val" id="outAWV">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Chronic Care Mgmt</span><span class="rev-line-val" id="outCCM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Remote Patient Mon.</span><span class="rev-line-val" id="outRPM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Transitional Care</span><span class="rev-line-val" id="outTCM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Behavioral Health</span><span class="rev-line-val" id="outBHI">&mdash;</span></div>
+          <div class="rev-section">MSSP Shared Savings &middot; Current</div>
+          <div class="rev-line"><span class="rev-line-name">Estimated Current SS</span><span class="rev-line-val" id="curSS">$0</span></div>
+        </div>
+
+        <!-- ARROW -->
+        <div class="rev-arrow">
+          <div class="rev-arrow-circle"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+          <div class="rev-arrow-gap" id="gapAmount">+$0</div>
+          <div class="rev-arrow-sub">additional annual<br>revenue</div>
+        </div>
+
+        <!-- OPTIMIZED -->
+        <div class="rev-card optimized">
+          <div class="rev-label">Optimized with InPursuit</div>
+          <div class="rev-amount" id="optTotal">$0</div>
+          <div class="rev-detail">Optimized FFS + MSSP shared savings</div>
+          <div class="rev-section">FFS &middot; InPursuit Optimized &middot; 100% Yours</div>
+          <div class="rev-line"><span class="rev-line-name">Annual Wellness</span><span class="rev-line-val" id="rOptAWV">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Chronic Care Mgmt</span><span class="rev-line-val" id="rOptCCM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Remote Patient Mon.</span><span class="rev-line-val" id="rOptRPM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Transitional Care</span><span class="rev-line-val" id="rOptTCM">&mdash;</span></div>
+          <div class="rev-line"><span class="rev-line-name">Behavioral Health</span><span class="rev-line-val" id="rOptBHI">&mdash;</span></div>
+          <div class="rev-section">MSSP Shared Savings &middot; Your <span id="tierPctInline">70</span>% Share</div>
+          <div class="rev-line"><span class="rev-line-name">Shared Savings</span><span class="rev-line-val" id="outSS">&mdash;</span></div>
+        </div>
+      </div>
+
+      <!-- VBC Story -->
+      <div class="vbc-story" style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;padding:20px;margin-bottom:20px;">
+        <div style="font-family:'Instrument Serif',serif;font-size:15px;color:var(--white);margin-bottom:6px;">One Infrastructure. Two Revenue Streams.</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);line-height:1.7;margin-bottom:16px;">The same clinical interventions that generate FFS billing also reduce total cost of care and drive shared savings. Every intervention counts twice.</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+          <div style="background:rgba(78,140,255,0.04);border:1px solid rgba(78,140,255,0.1);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(78,140,255,0.5);margin-bottom:4px;">FFS Programs (100% Yours)</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:22px;color:rgba(78,140,255,0.8);" id="outFFS">$0</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.15);margin-top:2px;">AWV + CCM + RPM + TCM + BHI</div>
+          </div>
+          <div style="background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.1);border-radius:8px;padding:14px;text-align:center;">
+            <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,151,0,0.5);margin-bottom:4px;">MSSP Shared Savings</div>
+            <div style="font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);" id="outSSblock">$0</div>
+            <div style="font-size:9px;color:rgba(255,255,255,0.15);margin-top:2px;" id="outSSblockDetail">Your <span id="vbcTierPct">70</span>% share</div>
+          </div>
+        </div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.12);margin-top:10px;text-align:center;">Revenue share applies to shared savings only. All FFS program revenue is 100% yours.</div>
+      </div>
+
+      <!-- TCOC Savings Breakdown (collapsed detail) -->
+      <div style="background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:10px;padding:14px;margin-bottom:16px;">
+        <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,151,0,0.35);margin-bottom:8px;">TCOC Reduction Breakdown &mdash; Driving Shared Savings</div>
+        <div style="display:flex;flex-direction:column;gap:4px;">
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.25);">Avoidable Admissions</span><span style="color:rgba(201,151,0,0.5);" id="outIP">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.25);">Avoidable ED Visits</span><span style="color:rgba(201,151,0,0.5);" id="outED">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.25);">Readmission Reduction</span><span style="color:rgba(201,151,0,0.5);" id="outReadmit">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.25);">SNF Optimization</span><span style="color:rgba(201,151,0,0.5);" id="outSNF">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.25);">RAF Benchmark Uplift</span><span style="color:rgba(201,151,0,0.5);" id="outRAF">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;border-top:1px solid rgba(255,255,255,0.04);padding-top:6px;margin-top:4px;"><span style="color:rgba(255,255,255,0.3);font-weight:600;">Gross TCOC Savings</span><span style="color:rgba(255,255,255,0.3);" id="outGross">$0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:10px;"><span style="color:rgba(255,255,255,0.2);">After MSR + Sharing Rate</span><span style="color:rgba(255,255,255,0.2);" id="outCMS">$0</span></div>
+        </div>
+      </div>
+
+      <!-- Metrics row -->
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:16px;">
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-bottom:2px;">Per Bene</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:18px;color:#4ade80;" id="outPerBene">$0</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-bottom:2px;">Savings Rate</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold-light);" id="outRate">0.0%</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:8px;padding:12px;text-align:center;">
+          <div style="font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-bottom:2px;">5-Year Value</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);" id="outFiveYr">$0</div>
+        </div>
+      </div>
+
+      <!-- Methodology -->
+      <div style="display:flex;align-items:center;gap:14px;padding:16px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:10px;margin-bottom:16px;">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.5;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <div style="flex:1;">
+          <div style="font-family:'Instrument Serif',serif;font-size:13px;color:var(--white);margin-bottom:2px;">Estimation Methodology &amp; Data Sources</div>
+          <div style="font-size:9px;color:rgba(255,255,255,0.18);line-height:1.6;">FFS rates: 2025 Medicare PFS (AWV G0438/G0439 $282, CCM 99490 $62/mo, RPM 99453-58 ~$84/mo, TCM 99495/96 avg $260, BHI 99484 $52/mo). TCOC levers: MedPAC Data Book 2024 (admissions, SNF, readmissions), AHRQ PQI composites (avoidable admissions), NYUED algorithm (avoidable ED), CMS-HCC risk model (RAF). Sharing rates per 42 CFR 425.605/610. MSR: 2.0% two-sided, 2.0-3.9% one-sided by population size. NPI billing data from CMS Provider Utilization PUF CY2023.</div>
+        </div>
+        <a href="InPursuit_MSSP_Methodology.pdf" download style="padding:8px 18px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;white-space:nowrap;flex-shrink:0;">Download PDF</a>
+      </div>
+
+      <div style="text-align:center;">
+        <a class="apply-btn" href="https://calendly.com/inpursuit" target="_blank" style="padding:14px 32px;font-size:14px;">Schedule Your Discovery Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICE TIERS ===== -->
+<section class="tiers-section">
+  <div class="tiers-inner">
+    <p class="section-overline reveal" style="text-align:center;color:rgba(255,255,255,0.25);">Partnership Model</p>
+    <h2 class="section-headline reveal" style="text-align:center;color:var(--white);">Zero upfront cost. <em>You choose the level of support.</em></h2>
+    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,0.35);max-width:600px;margin:0 auto;line-height:1.7;" class="reveal">Revenue share applies to shared savings generated through the partnership. You pay nothing until CMS reconciles your performance year.</p>
+    <div class="tiers-grid reveal">
+      <div class="tier-card-v2">
+        <div class="tier-v2-name">Full Service</div>
+        <div class="tier-v2-pct">65% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 35%</div>
+        <div class="tier-v2-desc">We handle population health, care coordination, quality reporting, and analytics. You focus on patient care.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> TETRA deployment, EHR integration, care coordination staffing, population health analytics, APP Plus quality reporting, risk coding optimization, CMS reconciliation support, dedicated account manager.</div>
+      </div>
+      <div class="tier-card-v2 featured">
+        <div class="tier-v2-name">Supported</div>
+        <div class="tier-v2-pct">70% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 30%</div>
+        <div class="tier-v2-desc">Your team runs day-to-day care coordination. We provide the technology backbone and quality infrastructure.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> TETRA deployment, staff training, population health dashboards, quality measure tracking, compliance monitoring, quarterly performance reviews, technical helpdesk.</div>
+      </div>
+      <div class="tier-card-v2">
+        <div class="tier-v2-name">Infrastructure Only</div>
+        <div class="tier-v2-pct">75% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 25%</div>
+        <div class="tier-v2-desc">Your ACO manages all operations. We provide the data orchestration layer.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> TETRA license, API access, data interoperability layer, FHIR connectivity, claims data processing, self-service population analytics, eCQM reporting infrastructure.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THE COST OF STANDING STILL ===== -->
+<section class="section delta-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">The Performance Gap</p>
+    <h2 class="section-headline reveal">37% of ACOs don't generate savings.<br><em>Infrastructure is the difference.</em></h2>
+    <p class="section-desc reveal">The gap between a top-performing ACO and one that underperforms isn't clinical talent — it's data infrastructure. Without real-time population analytics, care gap identification, and automated quality reporting, even excellent clinicians can't optimize at scale.</p>
+    <div class="delta-grid reveal">
+      <div class="delta-card">
+        <div class="delta-card-tag">Without TETRA Infrastructure</div>
+        <div class="delta-card-amount">Below Benchmark</div>
+        <div class="delta-card-note">ACOs relying on manual processes, siloed EHR data, and retrospective analysis consistently miss savings targets</div>
+        <ul class="delta-breakdown">
+          <li><span>No real-time care gap visibility</span><span>Missed interventions</span></li>
+          <li><span>Manual quality measure tracking</span><span>Reporting failures</span></li>
+          <li><span>Under-coded patient risk</span><span>Deflated benchmarks</span></li>
+        </ul>
+      </div>
+      <div class="delta-card with">
+        <div class="delta-card-tag">With InPursuit + TETRA</div>
+        <div class="delta-card-amount">Best-in-Class Performance</div>
+        <div class="delta-card-note">Data-driven ACOs with real-time population health, automated reporting, and proactive care coordination consistently outperform</div>
+        <ul class="delta-breakdown">
+          <li><span>AI-powered care gap alerts</span><span>Preventive interventions</span></li>
+          <li><span>Automated eCQM/CQM reporting</span><span>Quality maximization</span></li>
+          <li><span>HCC gap identification at AWV</span><span>Accurate benchmarks</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="delta-callouts reveal">
+      <div class="delta-callout">
+        <div class="delta-callout-label">Median ACO Savings</div>
+        <div class="delta-callout-val">4.8%</div>
+        <div class="delta-callout-sub">For ACOs generating savings (PY 2023)</div>
+      </div>
+      <div class="delta-callout">
+        <div class="delta-callout-label">Best Performers</div>
+        <div class="delta-callout-val">8%+</div>
+        <div class="delta-callout-sub">Gross savings rate for highest-earning ACOs</div>
+      </div>
+      <div class="delta-callout decline">
+        <div class="delta-callout-label">Non-Earning ACOs</div>
+        <div class="delta-callout-val">37%</div>
+        <div class="delta-callout-sub">Generated zero shared savings in 2023</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MSSP TRACKS ===== -->
+<section class="section tracks-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">MSSP Track Options</p>
+    <h2 class="section-headline reveal">Two pathways. <em>One infrastructure.</em></h2>
+    <p class="section-desc reveal">MSSP offers BASIC and ENHANCED tracks with varying risk/reward profiles. Starting January 2027, new ACOs are capped at 5 years in one-sided risk before mandatory escalation.</p>
+    <div class="tracks-grid reveal">
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="track-name">BASIC (One-Sided)</div>
+        <div class="track-pmpm">Up to 50% <span>savings</span></div>
+        <div class="track-desc">No downside risk. Ideal for ACOs new to value-based care. MSR varies by population size (2.0-3.9%). Limited to 5 years starting 2027.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="track-name">BASIC (Two-Sided)</div>
+        <div class="track-pmpm">50% <span>savings / 40% losses</span></div>
+        <div class="track-desc">Levels C through E with escalating risk. Level E offers the maximum BASIC sharing rate with moderate downside exposure.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <div class="track-name">ENHANCED</div>
+        <div class="track-pmpm">75% <span>savings / 40-75% losses</span></div>
+        <div class="track-desc">Maximum shared savings rate. Full two-sided risk. Prepaid shared savings option available starting PY 2026 for qualifying ACOs.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+        <div class="track-name">APP Plus Quality</div>
+        <div class="track-pmpm">6&ndash;11 <span>measures (2025-2028)</span></div>
+        <div class="track-desc">All tracks must meet APP Plus quality performance standard. eCQM/MIPS CQM/Medicare CQM reporting mandatory. TETRA automates this entirely.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE ===== -->
+<section class="quote-banner">
+  <div class="quote-content reveal">
+    <p class="quote-text">The MSSP has proven that accountable care works. The question isn't whether to participate — it's whether your ACO has the <em>infrastructure to compete</em> against the 63% that are already earning shared savings. That's what we provide — and it costs you <em>nothing to get started.</em></p>
+    <div class="quote-attrib">The InPursuit MSSP Case — Better Data, Better Outcomes, Better Savings</div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE PROVIDE ===== -->
+<section class="section dark-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">MSSP-as-a-Service</p>
+    <h2 class="section-headline reveal">Everything your ACO needs. <em>Nothing upfront.</em></h2>
+    <p class="section-desc reveal">InPursuit eliminates the infrastructure gap that keeps ACOs from reaching the top 10% in savings performance. We deploy in 4-6 weeks, integrate with your existing EHR, and start generating value from day one.</p>
+    <div class="provide-grid reveal">
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+        <h4>Population Health Analytics</h4>
+        <p>Real-time dashboards showing total cost of care, utilization trends, care gaps, and risk stratification across your entire attributed population.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h4>TETRA Deployment</h4>
+        <p>Federal-grade data orchestration infrastructure. FHIR-native, TEFCA-ready. Connects to Epic, Cerner, eClinicalWorks, Athena, and others.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <h4>Care Gap Identification</h4>
+        <p>AI-powered alerts for missed AWVs, overdue labs, medication non-adherence, and preventive care gaps. Close gaps before they become costly events.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg></div>
+        <h4>APP Plus Quality Reporting</h4>
+        <p>Automated eCQM/Medicare CQM data collection and submission. Track all 6-11 APP Plus measures in real time. Meet quality performance standard without manual effort.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h4>Risk Coding Optimization</h4>
+        <p>HCC gap analysis at every encounter. Ensure your attributed population's RAF reflects true clinical complexity and your benchmark is set appropriately.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h4>Reconciliation Intelligence</h4>
+        <p>Performance tracking against your benchmark throughout the year. No surprises at reconciliation. Predictive models flag when you're trending toward losses.</p>
+      </div>
+    </div>
+    <div class="federal-row reveal">
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
+        <div class="federal-badge-label">CMS Approved</div>
+        <div class="federal-badge-detail">Health IT Ecosystem</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="federal-badge-label">DoD / VA Validated</div>
+        <div class="federal-badge-detail">Outperformed IBM, SAP, Oracle</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+        <div class="federal-badge-label">95% Interoperability</div>
+        <div class="federal-badge-detail">1.8M+ transactions/hour</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="federal-badge-label">4-6 Week Deploy</div>
+        <div class="federal-badge-detail">vs. 6-18 months traditional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPLY WITH INPURSUIT ===== -->
+<section class="apply-section">
+  <div class="apply-inner">
+    <p class="section-overline reveal" style="text-align:center;color:rgba(255,255,255,0.25);">Get Started</p>
+    <h2 class="section-headline reveal" style="text-align:center;color:var(--white);">Join MSSP with InPursuit as your <em>infrastructure partner.</em></h2>
+    <div class="apply-card reveal">
+      <div class="apply-card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg></div>
+      <div class="apply-card-title">Whether you're optimizing an existing ACO or evaluating MSSP for the first time, InPursuit provides the data infrastructure that drives savings.</div>
+      <div class="apply-card-body">Already in MSSP? We deploy TETRA alongside your existing infrastructure to close performance gaps — surfacing care gaps, automating quality reporting, and optimizing every savings lever within weeks. Evaluating MSSP? We provide the technology stack that makes participation operationally feasible, so you can enter the program with the infrastructure already in place. <strong>Discovery call takes 30 minutes. Deployment takes 4-6 weeks.</strong></div>
+      <a class="apply-btn" href="https://calendly.com/inpursuit" target="_blank">Schedule Your Discovery Call</a>
+    </div>
+    <div class="apply-resources reveal">
+      <a class="apply-resource" href="https://www.cms.gov/medicare/payment/fee-for-service-providers/shared-savings-program-ssp-acos" target="_blank">
+        <div class="apply-resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="apply-resource-text">
+          <div class="apply-resource-title">CMS MSSP Program Page</div>
+          <div class="apply-resource-sub">Official program guidance, specifications, and application info &middot; cms.gov</div>
+        </div>
+      </a>
+      <a class="apply-resource" href="https://www.cms.gov/medicare/payment/fee-for-service-providers/shared-savings-program-ssp-acos/guidance-regulations" target="_blank">
+        <div class="apply-resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div class="apply-resource-text">
+          <div class="apply-resource-title">MSSP Program Guidance &amp; Specifications</div>
+          <div class="apply-resource-sub">Benchmarking methodology, quality measures, financial reconciliation &middot; cms.gov</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <p class="section-overline reveal" style="text-align:center;">Questions</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">How InPursuit turns MSSP into <em>actual savings.</em></h2>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">The revenue projections look too high. Can you actually back these numbers up?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Every number in the calculator traces to a published source. <strong>AWV rates:</strong> The national average is 24-30%, but BJC Healthcare ACO hit 69.7% in a single year — above the 90th percentile of all MSSP ACOs (AJMC, 2021). University Hospitals of Cleveland went from 24.9% to 60.7% in two years (PMC, 2022). Our target of 52% is conservative relative to published results. <strong>CCM enrollment:</strong> Only 3.4% of eligible Medicare beneficiaries receive CCM nationally (JAGS, 2024) — not because patients don't qualify, but because the <strong>administrative burden is crushing</strong> without automation. The AHA estimates 22.5 million beneficiaries are eligible; only 882,000 receive the service. Companies that automate enrollment routinely achieve 15-25%. <strong>TCOC savings levers:</strong> Avoidable admission baselines come from AHRQ Prevention Quality Indicators. Readmission reduction rates come from Health Affairs (Verhaegh, 2014). SNF optimization data comes from MedPAC Chapter 8. Every constant in the calculator cites its source. A validated projection using your actual claims data is prepared during the discovery engagement — this estimator gets you to the right ballpark.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does InPursuit actually generate this much additional revenue? What specifically changes?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">The revenue gap isn't clinical — your physicians are already delivering good care. The gap is <strong>infrastructure</strong>. Here's what changes when TETRA deploys:<br><br><strong>AWVs go from 28% to 50%+</strong> because TETRA identifies every eligible beneficiary, auto-generates scheduling outreach (calls, texts, portal messages), flags patients at check-in, and pre-populates the AWV template with HCC-relevant problem lists. Your front desk stops missing eligible patients because they don't have to think about it — the system tells them.<br><br><strong>CCM goes from 5% to 15-20%</strong> because TETRA automates consent collection, assigns care coordination tasks, tracks the 20-minute monthly clinical time requirement (the billing threshold most practices can't manage manually), and auto-generates 99490/99491 claims. Your care coordinators spend time talking to patients instead of doing paperwork.<br><br><strong>RPM goes from 2% to 10-15%</strong> because TETRA integrates connected devices (BP cuffs, glucose monitors, pulse ox), automatically verifies the 16-day-per-month transmission threshold CMS requires for billing, flags abnormal vitals for clinical review, and generates 99453-99458 documentation. Without this automation, managing devices for even 50 patients is a full-time job. With it, one nurse can monitor 300+.<br><br><strong>Shared savings go from $0 to real money</strong> because those same interventions — the AWV that catches the uncontrolled A1c, the RPM alert that prevents the ER visit, the TCM call that stops the readmission — reduce total cost of care. You're not doing extra work. You're doing the <strong>same work with infrastructure that captures every billable event and prevents every avoidable cost.</strong></div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">We're already in MSSP but not generating savings. Can InPursuit help mid-cycle?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes — and this is actually the fastest path to impact. You already have attributed beneficiaries, a benchmark, and a performance year in progress. TETRA deploys in 4-6 weeks alongside your existing EHR. Within the first month, we surface your <strong>highest-impact intervention targets</strong>: which patients are driving avoidable ED visits, who's been discharged without a TCM follow-up, which chronic patients have no CCM enrollment, and where your HCC coding gaps are deflating your benchmark. If you deploy mid-year, every avoided hospitalization and every new CCM enrollment in the second half still counts toward your annual reconciliation. ACOs that add infrastructure mid-cycle routinely see measurable TCOC improvement within 90 days.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What methodology does the estimator use? Can my CFO review it?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">The estimator uses a <strong>bottom-up, category-level build</strong> — not a single "savings rate" assumption. Each FFS program uses CMS-published 2025 Medicare Physician Fee Schedule reimbursement rates (AWV G0438/G0439 at $282, CCM 99490 at $62/mo, RPM 99453-99458 composite at ~$84/mo, TCM 99495/99496 weighted average at $260, BHI 99484 at $52/mo). Each TCOC savings lever uses published utilization baselines from the MedPAC Data Book 2024, AHRQ Prevention Quality Indicators, CMS claims data, and peer-reviewed ACO performance research from AJMC and Health Affairs. Sharing rates follow 42 CFR 425.605 (BASIC) and 425.610 (ENHANCED). MSR corridors are population-size-adjusted per CMS specifications. When a provider enters their NPI, we pull their <strong>actual CMS billing data</strong> (CY2023 Provider Utilization PUF) to lock inputs to reality. The methodology PDF is available for download directly from the estimator panel, and we provide a detailed walkthrough during the discovery call. We encourage your finance team to stress-test the model.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does InPursuit handle APP Plus quality reporting?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Starting PY 2025, MSSP requires the APP Plus quality measure set — growing from 6 measures to 11 by 2028 (CY 2026 PFS Final Rule, CMS-1832-F). This is the single biggest administrative burden scaling toward ACOs. TETRA <strong>automates eCQM and Medicare CQM data collection, validation, and submission</strong> at the APM Entity level. We track every measure in real time, flag performance trending below the quality performance standard (30th/40th percentile thresholds), and optimize for flat benchmarks on Medicare CQMs. Higher quality scores unlock higher shared savings rates — quality reporting isn't compliance overhead, it's revenue optimization. Your clinical staff focuses on care. We handle the reporting machinery.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What's the difference between BASIC and ENHANCED tracks?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>BASIC</strong> has five levels (A through E). Level A is one-sided risk (upside only, up to 40% sharing). Levels B-E escalate both sharing rates and downside exposure, with Level E at 50% savings / 40% losses. <strong>ENHANCED</strong> provides 75% shared savings but with 40-75% shared losses. Starting January 2027, new ACOs are capped at 5 years in one-sided risk before mandatory escalation to two-sided. The track you choose should reflect your risk tolerance, population size, and infrastructure readiness. InPursuit helps you model the financial scenarios for each track during discovery — and provides the infrastructure to perform regardless of which track you choose. Most ACOs with TETRA infrastructure graduate to ENHANCED faster because they have the data confidence to accept risk.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">Can we participate in MSSP and ACCESS simultaneously?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes, with caveats. CMS has published guidance on model overlap: beneficiary alignment in a disease-specific CMMI model (like ACCESS) generally takes precedence over MSSP voluntary alignment for those specific patients. However, MSSP covers your <strong>total attributed population</strong> while ACCESS targets specific chronic condition tracks — so the overlap is limited to the subset of patients who qualify for both. InPursuit's infrastructure is <strong>model-agnostic</strong>: TETRA orchestrates data across all programs from a single deployment. You don't need separate systems. In fact, participating in both maximizes revenue because you capture ACCESS OAPs for qualifying patients AND shared savings from TCOC reduction across the broader population. We review your specific overlap during discovery.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How is MSSP affected by Medicare Advantage growth? Is FFS shrinking?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes — Medicare Advantage now exceeds 50% of total Medicare enrollment, and the FFS pool is shrinking. CMS knows this, which is why they're actively expanding MSSP incentives (prepaid shared savings starting PY 2026, expanded assignment criteria, lower barriers for new ACOs) and launching new models like LEAD (10-year capitated model starting 2027) and ACCESS (outcome-aligned payments starting 2026). <strong>MSSP is not going away in 5 years</strong> — CMS's stated goal is 100% of traditional Medicare in accountable care by 2030, and MSSP is their primary vehicle. But MSSP is also a <strong>bridge</strong>, not a destination. The strategic play: deploy TETRA infrastructure for MSSP today, and you're already wired for LEAD, ACCESS, and whatever CMS launches next. The infrastructure is model-agnostic — it moves with you.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What is the prepaid shared savings option?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">New for PY 2026, CMS will offer <strong>prepaid shared savings (PSS)</strong> to qualifying ACOs with a strong history of earning savings (CY 2025 PFS Final Rule). PSS provides advance payments on expected shared savings to improve ACO cash flow — addressing the biggest complaint about MSSP: waiting 18+ months for reconciliation. These payments are reconciled against actual performance; if you don't earn sufficient savings, CMS may recoup from your repayment mechanism. InPursuit's reconciliation intelligence tools model your expected PSS eligibility and track real-time performance against advance payments so you never face a surprise clawback.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How long does deployment take?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>4-6 weeks</strong> from signed partnership agreement. <strong>Week 1:</strong> Discovery — claims data analysis, population risk stratification, current billing pattern assessment. <strong>Week 2:</strong> TETRA configuration — EHR connectivity (Epic, Cerner, eCW, Athena), data pipeline setup, clinical track mapping. <strong>Week 3:</strong> Population health model — care gap identification, HCC gap analysis, quality measure baseline. <strong>Week 4:</strong> Staff training — dashboard walkthroughs, care coordinator workflows, alert management. <strong>Weeks 5-6:</strong> Go-live with a subset of high-impact patients, then expand. Traditional health IT deployments take 6-18 months. We move fast because <strong>TETRA is pre-built infrastructure</strong> — it's configured per practice, not custom-coded from scratch.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What does InPursuit actually cost?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>Nothing upfront.</strong> InPursuit operates on a revenue-share model. You choose your tier: Full Service (you keep 65%), Supported (you keep 70%), or Infrastructure Only (you keep 75%). The revenue share applies to <strong>shared savings only</strong> — all FFS care management revenue (AWV, CCM, RPM, TCM, BHI) is 100% yours. You pay nothing until CMS reconciles your performance year and determines shared savings. If your ACO doesn't earn shared savings, InPursuit earns nothing. Our incentives are completely aligned with yours.</div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+let currentTrack = 'basicE';
+let currentTier = 70;
+let cmsData = null;
+
+// ══ SPECIALTY BENCHMARKS ══
+const SPECS={'Family Medicine':{chronPct:65,panel:2200},'Internal Medicine':{chronPct:72,panel:2000},'General Practice':{chronPct:65,panel:2100},'Cardiology':{chronPct:82,panel:1600},'Endocrinology':{chronPct:88,panel:1400},'Pulmonary Disease':{chronPct:80,panel:1500},'Geriatric Medicine':{chronPct:92,panel:1600},'Nephrology':{chronPct:90,panel:1400},'_default':{chronPct:68,panel:2000}};
+function getSpec(s){for(const k in SPECS){if(k!=='_default'&&s.toLowerCase().indexOf(k.toLowerCase())!==-1)return SPECS[k];}return SPECS['_default'];}
+
+// ══ FFS RATES (2025 Medicare PFS) ══
+const AWV_RATE=282,CCM_MO=62,RPM_MO=84,TCM_RATE=260,BHI_MO=52;
+
+// ══ SLIDER FILL ══
+function setFill(el){const mn=parseFloat(el.min),mx=parseFloat(el.max),v=parseFloat(el.value);el.style.setProperty('--fill',((v-mn)/(mx-mn))*100+'%');}
+function fillAll(){document.querySelectorAll('input[type=range]').forEach(setFill);}
+
+// ══ TCOC BASELINES (MedPAC/AHRQ/CMS) ══
+const PER_CAPITA=12900,AVOID_ADMITS_1K=80,AVG_ADMIT=14400,AVOID_ED_1K=162,AVG_ED=1850;
+const ADMITS_1K=268,READMIT_RT=0.155,AVG_READMIT=15200,SNF_RT=0.19,AVG_SNF=14040,RAF_PT=129;
+
+// ══ CMS DATA API ══
+const CMS_SVC='92396110-2aed-4d63-a6a2-5d6207d46a29',CMS_AGG='8889d81e-2ee7-448f-8713-f071038289b5',CMS_BASE='https://data.cms.gov/data-api/v1/dataset/';
+const HCPCS_MAP={awv:['G0438','G0439'],ccm:['99490','99491'],rpm:['99453','99454','99457','99458'],tcm:['99495','99496'],bhi:['99484','99492','99493']};
+
+async function fetchCMSData(npi){
+  const px='https://corsproxy.io/?';
+  try{
+    const sU=CMS_BASE+CMS_SVC+'/data?filter[Rndrng_NPI]='+npi+'&size=200';
+    const aU=CMS_BASE+CMS_AGG+'/data?filter[Rndrng_NPI]='+npi+'&size=5';
+    const[sR,aR]=await Promise.allSettled([
+      fetch(px+encodeURIComponent(sU)).catch(()=>fetch(sU)).then(r=>r.ok?r.json():null),
+      fetch(px+encodeURIComponent(aU)).catch(()=>fetch(aU)).then(r=>r.ok?r.json():null)
+    ]);
+    const sD=sR.status==='fulfilled'?sR.value:null,aD=aR.status==='fulfilled'?aR.value:null;
+    if((!sD||!sD.length)&&(!aD||!aD.length))return null;
+    let totalBenes=null,totalPymt=null,riskScore=null;
+    if(aD&&aD.length){const a=aD[0];totalBenes=parseInt(a.Tot_Benes)||null;totalPymt=parseFloat(a.Tot_Mdcr_Pymt_Amt)||null;riskScore=parseFloat(a.Bene_Avg_Risk_Scre)||null;}
+    const progs={awv:[],ccm:[],rpm:[],tcm:[],bhi:[]};
+    if(sD&&sD.length){for(const row of sD){const code=(row.HCPCS_Cd||row.Hcpcs_Cd||'').trim();for(const[prog,codes]of Object.entries(HCPCS_MAP)){if(codes.includes(code))progs[prog].push({benes:parseInt(row.Tot_Benes)||0,srvcs:parseFloat(row.Tot_Srvcs)||0,pymtTotal:parseFloat(row.Tot_Mdcr_Pymt_Amt)||0});}}}
+    const sum=a=>{if(!a.length)return{found:false,benes:0,totalPymt:0};let p=0,s=0,b=0;for(const r of a){p+=r.pymtTotal;s+=r.srvcs;b=Math.max(b,r.benes);}return{found:true,benes:b,totalPymt:p};};
+    return{dataYear:'2023',totalBenes,totalPymt,riskScore,awv:sum(progs.awv),ccm:sum(progs.ccm),rpm:sum(progs.rpm),tcm:sum(progs.tcm),bhi:sum(progs.bhi)};
+  }catch(e){console.warn('CMS fetch fail:',e);return null;}
+}
+
+// ══ NPI LOOKUP ══
+function runLookup(){
+  const npi=document.getElementById('npiInput').value.replace(/\D/g,'');
+  const status=document.getElementById('npiStatus'),btn=document.getElementById('npiBtn');
+  if(npi.length!==10){status.textContent='Enter a valid 10-digit NPI.';status.style.color='#ff6b6b';return;}
+  btn.disabled=true;btn.textContent='Looking up...';status.textContent='Checking CMS registries...';status.style.color='rgba(255,255,255,0.3)';
+  const nppesFetch=fetch('https://corsproxy.io/?'+encodeURIComponent('https://npiregistry.cms.hhs.gov/api/?version=2.1&number='+npi)).catch(()=>fetch('https://npiregistry.cms.hhs.gov/api/?version=2.1&number='+npi)).then(r=>r.json());
+  const cmsFetch=fetchCMSData(npi);
+  Promise.all([nppesFetch,cmsFetch]).then(([data,cms])=>{
+    btn.disabled=false;btn.textContent='Look Up';
+    if(!data.results||!data.results.length){status.textContent='No provider found.';status.style.color='#ff6b6b';return;}
+    const p=data.results[0],b=p.basic||{};
+    const isOrg=p.enumeration_type==='NPI-2';
+    const name=isOrg?(b.organization_name||'Organization'):((b.first_name||'')+' '+(b.last_name||'')).trim()+(b.credential?', '+b.credential:'');
+    const addr=(p.addresses&&p.addresses[0])||{};
+    const loc=(addr.city||'')+(addr.state?', '+addr.state:'');
+    const tax=(p.taxonomies&&p.taxonomies[0])||{};
+    const spec=tax.desc||'General Practice';
+    const specData=getSpec(spec);
+    cmsData=cms;
+
+    // Auto-populate beneficiaries from CMS data or specialty estimate
+    if(cms&&cms.totalBenes){
+      const bene=Math.max(5000,Math.min(cms.totalBenes,100000));
+      document.getElementById('beneSlider').value=bene;
+      document.getElementById('beneVal').textContent=bene.toLocaleString();
+    }
+    // Auto-populate chronic prevalence from specialty
+    document.getElementById('chronSlider').value=specData.chronPct;
+    document.getElementById('chronVal').textContent=specData.chronPct+'%';
+
+    // Lock FFS sliders where CMS data exists
+    const progs=['awv','ccm','rpm','tcm','bhi'];
+    for(const pg of progs){
+      const slider=document.getElementById(pg+'Slider');
+      const note=document.getElementById(pg+'Note');
+      if(cms&&cms[pg]&&cms[pg].found){
+        slider.disabled=true;slider.style.opacity='.35';
+        note.textContent='CMS claims data: $'+Math.round(cms[pg].totalPymt).toLocaleString()+' (CY'+cms.dataYear+')';
+      }else{slider.disabled=false;slider.style.opacity='1';note.textContent='';}
+    }
+
+    // Show badge
+    const badge=document.getElementById('providerBadge');
+    badge.style.display='block';
+    document.getElementById('pbName').textContent=name;
+    document.getElementById('pbDetail').textContent=spec+' \u00B7 '+loc+' \u00B7 NPI '+npi;
+    const cmsEl=document.getElementById('pbCms');
+    if(cms){
+      const ct=progs.filter(pg=>cms[pg]&&cms[pg].found).length;
+      cmsEl.textContent='CMS billing data found (CY'+cms.dataYear+') \u00B7 '+ct+'/5 programs detected';
+      cmsEl.style.color='rgba(201,151,0,0.6)';
+    }else{cmsEl.textContent='CMS data unavailable \u2014 using slider estimates';cmsEl.style.color='rgba(255,255,255,0.2)';}
+    // Show risk score if available
+    const riskEl=document.getElementById('pbRisk');
+    if(cms&&cms.riskScore){riskEl.style.display='block';riskEl.textContent='Avg Beneficiary Risk Score: '+cms.riskScore.toFixed(2)+' (CMS-HCC)';}
+    else{riskEl.style.display='none';}
+
+    status.textContent='';
+    calc();
+  }).catch(()=>{btn.disabled=false;btn.textContent='Look Up';status.textContent='Unable to reach CMS registries.';status.style.color='#ff6b6b';});
+}
+
+function fmt(n){return '$'+Math.round(n).toLocaleString();}
+
+function setTrack(t){
+  currentTrack=t;
+  ['tBasic1','tBasicE','tEnhanced'].forEach(id=>{
+    const el=document.getElementById(id);
+    el.style.background='rgba(255,255,255,0.03)';el.style.borderColor='rgba(255,255,255,0.08)';el.style.color='rgba(255,255,255,0.4)';
+  });
+  const btnId=t==='basic1'?'tBasic1':t==='basicE'?'tBasicE':'tEnhanced';
+  const btn=document.getElementById(btnId);
+  btn.style.background='rgba(201,151,0,0.08)';btn.style.borderColor='rgba(201,151,0,0.3)';btn.style.color='var(--gold)';
+  calc();
+}
+
+function setTier(pct){
+  currentTier=pct;
+  [65,70,75].forEach(p=>{
+    const el=document.getElementById('t'+p);
+    if(p===pct){el.style.background='rgba(201,151,0,0.08)';el.style.borderColor='rgba(201,151,0,0.3)';el.style.color='var(--gold)';}
+    else{el.style.background='rgba(255,255,255,0.03)';el.style.borderColor='rgba(255,255,255,0.08)';el.style.color='rgba(255,255,255,0.4)';}
+  });
+  calc();
+}
+
+function calc(){
+  const bene=parseInt(document.getElementById('beneSlider').value)||8000;
+  const chronPct=parseInt(document.getElementById('chronSlider').value)/100;
+  const chronicPanel=Math.round(bene*chronPct);
+  const cms=cmsData;
+
+  // ═══ STREAM 1: FFS REVENUE ═══
+  const awvPct=parseInt(document.getElementById('awvSlider').value)/100;
+  const ccmPct=parseInt(document.getElementById('ccmSlider').value)/100;
+  const rpmPct=parseInt(document.getElementById('rpmSlider').value)/100;
+  const tcmPct=parseInt(document.getElementById('tcmSlider').value)/100;
+  const bhiPct=parseInt(document.getElementById('bhiSlider').value)/100;
+
+  // Use CMS actual data where available, slider estimates otherwise
+  const awvRev=cms&&cms.awv&&cms.awv.found?Math.round(cms.awv.totalPymt):Math.round(bene*awvPct*AWV_RATE);
+  const ccmRev=cms&&cms.ccm&&cms.ccm.found?Math.round(cms.ccm.totalPymt):Math.round(chronicPanel*ccmPct*CCM_MO*12);
+  const rpmRev=cms&&cms.rpm&&cms.rpm.found?Math.round(cms.rpm.totalPymt):Math.round(chronicPanel*rpmPct*RPM_MO*12);
+  const totalAdmits=(ADMITS_1K/1000)*bene;
+  const tcmRev=cms&&cms.tcm&&cms.tcm.found?Math.round(cms.tcm.totalPymt):Math.round(totalAdmits*tcmPct*TCM_RATE);
+  const bhiRev=cms&&cms.bhi&&cms.bhi.found?Math.round(cms.bhi.totalPymt):Math.round(chronicPanel*bhiPct*BHI_MO*12);
+  const totalFFS=awvRev+ccmRev+rpmRev+tcmRev+bhiRev;
+
+  // Optimized FFS (InPursuit targets)
+  const optAWV=Math.round(bene*0.52*AWV_RATE);
+  const optCCM=Math.round(chronicPanel*0.18*CCM_MO*12);
+  const optRPM=Math.round(chronicPanel*0.12*RPM_MO*12);
+  const optTCM=Math.round(totalAdmits*0.04*TCM_RATE);
+  const optBHI=Math.round(chronicPanel*0.08*BHI_MO*12);
+  const optFFS=optAWV+optCCM+optRPM+optTCM+optBHI;
+
+  // ═══ STREAM 2: TCOC REDUCTION → SHARED SAVINGS ═══
+  const ipReduce=parseInt(document.getElementById('ipSlider').value)/100;
+  const edReduce=parseInt(document.getElementById('edSlider').value)/100;
+  const readmitReduce=parseInt(document.getElementById('readmitSlider').value)/100;
+  const snfReduce=parseInt(document.getElementById('snfSlider').value)/100;
+  const rafUplift=parseInt(document.getElementById('rafSlider').value)/100;
+
+  const admitSave=(AVOID_ADMITS_1K/1000)*bene*ipReduce*AVG_ADMIT;
+  const edSave=(AVOID_ED_1K/1000)*bene*edReduce*AVG_ED;
+  const readmitSave=totalAdmits*READMIT_RT*readmitReduce*AVG_READMIT;
+  const snfSave=totalAdmits*SNF_RT*snfReduce*AVG_SNF;
+  const rafSave=bene*rafUplift*RAF_PT;
+  const grossSavings=admitSave+edSave+readmitSave+snfSave+rafSave;
+  const tcoc=bene*PER_CAPITA;
+  const grossRate=tcoc>0?grossSavings/tcoc:0;
+
+  let shareRate,msr;
+  if(currentTrack==='basic1'){shareRate=0.50;msr=bene<10000?0.039:bene<25000?0.03:0.02;}
+  else if(currentTrack==='basicE'){shareRate=0.50;msr=0.02;}
+  else{shareRate=0.75;msr=0.02;}
+
+  const msrDollars=tcoc*msr;
+  const sharableSavings=Math.max(0,grossSavings-msrDollars);
+  const cmsToACO=sharableSavings*shareRate;
+  const providerPct=currentTier/100;
+  const providerSS=cmsToACO*providerPct;
+
+  // ═══ COMBINED ═══
+  // Current = actual FFS. Optimized = optimized FFS + shared savings
+  const currentTotal=totalFFS;
+  const optimizedTotal=optFFS+providerSS;
+  const gap=optimizedTotal-currentTotal;
+  const perBene=bene>0?optimizedTotal/bene:0;
+  const fiveYr=optimizedTotal*5;
+
+  // ═══ UPDATE DISPLAY ═══
+  document.getElementById('beneVal').textContent=bene.toLocaleString();
+  document.getElementById('chronVal').textContent=Math.round(chronPct*100)+'%';
+  document.getElementById('awvVal').textContent=Math.round(awvPct*100)+'%';
+  document.getElementById('ccmVal').textContent=Math.round(ccmPct*100)+'%';
+  document.getElementById('rpmVal').textContent=Math.round(rpmPct*100)+'%';
+  document.getElementById('tcmVal').textContent=Math.round(tcmPct*100)+'%';
+  document.getElementById('bhiVal').textContent=Math.round(bhiPct*100)+'%';
+  document.getElementById('ipVal').textContent=Math.round(ipReduce*100)+'%';
+  document.getElementById('edVal').textContent=Math.round(edReduce*100)+'%';
+  document.getElementById('readmitVal').textContent=Math.round(readmitReduce*100)+'%';
+  document.getElementById('snfVal').textContent=Math.round(snfReduce*100)+'%';
+  document.getElementById('rafVal').textContent='+'+rafUplift.toFixed(2);
+
+  // Current card (left) - their actual billing
+  document.getElementById('outAWV').textContent=fmt(awvRev)+(cms&&cms.awv&&cms.awv.found?' *':'');
+  document.getElementById('outCCM').textContent=fmt(ccmRev)+(cms&&cms.ccm&&cms.ccm.found?' *':'');
+  document.getElementById('outRPM').textContent=fmt(rpmRev)+(cms&&cms.rpm&&cms.rpm.found?' *':'');
+  document.getElementById('outTCM').textContent=fmt(tcmRev)+(cms&&cms.tcm&&cms.tcm.found?' *':'');
+  document.getElementById('outBHI').textContent=fmt(bhiRev)+(cms&&cms.bhi&&cms.bhi.found?' *':'');
+  document.getElementById('curSS').textContent='$0';
+  document.getElementById('curTotal').textContent=fmt(currentTotal);
+  if(cms){const ct=['awv','ccm','rpm','tcm','bhi'].filter(p=>cms[p]&&cms[p].found).length;document.getElementById('curLabel').textContent='Your CMS Billing (CY'+cms.dataYear+') + Estimates';document.getElementById('curDetail').textContent=ct+'/5 programs from actual Medicare claims';}
+  else{document.getElementById('curLabel').textContent='Current Estimated Capture';document.getElementById('curDetail').textContent='Based on your slider inputs';}
+
+  // Optimized card (right) - with InPursuit
+  document.getElementById('rOptAWV').textContent=fmt(optAWV);
+  document.getElementById('rOptCCM').textContent=fmt(optCCM);
+  document.getElementById('rOptRPM').textContent=fmt(optRPM);
+  document.getElementById('rOptTCM').textContent=fmt(optTCM);
+  document.getElementById('rOptBHI').textContent=fmt(optBHI);
+  document.getElementById('outSS').textContent=fmt(providerSS);
+  document.getElementById('optTotal').textContent=fmt(optimizedTotal);
+  document.getElementById('tierPctInline').textContent=currentTier;
+
+  // Gap arrow
+  document.getElementById('gapAmount').textContent='+'+fmt(gap);
+
+  // VBC story blocks
+  document.getElementById('outFFS').textContent=fmt(optFFS);
+  document.getElementById('outSSblock').textContent=fmt(providerSS);
+  document.getElementById('vbcTierPct').textContent=currentTier;
+
+  // TCOC breakdown
+  document.getElementById('outIP').textContent=fmt(admitSave);
+  document.getElementById('outED').textContent=fmt(edSave);
+  document.getElementById('outReadmit').textContent=fmt(readmitSave);
+  document.getElementById('outSNF').textContent=fmt(snfSave);
+  document.getElementById('outRAF').textContent=fmt(rafSave);
+  document.getElementById('outGross').textContent=fmt(grossSavings)+' ('+((grossRate*100).toFixed(1))+'% of TCOC)';
+  document.getElementById('outCMS').textContent=fmt(cmsToACO);
+
+  // Provider line
+  document.getElementById('offerProviderLine').textContent=document.getElementById('pbName')?document.getElementById('pbName').textContent!=='--'?(document.getElementById('pbName').textContent+' \u00B7 '+document.getElementById('pbDetail').textContent):'Enter your NPI to see your personalized projection':'Enter your NPI to see your personalized projection';
+
+  // Metrics
+  document.getElementById('outPerBene').textContent=fmt(perBene);
+  document.getElementById('outRate').textContent=(grossRate*100).toFixed(1)+'%';
+  document.getElementById('outFiveYr').textContent=fmt(fiveYr);
+  fillAll();
+}
+
+calc();
+fillAll();
+
+// Scroll reveal
+const reveals=document.querySelectorAll('.reveal');
+const io=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});},{threshold:0.1});
+reveals.forEach(el=>io.observe(el));
+</script>
+</body>
+</html>

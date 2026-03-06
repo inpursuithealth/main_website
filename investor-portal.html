@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Investor Portal</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);--danger:#C0392B;--success:#27AE60;--accent:#3A7CA5;--r:8px}
+html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--cream);color:var(--text);-webkit-font-smoothing:antialiased;line-height:1.55}
+
+/* ═══ GATE ═══ */
+#gate{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--navy);position:relative;overflow:hidden}
+#gate::before{content:'';position:absolute;top:-50%;left:-50%;width:200%;height:200%;background:radial-gradient(ellipse at 30% 50%,rgba(197,164,78,.06) 0%,transparent 60%);pointer-events:none}
+.gate-card{position:relative;width:100%;max-width:520px;margin:24px;background:var(--navy-mid);border:1px solid var(--gold-border);border-radius:12px;overflow:hidden}
+.gate-header{padding:36px 36px 28px;border-bottom:1px solid rgba(197,164,78,.12)}
+.gate-header .label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:block}
+.gate-header h1{font-family:'Instrument Serif',Georgia,serif;font-size:26px;color:#fff;font-weight:400;line-height:1.3}
+.gate-header p{font-size:12px;color:rgba(255,255,255,.4);margin-top:10px;line-height:1.6}
+.gate-body{padding:32px 36px}
+@media(max-width:480px){.gate-header,.gate-body{padding-left:24px;padding-right:24px}}
+.gate-step{display:none}.gate-step.active{display:block}
+.field-label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:8px}
+.field-input{width:100%;padding:12px 16px;background:var(--navy);border:1px solid rgba(197,164,78,.2);border-radius:var(--r);color:#fff;font-family:inherit;font-size:14px;transition:border .2s}
+.field-input:focus{outline:none;border-color:var(--gold)}
+.field-input::placeholder{color:rgba(255,255,255,.25)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.field-row{grid-template-columns:1fr}}
+.field-group{margin-bottom:20px}
+.captcha-box{display:flex;align-items:center;gap:16px;padding:16px;background:var(--navy);border:1px solid rgba(197,164,78,.15);border-radius:var(--r);margin-bottom:20px}
+.captcha-q{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--gold);white-space:nowrap}
+.captcha-input{flex:1;padding:10px 14px;background:rgba(255,255,255,.05);border:1px solid rgba(197,164,78,.2);border-radius:var(--r);color:#fff;font-family:inherit;font-size:16px;text-align:center;max-width:100px}
+.captcha-input:focus{outline:none;border-color:var(--gold)}
+.checkbox-group{margin-bottom:14px;display:flex;gap:10px;align-items:flex-start}
+.checkbox-group input[type=checkbox]{appearance:none;width:18px;height:18px;min-width:18px;border:1.5px solid rgba(197,164,78,.3);border-radius:4px;background:var(--navy);cursor:pointer;position:relative;margin-top:1px;transition:all .2s}
+.checkbox-group input[type=checkbox]:checked{background:var(--gold);border-color:var(--gold)}
+.checkbox-group input[type=checkbox]:checked::after{content:'✓';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-size:12px;color:var(--navy);font-weight:700}
+.checkbox-group label{font-size:11.5px;color:rgba(255,255,255,.55);line-height:1.55;cursor:pointer}
+.gate-error{color:var(--danger);font-size:11px;margin-top:8px;display:none}
+.gate-error.show{display:block}
+.step-dots{display:flex;gap:6px;align-items:center;justify-content:center;padding:20px 0 0}
+.step-dot{width:6px;height:6px;border-radius:50%;background:rgba(197,164,78,.2);transition:all .3s}
+.step-dot.active{background:var(--gold);width:20px;border-radius:3px}
+.gate-footer{padding:0 36px 32px;display:flex;justify-content:flex-end}
+@media(max-width:480px){.gate-footer{padding:0 24px 24px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 28px;border:none;border-radius:var(--r);font-family:inherit;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;transition:all .25s}
+.btn-gold{background:var(--gold);color:var(--navy)}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px);box-shadow:0 8px 24px rgba(197,164,78,.3)}
+
+/* ═══ PORTAL ═══ */
+#portal{display:none;height:100vh;display:none;flex-direction:column}
+.portal-nav{background:var(--navy);border-bottom:1px solid rgba(197,164,78,.12);flex-shrink:0}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;padding:0 24px;max-width:100%}
+.nav-brand{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);padding:14px 0;flex-shrink:0}
+.nav-user{font-size:10px;color:rgba(255,255,255,.3);flex-shrink:0}
+@media(max-width:768px){.nav-user{display:none}}
+
+/* ═══ ROOM LAYOUT ═══ */
+.room-layout{display:grid;grid-template-columns:260px 1fr;flex:1;overflow:hidden}
+@media(max-width:900px){.room-layout{grid-template-columns:1fr;grid-template-rows:auto 1fr}}
+
+/* Sidebar */
+.sidebar{background:var(--navy-mid);padding:20px 16px;overflow-y:auto;border-right:1px solid rgba(197,164,78,.06)}
+@media(max-width:900px){.sidebar{padding:12px 16px;display:flex;overflow-x:auto;gap:4px;border-right:none;border-bottom:1px solid rgba(197,164,78,.08)}}
+.sb-group-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.15);margin:16px 0 8px 12px}
+.sb-group-label:first-child{margin-top:0}
+@media(max-width:900px){.sb-group-label{display:none}}
+.sb-item{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:var(--r);cursor:pointer;transition:all .2s;margin-bottom:1px;border-left:2px solid transparent}
+.sb-item:hover{background:rgba(197,164,78,.06)}
+.sb-item.active{background:rgba(197,164,78,.1);border-left-color:var(--gold)}
+@media(max-width:900px){.sb-item{flex-shrink:0;padding:8px 14px;margin:0;border-left:none;border-bottom:2px solid transparent}.sb-item.active{border-bottom-color:var(--gold);border-left:none}}
+.sb-icon{width:28px;height:28px;border-radius:5px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0}
+.sb-icon.g{background:rgba(197,165,90,.15)}.sb-icon.b{background:rgba(58,124,165,.15)}.sb-icon.gr{background:rgba(39,174,96,.15)}
+.sb-text{flex:1;min-width:0}
+.sb-title{font-size:10px;font-weight:600;color:#fff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sb-sub{font-size:8px;color:rgba(255,255,255,.2);margin-top:1px}
+@media(max-width:900px){.sb-sub{display:none}}
+
+/* Main — iframe container */
+.main-frame{overflow:hidden;background:#fff;position:relative}
+.main-frame iframe{width:100%;height:100%;border:none;display:none}
+.main-frame iframe.active{display:block}
+.main-frame .placeholder{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:16px;padding:40px}
+.main-frame .placeholder.hidden{display:none}
+.ph-icon{font-size:40px;opacity:.3}
+.ph-text{font-size:13px;color:var(--text-muted);text-align:center;line-height:1.6;max-width:400px}
+
+/* Signing doc card */
+.signing-panel{display:none;padding:40px;overflow-y:auto}
+.signing-panel.active{display:block}
+.signing-panel h2{font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:var(--navy);margin-bottom:8px}
+.signing-panel>p{font-size:13px;color:var(--text-muted);margin-bottom:28px;line-height:1.6}
+.sign-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:16px;display:flex;gap:16px;align-items:center;transition:all .2s;cursor:pointer}
+.sign-card:hover{border-color:var(--gold-border);box-shadow:0 4px 16px rgba(0,0,0,.05);transform:translateY(-2px)}
+.sign-icon{width:48px;height:60px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.5px;text-transform:uppercase;flex-shrink:0;background:#FEE2E2;color:#DC2626;border:1px solid #FECACA}
+.sign-info{flex:1}
+.sign-name{font-size:13px;font-weight:600;color:var(--navy);margin-bottom:2px}
+.sign-desc{font-size:11px;color:var(--text-muted);line-height:1.5}
+.sign-badge{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:4px 10px;border-radius:4px;background:rgba(39,174,96,.1);color:var(--success);white-space:nowrap}
+.sign-note{margin-top:24px;background:var(--navy);border-left:2px solid var(--gold);padding:20px 24px;border-radius:0 var(--r) var(--r) 0}
+.sign-note p{font-size:12px;color:rgba(255,255,255,.55);line-height:1.7}
+.sign-note strong{color:var(--gold-light)}
+</style>
+</head>
+<body>
+
+<!-- ═══ GATE ═══ -->
+<div id="gate">
+  <div class="gate-card">
+    <div class="gate-header">
+      <span class="label">InPursuit Health — Investor Portal</span>
+      <h1 class="serif" style="font-family:'Instrument Serif',Georgia,serif">Accredited Investor Access</h1>
+      <p>This portal contains confidential investment materials. Access is restricted to verified accredited investors under SEC Regulation D.</p>
+    </div>
+    <div class="gate-body">
+      <div class="gate-step active" id="gs1">
+        <div class="field-row">
+          <div class="field-group"><label class="field-label">First Name</label><input type="text" class="field-input" id="fname" placeholder="First name"></div>
+          <div class="field-group"><label class="field-label">Last Name</label><input type="text" class="field-input" id="lname" placeholder="Last name"></div>
+        </div>
+        <div class="field-group"><label class="field-label">Email</label><input type="email" class="field-input" id="email" placeholder="you@company.com"></div>
+        <div class="field-group"><label class="field-label">Human Verification</label>
+          <div class="captcha-box"><span class="captcha-q" id="cq"></span><span style="color:rgba(255,255,255,.2)">=</span><input type="text" class="captcha-input" id="ca" placeholder="?" inputmode="numeric"></div>
+        </div>
+        <div class="gate-error" id="err1">Please complete all fields and answer correctly.</div>
+      </div>
+      <div class="gate-step" id="gs2">
+        <p style="font-size:12px;color:rgba(255,255,255,.5);margin-bottom:18px;line-height:1.6">Under SEC Rule 501, I certify that I qualify as an accredited investor:</p>
+        <div class="checkbox-group"><input type="checkbox" id="ai1"><label for="ai1">Net worth exceeding <strong style="color:#fff">$1,000,000</strong> (excluding primary residence)</label></div>
+        <div class="checkbox-group"><input type="checkbox" id="ai2"><label for="ai2">Income exceeding <strong style="color:#fff">$200,000</strong> ($300K jointly) for past 2 years</label></div>
+        <div class="checkbox-group"><input type="checkbox" id="ai3"><label for="ai3">Series 7, 65, or 82 license in good standing</label></div>
+        <div class="checkbox-group"><input type="checkbox" id="ai4"><label for="ai4">Entity with assets exceeding <strong style="color:#fff">$5,000,000</strong></label></div>
+        <div style="margin-top:18px;padding:14px;background:var(--navy);border-radius:var(--r);border:1px solid rgba(197,164,78,.1)">
+          <div class="checkbox-group" style="margin:0"><input type="checkbox" id="ai-attest"><label for="ai-attest" style="color:var(--gold-light);font-weight:600">I attest under penalty of law that the above is true and accurate.</label></div>
+        </div>
+        <div class="gate-error" id="err2">Please select at least one qualification and complete the attestation.</div>
+      </div>
+    </div>
+    <div class="step-dots"><div class="step-dot active" id="sd1"></div><div class="step-dot" id="sd2"></div></div>
+    <div class="gate-footer" style="padding-top:14px"><button class="btn btn-gold" id="gate-btn" onclick="gateNext()">Continue →</button></div>
+  </div>
+</div>
+
+<!-- ═══ PORTAL ═══ -->
+<div id="portal">
+  <nav class="portal-nav">
+    <div class="nav-inner">
+      <div class="nav-brand">InPursuit Health</div>
+      <div class="nav-user" id="nav-user"></div>
+    </div>
+  </nav>
+
+  <div class="room-layout">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sb-group-label">SAFE Documents</div>
+      <div class="sb-item active" onclick="showDoc('safe-one-pager',this)"><div class="sb-icon g">📄</div><div class="sb-text"><div class="sb-title">SAFE One-Pager</div><div class="sb-sub">$2M Bridge · $25M Cap</div></div></div>
+      <div class="sb-item" onclick="showDoc('safe-exec-summary',this)"><div class="sb-icon g">📋</div><div class="sb-text"><div class="sb-title">SAFE Exec Summary</div><div class="sb-sub">Full investment thesis</div></div></div>
+      <div class="sb-item" onclick="showDoc('safe-revenue-projections',this)"><div class="sb-icon g">💰</div><div class="sb-text"><div class="sb-title">Revenue Projections</div><div class="sb-sub">Honeycomb + ACCESS</div></div></div>
+      <div class="sb-item" onclick="showDoc('pitch-deck-5page',this)"><div class="sb-icon g">📊</div><div class="sb-text"><div class="sb-title">Pitch Deck</div><div class="sb-sub">5-slide overview</div></div></div>
+
+      <div class="sb-group-label">Series A Documents</div>
+      <div class="sb-item" onclick="showDoc('series-a-one-pager',this)"><div class="sb-icon b">📄</div><div class="sb-text"><div class="sb-title">Series A One-Pager</div><div class="sb-sub">$20M · Cohort 2</div></div></div>
+      <div class="sb-item" onclick="showDoc('series-a-exec-summary',this)"><div class="sb-icon b">📋</div><div class="sb-text"><div class="sb-title">Series A Exec Summary</div><div class="sb-sub">Full growth strategy</div></div></div>
+      <div class="sb-item" onclick="showDoc('investor-pamphlet',this)"><div class="sb-icon b">📖</div><div class="sb-text"><div class="sb-title">Investor Pamphlet</div><div class="sb-sub">Comprehensive overview</div></div></div>
+      <div class="sb-item" onclick="showDoc('market-analysis',this)"><div class="sb-icon b">📈</div><div class="sb-text"><div class="sb-title">Market Analysis</div><div class="sb-sub">Four pillars · Five layers</div></div></div>
+      <div class="sb-item" onclick="showDoc('proforma-3yr',this)"><div class="sb-icon b">💰</div><div class="sb-text"><div class="sb-title">3-Year Proforma</div><div class="sb-sub">$104.8M Year 3</div></div></div>
+
+      <div class="sb-group-label">Signing Documents</div>
+      <div class="sb-item" onclick="showSigning(this)"><div class="sb-icon gr">✍️</div><div class="sb-text"><div class="sb-title">Execute SAFE</div><div class="sb-sub">Sign via DocSend</div></div></div>
+    </div>
+
+    <!-- Main Frame -->
+    <div class="main-frame" id="main-frame">
+      <!-- Placeholder -->
+      <div class="placeholder" id="doc-placeholder" style="display:none">
+        <div class="ph-icon">📄</div>
+        <div class="ph-text">Select a document from the sidebar to view it here.</div>
+      </div>
+
+      <!-- Iframes for each document -->
+      <iframe id="frame-safe-one-pager" class="active" data-src="safe-one-pager.html"></iframe>
+      <iframe id="frame-safe-exec-summary" data-src="safe-exec-summary.html"></iframe>
+      <iframe id="frame-safe-revenue-projections" data-src="safe-revenue-projections.html"></iframe>
+      <iframe id="frame-pitch-deck-5page" data-src="pitch-deck-5page.html"></iframe>
+      <iframe id="frame-series-a-one-pager" data-src="series-a-one-pager.html"></iframe>
+      <iframe id="frame-series-a-exec-summary" data-src="series-a-exec-summary.html"></iframe>
+      <iframe id="frame-investor-pamphlet" data-src="InPursuit_Health_Series_A_Investor_Pamphlet_CLEANED.html"></iframe>
+      <iframe id="frame-market-analysis" data-src="market-analysis.html"></iframe>
+      <iframe id="frame-proforma-3yr" data-src="proforma-3yr.html"></iframe>
+
+      <!-- Signing panel -->
+      <div class="signing-panel" id="signing-panel">
+        <span style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;display:block">Execute Investment</span>
+        <h2 style="font-family:'Instrument Serif',Georgia,serif">SAFE Signing Documents</h2>
+        <p>The following documents require your electronic signature. Each opens in DocSend where you can review and sign securely. InPursuit Health will countersign within 24 hours.</p>
+
+        <!--
+        ═══════════════════════════════════════════════════════════════
+        DOCSEND SIGNING LINKS
+        ═══════════════════════════════════════════════════════════════
+        Replace the '#' in each onclick with your DocSend signable URLs.
+        Example: window.open('https://docsend.com/view/abc123','_blank')
+        ═══════════════════════════════════════════════════════════════
+        -->
+        <div class="sign-card" onclick="openSignDoc('SAFE_Agreement')">
+          <div class="sign-icon">PDF</div>
+          <div class="sign-info">
+            <div class="sign-name">SAFE Agreement</div>
+            <div class="sign-desc">Post-Money SAFE · $25M valuation cap · Converts to Series A Preferred</div>
+          </div>
+          <div class="sign-badge">Sign</div>
+        </div>
+
+        <div class="sign-card" onclick="openSignDoc('Subscription_Agreement')">
+          <div class="sign-icon">PDF</div>
+          <div class="sign-info">
+            <div class="sign-name">Subscription Agreement</div>
+            <div class="sign-desc">Investor information, representations, and payment method</div>
+          </div>
+          <div class="sign-badge">Sign</div>
+        </div>
+
+        <div class="sign-card" onclick="openSignDoc('Accredited_Investor_Questionnaire')">
+          <div class="sign-icon">PDF</div>
+          <div class="sign-info">
+            <div class="sign-name">Accredited Investor Questionnaire</div>
+            <div class="sign-desc">SEC Rule 501(a) qualification certification</div>
+          </div>
+          <div class="sign-badge">Sign</div>
+        </div>
+
+        <div class="sign-card" onclick="openSignDoc('Side_Letter')">
+          <div class="sign-icon">PDF</div>
+          <div class="sign-info">
+            <div class="sign-name">Investor Side Letter</div>
+            <div class="sign-desc">Pro-rata rights, information rights, MFN provision</div>
+          </div>
+          <div class="sign-badge">Sign</div>
+        </div>
+
+        <div class="sign-note">
+          <p><strong>Signing flow:</strong> Each document opens in DocSend. Review the document, then sign electronically. DocSend provides a legally binding signature under the E-SIGN Act with full audit trail. Once all documents are signed, Patrick Daly (CEO) will countersign within 24 hours. Both parties receive fully executed PDFs automatically.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   DOCUMENT FILE MAPPING
+   ═══════════════════════════════════════════════════════════════
+   These are the HTML filenames that must be in the SAME directory
+   as this portal file on your web server. Rename your files to
+   match, or update the data-src attributes on the iframes above.
+
+   Current expected filenames:
+     safe-one-pager.html
+     safe-exec-summary.html
+     safe-revenue-projections.html
+     pitch-deck-5page.html
+     series-a-one-pager.html
+     series-a-exec-summary.html
+     InPursuit_Health_Series_A_Investor_Pamphlet_CLEANED.html
+     market-analysis.html
+     proforma-3yr.html
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════════════════════════
+   DOCSEND SIGNING LINKS
+   ═══════════════════════════════════════════════════════════════
+   Paste your DocSend signable document URLs here.
+   ═══════════════════════════════════════════════════════════════ */
+const SIGNING_LINKS = {
+  'SAFE_Agreement':                    '',  // ← paste DocSend URL
+  'Subscription_Agreement':            '',  // ← paste DocSend URL
+  'Accredited_Investor_Questionnaire': '',  // ← paste DocSend URL
+  'Side_Letter':                       '',  // ← paste DocSend URL
+};
+
+function openSignDoc(key) {
+  const url = SIGNING_LINKS[key];
+  if (url && url.length > 0) {
+    window.open(url, '_blank');
+  } else {
+    alert('📄 ' + key.replace(/_/g,' ') + '\n\nThis signing document hasn\'t been connected yet.\n\n1. Upload the document to DocSend\n2. Convert to "Signable"\n3. Copy the link\n4. Paste it into SIGNING_LINKS in this HTML file');
+  }
+}
+
+/* ═══ CAPTCHA ═══ */
+let cA, cB;
+function genC() { cA = Math.floor(Math.random()*9)+2; cB = Math.floor(Math.random()*9)+2; document.getElementById('cq').textContent = cA + ' × ' + cB; }
+genC();
+
+/* ═══ GATE ═══ */
+let gStep = 1;
+function gateNext() {
+  if (gStep === 1) {
+    const f=document.getElementById('fname').value.trim(), l=document.getElementById('lname').value.trim(), e=document.getElementById('email').value.trim(), a=parseInt(document.getElementById('ca').value);
+    if (!f||!l||!e||a!==cA*cB) { document.getElementById('err1').classList.add('show'); if(a!==cA*cB) genC(); return; }
+    document.getElementById('err1').classList.remove('show');
+    document.getElementById('gs1').classList.remove('active');
+    document.getElementById('gs2').classList.add('active');
+    document.getElementById('sd1').classList.remove('active');
+    document.getElementById('sd2').classList.add('active');
+    document.getElementById('gate-btn').textContent = 'Enter Portal →';
+    gStep = 2;
+  } else {
+    const checks = [document.getElementById('ai1'),document.getElementById('ai2'),document.getElementById('ai3'),document.getElementById('ai4')];
+    if (!checks.some(c=>c.checked) || !document.getElementById('ai-attest').checked) { document.getElementById('err2').classList.add('show'); return; }
+    document.getElementById('err2').classList.remove('show');
+    const name = document.getElementById('fname').value + ' ' + document.getElementById('lname').value;
+    document.getElementById('nav-user').textContent = name;
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('portal').style.display = 'flex';
+    // Load first doc
+    loadFrame('safe-one-pager');
+  }
+}
+
+/* ═══ DOCUMENT NAVIGATION ═══ */
+function loadFrame(id) {
+  const frame = document.getElementById('frame-' + id);
+  if (frame && !frame.src && frame.dataset.src) {
+    frame.src = frame.dataset.src;
+  }
+}
+
+function showDoc(id, el) {
+  // Hide all iframes + signing panel
+  document.querySelectorAll('#main-frame iframe').forEach(f => f.classList.remove('active'));
+  document.getElementById('signing-panel').classList.remove('active');
+  document.getElementById('doc-placeholder').style.display = 'none';
+  // Show target iframe
+  const frame = document.getElementById('frame-' + id);
+  if (frame) {
+    loadFrame(id);
+    frame.classList.add('active');
+  }
+  // Update sidebar
+  document.querySelectorAll('.sb-item').forEach(s => s.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+
+function showSigning(el) {
+  document.querySelectorAll('#main-frame iframe').forEach(f => f.classList.remove('active'));
+  document.getElementById('doc-placeholder').style.display = 'none';
+  document.getElementById('signing-panel').classList.add('active');
+  document.querySelectorAll('.sb-item').forEach(s => s.classList.remove('active'));
+  if (el) el.classList.add('active');
+}
+</script>
+</body>
+</html>

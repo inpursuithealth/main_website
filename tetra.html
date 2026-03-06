@@ -1,0 +1,1630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TETRA™ — The Infrastructure Layer Beneath Every AI | InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;--navy-light:#1A2D4A;
+  --gold:#C5A44E;--gold-light:#D4B96A;--gold-bright:#E8D48B;--gold-dim:rgba(197,164,78,0.6);
+  --white:#FFF;--cream:#FAF8F4;--text-dark:#1A1A2E;--text-muted:#6B7280;
+  --purple:#6366F1;--green:#16A34A;--blue:#2563EB;--pink:#EC4899;--orange:#F97316;--cyan:#06B6D4;
+  --serif:'Instrument Serif',serif;--sans:'Instrument Sans',sans-serif;
+  --border:rgba(197,164,78,0.1);--glow:rgba(197,164,78,0.06);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--navy-deep);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ===== PRELOADER ===== */
+.preloader{position:fixed;inset:0;background:var(--navy-deep);display:flex;align-items:center;justify-content:center;z-index:99999;transition:opacity .8s,visibility .8s}
+.preloader.done{opacity:0;visibility:hidden;pointer-events:none}
+.preloader-text{font-family:var(--serif);font-size:36px;color:var(--gold);letter-spacing:6px;animation:pp 1.5s ease-in-out infinite}
+@keyframes pp{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* ===== UNIVERSAL NAV ===== */
+#iph-topbar{background:rgba(6,14,26,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid rgba(197,164,78,0.12);position:fixed;top:0;left:0;right:0;z-index:9999;transition:box-shadow 0.3s}
+#iph-topbar.scrolled{box-shadow:0 4px 40px rgba(0,0,0,0.6)}
+#iph-topbar-inner{max-width:1400px;margin:0 auto;padding:0 40px;display:flex;justify-content:space-between;align-items:center;height:64px}
+#iph-brand-group{display:flex;align-items:center;gap:10px}
+#iph-wordmark{font-family:var(--serif);font-size:22px;color:var(--gold);letter-spacing:1px;text-decoration:none}
+#iph-brand-divider{color:rgba(255,255,255,0.2);font-size:14px}
+#iph-maha{font-size:11px;font-weight:500;letter-spacing:0.5px;color:rgba(255,255,255,0.45);white-space:nowrap}
+#iph-nav{display:flex;align-items:center;gap:4px}
+.iph-nav-item{padding:20px 14px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.6);text-decoration:none;position:relative;transition:color 0.3s;white-space:nowrap}
+.iph-nav-item:hover{color:var(--gold)}
+.iph-nav-item::after{content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:2px;background:var(--gold);transition:width 0.3s}
+.iph-nav-item:hover::after{width:60%}
+.iph-dropdown{position:relative;display:inline-flex;align-items:center}
+.iph-dropdown-toggle{display:inline-flex;align-items:center;gap:5px}
+.iph-caret{font-size:8px;opacity:0.5;transition:transform 0.25s}
+.iph-dropdown:hover .iph-caret{transform:rotate(180deg);opacity:1}
+.iph-dropdown-menu{display:none;position:absolute;top:calc(100% - 2px);left:0;background:rgba(11,22,40,0.98);backdrop-filter:blur(20px);border:1px solid rgba(197,164,78,0.15);border-radius:0 0 8px 8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);min-width:260px;z-index:10000;overflow:hidden}
+.iph-dropdown:hover .iph-dropdown-menu{display:block}
+.iph-dropdown-menu a,.iph-dropdown-menu span{display:block;padding:13px 20px;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;border-bottom:1px solid rgba(197,164,78,0.06);transition:all 0.2s;white-space:nowrap}
+.iph-dropdown-menu a:last-child,.iph-dropdown-menu span:last-child{border-bottom:none}
+.iph-dropdown-menu a:hover,.iph-dropdown-menu span:hover{color:var(--gold);background:rgba(197,164,78,0.05);padding-left:26px}
+#iph-cta{display:inline-flex;align-items:center;margin-left:8px;padding:8px 18px;background:var(--gold);color:var(--navy-deep);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all 0.3s;white-space:nowrap}
+#iph-cta:hover{background:var(--gold-bright);transform:translateY(-1px)}
+#iph-toggle{display:none;background:none;border:none;width:32px;height:32px;cursor:pointer;position:relative;flex-shrink:0}
+#iph-toggle span{display:block;width:22px;height:2px;background:var(--gold);position:absolute;left:5px;transition:all 0.3s}
+#iph-toggle span:nth-child(1){top:8px}#iph-toggle span:nth-child(2){top:15px}#iph-toggle span:nth-child(3){top:22px}
+
+/* ===== HERO — FULL IMPACT ===== */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 60px;overflow:hidden}
+.hero-grid-bg{position:absolute;inset:0;overflow:hidden}
+.hero-mesh-canvas{position:absolute;inset:0;width:100%;height:100%}
+.hero-radial{position:absolute;width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(197,164,78,0.04) 0%,transparent 65%);animation:hero-breathe 8s ease-in-out infinite}
+@keyframes hero-breathe{0%,100%{opacity:.4;transform:translate(-50%,-50%) scale(1)}50%{opacity:.8;transform:translate(-50%,-50%) scale(1.2)}}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;padding:8px 24px;border:1px solid rgba(197,164,78,0.2);border-radius:100px;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);background:rgba(197,164,78,0.04);margin-bottom:40px;position:relative;z-index:2;animation:fu .8s ease both}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px rgba(197,164,78,.6)}50%{opacity:.3;box-shadow:none}}
+.hero h1{font-family:var(--serif);font-size:clamp(42px,6vw,80px);font-weight:400;line-height:1.05;letter-spacing:-0.02em;max-width:950px;margin-bottom:28px;position:relative;z-index:2;animation:fu .8s ease .15s both}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:clamp(16px,1.6vw,20px);color:rgba(255,255,255,.45);line-height:1.75;max-width:700px;margin-bottom:20px;position:relative;z-index:2;animation:fu .8s ease .3s both}
+.hero-sub strong{color:rgba(255,255,255,.75);font-weight:600}
+.hero-tagline{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--gold-light);margin-bottom:48px;position:relative;z-index:2;animation:fu .8s ease .4s both}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative;z-index:2;animation:fu .8s ease .5s both}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+
+/* Buttons */
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:6px;border:none;cursor:pointer;transition:all .3s}
+.btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 12px 40px rgba(197,164,78,.25)}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:transparent;color:var(--white);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:6px;border:1px solid rgba(255,255,255,.15);cursor:pointer;transition:all .3s}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold);transform:translateY(-2px)}
+
+/* ===== SCROLLING TICKER ===== */
+
+
+/* ===== SECTION UTILITIES ===== */
+.s-overline{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.s-headline{font-family:var(--serif);font-size:clamp(28px,3.5vw,52px);font-weight:400;line-height:1.15;margin-bottom:16px}
+.s-headline em{font-style:italic;color:var(--gold)}
+.s-desc{font-size:16px;color:rgba(255,255,255,.4);line-height:1.75;max-width:640px;margin-bottom:56px}
+
+/* ===== TRUST BAR ===== */
+.trust-bar{padding:20px 40px;background:rgba(10,22,40,0.5);border-bottom:1px solid rgba(197,164,78,0.06)}
+.trust-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:center;flex-wrap:wrap;gap:32px;align-items:center}
+.trust-item{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.25);display:flex;align-items:center;gap:8px}
+.trust-item .ti{font-size:14px;opacity:.5}
+
+/* ===== MANIFESTO ===== */
+.manifesto{padding:120px 40px;text-align:center;position:relative;overflow:hidden}
+.manifesto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 45%,rgba(197,164,78,0.025),transparent);pointer-events:none}
+.manifesto-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
+.manifesto blockquote{font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:400;line-height:1.45;color:var(--white);margin-bottom:24px}
+.manifesto blockquote em{font-style:italic;color:var(--gold)}
+.manifesto .attr{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.5)}
+
+/* ===== WHAT IS TETRA ===== */
+.what-section{padding:0 40px 120px;position:relative;z-index:1}
+.what-inner{max-width:1000px;margin:0 auto}
+.what-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.what-card{padding:40px 28px;border-radius:14px;border:1px solid rgba(197,164,78,.06);background:rgba(17,34,64,.35);text-align:center;transition:all .3s;position:relative;overflow:hidden}
+.what-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);opacity:0;transition:opacity .3s}
+.what-card:hover{border-color:rgba(197,164,78,.2);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.3)}
+.what-card:hover::before{opacity:1}
+.what-card h3{font-family:var(--serif);font-size:22px;font-weight:400;margin-bottom:12px}
+.what-card p{font-size:13px;color:rgba(255,255,255,.35);line-height:1.7}
+.what-icon{font-size:32px;margin-bottom:16px;display:block;opacity:.5}
+
+/* ===== PRODUCT FAMILY ===== */
+.family-section{padding:120px 40px;background:var(--cream);color:var(--text-dark)}
+.eco-container{max-width:1000px;margin:0 auto}
+.eco-diagram{background:var(--navy);border-radius:20px;padding:24px;margin-bottom:40px;border:1px solid rgba(197,164,78,.1)}
+.eco-svg{width:100%;height:auto;display:block}
+.eco-explain{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.eco-explain-card{background:white;border-radius:14px;padding:28px;border-left:4px solid;box-shadow:0 2px 12px rgba(0,0,0,.04)}
+.eco-explain-card h4{font-family:var(--serif);font-size:18px;margin-bottom:8px}
+.eco-explain-card p{font-size:13px;color:var(--text-muted);line-height:1.7}
+.eco-explain-card p strong{color:var(--text-dark)}
+.eco-explain-card p em{font-style:italic;color:var(--text-dark)}
+.family-inner{max-width:1200px;margin:0 auto}
+.family-header{text-align:center;margin-bottom:64px}
+.family-header h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);color:var(--text-dark);line-height:1.2;margin-bottom:16px}
+.family-header h2 em{font-style:italic;color:var(--gold)}
+.family-header p{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:600px;margin:0 auto}
+.family-grid{display:grid;grid-template-columns:1fr;gap:0;position:relative}
+.family-core{display:grid;grid-template-columns:1fr;gap:2px;margin-bottom:2px}
+.family-card{padding:48px 40px;border-radius:0;border:1px solid rgba(0,0,0,0.04);background:var(--white);transition:all .3s;position:relative;overflow:hidden}
+.family-card:first-child{border-radius:16px 16px 0 0}
+.family-card:last-child{border-radius:0 0 16px 16px}
+.family-card:hover{box-shadow:0 8px 40px rgba(0,0,0,.06);z-index:2;transform:scale(1.005)}
+.family-card-header{display:flex;align-items:center;gap:20px;margin-bottom:20px}
+.family-card-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.family-card-meta{flex:1}
+.family-card-meta .fc-name{font-family:var(--serif);font-size:24px;color:var(--text-dark);margin-bottom:2px}
+.family-card-meta .fc-tag{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.family-card p{font-size:14px;color:var(--text-muted);line-height:1.7;margin-bottom:20px}
+.family-chips{display:flex;flex-wrap:wrap;gap:8px}
+.family-chip{padding:6px 14px;border-radius:20px;font-size:11px;font-weight:500}
+/* Color variants */
+.fc-gold .family-card-icon{background:rgba(197,164,78,.08);border:1px solid rgba(197,164,78,.15)}
+.fc-gold .fc-tag{color:var(--gold)}
+.fc-gold .family-chip{background:rgba(197,164,78,.06);color:#8B7530;border:1px solid rgba(197,164,78,.12)}
+.fc-purple .family-card-icon{background:rgba(99,102,241,.06);border:1px solid rgba(99,102,241,.12)}
+.fc-purple .fc-tag{color:var(--purple)}
+.fc-purple .family-chip{background:rgba(99,102,241,.05);color:var(--purple);border:1px solid rgba(99,102,241,.1)}
+.fc-green .family-card-icon{background:rgba(22,163,74,.06);border:1px solid rgba(22,163,74,.12)}
+.fc-green .fc-tag{color:var(--green)}
+.fc-green .family-chip{background:rgba(22,163,74,.05);color:var(--green);border:1px solid rgba(22,163,74,.1)}
+.fc-blue .family-card-icon{background:rgba(37,99,235,.06);border:1px solid rgba(37,99,235,.12)}
+.fc-blue .fc-tag{color:var(--blue)}
+.fc-blue .family-chip{background:rgba(37,99,235,.05);color:var(--blue);border:1px solid rgba(37,99,235,.1)}
+.family-callout{margin-top:48px;padding:36px 40px;border-radius:12px;background:var(--navy-deep);text-align:center}
+.family-callout p{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--white);line-height:1.45}
+.family-callout em{font-style:italic;color:var(--gold)}
+
+/* ===== ARCHITECTURE ===== */
+.arch-section{padding:120px 40px;background:var(--navy)}
+.arch-inner{max-width:1100px;margin:0 auto}
+.layer-stack{display:flex;flex-direction:column;gap:0}
+.layer{display:flex;align-items:stretch;border:1px solid rgba(197,164,78,.06);overflow:hidden;transition:all .35s;margin-bottom:-1px;position:relative;z-index:1}
+.layer:first-child{border-radius:12px 12px 0 0}
+.layer:last-child{border-radius:0 0 12px 12px}
+.layer:hover{border-color:rgba(197,164,78,.3);box-shadow:0 4px 24px rgba(197,164,78,.08);z-index:2;transform:scale(1.01)}
+.layer-label{width:200px;min-width:200px;padding:24px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(197,164,78,.04)}
+.layer-label-name{font-family:var(--serif);font-size:17px;color:var(--white);margin-bottom:2px}
+.layer-label-sub{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;opacity:.7}
+.layer-items{flex:1;display:flex;flex-wrap:wrap;padding:14px 20px;gap:8px;align-items:center}
+.layer-chip{padding:7px 14px;border-radius:20px;font-size:11.5px;font-weight:500;transition:all .2s}
+.layer-chip:hover{transform:translateY(-1px)}
+.layer-app{background:rgba(197,164,78,.03)}.layer-app .layer-label-sub{color:var(--gold)}.layer-app .layer-chip{background:rgba(197,164,78,.06);color:var(--gold-light);border:1px solid rgba(197,164,78,.12)}
+.layer-intel{background:rgba(99,102,241,.03)}.layer-intel .layer-label-sub{color:var(--purple)}.layer-intel .layer-chip{background:rgba(99,102,241,.05);color:#A5B4FC;border:1px solid rgba(99,102,241,.1)}
+.layer-data{background:rgba(34,197,94,.02)}.layer-data .layer-label-sub{color:var(--green)}.layer-data .layer-chip{background:rgba(34,197,94,.05);color:#86EFAC;border:1px solid rgba(34,197,94,.1)}
+.layer-exchange{background:rgba(139,92,246,.02)}.layer-exchange .layer-label-sub{color:#A78BFA}.layer-exchange .layer-chip{background:rgba(139,92,246,.05);color:#C4B5FD;border:1px solid rgba(139,92,246,.1)}
+.layer-compute{background:rgba(251,146,60,.02)}.layer-compute .layer-label-sub{color:#FB923C}.layer-compute .layer-chip{background:rgba(251,146,60,.05);color:#FDBA74;border:1px solid rgba(251,146,60,.1)}
+.layer-comply{background:rgba(37,99,235,.02)}.layer-comply .layer-label-sub{color:var(--blue)}.layer-comply .layer-chip{background:rgba(37,99,235,.05);color:#93C5FD;border:1px solid rgba(37,99,235,.1)}
+.arch-callout{margin-top:48px;padding:36px 40px;border-radius:12px;border:1px solid rgba(197,164,78,.08);background:rgba(197,164,78,.02);text-align:center}
+.arch-callout p{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--white);line-height:1.45}
+.arch-callout em{font-style:italic;color:var(--gold)}
+
+/* ===== PERFORMANCE ===== */
+.perf-section{padding:120px 40px;background:var(--navy-deep)}
+.perf-inner{max-width:1100px;margin:0 auto}
+.perf-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.perf-card{padding:40px 20px;border-radius:14px;border:1px solid rgba(197,164,78,.06);background:rgba(17,34,64,.3);text-align:center;transition:all .3s}
+.perf-card:hover{border-color:rgba(197,164,78,.2);transform:translateY(-4px);box-shadow:0 8px 32px rgba(0,0,0,.3)}
+.perf-num{font-family:var(--serif);font-size:clamp(32px,3.5vw,48px);color:var(--gold);line-height:1;margin-bottom:8px}
+.perf-label{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:10px}
+.perf-desc{font-size:12px;color:rgba(255,255,255,.25);line-height:1.5}
+
+/* ===== PROVEN RECORD ===== */
+.proven-section{padding:120px 40px;background:var(--navy)}
+.proven-inner{max-width:1000px;margin:0 auto}
+.proven-timeline{display:flex;flex-direction:column;gap:0}
+.proven-item{display:grid;grid-template-columns:140px 1fr;gap:32px;padding:36px 0;border-bottom:1px solid rgba(197,164,78,.06);align-items:start}
+.proven-item:last-child{border-bottom:none}
+.proven-year{font-family:var(--serif);font-size:36px;color:rgba(197,164,78,.2);line-height:1;text-align:center}
+.proven-content h4{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--white);margin-bottom:8px}
+.proven-content p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.7}
+.proven-stat{display:inline-flex;align-items:baseline;gap:8px;margin-top:12px;padding:8px 16px;border-radius:8px;background:rgba(197,164,78,.04);border:1px solid rgba(197,164,78,.1)}
+.proven-stat .ps-num{font-family:var(--serif);font-size:22px;color:var(--gold)}
+.proven-stat .ps-label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.35)}
+
+/* ===== WHY AI NEEDS THIS ===== */
+.why-section{padding:120px 40px;background:var(--navy-deep)}
+.why-inner{max-width:900px;margin:0 auto}
+.why-item{display:flex;gap:24px;padding:32px 0;border-bottom:1px solid rgba(197,164,78,.06)}
+.why-item:last-child{border-bottom:none}
+.why-num{font-family:var(--serif);font-size:48px;color:rgba(197,164,78,.12);line-height:1;min-width:60px}
+.why-content h4{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--white);margin-bottom:8px}
+.why-content p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.7}
+
+/* ===== CTA ===== */
+.cta-section{padding:120px 40px;text-align:center;background:var(--navy);position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(197,164,78,.04),transparent);pointer-events:none}
+.cta-inner{max-width:700px;margin:0 auto;position:relative;z-index:2}
+.cta-inner h2{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:400;line-height:1.2;margin-bottom:20px}
+.cta-inner h2 em{font-style:italic;color:var(--gold)}
+.cta-inner>p{font-size:16px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:40px}
+
+/* ===== FOOTER ===== */
+.site-footer{background:var(--navy-deep);border-top:1px solid rgba(197,164,78,0.08);padding:48px 40px 32px}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-wordmark{font-family:var(--serif);font-size:18px;color:var(--gold);letter-spacing:1px}
+.footer-legal{font-size:11px;color:rgba(255,255,255,0.3)}
+.footer-nav-grid{max-width:1200px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(197,164,78,0.08);display:flex;gap:64px;flex-wrap:wrap}
+.footer-col-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.5);margin-bottom:14px}
+.footer-col{display:flex;flex-direction:column;gap:11px}
+.footer-col a{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s}
+.footer-col a:hover{color:var(--gold)}
+.footer-disclaimer{max-width:1200px;margin:24px auto 0;font-size:10px;color:rgba(255,255,255,0.15);line-height:1.6}
+.footer-tagline{text-align:center;margin-top:24px;font-family:var(--serif);font-size:13px;color:rgba(197,164,78,0.3);letter-spacing:2px}
+
+/* ===== VALUE STREAMS ===== */
+.value-section{padding:120px 40px;background:var(--cream)}
+.value-inner{max-width:1200px;margin:0 auto}
+.value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.value-card{padding:36px 28px;border-radius:16px;border:1px solid rgba(10,22,40,.06);background:var(--white);transition:all .4s;position:relative;overflow:hidden}
+.value-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(10,22,40,.08);border-color:rgba(197,164,78,.2)}
+.value-card-icon{width:44px;height:44px;border-radius:10px;background:rgba(197,164,78,.08);border:1px solid rgba(197,164,78,.12);display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+.value-card-icon svg{width:22px;height:22px;color:var(--gold)}
+.value-card h3{font-family:var(--serif);font-size:20px;font-weight:400;color:var(--navy);margin-bottom:10px}
+.value-card p{font-size:13.5px;color:rgba(10,22,40,.5);line-height:1.7}
+.value-card-metric{display:inline-flex;align-items:baseline;gap:8px;margin-top:16px;padding:8px 14px;border-radius:8px;background:rgba(197,164,78,.06);border:1px solid rgba(197,164,78,.1)}
+.vm-num{font-family:var(--serif);font-size:22px;color:var(--gold)}
+.vm-label{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(10,22,40,.35)}
+
+/* ===== FLOW VISUALIZATION ===== */
+.flow-section{padding:64px 40px 48px;background:var(--navy-deep);position:relative;overflow:hidden}
+.flow-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 45%,rgba(197,164,78,.025) 0%,transparent 100%)}
+.flow-mesh-canvas{position:absolute;inset:0;width:100%;height:100%;opacity:.35;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,transparent 80%)}
+.flow-inner{max-width:1300px;margin:0 auto;position:relative;z-index:1}
+.flow-header{text-align:center;margin-bottom:44px}
+.flow-stage{position:relative;width:100%;height:650px}
+#flowCanvas{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none}
+.flow-col{position:absolute;width:175px;display:flex;flex-direction:column;gap:10px;z-index:5}
+.flow-sources{left:0;top:110px}.flow-outputs{right:0;top:90px}
+.flow-zone-label{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,.25);margin-bottom:4px;text-align:center}
+.flow-node{display:flex;align-items:center;gap:10px;padding:9px 12px;border-radius:10px;border:1px solid rgba(197,164,78,.06);background:rgba(17,34,64,.5);cursor:pointer;transition:all .4s}
+.flow-node:hover,.flow-node.fn-active{border-color:rgba(197,164,78,.3);background:rgba(17,34,64,.8);transform:scale(1.03)}
+.flow-node.fn-highlight{border-color:var(--gold);background:rgba(197,164,78,.06);box-shadow:0 0 20px rgba(197,164,78,.1)}
+.fn-dot{width:8px;height:8px;border-radius:50%;background:rgba(197,164,78,.15);border:1px solid rgba(197,164,78,.25);flex-shrink:0;transition:all .4s}
+.fn-highlight .fn-dot{background:var(--gold);border-color:var(--gold);box-shadow:0 0 8px rgba(197,164,78,.5)}
+.fn-text{display:flex;flex-direction:column;min-width:0}.fn-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.6);letter-spacing:.3px;transition:color .4s;white-space:nowrap}
+.fn-highlight .fn-name{color:var(--gold)}.fn-sub{font-size:9px;color:rgba(255,255,255,.2);white-space:nowrap}
+.fn-output{flex-direction:row-reverse}.fn-output .fn-text{text-align:right}
+.flow-engine{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);width:220px;height:220px;z-index:10}
+.fe-core{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:140px;height:140px;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:12;border-radius:50%;overflow:visible}
+.fe-core::before{content:'';position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(197,164,78,.06) 0%,transparent 70%);z-index:0}
+.fe-mesh-canvas{position:absolute;inset:-10px;width:calc(100% + 20px);height:calc(100% + 20px);border-radius:50%;z-index:0;mask-image:radial-gradient(circle,rgba(0,0,0,.8) 20%,rgba(0,0,0,.3) 50%,transparent 75%);-webkit-mask-image:radial-gradient(circle,rgba(0,0,0,.8) 20%,rgba(0,0,0,.3) 50%,transparent 75%)}
+.fe-label{font-family:var(--serif);font-size:22px;color:var(--gold);letter-spacing:4px;text-shadow:0 0 20px rgba(197,164,78,.4);position:relative;z-index:2}.fe-sublabel{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,.45);margin-top:3px;position:relative;z-index:2}
+.fe-ring{position:absolute;border-radius:50%;border:1px solid rgba(197,164,78,.06)}
+.fe-ring-1{inset:-12px;border-width:1px;border-color:rgba(197,164,78,.06);animation:fes 25s linear infinite}
+.fe-ring-2{inset:-28px;border-width:1px;border-style:dashed;border-color:rgba(197,164,78,.04);animation:fes 40s linear infinite reverse}
+.fe-ring-3{inset:-48px;border-color:rgba(197,164,78,.03);animation:fes 55s linear infinite}
+.fe-ring-4{inset:-72px;border-color:rgba(197,164,78,.02);animation:fes 70s linear infinite reverse}
+@keyframes fes{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.fe-layer{position:absolute;z-index:11}.fe-layer span{font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:10px;white-space:nowrap}
+.fe-comply{bottom:-28px;left:50%;transform:translateX(-50%)}.fe-comply span{background:rgba(37,99,235,.08);color:var(--blue);border:1px solid rgba(37,99,235,.12)}
+.fe-data{top:-28px;left:50%;transform:translateX(-50%)}.fe-data span{background:rgba(34,197,94,.08);color:var(--green);border:1px solid rgba(34,197,94,.12)}
+.fe-intel{left:-48px;top:50%;transform:translateY(-50%) rotate(-90deg)}.fe-intel span{background:rgba(99,102,241,.08);color:var(--purple);border:1px solid rgba(99,102,241,.12)}
+.fe-app{right:-52px;top:50%;transform:translateY(-50%) rotate(90deg)}.fe-app span{background:rgba(197,164,78,.08);color:var(--gold);border:1px solid rgba(197,164,78,.12)}
+.flow-ai-zone{position:absolute;bottom:0;left:50%;transform:translateX(-50%);display:grid;grid-template-columns:repeat(3,1fr);gap:10px;z-index:5;width:660px;max-width:90%}
+.ai-node{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 16px;border-radius:12px;border:1px solid rgba(99,102,241,.15);background:rgba(99,102,241,.04);cursor:pointer;transition:all .4s;text-align:center}
+.ai-node:hover,.ai-node.fn-highlight{border-color:rgba(99,102,241,.5);background:rgba(99,102,241,.1);transform:translateY(-2px);box-shadow:0 4px 16px rgba(99,102,241,.1)}
+.ai-node .ai-icon{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--white)}
+.ai-node .fn-name{font-size:11px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.3px}.ai-node .fn-sub{font-size:9px;color:rgba(255,255,255,.2)}
+.ai-node.fn-highlight .fn-name{color:var(--purple)}
+.flow-consumer-zone{position:absolute;top:70px;left:50%;transform:translateX(-50%);display:flex;gap:14px;z-index:5}
+.consumer-node{display:flex;flex-direction:column;align-items:center;gap:5px;padding:10px 18px;border-radius:12px;border:1px solid rgba(6,182,212,.12);background:rgba(6,182,212,.04);cursor:pointer;transition:all .4s;text-align:center}
+.consumer-node:hover,.consumer-node.fn-highlight{border-color:rgba(6,182,212,.4);background:rgba(6,182,212,.08);transform:translateY(2px)}
+.consumer-node .fn-name{font-size:11.5px;font-weight:600;color:rgba(255,255,255,.55);letter-spacing:.3px}.consumer-node .fn-sub{font-size:9px;color:rgba(255,255,255,.2)}
+.consumer-node.fn-highlight .fn-name{color:var(--cyan)}
+.flow-zone-label-h{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;margin-bottom:8px;text-align:center}
+.flow-live{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.flow-live-pulse{width:6px;height:6px;border-radius:50%;background:var(--green);animation:lp 1.5s ease-in-out infinite;flex-shrink:0}
+@keyframes lp{0%,100%{opacity:1;box-shadow:0 0 6px rgba(22,163,74,.4)}50%{opacity:.4;box-shadow:none}}
+.flow-live-text{font-size:11px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.25);line-height:1.4}.flow-live-text span{color:var(--gold);font-family:var(--serif);font-size:14px}
+
+/* ===== REVEAL ===== */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.23,1,.32,1),transform .7s cubic-bezier(.23,1,.32,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1100px){
+  #iph-nav{position:fixed;top:64px;left:0;right:0;background:var(--navy-deep);border-bottom:1px solid rgba(197,164,78,0.1);flex-direction:column;align-items:stretch;display:none;max-height:80vh;overflow-y:auto}
+  #iph-nav.open{display:flex}
+  #iph-toggle{display:block}
+  .iph-nav-item{padding:13px 24px;width:100%}
+  .iph-dropdown{width:100%;flex-direction:column;align-items:flex-start}
+  .iph-dropdown-menu{display:none;position:static;box-shadow:none;border:none;border-radius:0;min-width:100%;background:rgba(197,164,78,0.04);border-top:1px solid rgba(197,164,78,0.08)}
+  .iph-dropdown.open .iph-dropdown-menu{display:block}
+  .iph-dropdown-menu a,.iph-dropdown-menu span{padding:11px 36px}
+  #iph-cta{margin:14px 24px}
+}
+@media(max-width:1024px){.perf-grid{grid-template-columns:repeat(3,1fr)}.value-grid{grid-template-columns:repeat(2,1fr)}.layer-label{width:160px;min-width:160px}.flow-col{width:140px}.flow-engine{width:200px;height:200px}.fe-core{width:120px;height:120px}.fe-label{font-size:18px}.flow-ai-zone,.flow-consumer-zone{gap:8px}.flow-ai-zone{grid-template-columns:repeat(3,1fr)}.ai-node,.consumer-node{padding:6px 10px}}
+@media(max-width:768px){
+  .hero{padding:100px 20px 40px;min-height:auto}
+  .what-grid{grid-template-columns:1fr}
+  .perf-grid{grid-template-columns:1fr 1fr}
+  .value-grid{grid-template-columns:1fr}
+  .layer{flex-direction:column}
+  .layer-label{width:100%;min-width:100%;border-right:none;border-bottom:1px solid rgba(197,164,78,.04);padding:14px 20px}
+  .proven-item{grid-template-columns:1fr;gap:8px}
+  .proven-year{font-size:28px}
+  .why-item{flex-direction:column;gap:8px}
+  .why-num{font-size:32px}
+  .eco-explain{grid-template-columns:1fr}
+  .eco-diagram{padding:12px}
+  .flow-stage{height:auto;min-height:900px}.flow-col{position:relative;width:100%;flex-direction:row;flex-wrap:wrap;gap:8px;justify-content:center;left:auto!important;right:auto!important;top:auto!important}
+  .flow-sources{order:2;padding-top:8px}.flow-outputs{order:4;padding-bottom:8px}.flow-ai-zone{position:relative;order:5;transform:none;left:auto;grid-template-columns:repeat(3,1fr);justify-content:center;max-width:100%}.flow-consumer-zone{position:relative;order:1;transform:none;left:auto;flex-wrap:wrap;justify-content:center}
+  .flow-engine{position:relative;order:3;left:auto;top:auto;transform:none;margin:40px auto}
+  .fn-name{font-size:10px}.fn-sub{display:none}#flowCanvas{display:none}
+  section{padding:60px 20px!important}
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div class="preloader" id="preloader"><span class="preloader-text">TETRA</span></div>
+
+<!-- NAV injected by nav.js -->
+
+<!-- ═══════════════ HERO ═══════════════ -->
+<section class="hero">
+  <div class="hero-grid-bg">
+    <canvas class="hero-mesh-canvas" id="dataMesh"></canvas>
+  </div>
+  <div class="hero-radial"></div>
+  <div class="hero-badge"><span class="hero-badge-dot"></span> Validated · Modular · MOSA-Aligned · AI-Ready</div>
+  <h1>The infrastructure layer<br>that will define the next<br><em>twenty years of AI.</em></h1>
+  <p class="hero-sub">TETRA&trade; is the healthcare data orchestration layer that <strong>connects, normalizes, routes, governs, and supervises</strong> every byte of health data across every system in the enterprise &mdash; EHRs, labs, pharmacies, payers, devices, AI models &mdash; through a single, real-time, model-agnostic fabric.</p>
+  <div class="hero-tagline">The Orchestration Layer Beneath the AI&trade;</div>
+</section>
+
+<!-- ═══════════════ TRUST BAR ═══════════════ -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item"><span class="ti">&#9733;</span> Veteran-Owned Business</div>
+    <div class="trust-item"><span class="ti">&#9878;</span> CMS-Approved &middot; 140M+ Beneficiaries</div>
+    <div class="trust-item"><span class="ti">&#128274;</span> HIPAA &amp; NIST SP 800-171</div>
+    <div class="trust-item"><span class="ti">&#9889;</span> 1.8M+ Transactions/Hour</div>
+    <div class="trust-item"><span class="ti">&#128737;</span> Zero-Trust Architecture</div>
+    <div class="trust-item"><span class="ti">&#9881;</span> MOSA-Compliant</div>
+  </div>
+</div>
+
+<!-- ═══════════════ MANIFESTO ═══════════════ -->
+<section class="manifesto">
+  <div class="manifesto-inner reveal">
+    <p class="s-overline" style="text-align:center">The Thesis</p>
+    <blockquote>Every AI model in healthcare is only as powerful as the <em>infrastructure layer</em> empowering it. We didn&rsquo;t build an app. We didn&rsquo;t build a model. We deliver the <em>orchestration</em> needed to make every app, every model, and every workflow possible.</blockquote>
+    <div class="attr">InPursuit Health &middot; Results Matter&trade;</div>
+  </div>
+</section>
+
+<!-- ═══════════════ SCROLLING TICKER ═══════════════ -->
+
+
+
+
+<!-- ═══════════════ ECOSYSTEM VISUALIZATION ═══════════════ -->
+<section class="flow-section" id="flow">
+<canvas class="flow-mesh-canvas" id="flowMesh"></canvas>
+<div class="flow-inner">
+  <div class="flow-header reveal">
+    <p class="s-overline" style="color:var(--gold);text-align:center">Live Ecosystem</p>
+    <h2 class="s-headline" style="color:var(--white);text-align:center">See it <em>in motion.</em></h2>
+    <p style="font-size:15px;color:rgba(255,255,255,.4);line-height:1.7;max-width:650px;margin:16px auto 0;text-align:center">People at the top. Enterprise data from the left. Clean intelligence out the right. AI models orbit the engine, plugging in and out without touching the architecture. Click any node to trace its path.</p>
+  </div>
+  <div class="flow-stage reveal" id="flowStage">
+    <canvas id="flowCanvas"></canvas>
+
+    <!-- TRACE CTA -->
+    <div style="position:absolute;top:0;left:0;right:0;z-index:6;display:flex;align-items:center;justify-content:center;padding:14px 0">
+      <div style="display:inline-flex;align-items:center;gap:10px;padding:10px 28px;border:1px solid rgba(197,164,78,.2);border-radius:8px;background:rgba(197,164,78,.04);color:var(--gold);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;cursor:default"><span style="width:6px;height:6px;border-radius:50%;background:var(--gold);animation:lp 1.5s ease-in-out infinite"></span>Click any node to trace its path through the orchestration layer</div>
+    </div>
+
+    <!-- PEOPLE & PATIENTS - top -->
+    <div class="flow-consumer-zone" id="flowConsumer">
+      <div class="flow-zone-label-h" style="color:rgba(6,182,212,.4);width:100%">People &amp; Patients</div>
+      <div class="consumer-node" data-fid="c-app"><div class="fn-text"><span class="fn-name">Health App</span><span class="fn-sub">Wellness &middot; Rewards</span></div></div>
+      <div class="consumer-node" data-fid="c-checkin"><div class="fn-text"><span class="fn-name">Symptom Check-In</span><span class="fn-sub">Self-Report &middot; Intake</span></div></div>
+      <div class="consumer-node" data-fid="c-coaching"><div class="fn-text"><span class="fn-name">AI Health Coach</span><span class="fn-sub">Chat &middot; Guidance</span></div></div>
+      <div class="consumer-node" data-fid="c-portal"><div class="fn-text"><span class="fn-name">Patient Portal</span><span class="fn-sub">Records &middot; Results</span></div></div>
+      <div class="consumer-node" data-fid="c-wearable"><div class="fn-text"><span class="fn-name">Wearable Data</span><span class="fn-sub">Vitals &middot; Activity</span></div></div>
+    </div>
+
+    <!-- ENTERPRISE SOURCES - left -->
+    <div class="flow-col flow-sources">
+      <div class="flow-zone-label">Enterprise Sources</div>
+      <div class="flow-node fn-source" data-fid="ehr"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">EHR Systems</span><span class="fn-sub">Epic &middot; Cerner &middot; athena</span></div></div>
+      <div class="flow-node fn-source" data-fid="lab"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">Lab Results</span><span class="fn-sub">Quest &middot; LabCorp</span></div></div>
+      <div class="flow-node fn-source" data-fid="rx"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">Pharmacy / Rx</span><span class="fn-sub">Surescripts &middot; NCPDP</span></div></div>
+      <div class="flow-node fn-source" data-fid="payer"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">Payer Claims</span><span class="fn-sub">X12 &middot; 837/835</span></div></div>
+      <div class="flow-node fn-source" data-fid="device"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">Wearables / IoMT</span><span class="fn-sub">RPM &middot; Vitals &middot; CGM</span></div></div>
+      <div class="flow-node fn-source" data-fid="hie"><div class="fn-dot"></div><div class="fn-text"><span class="fn-name">HIE / SDOH</span><span class="fn-sub">TEFCA &middot; QHIN &middot; ADT</span></div></div>
+    </div>
+
+    <!-- TETRA ENGINE - center -->
+    <div class="flow-engine" id="flowEngine">
+      <div class="fe-layer fe-data"><span>Data Fabric</span></div>
+      <div class="fe-layer fe-comply"><span>Compliance</span></div>
+      <div class="fe-core" id="feCore"><canvas class="fe-mesh-canvas" id="feMeshCanvas"></canvas><div class="fe-ring fe-ring-1"></div><div class="fe-ring fe-ring-2"></div><div class="fe-ring fe-ring-3"></div><div class="fe-ring fe-ring-4"></div><div class="fe-label">TETRA</div><div class="fe-sublabel">Engine</div></div>
+      <div class="fe-layer fe-intel"><span>Intelligence</span></div>
+      <div class="fe-layer fe-app"><span>Application</span></div>
+    </div>
+
+    <!-- ENTERPRISE OUTPUTS - right -->
+    <div class="flow-col flow-outputs">
+      <div class="flow-zone-label">Enterprise Outputs</div>
+      <div class="flow-node fn-output" data-fid="qb"><div class="fn-text"><span class="fn-name">Provider QB View</span><span class="fn-sub">Embedded in EHR</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="vp"><div class="fn-text"><span class="fn-name">Virtual Practice</span><span class="fn-sub">Powered by InPursuit</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="telehealth"><div class="fn-text"><span class="fn-name">Telehealth</span><span class="fn-sub">Video &middot; Async &middot; RPM</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="api"><div class="fn-text"><span class="fn-name">Partner APIs</span><span class="fn-sub">REST &middot; GraphQL &middot; FHIR</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="analytics"><div class="fn-text"><span class="fn-name">Analytics</span><span class="fn-sub">Dashboards &middot; Scorecards</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="pophealth"><div class="fn-text"><span class="fn-name">Population Health</span><span class="fn-sub">Stratification &middot; Gaps</span></div><div class="fn-dot"></div></div>
+      <div class="flow-node fn-output" data-fid="cms"><div class="fn-text"><span class="fn-name">CMS Reporting</span><span class="fn-sub">ACCESS &middot; MIPS &middot; VBC</span></div><div class="fn-dot"></div></div>
+    </div>
+
+    <!-- AI MODEL MESH - bottom -->
+    <div class="flow-ai-zone" id="flowAI">
+      <div class="flow-zone-label-h" style="color:rgba(99,102,241,.4);grid-column:1/-1;text-align:center">AI Model Mesh &mdash; Pluggable &middot; Swappable &middot; Unlimited</div>
+      <div class="ai-node" data-fid="ai-clinical"><div class="ai-icon" style="background:rgba(99,102,241,.2)">Dx</div><div class="fn-text"><span class="fn-name">Clinical Reasoning</span><span class="fn-sub">Diagnostic AI</span></div></div>
+      <div class="ai-node" data-fid="ai-nlp"><div class="ai-icon" style="background:rgba(6,182,212,.2)">NL</div><div class="fn-text"><span class="fn-name">Patient NLP</span><span class="fn-sub">Conversational</span></div></div>
+      <div class="ai-node" data-fid="ai-coding"><div class="ai-icon" style="background:rgba(34,197,94,.2)">$</div><div class="fn-text"><span class="fn-name">HCC / Coding</span><span class="fn-sub">Revenue AI</span></div></div>
+      <div class="ai-node" data-fid="ai-predict"><div class="ai-icon" style="background:rgba(251,146,60,.2)">Px</div><div class="fn-text"><span class="fn-name">Predictive</span><span class="fn-sub">Risk Models</span></div></div>
+      <div class="ai-node" data-fid="ai-safety"><div class="ai-icon" style="background:rgba(239,68,68,.2)">!</div><div class="fn-text"><span class="fn-name">Safety Oversight</span><span class="fn-sub">Supervisory Agent</span></div></div>
+      <div class="ai-node" data-fid="ai-edge"><div class="ai-icon" style="background:rgba(236,72,153,.2)">E</div><div class="fn-text"><span class="fn-name">Edge / Device</span><span class="fn-sub">On-Wearable</span></div></div>
+    </div>
+  </div>
+  <div class="flow-live reveal"><div class="flow-live-pulse"></div><span class="flow-live-text">No governor. <span id="flowCounter">0</span> healthcare data transactions &mdash; 1.8M per hour in Defense Health Agency production.</span></div>
+</div></section>
+
+<!-- ═══════════════ LIVING ECOSYSTEM ═══════════════ -->
+<section class="family-section" id="family">
+  <div class="family-inner">
+    <div class="family-header reveal">
+      <p class="s-overline" style="color:var(--gold)">The Living Ecosystem</p>
+      <h2>Seamless orchestration between your<br>existing IT assets <em>and whatever comes next.</em></h2>
+      <p>TETRA works with every architecture you already have. EHR, claims engine, AI model, IoMT device &mdash; it doesn&rsquo;t replace anything. It makes everything work together. Here&rsquo;s how the pieces connect.</p>
+    </div>
+
+    <!-- INTERACTIVE ECOSYSTEM DIAGRAM -->
+    <div class="eco-container reveal">
+      <div class="eco-diagram">
+        <svg viewBox="0 0 1000 520" xmlns="http://www.w3.org/2000/svg" class="eco-svg">
+          <defs>
+            <linearGradient id="eGoldH" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#C5A44E" stop-opacity=".6"/><stop offset="50%" stop-color="#C5A44E" stop-opacity=".15"/><stop offset="100%" stop-color="#C5A44E" stop-opacity=".6"/></linearGradient>
+            <linearGradient id="ePurpH" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#8B5CF6" stop-opacity=".5"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity=".1"/></linearGradient>
+            <linearGradient id="ePurpHL" x1="100%" y1="0%" x2="0%" y2="0%"><stop offset="0%" stop-color="#8B5CF6" stop-opacity=".5"/><stop offset="100%" stop-color="#8B5CF6" stop-opacity=".1"/></linearGradient>
+            <filter id="eG"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          </defs>
+
+          <!-- ═══ LAYER 1: AEGIS GOVERNANCE ENVELOPE ═══ -->
+          <rect x="100" y="24" width="800" height="472" rx="20" fill="none" stroke="#16A34A" stroke-width="1.8" stroke-opacity=".3" stroke-dasharray="10,6"/>
+          <text x="500" y="44" text-anchor="middle" fill="#16A34A" font-family="'Instrument Sans',sans-serif" font-size="10" font-weight="700" letter-spacing="3.5" opacity=".55">TETRA AEGIS™ — GOVERNANCE ENVELOPE</text>
+          <text x="500" y="486" text-anchor="middle" fill="#16A34A" font-family="'Instrument Sans',sans-serif" font-size="7.5" letter-spacing="2" opacity=".3">HIPAA · NIST SP 800-171 · IMMUTABLE AUDIT · ZERO-TRUST · CONSENT ENGINE</text>
+
+          <!-- ═══ LAYER 2: TETRA Ex EXCHANGE — LEFT SIDE ═══ -->
+          <rect x="120" y="60" width="60" height="400" rx="12" fill="rgba(139,92,246,.06)" stroke="#8B5CF6" stroke-width="1.5" stroke-opacity=".35"/>
+          <text x="150" y="82" text-anchor="middle" fill="#8B5CF6" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" opacity=".8">TETRA Ex™</text>
+          <!-- Ex left vertical label -->
+          <text x="138" y="300" text-anchor="middle" fill="rgba(139,92,246,.3)" font-family="'Instrument Sans',sans-serif" font-size="6.5" font-weight="600" letter-spacing="2" transform="rotate(-90 138 300)">INGEST · NORMALIZE · CONSENT</text>
+          <!-- Ex left connection dots -->
+          <circle cx="150" cy="140" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="150" cy="210" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="150" cy="280" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="150" cy="350" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="150" cy="420" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+
+          <!-- ═══ LAYER 2: TETRA Ex EXCHANGE — RIGHT SIDE ═══ -->
+          <rect x="820" y="60" width="60" height="400" rx="12" fill="rgba(139,92,246,.06)" stroke="#8B5CF6" stroke-width="1.5" stroke-opacity=".35"/>
+          <text x="850" y="82" text-anchor="middle" fill="#8B5CF6" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="700" letter-spacing="1.5" opacity=".8">TETRA Ex™</text>
+          <text x="862" y="300" text-anchor="middle" fill="rgba(139,92,246,.3)" font-family="'Instrument Sans',sans-serif" font-size="6.5" font-weight="600" letter-spacing="2" transform="rotate(90 862 300)">DELIVER · ROUTE · WRITE-BACK</text>
+          <circle cx="850" cy="140" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="850" cy="210" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="850" cy="280" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="850" cy="350" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+          <circle cx="850" cy="420" r="3.5" fill="rgba(139,92,246,.15)" stroke="#8B5CF6" stroke-width=".8" stroke-opacity=".4"/>
+
+          <!-- Ex label connecting both sides -->
+          <text x="500" y="470" text-anchor="middle" fill="rgba(139,92,246,.35)" font-family="'Instrument Sans',sans-serif" font-size="7.5" font-weight="600" letter-spacing="2">BIDIRECTIONAL · TEFCA / QHIN · CONSENT AT EVERY NODE</text>
+          <!-- Dashed line connecting the two Ex columns -->
+          <line x1="180" y1="460" x2="820" y2="460" stroke="rgba(139,92,246,.08)" stroke-width="1" stroke-dasharray="4,6"/>
+
+          <!-- ═══ LAYER 3: DATA FABRIC — TETRA CORE ═══ -->
+          <rect x="200" y="100" width="600" height="340" rx="16" fill="rgba(197,164,78,.05)" stroke="#C5A44E" stroke-width="1.8" stroke-opacity=".35"/>
+          <!-- Fabric label -->
+          <text x="500" y="126" text-anchor="middle" fill="#C5A44E" font-family="'Instrument Serif',serif" font-size="24" font-weight="700" letter-spacing="2" filter="url(#eG)">TETRA™</text>
+          <text x="500" y="146" text-anchor="middle" fill="rgba(197,164,78,.55)" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="700" letter-spacing="4">THE DATA FABRIC</text>
+          <!-- Sentinel active indicator -->
+          <circle cx="690" cy="113" r="3" fill="#2563EB"><animate attributeName="opacity" values="1;.3;1" dur="1.5s" repeatCount="indefinite"/></circle>
+          <text x="700" y="116" fill="rgba(37,99,235,.55)" font-family="'Instrument Sans',sans-serif" font-size="7" font-weight="700" letter-spacing="1.5">SENTINEL™ ACTIVE</text>
+
+          <!-- Fabric wave lines — subtle, elegant -->
+          <path d="M220,180 Q360,168 500,182 T780,178" stroke="rgba(197,164,78,.12)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,180 Q360,168 500,182 T780,178;M220,182 Q360,190 500,176 T780,182;M220,180 Q360,168 500,182 T780,178" dur="7s" repeatCount="indefinite"/></path>
+          <path d="M220,210 Q360,220 500,208 T780,212" stroke="rgba(197,164,78,.09)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,210 Q360,220 500,208 T780,212;M220,208 Q360,202 500,214 T780,208;M220,210 Q360,220 500,208 T780,212" dur="8s" repeatCount="indefinite"/></path>
+          <path d="M220,240 Q360,230 500,242 T780,238" stroke="rgba(197,164,78,.14)" stroke-width="1.2" fill="none"><animate attributeName="d" values="M220,240 Q360,230 500,242 T780,238;M220,242 Q360,250 500,236 T780,242;M220,240 Q360,230 500,242 T780,238" dur="6s" repeatCount="indefinite"/></path>
+          <path d="M220,270 Q360,278 500,268 T780,272" stroke="rgba(197,164,78,.09)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,270 Q360,278 500,268 T780,272;M220,268 Q360,262 500,274 T780,268;M220,270 Q360,278 500,268 T780,272" dur="9s" repeatCount="indefinite"/></path>
+          <path d="M220,300 Q360,292 500,302 T780,298" stroke="rgba(197,164,78,.12)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,300 Q360,292 500,302 T780,298;M220,302 Q360,308 500,296 T780,302;M220,300 Q360,292 500,302 T780,298" dur="7.5s" repeatCount="indefinite"/></path>
+          <path d="M220,330 Q360,338 500,328 T780,332" stroke="rgba(197,164,78,.08)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,330 Q360,338 500,328 T780,332;M220,328 Q360,322 500,334 T780,328;M220,330 Q360,338 500,328 T780,332" dur="8.5s" repeatCount="indefinite"/></path>
+          <path d="M220,360 Q360,352 500,362 T780,358" stroke="rgba(197,164,78,.1)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,360 Q360,352 500,362 T780,358;M220,362 Q360,368 500,356 T780,362;M220,360 Q360,352 500,362 T780,358" dur="6.5s" repeatCount="indefinite"/></path>
+          <path d="M220,390 Q360,398 500,388 T780,392" stroke="rgba(197,164,78,.07)" stroke-width="1" fill="none"><animate attributeName="d" values="M220,390 Q360,398 500,388 T780,392;M220,388 Q360,382 500,394 T780,388;M220,390 Q360,398 500,388 T780,392" dur="10s" repeatCount="indefinite"/></path>
+
+          <!-- Subtle horizontal data sweeps -->
+          <rect x="220" y="225" width="200" height="1.5" rx="1" fill="#C5A44E" opacity="0"><animate attributeName="x" values="220;580;220" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.3;0" dur="6s" repeatCount="indefinite"/></rect>
+          <rect x="500" y="290" width="150" height="1.5" rx="1" fill="#D4AF37" opacity="0"><animate attributeName="x" values="500;250;500" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.25;0" dur="5s" repeatCount="indefinite"/></rect>
+          <rect x="300" y="355" width="180" height="1.5" rx="1" fill="#C5A44E" opacity="0"><animate attributeName="x" values="300;560;300" dur="7s" repeatCount="indefinite"/><animate attributeName="opacity" values="0;.2;0" dur="7s" repeatCount="indefinite"/></rect>
+
+          <!-- Fabric footer -->
+          <text x="500" y="425" text-anchor="middle" fill="rgba(197,164,78,.3)" font-family="'Instrument Sans',sans-serif" font-size="7.5" letter-spacing="2">NORMALIZES · ROUTES · GOVERNS · ORCHESTRATES · 1.8M+ TPS</text>
+
+          <!-- ═══ SENTINEL ACTIVE HUNTING ═══ -->
+
+          <!-- THREAT DATA POINTS — anomalous data the sentinels converge on -->
+          <!-- Threat 1: rogue data point near line 240 -->
+          <g class="threat-point">
+            <circle cx="420" cy="245" r="2.5" fill="#EF4444" opacity="0">
+              <animate attributeName="opacity" values="0;0;.7;.9;.7;.3;0;0" dur="8s" repeatCount="indefinite"/>
+            </circle>
+            <!-- Quarantine ring when sentinel arrives -->
+            <circle cx="420" cy="245" r="3" fill="none" stroke="#EF4444" stroke-width=".8" opacity="0">
+              <animate attributeName="r" values="3;14;18" dur="8s" repeatCount="indefinite" begin="2s"/>
+              <animate attributeName="opacity" values="0;.4;0" dur="8s" repeatCount="indefinite" begin="2s"/>
+            </circle>
+            <circle cx="420" cy="245" r="3" fill="none" stroke="rgba(37,99,235,.4)" stroke-width="1.2" opacity="0">
+              <animate attributeName="r" values="3;8;12;8" dur="2s" repeatCount="indefinite" begin="2.5s"/>
+              <animate attributeName="opacity" values="0;.5;.3;0" dur="2s" repeatCount="indefinite" begin="2.5s"/>
+            </circle>
+            <!-- Neutralized flash -->
+            <circle cx="420" cy="245" r="2" fill="#2563EB" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;.8;0;0;0;0" dur="8s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="2;2;2;6;2;2;2;2" dur="8s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Threat 2: anomaly near line 310 -->
+          <g class="threat-point">
+            <circle cx="620" cy="310" r="2" fill="#F97316" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;.6;.8;.5;0;0" dur="10s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="620" cy="310" r="3" fill="none" stroke="#F97316" stroke-width=".6" opacity="0">
+              <animate attributeName="r" values="3;12;16" dur="10s" repeatCount="indefinite" begin="3.5s"/>
+              <animate attributeName="opacity" values="0;.35;0" dur="10s" repeatCount="indefinite" begin="3.5s"/>
+            </circle>
+            <circle cx="620" cy="310" r="3" fill="none" stroke="rgba(37,99,235,.5)" stroke-width="1" opacity="0">
+              <animate attributeName="r" values="3;7;10;7" dur="1.8s" repeatCount="indefinite" begin="4s"/>
+              <animate attributeName="opacity" values="0;.5;.2;0" dur="1.8s" repeatCount="indefinite" begin="4s"/>
+            </circle>
+            <circle cx="620" cy="310" r="2" fill="#3B82F6" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;.7;0;0;0" dur="10s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="2;2;2;2;5;2;2;2" dur="10s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- Threat 3: anomaly near line 370 -->
+          <g class="threat-point">
+            <circle cx="340" cy="365" r="2.2" fill="#EF4444" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;.5;.8;.4;0" dur="12s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="340" cy="365" r="3" fill="none" stroke="rgba(239,68,68,.4)" stroke-width=".6" opacity="0">
+              <animate attributeName="r" values="3;10;14" dur="12s" repeatCount="indefinite" begin="5s"/>
+              <animate attributeName="opacity" values="0;.3;0" dur="12s" repeatCount="indefinite" begin="5s"/>
+            </circle>
+            <circle cx="340" cy="365" r="3" fill="none" stroke="rgba(37,99,235,.45)" stroke-width="1" opacity="0">
+              <animate attributeName="r" values="3;6;9;6" dur="1.6s" repeatCount="indefinite" begin="5.5s"/>
+              <animate attributeName="opacity" values="0;.45;.2;0" dur="1.6s" repeatCount="indefinite" begin="5.5s"/>
+            </circle>
+            <circle cx="340" cy="365" r="2" fill="#2563EB" opacity="0">
+              <animate attributeName="opacity" values="0;0;0;0;0;.7;0;0" dur="12s" repeatCount="indefinite"/>
+              <animate attributeName="r" values="2;2;2;2;2;5;2;2" dur="12s" repeatCount="indefinite"/>
+            </circle>
+          </g>
+
+          <!-- SENTINEL HUNTER 1: Primary — fast, aggressive patrol -->
+          <circle r="3.5" fill="#2563EB" opacity=".7" filter="url(#eG)">
+            <animateMotion dur="4.5s" repeatCount="indefinite" path="M220,200 L420,245 L620,310 L780,200 L420,245 L220,200" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1"/>
+            <animate attributeName="r" values="3.5;4.5;3;4;3.5" dur="4.5s" repeatCount="indefinite"/>
+          </circle>
+          <!-- Hunter 1 scan wake -->
+          <circle r="6" fill="none" stroke="rgba(37,99,235,.15)" stroke-width="1">
+            <animateMotion dur="4.5s" repeatCount="indefinite" path="M220,200 L420,245 L620,310 L780,200 L420,245 L220,200" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1"/>
+            <animate attributeName="r" values="6;14;6;12;6" dur="4.5s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".25;0;.25;0;.25" dur="4.5s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- SENTINEL HUNTER 2: Secondary — diagonal sweeps, converges on threat 2 and 3 -->
+          <circle r="2.8" fill="#3B82F6" opacity=".6" filter="url(#eG)">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M780,380 L620,310 L340,365 L300,180 L620,310 L780,380" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.3 0 0.7 1;0.3 0 0.7 1;0.4 0 0.6 1;0.3 0 0.7 1;0.3 0 0.7 1"/>
+            <animate attributeName="r" values="2.8;3.5;2.5;3.2;2.8" dur="6s" repeatCount="indefinite"/>
+          </circle>
+          <circle r="5" fill="none" stroke="rgba(59,130,246,.1)" stroke-width="1">
+            <animateMotion dur="6s" repeatCount="indefinite" path="M780,380 L620,310 L340,365 L300,180 L620,310 L780,380" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.3 0 0.7 1;0.3 0 0.7 1;0.4 0 0.6 1;0.3 0 0.7 1;0.3 0 0.7 1"/>
+            <animate attributeName="r" values="5;10;5;8;5" dur="6s" repeatCount="indefinite"/>
+            <animate attributeName="opacity" values=".2;0;.2;0;.2" dur="6s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- SENTINEL HUNTER 3: Third — converges on threat 1 and 3 from opposite side -->
+          <circle r="2.2" fill="#60A5FA" opacity=".5" filter="url(#eG)">
+            <animateMotion dur="5s" repeatCount="indefinite" path="M500,130 L420,245 L340,365 L600,200 L420,245 L500,130" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.4 0 0.6 1;0.3 0 0.6 1;0.4 0 0.6 1;0.3 0 0.6 1;0.4 0 0.6 1"/>
+          </circle>
+
+          <!-- SENTINEL HUNTER 4: Edge patrol — guards perimeter of data fabric -->
+          <circle r="2" fill="#818CF8" opacity=".4">
+            <animateMotion dur="8s" repeatCount="indefinite" path="M220,120 L780,120 L780,420 L220,420 L220,120" calcMode="spline" keyTimes="0;0.25;0.5;0.75;1" keySplines="0.3 0 0.7 1;0.3 0 0.7 1;0.3 0 0.7 1;0.3 0 0.7 1"/>
+          </circle>
+
+          <!-- SENTINEL HUNTER 5: Rapid responder — smallest, fastest, zips between threats -->
+          <circle r="1.8" fill="#93C5FD" opacity=".55">
+            <animateMotion dur="3.2s" repeatCount="indefinite" path="M420,245 L620,310 L340,365 L420,245" calcMode="spline" keyTimes="0;0.33;0.66;1" keySplines="0.2 0 0.3 1;0.2 0 0.3 1;0.2 0 0.3 1"/>
+            <animate attributeName="r" values="1.8;2.5;1.8;2.2;1.8" dur="3.2s" repeatCount="indefinite"/>
+          </circle>
+
+          <!-- Sentinel label — tracks primary hunter -->
+          <g><text text-anchor="middle" fill="rgba(37,99,235,.5)" font-family="'Instrument Sans',sans-serif" font-size="8" font-weight="700" letter-spacing="2.5"><animateMotion dur="4.5s" repeatCount="indefinite" path="M220,186 L420,231 L620,296 L780,186 L420,231 L220,186" calcMode="spline" keyTimes="0;0.2;0.45;0.65;0.85;1" keySplines="0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1;0.3 0 0.2 1;0.4 0 0.2 1"/>SENTINEL™</text></g>
+
+          <!-- Scan pulses — radar rings that emit from threat locations -->
+          <circle cx="420" cy="245" r="4" fill="none" stroke="rgba(37,99,235,.15)" stroke-width=".5"><animate attributeName="r" values="4;40;60" dur="3s" repeatCount="indefinite"/><animate attributeName="opacity" values=".2;.05;0" dur="3s" repeatCount="indefinite"/></circle>
+          <circle cx="620" cy="310" r="4" fill="none" stroke="rgba(37,99,235,.12)" stroke-width=".5"><animate attributeName="r" values="4;35;55" dur="4s" begin="1.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".15;.04;0" dur="4s" begin="1.5s" repeatCount="indefinite"/></circle>
+          <circle cx="340" cy="365" r="4" fill="none" stroke="rgba(37,99,235,.1)" stroke-width=".5"><animate attributeName="r" values="4;30;50" dur="3.5s" begin="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".15;.04;0" dur="3.5s" begin="2.5s" repeatCount="indefinite"/></circle>
+
+          <!-- ═══ EXTERNAL SYSTEMS — LEFT ═══ -->
+          <!-- Bidirectional arrows left → Ex left -->
+          <line x1="88" y1="140" x2="116" y2="140" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
+          <line x1="116" y1="145" x2="88" y2="145" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.5s" repeatCount="indefinite"/></line>
+          <line x1="88" y1="210" x2="116" y2="210" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.2s" repeatCount="indefinite"/></line>
+          <line x1="116" y1="215" x2="88" y2="215" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.7s" repeatCount="indefinite"/></line>
+          <line x1="88" y1="280" x2="116" y2="280" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.8s" repeatCount="indefinite"/></line>
+          <line x1="116" y1="285" x2="88" y2="285" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.3s" repeatCount="indefinite"/></line>
+          <line x1="88" y1="350" x2="116" y2="350" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.4s" repeatCount="indefinite"/></line>
+          <line x1="116" y1="355" x2="88" y2="355" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.1s" repeatCount="indefinite"/></line>
+          <line x1="88" y1="420" x2="116" y2="420" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
+          <line x1="116" y1="425" x2="88" y2="425" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.6s" repeatCount="indefinite"/></line>
+
+          <!-- Ex left → Fabric -->
+          <line x1="180" y1="260" x2="200" y2="260" stroke="rgba(197,164,78,.15)" stroke-width="1" stroke-dasharray="2,3"><animate attributeName="stroke-dashoffset" from="0" to="-10" dur="2s" repeatCount="indefinite"/></line>
+
+          <!-- Left system nodes -->
+          <g><rect x="2" y="124" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="43" y="141" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">EHR</text><text x="43" y="153" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Epic · Cerner · VistA</text></g>
+          <g><rect x="2" y="194" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="43" y="211" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Labs</text><text x="43" y="223" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Quest · LabCorp</text></g>
+          <g><rect x="2" y="264" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="43" y="281" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Claims</text><text x="43" y="293" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">X12 · 837/835</text></g>
+          <g><rect x="2" y="334" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="43" y="351" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Pharmacy</text><text x="43" y="363" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Surescripts · NCPDP</text></g>
+          <g><rect x="2" y="404" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="43" y="421" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">IoMT</text><text x="43" y="433" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Devices · RPM</text></g>
+
+          <!-- ═══ EXTERNAL SYSTEMS — RIGHT ═══ -->
+          <!-- Bidirectional arrows Ex right → right systems -->
+          <line x1="884" y1="140" x2="912" y2="140" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2s" repeatCount="indefinite"/></line>
+          <line x1="912" y1="145" x2="884" y2="145" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.5s" repeatCount="indefinite"/></line>
+          <line x1="884" y1="210" x2="912" y2="210" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.3s" repeatCount="indefinite"/></line>
+          <line x1="912" y1="215" x2="884" y2="215" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.8s" repeatCount="indefinite"/></line>
+          <line x1="884" y1="280" x2="912" y2="280" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="1.9s" repeatCount="indefinite"/></line>
+          <line x1="912" y1="285" x2="884" y2="285" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.4s" repeatCount="indefinite"/></line>
+          <line x1="884" y1="350" x2="912" y2="350" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.1s" repeatCount="indefinite"/></line>
+          <line x1="912" y1="355" x2="884" y2="355" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.6s" repeatCount="indefinite"/></line>
+          <line x1="884" y1="420" x2="912" y2="420" stroke="rgba(139,92,246,.25)" stroke-width="1.2" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="-12" dur="2.2s" repeatCount="indefinite"/></line>
+          <line x1="912" y1="425" x2="884" y2="425" stroke="rgba(197,164,78,.2)" stroke-width="1" stroke-dasharray="3,3"><animate attributeName="stroke-dashoffset" from="0" to="12" dur="2.7s" repeatCount="indefinite"/></line>
+
+          <!-- Fabric → Ex right -->
+          <line x1="800" y1="260" x2="820" y2="260" stroke="rgba(197,164,78,.15)" stroke-width="1" stroke-dasharray="2,3"><animate attributeName="stroke-dashoffset" from="0" to="-10" dur="2s" repeatCount="indefinite"/></line>
+
+          <!-- Right system nodes -->
+          <g><rect x="916" y="124" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="957" y="141" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">AI Models</text><text x="957" y="153" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Any Vendor · Model</text></g>
+          <g><rect x="916" y="194" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="957" y="211" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">HIEs</text><text x="957" y="223" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">TEFCA · QHIN</text></g>
+          <g><rect x="916" y="264" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="957" y="281" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Public Health</text><text x="957" y="293" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">CMS · HHS</text></g>
+          <g><rect x="916" y="334" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="957" y="351" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Payers</text><text x="957" y="363" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Claims · Auth</text></g>
+          <g><rect x="916" y="404" width="82" height="36" rx="7" fill="rgba(14,18,32,.95)" stroke="rgba(139,92,246,.18)" stroke-width="1"/><text x="957" y="421" text-anchor="middle" fill="white" font-family="'Instrument Sans',sans-serif" font-size="9" font-weight="600">Patient Apps</text><text x="957" y="433" text-anchor="middle" fill="rgba(255,255,255,.35)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Consumer · Wellness</text></g>
+
+          <!-- ═══ LEGEND ═══ -->
+          <g transform="translate(220,155)">
+            <rect width="8" height="8" rx="2" fill="none" stroke="#C5A44E" stroke-width="1" stroke-opacity=".4"/><text x="14" y="8" fill="rgba(197,164,78,.4)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Data Fabric</text>
+            <rect x="80" width="8" height="8" rx="2" fill="none" stroke="#8B5CF6" stroke-width="1" stroke-opacity=".4"/><text x="94" y="8" fill="rgba(139,92,246,.4)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Exchange Layer</text>
+            <rect x="175" width="8" height="8" rx="2" fill="none" stroke="#16A34A" stroke-width="1" stroke-opacity=".4"/><text x="189" y="8" fill="rgba(22,163,74,.4)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Governance</text>
+            <line x1="258" y1="4" x2="274" y2="4" stroke="rgba(37,99,235,.4)" stroke-width="1"/><text x="280" y="8" fill="rgba(37,99,235,.4)" font-family="'Instrument Sans',sans-serif" font-size="6.5">Sentinel Scan</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- EXPLANATION CARDS — below diagram -->
+      <div class="eco-explain">
+        <div class="eco-explain-card reveal" style="border-left-color:#C5A44E">
+          <h4 style="color:#C5A44E">The Fabric</h4>
+          <p><strong>TETRA™</strong> is the foundation. It ingests data from every source &mdash; EHRs, labs, claims, devices &mdash; normalizes it in real-time, and makes it available as a single, unified data layer. The fabric doesn&rsquo;t move data between organizations. It makes data <em>usable</em> within one.</p>
+        </div>
+        <div class="eco-explain-card reveal" style="border-left-color:#8B5CF6">
+          <h4 style="color:#8B5CF6">The Exchange</h4>
+          <p><strong>TETRA Ex™</strong> is the bidirectional boundary layer. It handles ingest from external sources on the left <em>and</em> delivery + write-back to systems of record on the right. Data flows in, gets normalized by the fabric, then flows back out &mdash; updated records, results, care plans &mdash; through the same exchange layer.</p>
+        </div>
+        <div class="eco-explain-card reveal" style="border-left-color:#16A34A">
+          <h4 style="color:#16A34A">The Governance Envelope</h4>
+          <p><strong>TETRA Aegis™</strong> wraps everything. Every byte that flows through the fabric or the exchange passes through the governance layer &mdash; encrypted, audited, risk-scored. It&rsquo;s not a feature of TETRA. It&rsquo;s the <em>perimeter</em> that TETRA operates within.</p>
+        </div>
+        <div class="eco-explain-card reveal" style="border-left-color:#2563EB">
+          <h4 style="color:#2563EB">The Hunter</h4>
+          <p><strong>TETRA Sentinel™</strong> is the intelligence scanning inside the governance envelope. It monitors every AI interaction for hallucination, drift, injection, and PII exposure &mdash; operating from an architecturally independent model stack. The AI that watches AI.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="family-callout reveal">
+      <p>The fabric makes data usable. The exchange makes it shareable. The governance layer makes it safe.<br>The sentinel makes it <em>trustworthy.</em></p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ VALUE STREAMS ═══════════════ -->
+<section class="value-section">
+  <div class="value-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <p class="s-overline reveal" style="color:var(--gold)">What Changes for You</p>
+      <h2 class="s-headline reveal" style="color:var(--navy)">Value that compounds.</h2>
+      <p class="s-desc reveal" style="margin:12px auto 0;color:rgba(10,22,40,.45)">Every capability below runs on the same fabric. Each one makes the others more powerful. This is what happens when infrastructure is built right.</p>
+    </div>
+    <div class="value-grid">
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 100 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+        <h3>Revenue &amp; Payment Enablement</h3>
+        <p>CMS ACCESS Model compliance, VBC outcome tracking, HCC coding intelligence, RAF score capture. The orchestration layer that turns clinical data into reimbursement.</p>
+        <div class="value-card-metric"><span class="vm-num">$2.3M</span><span class="vm-label">Projected &mdash; First Partner</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z"/></svg></div>
+        <h3>Care Coordination</h3>
+        <p>Chronic disease workflows, transitional care, RPM/CCM integration, care gap detection. 80% of outreach runs without human intervention.</p>
+        <div class="value-card-metric"><span class="vm-num">32%</span><span class="vm-label">Fewer Hospitalizations</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3.5 18.49l6-6.01 4 4L22 6.92l-1.41-1.41-7.09 7.97-4-4L2 16.99z"/></svg></div>
+        <h3>Predictive Intelligence</h3>
+        <p>Readmission risk alerts 30&ndash;60 days before the event. Population health stratification. Provider scorecards that surface action at the point of care.</p>
+        <div class="value-card-metric"><span class="vm-num">30&ndash;60</span><span class="vm-label">Days Early Warning</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg></div>
+        <h3>Regulatory Compliance</h3>
+        <p>CMS reporting, MIPS quality measures, BAA management, consent tracking, breach detection. Compliance wrapped around every transaction automatically &mdash; not bolted on after the fact.</p>
+        <div class="value-card-metric"><span class="vm-num">100%</span><span class="vm-label">Automated Audit Trail</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v16H4z"/><path d="M4 12h16M12 4v16"/></svg></div>
+        <h3>Clinical Data Liquidity</h3>
+        <p>Structured, normalized, real-time clinical data available to any authorized endpoint. FHIR, HL7v2, X12, flat files &mdash; ingested, harmonized, and delivered as a single coherent data layer.</p>
+        <div class="value-card-metric"><span class="vm-num">1.8M+</span><span class="vm-label">Transactions / Hour</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg></div>
+        <h3>Interoperability at Scale</h3>
+        <p>TEFCA-ready, QHIN-aligned, bidirectional exchange across providers, payers, HIEs, and public health agencies. The fabric that makes every organization&rsquo;s data accessible to every other &mdash; with consent at every node.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg></div>
+        <h3>Developer &amp; AI Partner Infrastructure</h3>
+        <p>APIs, SDKs, ML-ready data pipelines, HIPAA sandbox. AI companies build on TETRA&rsquo;s fabric &mdash; we provide the data, compliance, and last-mile integration they can&rsquo;t build themselves.</p>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg></div>
+        <h3>Consumer Engagement</h3>
+        <p>Patient-facing health app with gamified wellness, rewards for healthy behaviors, lab-verified outcomes, and complete clinical data access. The retention engine for value-based care.</p>
+        <div class="value-card-metric"><span class="vm-num">$500+</span><span class="vm-label">Annual Patient Rewards</span></div>
+      </div>
+      <div class="value-card reveal">
+        <div class="value-card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3>AI Safety &amp; Supervision</h3>
+        <p>Architecturally independent oversight of every AI interaction. Hallucination detection, drift monitoring, adversarial defense, and containment &mdash; operated by TETRA Sentinel&trade; from a completely separate model stack.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ PERFORMANCE ═══════════════ -->
+<section class="perf-section">
+  <div class="perf-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <p class="s-overline reveal" style="color:var(--gold)">Proven at Scale</p>
+      <h2 class="s-headline reveal" style="color:var(--white)">Infrastructure validated where it<br><em>actually matters.</em></h2>
+      <p class="s-desc reveal" style="margin:16px auto 0">Every metric below was independently tested in production environments &mdash; not internal benchmarks. Validated across federal health systems, Fortune 500 enterprise deployments, and CMS-approved infrastructure.</p>
+    </div>
+    <div class="perf-grid">
+      <div class="perf-card reveal"><div class="perf-num">1.8M+</div><div class="perf-label">Transactions / Hour</div><div class="perf-desc">Sustained throughput. Zero queuing, zero bottlenecks &mdash; data arrives before the clinician finishes clicking.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">135K</div><div class="perf-label">Writes / Second</div><div class="perf-desc">Surge-load ingestion for population onboarding, open enrollment, and large-scale data migration events.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">108K</div><div class="perf-label">Queries / Second</div><div class="perf-desc">Sub-millisecond response against 1B+ cached records. Real-time clinical decision support at any scale.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">1B+</div><div class="perf-label">Records Cached</div><div class="perf-desc">Constant read/write speed regardless of cache size. National-scale datasets with zero degradation.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">30x</div><div class="perf-label">Above Threshold</div><div class="perf-desc">Federal production-readiness testing required 60K TPS for a perfect score. TETRA exceeded it by 30x.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">8B+</div><div class="perf-label">Transactions Tested</div><div class="perf-desc">5-day enterprise stress test on 60-core, 1TB infrastructure. Healthcare-specific workloads at Fortune 500 scale.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">95%</div><div class="perf-label">Interop Success</div><div class="perf-desc">Where comparable federal programs achieved partial success at billions in cost &mdash; TETRA delivered 95% at 2% of the budget.</div></div>
+      <div class="perf-card reveal"><div class="perf-num">&#8734;</div><div class="perf-label">Linear Scaling</div><div class="perf-desc">Add servers, get proportional throughput. No architectural ceiling. Single practice to national infrastructure &mdash; same codebase.</div></div>
+    </div>
+    <div style="text-align:center;margin-top:48px" class="reveal">
+      <div style="display:inline-flex;align-items:center;gap:16px;padding:16px 36px;border-radius:12px;border:1px solid rgba(197,164,78,.12);background:rgba(197,164,78,.03)">
+        <span style="font-size:12px;font-weight:600;letter-spacing:1px;color:rgba(197,164,78,.6)">Selected over IBM, Oracle, SAP, Informatica &amp; 6 others in formal federal Analysis of Alternatives</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ WHAT IS TETRA ═══════════════ -->
+<section class="what-section">
+  <div class="what-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <p class="s-overline reveal">Under the Hood</p>
+      <h2 class="s-headline reveal" style="color:var(--white)">Three things. <em>Done perfectly.</em></h2>
+    </div>
+    <div class="what-grid">
+      <div class="what-card reveal d1">
+        <span class="what-icon">&#9783;</span>
+        <h3>Connect</h3>
+        <p>Ingest and normalize data from any source &mdash; FHIR, HL7v2, X12, custom APIs, IoMT streams, flat files. One integration layer for the entire health data ecosystem.</p>
+      </div>
+      <div class="what-card reveal d2">
+        <span class="what-icon">&#9878;</span>
+        <h3>Orchestrate</h3>
+        <p>Route clinical context to the right AI model, the right workflow, the right human &mdash; in real-time. Model-agnostic. Vendor-neutral. Architecturally independent.</p>
+      </div>
+      <div class="what-card reveal d3">
+        <span class="what-icon">&#9881;</span>
+        <h3>Govern</h3>
+        <p>Every transaction encrypted, logged, auditable. HIPAA-compliant by default. Consent management, role-based access, and full provenance tracking on every byte.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════ ARCHITECTURE ═══════════════ -->
+<section class="arch-section">
+  <div class="arch-inner">
+    <div style="text-align:center;margin-bottom:56px">
+      <p class="s-overline reveal" style="color:var(--gold)">For the Technical Team</p>
+      <h2 class="s-headline reveal" style="color:var(--white)">The full stack. <em>One orchestration layer.</em></h2>
+      <p class="s-desc reveal" style="margin:16px auto 56px">Every layer is modular. Every layer is independently scalable. Any component can be extended, replaced, or consumed via API without touching the rest of the stack. This is how the value above gets delivered.</p>
+    </div>
+    <div class="layer-stack">
+      <div class="layer layer-app reveal">
+        <div class="layer-label"><div class="layer-label-name">Application</div><div class="layer-label-sub">Interfaces</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">Provider Quarterback View</span>
+          <span class="layer-chip">Patient Portal</span>
+          <span class="layer-chip">Leadership Scorecards</span>
+          <span class="layer-chip">Partner Apps &amp; Marketplace</span>
+          <span class="layer-chip">Telehealth</span>
+          <span class="layer-chip">Rewards Engine</span>
+          <span class="layer-chip">Consumer Health App</span>
+        </div>
+      </div>
+      <div class="layer layer-intel reveal">
+        <div class="layer-label"><div class="layer-label-name">Intelligence</div><div class="layer-label-sub">AI &amp; Analytics</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">Multi-Model Orchestration</span>
+          <span class="layer-chip">Context-Aware Routing</span>
+          <span class="layer-chip">Predictive Analytics</span>
+          <span class="layer-chip">HCC / RAF Coding</span>
+          <span class="layer-chip">Risk Stratification</span>
+          <span class="layer-chip">Population Health</span>
+          <span class="layer-chip">NLP / Conversational</span>
+          <span class="layer-chip">TETRA Sentinel&trade; Safety</span>
+        </div>
+      </div>
+      <div class="layer layer-exchange reveal">
+        <div class="layer-label"><div class="layer-label-name">Exchange</div><div class="layer-label-sub">TETRA Ex&trade;</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">TEFCA / QHIN</span>
+          <span class="layer-chip">HIE Mesh</span>
+          <span class="layer-chip">Bidirectional Routing</span>
+          <span class="layer-chip">Consent Engine</span>
+          <span class="layer-chip">Cross-Org Federation</span>
+          <span class="layer-chip">Public Health Reporting</span>
+          <span class="layer-chip">Payer Exchange</span>
+        </div>
+      </div>
+      <div class="layer layer-data reveal">
+        <div class="layer-label"><div class="layer-label-name">Data Fabric</div><div class="layer-label-sub">Connectivity</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">FHIR R4</span>
+          <span class="layer-chip">HL7v2</span>
+          <span class="layer-chip">EHR Adapters</span>
+          <span class="layer-chip">X12 / EDI</span>
+          <span class="layer-chip">IoMT / Wearables</span>
+          <span class="layer-chip">Pharmacy / NCPDP</span>
+          <span class="layer-chip">SDOH</span>
+          <span class="layer-chip">Event Streaming</span>
+          <span class="layer-chip">Legacy Connectors</span>
+        </div>
+      </div>
+      <div class="layer layer-compute reveal">
+        <div class="layer-label"><div class="layer-label-name">Compute</div><div class="layer-label-sub">Infrastructure</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">On-Premise</span>
+          <span class="layer-chip">Private Cloud</span>
+          <span class="layer-chip">AWS / Azure / GCP</span>
+          <span class="layer-chip">Gov Cloud</span>
+          <span class="layer-chip">Edge / IoT</span>
+          <span class="layer-chip">Container Orchestration</span>
+          <span class="layer-chip">Auto-Scaling</span>
+          <span class="layer-chip">Linear Scalability</span>
+        </div>
+      </div>
+      <div class="layer layer-comply reveal">
+        <div class="layer-label"><div class="layer-label-name">Compliance</div><div class="layer-label-sub">Governance</div></div>
+        <div class="layer-items">
+          <span class="layer-chip">HIPAA</span>
+          <span class="layer-chip">FedRAMP</span>
+          <span class="layer-chip">SOC 2</span>
+          <span class="layer-chip">FIPS 140-2</span>
+          <span class="layer-chip">AES-256</span>
+          <span class="layer-chip">TLS 1.3</span>
+          <span class="layer-chip">Zero-Trust</span>
+          <span class="layer-chip">RBAC / MFA</span>
+          <span class="layer-chip">Consent Engine</span>
+          <span class="layer-chip">Immutable Audit Trail</span>
+        </div>
+      </div>
+    </div>
+    <div class="arch-callout reveal">
+      <p>TETRA isn&rsquo;t a product you plug in. It&rsquo;s the <em>infrastructure layer</em> everything else plugs into.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ CTA ═══════════════ -->
+<section class="cta-section">
+  <div class="cta-inner reveal">
+    <p class="s-overline" style="color:var(--gold);text-align:center">Get Started</p>
+    <h2>The orchestration layer beneath the AI<br>matters more than <em>the AI itself.</em></h2>
+    <p>Explore TETRA as infrastructure for your AI products, as a data fabric for your health system, or as the foundation for your next healthcare application.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a class="btn-gold" href="contact.html">Request Architecture Brief &rarr;</a>
+      <a class="btn-outline" href="partner-network.html">Explore the Ecosystem</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="footer-wordmark">InPursuit Health</span></div>
+    <span class="footer-legal">&copy; 2026 InPursuit Health, LLC. All rights reserved.</span>
+  </div>
+  <div style="max-width:1200px;margin:24px auto 0;padding-top:24px;border-top:1px solid rgba(197,164,78,0.08);display:flex;gap:64px;flex-wrap:wrap;">
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.5);margin-bottom:14px;">Policy</div>
+      <div style="display:flex;flex-direction:column;gap:11px;">
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">MAHA Alignment</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Privacy Policy</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Terms of Service</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Security Center</span>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.5);margin-bottom:14px;">Company</div>
+      <div style="display:flex;flex-direction:column;gap:11px;">
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">About Us</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Leadership</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Careers</span>
+        <span style="font-size:11px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);text-decoration:none;transition:color 0.3s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='rgba(255,255,255,0.3)'">Contact</span>
+      </div>
+    </div>
+  </div>
+  <p class="footer-disclaimer">InPursuit Health is a veteran-owned healthcare technology company providing data interoperability and orchestration infrastructure. The information on this site is for informational purposes only and does not constitute medical advice. TETRA is a registered technology of InPursuit Health, LLC.</p>
+  <div class="footer-tagline">The Platform Beneath the AI&trade;</div>
+</footer>
+
+<!-- ═══════════════ SCRIPTS ═══════════════ -->
+<script>
+// Preloader
+window.addEventListener('load', function() {
+  setTimeout(function() { document.getElementById('preloader').classList.add('done'); }, 800);
+});
+
+// ── DATA MESH — FLOWING CURRENTS ──
+(function() {
+  var canvas = document.getElementById('dataMesh');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, time = 0;
+  var ROWS = 22;
+  var rows = [];
+  var pulses = [];
+  var sparks = [];
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildRows();
+  }
+
+  function buildRows() {
+    rows = [];
+    var spacing = H / (ROWS - 1);
+    for (var r = 0; r < ROWS; r++) {
+      var centerDist = Math.abs(r - ROWS / 2) / (ROWS / 2);
+      rows.push({
+        baseY: r * spacing,
+        amp1: 8 + Math.random() * 14,
+        freq1: 0.002 + Math.random() * 0.002,
+        spd1: 0.006 + Math.random() * 0.005,
+        ph1: Math.random() * Math.PI * 2,
+        amp2: 4 + Math.random() * 6,
+        freq2: 0.005 + Math.random() * 0.004,
+        spd2: 0.003 + Math.random() * 0.003,
+        ph2: Math.random() * Math.PI * 2,
+        // Blue with slight gold tint — stronger at center
+        opacity: 0.03 + (1 - centerDist * centerDist) * 0.12,
+        width: 0.5 + (1 - centerDist) * 1.2,
+        isStrong: (r % 3 === 0) // every 3rd row is a primary current
+      });
+    }
+    // Seed initial pulses
+    pulses = [];
+    for (var i = 0; i < 18; i++) {
+      spawnPulse();
+    }
+  }
+
+  function spawnPulse() {
+    var r = Math.floor(Math.random() * ROWS);
+    pulses.push({
+      row: r,
+      x: -Math.random() * W * 0.5, // start offscreen left
+      speed: 0.8 + Math.random() * 1.8,
+      length: 60 + Math.random() * 140,
+      brightness: 0.3 + Math.random() * 0.7,
+      isGold: Math.random() < 0.6 // 60% gold, 40% blue-white
+    });
+  }
+
+  function getY(row, x, t) {
+    return row.baseY
+      + Math.sin(x * row.freq1 + t * row.spd1 + row.ph1) * row.amp1
+      + Math.sin(x * row.freq2 + t * row.spd2 + row.ph2) * row.amp2
+      + Math.sin(t * 0.002 + row.ph1 * 0.5) * 3;
+  }
+
+  // Radial alpha — strongest at center, fades to edges
+  function radialAlpha(x, y, base) {
+    var dx = (x - W * 0.5) / (W * 0.55);
+    var dy = (y - H * 0.46) / (H * 0.55);
+    var d = dx * dx + dy * dy;
+    return base * Math.max(0, 1 - d);
+  }
+
+  function draw() {
+    time++;
+    ctx.clearRect(0, 0, W, H);
+
+    // ── WAVE LINES (the current) ──
+    for (var r = 0; r < rows.length; r++) {
+      var row = rows[r];
+      ctx.beginPath();
+      // Draw smooth wave across full width
+      for (var x = -20; x <= W + 20; x += 8) {
+        var y = getY(row, x, time);
+        if (x === -20) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+
+      // Blue-tinted lines — primary currents are brighter
+      var midY = row.baseY;
+      var alpha = radialAlpha(W * 0.5, midY, row.opacity);
+      if (row.isStrong) {
+        // Stronger rows get subtle blue glow
+        ctx.strokeStyle = 'rgba(80,130,200,' + (alpha * 0.6) + ')';
+        ctx.lineWidth = row.width + 0.5;
+        ctx.stroke();
+        // Overlay with gold hint
+        ctx.beginPath();
+        for (var x = -20; x <= W + 20; x += 8) {
+          var y = getY(row, x, time);
+          if (x === -20) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = 'rgba(197,164,78,' + (alpha * 0.35) + ')';
+        ctx.lineWidth = row.width * 0.5;
+        ctx.stroke();
+      } else {
+        ctx.strokeStyle = 'rgba(100,150,220,' + (alpha * 0.5) + ')';
+        ctx.lineWidth = row.width;
+        ctx.stroke();
+      }
+    }
+
+    // ── GOLDEN ELECTRICAL PULSES ──
+    for (var i = pulses.length - 1; i >= 0; i--) {
+      var p = pulses[i];
+      p.x += p.speed;
+
+      if (p.x > W + 200) {
+        pulses.splice(i, 1);
+        spawnPulse();
+        continue;
+      }
+
+      var row = rows[p.row];
+      var headY = getY(row, p.x, time);
+      var headAlpha = radialAlpha(p.x, headY, p.brightness);
+
+      if (headAlpha < 0.02) continue;
+
+      // Draw pulse trail — gradient from bright head to fading tail
+      var segments = 20;
+      var segLen = p.length / segments;
+      for (var s = 0; s < segments; s++) {
+        var sx = p.x - s * segLen;
+        var sx2 = sx - segLen;
+        if (sx < -50 || sx2 > W + 50) continue;
+
+        var sy = getY(row, sx, time);
+        var sy2 = getY(row, sx2, time);
+        var fade = 1 - (s / segments);
+        fade = fade * fade; // quadratic falloff
+        var sa = headAlpha * fade;
+
+        if (sa < 0.01) continue;
+
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(sx2, sy2);
+
+        if (p.isGold) {
+          // Golden electrical current
+          ctx.strokeStyle = 'rgba(217,184,88,' + sa + ')';
+          ctx.lineWidth = (2.5 - s * 0.08) * (row.isStrong ? 1.3 : 1);
+        } else {
+          // Blue-white data pulse
+          ctx.strokeStyle = 'rgba(140,180,255,' + (sa * 0.8) + ')';
+          ctx.lineWidth = (2 - s * 0.06);
+        }
+        ctx.stroke();
+      }
+
+      // Bright head dot
+      if (headAlpha > 0.1) {
+        // Outer glow
+        ctx.beginPath();
+        ctx.arc(p.x, headY, p.isGold ? 6 : 4, 0, Math.PI * 2);
+        ctx.fillStyle = p.isGold
+          ? 'rgba(217,184,88,' + (headAlpha * 0.15) + ')'
+          : 'rgba(140,180,255,' + (headAlpha * 0.1) + ')';
+        ctx.fill();
+        // Core
+        ctx.beginPath();
+        ctx.arc(p.x, headY, p.isGold ? 2 : 1.5, 0, Math.PI * 2);
+        ctx.fillStyle = p.isGold
+          ? 'rgba(255,220,120,' + (headAlpha * 0.9) + ')'
+          : 'rgba(200,220,255,' + (headAlpha * 0.7) + ')';
+        ctx.fill();
+
+        // Occasional spark at pulse head
+        if (Math.random() < 0.02 && p.isGold && headAlpha > 0.3) {
+          sparks.push({
+            x: p.x, y: headY,
+            vx: (Math.random() - 0.5) * 2,
+            vy: (Math.random() - 0.5) * 2,
+            life: 20 + Math.random() * 15,
+            maxLife: 20 + Math.random() * 15
+          });
+        }
+      }
+    }
+
+    // ── SPARKS ──
+    for (var i = sparks.length - 1; i >= 0; i--) {
+      var s = sparks[i];
+      s.x += s.vx;
+      s.y += s.vy;
+      s.vx *= 0.96;
+      s.vy *= 0.96;
+      s.life--;
+      if (s.life <= 0) { sparks.splice(i, 1); continue; }
+
+      var sa = (s.life / s.maxLife);
+      sa = sa * sa * 0.6;
+      var sr = radialAlpha(s.x, s.y, sa);
+      if (sr < 0.01) continue;
+
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, 1, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(255,220,120,' + sr + ')';
+      ctx.fill();
+    }
+
+    // ── FAINT NODE GRID — data infrastructure backbone ──
+    // Subtle dots at wave intersections to suggest organized structure
+    if (time % 3 === 0) { // only compute every 3rd frame for perf
+      ctx.globalAlpha = 1;
+      for (var r = 0; r < rows.length; r += 3) {
+        var row = rows[r];
+        for (var gx = 100; gx < W; gx += 160) {
+          var gy = getY(row, gx, time);
+          var na = radialAlpha(gx, gy, 0.15);
+          if (na < 0.02) continue;
+
+          // Tiny infrastructure node
+          ctx.beginPath();
+          ctx.arc(gx, gy, 1.5, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(140,170,210,' + na + ')';
+          ctx.fill();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  window.addEventListener('resize', resize);
+  draw();
+})();
+
+// Scroll reveal
+var revealEls = document.querySelectorAll('.reveal');
+var revealObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting) { entry.target.classList.add('visible'); }
+  });
+}, { threshold: 0.1 });
+revealEls.forEach(function(el) { revealObs.observe(el); });
+
+// Nav scroll shadow handled by nav.js
+
+/* ==============================================
+   ECOSYSTEM FLOW ENGINE
+   4 zones: Sources(L) → TETRA → Outputs(R)
+            AI Models(bottom) ↕ TETRA
+            People(top) ↕ TETRA
+   ============================================== */
+(function(){
+  var canvas=document.getElementById('flowCanvas');if(!canvas)return;
+  var ctx=canvas.getContext('2d'),stage=document.getElementById('flowStage');
+  var P=[],time=0,MAX=900,counter=0,cEl=document.getElementById('flowCounter'),sel=null;
+
+  var sRoutes={ehr:['qb','vp','telehealth','analytics','cms'],lab:['qb','analytics','pophealth'],rx:['qb','vp','cms'],payer:['analytics','cms','api','pophealth'],device:['qb','vp','telehealth','analytics'],hie:['qb','analytics','cms','api','pophealth']};
+  var aiModels=['ai-clinical','ai-nlp','ai-coding','ai-predict','ai-safety','ai-edge'];
+  var consumers=['c-app','c-checkin','c-coaching','c-portal','c-wearable'];
+  var aiRoutes={'ai-clinical':['ehr','lab','hie'],'ai-nlp':['ehr','device'],'ai-coding':['ehr','payer','rx'],'ai-predict':['ehr','lab','device','hie'],'ai-safety':['ehr','lab','rx','payer','device','hie'],'ai-edge':['device']};
+  var cRoutes={'c-app':['qb','analytics','telehealth'],'c-checkin':['qb','vp'],'c-coaching':['qb','api','telehealth'],'c-portal':['qb','analytics'],'c-wearable':['qb','analytics','telehealth']};
+
+  var rev={};Object.keys(sRoutes).forEach(function(s){sRoutes[s].forEach(function(o){if(!rev[o])rev[o]=[];if(rev[o].indexOf(s)===-1)rev[o].push(s)})});
+
+  var colors={ehr:{r:99,g:102,b:241},lab:{r:34,g:197,b:94},rx:{r:251,g:146,b:60},payer:{r:37,g:99,b:235},device:{r:236,g:72,b:153},hie:{r:197,g:164,b:78},
+    'ai-clinical':{r:99,g:102,b:241},'ai-nlp':{r:6,g:182,b:212},'ai-coding':{r:34,g:197,b:94},'ai-predict':{r:251,g:146,b:60},'ai-safety':{r:239,g:68,b:68},'ai-edge':{r:236,g:72,b:153},
+    'c-app':{r:6,g:182,b:212},'c-checkin':{r:6,g:182,b:212},'c-coaching':{r:6,g:182,b:212},'c-portal':{r:6,g:182,b:212},'c-wearable':{r:6,g:182,b:212}};
+
+  function resize(){var r=stage.getBoundingClientRect();canvas.width=r.width;canvas.height=r.height}
+  resize();window.addEventListener('resize',resize);
+
+  function nc(sel){var n=document.querySelector('[data-fid="'+sel+'"]');if(!n)return null;var dot=n.querySelector('.fn-dot')||n.querySelector('.ai-icon')||n;var sr=stage.getBoundingClientRect(),dr=dot.getBoundingClientRect();return{x:dr.left+dr.width/2-sr.left,y:dr.top+dr.height/2-sr.top}}
+  function hub(){var e=document.getElementById('feCore'),sr=stage.getBoundingClientRect(),er=e.getBoundingClientRect();return{x:er.left+er.width/2-sr.left,y:er.top+er.height/2-sr.top}}
+
+  function spawn(fromId,toId,dim){
+    if(P.length>=MAX)return;
+    var f=nc(fromId),t=nc(toId);if(!f||!t)return;
+    var h=hub(),c=colors[fromId]||{r:197,g:164,b:78};
+    var spread=(Math.random()-.5)*20,wA=6+Math.random()*12,wF=1.5+Math.random()*2,wO=Math.random()*Math.PI*2;
+    P.push({phase:0,progress:0,speed:.005+Math.random()*.005,fx:f.x,fy:f.y+spread,hx:h.x+(Math.random()-.5)*28,hy:h.y+(Math.random()-.5)*28,tx:t.x,ty:t.y+spread*.5,r:c.r,g:c.g,b:c.b,or:c.r,og:c.g,ob:c.b,size:.5+Math.random()*1.2,dim:!!dim,wA:wA,wF:wF,wO:wO,trail:[]});
+  }
+
+  function spawnWave(){
+    var srcs=Object.keys(sRoutes),cnt=3+Math.floor(Math.random()*5);
+    for(var i=0;i<cnt;i++){
+      var s=srcs[Math.floor(Math.random()*srcs.length)],outs=sRoutes[s],o=outs[Math.floor(Math.random()*outs.length)];
+      var dim=(sel||hasActiveAI())?!isRelevant(s,o):false;
+      if(dim&&Math.random()>.2)continue;
+      spawn(s,o,dim);
+    }
+    if(Math.random()<.4){
+      var ai=aiModels[Math.floor(Math.random()*aiModels.length)];
+      var outbound=Math.random()>.5;
+      var f=nc(ai),h=hub();if(f&&h){
+        var c=colors[ai]||{r:99,g:102,b:241};
+        if(P.length<MAX)P.push({phase:outbound?0:1,progress:0,speed:.006+Math.random()*.005,fx:outbound?f.x:h.x,fy:outbound?f.y:h.y,hx:h.x+(Math.random()-.5)*20,hy:h.y+(Math.random()-.5)*20,tx:outbound?h.x:f.x,ty:outbound?h.y:f.y,r:c.r,g:c.g,b:c.b,or:c.r,og:c.g,ob:c.b,size:.6+Math.random(),dim:(sel||hasActiveAI())?!isAIRelevant(ai):false,wA:4+Math.random()*8,wF:2+Math.random()*2,wO:Math.random()*Math.PI*2,trail:[],isAI:true,noPhaseSwitch:true});
+      }
+    }
+    // Extra particles for actively highlighted AI nodes
+    var activeAIs=getActiveAIs();
+    for(var ai_i=0;ai_i<activeAIs.length;ai_i++){
+      if(Math.random()<.6){
+        var aid=activeAIs[ai_i];
+        var f3=nc(aid),h3=hub();if(f3&&h3){
+          var c3=colors[aid]||{r:99,g:102,b:241};
+          var dir=Math.random()>.4;
+          if(P.length<MAX)P.push({phase:dir?0:1,progress:0,speed:.007+Math.random()*.005,fx:dir?f3.x:h3.x,fy:dir?f3.y:h3.y,hx:h3.x+(Math.random()-.5)*20,hy:h3.y+(Math.random()-.5)*20,tx:dir?h3.x:f3.x,ty:dir?h3.y:f3.y,r:c3.r,g:c3.g,b:c3.b,or:c3.r,og:c3.g,ob:c3.b,size:.8+Math.random(),dim:false,wA:4+Math.random()*8,wF:2+Math.random()*2,wO:Math.random()*Math.PI*2,trail:[],isAI:true,noPhaseSwitch:true});
+        }
+      }
+    }
+    if(Math.random()<.35){
+      var cn=consumers[Math.floor(Math.random()*consumers.length)];
+      var up=Math.random()>.4;
+      var f2=nc(cn),h2=hub();if(f2&&h2){
+        var cc={r:6,g:182,b:212};
+        if(P.length<MAX)P.push({phase:up?0:1,progress:0,speed:.005+Math.random()*.005,fx:up?f2.x:h2.x,fy:up?f2.y:h2.y,hx:h2.x+(Math.random()-.5)*20,hy:h2.y+(Math.random()-.5)*20,tx:up?h2.x:f2.x,ty:up?h2.y:f2.y,r:cc.r,g:cc.g,b:cc.b,or:cc.r,og:cc.g,ob:cc.b,size:.5+Math.random()*.8,dim:(sel||hasActiveAI())?!isConsumerRelevant(cn):false,wA:5+Math.random()*10,wF:1.5+Math.random()*2,wO:Math.random()*Math.PI*2,trail:[],isConsumer:true,noPhaseSwitch:true});
+      }
+    }
+  }
+
+  function isRelevant(s,o){
+    if(!sel&&!hasActiveAI())return true;
+    if(sel&&sel.type==='source'&&sel.id===s)return true;
+    if(sel&&sel.type==='output'&&sRoutes[s]&&sRoutes[s].indexOf(sel.id)!==-1)return true;
+    // If AI is active, source feeding that AI is relevant
+    var activeAIs=getActiveAIs();
+    for(var i=0;i<activeAIs.length;i++){
+      if(aiRoutes[activeAIs[i]]&&aiRoutes[activeAIs[i]].indexOf(s)!==-1)return true;
+    }
+    return false;
+  }
+  function isAIRelevant(ai){
+    if(!sel&&!hasActiveAI())return true;
+    if(sel&&sel.id===ai)return true;
+    if(sel&&sel.type==='source'&&aiRoutes[ai]&&aiRoutes[ai].indexOf(sel.id)!==-1)return true;
+    // Check if this AI is actively highlighted
+    var n=document.querySelector('[data-fid="'+ai+'"]');
+    if(n&&n.classList.contains('fn-highlight'))return true;
+    return false;
+  }
+  function isConsumerRelevant(cn){if(!sel&&!hasActiveAI())return true;if(sel&&sel.id===cn)return true;return false}
+  function getActiveAIs(){var a=[];document.querySelectorAll('.ai-node.fn-highlight').forEach(function(n){a.push(n.dataset.fid)});return a}
+  function hasActiveAI(){return document.querySelectorAll('.ai-node.fn-highlight').length>0}
+
+  var cAccum=0;
+  function tick(){cAccum+=12.5;var a=Math.floor(cAccum);if(a>0){counter+=a;cAccum-=a;if(cEl)cEl.textContent=counter.toLocaleString()}}
+
+  function drawLine(ax,ay,bx,by,col,a,w){
+    ctx.beginPath();ctx.moveTo(ax,ay);var mx=(ax+bx)/2;ctx.quadraticCurveTo(mx,(ay+by)/2,bx,by);ctx.strokeStyle='rgba('+col.r+','+col.g+','+col.b+','+a+')';ctx.lineWidth=w;ctx.stroke();
+  }
+
+  function animate(){
+    time+=.016;resize();
+    ctx.fillStyle='rgba(6,14,26,0.25)';ctx.fillRect(0,0,canvas.width,canvas.height);
+    var h=hub();
+
+    // Connection lines hidden — particles only
+    document.querySelectorAll('.fn-source').forEach(function(sn){});
+    document.querySelectorAll('.fn-output').forEach(function(on){});
+    aiModels.forEach(function(ai){});
+    consumers.forEach(function(cn){});
+
+    spawnWave();tick();
+
+    for(var i=P.length-1;i>=0;i--){
+      var p=P[i];p.progress+=p.speed;
+      if(p.progress>=1){
+        if(p.noPhaseSwitch||p.phase===1){P.splice(i,1);continue}
+        p.phase=1;p.progress=0;p.speed=.004+Math.random()*.005;continue;
+      }
+      var t=p.progress,px,py;
+      if(p.phase===0){var mx=(p.fx+p.hx)/2;px=(1-t)*(1-t)*p.fx+2*(1-t)*t*mx+t*t*p.hx;py=(1-t)*(1-t)*p.fy+2*(1-t)*t*((p.fy+p.hy)/2)+t*t*p.hy}
+      else{var mx2=(p.hx+p.tx)/2;px=(1-t)*(1-t)*p.hx+2*(1-t)*t*mx2+t*t*p.tx;py=(1-t)*(1-t)*p.hy+2*(1-t)*t*((p.hy+p.ty)/2)+t*t*p.ty}
+      var wv=Math.sin(t*Math.PI*p.wF+p.wO+time*.8)*p.wA*Math.sin(t*Math.PI);
+      var dx=p.phase===0?(p.hx-p.fx):(p.tx-p.hx),dy=p.phase===0?(p.hy-p.fy):(p.ty-p.hy);
+      var len=Math.sqrt(dx*dx+dy*dy)||1;px+=(-dy/len)*wv;py+=(dx/len)*wv;
+      var al=t<.08?t*10:t>.88?(1-t)*7:.55;if(p.dim)al*=.1;
+      if(p.phase===1&&!p.isAI&&!p.isConsumer){var bl=t*.75;p.r=Math.round(p.or+(197-p.or)*bl);p.g=Math.round(p.og+(164-p.og)*bl);p.b=Math.round(p.ob+(78-p.ob)*bl)}
+      p.trail.push({x:px,y:py});if(p.trail.length>5)p.trail.shift();
+      ctx.beginPath();ctx.arc(px,py,p.size*3,0,Math.PI*2);ctx.fillStyle='rgba('+p.r+','+p.g+','+p.b+','+(al*.06)+')';ctx.fill();
+      ctx.beginPath();ctx.arc(px,py,p.size,0,Math.PI*2);ctx.fillStyle='rgba('+p.r+','+p.g+','+p.b+','+al+')';ctx.fill();
+    }
+    requestAnimationFrame(animate);
+  }
+
+  document.querySelectorAll('.flow-node,.ai-node,.consumer-node').forEach(function(node){
+    node.addEventListener('click',function(){
+      var fid=node.dataset.fid;
+      var type=node.classList.contains('fn-source')?'source':node.classList.contains('fn-output')?'output':node.classList.contains('ai-node')?'ai':'consumer';
+
+      if(type==='ai'){
+        // AI nodes toggle independently — multi-select
+        node.classList.toggle('fn-highlight');
+        // Also highlight connected sources
+        if(node.classList.contains('fn-highlight')){
+          (aiRoutes[fid]||[]).forEach(function(s){var n=document.querySelector('[data-fid="'+s+'"]');if(n)n.classList.add('fn-highlight')});
+        } else {
+          // Re-evaluate which sources should stay highlighted from other active AI nodes
+          document.querySelectorAll('.fn-source').forEach(function(n){n.classList.remove('fn-highlight')});
+          document.querySelectorAll('.ai-node.fn-highlight').forEach(function(activeAI){
+            (aiRoutes[activeAI.dataset.fid]||[]).forEach(function(s){var n=document.querySelector('[data-fid="'+s+'"]');if(n)n.classList.add('fn-highlight')});
+          });
+        }
+        return;
+      }
+
+      // Non-AI nodes: clear non-AI highlights, keep AI selections
+      var activeAIs=[];
+      document.querySelectorAll('.ai-node.fn-highlight').forEach(function(n){activeAIs.push(n.dataset.fid)});
+      document.querySelectorAll('.flow-node,.consumer-node').forEach(function(n){n.classList.remove('fn-highlight')});
+      // Restore AI-related source highlights
+      activeAIs.forEach(function(aid){
+        (aiRoutes[aid]||[]).forEach(function(s){var n=document.querySelector('[data-fid="'+s+'"]');if(n)n.classList.add('fn-highlight')});
+      });
+
+      var was=sel&&sel.id===fid;
+      sel=null;
+      if(!was){
+        sel={id:fid,type:type};node.classList.add('fn-highlight');
+        if(type==='source'){
+          (sRoutes[fid]||[]).forEach(function(o){var n=document.querySelector('[data-fid="'+o+'"]');if(n)n.classList.add('fn-highlight')});
+          aiModels.forEach(function(ai){if(aiRoutes[ai]&&aiRoutes[ai].indexOf(fid)!==-1){var n=document.querySelector('[data-fid="'+ai+'"]');if(n)n.classList.add('fn-highlight')}});
+        } else if(type==='output'){
+          (rev[fid]||[]).forEach(function(s){var n=document.querySelector('[data-fid="'+s+'"]');if(n)n.classList.add('fn-highlight')});
+        } else if(type==='consumer'){
+          node.classList.add('fn-highlight');
+        }
+      }
+    });
+  });
+  animate();
+})();
+
+// Nav toggle/dropdown handled by nav.js
+
+// ── BULLSEYE WAVING MESH ──
+(function() {
+  var canvas = document.getElementById('feMeshCanvas');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var size = 160;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2);
+  canvas.width = size * dpr;
+  canvas.height = size * dpr;
+  canvas.style.width = size + 'px';
+  canvas.style.height = size + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+  var GRID = 12;
+  var spacing = size / (GRID - 1);
+  var cx = size / 2, cy = size / 2, radius = size / 2;
+  var time = 0;
+
+  function draw() {
+    time += 0.008;
+    ctx.clearRect(0, 0, size, size);
+
+    // Draw waving grid lines
+    for (var r = 0; r < GRID; r++) {
+      ctx.beginPath();
+      for (var c = 0; c < GRID; c++) {
+        var bx = c * spacing, by = r * spacing;
+        var dx = bx - cx, dy = by - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > radius) continue;
+
+        var wave = Math.sin(bx * 0.06 + time * 2) * 3 + Math.sin(by * 0.08 + time * 1.5) * 2.5;
+        var wave2 = Math.sin((bx + by) * 0.04 + time * 2.5) * 2;
+        var py = by + wave + wave2;
+        var px = bx + Math.sin(by * 0.05 + time * 1.2) * 1.5;
+
+        var fade = 1 - (dist / radius);
+        fade = fade * fade;
+
+        if (c === 0 || dist - spacing > radius) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = 'rgba(197,164,78,0.12)';
+      ctx.lineWidth = 0.6;
+      ctx.stroke();
+    }
+
+    // Vertical lines
+    for (var c = 0; c < GRID; c++) {
+      ctx.beginPath();
+      for (var r = 0; r < GRID; r++) {
+        var bx = c * spacing, by = r * spacing;
+        var dx = bx - cx, dy = by - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > radius) continue;
+
+        var wave = Math.sin(bx * 0.06 + time * 2) * 3 + Math.sin(by * 0.08 + time * 1.5) * 2.5;
+        var wave2 = Math.sin((bx + by) * 0.04 + time * 2.5) * 2;
+        var py = by + wave + wave2;
+        var px = bx + Math.sin(by * 0.05 + time * 1.2) * 1.5;
+
+        if (r === 0 || dist - spacing > radius) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.strokeStyle = 'rgba(197,164,78,0.08)';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    // Glowing dots at intersections
+    for (var r = 0; r < GRID; r++) {
+      for (var c = 0; c < GRID; c++) {
+        var bx = c * spacing, by = r * spacing;
+        var dx = bx - cx, dy = by - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist > radius * 0.85) continue;
+
+        var wave = Math.sin(bx * 0.06 + time * 2) * 3 + Math.sin(by * 0.08 + time * 1.5) * 2.5;
+        var wave2 = Math.sin((bx + by) * 0.04 + time * 2.5) * 2;
+        var py = by + wave + wave2;
+        var px = bx + Math.sin(by * 0.05 + time * 1.2) * 1.5;
+        var fade = 1 - (dist / radius);
+        var pulse = 0.5 + 0.5 * Math.sin(c * 0.5 + r * 0.7 + time * 3);
+
+        ctx.beginPath();
+        ctx.arc(px, py, 0.8 + pulse * 0.5, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(197,164,78,' + (0.1 + pulse * 0.15) * fade + ')';
+        ctx.fill();
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── FLOW SECTION DATA MESH — WAVING GRID ──
+(function() {
+  var canvas = document.getElementById('flowMesh');
+  if (!canvas) return;
+  var ctx = canvas.getContext('2d');
+  var W, H, time = 0;
+  var COLS = 40, ROWS = 25;
+  var points = [];
+
+  function resize() {
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var rect = canvas.parentElement.getBoundingClientRect();
+    W = rect.width; H = rect.height;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    buildGrid();
+  }
+
+  function buildGrid() {
+    points = [];
+    var spacingX = W / (COLS - 1);
+    var spacingY = H / (ROWS - 1);
+    for (var r = 0; r < ROWS; r++) {
+      for (var c = 0; c < COLS; c++) {
+        points.push({ bx: c * spacingX, by: r * spacingY, x: 0, y: 0, col: c, row: r });
+      }
+    }
+  }
+
+  function draw() {
+    time += 0.004;
+    ctx.clearRect(0, 0, W, H);
+
+    // Update point positions with wave
+    for (var i = 0; i < points.length; i++) {
+      var p = points[i];
+      var wave1 = Math.sin(p.bx * 0.005 + time * 1.2) * 8;
+      var wave2 = Math.sin(p.by * 0.008 + time * 0.8) * 5;
+      var wave3 = Math.sin((p.bx + p.by) * 0.003 + time * 1.5) * 4;
+      p.x = p.bx + wave2 * 0.3;
+      p.y = p.by + wave1 + wave3;
+    }
+
+    // Draw horizontal lines
+    for (var r = 0; r < ROWS; r++) {
+      ctx.beginPath();
+      for (var c = 0; c < COLS; c++) {
+        var p = points[r * COLS + c];
+        if (c === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      }
+      var rowAlpha = 0.08 + Math.sin(r * 0.25 + time) * 0.03;
+      ctx.strokeStyle = 'rgba(197,164,78,' + rowAlpha + ')';
+      ctx.lineWidth = 0.5;
+      ctx.stroke();
+    }
+
+    // Draw vertical lines
+    for (var c = 0; c < COLS; c++) {
+      ctx.beginPath();
+      for (var r = 0; r < ROWS; r++) {
+        var p = points[r * COLS + c];
+        if (r === 0) ctx.moveTo(p.x, p.y);
+        else ctx.lineTo(p.x, p.y);
+      }
+      var colAlpha = 0.05 + Math.sin(c * 0.2 + time * 0.7) * 0.02;
+      ctx.strokeStyle = 'rgba(197,164,78,' + colAlpha + ')';
+      ctx.lineWidth = 0.4;
+      ctx.stroke();
+    }
+
+    // Draw intersection dots
+    for (var i = 0; i < points.length; i++) {
+      var p = points[i];
+      var dotPulse = 0.5 + 0.5 * Math.sin(p.col * 0.3 + p.row * 0.4 + time * 2);
+      var dotAlpha = 0.04 + dotPulse * 0.08;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, 0.8 + dotPulse * 0.4, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(197,164,78,' + dotAlpha + ')';
+      ctx.fill();
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  draw();
+})();
+</script>
+
+<script src="nav.js"></script>
+
+</body>
+</html>

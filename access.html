@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CMS ACCESS Model — InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;
+  --gold:#C99700;--gold-light:#DAAB1E;--gold-bright:#F0C445;
+  --white:#FFFFFF;--off-white:#F0EDE6;--cream:#FAF8F4;
+  --red:#B22234;--red-deep:#8B1A29;
+  --text-dark:#1A1A2E;--text-muted:#6B7280;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--text-dark);overflow-x:hidden;}
+
+/* ===== SCROLL REVEAL ===== */
+.reveal{opacity:0;transform:translateY(30px);transition:opacity 0.8s ease,transform 0.8s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ===== HERO ===== */
+.hero{position:relative;min-height:90vh;background:var(--navy-deep);overflow:hidden;display:flex;align-items:center;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(17,34,64,0.8),var(--navy-deep) 70%);}
+.hero-grid{position:absolute;inset:0;opacity:0.04;background-image:linear-gradient(rgba(201,151,0,0.4) 1px,transparent 1px),linear-gradient(90deg,rgba(201,151,0,0.4) 1px,transparent 1px);background-size:60px 60px;animation:gridShift 20s linear infinite;}
+@keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
+.hero-content{position:relative;z-index:2;max-width:1000px;width:100%;margin:0 auto;padding:80px 40px 60px;text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.2);border-radius:24px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.hero-badge .pulse-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:dotPulse 2s ease-in-out infinite;}
+@keyframes dotPulse{0%,100%{opacity:0.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+.hero-content h1{font-family:'Instrument Serif',serif;font-size:clamp(36px,5vw,64px);font-weight:400;color:var(--white);line-height:1.12;margin-bottom:24px;}
+.hero-content h1 em{font-style:italic;color:var(--gold);}
+.hero-tagline{font-size:17px;color:rgba(255,255,255,0.55);line-height:1.7;margin-bottom:20px;max-width:620px;margin-left:auto;margin-right:auto;}
+.hero-tagline-bold{font-family:'Instrument Serif',serif;font-size:19px;color:var(--gold-light);line-height:1.5;margin-bottom:40px;font-style:italic;}
+.hero-stats{display:flex;justify-content:center;gap:48px;flex-wrap:wrap;margin-bottom:40px;}
+.hero-stat{text-align:center;position:relative;}
+.hero-stat::after{content:'';position:absolute;right:-24px;top:6px;bottom:6px;width:1px;background:rgba(201,151,0,0.15);}
+.hero-stat:last-child::after{display:none;}
+.hero-stat-num{font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,52px);color:var(--gold);line-height:1;margin-bottom:6px;}
+.hero-stat-label{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.3);max-width:160px;}
+.hero-cta-row{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;}
+
+/* ===== GOLD TICKER ===== */
+.gold-ticker{background:var(--gold);overflow:hidden;padding:14px 0;position:relative;z-index:2;}
+.ticker-track{display:flex;animation:ticker 35s linear infinite;width:max-content;}
+.ticker-item{font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--navy-deep);white-space:nowrap;padding:0 40px;display:flex;align-items:center;gap:16px;}
+.ticker-item::before{content:'★';font-size:8px;}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ===== HERO COHORT ===== */
+.hero-cohort{margin:36px auto 32px;max-width:640px;}
+.hero-cohort-inner{display:flex;align-items:stretch;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:12px;overflow:hidden;}
+.hero-cohort-col{flex:1;padding:24px 28px;text-align:center;}
+.hero-cohort-col.active{background:rgba(201,151,0,0.04);border-right:1px solid rgba(255,255,255,0.06);}
+.hero-cohort-divider{width:1px;background:rgba(255,255,255,0.06);}
+.hero-cohort-label{font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;}
+.hero-cohort-col.active .hero-cohort-label{color:var(--gold);}
+.hero-cohort-deadline{font-size:11px;color:rgba(255,255,255,0.4);margin-bottom:14px;}
+.hero-cohort-deadline strong{color:rgba(255,255,255,0.7);}
+.hero-cohort-col.active .hero-cohort-deadline strong{color:var(--gold);}
+.hero-cohort-clock{display:flex;align-items:center;justify-content:center;gap:4px;}
+.hc-block{text-align:center;}
+.hc-num{font-family:'Instrument Serif',serif;font-size:28px;color:var(--white);background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:6px;width:48px;height:48px;display:flex;align-items:center;justify-content:center;line-height:1;}
+.hc-unit{font-size:8px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:1px;margin-top:4px;}
+.hc-sep{color:rgba(201,151,0,0.3);font-size:20px;margin:0 2px;padding-bottom:14px;}
+.hero-cohort-note{font-size:12px;color:rgba(255,255,255,0.35);line-height:1.6;max-width:220px;margin:0 auto;}
+.hero-cohort-note strong{color:rgba(255,255,255,0.6);}
+@media(max-width:600px){
+  .hero-cohort-inner{flex-direction:column;}
+  .hero-cohort-col.active{border-right:none;border-bottom:1px solid rgba(255,255,255,0.06);}
+  .hero-cohort-divider{display:none;}
+}
+
+/* ===== HOW IT WORKS ===== */
+.how-section{background:var(--white);padding:100px 40px;}
+.how-inner{max-width:1000px;margin:0 auto;}
+.how-steps{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:start;margin:56px 0 48px;}
+.how-step{text-align:center;padding:0 16px;}
+.how-step-num{width:56px;height:56px;border-radius:50%;background:var(--navy-deep);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);}
+.how-step-title{font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:8px;line-height:1.3;}
+.how-step-body{font-size:14px;color:var(--text-muted);line-height:1.6;}
+.how-step-body strong{color:var(--text-dark);}
+.how-arrow{display:flex;align-items:center;justify-content:center;padding-top:14px;}
+.how-arrow svg{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.5;opacity:0.4;}
+.how-math{background:var(--navy-deep);border-radius:12px;padding:32px 40px;text-align:center;max-width:800px;margin:0 auto;}
+.how-math-formula{font-family:'Instrument Serif',serif;font-size:clamp(18px,2.2vw,26px);color:var(--white);line-height:1.5;margin-bottom:8px;}
+.how-math-formula em{color:var(--gold);font-style:italic;}
+.how-math-example{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.6;}
+.how-math-example strong{color:var(--gold);font-weight:600;}
+.how-note{font-size:13px;color:var(--text-muted);text-align:center;margin-top:28px;max-width:700px;margin-left:auto;margin-right:auto;line-height:1.7;}
+/* Accelerators */
+.accel-section{background:var(--cream);padding:80px 40px;}
+.accel-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;max-width:1000px;margin:48px auto 0;}
+.accel-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:28px 24px;transition:all 0.3s;position:relative;overflow:hidden;}
+.accel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
+.accel-card:hover::before{transform:scaleX(1);}
+.accel-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,0.06);}
+.accel-card-title{font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:6px;}
+.accel-card-body{font-size:13px;color:var(--text-muted);line-height:1.6;}
+.accel-card-body strong{color:var(--gold);}
+@media(max-width:768px){
+  .how-steps{grid-template-columns:1fr;gap:24px;}
+  .how-arrow{transform:rotate(90deg);padding:0;}
+  .accel-grid{grid-template-columns:1fr;}
+}
+
+/* ===== CMS REQUIREMENTS ===== */
+.req-section{background:var(--cream);padding:100px 40px;}
+.req-inner{max-width:1000px;margin:0 auto;}
+.req-intro{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:700px;margin:0 auto 48px;text-align:center;}
+.req-intro strong{color:var(--text-dark);}
+.req-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid rgba(0,0,0,0.08);border-radius:12px;overflow:hidden;background:var(--white);}
+.req-col-head{padding:16px 28px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.req-col-head.cms{background:#F0F4F8;color:#4A5568;border-bottom:1px solid rgba(0,0,0,0.06);}
+.req-col-head.ip{background:var(--navy-deep);color:var(--gold);border-bottom:1px solid rgba(0,0,0,0.06);}
+.req-row{display:contents;}
+.req-cell{padding:20px 28px;border-bottom:1px solid rgba(0,0,0,0.04);display:flex;align-items:flex-start;gap:12px;}
+.req-cell.cms-cell{background:var(--white);}
+.req-cell.ip-cell{background:rgba(201,151,0,0.02);}
+.req-cell:last-child{border-bottom:none;}
+.req-icon{flex-shrink:0;margin-top:2px;}
+.req-cell-title{font-size:13px;font-weight:600;color:var(--text-dark);margin-bottom:3px;}
+.req-cell-body{font-size:12px;color:var(--text-muted);line-height:1.5;}
+.ip-cell .req-cell-title{color:var(--navy);}
+.req-ding{text-align:center;padding:48px 40px;background:var(--navy-deep);border-radius:12px;margin-top:32px;}
+.req-ding-head{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);margin-bottom:8px;}
+.req-ding-sub{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:600px;margin:0 auto;}
+.req-ding-sub strong{color:rgba(255,255,255,0.7);}
+
+/* ===== FAQ ===== */
+.faq-section{background:var(--white);padding:100px 40px;}
+.faq-inner{max-width:800px;margin:0 auto;}
+.faq-item{border-bottom:1px solid rgba(0,0,0,0.06);}
+.faq-q{padding:20px 0;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;-webkit-user-select:none;user-select:none;}
+.faq-q-text{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);line-height:1.4;flex:1;}
+.faq-q-icon{flex-shrink:0;width:24px;height:24px;border-radius:50%;background:rgba(201,151,0,0.08);display:flex;align-items:center;justify-content:center;transition:transform 0.3s;}
+.faq-q-icon svg{width:12px;height:12px;stroke:var(--gold);fill:none;stroke-width:2;}
+.faq-item.open .faq-q-icon{transform:rotate(180deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease;}
+.faq-item.open .faq-a{max-height:600px;}
+.faq-a-inner{padding:0 0 24px;font-size:14px;color:var(--text-muted);line-height:1.7;}
+.faq-a-inner strong{color:var(--text-dark);}
+
+/* ===== SERVICE TIERS ===== */
+.tiers-section{background:var(--navy-deep);padding:100px 40px;position:relative;overflow:hidden;}
+.tiers-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(201,151,0,0.04) 0%,transparent 60%);}
+.tiers-inner{max-width:1000px;margin:0 auto;position:relative;z-index:1;}
+.tiers-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;}
+.tier-card-v2{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:12px;padding:32px 28px;text-align:center;position:relative;transition:all 0.3s;}
+.tier-card-v2:hover{transform:translateY(-4px);border-color:rgba(201,151,0,0.15);box-shadow:0 16px 48px rgba(0,0,0,0.3);}
+.tier-card-v2.featured{background:rgba(201,151,0,0.04);border-color:rgba(201,151,0,0.2);}
+.tier-card-v2.featured::before{content:'MOST COMMON';position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--gold);color:var(--navy-deep);font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 14px;border-radius:3px;}
+.tier-v2-name{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);margin-bottom:4px;}
+.tier-v2-pct{font-family:'Instrument Serif',serif;font-size:42px;color:var(--gold);line-height:1;margin:16px 0 4px;}
+.tier-v2-pct span{font-size:18px;color:rgba(255,255,255,0.3);}
+.tier-v2-sublabel{font-size:10px;color:rgba(255,255,255,0.25);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:20px;}
+.tier-v2-desc{font-size:13px;color:rgba(255,255,255,0.4);line-height:1.6;margin-bottom:16px;}
+.tier-v2-includes{font-size:11px;color:rgba(255,255,255,0.2);line-height:1.7;text-align:left;border-top:1px solid rgba(255,255,255,0.04);padding-top:16px;}
+.tier-v2-includes strong{color:rgba(255,255,255,0.35);}
+.tiers-footnote{text-align:center;font-size:11px;color:rgba(255,255,255,0.2);margin-top:24px;line-height:1.6;}
+
+/* ===== APPLY / RESOURCES ===== */
+.apply-section{background:var(--navy-deep);padding:100px 40px;position:relative;overflow:hidden;}
+.apply-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 100%,rgba(201,151,0,0.04) 0%,transparent 60%);}
+.apply-inner{max-width:900px;margin:0 auto;position:relative;z-index:1;}
+.apply-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:40px;margin-bottom:20px;text-align:center;}
+.apply-card-icon{margin-bottom:16px;}
+.apply-card-title{font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);margin-bottom:8px;}
+.apply-card-body{font-size:14px;color:rgba(255,255,255,0.4);line-height:1.7;max-width:600px;margin:0 auto 24px;}
+.apply-card-body strong{color:rgba(255,255,255,0.65);}
+.apply-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 36px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all 0.3s;}
+.apply-btn:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.apply-resources{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.apply-resource{display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:10px;text-decoration:none;transition:all 0.25s;}
+.apply-resource:hover{border-color:rgba(201,151,0,0.15);background:rgba(201,151,0,0.03);}
+.apply-resource-icon{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;background:rgba(201,151,0,0.06);border-radius:8px;}
+.apply-resource-text{flex:1;}
+.apply-resource-title{font-size:13px;font-weight:600;color:var(--white);margin-bottom:2px;}
+.apply-resource-sub{font-size:10px;color:rgba(255,255,255,0.25);}
+@media(max-width:768px){
+  .tiers-grid{grid-template-columns:1fr;}
+  .apply-resources{grid-template-columns:1fr;}
+}
+
+/* ===== SECTIONS ===== */
+.section{padding:100px 40px;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-overline{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.section-headline{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:20px;}
+.section-headline em{font-style:italic;color:var(--gold);}
+.section-desc{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-bottom:48px;}
+.dark-section{background:var(--navy-deep);color:var(--white);position:relative;overflow:hidden;}
+.dark-section::before{content:'';position:absolute;top:0;right:0;width:600px;height:600px;background:radial-gradient(circle,rgba(201,151,0,0.04) 0%,transparent 70%);pointer-events:none;}
+.dark-section .section-headline{color:var(--white);}
+.dark-section .section-desc{color:rgba(255,255,255,0.5);}
+
+/* ===== DELTA SECTION ===== */
+.delta-section{background:var(--cream);}
+.delta-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:40px;}
+.delta-card{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:40px 36px;transition:all 0.4s ease;position:relative;overflow:hidden;}
+.delta-card:hover{transform:translateY(-4px);box-shadow:0 16px 48px rgba(0,0,0,0.06);}
+.delta-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s ease;}
+.delta-card:hover::before{transform:scaleX(1);}
+.delta-card.with{border-color:rgba(201,151,0,0.2);}
+.delta-card.with::before{transform:scaleX(1);background:linear-gradient(90deg,var(--gold),var(--gold-light));}
+.delta-card-tag{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;}
+.delta-card.with .delta-card-tag{color:var(--gold);}
+.delta-card-amount{font-family:'Instrument Serif',serif;font-size:clamp(36px,4vw,48px);color:var(--navy);line-height:1;margin-bottom:8px;}
+.delta-card.with .delta-card-amount{color:var(--gold);}
+.delta-card-note{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.5;}
+.delta-breakdown{list-style:none;}
+.delta-breakdown li{font-size:13px;color:var(--text-muted);padding:10px 0;border-bottom:1px solid rgba(0,0,0,0.04);display:flex;justify-content:space-between;}
+.delta-breakdown li:last-child{border-bottom:none;}
+.delta-breakdown li span:last-child{font-weight:600;color:var(--text-dark);}
+.delta-card.with .delta-breakdown li span:last-child{color:var(--gold);}
+
+.delta-callouts{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.delta-callout{background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:12px;padding:28px 24px;text-align:center;transition:all 0.3s;}
+.delta-callout:hover{border-color:rgba(201,151,0,0.3);box-shadow:0 8px 32px rgba(201,151,0,0.06);transform:translateY(-4px);}
+.delta-callout-label{font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-bottom:10px;}
+.delta-callout-val{font-family:'Instrument Serif',serif;font-size:42px;color:var(--gold);line-height:1;margin-bottom:6px;}
+.delta-callout-sub{font-size:12px;color:var(--text-muted);}
+.delta-callout.decline{border-color:rgba(178,34,52,0.15);}
+.delta-callout.decline .delta-callout-label{color:var(--red);}
+.delta-callout.decline .delta-callout-val{color:var(--red);font-size:32px;}
+.delta-callout.decline .delta-callout-sub{color:rgba(178,34,52,0.6);}
+.delta-example-note{font-size:12px;color:var(--text-muted);text-align:center;margin-top:28px;font-style:italic;}
+
+/* ===== TRACK CARDS ===== */
+.tracks-section{background:var(--white);}
+.tracks-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;}
+.track-card{background:var(--cream);border:1px solid rgba(0,0,0,0.04);border-radius:12px;padding:32px 24px;transition:all 0.4s;position:relative;overflow:hidden;}
+.track-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transition:transform 0.4s;}
+.track-card:hover::before{transform:scaleX(1);}
+.track-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.06);border-color:rgba(201,151,0,0.2);}
+.track-icon{margin-bottom:16px;line-height:0;}
+.track-name{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:6px;}
+.track-pmpm{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.track-pmpm span{font-size:13px;color:var(--text-muted);font-family:'Instrument Sans',sans-serif;}
+.track-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+
+/* ===== QUOTE BANNER ===== */
+.quote-banner{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 100%);padding:80px 40px;text-align:center;position:relative;overflow:hidden;}
+.quote-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(201,151,0,0.06) 0%,transparent 60%);}
+.quote-content{position:relative;z-index:1;max-width:900px;margin:0 auto;}
+.quote-text{font-family:'Instrument Serif',serif;font-size:clamp(20px,2.5vw,28px);color:var(--white);line-height:1.45;margin-bottom:16px;}
+.quote-text em{color:var(--gold);font-style:italic;}
+.quote-attrib{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);}
+
+/* ===== WHAT WE PROVIDE ===== */
+.provide-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.provide-card{background:rgba(17,34,64,0.6);border:1px solid rgba(201,151,0,0.08);border-radius:8px;padding:36px 28px;transition:all 0.3s;}
+.provide-card:hover{border-color:rgba(201,151,0,0.2);transform:translateY(-4px);}
+.provide-card-icon{width:48px;height:48px;border-radius:50%;background:rgba(201,151,0,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:16px;}
+.provide-card h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:8px;}
+.provide-card p{font-size:13px;color:rgba(255,255,255,0.45);line-height:1.6;}
+
+/* Federal badges */
+.federal-row{display:flex;justify-content:center;gap:48px;margin-top:56px;flex-wrap:wrap;}
+.federal-badge{text-align:center;}
+.federal-badge-icon{margin-bottom:8px;line-height:0;}
+.federal-badge-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+.federal-badge-detail{font-size:12px;color:rgba(255,255,255,0.35);}
+
+/* ===== CALCULATOR ===== */
+
+/* ===== BUTTONS ===== */
+.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all 0.3s;border:none;cursor:pointer;font-family:inherit;}
+.btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:1.5px solid rgba(201,151,0,0.4);transition:all 0.3s;cursor:pointer;font-family:inherit;}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,151,0,0.08);transform:translateY(-2px);}
+.btn-outline-dark{display:inline-flex;align-items:center;gap:8px;padding:14px 32px;background:transparent;color:var(--gold);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;border:1.5px solid rgba(201,151,0,0.3);transition:all 0.3s;cursor:pointer;font-family:inherit;}
+.btn-outline-dark:hover{border-color:var(--gold);background:rgba(201,151,0,0.06);transform:translateY(-2px);}
+
+/* ═══════════════════════════════════════
+   CALCULATOR SPLIT LAYOUT
+   (preserved from original calculator)
+═══════════════════════════════════════ */
+.split{display:flex;min-height:100vh;background:var(--navy-deep);}
+.split-left{width:420px;min-width:420px;background:var(--navy);border-right:1px solid rgba(201,151,0,0.08);display:flex;flex-direction:column;position:sticky;top:64px;height:calc(100vh - 64px);overflow-y:auto;}
+.split-left::-webkit-scrollbar{width:3px;}
+.split-left::-webkit-scrollbar-thumb{background:rgba(201,151,0,0.15);border-radius:3px;}
+.split-right{flex:1;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;min-height:700px;}
+.split-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 45%,rgba(201,151,0,0.05),transparent 60%),radial-gradient(ellipse at 30% 80%,rgba(201,151,0,0.02),transparent 40%);}
+
+/* Calculator panel styles */
+.panel-section{padding:20px 28px 14px;}
+.panel-section+.panel-section{border-top:1px solid rgba(255,255,255,0.04);position:relative;}
+.panel-section+.panel-section::before{content:'';position:absolute;top:-1px;left:28px;right:28px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,151,0,0.08),transparent);}
+.panel-title{font-family:'Instrument Serif',serif;font-size:15px;color:var(--white);margin-bottom:4px;letter-spacing:0.2px;}
+.panel-sub{font-size:11px;color:rgba(255,255,255,0.22);line-height:1.6;margin-bottom:16px;}
+.npi-wrap{display:flex;gap:8px;}
+.npi-input{flex:1;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:8px;color:var(--white);font-size:14px;font-family:inherit;letter-spacing:1px;outline:none;transition:border-color 0.2s;}
+.npi-input:focus{border-color:rgba(201,151,0,0.4);box-shadow:0 0 0 3px rgba(201,151,0,0.06);}
+.npi-input::placeholder{color:rgba(255,255,255,0.15);letter-spacing:0;}
+.npi-btn{padding:12px 20px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:all 0.25s;white-space:nowrap;}
+.npi-btn:hover{background:var(--gold-bright);transform:translateY(-1px);}
+.npi-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.npi-status{font-size:10px;margin-top:8px;min-height:14px;}
+.npi-status.error{color:#ef4444;}.npi-status.loading{color:var(--gold);}
+.provider-badge{display:flex;align-items:center;gap:12px;padding:14px 16px;background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.1);border-radius:10px;margin-top:16px;display:none;transition:all 0.4s;}
+.provider-badge.visible{display:flex;animation:badgeIn 0.5s ease both;}
+@keyframes badgeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.pb-icon{width:36px;height:36px;border-radius:50%;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.pb-info{flex:1;min-width:0;}
+.pb-name{font-size:13px;font-weight:600;color:var(--white);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.pb-detail{font-size:10px;color:rgba(255,255,255,0.25);margin-top:1px;}
+.pb-cms{font-size:8px;margin-top:5px;padding:3px 8px;border-radius:4px;display:inline-block;letter-spacing:0.3px;}
+.pb-cms.found{background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.1);color:var(--gold);}
+.pb-cms.missing{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.2);}
+
+/* Sliders */
+.slider-group{margin-bottom:12px;}
+.slider-row{display:flex;align-items:center;gap:8px;margin-bottom:2px;}
+.slider-label{font-size:11px;color:rgba(255,255,255,0.35);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.slider-val{font-size:12px;font-weight:700;color:var(--gold);min-width:52px;text-align:right;font-variant-numeric:tabular-nums;}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:3px;border-radius:2px;outline:none;cursor:pointer;background:linear-gradient(90deg,var(--gold) var(--fill,50%),rgba(255,255,255,0.06) var(--fill,50%));transition:opacity 0.2s;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:14px;height:14px;border-radius:50%;background:var(--gold);box-shadow:0 1px 6px rgba(201,151,0,0.3);cursor:pointer;transition:box-shadow 0.2s,transform 0.15s;}
+input[type=range]:hover::-webkit-slider-thumb{box-shadow:0 0 0 4px rgba(201,151,0,0.12),0 2px 8px rgba(201,151,0,0.3);transform:scale(1.1);}
+.slider-note{font-size:8px;color:rgba(255,255,255,0.12);margin-bottom:10px;display:flex;align-items:center;gap:4px;}
+.slider-note .cms-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);}
+
+/* Tier selector */
+.tier-section{padding:14px 28px 20px;border-top:1px solid rgba(255,255,255,0.04);}
+.tier-title{font-family:'Instrument Serif',serif;font-size:14px;color:var(--white);margin-bottom:4px;}
+.tier-sub{font-size:9px;color:rgba(255,255,255,0.2);margin-bottom:14px;}
+.tier-cards{display:flex;flex-direction:column;gap:8px;}
+.tier-card{padding:14px 16px 14px 20px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;cursor:pointer;transition:all 0.3s;position:relative;overflow:hidden;}
+.tier-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:transparent;transition:background 0.3s;border-radius:10px 0 0 10px;}
+.tier-card:hover{background:rgba(255,255,255,0.04);transform:translateX(2px);}
+.tier-card.active{border-color:rgba(201,151,0,0.3);background:rgba(201,151,0,0.04);}
+.tier-card.active::before{background:linear-gradient(180deg,var(--gold),rgba(201,151,0,0.3));}
+.tier-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;}
+.tier-name{font-size:13px;font-weight:600;color:rgba(255,255,255,0.45);transition:color 0.3s;}
+.tier-card.active .tier-name{color:var(--white);}
+.tier-pct{font-size:12px;font-weight:700;color:rgba(255,255,255,0.18);font-variant-numeric:tabular-nums;transition:color 0.3s;}
+.tier-card.active .tier-pct{color:var(--gold);}
+.tier-desc{font-size:10px;color:rgba(255,255,255,0.13);line-height:1.5;transition:color 0.3s;}
+.tier-card.active .tier-desc{color:rgba(255,255,255,0.3);}
+.tier-includes{font-size:9px;color:rgba(255,255,255,0.1);margin-top:6px;line-height:1.6;max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s;opacity:0;}
+.tier-card.active .tier-includes{max-height:120px;opacity:1;color:rgba(201,151,0,0.35);}
+
+/* ─── ENVELOPE ─── */
+.envelope-scene{position:relative;z-index:1;perspective:1200px;width:520px;height:380px;}
+.envelope-wrap{position:relative;width:100%;height:100%;transform-style:preserve-3d;}
+.envelope{position:absolute;inset:0;background:linear-gradient(170deg,#F5F0E8 0%,#EDE7DA 30%,#E4DCCC 70%,#DDD5C5 100%);border-radius:6px;box-shadow:0 25px 80px rgba(0,0,0,0.4),0 8px 32px rgba(0,0,0,0.2);overflow:hidden;}
+.envelope::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='200' height='200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='.55' numOctaves='5' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='.04'/%3E%3C/svg%3E");pointer-events:none;}
+.envelope::after{content:'';position:absolute;inset:0;border:2px solid transparent;border-image:linear-gradient(135deg,rgba(201,151,0,0.12),rgba(201,151,0,0.35),rgba(212,185,106,0.4),rgba(201,151,0,0.15)) 1;pointer-events:none;z-index:6;}
+.envelope-flap{position:absolute;top:-1px;left:0;right:0;height:180px;background:linear-gradient(170deg,#EDE7DA 0%,#E4DCCC 60%,#DDD5C5 100%);clip-path:polygon(0 0,100% 0,50% 100%);transform-origin:top center;transition:transform 0.9s cubic-bezier(0.4,0,0.15,1);z-index:3;}
+.envelope-flap::before{content:'';position:absolute;inset:0;background:linear-gradient(170deg,rgba(255,255,255,0.15),transparent 60%);pointer-events:none;}
+.wax-seal{position:absolute;top:108px;left:50%;transform:translateX(-50%);z-index:4;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 38% 32%,#DAAB1E,#C99700 30%,#A07800 65%,#7A5C00 90%);box-shadow:0 4px 16px rgba(0,0,0,0.35);transition:all 0.9s;display:flex;align-items:center;justify-content:center;animation:sealBreathe 4s ease-in-out infinite;}
+.wax-seal svg{width:22px;height:22px;fill:rgba(255,255,255,0.55);}
+@keyframes sealBreathe{0%,100%{transform:translateX(-50%) scale(1)}50%{transform:translateX(-50%) scale(1.03)}}
+.envelope-border{position:absolute;inset:14px;border:1px solid rgba(201,151,0,0.12);border-radius:2px;pointer-events:none;z-index:1;}
+.letter{position:absolute;left:22px;right:22px;bottom:22px;top:170px;background:var(--white);border-radius:3px;box-shadow:0 1px 4px rgba(0,0,0,0.06);z-index:2;transition:transform 0.9s cubic-bezier(0.4,0,0.15,1) 0.12s;overflow:hidden;display:flex;flex-direction:column;align-items:center;padding:28px 24px 20px;}
+.letter::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--gold),var(--gold-light),var(--gold));opacity:0.6;}
+.letter-monogram{font-family:'Instrument Serif',serif;font-size:11px;color:var(--gold);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;position:relative;z-index:1;}
+.letter-line{width:48px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin-bottom:14px;position:relative;z-index:1;}
+.letter-heading{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy-deep);text-align:center;line-height:1.35;margin-bottom:10px;position:relative;z-index:1;}
+.letter-subtext{font-size:9px;color:rgba(10,22,40,0.3);text-align:center;line-height:1.6;max-width:280px;position:relative;z-index:1;}
+.envelope-scene.opened .envelope-flap{transform:rotateX(180deg);}
+.envelope-scene.opened .wax-seal{opacity:0;transform:translateX(-50%) scale(0.4) rotate(-15deg);animation:none;}
+.envelope-scene.opened .letter{transform:translateY(-195px);box-shadow:0 16px 56px rgba(0,0,0,0.15);}
+.envelope-cta{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:5;padding:14px 32px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;transition:all 0.3s;box-shadow:0 4px 20px rgba(201,151,0,0.3);white-space:nowrap;}
+.envelope-cta:hover{background:var(--gold-bright);transform:translateX(-50%) translateY(-2px);}
+.envelope-scene.opened .envelope-cta{opacity:0;pointer-events:none;transform:translateX(-50%) translateY(20px);}
+.envelope-scene.waiting .envelope-cta{display:none;}
+.envelope-scene.waiting .wax-seal{animation:sealBreathe 4s ease-in-out infinite;}
+.envelope-scene.waiting .letter-heading::after{content:'Enter your NPI to begin';font-family:'Instrument Sans',sans-serif;display:block;font-size:10px;color:rgba(10,22,40,0.2);font-weight:400;margin-top:10px;letter-spacing:0.5px;}
+.split-right::after{content:'';position:absolute;inset:0;background-image:radial-gradient(1px 1px at 20% 30%,rgba(201,151,0,0.15),transparent),radial-gradient(1px 1px at 70% 20%,rgba(201,151,0,0.1),transparent),radial-gradient(1px 1px at 40% 70%,rgba(201,151,0,0.12),transparent),radial-gradient(1px 1px at 80% 60%,rgba(201,151,0,0.08),transparent);background-size:300px 300px;animation:dustDrift 30s linear infinite;pointer-events:none;z-index:0;}
+@keyframes dustDrift{0%{transform:translate(0,0)}50%{transform:translate(-15px,10px)}100%{transform:translate(0,0)}}
+
+/* ─── OFFER PANEL ─── */
+.offer-panel{position:absolute;inset:0;z-index:10;background:var(--navy-deep);opacity:0;pointer-events:none;transition:opacity 0.5s ease 0.5s;overflow-y:auto;padding:40px 48px;}
+.offer-panel::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent 10%,var(--gold) 30%,var(--gold-light) 50%,var(--gold) 70%,transparent 90%);opacity:0;transition:opacity 0.6s ease 1s;}
+.offer-panel.visible{opacity:1;pointer-events:all;}
+.offer-panel.visible::before{opacity:1;}
+.offer-panel::-webkit-scrollbar{width:4px;}
+.offer-panel::-webkit-scrollbar-thumb{background:rgba(201,151,0,0.12);border-radius:4px;}
+.offer-panel .est-banner,.offer-panel .offer-head,.offer-panel .rev-grid,.offer-panel .vbc-story,.offer-panel .app-pipeline,.offer-panel .countdown-inline,.offer-panel .offer-cta-wrap{opacity:0;transform:translateY(12px);transition:all 0.5s ease;}
+.offer-panel.visible .est-banner{opacity:1;transform:translateY(0);transition-delay:0s;}
+.offer-panel.visible .offer-head{opacity:1;transform:translateY(0);transition-delay:0.1s;}
+.offer-panel.visible .rev-grid{opacity:1;transform:translateY(0);transition-delay:0.2s;}
+.offer-panel.visible .vbc-story{opacity:1;transform:translateY(0);transition-delay:0.35s;}
+.offer-panel.visible .app-pipeline{opacity:1;transform:translateY(0);transition-delay:0.45s;}
+.offer-panel.visible .countdown-inline{opacity:1;transform:translateY(0);transition-delay:0.55s;}
+.offer-panel.visible .offer-cta-wrap{opacity:1;transform:translateY(0);transition-delay:0.6s;}
+
+.offer-head{text-align:center;margin-bottom:36px;}
+.offer-tag{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.offer-tag-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:dotPulse 2s ease infinite;}
+.offer-title{font-family:'Instrument Serif',serif;font-size:clamp(22px,2.5vw,30px);color:var(--white);line-height:1.2;margin-bottom:6px;}
+.offer-title em{font-style:italic;color:var(--gold);}
+.offer-subtitle{font-size:11px;color:rgba(255,255,255,0.25);}
+
+.rev-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:20px;align-items:start;margin-bottom:32px;}
+.rev-card{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:20px;overflow:hidden;}
+.rev-card.current{opacity:0.7;}
+.rev-card.optimized{border-color:rgba(201,151,0,0.2);background:rgba(201,151,0,0.03);}
+.rev-label{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.2);margin-bottom:6px;}
+.rev-card.optimized .rev-label{color:rgba(201,151,0,0.5);}
+.rev-amount{font-family:'Instrument Serif',serif;font-size:32px;color:var(--white);line-height:1;margin-bottom:4px;}
+.rev-card.optimized .rev-amount{color:var(--gold);}
+.rev-detail{font-size:9px;color:rgba(255,255,255,0.15);margin-bottom:14px;}
+.rev-line{display:flex;justify-content:space-between;align-items:center;padding:5px 0;font-size:11px;}
+.rev-line+.rev-line{border-top:1px solid rgba(255,255,255,0.03);}
+.rev-line-name{color:rgba(255,255,255,0.3);}
+.rev-line-val{font-weight:600;color:rgba(255,255,255,0.25);font-variant-numeric:tabular-nums;}
+.rev-card.optimized .rev-line-val{color:rgba(201,151,0,0.7);}
+.rev-section{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.1);margin:10px 0 4px;}
+.rev-card.optimized .rev-section{color:rgba(201,151,0,0.25);}
+
+.rev-arrow{display:flex;flex-direction:column;align-items:center;gap:6px;padding-top:40px;}
+.rev-arrow-circle{width:42px;height:42px;border-radius:50%;background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;}
+.rev-arrow-circle svg{width:16px;height:16px;stroke:var(--gold);fill:none;stroke-width:2;}
+.rev-arrow-gap{font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);font-weight:400;white-space:nowrap;}
+.rev-arrow-sub{font-size:8px;color:rgba(255,255,255,0.15);text-align:center;white-space:nowrap;line-height:1.4;}
+
+.est-banner{display:flex;align-items:flex-start;gap:10px;padding:14px 16px;background:rgba(201,151,0,0.03);border:1px solid rgba(201,151,0,0.08);border-left:2px solid rgba(201,151,0,0.25);border-radius:2px 10px 10px 2px;margin-bottom:32px;}
+.est-banner-icon{flex-shrink:0;margin-top:2px;}
+.est-banner-text{font-size:9px;color:rgba(255,255,255,0.28);line-height:1.7;}
+.est-banner-text strong{color:rgba(255,255,255,0.5);font-weight:600;}
+
+.vbc-story{margin:32px 0;padding:24px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:14px;position:relative;overflow:hidden;}
+.vbc-story::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent 5%,rgba(201,151,0,0.15) 30%,rgba(201,151,0,0.2) 50%,rgba(201,151,0,0.15) 70%,transparent 95%);}
+.vbc-story-head{font-family:'Instrument Serif',serif;font-size:17px;color:var(--white);margin-bottom:5px;}
+.vbc-story-sub{font-size:10px;color:rgba(255,255,255,0.22);line-height:1.7;margin-bottom:18px;}
+.vbc-pills{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;}
+.vbc-pill{padding:6px 12px;background:rgba(201,151,0,0.04);border:1px solid rgba(201,151,0,0.1);border-radius:20px;font-size:10px;color:rgba(201,151,0,0.6);display:flex;align-items:center;gap:5px;}
+.vbc-pill .dot{width:5px;height:5px;border-radius:50%;}
+.vbc-pill .dot.access{background:var(--gold);}
+.vbc-pill .dot.ffs{background:rgba(255,255,255,0.2);}
+.vbc-row{display:flex;gap:12px;margin-bottom:8px;}
+.vbc-block{flex:1;padding:14px;background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04);border-radius:10px;}
+.vbc-block-label{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.15);margin-bottom:4px;}
+.vbc-block.gold{border-color:rgba(201,151,0,0.12);background:rgba(201,151,0,0.03);}
+.vbc-block.gold .vbc-block-label{color:rgba(201,151,0,0.4);}
+.vbc-block-val{font-family:'Instrument Serif',serif;font-size:24px;color:var(--white);line-height:1;}
+.vbc-block.gold .vbc-block-val{color:var(--gold);}
+.vbc-block-note{font-size:8px;color:rgba(255,255,255,0.12);margin-top:2px;}
+.vbc-block.gold .vbc-block-note{color:rgba(201,151,0,0.3);}
+.vbc-footnote{font-size:8px;color:rgba(255,255,255,0.1);margin-top:4px;text-align:center;}
+
+.app-pipeline{margin:36px 0;}
+.app-pipeline-head{font-family:'Instrument Serif',serif;font-size:20px;color:var(--white);text-align:center;margin-bottom:4px;}
+.app-pipeline-sub{font-size:10px;color:rgba(255,255,255,0.2);text-align:center;margin-bottom:28px;line-height:1.6;}
+.app-step{position:relative;padding:20px 24px 20px 72px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;margin-bottom:12px;transition:all 0.3s;}
+.app-step:hover{background:rgba(255,255,255,0.025);border-color:rgba(201,151,0,0.1);}
+.app-step-num{position:absolute;left:20px;top:20px;width:36px;height:36px;border-radius:50%;background:rgba(201,151,0,0.06);border:1px solid rgba(201,151,0,0.15);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:15px;color:var(--gold);}
+.app-step-connector{position:absolute;left:37px;top:56px;bottom:-12px;width:1px;background:linear-gradient(180deg,rgba(201,151,0,0.15),transparent);}
+.app-step:last-child .app-step-connector{display:none;}
+.app-step-title{font-family:'Instrument Serif',serif;font-size:14px;color:var(--white);margin-bottom:3px;}
+.app-step-desc{font-size:10px;color:rgba(255,255,255,0.25);line-height:1.6;margin-bottom:10px;}
+.app-step-detail{font-size:9px;color:rgba(255,255,255,0.15);line-height:1.7;padding:10px 14px;background:rgba(255,255,255,0.02);border-radius:8px;display:none;}
+.app-step.expanded .app-step-detail{display:block;}
+.app-step-toggle{font-size:9px;color:var(--gold);cursor:pointer;display:inline-flex;align-items:center;gap:4px;opacity:0.6;transition:opacity 0.2s;}
+.app-step-toggle:hover{opacity:1;}
+.app-step-btn{display:inline-block;margin-top:10px;padding:8px 20px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);border-radius:4px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;transition:all 0.25s;cursor:pointer;}
+.app-step-btn:hover{background:rgba(201,151,0,0.15);border-color:rgba(201,151,0,0.3);}
+.app-step-btn.primary{background:var(--gold);color:var(--navy-deep);border:none;padding:10px 28px;font-size:10px;}
+.app-step-btn.primary:hover{background:var(--gold-bright);transform:translateY(-1px);}
+.app-checklist{margin:8px 0 0;padding:0;list-style:none;}
+.app-checklist li{font-size:9px;color:rgba(255,255,255,0.2);padding:3px 0;display:flex;align-items:flex-start;gap:6px;line-height:1.5;}
+.app-checklist li::before{content:'';display:inline-block;width:8px;height:8px;border:1px solid rgba(201,151,0,0.2);border-radius:2px;flex-shrink:0;margin-top:2px;}
+.app-checklist li.done{color:rgba(201,151,0,0.4);}
+.app-checklist li.done::before{background:rgba(201,151,0,0.15);border-color:rgba(201,151,0,0.3);}
+.app-what-we-handle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;}
+.app-col{padding:12px;background:rgba(255,255,255,0.015);border-radius:8px;}
+.app-col-label{font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(201,151,0,0.3);margin-bottom:6px;}
+.app-col.provider .app-col-label{color:rgba(255,255,255,0.15);}
+.app-col li::before{display:none;}
+
+.offer-cta-wrap{text-align:center;margin:28px 0 20px;}
+.offer-cta{display:inline-block;padding:14px 40px;background:var(--gold);color:var(--navy-deep);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;border-radius:4px;cursor:pointer;font-family:inherit;text-decoration:none;transition:all 0.3s;}
+.offer-cta:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 8px 30px rgba(201,151,0,0.3);}
+.offer-fine{font-size:9px;color:rgba(255,255,255,0.12);text-align:center;margin-top:8px;line-height:1.5;}
+.countdown-inline{display:flex;align-items:center;justify-content:center;gap:4px;margin:24px 0;}
+.cd-block{background:rgba(201,151,0,0.05);border:1px solid rgba(201,151,0,0.08);border-radius:6px;padding:8px 12px;text-align:center;min-width:52px;}
+.cd-num{font-family:'Instrument Serif',serif;font-size:20px;color:var(--gold);line-height:1;}
+.cd-unit{font-size:7px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-top:2px;}
+.cd-sep{color:rgba(201,151,0,0.15);font-size:18px;font-weight:300;}
+
+.meth{margin-top:40px;border-top:1px solid rgba(255,255,255,0.04);padding-top:24px;position:relative;}
+.meth-toggle{display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 0;user-select:none;transition:opacity 0.2s;}
+.meth-toggle:hover{opacity:0.85;}
+.meth-toggle-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.15);transition:color 0.2s;}
+.meth-toggle:hover .meth-toggle-label{color:rgba(201,151,0,0.4);}
+.meth-toggle-icon{width:16px;height:16px;stroke:rgba(255,255,255,0.15);fill:none;stroke-width:2;transition:transform 0.35s,stroke 0.2s;}
+.meth-toggle:hover .meth-toggle-icon{stroke:rgba(201,151,0,0.4);}
+.meth-toggle.open .meth-toggle-icon{transform:rotate(180deg);}
+.meth-body{display:none;padding:20px 0 0;}
+.meth-toggle.open+.meth-body{display:block;animation:methIn 0.4s ease both;}
+@keyframes methIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.meth-section{margin-bottom:24px;}
+.meth-section-title{font-family:'Instrument Serif',serif;font-size:13px;color:rgba(255,255,255,0.5);margin-bottom:10px;}
+.meth-text{font-size:10px;color:rgba(255,255,255,0.2);line-height:1.7;margin-bottom:8px;}
+.meth-text strong{color:rgba(255,255,255,0.35);font-weight:600;}
+.meth-table{width:100%;border-collapse:collapse;font-size:10px;margin-bottom:12px;}
+.meth-table th{text-align:left;font-size:7px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.12);padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.06);}
+.meth-table td{padding:6px 8px;color:rgba(255,255,255,0.25);border-bottom:1px solid rgba(255,255,255,0.02);vertical-align:top;}
+.meth-table td:first-child{color:rgba(255,255,255,0.35);font-weight:500;white-space:nowrap;}
+.meth-disclosure{font-size:9px;color:rgba(255,255,255,0.12);line-height:1.7;padding:12px 14px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.03);border-radius:8px;}
+
+/* Footer */
+.site-footer{background:var(--navy-deep);border-top:1px solid rgba(201,151,0,0.1);padding:48px 40px 32px;}
+.footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-wordmark{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);letter-spacing:1px;}
+.footer-legal{font-size:11px;color:rgba(255,255,255,0.3);}
+.footer-disclaimer{max-width:1200px;margin:24px auto 0;font-size:10px;color:rgba(255,255,255,0.15);line-height:1.6;}
+.footer-tagline{text-align:center;margin-top:24px;font-family:'Instrument Serif',serif;font-size:13px;color:rgba(201,151,0,0.3);letter-spacing:2px;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .hero-stats{gap:32px;}
+  .hero-stat::after{display:none;}
+  .delta-grid{grid-template-columns:1fr;}
+  .delta-callouts{grid-template-columns:1fr;}
+  .tracks-grid{grid-template-columns:1fr 1fr;}
+  .provide-grid{grid-template-columns:1fr;}
+  .federal-row{gap:32px;}
+  .split{flex-direction:column;}
+  .split-left{width:100%;min-width:0;position:relative;top:0;height:auto;}
+  .split-right{min-height:500px;}
+  .envelope-scene{width:90%;max-width:460px;height:340px;}
+  .rev-grid{grid-template-columns:1fr;gap:12px;}
+  .rev-arrow{flex-direction:row;padding:0;}
+  .offer-panel{padding:24px 20px;}
+}
+@media(max-width:768px){
+  .section{padding:60px 20px;}
+  .hero-content{padding:60px 20px 40px;}
+  .tracks-grid{grid-template-columns:1fr;}
+  .panel-section{padding:20px 16px 16px;}
+  .tier-section{padding:16px;}
+  .envelope-scene{height:300px;}
+  .quote-banner{padding:60px 20px;}
+}
+</style>
+</head>
+<body>
+
+<!-- Nav injected by nav.js -->
+<script src="nav.js"></script>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-badge"><span class="pulse-dot"></span> CMS ACCESS Model · Cohort 1 Closing March 20 · Cohort 2 Opens Late 2026</div>
+    <h1>Value-Based Care<br>Is Not Coming. <em>It's Here.</em></h1>
+    <p class="hero-tagline">CMS has set the goal of moving 100% of Traditional Medicare beneficiaries into accountable care by 2030. Over half are already there. The ACCESS Model is a 10-year program that pays providers monthly Outcome-Aligned Payments for managing chronic conditions.</p>
+    <p class="hero-tagline-bold">The only thing standing between you and that revenue is the infrastructure to participate.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">53.4%</div>
+        <div class="hero-stat-label">Traditional Medicare in accountable care</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">$47</div>
+        <div class="hero-stat-label">Avg monthly per-patient OAP</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">10 yrs</div>
+        <div class="hero-stat-label">ACCESS Model program duration</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">43M+</div>
+        <div class="hero-stat-label">Eligible beneficiaries nationwide</div>
+      </div>
+    </div>
+    <div class="hero-cohort">
+      <div class="hero-cohort-inner">
+        <div class="hero-cohort-col active">
+          <div class="hero-cohort-label">Cohort 1</div>
+          <div class="hero-cohort-deadline">Application Deadline: <strong>March 20, 2026</strong></div>
+          <div class="hero-cohort-clock">
+            <div class="hc-block"><div class="hc-num" id="hcD">00</div><div class="hc-unit">Days</div></div>
+            <span class="hc-sep">:</span>
+            <div class="hc-block"><div class="hc-num" id="hcH">00</div><div class="hc-unit">Hrs</div></div>
+            <span class="hc-sep">:</span>
+            <div class="hc-block"><div class="hc-num" id="hcM">00</div><div class="hc-unit">Min</div></div>
+            <span class="hc-sep">:</span>
+            <div class="hc-block"><div class="hc-num" id="hcS">00</div><div class="hc-unit">Sec</div></div>
+          </div>
+        </div>
+        <div class="hero-cohort-divider"></div>
+        <div class="hero-cohort-col">
+          <div class="hero-cohort-label">Cohort 2</div>
+          <div class="hero-cohort-deadline">Applications Open: <strong>Late 2026</strong></div>
+          <div class="hero-cohort-note">Deadline: January 2027. Start your discovery call now — we'll have you ready from day one.</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-cta-row">
+      <a class="btn-gold" href="#calculator">See Your Revenue Projection →</a>
+      <a class="btn-outline" href="https://calendly.com/inpursuit" target="_blank">Schedule Discovery Call</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GOLD TICKER ===== -->
+<div class="gold-ticker">
+  <div class="ticker-track">
+    <span class="ticker-item">CMS Health IT Ecosystem Approved</span>
+    <span class="ticker-item">DoD / VA Validated</span>
+    <span class="ticker-item">95% Interoperability</span>
+    <span class="ticker-item">Zero Upfront Cost</span>
+    <span class="ticker-item">4–6 Week Deployment</span>
+    <span class="ticker-item">$15.2B Total Addressable Market</span>
+    <span class="ticker-item">CMS Health IT Ecosystem Approved</span>
+    <span class="ticker-item">DoD / VA Validated</span>
+    <span class="ticker-item">95% Interoperability</span>
+    <span class="ticker-item">Zero Upfront Cost</span>
+    <span class="ticker-item">4–6 Week Deployment</span>
+    <span class="ticker-item">$15.2B Total Addressable Market</span>
+  </div>
+</div>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section class="how-section">
+  <div class="how-inner">
+    <p class="section-overline reveal" style="text-align:center;">The CMS ACCESS Model — How You Get Paid</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:700px;margin:0 auto 0;">It really is <em>this simple.</em></h2>
+    <div class="how-steps reveal">
+      <div class="how-step">
+        <div class="how-step-num">1</div>
+        <div class="how-step-title">You have patients</div>
+        <div class="how-step-body">Your Medicare patients with <strong>chronic conditions</strong> — diabetes, hypertension, CKD, chronic pain, depression — already qualify.</div>
+      </div>
+      <div class="how-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="how-step">
+        <div class="how-step-num">2</div>
+        <div class="how-step-title">CMS pays you monthly</div>
+        <div class="how-step-body">For each enrolled patient, CMS sends a <strong>monthly Outcome-Aligned Payment</strong>. No visit required. The check comes every month.</div>
+      </div>
+      <div class="how-arrow"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div>
+      <div class="how-step">
+        <div class="how-step-num">3</div>
+        <div class="how-step-title">Your visit revenue stays</div>
+        <div class="how-step-body">ACCESS is <strong>purely additive</strong>. Your existing fee-for-service revenue from office visits, E&M, and procedures doesn't change.</div>
+      </div>
+    </div>
+    <div class="how-math reveal">
+      <div class="how-math-formula"><em>Eligible patients</em> &nbsp;&times;&nbsp; <em>~$47/month</em> &nbsp;&times;&nbsp; <em>12 months</em> &nbsp;=&nbsp; new annual revenue</div>
+      <div class="how-math-example">Example: <strong>4,000 patients</strong> &times; <strong>$47</strong> &times; <strong>12</strong> = <strong>$2.3M/year</strong> in new money from CMS — on top of what you already earn.</div>
+    </div>
+    <p class="how-note reveal">That's the whole model. CMS pays you to manage chronic conditions you're already managing. The only thing standing between you and that revenue is the health IT infrastructure to participate — which is exactly what InPursuit provides, at zero upfront cost.</p>
+    <div style="text-align:center;margin-top:32px;" class="reveal">
+      <a href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank" style="display:inline-flex;align-items:center;gap:10px;padding:12px 28px;background:transparent;border:1px solid rgba(0,0,0,0.12);border-radius:4px;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--navy);text-decoration:none;transition:all 0.3s;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Read the CMS ACCESS Model →
+      </a>
+      <div style="font-size:10px;color:var(--text-muted);margin-top:8px;opacity:0.5;">cms.gov — Official CMS Innovation Center</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WHAT MAKES THE CHECK BIGGER ===== -->
+<section class="accel-section">
+  <div style="max-width:1000px;margin:0 auto;">
+    <p class="section-overline reveal" style="text-align:center;">Accelerators</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:700px;margin:0 auto;">What makes the check <em>bigger.</em></h2>
+    <div class="accel-grid reveal">
+      <div class="accel-card">
+        <div class="accel-card-title">More qualifying patients</div>
+        <div class="accel-card-body">It's per-patient math. The more of your Medicare panel with chronic conditions, the more CMS pays. For most primary care practices, <strong>60–70% of Medicare patients qualify</strong> for at least one track.</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Better outcomes = higher OAPs</div>
+        <div class="accel-card-body">ACCESS payments have a <strong>base + outcome bonus structure</strong>. Hit quality targets and CMS pays more per patient. InPursuit's analytics are designed to maximize this.</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Multiple tracks per patient</div>
+        <div class="accel-card-body">A diabetic with depression can qualify for <strong>CKM and Behavioral Health</strong>. Many chronic patients have overlapping conditions — each track is a separate payment stream.</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">FFS optimization on top</div>
+        <div class="accel-card-body">InPursuit also unlocks <strong>AWV, CCM, RPM, TCM, and BHI billing</strong> you're leaving on the table today. More revenue streams from the same patients — all managed through one infrastructure partnership.</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">10-year compounding</div>
+        <div class="accel-card-body">ACCESS is a <strong>10-year CMS program</strong> (2026–2036). This isn't a one-year grant. It's a decade of monthly checks that compound as your outcomes improve and panel grows.</div>
+      </div>
+      <div class="accel-card">
+        <div class="accel-card-title">Zero-risk entry</div>
+        <div class="accel-card-body">InPursuit charges <strong>nothing upfront</strong>. We operate on a revenue share — we only earn when CMS pays you. If ACCESS underperforms, you haven't lost a dime.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CALCULATOR ===== -->
+<div class="split" id="calculator">
+  <div class="split-left">
+    <div style="padding:24px 28px 0;text-align:center;">
+      <div style="font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);margin-bottom:4px;">See <em style="color:var(--gold);">your</em> numbers.</div>
+      <div style="font-size:11px;color:rgba(255,255,255,0.25);line-height:1.5;margin-bottom:12px;">Enter your NPI — we'll pull your actual CMS data.</div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">Your NPI</div>
+      <div class="panel-sub">We'll pull your CMS registry data and Medicare billing history.</div>
+      <div class="npi-wrap">
+        <input class="npi-input" id="npiInput" type="text" placeholder="10-digit NPI" maxlength="10" inputmode="numeric" onkeydown="if(event.key==='Enter')runLookup()">
+        <button class="npi-btn" id="npiBtn" onclick="runLookup()">Look Up</button>
+      </div>
+      <div class="npi-status" id="npiStatus"></div>
+      <div class="provider-badge" id="providerBadge">
+        <div class="pb-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="pb-info">
+          <div class="pb-name" id="pbName">—</div>
+          <div class="pb-detail" id="pbDetail">—</div>
+          <div class="pb-cms" id="pbCms"></div>
+        </div>
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">Your Patient Panel</div>
+      <div class="panel-sub">Adjust to match your current Medicare FFS patient volume.</div>
+      <div class="slider-group">
+        <div class="slider-row"><span class="slider-label">Medicare FFS Patients</span><span class="slider-val" id="medVal">600</span></div>
+        <input type="range" id="medSlider" min="50" max="5000" step="10" value="600" oninput="onMedSlider(this)">
+      </div>
+      <div class="slider-group">
+        <div class="slider-row"><span class="slider-label">Chronic Condition Prevalence</span><span class="slider-val" id="chronVal">68%</span></div>
+        <input type="range" id="chronSlider" min="20" max="95" step="1" value="68" oninput="onChronSlider(this)">
+      </div>
+    </div>
+    <div class="panel-section">
+      <div class="panel-title">Your Current Billing</div>
+      <div class="panel-sub" id="billingSubtext">Estimate your current capture rates. Programs with CMS claims data will lock automatically.</div>
+      <div class="slider-group" id="grpAWV"><div class="slider-row"><span class="slider-label">Annual Wellness Visits</span><span class="slider-val" id="awvVal">28%</span></div><input type="range" id="awvSlider" min="0" max="80" step="1" value="28" oninput="onBillingSlider(this,'awv')"><div class="slider-note" id="awvNote"></div></div>
+      <div class="slider-group" id="grpCCM"><div class="slider-row"><span class="slider-label">Chronic Care Mgmt (CCM)</span><span class="slider-val" id="ccmVal">5%</span></div><input type="range" id="ccmSlider" min="0" max="40" step="1" value="5" oninput="onBillingSlider(this,'ccm')"><div class="slider-note" id="ccmNote"></div></div>
+      <div class="slider-group" id="grpRPM"><div class="slider-row"><span class="slider-label">Remote Patient Mon. (RPM)</span><span class="slider-val" id="rpmVal">2%</span></div><input type="range" id="rpmSlider" min="0" max="25" step="1" value="2" oninput="onBillingSlider(this,'rpm')"><div class="slider-note" id="rpmNote"></div></div>
+      <div class="slider-group" id="grpTCM"><div class="slider-row"><span class="slider-label">Transitional Care (TCM)</span><span class="slider-val" id="tcmVal">1.5%</span></div><input type="range" id="tcmSlider" min="0" max="12" step="0.5" value="1.5" oninput="onBillingSlider(this,'tcm')"><div class="slider-note" id="tcmNote"></div></div>
+      <div class="slider-group" id="grpBHI"><div class="slider-row"><span class="slider-label">Behavioral Health (BHI)</span><span class="slider-val" id="bhiVal">1%</span></div><input type="range" id="bhiSlider" min="0" max="20" step="1" value="1" oninput="onBillingSlider(this,'bhi')"><div class="slider-note" id="bhiNote"></div></div>
+    </div>
+    <div class="tier-section" style="padding:20px 28px 28px;border-top:1px solid rgba(255,255,255,0.04);">
+      <div style="display:flex;align-items:center;gap:10px;padding:14px 16px;background:rgba(201,151,0,0.03);border:1px solid rgba(201,151,0,0.08);border-left:2px solid rgba(201,151,0,0.25);border-radius:2px 10px 10px 2px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(201,151,0,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        <div style="font-size:10px;color:rgba(255,255,255,0.28);line-height:1.6;"><strong style="color:rgba(255,255,255,0.5);">Revenue share:</strong> Provider keeps <strong style="color:var(--gold);">65–75%</strong> of all new revenue generated through the partnership. This projection uses 70%. Tier details discussed during discovery.</div>
+      </div>
+    </div>
+  </div>
+  <div class="split-right">
+    <div class="envelope-scene waiting" id="envelopeScene">
+      <div class="envelope-wrap">
+        <div class="envelope"><div class="envelope-border"></div></div>
+        <div class="envelope-flap"></div>
+        <div class="wax-seal"><svg viewBox="0 0 24 24"><path d="M12 2L9 7H3l5 4-2 7 6-4 6 4-2-7 5-4h-6z"/></svg></div>
+        <div class="letter">
+          <div class="letter-monogram">InPursuit Health</div>
+          <div class="letter-line"></div>
+          <div class="letter-heading" id="letterHeading">Your ACCESS Model<br>Revenue Offer</div>
+          <div class="letter-subtext" id="letterSubtext">A personalized revenue projection prepared for your practice using CMS Medicare data and ACCESS Model benchmarks.</div>
+        </div>
+      </div>
+      <button class="envelope-cta" id="envelopeCta" onclick="openEnvelope()">Open Your Offer</button>
+    </div>
+    <div class="offer-panel" id="offerPanel">
+      <div class="est-banner"><svg class="est-banner-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="rgba(201,151,0,0.5)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg><div class="est-banner-text"><strong>Revenue Estimator — Not a Guarantee.</strong> This projection uses CMS-published reimbursement rates, your NPI-level Medicare billing data (where available), and specialty benchmarks. All figures are illustrative estimates. A validated projection using live claims data will be prepared during your discovery engagement. <a href="#methodology" onclick="openMeth();return false;" style="color:var(--gold);text-decoration:underline;">Full methodology below.</a></div></div>
+      <div class="offer-head"><div class="offer-tag"><span class="offer-tag-dot"></span> Your Revenue Projection</div><div class="offer-title">ACCESS Is Just the Beginning.<br><em>We Optimize Everything.</em></div><div class="offer-subtitle" id="offerProviderLine">—</div></div>
+      <div class="rev-grid">
+        <div class="rev-card current"><div class="rev-label" id="curLabel">Current Estimated Capture</div><div class="rev-amount" id="curTotal">$0</div><div class="rev-detail" id="curDetail">Annual VBC/care mgmt revenue</div><div class="rev-section">Fee-for-Service Programs · 100% Yours</div><div class="rev-line"><span class="rev-line-name">Annual Wellness</span><span class="rev-line-val" id="rCurAWV">—</span></div><div class="rev-line"><span class="rev-line-name">Chronic Care Mgmt</span><span class="rev-line-val" id="rCurCCM">—</span></div><div class="rev-line"><span class="rev-line-name">Remote Patient Mon.</span><span class="rev-line-val" id="rCurRPM">—</span></div><div class="rev-line"><span class="rev-line-name">Transitional Care</span><span class="rev-line-val" id="rCurTCM">—</span></div><div class="rev-line"><span class="rev-line-name">Behavioral Health</span><span class="rev-line-val" id="rCurBHI">—</span></div></div>
+        <div class="rev-arrow"><div class="rev-arrow-circle"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></div><div class="rev-arrow-gap" id="gapAmount">+$0</div><div class="rev-arrow-sub">additional annual<br>revenue</div></div>
+        <div class="rev-card optimized"><div class="rev-label">Optimized with InPursuit</div><div class="rev-amount" id="optTotal">$0</div><div class="rev-detail">ACCESS OAPs + optimized FFS capture</div><div class="rev-section">CMS ACCESS Model · Your <span id="tierPctInline">70</span>% Share</div><div class="rev-line"><span class="rev-line-name">ACCESS OAPs</span><span class="rev-line-val" id="rOptAccess">—</span></div><div class="rev-section">Fee-for-Service · InPursuit Optimized · Your Share</div><div class="rev-line"><span class="rev-line-name">Annual Wellness</span><span class="rev-line-val" id="rOptAWV">—</span></div><div class="rev-line"><span class="rev-line-name">Chronic Care Mgmt</span><span class="rev-line-val" id="rOptCCM">—</span></div><div class="rev-line"><span class="rev-line-name">Remote Patient Mon.</span><span class="rev-line-val" id="rOptRPM">—</span></div><div class="rev-line"><span class="rev-line-name">Transitional Care</span><span class="rev-line-val" id="rOptTCM">—</span></div><div class="rev-line"><span class="rev-line-name">Behavioral Health</span><span class="rev-line-val" id="rOptBHI">—</span></div></div>
+      </div>
+      <div class="vbc-story"><div class="vbc-story-head">One Partnership. Every Revenue Stream.</div><div class="vbc-story-sub">ACCESS is your entry into value-based care with InPursuit — but we don't stop there. Our infrastructure optimizes every billable care management program for your panel.</div><div class="vbc-pills"><div class="vbc-pill"><span class="dot access"></span>ACCESS OAPs — new revenue via CMS</div><div class="vbc-pill"><span class="dot ffs"></span>AWV — close the completion gap</div><div class="vbc-pill"><span class="dot ffs"></span>CCM — enroll chronic patients at scale</div><div class="vbc-pill"><span class="dot ffs"></span>RPM — automate device monitoring</div><div class="vbc-pill"><span class="dot ffs"></span>TCM — capture every discharge</div><div class="vbc-pill"><span class="dot ffs"></span>BHI — integrate behavioral health billing</div></div><div class="vbc-row"><div class="vbc-block"><div class="vbc-block-label">ACCESS OAPs Revenue</div><div class="vbc-block-val" id="vbcAccess">$0</div><div class="vbc-block-note">Your <span id="vbcTierPct">70</span>% share · new money from CMS</div></div><div class="vbc-block gold"><div class="vbc-block-label">FFS Optimization Revenue</div><div class="vbc-block-val" id="vbcFFS">$0</div><div class="vbc-block-note">Your share · AWV + CCM + RPM + TCM + BHI</div></div></div><div class="vbc-footnote">Revenue share applies to all new revenue generated through the InPursuit partnership.</div></div>
+      <div style="text-align:center;margin:28px 0 8px;">
+        <div style="font-family:'Instrument Serif',serif;font-size:16px;color:var(--white);margin-bottom:4px;">Cohort 1 Application Deadline</div>
+        <div style="font-size:10px;color:rgba(255,255,255,0.25);letter-spacing:1px;text-transform:uppercase;">March 20, 2026</div>
+      </div>
+      <div class="countdown-inline"><div class="cd-block"><div class="cd-num" id="cdD">00</div><div class="cd-unit">Days</div></div><span class="cd-sep">:</span><div class="cd-block"><div class="cd-num" id="cdH">00</div><div class="cd-unit">Hrs</div></div><span class="cd-sep">:</span><div class="cd-block"><div class="cd-num" id="cdM">00</div><div class="cd-unit">Min</div></div><span class="cd-sep">:</span><div class="cd-block"><div class="cd-num" id="cdS">00</div><div class="cd-unit">Sec</div></div></div>
+      <div style="text-align:center;margin:12px 0 24px;padding:14px 20px;background:rgba(201,151,0,0.03);border:1px solid rgba(201,151,0,0.08);border-radius:10px;max-width:520px;margin-left:auto;margin-right:auto;">
+        <div style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.7;">
+          <strong style="color:var(--gold);">Missed Cohort 1?</strong>&nbsp; Cohort 2 applications open late 2026 with a <strong style="color:rgba(255,255,255,0.7);">January 2027 deadline</strong>. The opportunity isn't going anywhere — ACCESS is a 10-year program. <span style="color:rgba(255,255,255,0.3);">Start your discovery call now and we'll have you ready for Cohort 2 from day one.</span>
+        </div>
+      </div>
+      <div class="offer-cta-wrap"><a class="offer-cta" href="https://calendly.com/inpursuit" target="_blank">Schedule Your Discovery Call</a></div>
+      <div class="offer-fine">Estimates only — not a promise of payment.</div>
+      <div class="meth" id="methodology" style="margin-top:32px;border-top:1px solid rgba(255,255,255,0.04);padding-top:24px;">
+        <div style="display:flex;align-items:center;gap:16px;padding:20px 24px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:0.6;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+          <div style="flex:1;">
+            <div style="font-family:'Instrument Serif',serif;font-size:14px;color:var(--white);margin-bottom:3px;">Estimation Methodology & Data Sources</div>
+            <div style="font-size:10px;color:rgba(255,255,255,0.22);line-height:1.6;">Complete methodology including CMS data sources, HCPCS code mapping, reimbursement rate derivations, ACCESS Model OAP calculations, specialty benchmarks, and full disclaimers. Prepared for CFO / finance review.</div>
+          </div>
+          <a href="InPursuit_ACCESS_Methodology.pdf" download style="padding:10px 24px;background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.15);border-radius:4px;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;white-space:nowrap;transition:all 0.25s;flex-shrink:0;">Download PDF</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== SERVICE TIERS ===== -->
+<section class="tiers-section">
+  <div class="tiers-inner">
+    <p class="section-overline reveal" style="text-align:center;color:rgba(255,255,255,0.25);">Partnership Model</p>
+    <h2 class="section-headline reveal" style="text-align:center;color:var(--white);">Zero upfront cost. <em>You choose the level of support.</em></h2>
+    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,0.35);max-width:600px;margin:0 auto;line-height:1.7;" class="reveal">Revenue share applies to all new revenue generated through the partnership — ACCESS OAPs and FFS optimization. You pay nothing until CMS pays you.</p>
+    <div class="tiers-grid reveal">
+      <div class="tier-card-v2">
+        <div class="tier-v2-name">Full Service</div>
+        <div class="tier-v2-pct">65% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 35%</div>
+        <div class="tier-v2-desc">We handle everything. You focus on patient care.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> Application prep, EHR integration, TETRA deployment, care coordination staffing, quality tracking, CMS submission, compliance monitoring, dedicated account manager.</div>
+      </div>
+      <div class="tier-card-v2 featured">
+        <div class="tier-v2-name">Supported</div>
+        <div class="tier-v2-pct">70% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 30%</div>
+        <div class="tier-v2-desc">Your team runs day-to-day. We provide the technology and oversight.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> Application prep, TETRA deployment, staff training, compliance dashboard, quarterly audits, CMS submission support, technical helpdesk.</div>
+      </div>
+      <div class="tier-card-v2">
+        <div class="tier-v2-name">Infrastructure Only</div>
+        <div class="tier-v2-pct">75% <span>yours</span></div>
+        <div class="tier-v2-sublabel">InPursuit keeps 25%</div>
+        <div class="tier-v2-desc">Your practice manages all operations. We provide the platform.</div>
+        <div class="tier-v2-includes"><strong>Includes:</strong> Application prep, TETRA license, API access, data interoperability layer, FHIR/TEFCA connectivity, self-service analytics.</div>
+      </div>
+    </div>
+    <p class="tiers-footnote reveal">Revenue share applies to all new revenue generated through the partnership. Tier selection is finalized during the partnership agreement. Most small and mid-size practices choose Supported or Full Service.</p>
+  </div>
+</section>
+
+<!-- ===== THE COST OF STANDING STILL ===== -->
+<section class="section delta-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">The Cost of Standing Still</p>
+    <h2 class="section-headline reveal">Your patients are already eligible.<br><em>CMS is ready to pay.</em></h2>
+    <p class="section-desc reveal">Fee-for-service revenue only flows when patients visit. There are no payments for outcomes, no payments for care coordination between visits — and reimbursement rates are declining every year. ACCESS changes that equation.</p>
+
+    <div class="delta-grid reveal">
+      <div class="delta-card">
+        <div class="delta-card-tag">Without ACCESS · Fee-for-Service Only</div>
+        <div class="delta-card-amount">$1.9M – $2.8M</div>
+        <div class="delta-card-note">Annual revenue from 4,000 chronic patients — declining year over year as Medicare conversion factors shrink</div>
+        <ul class="delta-breakdown">
+          <li><span>Office / E&M Visits (3–4x/yr)</span><span>$1.6M – $2.1M</span></li>
+          <li><span>Chronic Care Mgmt (~15% billed)</span><span>$108K – $264K</span></li>
+          <li><span>Annual Wellness & Misc.</span><span>$200K – $400K</span></li>
+        </ul>
+      </div>
+      <div class="delta-card with">
+        <div class="delta-card-tag">With ACCESS + InPursuit</div>
+        <div class="delta-card-amount">$3.5M – $4.4M</div>
+        <div class="delta-card-note">Same patients, same clinical work — plus $1.58M/yr in new Outcome-Aligned Payments that grow as outcomes improve</div>
+        <ul class="delta-breakdown">
+          <li><span>Existing FFS Revenue (continues)</span><span>$1.9M – $2.8M</span></li>
+          <li><span>ACCESS OAPs (provider's 70% share)</span><span>+$1.58M</span></li>
+          <li><span>FFS Optimization Uplift</span><span>included</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="delta-callouts reveal">
+      <div class="delta-callout">
+        <div class="delta-callout-label">Annual Revenue Gap</div>
+        <div class="delta-callout-val">+$1.58M</div>
+        <div class="delta-callout-sub">Net new revenue at zero upfront cost</div>
+      </div>
+      <div class="delta-callout">
+        <div class="delta-callout-label">10-Year Program Value</div>
+        <div class="delta-callout-val">$15M+</div>
+        <div class="delta-callout-sub">Cumulative revenue left on the table</div>
+      </div>
+      <div class="delta-callout decline">
+        <div class="delta-callout-label">FFS Trajectory</div>
+        <div class="delta-callout-val">–2.83%</div>
+        <div class="delta-callout-sub">2025 Medicare conversion factor cut</div>
+      </div>
+    </div>
+    <p class="delta-example-note reveal">Example: Mid-size primary care practice, ~6,400 Medicare FFS patients, ~4,000 with qualifying chronic conditions. Enter your NPI below to see your practice-specific projection.</p>
+  </div>
+</section>
+
+<!-- ===== FOUR CLINICAL TRACKS ===== -->
+<section class="section tracks-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">ACCESS Model Clinical Tracks</p>
+    <h2 class="section-headline reveal">Four tracks. <em>One infrastructure.</em></h2>
+    <p class="section-desc reveal">CMS pays Outcome-Aligned Payments monthly across four clinical tracks. Most primary care practices have eligible patients across all four.</p>
+    <div class="tracks-grid reveal">
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg></div>
+        <div class="track-name">Early CKM</div>
+        <div class="track-pmpm">$40 <span>PMPM</span></div>
+        <div class="track-desc">Cardiometabolic risk prevention. Targets patients with early-stage diabetes, hypertension, and pre-CKD before progression.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="track-name">CKM</div>
+        <div class="track-pmpm">$55 <span>PMPM</span></div>
+        <div class="track-desc">Advanced cardiometabolic disease management. Diabetes with complications, CKD stages 3–4, heart failure.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg></div>
+        <div class="track-name">Musculoskeletal</div>
+        <div class="track-pmpm">$45 <span>PMPM</span></div>
+        <div class="track-desc">Chronic pain and MSK condition management. Osteoarthritis, chronic back pain, post-surgical rehab.</div>
+      </div>
+      <div class="track-card">
+        <div class="track-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 3.4 2.1 6.3 5 7.5V20a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-2.5c2.9-1.2 5-4.1 5-7.5a8 8 0 0 0-8-8z"/><line x1="10" y1="14" x2="10" y2="14.01"/><line x1="14" y1="14" x2="14" y2="14.01"/></svg></div>
+        <div class="track-name">Behavioral Health</div>
+        <div class="track-pmpm">$50 <span>PMPM</span></div>
+        <div class="track-desc">Integrated behavioral health. Depression, anxiety, SUD screening and co-management with primary care.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== QUOTE ===== -->
+<section class="quote-banner">
+  <div class="quote-content reveal">
+    <p class="quote-text">CMS is willing to pay you to take better care of your chronic patients. The only thing standing between you and that revenue is <em>the infrastructure to participate.</em> That's what we provide — and it costs you <em>nothing to get started.</em></p>
+    <div class="quote-attrib">The InPursuit Revenue Case — Same Patients · Same Clinical Work · Zero Upfront Cost</div>
+  </div>
+</section>
+
+<!-- ===== WHAT WE PROVIDE ===== -->
+<section class="section dark-section">
+  <div class="section-inner">
+    <p class="section-overline reveal">ACCESS-as-a-Service</p>
+    <h2 class="section-headline reveal">Everything you need. <em>Nothing upfront.</em></h2>
+    <p class="section-desc reveal">InPursuit eliminates the three barriers that keep providers out of value-based care: no budget for technology, no IT staff, and no bandwidth for the complexity. We deploy in 4–6 weeks, not 6–18 months.</p>
+    <div class="provide-grid reveal">
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1"/></svg></div>
+        <h4>ACCESS Application Prep</h4>
+        <p>Pre-filled application with all technical sections completed. You confirm practice details and submit to CMS.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+        <h4>TETRA Platform Deployment</h4>
+        <p>CMS-approved health IT infrastructure. 4–6 week go-live. 95% interoperability. No rip-and-replace required.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg></div>
+        <h4>EHR Integration</h4>
+        <p>FHIR-native, TEFCA-compliant. Connects to your existing EHR or provides standalone workaround if needed.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="8" y1="16" x2="8" y2="16.01"/><line x1="16" y1="16" x2="16" y2="16.01"/></svg></div>
+        <h4>AI Patient Identification</h4>
+        <p>Automated identification of eligible patients across all four clinical tracks. No manual chart review.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10"/><path d="M18 20V4"/><path d="M6 20v-4"/></svg></div>
+        <h4>CMS Compliance & Reporting</h4>
+        <p>Continuous quality measure tracking, documentation support, and automated CMS submission.</p>
+      </div>
+      <div class="provide-card">
+        <div class="provide-card-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
+        <h4>Ongoing Optimization</h4>
+        <p>Maximize OAPs through outcome improvement, FFS capture rate optimization, and performance analytics.</p>
+      </div>
+    </div>
+    <div class="federal-row reveal">
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-4h6v4"/><line x1="12" y1="9" x2="12" y2="13"/></svg></div>
+        <div class="federal-badge-label">CMS Approved</div>
+        <div class="federal-badge-detail">Health IT Ecosystem · 3 categories</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div class="federal-badge-label">DoD / VA Validated</div>
+        <div class="federal-badge-detail">Outperformed IBM, SAP, Oracle</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div>
+        <div class="federal-badge-label">95% Interoperability</div>
+        <div class="federal-badge-detail">1.8M+ transactions/hour</div>
+      </div>
+      <div class="federal-badge">
+        <div class="federal-badge-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="federal-badge-label">4–6 Week Deploy</div>
+        <div class="federal-badge-detail">vs. 6–18 months traditional</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CMS REQUIRES / INPURSUIT DELIVERS ===== -->
+<section class="req-section">
+  <div class="req-inner">
+    <p class="section-overline reveal" style="text-align:center;">What CMS Requires to Participate</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:700px;margin:0 auto;">InPursuit makes the complicated simple.<br><em>Results Matter.&trade;</em></h2>
+    <p class="req-intro reveal">The ACCESS application asks detailed questions about your technology infrastructure, data exchange capabilities, FHIR compliance, care coordination workflows, and clinical oversight. Most practices can't answer these on their own. That's the point.</p>
+    <div class="req-grid reveal">
+      <div class="req-col-head cms">CMS Requires</div>
+      <div class="req-col-head ip">InPursuit Delivers</div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">FHIR-Based Data Reporting API</div><div class="req-cell-body">Report OAP Measures to CMS via FHIR API. No spreadsheets, no manual uploads.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">TETRA is FHIR-native</div><div class="req-cell-body">Built on FHIR R4 from day one. Automated OAP Measure submission to CMS APIs. No development required on your end.</div></div></div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">Electronic Care Coordination</div><div class="req-cell-body">Electronically share clinical updates with patients' PCPs and referring providers.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">Automated clinical updates</div><div class="req-cell-body">TETRA generates and transmits care coordination reports to PCPs via secure messaging, Direct protocol, or FHIR push — on your behalf, automatically.</div></div></div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">CMS Eligibility & Alignment APIs</div><div class="req-cell-body">Check beneficiary eligibility and process enrollment through CMS APIs.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">One-click eligibility checks</div><div class="req-cell-body">Patient eligibility verification and enrollment handled inside TETRA. Your staff sees green/red — eligible or not. We handle the API calls.</div></div></div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">Track-Specific G-Code Billing</div><div class="req-cell-body">Submit monthly claims using new CMS-defined ACCESS G-codes per clinical track.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">Automated G-code submission</div><div class="req-cell-body">TETRA maps patients to tracks, generates claims with correct G-codes, and submits monthly. You don't touch billing.</div></div></div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">Outcome Measure Targets</div><div class="req-cell-body">Hit clinical thresholds (BP, HbA1c, PHQ-9, pain scores) for at least 50% of patients to earn full payment.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">AI-driven care gap alerts</div><div class="req-cell-body">TETRA tracks every patient's progress against OAP targets in real time. Care gap alerts flag at-risk patients before they miss thresholds. Your team intervenes — we make sure no one falls through the cracks.</div></div></div>
+
+      <div class="req-cell cms-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">HIPAA Compliance & FDA Oversight</div><div class="req-cell-body">Maintain covered entity status. Software devices must meet FDA requirements.</div></div></div>
+      <div class="req-cell ip-cell"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">Enterprise-grade compliance</div><div class="req-cell-body">TETRA is HIPAA-compliant, TEFCA-ready, and built for CMS oversight. BAA included. Compliance monitoring and audit trail built in.</div></div></div>
+
+      <div class="req-cell cms-cell" style="border-bottom:none;"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#94A3B8" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><div><div class="req-cell-title">Medicare-Enrolled Medical Director</div><div class="req-cell-body">Your organization must designate a Medicare-enrolled physician for clinical oversight and model compliance.</div></div></div>
+      <div class="req-cell ip-cell" style="border-bottom:none;"><div class="req-icon"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C99700" stroke-width="2" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg></div><div><div class="req-cell-title">We help you designate yours</div><div class="req-cell-body">Your practice names one of your own physicians as Medical Director. InPursuit provides the compliance framework, clinical protocols, quality dashboards, and ongoing support so they can fulfill the role without it becoming a second job.</div></div></div>
+    </div>
+    <div class="req-ding reveal">
+      <div class="req-ding-head">Every box. Already checked.</div>
+      <div class="req-ding-sub">InPursuit isn't a vendor you bolt on after the fact. We're the <strong>infrastructure layer that makes your ACCESS application possible</strong>. We pre-fill the technology sections, handle the API integrations, automate the reporting, and monitor the outcomes. <strong>You deliver the care. We handle everything else.</strong></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APPLY WITH INPURSUIT ===== -->
+<section class="apply-section">
+  <div class="apply-inner">
+    <p class="section-overline reveal" style="text-align:center;color:rgba(255,255,255,0.25);">Get Started</p>
+    <h2 class="section-headline reveal" style="text-align:center;color:var(--white);">Apply with InPursuit as your <em>technology provider.</em></h2>
+    <div class="apply-card reveal">
+      <div class="apply-card-icon"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><path d="M9 15l2 2 4-4"/></svg></div>
+      <div class="apply-card-title">Get Your Pre-Filled ACCESS Application</div>
+      <div class="apply-card-body">To apply for ACCESS, CMS requires you to identify a <strong>technology provider</strong>. InPursuit pre-fills the technology sections of your application — platform capabilities, data exchange, FHIR/TEFCA compliance, and care coordination infrastructure. <strong>You fill in your practice details. Takes about 5 minutes.</strong></div>
+      <a class="apply-btn" href="https://calendly.com/inpursuit" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Get Your Pre-Filled Application →
+      </a>
+    </div>
+    <div class="apply-resources reveal">
+      <a class="apply-resource" href="https://www.cms.gov/priorities/innovation/files/access-rfa.pdf" target="_blank">
+        <div class="apply-resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <div class="apply-resource-text">
+          <div class="apply-resource-title">CMS ACCESS Model — Request for Applications</div>
+          <div class="apply-resource-sub">Official CMS application document (PDF) · cms.gov</div>
+        </div>
+      </a>
+      <a class="apply-resource" href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank">
+        <div class="apply-resource-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div class="apply-resource-text">
+          <div class="apply-resource-title">CMS ACCESS Model — Payment Amounts & Rates</div>
+          <div class="apply-resource-sub">Official model page with payment details, FAQs, and updates · cms.gov</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <div class="faq-inner">
+    <p class="section-overline reveal" style="text-align:center;">Questions</p>
+    <h2 class="section-headline reveal" style="text-align:center;max-width:600px;margin:0 auto 48px;">How InPursuit turns the model into <em>actual revenue.</em></h2>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does InPursuit increase Annual Wellness Visit (AWV) completion?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Most practices complete AWVs for only 25-30% of their Medicare panel — not because patients don't qualify, but because <strong>no one is proactively scheduling them</strong>. TETRA identifies every Medicare patient due for an AWV, generates automated outreach (calls, texts, patient portal messages), and flags them at check-in so your front desk never misses one. Practices using proactive AWV workflows consistently hit <strong>45-60% completion rates</strong> — nearly doubling revenue from a visit you're already equipped to deliver.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does InPursuit scale Chronic Care Management (CCM) enrollment?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">CCM pays $62/month per enrolled patient, but most practices only enroll 5% of eligible patients because <strong>the administrative burden is crushing</strong> — consent forms, 20-minute monthly touchpoints, documentation, billing. TETRA automates the enrollment workflow: identifies patients with 2+ chronic conditions, generates consent, assigns care coordination tasks to your team (or ours in Full Service), tracks the 20-minute clinical time requirement, and submits 99490/99491 claims automatically. Target: <strong>15-25% enrollment</strong> of your chronic panel.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does InPursuit make Remote Patient Monitoring (RPM) work at scale?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">RPM is one of the highest-revenue programs ($84/month effective) but most practices enroll under 2% because <strong>managing devices and data is a full-time job</strong>. TETRA integrates with connected devices (BP cuffs, glucose monitors, pulse oximeters), automatically collects 16+ days of readings per month (the CMS billing threshold), flags abnormal values for clinical review, and generates the documentation for 99453-99458 billing. Your clinician reviews alerts — TETRA handles everything else. Target: <strong>10-18% of your chronic panel</strong> on active RPM.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How do we hit the 50% Outcome Attainment Threshold to earn full ACCESS payment?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">CMS requires that at least <strong>50% of your aligned patients meet their OAP Measure targets</strong> (e.g., 15mmHg BP reduction, HbA1c control) to earn 100% of payments. Below 50%, payment reduces proportionally. TETRA tracks every patient's progress against their specific targets in real time. A dashboard shows you exactly where each patient stands — green (on track), yellow (at risk), red (needs intervention). <strong>Care gap alerts</strong> fire automatically when a patient is trending toward missing their target, so your team can intervene with medication adjustments, follow-up visits, or care coordination before the assessment period ends.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What does InPursuit actually do vs. what does my practice do?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>You deliver patient care.</strong> That's it. InPursuit handles: ACCESS application preparation, TETRA platform deployment, EHR integration (or standalone if needed), patient eligibility verification, enrollment workflows, care gap identification, quality tracking, CMS data reporting via FHIR APIs, G-code claim submission, compliance monitoring, and ongoing optimization. In Full Service tier, we also provide care coordination staffing. <strong>Your physicians and staff do what they already do</strong> — see patients, manage medications, order labs. We make sure every billable activity is captured, every outcome is tracked, and every dollar flows from CMS to your practice.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How long does it take to go live?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner"><strong>4-6 weeks</strong> from signed partnership agreement to live platform. Week 1: discovery and patient data extract. Week 2: TETRA configuration and clinical track mapping. Week 3: EHR integration or standalone setup. Week 4: staff training and workflow walkthroughs. Weeks 5-6: go-live with a subset of patients, then expand. Traditional health IT implementations take 6-18 months. We move fast because <strong>TETRA is pre-built</strong> — it's configured per practice, not custom-coded.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What if we don't have a modern EHR?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">TETRA works with <strong>Epic, Cerner, eClinicalWorks, Athena, and others</strong> via API integration. But if your EHR is outdated or you're still on paper, we have a <strong>standalone option</strong>: your staff uses TETRA directly for ACCESS workflows, with simple weekly patient roster uploads (CSV/Excel). We handle data matching and deduplication. You can add EHR integration later when you're ready. This approach gets rural clinics and small practices live in weeks, not months.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">What if ACCESS underperforms or CMS changes the model?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Because InPursuit operates on a <strong>revenue share with zero upfront cost</strong>, you bear no financial risk. If ACCESS OAPs come in lower than projected, you haven't lost an investment — you just earn less. If CMS modifies the model, TETRA's architecture is designed for regulatory adaptability. And because we also optimize your <strong>existing FFS billing</strong> (AWV, CCM, RPM, TCM, BHI), you're generating incremental revenue even before ACCESS OAPs start flowing in July 2026.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">How does Transitional Care Management (TCM) capture work?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">TCM pays $165-$225 per eligible discharge, but most practices capture under 2% because <strong>they don't know when their patients are discharged</strong>. TETRA integrates with ADT (Admit/Discharge/Transfer) feeds from local hospitals, automatically identifies your patients' discharges, triggers a 2-business-day interactive contact (required by CMS), schedules the 7- or 14-day follow-up visit, and generates 99495/99496 documentation. Every hospital discharge becomes a revenue event instead of a missed opportunity.</div></div>
+    </div>
+
+    <div class="faq-item reveal" onclick="this.classList.toggle('open')">
+      <div class="faq-q"><span class="faq-q-text">Can I participate in ACCESS and still be in an ACO?</span><div class="faq-q-icon"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></div></div>
+      <div class="faq-a"><div class="faq-a-inner">Yes. <strong>ACCESS is designed to complement ACO and other risk-bearing arrangements</strong>. CMS has stated that for 2026-2027, ACCESS OAPs will have no impact on ACO benchmark or performance year calculations (MSSP and ACO REACH). Starting in 2028, ACCESS expenditures will be included in ACO calculations. Risk-bearing entities can refer their aligned beneficiaries to ACCESS participants — and referring providers earn a new Co-Management Payment (approximately $100/year per beneficiary) for documented review of patient updates.</div></div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div><span class="footer-wordmark">InPursuit Health</span></div>
+    <span class="footer-legal">&copy; 2026 InPursuit Health, LLC. All rights reserved.</span>
+  </div>
+  <p class="footer-disclaimer">InPursuit Health is a veteran-owned healthcare technology company providing data interoperability and orchestration infrastructure. The information on this site is for informational purposes only and does not constitute medical advice. TETRA is a registered technology of InPursuit Health, LLC.</p>
+  <div class="footer-tagline"></div>
+</footer>
+
+<!-- ═══════════════════════════════
+     ALL JAVASCRIPT
+═══════════════════════════════ -->
+<script>
+/* COUNTDOWN */
+function updateClock(){const dl=new Date('2026-03-20T23:59:59'),diff=dl-new Date();if(diff<=0){['cdD','cdH','cdM','cdS','hcD','hcH','hcM','hcS'].forEach(id=>{const el=document.getElementById(id);if(el)el.textContent='--';});return;}const d=Math.floor(diff/864e5),h=Math.floor((diff%864e5)/36e5),m=Math.floor((diff%36e5)/6e4),s=Math.floor((diff%6e4)/1e3);const set=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=String(v).padStart(2,'0')};set('cdD',d);set('cdH',h);set('cdM',m);set('cdS',s);set('hcD',d);set('hcH',h);set('hcM',m);set('hcS',s);}
+updateClock();setInterval(updateClock,1000);
+
+/* SCROLL REVEAL */
+const observer=new IntersectionObserver((entries)=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add('visible');});},{threshold:0.1,rootMargin:'0px 0px -50px 0px'});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+
+/* SMOOTH SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',(e)=>{e.preventDefault();const target=document.querySelector(a.getAttribute('href'));if(target){const top=target.getBoundingClientRect().top+window.pageYOffset-64;window.scrollTo({top,behavior:'smooth'});}});});
+
+/* SPECIALTY BENCHMARKS */
+const SPECS={'Family Medicine':{medPct:28,chronPct:65,panel:2200},'Internal Medicine':{medPct:33,chronPct:72,panel:2000},'General Practice':{medPct:30,chronPct:65,panel:2100},'Pediatrics':{medPct:4,chronPct:22,panel:2500},'Cardiology':{medPct:42,chronPct:82,panel:1600},'Endocrinology, Diabetes & Metabolism':{medPct:38,chronPct:88,panel:1400},'Pulmonary Disease':{medPct:40,chronPct:80,panel:1500},'Geriatric Medicine':{medPct:68,chronPct:92,panel:1600},'Psychiatry & Neurology':{medPct:22,chronPct:52,panel:1400},'Orthopedic Surgery':{medPct:28,chronPct:42,panel:2000},'Gastroenterology':{medPct:32,chronPct:58,panel:1600},'Nephrology':{medPct:52,chronPct:90,panel:1400},'_default':{medPct:27,chronPct:68,panel:2000}};
+function getSpec(s){for(const k in SPECS){if(k!=='_default'&&s.toLowerCase().indexOf(k.toLowerCase())!==-1)return SPECS[k];}return SPECS['_default'];}
+
+/* RATES */
+const R={accessPMPM:35,accessEligPct:0.93,awvRate:150,curAWVpct:0.28,optAWVpct:0.52,ccmRate:62,curCCMpct:0.05,optCCMpct:0.18,rpmMonthly:84,curRPMpct:0.02,optRPMpct:0.12,tcmRate:195,curTCMpct:0.015,optTCMpct:0.04,bhiRate:52,curBHIpct:0.01,optBHIpct:0.08};
+
+/* STATE */
+let state={npi:'',name:'',specialty:'',location:'',isOrg:false,medicarePts:600,chronPct:68,tier:{pct:70,name:'Supported'},cms:null};
+
+/* CMS PUF API */
+const CMS_SVC='92396110-2aed-4d63-a6a2-5d6207d46a29',CMS_AGG='8889d81e-2ee7-448f-8713-f071038289b5',CMS_BASE='https://data.cms.gov/data-api/v1/dataset/';
+const HCPCS_MAP={awv:['G0438','G0439'],ccm:['99490','99491'],rpm:['99453','99454','99457','99458'],tcm:['99495','99496'],bhi:['99484','99492','99493']};
+
+async function fetchCMSData(npi){
+  const px='https://corsproxy.io/?';
+  try{
+    const sU=CMS_BASE+CMS_SVC+'/data?filter[Rndrng_NPI]='+npi+'&size=200';
+    const aU=CMS_BASE+CMS_AGG+'/data?filter[Rndrng_NPI]='+npi+'&size=5';
+    const[sR,aR]=await Promise.allSettled([fetch(px+encodeURIComponent(sU)).catch(()=>fetch(sU)).then(r=>r.ok?r.json():null),fetch(px+encodeURIComponent(aU)).catch(()=>fetch(aU)).then(r=>r.ok?r.json():null)]);
+    const sD=sR.status==='fulfilled'?sR.value:null,aD=aR.status==='fulfilled'?aR.value:null;
+    if((!sD||!sD.length)&&(!aD||!aD.length))return null;
+    let totalBenes=null,totalPymt=null,riskScore=null;
+    if(aD&&aD.length){const a=aD[0];totalBenes=parseInt(a.Tot_Benes)||null;totalPymt=parseFloat(a.Tot_Mdcr_Pymt_Amt)||null;riskScore=parseFloat(a.Bene_Avg_Risk_Scre)||null;}
+    const progs={awv:[],ccm:[],rpm:[],tcm:[],bhi:[]};
+    if(sD&&sD.length){for(const row of sD){const code=(row.HCPCS_Cd||row.Hcpcs_Cd||'').trim();for(const[prog,codes]of Object.entries(HCPCS_MAP)){if(codes.includes(code))progs[prog].push({benes:parseInt(row.Tot_Benes)||0,srvcs:parseFloat(row.Tot_Srvcs)||0,pymtTotal:parseFloat(row.Tot_Mdcr_Pymt_Amt)||0});}}}
+    const sum=a=>{if(!a.length)return{found:false,benes:0,totalPymt:0};let p=0,s=0,b=0;for(const r of a){p+=r.pymtTotal;s+=r.srvcs;b=Math.max(b,r.benes);}return{found:true,benes:b,totalPymt:p};};
+    return{dataYear:'2023',totalBenes,totalPymt,riskScore,awv:sum(progs.awv),ccm:sum(progs.ccm),rpm:sum(progs.rpm),tcm:sum(progs.tcm),bhi:sum(progs.bhi)};
+  }catch(e){console.warn('CMS fetch fail:',e);return null;}
+}
+
+/* SLIDER HELPERS */
+function setFill(el){const mn=parseFloat(el.min),mx=parseFloat(el.max),v=parseFloat(el.value);el.style.setProperty('--fill',((v-mn)/(mx-mn))*100+'%');}
+function onMedSlider(el){setFill(el);state.medicarePts=parseInt(el.value);document.getElementById('medVal').textContent=state.medicarePts.toLocaleString();recalc();}
+function onChronSlider(el){setFill(el);state.chronPct=parseInt(el.value);document.getElementById('chronVal').textContent=state.chronPct+'%';recalc();}
+function onBillingSlider(el,prog){setFill(el);const v=parseFloat(el.value);document.getElementById(prog+'Val').textContent=(Number.isInteger(v)?v:v.toFixed(1))+'%';recalc();}
+document.querySelectorAll('input[type=range]').forEach(setFill);
+
+/* NPI LOOKUP */
+function runLookup(){
+  const npi=document.getElementById('npiInput').value.replace(/\D/g,'');
+  const status=document.getElementById('npiStatus'),btn=document.getElementById('npiBtn');
+  if(npi.length!==10){status.textContent='Please enter a valid 10-digit NPI.';status.className='npi-status error';return;}
+  btn.disabled=true;btn.textContent='Looking up...';status.textContent='Checking CMS registries...';status.className='npi-status loading';
+  const nppesFetch=fetch('https://corsproxy.io/?'+encodeURIComponent('https://npiregistry.cms.hhs.gov/api/?version=2.1&number='+npi)).catch(()=>fetch('https://npiregistry.cms.hhs.gov/api/?version=2.1&number='+npi)).then(r=>r.json());
+  const cmsFetch=fetchCMSData(npi);
+  Promise.all([nppesFetch,cmsFetch]).then(([data,cmsData])=>{
+    btn.disabled=false;btn.textContent='Look Up';
+    if(!data.results||!data.results.length){status.textContent='No provider found.';status.className='npi-status error';return;}
+    const p=data.results[0],b=p.basic||{};
+    const isOrg=p.enumeration_type==='NPI-2';
+    const name=isOrg?(b.organization_name||'Organization'):((b.first_name||'')+' '+(b.last_name||'')).trim()+(b.credential?', '+b.credential:'');
+    const addr=(p.addresses&&p.addresses[0])||{};
+    const loc=(addr.city||'')+(addr.state?', '+addr.state:'');
+    const tax=(p.taxonomies&&p.taxonomies[0])||{};
+    const spec=tax.desc||'General Practice';
+    const specData=getSpec(spec);
+    state.npi=npi;state.name=name;state.specialty=spec;state.location=loc;state.isOrg=isOrg;state.cms=cmsData;
+    state.chronPct=specData.chronPct;
+    if(cmsData&&cmsData.totalBenes){state.medicarePts=Math.min(cmsData.totalBenes,5000);}
+    else{const bp=isOrg?Math.min(specData.panel*4,6000):specData.panel;state.medicarePts=Math.min(Math.max(Math.round(bp*(specData.medPct/100)),50),5000);}
+    document.getElementById('medSlider').value=state.medicarePts;setFill(document.getElementById('medSlider'));document.getElementById('medVal').textContent=state.medicarePts.toLocaleString();
+    document.getElementById('chronSlider').value=state.chronPct;setFill(document.getElementById('chronSlider'));document.getElementById('chronVal').textContent=state.chronPct+'%';
+    const progs=['awv','ccm','rpm','tcm','bhi'];
+    for(const pg of progs){const slider=document.getElementById(pg+'Slider');const note=document.getElementById(pg+'Note');if(cmsData&&cmsData[pg]&&cmsData[pg].found){slider.disabled=true;slider.style.opacity='.4';note.innerHTML='<span class="cms-dot"></span> CMS claims data found — $'+Math.round(cmsData[pg].totalPymt).toLocaleString()+' (CY'+cmsData.dataYear+')';}else{slider.disabled=false;slider.style.opacity='1';note.textContent='';}}
+    const badge=document.getElementById('providerBadge');badge.classList.add('visible');
+    document.getElementById('pbName').textContent=name;
+    document.getElementById('pbDetail').textContent=spec+' · '+loc+' · NPI '+npi;
+    const cmsEl=document.getElementById('pbCms');
+    if(cmsData){const ct=progs.filter(p=>cmsData[p]&&cmsData[p].found).length;cmsEl.className='pb-cms found';cmsEl.textContent='CMS billing data found (CY'+cmsData.dataYear+') · '+ct+'/5 programs';}
+    else{cmsEl.className='pb-cms missing';cmsEl.textContent='CMS data unavailable — using your slider inputs';}
+    document.getElementById('envelopeScene').classList.remove('waiting');
+    document.getElementById('letterHeading').innerHTML='Your ACCESS Model<br>Revenue Offer';
+    document.getElementById('letterSubtext').textContent='Prepared for '+name.split(',')[0]+' · '+spec;
+    status.textContent='';status.className='npi-status';
+    recalc();
+  }).catch(()=>{btn.disabled=false;btn.textContent='Look Up';status.textContent='Unable to reach CMS.';status.className='npi-status error';});
+}
+
+/* ENVELOPE */
+function openEnvelope(){document.getElementById('envelopeScene').classList.add('opened');recalc();setTimeout(()=>{document.getElementById('offerPanel').classList.add('visible');},900);}
+
+/* CALCULATE */
+function fmt(n){return '$'+Math.round(n).toLocaleString();}
+function recalc(){
+  const med=state.medicarePts,chron=state.chronPct/100,chronPts=Math.round(med*chron);
+  const accessElig=Math.round(chronPts*R.accessEligPct),tierPct=state.tier.pct/100;
+  const cms=state.cms;
+  const curAWV=cms&&cms.awv&&cms.awv.found?Math.round(cms.awv.totalPymt):Math.round(med*(parseFloat(document.getElementById('awvSlider').value)/100)*R.awvRate);
+  const curCCM=cms&&cms.ccm&&cms.ccm.found?Math.round(cms.ccm.totalPymt):Math.round(chronPts*(parseFloat(document.getElementById('ccmSlider').value)/100)*R.ccmRate*12);
+  const curRPM=cms&&cms.rpm&&cms.rpm.found?Math.round(cms.rpm.totalPymt):Math.round(chronPts*(parseFloat(document.getElementById('rpmSlider').value)/100)*R.rpmMonthly*12);
+  const curTCM=cms&&cms.tcm&&cms.tcm.found?Math.round(cms.tcm.totalPymt):Math.round(med*(parseFloat(document.getElementById('tcmSlider').value)/100)*R.tcmRate);
+  const curBHI=cms&&cms.bhi&&cms.bhi.found?Math.round(cms.bhi.totalPymt):Math.round(med*(parseFloat(document.getElementById('bhiSlider').value)/100)*R.bhiRate*12);
+  const curTotal=curAWV+curCCM+curRPM+curTCM+curBHI;
+  const optAccess=Math.round(accessElig*R.accessPMPM*12*tierPct);
+  const optAWV=Math.round(med*R.optAWVpct*R.awvRate);
+  const optCCM=Math.round(chronPts*R.optCCMpct*R.ccmRate*12);
+  const optRPM=Math.round(chronPts*R.optRPMpct*R.rpmMonthly*12);
+  const optTCM=Math.round(med*R.optTCMpct*R.tcmRate);
+  const optBHI=Math.round(med*R.optBHIpct*R.bhiRate*12);
+  const optTotal=optAccess+optAWV+optCCM+optRPM+optTCM+optBHI;
+  const gap=optTotal-curTotal;
+  document.getElementById('curTotal').textContent=fmt(curTotal);
+  document.getElementById('rCurAWV').textContent=fmt(curAWV);document.getElementById('rCurCCM').textContent=fmt(curCCM);document.getElementById('rCurRPM').textContent=fmt(curRPM);document.getElementById('rCurTCM').textContent=fmt(curTCM);document.getElementById('rCurBHI').textContent=fmt(curBHI);
+  if(cms){const ct=['awv','ccm','rpm','tcm','bhi'].filter(p=>cms[p]&&cms[p].found).length;document.getElementById('curLabel').textContent='Your CMS Billing (CY'+cms.dataYear+') + Estimates';document.getElementById('curDetail').textContent=ct+'/5 programs from actual Medicare claims';}
+  else{document.getElementById('curLabel').textContent='Your Estimated Current Capture';document.getElementById('curDetail').textContent='Based on your slider inputs';}
+  document.getElementById('optTotal').textContent=fmt(optTotal);
+  document.getElementById('rOptAccess').textContent=fmt(optAccess);document.getElementById('rOptAWV').textContent=fmt(optAWV);document.getElementById('rOptCCM').textContent=fmt(optCCM);document.getElementById('rOptRPM').textContent=fmt(optRPM);document.getElementById('rOptTCM').textContent=fmt(optTCM);document.getElementById('rOptBHI').textContent=fmt(optBHI);
+  document.getElementById('tierPctInline').textContent=state.tier.pct;
+  document.getElementById('gapAmount').textContent='+'+fmt(gap);
+  document.getElementById('offerProviderLine').textContent=state.name?(state.name+' · '+state.specialty+' · '+state.location):'Enter your NPI to see your personalized projection';
+  const optFFS=optAWV+optCCM+optRPM+optTCM+optBHI;
+  document.getElementById('vbcAccess').textContent=fmt(optAccess);document.getElementById('vbcFFS').textContent=fmt(optFFS);document.getElementById('vbcTierPct').textContent=state.tier.pct;
+}
+
+recalc();
+</script>
+</body>
+</html>

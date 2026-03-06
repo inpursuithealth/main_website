@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>TETRA Ex™ — The Exchange of All Exchanges | InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&amp;family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&amp;display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --navy: #0A1628;
+    --navy-deep: #060E1A;
+    --navy-mid: #12223D;
+    --navy-light: #1A2E4A;
+    --gold: #C5A55A;
+    --gold-light: #D4BA78;
+    --gold-pale: rgba(197,165,90,0.08);
+    --gold-glow: rgba(197,165,90,0.15);
+    --cream: #F8F6F1;
+    --warm-white: #FDFCFA;
+    --text: #1A1A1A;
+    --text-mid: #4A4A4A;
+    --text-muted: #8A8A8A;
+    --text-light: rgba(255,255,255,0.7);
+    --text-dim: rgba(255,255,255,0.4);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy-deep);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    opacity: 0.02;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(.23,1,.32,1), transform 0.9s cubic-bezier(.23,1,.32,1); }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+  .d4 { transition-delay: 0.4s; } .d5 { transition-delay: 0.5s; } .d6 { transition-delay: 0.6s; }
+  .d7 { transition-delay: 0.7s; } .d8 { transition-delay: 0.8s; }
+
+  /* ─── GLOBAL ─── */
+  .container { max-width: 1100px; margin: 0 auto; }
+  .pad { padding: 100px 80px; }
+  .eyebrow { font-size: 10px; font-weight: 600; letter-spacing: 5px; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
+  .rule { width: 48px; height: 1px; background: var(--gold); margin-bottom: 40px; }
+  .sec-title { font-family: 'Playfair Display', serif; font-size: clamp(28px, 3.2vw, 44px); font-weight: 400; line-height: 1.25; letter-spacing: -0.5px; }
+  .body-text { font-size: 16px; font-weight: 300; line-height: 1.85; color: var(--text-mid); max-width: 720px; }
+
+  /* ─── SVG ICON SYSTEM ─── */
+  .icon-box {
+    width: 48px; height: 48px; border-radius: 10px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  }
+  .icon-box svg { width: 24px; height: 24px; }
+  .icon-box-gold { background: var(--gold-pale); }
+  .icon-box-gold svg { stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .icon-box-dark { background: rgba(197,165,90,0.08); }
+  .icon-box-dark svg { stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+  /* ══════════════════════════════════════
+     HYBRID NAV: Logo from index.html + TETRA Ex page menu
+  ══════════════════════════════════════ */
+  .top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    background: var(--navy-deep); border-bottom: 1px solid rgba(197,164,78,0.2);
+    transition: box-shadow 0.3s ease;
+  }
+  .top-nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+  .top-nav-inner {
+    max-width: 1400px; margin: 0 auto; padding: 0 40px;
+    display: flex; justify-content: space-between; align-items: center; height: 64px;
+  }
+  .nav-brand-group { display: flex; align-items: center; gap: 10px; }
+  .nav-wordmark {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: 22px; color: #C5A44E; letter-spacing: 1px;
+    line-height: 1; white-space: nowrap; text-decoration: none;
+  }
+  .nav-wordmark:hover { color: #E8D48B; }
+  .nav-divider { color: rgba(255,255,255,0.2); font-size: 14px; }
+  .nav-page-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px; font-weight: 500; letter-spacing: 3px; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+  }
+  .nav-links { display: flex; align-items: center; gap: 0; list-style: none; }
+  .nav-links a {
+    padding: 20px 14px; font-size: 11px; font-weight: 500;
+    letter-spacing: 1.5px; text-transform: uppercase;
+    color: rgba(255,255,255,0.5); text-decoration: none;
+    position: relative; transition: color 0.3s; white-space: nowrap;
+  }
+  .nav-links a:hover { color: #C5A44E; }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+    width: 0; height: 2px; background: #C5A44E; transition: width 0.3s;
+  }
+  .nav-links a:hover::after { width: 60%; }
+  .nav-toggle {
+    display: none; background: none; border: none;
+    width: 32px; height: 32px; cursor: pointer; position: relative; flex-shrink: 0;
+  }
+  .nav-toggle span {
+    display: block; width: 22px; height: 2px; background: #C5A44E;
+    position: absolute; left: 5px; transition: all 0.3s;
+  }
+  .nav-toggle span:nth-child(1) { top: 8px; }
+  .nav-toggle span:nth-child(2) { top: 15px; }
+  .nav-toggle span:nth-child(3) { top: 22px; }
+  @media (max-width: 900px) {
+    .top-nav-inner { padding: 0 20px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column; align-items: flex-start;
+      position: absolute; top: 64px; left: 0; right: 0;
+      background: #060E1A; border-bottom: 1px solid rgba(197,164,78,0.2);
+      padding: 12px 0;
+    }
+    .nav-links.open a { padding: 13px 24px; width: 100%; }
+  }
+
+  /* ══════════════════════════════════════
+     HERO
+  ══════════════════════════════════════ */
+  .hero {
+    position: relative; min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    text-align: center; overflow: hidden; background: var(--navy-deep);
+  }
+  .hero-canvas { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; display: block; }
+  .hero-gradient {
+    position: absolute; inset: 0; z-index: 1;
+    background: radial-gradient(ellipse 60% 50% at 50% 40%, rgba(197,165,90,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 80% 60% at 30% 70%, rgba(10,22,40,0.9) 0%, transparent 60%),
+      radial-gradient(ellipse 80% 60% at 70% 30%, rgba(10,22,40,0.9) 0%, transparent 60%);
+  }
+  .hero-inner { position: relative; z-index: 2; padding: 0 40px; }
+  .hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 6px; text-transform: uppercase; color: var(--gold); margin-bottom: 28px; opacity:0; animation: fadeUp 1s .3s cubic-bezier(.23,1,.32,1) forwards; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(48px,7vw,96px); font-weight: 400; color: #fff; letter-spacing: -2px; line-height: 1; margin-bottom: 8px; opacity:0; animation: fadeUp 1.2s .5s cubic-bezier(.23,1,.32,1) forwards; }
+  .hero-title em { font-style: italic; color: var(--gold); }
+  .hero-tm { font-family: 'DM Sans', sans-serif; font-size: clamp(10px,1.2vw,14px); font-weight: 500; letter-spacing: 3px; text-transform: uppercase; color: var(--gold-light); margin-bottom: 32px; opacity:0; animation: fadeUp 1s .65s cubic-bezier(.23,1,.32,1) forwards; }
+  .hero-subtitle { font-family: 'Playfair Display', serif; font-size: clamp(18px,2.2vw,28px); font-weight: 400; font-style: italic; color: rgba(255,255,255,0.6); line-height: 1.5; max-width: 700px; margin: 0 auto 40px; opacity:0; animation: fadeUp 1.2s .8s cubic-bezier(.23,1,.32,1) forwards; }
+  .hero-desc { font-size: 15px; font-weight: 300; color: var(--text-light); line-height: 1.8; max-width: 580px; margin: 0 auto; opacity:0; animation: fadeUp 1.2s 1s cubic-bezier(.23,1,.32,1) forwards; }
+  .scroll-ind { position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity:0; animation: fadeUp 1s 1.4s cubic-bezier(.23,1,.32,1) forwards; }
+  .scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); position: relative; overflow: hidden; }
+  .scroll-line::after { content:''; position: absolute; top:-100%; left:0; width:100%; height:100%; background:#fff; animation: scrollPulse 2s infinite; }
+  .scroll-txt { font-size: 8px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--text-dim); }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes scrollPulse { 0%{top:-100%} 50%{top:100%} 100%{top:100%} }
+
+  /* ══════════════════════════════════════
+     STATS BAR
+  ══════════════════════════════════════ */
+  .stats-bar { background: var(--navy); border-bottom: 1px solid rgba(197,165,90,0.1); }
+  .stats-inner { max-width: 1200px; margin: 0 auto; padding: 52px 80px; display: grid; grid-template-columns: repeat(4,1fr); gap: 32px; }
+  .stat-item { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 40px; color: var(--gold); font-weight: 500; margin-bottom: 6px; }
+  .stat-label { font-size: 10px; font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-dim); }
+
+  /* ══════════════════════════════════════
+     SECTIONS
+  ══════════════════════════════════════ */
+  .section-dark { background: var(--navy-deep); color: #fff; }
+  .section-dark .sec-title { color: #fff; }
+  .section-dark .body-text { color: var(--text-light); }
+  .section-light { background: var(--cream); }
+  .section-light .sec-title { color: var(--navy); }
+  .section-white { background: var(--warm-white); }
+  .section-white .sec-title { color: var(--navy); }
+
+  .thesis-quote { font-family: 'Playfair Display', serif; font-size: clamp(24px,3vw,38px); font-weight: 400; color: #fff; line-height: 1.4; max-width: 780px; margin-bottom: 36px; }
+  .thesis-quote em { font-style: italic; color: var(--gold); }
+
+  /* ══════════════════════════════════════
+     PULLQUOTE
+  ══════════════════════════════════════ */
+  .pullquote { background: var(--navy); padding: 80px 80px; }
+  .pq-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+  .pq-text { font-family: 'Playfair Display', serif; font-size: clamp(20px,2.5vw,30px); font-weight: 400; color: #fff; line-height: 1.6; font-style: italic; }
+  .pq-text em { color: var(--gold); font-style: italic; }
+  .pq-rule { width: 48px; height: 1px; background: var(--gold); margin: 32px auto 0; }
+
+  /* ══════════════════════════════════════
+     BIDIRECTIONAL FLOW DIAGRAM
+  ══════════════════════════════════════ */
+  .flow-section { background: var(--navy-deep); padding: 100px 80px; overflow: hidden; }
+
+  .flow-row { display: flex; align-items: center; justify-content: center; gap: 0; margin-bottom: 0; }
+
+  .flow-sources, .flow-outputs { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; max-width: 380px; }
+
+  .source-node, .output-node {
+    border-radius: 10px; padding: 18px 20px; text-align: center; position: relative; overflow: hidden;
+    transition: border-color 0.4s, transform 0.3s;
+  }
+  .source-node { background: var(--navy-mid); border: 1px solid rgba(197,165,90,0.15); }
+  .output-node { background: linear-gradient(135deg, rgba(197,165,90,0.08), rgba(197,165,90,0.02)); border: 1px solid rgba(197,165,90,0.2); }
+  .source-node:hover, .output-node:hover { border-color: var(--gold); transform: translateY(-2px); }
+
+  .node-icon { margin-bottom: 8px; display: flex; justify-content: center; }
+  .node-icon svg { width: 28px; height: 28px; stroke: var(--gold); fill: none; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+  .source-label, .output-label { font-size: 11px; font-weight: 500; letter-spacing: 0.5px; color: rgba(255,255,255,0.65); line-height: 1.4; }
+  .output-label { color: var(--gold-light); }
+
+  /* Bidirectional connectors */
+  .flow-connector { width: 100px; position: relative; flex-shrink: 0; margin: 0 20px; height: 40px; }
+  .flow-connector .fc-line { position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(197,165,90,0.2); }
+  .flow-connector .fc-dot-right { position: absolute; top: calc(50% - 3px); left: -6px; width: 14px; height: 6px; border-radius: 3px; background: var(--gold); box-shadow: 0 0 12px rgba(197,165,90,0.5); animation: flowRight 2.2s infinite ease-in-out; }
+  .flow-connector .fc-dot-left { position: absolute; top: calc(50% + 3px); right: -6px; width: 14px; height: 6px; border-radius: 3px; background: rgba(197,165,90,0.5); animation: flowLeft 2.2s 0.8s infinite ease-in-out; }
+  .flow-connector .fc-arrow-label { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); font-size: 7px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); white-space: nowrap; }
+  .flow-connector .fc-arrow-label-btm { position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%); font-size: 7px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(197,165,90,0.5); white-space: nowrap; }
+
+  @keyframes flowRight { 0%{left:-6px;opacity:0} 20%{opacity:1} 80%{opacity:1} 100%{left:calc(100% - 8px);opacity:0} }
+  @keyframes flowLeft { 0%{right:-6px;opacity:0} 20%{opacity:1} 80%{opacity:1} 100%{right:calc(100% - 8px);opacity:0} }
+
+  /* Center hub */
+  .flow-hub {
+    width: 220px; height: 220px; border-radius: 50%;
+    background: radial-gradient(circle at 40% 40%, var(--navy-light), var(--navy-deep));
+    border: 2px solid var(--gold); display: flex; flex-direction: column; align-items: center;
+    justify-content: center; position: relative; flex-shrink: 0;
+    box-shadow: 0 0 60px rgba(197,165,90,0.1), 0 0 120px rgba(197,165,90,0.05), inset 0 0 40px rgba(197,165,90,0.05);
+  }
+  .flow-hub::before { content:''; position: absolute; inset: -12px; border-radius: 50%; border: 1px solid rgba(197,165,90,0.12); animation: hubPulse 3s infinite ease-in-out; }
+  .flow-hub::after { content:''; position: absolute; inset: -24px; border-radius: 50%; border: 1px solid rgba(197,165,90,0.06); animation: hubPulse 3s 0.5s infinite ease-in-out; }
+  @keyframes hubPulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.03);opacity:0.6} }
+  .hub-label-sm { font-size: 9px; font-weight: 600; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+  .hub-label { font-family: 'Playfair Display', serif; font-size: 28px; color: #fff; font-weight: 500; letter-spacing: -0.5px; }
+  .hub-label em { color: var(--gold); font-style: italic; }
+  .hub-sub { font-size: 10px; font-weight: 500; letter-spacing: 2px; text-transform: uppercase; color: var(--text-dim); margin-top: 4px; }
+  .hub-bidir { font-size: 8px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(197,165,90,0.6); margin-top: 8px; border: 1px solid rgba(197,165,90,0.2); border-radius: 20px; padding: 4px 12px; }
+
+  /* ══════════════════════════════════════
+     TWO-PRONGED SECTION
+  ══════════════════════════════════════ */
+  .prong-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px;
+  }
+  .prong-card {
+    border-radius: 14px; padding: 48px 40px; position: relative; overflow: hidden;
+    transition: border-color 0.4s, transform 0.3s;
+  }
+  .prong-card:hover { transform: translateY(-3px); }
+  .prong-card-provider {
+    background: var(--navy-mid); border: 1px solid rgba(197,165,90,0.12);
+  }
+  .prong-card-provider:hover { border-color: rgba(197,165,90,0.35); }
+  .prong-card-consumer {
+    background: var(--navy-mid); border: 2px solid rgba(197,165,90,0.25);
+  }
+  .prong-card-consumer:hover { border-color: var(--gold); }
+  .prong-badge {
+    display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px;
+    border-radius: 20px; margin-bottom: 24px; font-size: 10px; font-weight: 600;
+    letter-spacing: 2px; text-transform: uppercase;
+  }
+  .prong-badge-pro { background: rgba(197,165,90,0.1); color: var(--gold); }
+  .prong-badge-con { background: var(--gold); color: var(--navy-deep); }
+  .prong-title {
+    font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 500; color: #fff;
+    margin-bottom: 18px; line-height: 1.3;
+  }
+  .prong-desc { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--text-light); margin-bottom: 24px; }
+  .prong-features { list-style: none; }
+  .prong-features li {
+    font-size: 14px; color: var(--text-light); padding: 8px 0 8px 20px; position: relative;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .prong-features li::before { content:''; position: absolute; left:0; top:15px; width:8px; height:1px; background: var(--gold); }
+
+  /* ══════════════════════════════════════
+     WRITE-BACK SECTION
+  ══════════════════════════════════════ */
+  .writeback-visual {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center; margin-top: 56px;
+  }
+  .wb-diagram {
+    position: relative; padding: 40px; border: 1px solid rgba(197,165,90,0.15); border-radius: 16px;
+    background: var(--navy-mid);
+  }
+  .wb-step {
+    display: flex; align-items: flex-start; gap: 16px; padding: 16px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+  }
+  .wb-step:last-child { border-bottom: none; }
+  .wb-step-num {
+    width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--gold); display: flex;
+    align-items: center; justify-content: center; font-size: 12px; font-weight: 600; color: var(--gold);
+    flex-shrink: 0; margin-top: 2px;
+  }
+  .wb-step-text { font-size: 14px; color: var(--text-light); line-height: 1.6; font-weight: 300; }
+  .wb-step-text strong { color: #fff; font-weight: 500; }
+
+  /* ══════════════════════════════════════
+     DATA CATEGORIES GRID
+  ══════════════════════════════════════ */
+  .data-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+  .data-card {
+    background: #fff; border: 1px solid rgba(10,22,40,0.06); border-radius: 12px; padding: 36px 32px;
+    position: relative; overflow: hidden; transition: transform 0.4s, box-shadow 0.4s, border-color 0.4s;
+  }
+  .data-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(10,22,40,0.08); border-color: rgba(197,165,90,0.3); }
+  .data-card::before {
+    content:''; position: absolute; top:0; left:0; right:0; height:3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    transform: scaleX(0); transform-origin: left; transition: transform 0.5s cubic-bezier(.23,1,.32,1);
+  }
+  .data-card:hover::before { transform: scaleX(1); }
+  .dc-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: var(--navy); margin: 20px 0 12px; }
+  .dc-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-mid); }
+
+  /* ══════════════════════════════════════
+     VALUE PROPS
+  ══════════════════════════════════════ */
+  .value-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 32px; margin-top: 56px; }
+  .value-card {
+    background: var(--navy-mid); border: 1px solid rgba(197,165,90,0.1); border-radius: 14px;
+    padding: 44px 40px; position: relative; overflow: hidden; transition: border-color 0.4s, transform 0.3s;
+  }
+  .value-card:hover { border-color: rgba(197,165,90,0.3); transform: translateY(-3px); }
+  .vc-num { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 400; color: rgba(197,165,90,0.15); position: absolute; top: 24px; right: 32px; line-height: 1; }
+  .vc-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 500; color: #fff; margin-bottom: 16px; line-height: 1.3; }
+  .vc-desc { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--text-light); }
+
+  /* ══════════════════════════════════════
+     COMPARISON TABLE
+  ══════════════════════════════════════ */
+  .compare-table { width: 100%; border-collapse: collapse; margin-top: 48px; }
+  .compare-table th { font-size: 10px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 16px 24px; border-bottom: 2px solid rgba(10,22,40,0.08); }
+  .compare-table th:last-child { color: var(--gold); text-align: center; }
+  .compare-table td { font-size: 15px; font-weight: 300; color: var(--text-mid); padding: 18px 24px; border-bottom: 1px solid rgba(10,22,40,0.04); }
+  .compare-table td:last-child { text-align: center; font-weight: 500; color: var(--navy); }
+  .compare-table tr:hover td { background: var(--gold-pale); }
+  .check-mark { display: inline-flex; align-items: center; justify-content: center; width: 24px; height: 24px; border-radius: 50%; background: var(--gold-pale); }
+  .check-mark svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 2.5; }
+  .x-mark { color: #ccc; font-size: 13px; }
+
+  /* ══════════════════════════════════════
+     ENGINES
+  ══════════════════════════════════════ */
+  .engine-cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-top: 56px; }
+  .engine-card {
+    background: var(--navy-mid); border: 1px solid rgba(197,165,90,0.12); border-radius: 14px;
+    padding: 40px 32px; position: relative; overflow: hidden; transition: border-color 0.4s, transform 0.3s;
+  }
+  .engine-card:hover { border-color: rgba(197,165,90,0.35); transform: translateY(-3px); }
+  .engine-card::after { content:''; position: absolute; bottom:0; left:0; right:0; height:3px; background: linear-gradient(90deg, var(--gold), transparent); opacity:0; transition: opacity 0.4s; }
+  .engine-card:hover::after { opacity:1; }
+  .ec-num { font-family: 'Playfair Display', serif; font-size: 14px; color: var(--gold); font-weight: 500; margin-bottom: 16px; }
+  .ec-title { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 500; color: #fff; margin-bottom: 14px; line-height: 1.3; }
+  .ec-desc { font-size: 14px; font-weight: 300; line-height: 1.75; color: var(--text-light); }
+  .ec-list { list-style: none; margin-top: 16px; }
+  .ec-list li { font-size: 13px; color: var(--text-light); padding: 6px 0 6px 16px; position: relative; }
+  .ec-list li::before { content:''; position: absolute; left:0; top:13px; width:6px; height:1px; background: var(--gold); }
+
+  /* ══════════════════════════════════════
+     COMPLIANCE STRIP
+  ══════════════════════════════════════ */
+  .compliance { background: var(--navy); border-top: 1px solid rgba(197,165,90,0.08); border-bottom: 1px solid rgba(197,165,90,0.08); padding: 56px 80px; }
+  .compliance-inner { max-width: 1100px; margin: 0 auto; display: flex; align-items: center; justify-content: center; gap: 40px; flex-wrap: wrap; }
+  .comp-badge { display: flex; align-items: center; gap: 12px; padding: 12px 24px; border: 1px solid rgba(197,165,90,0.15); border-radius: 8px; transition: border-color 0.3s; }
+  .comp-badge:hover { border-color: var(--gold); }
+  .comp-badge svg { width: 18px; height: 18px; stroke: var(--gold); fill: none; stroke-width: 1.5; }
+  .comp-text { font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6); }
+
+  /* ══════════════════════════════════════
+     FAQ
+  ══════════════════════════════════════ */
+  .faq-list { margin-top: 48px; max-width: 800px; }
+  .faq-item { border-bottom: 1px solid rgba(10,22,40,0.06); }
+  .faq-question {
+    width: 100%; background: none; border: none; padding: 24px 0; display: flex; align-items: center;
+    justify-content: space-between; cursor: pointer; font-family: 'DM Sans', sans-serif;
+    font-size: 17px; font-weight: 500; color: var(--navy); text-align: left; transition: color 0.3s;
+  }
+  .faq-question:hover { color: var(--gold); }
+  .faq-toggle { width: 28px; height: 28px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: transform 0.4s, background 0.3s; }
+  .faq-toggle svg { width: 14px; height: 14px; stroke: var(--gold); fill: none; stroke-width: 2; transition: stroke 0.3s; }
+  .faq-item.open .faq-toggle { transform: rotate(45deg); background: var(--gold); }
+  .faq-item.open .faq-toggle svg { stroke: #fff; }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.5s cubic-bezier(.23,1,.32,1), padding 0.4s; }
+  .faq-item.open .faq-answer { max-height: 400px; padding: 0 0 24px; }
+  .faq-answer-text { font-size: 15px; font-weight: 300; line-height: 1.8; color: var(--text-mid); max-width: 680px; }
+
+  /* ══════════════════════════════════════
+     CTA
+  ══════════════════════════════════════ */
+  .cta-section { background: var(--navy-deep); padding: 120px 80px; text-align: center; position: relative; overflow: hidden; }
+  .cta-section::before { content:''; position: absolute; top:50%; left:50%; width:600px; height:600px; border-radius:50%; background: radial-gradient(circle, rgba(197,165,90,0.05) 0%, transparent 70%); transform: translate(-50%,-50%); }
+  .cta-inner { position: relative; z-index: 1; }
+  .cta-title { font-family: 'Playfair Display', serif; font-size: clamp(28px,3.5vw,48px); font-weight: 400; color: #fff; margin-bottom: 20px; line-height: 1.25; }
+  .cta-title em { color: var(--gold); font-style: italic; }
+  .cta-desc { font-size: 16px; font-weight: 300; color: var(--text-light); line-height: 1.8; max-width: 520px; margin: 0 auto 40px; }
+  .cta-btn { display: inline-flex; align-items: center; gap: 12px; padding: 18px 44px; background: var(--gold); color: var(--navy-deep); font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; border-radius: 4px; transition: background 0.3s, transform 0.3s, box-shadow 0.3s; }
+  .cta-btn:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(197,165,90,0.25); }
+  .cta-btn svg { width: 16px; height: 16px; stroke: var(--navy-deep); fill: none; stroke-width: 2.5; transition: transform 0.3s; }
+  .cta-btn:hover svg { transform: translateX(4px); }
+
+  /* ══════════════════════════════════════
+     FOOTER
+  ══════════════════════════════════════ */
+  .site-footer { background: var(--navy-deep); border-top: 1px solid rgba(197,165,90,0.08); padding: 40px 80px; }
+  .footer-inner { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+  .footer-brand { font-family: 'Playfair Display', serif; font-size: 14px; color: rgba(255,255,255,0.3); }
+  .footer-tm { font-size: 11px; font-style: italic; color: rgba(197,165,90,0.4); }
+  .footer-legal { font-size: 11px; color: rgba(255,255,255,0.2); }
+
+  /* ══════════════════════════════════════
+     RESPONSIVE
+  ══════════════════════════════════════ */
+  @media (max-width: 1024px) {
+    .flow-row { flex-direction: column; gap: 24px; }
+    .flow-connector { width: 2px; height: 40px; margin: 0; }
+    .flow-connector .fc-line { top:0; left:50%; width:1px; height:100%; right:auto; }
+    .flow-sources, .flow-outputs { max-width: 100%; }
+    .prong-grid { grid-template-columns: 1fr; }
+    .writeback-visual { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 900px) {
+    .pad { padding: 80px 28px; }
+    .stats-inner { grid-template-columns: repeat(2,1fr); padding: 32px 28px; }
+    .data-grid, .value-grid, .engine-cards { grid-template-columns: 1fr; }
+    .pullquote, .compliance, .flow-section { padding-left: 28px; padding-right: 28px; }
+    .cta-section { padding: 80px 28px; }
+    .site-footer { padding: 32px 28px; }
+    .footer-inner { flex-direction: column; gap: 16px; text-align: center; }
+    .compliance-inner { gap: 16px; }
+  }
+  @media print { .reveal { opacity:1 !important; transform:none !important; } .hero-canvas { display:none; } }
+</style>
+</head>
+<body>
+<!-- ══════ NAV: InPursuit logo + TETRA Ex™ page menu ══════ -->
+<nav class="top-nav">
+<div class="top-nav-inner">
+<div class="nav-brand-group">
+<a class="nav-wordmark" href="index.html">InPursuit Health</a>
+<span class="nav-divider">|</span>
+<span class="nav-page-label">TETRA <em style="font-style:italic;">Ex</em>™</span>
+</div>
+<ul class="nav-links">
+<li><a href="#overview">Overview</a></li>
+<li><a href="#writeback">Read + Write</a></li>
+<li><a href="#prongs">Who It Serves</a></li>
+<li><a href="#data">Data</a></li>
+<li><a href="#value">Value</a></li>
+<li><a href="#faq">FAQ</a></li>
+</ul>
+<button aria-label="Menu" class="nav-toggle"><span></span><span></span><span></span></button>
+</div>
+</nav>
+<!-- ══════ HERO ══════ -->
+<section class="hero">
+<canvas class="hero-canvas" id="heroCanvas"></canvas>
+<div class="hero-gradient"></div>
+<div class="hero-inner">
+<div class="hero-eyebrow">InPursuit Health Presents</div>
+<h1 class="hero-title">TETRA <em>Ex</em>™</h1>
+<div class="hero-tm">The Exchange of All Exchanges</div>
+<p class="hero-subtitle">Read from everywhere. Write back to anywhere. Own your data — <em>completely.</em></p>
+<p class="hero-desc">TETRA Ex™ is a bidirectional health data orchestration layer. It doesn't just retrieve records — it writes back. For providers, it means seamless data exchange across every system. For people, it means ownership and control over their complete health story for the first time.</p>
+</div>
+<div class="scroll-ind">
+<div class="scroll-line"></div>
+<div class="scroll-txt">Explore</div>
+</div>
+</section>
+<!-- ══════ STATS BAR ══════ -->
+<div class="stats-bar">
+<div class="stats-inner">
+<div class="stat-item reveal">
+<div class="stat-num counter-animate" data-suffix="%" data-target="97">0%</div>
+<div class="stat-label">U.S. Hospital Coverage</div>
+</div>
+<div class="stat-item reveal d1">
+<div class="stat-num counter-animate" data-suffix="M+" data-target="280">0</div>
+<div class="stat-label">Patient Records Accessible</div>
+</div>
+<div class="stat-item reveal d2">
+<div class="stat-num counter-animate" data-suffix="M+" data-target="2">0</div>
+<div class="stat-label">Provider Endpoints</div>
+</div>
+<div class="stat-item reveal d3">
+<div class="stat-num">Bidirectional</div>
+<div class="stat-label">Read + Write</div>
+</div>
+</div>
+</div>
+<!-- ══════ THE VALUE ══════ -->
+<section class="section-dark pad" id="overview">
+<div class="container">
+<div class="eyebrow reveal">The Vision</div>
+<div class="rule reveal d1"></div>
+<div class="thesis-quote reveal d2">
+      One connection. <em>Every record.</em><br/>Complete clinical context — <em>in your hands.</em>
+</div>
+<div class="body-text reveal d3" style="margin-bottom: 24px;">
+      TETRA Ex™ unifies the entire U.S. healthcare data ecosystem into a single orchestration layer. Providers get complete patient context before every encounter — pulled from every EHR, lab, pharmacy, specialist, and claims system the patient has ever touched. Individuals get ownership of their complete health story for the first time — with the power to control it, share it, and write back to any provider in their network.
+    </div>
+<div class="body-text reveal d4" style="margin-bottom: 24px;">
+      One API replaces dozens of individual integrations. Data flows both directions in real time. AI models operate on complete, validated information instead of fragments. And the people whose lives depend on that data finally have a seat at the table.
+    </div>
+<div class="body-text reveal d5">
+<strong>This is what healthcare data infrastructure was always supposed to be.</strong>
+</div>
+</div>
+</section>
+<!-- ══════ PULLQUOTE ══════ -->
+<section class="pullquote">
+<div class="pq-inner reveal">
+<p class="pq-text">TETRA Ex™ is a <em>single bidirectional orchestration layer</em> that reads from every data source in U.S. healthcare and writes validated data back. One integration. Complete clinical context. Real-time exchange — <em>for providers and for people.</em></p>
+<div class="pq-rule"></div>
+</div>
+</section>
+<!-- ══════ BIDIRECTIONAL DATA FLOW ══════ -->
+<section class="flow-section" id="writeback">
+<div class="container" style="text-align:center; margin-bottom: 56px;">
+<div class="eyebrow reveal">Bidirectional Architecture</div>
+<div class="rule reveal d1" style="margin: 0 auto 40px;"></div>
+<div class="sec-title reveal d2" style="color:#fff; margin-bottom: 16px;">Read from everywhere. Write back to anywhere.</div>
+<div class="body-text reveal d3" style="color:var(--text-light); margin: 0 auto;">TETRA Ex™ doesn't just retrieve data — it writes validated clinical information back to source systems. Care coordination notes, updated care plans, new monitoring data, and outcome documentation flow back to every provider in a patient's network in real time.</div>
+</div>
+<div class="flow-diagram reveal d4">
+<div class="flow-row">
+<!-- Sources -->
+<div class="flow-sources">
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"></path></svg></div>
+<div class="source-label">Hospital &amp; Health System EHRs</div>
+</div>
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M3 9h2m-2 6h2m14-6h2m-2 6h2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9z"></path></svg></div>
+<div class="source-label">Pharmacy &amp; Medication Data</div>
+</div>
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M7 2v11m0 0l-4 4h14l-4-4M7 13h0M17 2v5m0 0l3 3H14l3-3"></path><circle cx="7" cy="17" r="1"></circle></svg></div>
+<div class="source-label">Labs, Imaging &amp; Diagnostics</div>
+</div>
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 012-2h2a2 2 0 012 2M9 5h6m-6 7h6m-6 4h6"></path></svg></div>
+<div class="source-label">Claims &amp; Payer Records</div>
+</div>
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M12 8V4m0 4a4 4 0 100 8 4 4 0 000-8zM3 12h1m16 0h1M5.6 5.6l.7.7m11.4-.7l-.7.7M12 20v-4"></path></svg></div>
+<div class="source-label">Wearables &amp; Patient-Reported</div>
+</div>
+<div class="source-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M3 21V7a2 2 0 012-2h3l2-3h4l2 3h3a2 2 0 012 2v14H3z"></path><path d="M9 14l2 2 4-4"></path></svg></div>
+<div class="source-label">Public Health &amp; Registries</div>
+</div>
+</div>
+<!-- Bidirectional Connector In -->
+<div class="flow-connector">
+<div class="fc-line"></div>
+<div class="fc-dot-right"></div>
+<div class="fc-dot-left"></div>
+<div class="fc-arrow-label">Read</div>
+<div class="fc-arrow-label-btm">Write</div>
+</div>
+<!-- Hub -->
+<div class="flow-hub">
+<div class="hub-label-sm">Powered by</div>
+<div class="hub-label">TETRA <em>Ex</em>™</div>
+<div class="hub-sub">Orchestration Layer</div>
+<div class="hub-bidir">Bidirectional</div>
+</div>
+<!-- Bidirectional Connector Out -->
+<div class="flow-connector">
+<div class="fc-line"></div>
+<div class="fc-dot-right"></div>
+<div class="fc-dot-left"></div>
+<div class="fc-arrow-label">Deliver</div>
+<div class="fc-arrow-label-btm">Return</div>
+</div>
+<!-- Outputs -->
+<div class="flow-outputs">
+<div class="output-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"></path><path d="M9 12h6m-3-3v6"></path><rect height="4" rx="1" width="8" x="8" y="2"></rect></svg></div>
+<div class="output-label">Provider Care Teams</div>
+</div>
+<div class="output-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><rect height="16" rx="2" width="16" x="4" y="4"></rect><path d="M9 9h6M9 13h4M9 17h2"></path><circle cx="17" cy="17" r="3"></circle><path d="M17 15v2h2"></path></svg></div>
+<div class="output-label">AI / ML Models</div>
+</div>
+<div class="output-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><rect height="20" rx="2" width="14" x="5" y="2"></rect><path d="M12 18h0"></path></svg></div>
+<div class="output-label">InPursuit App</div>
+</div>
+<div class="output-node">
+<div class="node-icon"><svg viewbox="0 0 24 24"><path d="M18 20V10M12 20V4M6 20v-6"></path></svg></div>
+<div class="output-label">Analytics &amp; Reporting</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ WRITE-BACK CAPABILITY ══════ -->
+<section class="section-dark pad">
+<div class="container">
+<div class="eyebrow reveal">Write-Back Architecture</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="max-width: 700px; margin-bottom: 16px;">Not just a window. A <em style="color:var(--gold); font-style:italic;">door.</em></div>
+<div class="body-text reveal d3" style="color: var(--text-light); margin-bottom: 0;">Most data exchanges are read-only — they let you look at records but never update them. TETRA Ex™ is fundamentally bidirectional. It writes validated clinical data back to source systems, ensuring that every provider in a patient's network operates from the same current truth.</div>
+<div class="writeback-visual">
+<div class="reveal d4">
+<div class="wb-diagram">
+<div class="wb-step">
+<div class="wb-step-num">1</div>
+<div class="wb-step-text"><strong>Patient visits a new specialist.</strong> TETRA Ex™ pulls complete history from every prior provider — primary care, labs, imaging, pharmacy, prior specialists.</div>
+</div>
+<div class="wb-step">
+<div class="wb-step-num">2</div>
+<div class="wb-step-text"><strong>Specialist completes encounter.</strong> New diagnoses, updated medications, and care plan changes are documented.</div>
+</div>
+<div class="wb-step">
+<div class="wb-step-num">3</div>
+<div class="wb-step-text"><strong>TETRA Ex™ writes back.</strong> Updated care information is validated and pushed back to the patient's PCP, other specialists, pharmacy systems, the patient's personal health record — and directly to their InPursuit App — automatically.</div>
+</div>
+<div class="wb-step">
+<div class="wb-step-num">4</div>
+<div class="wb-step-text"><strong>Every provider — and the patient — is current.</strong> No faxes. No phone calls. No "can you send those records?" The network stays synchronized in real time, and the patient sees every update in their InPursuit App the moment it happens.</div>
+</div>
+</div>
+</div>
+<div class="reveal d5">
+<div style="margin-bottom: 32px;">
+<div class="vc-title" style="font-size: 20px;">What write-back enables:</div>
+</div>
+<div style="display: grid; gap: 16px;">
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">Care coordination notes</strong> flow to every provider in the patient's network the moment they're finalized.</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">Medication changes</strong> update pharmacy records and alert the PCP simultaneously.</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">Remote monitoring data</strong> from wearables writes to the clinical record — closing the loop between visits.</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">Outcome documentation</strong> for CMS ACCESS and value-based care programs is generated and distributed automatically.</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">Patient-authorized updates</strong> — individuals can push self-reported data, advance directives, and consent changes back to their providers.</div>
+</div>
+<div style="display:flex;align-items:flex-start;gap:14px;">
+<div class="icon-box icon-box-dark" style="width:36px;height:36px;border-radius:8px;flex-shrink:0;">
+<svg style="width:18px;height:18px;" viewbox="0 0 24 24"><path d="M4 4h16v16H4z" fill="none"></path><path d="M9 12l2 2 4-4"></path></svg>
+</div>
+<div style="font-size:14px;color:var(--text-light);line-height:1.7;font-weight:300;"><strong style="color:#fff;font-weight:500;">InPursuit App sync</strong> — every clinical update, lab result, medication change, and care plan revision flows directly to the patient's InPursuit App in real time, giving them a living, always-current health record.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ PULLQUOTE — CONSUMER OWNERSHIP ══════ -->
+<section class="pullquote">
+<div class="pq-inner reveal">
+<p class="pq-text">Every person is their own <em>enterprise.</em> A hospital needs an orchestration layer for its fragmented data. A patient with three chronic conditions and five providers needs the <em>exact same thing.</em> TETRA Ex™ serves both — and puts the power in the hands of the <em>people.</em></p>
+<div class="pq-rule"></div>
+</div>
+</section>
+<!-- ══════ TWO-PRONGED: PROVIDERS + CONSUMERS ══════ -->
+<section class="section-dark pad" id="prongs">
+<div class="container">
+<div class="eyebrow reveal">Two Audiences. One Exchange.</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="max-width: 750px; margin-bottom: 16px;">TETRA Ex™ delivers the same power to providers and to the people they serve.</div>
+<div class="body-text reveal d3" style="color: var(--text-light);">The same bidirectional orchestration layer. The same data completeness. The same write-back capability. Different value — depending on which side of the exam table you're on.</div>
+<div class="prong-grid">
+<!-- CONSUMER PRONG — FIRST -->
+<div class="prong-card prong-card-consumer reveal d3">
+<div class="prong-badge prong-badge-con">
+<svg style="width:14px;height:14px;stroke:var(--navy-deep);fill:none;stroke-width:1.5;" viewbox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          For You
+        </div>
+<div class="prong-title">Harness the Power of Your <em style="color:var(--gold);">Data™</em></div>
+<div class="prong-desc">For the first time, individuals have a personal health exchange that aggregates their complete health story — every provider, every lab, every prescription, every device — into a unified record that they own and control. And they can push data back to any provider in their network.</div>
+<ul class="prong-features">
+<li>Unified health record spanning every provider and system</li>
+<li>Patient-controlled permissions — you decide who sees what</li>
+<li>Write back advance directives, consent changes, and self-reported data</li>
+<li>AI-powered care coordination, risk detection, and gap identification</li>
+<li>Push wearable and remote monitoring data directly into clinical records</li>
+<li>Portable — your data follows you, not your insurance plan</li>
+</ul>
+</div>
+<!-- PROVIDER PRONG — SECOND -->
+<div class="prong-card prong-card-provider reveal d4">
+<div class="prong-badge prong-badge-pro">
+<svg style="width:14px;height:14px;stroke:var(--gold);fill:none;stroke-width:1.5;" viewbox="0 0 24 24"><path d="M3 21h18M9 8h1M9 12h1M9 16h1M14 8h1M14 12h1M14 16h1M5 21V5a2 2 0 012-2h10a2 2 0 012 2v16"></path></svg>
+          For Providers
+        </div>
+<div class="prong-title">Results <em style="color:var(--gold);">Matter™</em></div>
+<div class="prong-desc">TETRA Ex™ gives providers and health systems a single integration point to pull complete patient records from anywhere and push updates back to every system in the patient's network. No more incomplete charts. No more faxing records. No more care coordination gaps.</div>
+<ul class="prong-features">
+<li>Complete patient context before every encounter</li>
+<li>Bidirectional data exchange with every provider in the network</li>
+<li>AI-ready normalized data for clinical decision support</li>
+<li>Automated CMS ACCESS outcome documentation and reporting</li>
+<li>Real-time eligibility verification and benefits confirmation</li>
+<li>Zero additional integration per new data source</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ DATA CATEGORIES ══════ -->
+<section class="section-light pad" id="data">
+<div class="container">
+<div class="eyebrow reveal">Comprehensive Data</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="color:var(--navy); max-width: 700px; margin-bottom: 16px;">Every dimension of the patient story.</div>
+<div class="body-text reveal d3">TETRA Ex™ retrieves, normalizes, and delivers structured data across every major clinical and administrative category — giving providers the most complete patient picture and giving individuals full visibility into their own health.</div>
+<div class="data-grid">
+<div class="data-card reveal d2">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"></path><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"></path></svg>
+</div>
+<div class="dc-title">Clinical Records</div>
+<div class="dc-desc">Encounter summaries, progress notes, discharge summaries, care plans, problem lists, and clinical assessments — sourced from across the patient's full provider network.</div>
+</div>
+<div class="data-card reveal d3">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+</div>
+<div class="dc-title">Medications &amp; Pharmacy</div>
+<div class="dc-desc">Active prescriptions, medication history, fill dates, dosage changes, pharmacy dispensing records, and medication adherence patterns.</div>
+</div>
+<div class="data-card reveal d4">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M8 12h8M12 8v8"></path></svg>
+</div>
+<div class="dc-title">Labs &amp; Diagnostics</div>
+<div class="dc-desc">Lab results, pathology reports, imaging orders and results, genetic testing, and longitudinal trends across all testing facilities the patient has visited.</div>
+</div>
+<div class="data-card reveal d2">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><path d="M9 12l2 2 4-4"></path><path d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+</div>
+<div class="dc-title">Eligibility &amp; Benefits</div>
+<div class="dc-desc">Real-time insurance verification, coverage details, deductible status, prior authorization requirements, and benefit structures — validated at the point of care.</div>
+</div>
+<div class="data-card reveal d3">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"></path></svg>
+</div>
+<div class="dc-title">Claims &amp; Billing History</div>
+<div class="dc-desc">Historical claims data, procedure codes, diagnosis history, payment patterns, and payer adjudication records that reveal the full financial story of care.</div>
+</div>
+<div class="data-card reveal d4">
+<div class="icon-box icon-box-gold">
+<svg viewbox="0 0 24 24"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+</div>
+<div class="dc-title">Patient-Generated Data</div>
+<div class="dc-desc">Consumer-permissioned wearable data, remote monitoring device readings, patient-reported outcomes, and self-tracked health metrics — unified with clinical records and writable back to provider systems.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ VALUE PROPOSITION ══════ -->
+<section class="section-dark pad" id="value">
+<div class="container">
+<div class="eyebrow reveal">The TETRA Ex™ Advantage</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="max-width: 700px; margin-bottom: 16px;">Built different. Delivers more.</div>
+<div class="body-text reveal d3" style="color: var(--text-light);">TETRA Ex™ isn't another health information exchange. It's a bidirectional orchestration layer that sits above existing networks, aggregates them into a single data stream, and writes validated data back to every system in the network.</div>
+<div class="value-grid">
+<div class="value-card reveal d2">
+<div class="vc-num">01</div>
+<div class="vc-title">Unified Access, Zero Fragmentation</div>
+<div class="vc-desc">One API connection replaces dozens of individual integrations. TETRA Ex™ aggregates data across national HIEs, clinical data networks, claims clearinghouses, and consumer health sources — eliminating piecemeal connectivity forever.</div>
+</div>
+<div class="value-card reveal d3">
+<div class="vc-num">02</div>
+<div class="vc-title">True Bidirectional Exchange</div>
+<div class="vc-desc">Read and write. TETRA Ex™ doesn't just retrieve records — it pushes validated updates back to source systems. Care coordination notes, medication changes, monitoring data, and outcome documentation flow both directions in real time.</div>
+</div>
+<div class="value-card reveal d2">
+<div class="vc-num">03</div>
+<div class="vc-title">Consumer Data Sovereignty</div>
+<div class="vc-desc">For the first time, individuals have a personal health exchange that aggregates their complete record and lets them control who accesses it. Patients can grant, revoke, and manage permissions — and push their own data back into clinical systems.</div>
+</div>
+<div class="value-card reveal d3">
+<div class="vc-num">04</div>
+<div class="vc-title">AI-Ready, HIPAA-Native</div>
+<div class="vc-desc">Every record is normalized into clean FHIR R4 structured data — ready for AI models, analytics, and clinical decision support without preprocessing. Compliance isn't bolted on — it's foundational to every query, every write-back, every data flow.</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ COMPLIANCE STRIP ══════ -->
+<div class="compliance">
+<div class="compliance-inner reveal">
+<div class="comp-badge">
+<svg viewbox="0 0 24 24"><rect height="11" rx="2" width="18" x="3" y="11"></rect><path d="M7 11V7a5 5 0 0110 0v4"></path></svg>
+<span class="comp-text">HIPAA Compliant</span>
+</div>
+<div class="comp-badge">
+<svg viewbox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"></path></svg>
+<span class="comp-text">FHIR R4</span>
+</div>
+<div class="comp-badge">
+<svg viewbox="0 0 24 24"><path d="M3 21V7a2 2 0 012-2h3l2-3h4l2 3h3a2 2 0 012 2v14H3z"></path><path d="M12 10v4m0 0v2"></path></svg>
+<span class="comp-text">TEFCA Aligned</span>
+</div>
+<div class="comp-badge">
+<svg viewbox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"></path></svg>
+<span class="comp-text">HL7 Interoperable</span>
+</div>
+<div class="comp-badge">
+<svg viewbox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+<span class="comp-text">SOC 2 Ready</span>
+</div>
+</div>
+</div>
+<!-- ══════ COMPARISON TABLE ══════ -->
+<section class="section-white pad">
+<div class="container">
+<div class="eyebrow reveal">Why TETRA Ex™</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="color: var(--navy); max-width: 700px; margin-bottom: 16px;">The difference between a connection and an <em style="color:var(--gold); font-style:italic;">orchestration layer.</em></div>
+<div class="body-text reveal d3" style="margin-bottom: 24px;">Every major EHR vendor, every health system, and every digital health startup is racing to deploy AI. But AI is only as good as the data it operates on. A model trained on one hospital's records can't see the patient's full story. A care gap engine that only reads from a single EHR misses everything that happened at the pharmacy, the specialist, the lab across town, and the wearable on the patient's wrist.</div>
+<div class="body-text reveal d3" style="margin-bottom: 24px;">This is the fundamental problem the AI explosion has exposed: <strong style="color:var(--navy);">fragmented data produces fragmented intelligence.</strong> Every AI model in healthcare needs complete, normalized, real-time patient data to generate safe, accurate outputs. And it needs a supervised path to write validated results back to clinical systems without corrupting production data.</div>
+<div class="body-text reveal d3" style="margin-bottom: 24px;">TETRA Ex™ is that layer. It sits between the data and the intelligence — aggregating from every source, normalizing into AI-ready formats, supervising every output, and writing validated results back bidirectionally. Without it, AI in healthcare is flying blind. With it, AI in healthcare finally has the complete picture it needs to deliver real outcomes.</div>
+<table class="compare-table reveal d4">
+<thead>
+<tr>
+<th>Capability</th>
+<th>Single HIE / Data Source</th>
+<th style="min-width: 160px;">TETRA Ex™</th>
+</tr>
+</thead>
+<tbody>
+<tr><td>Clinical records from multiple networks</td><td style="text-align:center;"><span class="x-mark">Limited</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Bidirectional write-back to source systems</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Write-back to patient's InPursuit App</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Consumer-owned personal health exchange</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Real-time eligibility &amp; benefits verification</td><td style="text-align:center;"><span class="x-mark">Separate vendor</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Claims + clinical data in one query</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Consumer-permissioned wearable data</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>FHIR R4 normalized output</td><td style="text-align:center;"><span class="x-mark">Varies</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>AI supervision &amp; data validation layer</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Patient-controlled data permissions</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td colspan="3" style="padding:32px 24px 12px;border-bottom:2px solid rgba(10,22,40,0.08);font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">AI-Specific Capabilities</td></tr>
+<tr><td>Complete patient context for every AI inference</td><td style="text-align:center;"><span class="x-mark">Partial</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Multi-source data aggregation before model execution</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>AI output validation before write-back to production</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Data provenance &amp; audit trail for every AI-generated insight</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Hallucination prevention — validated against source records</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Single normalized API for any AI model or vendor</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>HIPAA-compliant AI data pipeline — no raw PHI exposure</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+<tr><td>Zero additional integration per new AI model or vendor</td><td style="text-align:center;"><span class="x-mark">—</span></td><td><span class="check-mark"><svg viewbox="0 0 24 24"><path d="M20 6L9 17l-5-5"></path></svg></span></td></tr>
+</tbody>
+</table>
+</div>
+</section>
+<!-- ══════ USE CASES / ENGINES ══════ -->
+<section class="section-dark pad">
+<div class="container">
+<div class="eyebrow reveal">Powering What Matters</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="max-width: 700px; margin-bottom: 16px;">TETRA Ex™ delivers value across every dimension of modern healthcare.</div>
+<div class="engine-cards">
+<div class="engine-card reveal d3">
+<div class="ec-num">01</div>
+<div class="ec-title">Enterprise AI Supervision</div>
+<div class="ec-desc">Clinical AI models need complete data to generate safe outputs. TETRA Ex™ feeds supervised AI with comprehensive, validated patient records — and writes validated outputs back to production systems only after supervision. No hallucinations reach the chart. No unvalidated data enters the workflow.</div>
+<ul class="ec-list">
+<li>Complete patient context for every AI inference</li>
+<li>Write-back only after validation and supervision</li>
+<li>Full data provenance and audit trails</li>
+</ul>
+</div>
+<div class="engine-card reveal d4">
+<div class="ec-num">02</div>
+<div class="ec-title">Value-Based Care &amp; Outcome-Based Payment</div>
+<div class="ec-desc">Whether it's CMS ACCESS, ACO REACH, MSSP, bundled payments, or commercial value-based contracts — payers pay for outcomes, not activity. TETRA Ex™ identifies eligible patients, tracks outcomes continuously, and writes documentation back to provider EHRs — turning episodic care into measurable, reportable results across any VBC or OBP program.</div>
+<ul class="ec-list">
+<li>Automated patient identification and enrollment across all VBC models</li>
+<li>Continuous monitoring data written to clinical record</li>
+<li>Outcome documentation generated and distributed automatically</li>
+</ul>
+</div>
+<div class="engine-card reveal d5">
+<div class="ec-num">03</div>
+<div class="ec-title">Direct-to-Consumer Virtual Care</div>
+<div class="ec-desc">The InPursuit App gives individuals a personal health exchange powered by TETRA Ex™. Every record unified, every provider connected, every update flowing both directions — with the patient in control of their own health story.</div>
+<ul class="ec-list">
+<li>Patient-owned unified health record</li>
+<li>Bidirectional exchange with every provider</li>
+<li>AI care coordination and proactive risk alerts</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ FAQ ══════ -->
+<section class="section-light pad" id="faq">
+<div class="container">
+<div class="eyebrow reveal">Frequently Asked</div>
+<div class="rule reveal d1"></div>
+<div class="sec-title reveal d2" style="color: var(--navy); margin-bottom: 8px;">Questions about TETRA Ex™</div>
+<div class="faq-list">
+<div class="faq-item reveal d2">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>Where does TETRA Ex™ source its data?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">TETRA Ex™ orchestrates data retrieval across multiple national health information networks, including TEFCA-aligned Qualified Health Information Networks (QHINs), nationwide clinical data repositories, consumer health data aggregators, and real-time eligibility verification services. Our network connections include partnerships with organizations like eHealth Exchange, Particle Health, b.well Connected Health, pVerify, CommonWell Health Alliance, and others — giving us access to the broadest possible data footprint in U.S. healthcare.</div>
+</div>
+</div>
+<div class="faq-item reveal d3">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>How does the write-back capability work?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">TETRA Ex™ uses FHIR R4-compliant APIs and established interoperability frameworks (TEFCA, CommonWell, Carequality) to push validated clinical data back to source systems. Every write-back operation is authenticated, validated against clinical standards, and logged with full audit trails. This means care coordination notes, updated care plans, medication changes, and monitoring data flow back to every provider in the patient's network automatically — no manual intervention required.</div>
+</div>
+</div>
+<div class="faq-item reveal d4">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>How do individuals control their data?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">Through the InPursuit consumer experience, individuals have granular control over their personal health exchange. They can view their complete aggregated record, grant or revoke access permissions for specific providers or systems, authorize what data flows where, and push their own data (advance directives, self-reported information, wearable data) back into clinical systems. Your data follows you — not your insurance plan, not your employer, not your provider network.</div>
+</div>
+</div>
+<div class="faq-item reveal d5">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>How does TETRA Ex™ differ from a traditional HIE?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">Traditional HIEs are regional, read-only data exchange networks — each covering a specific geography or health system. TETRA Ex™ sits above all of them as a bidirectional orchestration layer, aggregating data from multiple HIEs, clinical networks, claims clearinghouses, and consumer health sources simultaneously. One connection replaces dozens of individual relationships, with AI-ready normalization, built-in supervision, full write-back capability, and consumer-facing data sovereignty that no traditional HIE offers.</div>
+</div>
+</div>
+<div class="faq-item reveal d6">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>Is TETRA Ex™ HIPAA compliant?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">HIPAA compliance is foundational to how TETRA Ex™ is architected — not an afterthought. Every data query and write-back is authenticated and authorized. Every record access is logged with full audit trails. All data transmission is encrypted end-to-end. TETRA Ex™ operates under Business Associate Agreements with all network partners and is built to meet TEFCA framework requirements and SOC 2 standards.</div>
+</div>
+</div>
+<div class="faq-item reveal d7">
+<button class="faq-question" onclick="toggleFaq(this)">
+<span>How quickly can we integrate with TETRA Ex™?</span>
+<span class="faq-toggle"><svg viewbox="0 0 24 24"><line x1="12" x2="12" y1="5" y2="19"></line><line x1="5" x2="19" y1="12" y2="12"></line></svg></span>
+</button>
+<div class="faq-answer">
+<div class="faq-answer-text">TETRA Ex™ is designed for rapid deployment. Because we manage all upstream network connections, credentialing, and data use agreements internally, your organization connects to a single API endpoint. Typical integration timelines are measured in days to weeks, not the months or years required to establish individual network connections.</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ══════ CTA ══════ -->
+<section class="cta-section">
+<div class="cta-inner">
+<div class="eyebrow reveal" style="margin-bottom: 24px;">Ready to Connect?</div>
+<div class="cta-title reveal d1">Harness the Power of<br/>Your <em>Data™</em></div>
+<div class="cta-desc reveal d2">One connection to TETRA Ex™ gives providers complete clinical context and gives individuals ownership of their health story. The exchange of all exchanges — for everyone.</div>
+<a class="cta-btn reveal d3" href="mailto:patrick@inpursuit.health">
+      Get in Touch
+      <svg viewbox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"></path></svg>
+</a>
+</div>
+</section>
+<!-- ══════ FOOTER ══════ -->
+<footer class="site-footer">
+<div class="footer-inner">
+<div class="footer-brand">InPursuit Health</div>
+<div class="footer-tm">Results Matter™ · Harness the Power of Your Data™</div>
+<div class="footer-legal">© 2026 InPursuit Health. All rights reserved.</div>
+</div>
+</footer>
+<!-- ══════ SCRIPTS ══════ -->
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+function toggleFaq(btn) {
+  const item = btn.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.animated) {
+      e.target.dataset.animated = 'true';
+      const target = parseInt(e.target.dataset.target);
+      const suffix = e.target.dataset.suffix || '';
+      const duration = 2000;
+      const start = performance.now();
+      function update(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        e.target.textContent = Math.round(target * eased) + suffix;
+        if (progress < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.counter-animate').forEach(el => counterObserver.observe(el));
+
+// Hero network canvas with floating data shapes
+(function() {
+  const canvas = document.getElementById('heroCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, nodes = [], shapes = [];
+
+  function resize() {
+    const parent = canvas.parentElement;
+    w = canvas.width = parent.offsetWidth;
+    h = canvas.height = parent.offsetHeight;
+  }
+
+  function createNodes() {
+    nodes = [];
+    const count = Math.min(Math.floor((w * h) / 7000), 180);
+    for (let i = 0; i < count; i++) {
+      nodes.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.5, vy: (Math.random()-0.5)*0.5, r: Math.random()*3+1.5, gold: Math.random()<0.35 });
+    }
+  }
+
+  function createShapes() {
+    shapes = [];
+    const cols = 6, rows = 5;
+    const cellW = w / cols, cellH = h / rows;
+    const types = ['hex', 'diamond', 'square', 'circle', 'cross', 'bracket'];
+    for (let r = 0; r < rows; r++) {
+      for (let c = 0; c < cols; c++) {
+        shapes.push({
+          x: cellW * c + Math.random() * cellW,
+          y: cellH * r + Math.random() * cellH,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          size: Math.random() * 16 + 10,
+          type: types[Math.floor(Math.random() * types.length)],
+          rotation: Math.random() * Math.PI * 2,
+          rotSpeed: (Math.random() - 0.5) * 0.008,
+          gold: Math.random() < 0.45,
+          opacity: Math.random() * 0.3 + 0.1
+        });
+      }
+    }
+  }
+
+  function drawShape(s) {
+    ctx.save();
+    ctx.translate(s.x, s.y);
+    ctx.rotate(s.rotation);
+    const color = s.gold ? `rgba(197,165,90,${s.opacity})` : `rgba(255,255,255,${s.opacity * 0.7})`;
+    ctx.strokeStyle = color;
+    ctx.lineWidth = 1;
+
+    switch(s.type) {
+      case 'hex':
+        ctx.beginPath();
+        for (let i = 0; i < 6; i++) {
+          const a = (Math.PI / 3) * i - Math.PI / 6;
+          const method = i === 0 ? 'moveTo' : 'lineTo';
+          ctx[method](Math.cos(a) * s.size, Math.sin(a) * s.size);
+        }
+        ctx.closePath(); ctx.stroke();
+        break;
+      case 'diamond':
+        ctx.beginPath();
+        ctx.moveTo(0, -s.size); ctx.lineTo(s.size * 0.7, 0);
+        ctx.lineTo(0, s.size); ctx.lineTo(-s.size * 0.7, 0);
+        ctx.closePath(); ctx.stroke();
+        break;
+      case 'square':
+        ctx.strokeRect(-s.size * 0.6, -s.size * 0.6, s.size * 1.2, s.size * 1.2);
+        break;
+      case 'circle':
+        ctx.beginPath(); ctx.arc(0, 0, s.size * 0.7, 0, Math.PI * 2); ctx.stroke();
+        break;
+      case 'cross':
+        ctx.beginPath();
+        ctx.moveTo(-s.size * 0.5, 0); ctx.lineTo(s.size * 0.5, 0);
+        ctx.moveTo(0, -s.size * 0.5); ctx.lineTo(0, s.size * 0.5);
+        ctx.stroke();
+        break;
+      case 'bracket':
+        ctx.beginPath();
+        ctx.moveTo(-s.size * 0.3, -s.size * 0.6);
+        ctx.lineTo(-s.size * 0.6, -s.size * 0.6);
+        ctx.lineTo(-s.size * 0.6, s.size * 0.6);
+        ctx.lineTo(-s.size * 0.3, s.size * 0.6);
+        ctx.moveTo(s.size * 0.3, -s.size * 0.6);
+        ctx.lineTo(s.size * 0.6, -s.size * 0.6);
+        ctx.lineTo(s.size * 0.6, s.size * 0.6);
+        ctx.lineTo(s.size * 0.3, s.size * 0.6);
+        ctx.stroke();
+        break;
+    }
+    ctx.restore();
+  }
+
+  function init() {
+    resize();
+    createNodes();
+    createShapes();
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    // Draw connections between nodes
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i+1; j < nodes.length; j++) {
+        const dx = nodes[i].x-nodes[j].x, dy = nodes[i].y-nodes[j].y, dist = Math.sqrt(dx*dx+dy*dy);
+        if (dist < 220) {
+          const alpha = (1-dist/220)*0.2;
+          ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = (nodes[i].gold||nodes[j].gold) ? `rgba(197,165,90,${alpha*2})` : `rgba(255,255,255,${alpha})`;
+          ctx.lineWidth = 0.7; ctx.stroke();
+        }
+      }
+    }
+
+    // Draw and update nodes
+    for (const n of nodes) {
+      n.x += n.vx; n.y += n.vy;
+      if (n.x<0||n.x>w) n.vx*=-1;
+      if (n.y<0||n.y>h) n.vy*=-1;
+      ctx.beginPath(); ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = n.gold ? 'rgba(197,165,90,0.85)' : 'rgba(255,255,255,0.45)'; ctx.fill();
+    }
+
+    // Draw and update floating data shapes
+    for (const s of shapes) {
+      s.x += s.vx; s.y += s.vy; s.rotation += s.rotSpeed;
+      if (s.x < -30 || s.x > w + 30) s.vx *= -1;
+      if (s.y < -30 || s.y > h + 30) s.vy *= -1;
+      drawShape(s);
+
+      // Connect shapes to nearby nodes
+      for (const n of nodes) {
+        const dx = s.x - n.x, dy = s.y - n.y, dist = Math.sqrt(dx*dx+dy*dy);
+        if (dist < 140) {
+          const alpha = (1 - dist/140) * 0.1;
+          ctx.beginPath(); ctx.moveTo(s.x, s.y); ctx.lineTo(n.x, n.y);
+          ctx.strokeStyle = s.gold ? `rgba(197,165,90,${alpha})` : `rgba(255,255,255,${alpha * 0.5})`;
+          ctx.lineWidth = 0.4; ctx.stroke();
+        }
+      }
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  // Wait for layout to settle before initializing
+  window.addEventListener('resize', init);
+  requestAnimationFrame(() => { init(); draw(); });
+})();
+
+// Nav scroll effect + mobile toggle + smooth scroll
+window.addEventListener('scroll', () => {
+  const nav = document.querySelector('.top-nav');
+  if (nav) nav.classList.toggle('scrolled', window.scrollY > 50);
+});
+const navToggle = document.querySelector('.nav-toggle');
+const navLinks = document.querySelector('.nav-links');
+if (navToggle && navLinks) {
+  navToggle.addEventListener('click', () => navLinks.classList.toggle('open'));
+}
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', e => {
+    e.preventDefault();
+    const t = document.querySelector(link.getAttribute('href'));
+    if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (navLinks) navLinks.classList.remove('open');
+  });
+});
+</script>
+
+  <script src="nav.js"></script>
+</body>
+</html>
