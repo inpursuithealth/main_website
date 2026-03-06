@@ -7,17 +7,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
+/* Page-specific variables not in styles.css */
 :root{
-  --navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;--navy-light:#1A2D4A;
-  --gold:#C5A44E;--gold-light:#D4B96A;--gold-bright:#E8D48B;--gold-dim:rgba(197,164,78,0.6);
-  --white:#FFF;--red:#C0392B;--green:#27AE60;
-  --text-light:rgba(255,255,255,0.85);--text-muted:rgba(255,255,255,0.45);--text-dim:rgba(255,255,255,0.22);
+  --navy-light:#1A2D4A;
+  --gold-dim:rgba(197,164,78,0.6);
+  --text-light:rgba(255,255,255,0.85);
+  --text-dim:rgba(255,255,255,0.22);
   --border:rgba(197,164,78,0.1);--border-med:rgba(197,164,78,0.2);--border-strong:rgba(197,164,78,0.35);
   --glow:rgba(197,164,78,0.06);
+  --green:#27AE60;
 }
-*{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-body{font-family:'Instrument Sans',sans-serif;background:var(--navy-deep);color:var(--text-light);overflow-x:hidden;-webkit-font-smoothing:antialiased;}
 
 /* ── PRELOADER ── */
 @keyframes shieldPulse{0%,100%{opacity:0.3;transform:scale(0.95);}50%{opacity:1;transform:scale(1.05);}}
@@ -38,12 +37,6 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--navy-deep);color:
 .hero-tagline{font-family:'Instrument Serif',serif;font-size:20px;color:var(--gold-light);font-style:italic;margin-bottom:48px;animation:fu .8s ease .32s both;}
 .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fu .8s ease .4s both;}
 @keyframes fu{from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);}}
-
-/* ── BUTTONS ── */
-.btn-gold{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:var(--gold);color:var(--navy-deep);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:6px;border:none;cursor:pointer;transition:all .3s;}
-.btn-gold:hover{background:var(--gold-bright);transform:translateY(-2px);box-shadow:0 12px 40px rgba(197,164,78,.2);}
-.btn-outline{display:inline-flex;align-items:center;gap:8px;padding:14px 34px;background:transparent;color:var(--gold);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:6px;border:1px solid rgba(197,164,78,.25);cursor:pointer;transition:all .3s;}
-.btn-outline:hover{border-color:var(--gold);background:rgba(197,164,78,.05);transform:translateY(-2px);}
 
 /* ── TRUST ── */
 .trust-bar{padding:24px 40px;background:var(--navy);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
