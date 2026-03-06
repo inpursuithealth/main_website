@@ -18,10 +18,8 @@
           <a href="tetra-ex.html">TETRA Ex&#8482; &mdash; Health Data Exchange</a>
           <a href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
           <div class="iph-sub-dropdown">
-            <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance <span class="iph-caret" style="margin-left:auto;">&#9654;</span></a>
-            <div class="iph-sub-dropdown-menu">
-              <a href="tetra-aegis.html#sentinel">TETRA Sentinel&#8482; &mdash; Behavioral Surveillance</a>
-            </div>
+            <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance</a>
+            <a href="tetra-aegis.html#sentinel">TETRA Sentinel&#8482; &mdash; Behavioral Surveillance</a>
           </div>
         </div>
       </div>
