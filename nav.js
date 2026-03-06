@@ -37,6 +37,13 @@
         </div>
       </div>
       <a class="iph-nav-item" href="veterans-first.html">Veterans First</a>
+      <div class="iph-dropdown">
+        <a class="iph-nav-item iph-dropdown-toggle" href="about.html" aria-haspopup="true">About <span class="iph-caret">&#9660;</span></a>
+        <div class="iph-dropdown-menu">
+          <a href="about.html">About Us</a>
+          <a href="leadership.html">Leadership</a>
+        </div>
+      </div>
       <a id="iph-cta" href="investor.html">Invest</a>
     </nav>
     <button id="iph-toggle" aria-label="Toggle navigation" aria-expanded="false">
