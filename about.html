@@ -384,42 +384,7 @@ body {
 </style>
 </head>
 <body>
-<!-- ===== UNIVERSAL NAV ===== -->
-<header id="iph-topbar">
-  <div id="iph-topbar-inner">
-    <div id="iph-brand-group">
-      <a id="iph-wordmark" href="index.html">InPursuit Health</a>
-      <span id="iph-brand-divider">|</span>
-      <span id="iph-maha">MAHA Policy Alignment</span>
-    </div>
-    <nav id="iph-nav">
-      <div class="iph-dropdown">
-        <a class="iph-nav-item iph-dropdown-toggle" href="tetra.html">TETRA <span class="iph-caret">&#9660;</span></a>
-        <div class="iph-dropdown-menu">
-          <span style="cursor:default;">TETRA Aegis&trade;</span>
-          <span style="cursor:default;">TETRA Sentinel&trade;</span>
-        </div>
-      </div>
-      <div class="iph-dropdown">
-        <span class="iph-nav-item iph-dropdown-toggle" style="cursor:default;">For You <span class="iph-caret">&#9660;</span></span>
-        <div class="iph-dropdown-menu">
-          <span style="cursor:default;">For Your Pets</span>
-        </div>
-      </div>
-      <div class="iph-dropdown">
-        <span class="iph-nav-item iph-dropdown-toggle" style="cursor:default;">For VBC Providers <span class="iph-caret">&#9660;</span></span>
-        <div class="iph-dropdown-menu">
-          <span style="cursor:default;">ACCESS Model Offer</span>
-        </div>
-      </div>
-      <span class="iph-nav-item" style="cursor:default;">MyPursuit</span>
-      <span class="iph-nav-item" style="cursor:default;">Data Oath</span>
-      <a class="iph-nav-item" href="partner-network.html">Partner Network</a>
-      <span id="iph-cta" style="cursor:default;">Invest</span>
-    </nav>
-    <button id="iph-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
-  </div>
-</header>
+<!-- Nav injected by nav.js -->
 
 
 
@@ -604,5 +569,6 @@ var revObs = new IntersectionObserver(function(entries) {
 }, { threshold: 0.15 });
 document.querySelectorAll('.reveal').forEach(function(el) { revObs.observe(el); });
 </script>
+<script src="nav.js"></script>
 </body>
 </html>

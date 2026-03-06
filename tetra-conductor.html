@@ -921,23 +921,7 @@ footer {
 </head>
 <body>
 
-<!-- NAV -->
-<header class="top-bar" id="topBar">
-  <div class="top-bar-inner">
-    <a href="https://www.inpursuithealth.com/" class="top-bar-brand">
-      <div class="brand-mark">I</div>
-      <span class="top-bar-wordmark">InPursuit Health</span>
-    </a>
-    <nav class="top-bar-nav">
-      <a href="https://www.inpursuithealth.com/tetra" class="nav-item">TETRA</a>
-      <a href="#stack" class="nav-item">The Stack</a>
-      <a href="#orchestration" class="nav-item">How It Works</a>
-      <a href="#use-cases" class="nav-item">Use Cases</a>
-      <a href="#faq" class="nav-item">FAQ</a>
-    </nav>
-    <a href="mailto:info@inpursuithealth.com" class="nav-cta">Request Demo</a>
-  </div>
-</header>
+<!-- Nav injected by nav.js -->
 
 <!-- HERO -->
 <section class="hero">
@@ -1556,11 +1540,6 @@ footer {
 </footer>
 
 <script>
-// Nav scroll shadow
-window.addEventListener('scroll', function() {
-  document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10);
-});
-
 // Scroll reveal
 var revealObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
@@ -1934,5 +1913,6 @@ function toggleFaq(btn) {
 })();
 
 </script>
+<script src="nav.js"></script>
 </body>
 </html>

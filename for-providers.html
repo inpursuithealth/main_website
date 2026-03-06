@@ -606,28 +606,7 @@ body { font-family: 'Instrument Sans', sans-serif; background: var(--cream); col
 <!-- Preloader -->
 <div class="preloader" id="preloader"><div class="preloader-wordmark">InPursuit Health</div></div>
 
-<!-- Top Bar -->
-<header class="top-bar" id="topBar">
-  <div class="top-bar-inner">
-    <div style="display: flex; align-items: center; gap: 8px;">
-      <a class="top-bar-brand" href="index.html">
-        <div class="top-bar-wordmark">InPursuit Health</div>
-      </a>
-      <span style="color: rgba(255,255,255,0.4); margin: 0 4px;">|</span>
-      <a href="maha.html" style="font-size: 13px; color: var(--white); text-decoration: none; letter-spacing: 0.5px; transition: color 0.3s ease; white-space: nowrap; font-weight: 500;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--white)'">MAHA Policy Alignment</a>
-    </div>
-    <nav class="top-bar-nav" id="topNav">
-      <a class="nav-item" href="for-you.html">For You</a>
-      <a class="nav-item active" href="for-providers.html">For Providers</a>
-      <a class="nav-item" href="data-security-ai.html">Data Security &amp; AI</a>
-      <a class="nav-item" href="veterans-first.html">Veterans First Initiative</a>
-      <a class="nav-item" href="partner-network.html" style="color: var(--gold);">Partner Network</a>
-    </nav>
-    <button class="nav-toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
+<!-- Nav injected by nav.js -->
 
 <!-- HERO -->
 <section class="hero" id="home">
@@ -2570,5 +2549,6 @@ document.getElementById('npiInput').addEventListener('keypress', function(e) {
 
 })();
 </script>
+<script src="nav.js"></script>
 </body>
 </html>
