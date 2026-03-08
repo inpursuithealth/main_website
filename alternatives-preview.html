@@ -1,0 +1,1179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TETRAex Section — 3 Alternatives</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-deep: #060E1A;
+  --navy-mid: #112240;
+  --gold: #C5A44E;
+  --gold-light: #D4B96A;
+  --gold-bright: #E8D48B;
+  --cream: #FAF8F4;
+  --white: #ffffff;
+  --off-white: #F0EDE6;
+  --text-dark: #1A1A2E;
+  --text-muted: #6B7280;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Instrument Sans', sans-serif; background: #1a1a1a; color: #fff; }
+
+.nav-bar {
+  position: sticky; top: 0; z-index: 100;
+  background: #111; border-bottom: 1px solid #333;
+  padding: 0 40px; height: 56px;
+  display: flex; align-items: center; gap: 8px;
+}
+.nav-bar span { font-size: 12px; font-weight: 600; letter-spacing: 1px; color: #888; text-transform: uppercase; margin-right: 8px; }
+.nav-tab {
+  padding: 6px 16px; border-radius: 6px; border: 1px solid #333;
+  background: transparent; color: #888; font-size: 12px; font-weight: 600;
+  cursor: pointer; transition: all 0.2s; font-family: inherit; letter-spacing: 0.5px;
+}
+.nav-tab:hover { border-color: #C5A44E; color: #C5A44E; }
+.nav-tab.active { background: #C5A44E; border-color: #C5A44E; color: #060E1A; }
+
+.alt-panel { display: none; }
+.alt-panel.active { display: block; }
+
+/* ================================================
+   OPTION A — "DARK ORBITAL"
+   Full dark section, central orbital ring diagram,
+   data sources orbiting the engine like planets
+   ================================================ */
+.opt-a {
+  background: var(--navy-deep);
+  padding: 100px 40px;
+  position: relative;
+  overflow: hidden;
+}
+.opt-a::before {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 800px; height: 800px;
+  background: radial-gradient(ellipse at center, rgba(197,164,78,0.05) 0%, transparent 65%);
+  pointer-events: none;
+}
+.opt-a-inner { max-width: 1100px; margin: 0 auto; position: relative; z-index: 2; }
+.opt-a-header { text-align: center; margin-bottom: 72px; }
+.opt-a-overline {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px; display: block;
+}
+.opt-a-header h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(28px, 3.5vw, 44px); color: #fff; line-height: 1.2; margin-bottom: 16px;
+}
+.opt-a-header h2 em { font-style: italic; color: var(--gold); }
+.opt-a-header p { font-size: 15px; color: rgba(255,255,255,0.45); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+.opt-a-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 40px;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+/* Left column — data sources as glowing "nodes" */
+.opt-a-nodes { display: flex; flex-direction: column; gap: 8px; }
+.opt-a-node {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  cursor: default;
+  transition: all 0.3s ease;
+}
+.opt-a-node:hover {
+  background: rgba(197,164,78,0.06);
+  border-color: rgba(197,164,78,0.2);
+  transform: translateX(4px);
+}
+.opt-a-node-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold); opacity: 0.5;
+  flex-shrink: 0;
+  animation: nodePulse 3s ease-in-out infinite;
+}
+.opt-a-node:nth-child(1) .opt-a-node-dot { animation-delay: 0s; }
+.opt-a-node:nth-child(2) .opt-a-node-dot { animation-delay: 0.5s; }
+.opt-a-node:nth-child(3) .opt-a-node-dot { animation-delay: 1s; }
+.opt-a-node:nth-child(4) .opt-a-node-dot { animation-delay: 1.5s; }
+.opt-a-node:nth-child(5) .opt-a-node-dot { animation-delay: 2s; }
+.opt-a-node:nth-child(6) .opt-a-node-dot { animation-delay: 2.5s; }
+@keyframes nodePulse {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.4); }
+}
+.opt-a-node-text { font-size: 13px; color: rgba(255,255,255,0.6); font-weight: 500; }
+.opt-a-node-line {
+  margin-left: auto; height: 1px; width: 40px;
+  background: linear-gradient(to right, transparent, rgba(197,164,78,0.3));
+}
+
+/* Center engine */
+.opt-a-center { display: flex; justify-content: center; }
+.opt-a-engine {
+  position: relative;
+  width: 280px; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.opt-a-ring {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(197,164,78,0.15);
+  animation: ringRotate 20s linear infinite;
+}
+.opt-a-ring-1 { width: 100%; height: 100%; animation-duration: 20s; }
+.opt-a-ring-2 { width: 80%; height: 80%; animation-duration: 15s; animation-direction: reverse; border-color: rgba(197,164,78,0.08); }
+.opt-a-ring-3 { width: 60%; height: 60%; animation-duration: 10s; border-style: dashed; border-color: rgba(197,164,78,0.06); }
+@keyframes ringRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.opt-a-engine-core {
+  position: relative; z-index: 2;
+  width: 140px; height: 140px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #112240, #0A1628);
+  border: 1px solid rgba(197,164,78,0.25);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(197,164,78,0.08), inset 0 0 40px rgba(197,164,78,0.04);
+}
+.opt-a-engine-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 16px; color: var(--gold); line-height: 1.1;
+}
+.opt-a-engine-name em { font-style: italic; }
+.opt-a-engine-sub {
+  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-top: 6px;
+}
+.opt-a-engine-shield {
+  margin-top: 10px;
+}
+/* Orbiting dot on ring */
+.opt-a-orbit-dot {
+  position: absolute;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 8px rgba(197,164,78,0.6);
+  top: -4px; left: 50%;
+  transform: translateX(-50%);
+  transform-origin: 50% 144px;
+  animation: ringRotate 20s linear infinite;
+}
+.opt-a-orbit-dot-2 {
+  position: absolute;
+  width: 5px; height: 5px; border-radius: 50%;
+  background: rgba(197,164,78,0.5);
+  top: -2.5px; left: 50%;
+  transform-origin: 50% 113px;
+  animation: ringRotate 15s linear infinite reverse;
+}
+
+/* Right column — value items */
+.opt-a-values { display: flex; flex-direction: column; gap: 8px; }
+.opt-a-val {
+  display: flex; align-items: center; gap: 14px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.opt-a-val:hover {
+  background: rgba(197,164,78,0.06);
+  border-color: rgba(197,164,78,0.2);
+  transform: translateX(-4px);
+}
+.opt-a-val-line {
+  height: 1px; width: 40px;
+  background: linear-gradient(to left, transparent, rgba(197,164,78,0.3));
+  flex-shrink: 0;
+}
+.opt-a-val-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(197,164,78,0.08);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.opt-a-val-text strong { display: block; font-size: 12px; color: rgba(255,255,255,0.85); font-weight: 600; }
+.opt-a-val-text span { display: block; font-size: 10px; color: rgba(255,255,255,0.35); margin-top: 1px; }
+
+/* AI chips — same as current but inverted color */
+.opt-a-ai-row {
+  text-align: center; margin-bottom: 40px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+}
+.opt-a-ai-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 12px; }
+.opt-a-ai-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; }
+.opt-a-ai-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 13px; border-radius: 8px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  font-size: 11px; color: rgba(255,255,255,0.55);
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.opt-a-ai-chip:hover { border-color: rgba(197,164,78,0.35); color: rgba(255,255,255,0.85); }
+.opt-a-ai-chip.active { border-color: rgba(197,164,78,0.4); background: rgba(197,164,78,0.06); color: var(--gold-light); }
+.opt-a-ai-logo {
+  width: 20px; height: 20px; border-radius: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.opt-a-ai-logo img { width: 100%; height: 100%; object-fit: contain; }
+.opt-a-ai-sub { font-size: 10px; color: rgba(255,255,255,0.25); margin-top: 10px; font-style: italic; }
+
+/* Stats */
+.opt-a-stats {
+  display: flex; justify-content: center; gap: 64px;
+  padding-top: 48px;
+  border-top: 1px solid rgba(255,255,255,0.06);
+}
+.opt-a-stat { text-align: center; }
+.opt-a-stat-num { font-family: 'Instrument Serif', serif; font-size: 48px; color: #fff; line-height: 1; display: block; }
+.opt-a-stat-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-top: 6px; display: block; }
+
+/* Badge label */
+.opt-a-badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: 7px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  border: 1px solid rgba(197,164,78,0.2); color: var(--gold);
+  margin-top: 6px;
+}
+
+/* ================================================
+   OPTION B — "LIGHT PIPELINE"
+   Clean cream/white section, horizontal pipeline
+   visualization with steps, very enterprise/SaaS
+   ================================================ */
+.opt-b {
+  background: var(--cream);
+  padding: 100px 40px;
+}
+.opt-b-inner { max-width: 1100px; margin: 0 auto; }
+.opt-b-header { text-align: center; margin-bottom: 72px; }
+.opt-b-overline {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 16px; display: block;
+}
+.opt-b-header h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(28px, 3.5vw, 44px); color: var(--navy); line-height: 1.2; margin-bottom: 16px;
+}
+.opt-b-header h2 em { font-style: italic; color: var(--gold); }
+.opt-b-header p { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+/* AI model selector */
+.opt-b-ai-row {
+  text-align: center; margin-bottom: 56px;
+}
+.opt-b-ai-label { font-size: 9px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 12px; opacity: 0.7; }
+.opt-b-ai-chips { display: flex; justify-content: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.opt-b-ai-chip {
+  display: inline-flex; align-items: center; gap: 7px;
+  padding: 7px 14px; border-radius: 8px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  font-size: 12px; color: var(--text-dark);
+  transition: all 0.2s; cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.opt-b-ai-chip:hover { border-color: rgba(197,164,78,0.4); box-shadow: 0 4px 12px rgba(0,0,0,0.08); transform: translateY(-1px); }
+.opt-b-ai-chip.active { border-color: rgba(197,164,78,0.5); background: rgba(197,164,78,0.04); }
+.opt-b-ai-logo {
+  width: 20px; height: 20px; border-radius: 5px;
+  display: inline-flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.opt-b-ai-logo img { width: 100%; height: 100%; object-fit: contain; }
+.opt-b-ai-sub { font-size: 11px; color: var(--text-muted); font-style: italic; }
+
+/* The 3-stage pipeline */
+.opt-b-pipeline {
+  display: grid;
+  grid-template-columns: 1fr 80px 320px 80px 1fr;
+  align-items: stretch;
+  margin-bottom: 56px;
+  gap: 0;
+}
+
+.opt-b-stage {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+}
+.opt-b-stage-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 16px; display: block;
+}
+.opt-b-stage-title {
+  font-family: 'Instrument Serif', serif;
+  font-size: 18px; color: var(--navy); margin-bottom: 4px; line-height: 1.2;
+}
+.opt-b-stage-title em { font-style: italic; color: var(--gold); }
+.opt-b-stage-sub { font-size: 11px; color: var(--text-muted); margin-bottom: 20px; }
+
+.opt-b-items { display: flex; flex-direction: column; gap: 6px; }
+.opt-b-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 9px 12px; border-radius: 8px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.04);
+  font-size: 12px; color: var(--text-dark); font-weight: 500;
+}
+.opt-b-item svg { color: var(--text-muted); flex-shrink: 0; }
+
+/* Center engine card */
+.opt-b-engine-card {
+  background: linear-gradient(145deg, var(--navy-deep), var(--navy-mid));
+  border-radius: 16px;
+  padding: 28px 24px;
+  text-align: center;
+  position: relative; overflow: hidden;
+  box-shadow: 0 8px 40px rgba(10,22,40,0.2);
+}
+.opt-b-engine-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.opt-b-engine-glow {
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(197,164,78,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.opt-b-engine-shield {
+  width: 44px; height: 44px; border-radius: 12px;
+  background: rgba(197,164,78,0.1); border: 1px solid rgba(197,164,78,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 14px;
+}
+.opt-b-engine-name {
+  font-family: 'Instrument Serif', serif; font-size: 20px; color: var(--gold); line-height: 1.1; margin-bottom: 4px;
+}
+.opt-b-engine-name em { font-style: italic; }
+.opt-b-engine-sub-name {
+  font-family: 'Instrument Serif', serif; font-size: 16px; color: rgba(197,164,78,0.6); line-height: 1.1; margin-bottom: 8px;
+}
+.opt-b-engine-sub-name em { font-style: italic; }
+.opt-b-engine-role {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.3); margin-bottom: 20px;
+}
+.opt-b-badges { display: flex; flex-direction: column; gap: 6px; }
+.opt-b-badge {
+  padding: 6px 10px; border-radius: 6px;
+  background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.15);
+  font-size: 9px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* Connector arrows */
+.opt-b-connector {
+  display: flex; align-items: center; justify-content: center;
+  position: relative;
+}
+.opt-b-connector-line {
+  width: 100%; height: 2px;
+  background: linear-gradient(to right, rgba(197,164,78,0.1), rgba(197,164,78,0.4), rgba(197,164,78,0.1));
+  position: relative;
+}
+.opt-b-connector-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--gold);
+  position: absolute; top: 50%; transform: translateY(-50%);
+  animation: pipeFlow 1.8s ease-in-out infinite;
+  box-shadow: 0 0 6px rgba(197,164,78,0.5);
+}
+@keyframes pipeFlow {
+  0% { left: 0; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 100%; opacity: 0; }
+}
+
+/* Stats */
+.opt-b-stats {
+  display: flex; justify-content: center; gap: 64px;
+  padding: 36px 0;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.opt-b-stat { text-align: center; }
+.opt-b-stat-num { font-family: 'Instrument Serif', serif; font-size: 48px; color: var(--navy); line-height: 1; display: block; }
+.opt-b-stat-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; display: block; }
+
+/* ================================================
+   OPTION C — "SPLIT HERO"
+   Two-column layout. Left: data sources animated
+   like a live feed. Right: large engine card.
+   More editorial / product-showcase feel.
+   ================================================ */
+.opt-c {
+  background: #fff;
+  padding: 100px 40px;
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+.opt-c-inner { max-width: 1100px; margin: 0 auto; }
+.opt-c-header { text-align: center; margin-bottom: 72px; }
+.opt-c-overline { font-size: 10px; font-weight: 700; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; display: block; }
+.opt-c-header h2 { font-family: 'Instrument Serif', serif; font-size: clamp(28px, 3.5vw, 44px); color: var(--navy); line-height: 1.2; margin-bottom: 16px; }
+.opt-c-header h2 em { font-style: italic; color: var(--gold); }
+.opt-c-header p { font-size: 15px; color: var(--text-muted); max-width: 600px; margin: 0 auto; line-height: 1.7; }
+
+.opt-c-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 56px;
+}
+
+/* Left — tabbed data sources */
+.opt-c-left { }
+.opt-c-tabs {
+  display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;
+}
+.opt-c-tab {
+  padding: 7px 16px; border-radius: 20px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: transparent;
+  font-size: 11px; font-weight: 600; color: var(--text-muted);
+  cursor: pointer; transition: all 0.2s; font-family: inherit;
+}
+.opt-c-tab.active { background: var(--navy); border-color: var(--navy); color: #fff; }
+.opt-c-tab:hover:not(.active) { border-color: rgba(197,164,78,0.3); color: var(--gold); }
+
+.opt-c-feed {
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px;
+  padding: 20px;
+  height: 480px;
+  overflow: hidden;
+  position: relative;
+}
+.opt-c-feed::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; height: 80px;
+  background: linear-gradient(to top, var(--cream), transparent);
+  pointer-events: none;
+}
+.opt-c-feed-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-muted); margin-bottom: 14px; display: flex; align-items: center; gap: 8px;
+}
+.opt-c-live-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #22C55E;
+  animation: livePulse 2s ease-in-out infinite;
+}
+@keyframes livePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50% { box-shadow: 0 0 0 5px rgba(34,197,94,0); }
+}
+.opt-c-feed-items { display: flex; flex-direction: column; gap: 8px; }
+.opt-c-feed-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  padding: 12px 14px;
+  background: #fff; border-radius: 10px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.opt-c-feed-icon {
+  width: 32px; height: 32px; border-radius: 8px;
+  background: rgba(197,164,78,0.1);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.opt-c-feed-title { font-size: 12px; font-weight: 600; color: var(--text-dark); margin-bottom: 2px; }
+.opt-c-feed-sub { font-size: 10px; color: var(--text-muted); line-height: 1.4; }
+.opt-c-feed-badge {
+  margin-left: auto; flex-shrink: 0;
+  padding: 3px 8px; border-radius: 4px;
+  font-size: 8px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+}
+.opt-c-badge-green { background: rgba(34,197,94,0.1); color: #16A34A; }
+.opt-c-badge-gold { background: rgba(197,164,78,0.1); color: var(--gold); }
+.opt-c-badge-blue { background: rgba(59,130,246,0.1); color: #2563EB; }
+
+/* Right — large engine + values */
+.opt-c-right { }
+.opt-c-engine {
+  background: linear-gradient(145deg, var(--navy-deep), var(--navy));
+  border-radius: 20px; padding: 36px 32px;
+  border: 1px solid rgba(197,164,78,0.12);
+  box-shadow: 0 20px 60px rgba(10,22,40,0.15);
+  margin-bottom: 16px;
+  position: relative; overflow: hidden;
+}
+.opt-c-engine::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.opt-c-engine-brands {
+  display: flex; align-items: center; gap: 24px;
+  margin-bottom: 28px;
+}
+.opt-c-brand {
+  font-family: 'Instrument Serif', serif;
+  font-size: 22px; color: var(--gold);
+}
+.opt-c-brand em { font-style: italic; }
+.opt-c-brand-divider {
+  color: rgba(255,255,255,0.15); font-size: 28px; font-weight: 100;
+}
+.opt-c-brand-sub {
+  font-size: 9px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.25); margin-top: 3px;
+}
+.opt-c-engine-desc {
+  font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.7;
+  margin-bottom: 24px;
+}
+.opt-c-engine-desc strong { color: rgba(255,255,255,0.7); }
+
+.opt-c-compliance {
+  display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px;
+}
+.opt-c-compliance-badge {
+  padding: 5px 12px; border-radius: 6px;
+  background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.15);
+  font-size: 9px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--gold);
+}
+
+.opt-c-val-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.opt-c-val-item {
+  padding: 14px; border-radius: 10px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  transition: all 0.2s;
+}
+.opt-c-val-item:hover { background: rgba(197,164,78,0.06); border-color: rgba(197,164,78,0.15); }
+.opt-c-val-title { font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); margin-bottom: 2px; }
+.opt-c-val-sub { font-size: 10px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+/* AI row */
+.opt-c-ai-bar {
+  padding: 16px 20px;
+  border-radius: 10px;
+  background: var(--cream);
+  border: 1px solid rgba(0,0,0,0.06);
+  display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+}
+.opt-c-ai-bar-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-muted); white-space: nowrap; flex-shrink: 0; }
+.opt-c-ai-chips { display: flex; gap: 6px; flex-wrap: wrap; }
+.opt-c-ai-chip {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 10px; border-radius: 6px;
+  background: #fff; border: 1px solid rgba(0,0,0,0.07);
+  font-size: 11px; color: var(--text-dark);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04);
+  transition: all 0.2s; cursor: pointer;
+}
+.opt-c-ai-chip:hover { border-color: rgba(197,164,78,0.4); }
+.opt-c-ai-chip.active { border-color: rgba(197,164,78,0.5); background: rgba(197,164,78,0.04); }
+.opt-c-ai-logo {
+  width: 16px; height: 16px; border-radius: 4px;
+  display: inline-flex; align-items: center; justify-content: center;
+  overflow: hidden; flex-shrink: 0;
+}
+.opt-c-ai-logo img { width: 100%; height: 100%; object-fit: contain; }
+
+/* Stats */
+.opt-c-stats {
+  display: flex; justify-content: center; gap: 64px; margin-top: 56px;
+  padding: 36px 0; border-top: 1px solid rgba(0,0,0,0.06);
+}
+.opt-c-stat { text-align: center; }
+.opt-c-stat-num { font-family: 'Instrument Serif', serif; font-size: 48px; color: var(--navy); line-height: 1; display: block; }
+.opt-c-stat-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--text-muted); margin-top: 6px; display: block; }
+
+/* Label badges for the preview */
+.preview-label {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 16px 8px 12px;
+  background: rgba(197,164,78,0.12); border: 1px solid rgba(197,164,78,0.25);
+  border-radius: 8px; margin: 0 auto 40px;
+  font-size: 11px; font-weight: 600; color: var(--gold); letter-spacing: 0.5px;
+  position: relative; left: 50%; transform: translateX(-50%);
+}
+.preview-label-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--gold); opacity: 0.7; }
+
+</style>
+</head>
+<body>
+
+<div class="nav-bar">
+  <span>Alternatives</span>
+  <button class="nav-tab active" onclick="show('a', this)">A — Dark Orbital</button>
+  <button class="nav-tab" onclick="show('b', this)">B — Light Pipeline</button>
+  <button class="nav-tab" onclick="show('c', this)">C — Split Feed</button>
+</div>
+
+<!-- ==================== OPTION A ==================== -->
+<div class="alt-panel active" id="panel-a">
+<section class="opt-a">
+  <div class="opt-a-inner">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="preview-label"><div class="preview-label-dot"></div>Option A &mdash; Dark Orbital &mdash; Matches the existing dark hero / navy aesthetic throughout the page</div>
+    </div>
+
+    <!-- AI row -->
+    <div class="opt-a-ai-row">
+      <div class="opt-a-ai-label">Your AI &mdash; Your Choice</div>
+      <div class="opt-a-ai-chips">
+        <div class="opt-a-ai-chip active">
+          <span class="opt-a-ai-logo" style="background:#F4EDE4;"><img src="https://logo.clearbit.com/anthropic.com" alt="Claude" onerror="this.style.display='none'"></span>
+          Claude
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/openai.com" alt="GPT" onerror="this.style.display='none'"></span>
+          ChatGPT
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#fff;border:1px solid #eee;"><img src="https://logo.clearbit.com/deepmind.google" alt="Gemini" onerror="this.style.display='none'"></span>
+          Gemini
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#000;"><img src="https://logo.clearbit.com/x.ai" alt="Grok" style="filter:invert(1)" onerror="this.style.display='none'"></span>
+          Grok
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/meta.com" alt="Llama" onerror="this.style.display='none'"></span>
+          Llama
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/hippocratic.ai" alt="Hippocratic" onerror="this.style.display='none'"></span>
+          Hippocratic AI
+        </div>
+        <div class="opt-a-ai-chip">
+          <span class="opt-a-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/google.com" alt="Med-PaLM" onerror="this.style.display='none'"></span>
+          Med-PaLM
+        </div>
+        <div class="opt-a-ai-chip" style="border-style:dashed;opacity:0.6;">
+          <span class="opt-a-ai-logo" style="background:var(--gold);">
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#060E1A" stroke-width="2.5" stroke-linecap="round"/></svg>
+          </span>
+          Open Source
+        </div>
+      </div>
+      <div class="opt-a-ai-sub">Model-agnostic. No lock-in. AI never sees your raw data.</div>
+    </div>
+
+    <!-- Main grid -->
+    <div class="opt-a-grid">
+
+      <!-- LEFT: Data nodes -->
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;">Your Scattered Health Data</div>
+        <div class="opt-a-nodes">
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            <span class="opt-a-node-text">Clinical &amp; Hospital Records</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><path d="M4.22 11.29l4.56-4.56a2.41 2.41 0 013.41 0L16.78 11.29a2.41 2.41 0 010 3.41L12.22 19.27a2.41 2.41 0 01-3.41 0L4.22 14.71a2.41 2.41 0 010-3.42z"/></svg>
+            <span class="opt-a-node-text">Prescriptions &amp; Pharmacy</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            <span class="opt-a-node-text">Insurance Claims &amp; Benefits</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18"/></svg>
+            <span class="opt-a-node-text">Lab Results &amp; Imaging</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="opt-a-node-text">Wearables &amp; Fitness Apps</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+          <div class="opt-a-node">
+            <div class="opt-a-node-dot"></div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(197,164,78,0.5)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            <span class="opt-a-node-text">Social &amp; Behavioral Signals</span>
+            <div class="opt-a-node-line"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CENTER: Orbital engine -->
+      <div class="opt-a-center">
+        <div class="opt-a-engine">
+          <div class="opt-a-ring opt-a-ring-1"></div>
+          <div class="opt-a-ring opt-a-ring-2"></div>
+          <div class="opt-a-ring opt-a-ring-3"></div>
+          <div class="opt-a-orbit-dot"></div>
+          <div class="opt-a-orbit-dot-2"></div>
+          <div class="opt-a-engine-core">
+            <div class="opt-a-engine-name">TETRA <em>ex</em>™</div>
+            <div class="opt-a-engine-sub">+ Aegis™</div>
+            <div style="margin-top:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <div class="opt-a-badge">Patient-Owned</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Value items -->
+      <div>
+        <div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.3);margin-bottom:14px;text-align:right;">Value Delivered to You</div>
+        <div class="opt-a-values">
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="opt-a-val-text"><strong>Unified Health Record</strong><span>Every provider, lab, Rx — one view</span></div>
+          </div>
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+            <div class="opt-a-val-text"><strong>Rx Intelligence</strong><span>Price compare, coupon stack, swap</span></div>
+          </div>
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg></div>
+            <div class="opt-a-val-text"><strong>Benefit Recovery</strong><span>$500–$2K+ unclaimed annually</span></div>
+          </div>
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+            <div class="opt-a-val-text"><strong>Pre-Visit AI Prep</strong><span>Walk in prepared, not confused</span></div>
+          </div>
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+            <div class="opt-a-val-text"><strong>Rewards &amp; Marketplace</strong><span>Earn for healthy behaviors</span></div>
+          </div>
+          <div class="opt-a-val">
+            <div class="opt-a-val-line"></div>
+            <div class="opt-a-val-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <div class="opt-a-val-text"><strong>Family Dashboard</strong><span>Shared access, your controls</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="opt-a-stats">
+      <div class="opt-a-stat"><span class="opt-a-stat-num">90%+</span><span class="opt-a-stat-label">U.S. Providers Connected</span></div>
+      <div class="opt-a-stat"><span class="opt-a-stat-num">900+</span><span class="opt-a-stat-label">Health Plans Supported</span></div>
+      <div class="opt-a-stat"><span class="opt-a-stat-num">&lt;3 min</span><span class="opt-a-stat-label">To Connect Everything</span></div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ==================== OPTION B ==================== -->
+<div class="alt-panel" id="panel-b">
+<section class="opt-b">
+  <div class="opt-b-inner">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="preview-label" style="background:rgba(10,22,40,0.06);border-color:rgba(10,22,40,0.15);color:var(--navy);"><div class="preview-label-dot" style="background:var(--navy);"></div>Option B &mdash; Light Pipeline &mdash; Clean enterprise SaaS feel, matches the cream sections of the page</div>
+    </div>
+
+    <div class="opt-b-header">
+      <span class="opt-b-overline">TETRA ex™ — The Health Exchange</span>
+      <h2>Your fractured data. Aggregated instantly.<br><em>Protected completely. AI on your terms.</em></h2>
+      <p>TETRA ex™ connects to the nation's largest health data networks in seconds — pulling your records into one patient-owned intelligence layer. Then TETRA Aegis™ ensures no AI ever touches your raw data.</p>
+    </div>
+
+    <!-- AI chips -->
+    <div class="opt-b-ai-row">
+      <div class="opt-b-ai-label">Your AI — Your Choice</div>
+      <div class="opt-b-ai-chips">
+        <div class="opt-b-ai-chip active">
+          <span class="opt-b-ai-logo" style="background:#F4EDE4;"><img src="https://logo.clearbit.com/anthropic.com" alt="" onerror="this.style.display='none'"></span>Claude
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/openai.com" alt="" onerror="this.style.display='none'"></span>ChatGPT
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#fff;border:1px solid #eee;"><img src="https://logo.clearbit.com/deepmind.google" alt="" onerror="this.style.display='none'"></span>Gemini
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#000;"><img src="https://logo.clearbit.com/x.ai" alt="" style="filter:invert(1)" onerror="this.style.display='none'"></span>Grok
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/meta.com" alt="" onerror="this.style.display='none'"></span>Llama
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/hippocratic.ai" alt="" onerror="this.style.display='none'"></span>Hippocratic AI
+        </div>
+        <div class="opt-b-ai-chip">
+          <span class="opt-b-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/google.com" alt="" onerror="this.style.display='none'"></span>Med-PaLM
+        </div>
+        <div class="opt-b-ai-chip" style="border-style:dashed;opacity:0.6;">
+          <span class="opt-b-ai-logo" style="background:var(--gold);"><svg width="10" height="10" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#060E1A" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          Open Source
+        </div>
+      </div>
+      <div class="opt-b-ai-sub">Model-agnostic. No lock-in. AI never sees your raw data.</div>
+    </div>
+
+    <!-- 3-stage pipeline -->
+    <div class="opt-b-pipeline">
+
+      <!-- Stage 1: Data In -->
+      <div class="opt-b-stage">
+        <span class="opt-b-stage-label">01 — Input</span>
+        <div class="opt-b-stage-title">Your Scattered<br>Health Data</div>
+        <div class="opt-b-stage-sub">6 fragmented sources unified</div>
+        <div class="opt-b-items">
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+            Clinical &amp; Hospital Records
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.22 11.29l4.56-4.56a2.41 2.41 0 013.41 0L16.78 11.29a2.41 2.41 0 010 3.41L12.22 19.27a2.41 2.41 0 01-3.41 0L4.22 14.71a2.41 2.41 0 010-3.42z"/></svg>
+            Prescriptions &amp; Pharmacy
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Insurance Claims &amp; Benefits
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18"/></svg>
+            Lab Results &amp; Imaging
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Wearables &amp; Fitness Apps
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Social &amp; Behavioral Signals
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow 1 -->
+      <div class="opt-b-connector">
+        <div class="opt-b-connector-line">
+          <div class="opt-b-connector-dot"></div>
+        </div>
+      </div>
+
+      <!-- Stage 2: Engine -->
+      <div class="opt-b-engine-card">
+        <div class="opt-b-engine-glow"></div>
+        <div style="position:relative;z-index:2;">
+          <div class="opt-b-engine-shield">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <div class="opt-b-engine-name">TETRA <em>ex</em>™</div>
+          <div class="opt-b-engine-sub-name">+ TETRA <em>Aegis</em>™</div>
+          <div class="opt-b-engine-role">02 — Aggregation + Privacy Layer</div>
+          <div class="opt-b-badges">
+            <div class="opt-b-badge">FHIR / TEFCA Compliant</div>
+            <div class="opt-b-badge">Zero-Knowledge Architecture</div>
+            <div class="opt-b-badge">Patient-Owned Data</div>
+            <div class="opt-b-badge">AI Never Sees Raw PII</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Arrow 2 -->
+      <div class="opt-b-connector">
+        <div class="opt-b-connector-line">
+          <div class="opt-b-connector-dot" style="animation-delay:0.3s"></div>
+        </div>
+      </div>
+
+      <!-- Stage 3: Value Out -->
+      <div class="opt-b-stage">
+        <span class="opt-b-stage-label">03 — Value Delivered</span>
+        <div class="opt-b-stage-title">Your Personal<br>Health Intelligence</div>
+        <div class="opt-b-stage-sub">Actionable insights from your data</div>
+        <div class="opt-b-items">
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/></svg>
+            Unified Health Record
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+            Rx Intelligence &amp; Savings
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Insurance Benefit Recovery
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Pre-Visit AI Prep
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            Rewards &amp; Marketplace
+          </div>
+          <div class="opt-b-item">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+            Family Dashboard
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="opt-b-stats">
+      <div class="opt-b-stat"><span class="opt-b-stat-num">90%+</span><span class="opt-b-stat-label">U.S. Providers Connected</span></div>
+      <div class="opt-b-stat"><span class="opt-b-stat-num">900+</span><span class="opt-b-stat-label">Health Plans Supported</span></div>
+      <div class="opt-b-stat"><span class="opt-b-stat-num">&lt;3 min</span><span class="opt-b-stat-label">To Connect Everything</span></div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<!-- ==================== OPTION C ==================== -->
+<div class="alt-panel" id="panel-c">
+<section class="opt-c">
+  <div class="opt-c-inner">
+
+    <div style="text-align:center;margin-bottom:48px;">
+      <div class="preview-label" style="background:rgba(10,22,40,0.06);border-color:rgba(10,22,40,0.15);color:var(--navy);"><div class="preview-label-dot" style="background:var(--navy);"></div>Option C &mdash; Split Live Feed &mdash; Editorial product-showcase feel, shows data connecting in real time</div>
+    </div>
+
+    <div class="opt-c-header">
+      <span class="opt-c-overline">TETRA ex™ — The Health Exchange</span>
+      <h2>Your fractured data. Aggregated instantly.<br><em>Protected completely. AI on your terms.</em></h2>
+      <p>TETRA ex™ connects to the nation's largest health data networks in seconds — pulling your clinical records, insurance, pharmacy, devices, and social signals into one patient-owned intelligence layer.</p>
+    </div>
+
+    <!-- AI chips -->
+    <div class="opt-c-ai-bar" style="max-width:900px;margin:0 auto 56px;">
+      <span class="opt-c-ai-bar-label">Your AI — Your Choice</span>
+      <div class="opt-c-ai-chips">
+        <div class="opt-c-ai-chip active">
+          <span class="opt-c-ai-logo" style="background:#F4EDE4;"><img src="https://logo.clearbit.com/anthropic.com" alt="" onerror="this.style.display='none'"></span>Claude
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/openai.com" alt="" onerror="this.style.display='none'"></span>ChatGPT
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#fff;border:1px solid #eee;"><img src="https://logo.clearbit.com/deepmind.google" alt="" onerror="this.style.display='none'"></span>Gemini
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#000;"><img src="https://logo.clearbit.com/x.ai" alt="" style="filter:invert(1)" onerror="this.style.display='none'"></span>Grok
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/meta.com" alt="" onerror="this.style.display='none'"></span>Llama
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/hippocratic.ai" alt="" onerror="this.style.display='none'"></span>Hippocratic AI
+        </div>
+        <div class="opt-c-ai-chip">
+          <span class="opt-c-ai-logo" style="background:#F4F4F4;"><img src="https://logo.clearbit.com/google.com" alt="" onerror="this.style.display='none'"></span>Med-PaLM
+        </div>
+        <div class="opt-c-ai-chip" style="border-style:dashed;opacity:0.6;">
+          <span class="opt-c-ai-logo" style="background:var(--gold);"><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12h14" stroke="#060E1A" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+          Open Source
+        </div>
+      </div>
+    </div>
+
+    <!-- Split layout -->
+    <div class="opt-c-split">
+
+      <!-- LEFT: Live data feed -->
+      <div class="opt-c-left">
+        <div class="opt-c-tabs">
+          <button class="opt-c-tab active">All Sources</button>
+          <button class="opt-c-tab">Clinical</button>
+          <button class="opt-c-tab">Insurance</button>
+          <button class="opt-c-tab">Pharmacy</button>
+          <button class="opt-c-tab">Devices</button>
+        </div>
+        <div class="opt-c-feed">
+          <div class="opt-c-feed-label">
+            <div class="opt-c-live-dot"></div>
+            Connecting your data — live
+          </div>
+          <div class="opt-c-feed-items">
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">Cleveland Clinic records synced</div>
+                <div class="opt-c-feed-sub">14 encounters · 6 lab panels · 2 imaging reports</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-green">Synced</div>
+            </div>
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">Humana claims pulled</div>
+                <div class="opt-c-feed-sub">$840 in unclaimed preventive benefits found</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-gold">$840 found</div>
+            </div>
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M4.22 11.29l4.56-4.56a2.41 2.41 0 013.41 0L16.78 11.29a2.41 2.41 0 010 3.41L12.22 19.27a2.41 2.41 0 01-3.41 0L4.22 14.71a2.41 2.41 0 010-3.42z"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">Metformin 500mg · CVS → Costco</div>
+                <div class="opt-c-feed-sub">Save $68/mo switching pharmacies</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-gold">Save $68</div>
+            </div>
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">Fitbit Sense data imported</div>
+                <div class="opt-c-feed-sub">183 days of sleep, HRV, steps, stress</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-green">Connected</div>
+            </div>
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">A1C trend flagged</div>
+                <div class="opt-c-feed-sub">Rising over 3 quarters · Endocrinology follow-up suggested</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-blue">Insight</div>
+            </div>
+            <div class="opt-c-feed-item">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">TETRA Aegis™ — all data de-identified</div>
+                <div class="opt-c-feed-sub">AI models receive tokenized data only · Zero PII exits</div>
+              </div>
+              <div class="opt-c-feed-badge opt-c-badge-green">Protected</div>
+            </div>
+            <div class="opt-c-feed-item" style="opacity:0.5;">
+              <div class="opt-c-feed-icon">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+              </div>
+              <div style="flex:1;">
+                <div class="opt-c-feed-title">Social &amp; behavioral signals</div>
+                <div class="opt-c-feed-sub">Connecting to Apple Health, MyFitnessPal…</div>
+              </div>
+              <div class="opt-c-feed-badge" style="background:rgba(0,0,0,0.06);color:var(--text-muted);">Pending</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: Engine card + value grid -->
+      <div class="opt-c-right">
+        <div class="opt-c-engine">
+          <div class="opt-c-engine-brands">
+            <div>
+              <div class="opt-c-brand">TETRA <em>ex</em>™</div>
+              <div class="opt-c-brand-sub">Health Exchange</div>
+            </div>
+            <div class="opt-c-brand-divider">+</div>
+            <div>
+              <div class="opt-c-brand">TETRA <em>Aegis</em>™</div>
+              <div class="opt-c-brand-sub">AI Privacy Shield</div>
+            </div>
+          </div>
+          <p class="opt-c-engine-desc">
+            Connects to the nation's largest health data networks via <strong>FHIR &amp; TEFCA</strong> in under 3 minutes. Every record is instantly de-identified by Aegis — <strong>AI models never touch your raw data.</strong>
+          </p>
+          <div class="opt-c-compliance">
+            <span class="opt-c-compliance-badge">FHIR / TEFCA</span>
+            <span class="opt-c-compliance-badge">Zero-Knowledge</span>
+            <span class="opt-c-compliance-badge">Patient-Owned</span>
+            <span class="opt-c-compliance-badge">Audit Trail</span>
+            <span class="opt-c-compliance-badge">HIPAA</span>
+          </div>
+          <div class="opt-c-val-grid">
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Unified Health Record</div>
+              <div class="opt-c-val-sub">Every provider, lab, Rx — one view</div>
+            </div>
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Rx Intelligence</div>
+              <div class="opt-c-val-sub">Price compare, coupon stack, swap</div>
+            </div>
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Benefit Recovery</div>
+              <div class="opt-c-val-sub">$500–$2K+ unclaimed annually</div>
+            </div>
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Pre-Visit AI Prep</div>
+              <div class="opt-c-val-sub">Walk in prepared, not confused</div>
+            </div>
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Rewards &amp; Marketplace</div>
+              <div class="opt-c-val-sub">Earn for healthy behaviors</div>
+            </div>
+            <div class="opt-c-val-item">
+              <div class="opt-c-val-title">Family Dashboard</div>
+              <div class="opt-c-val-sub">Shared access, your controls</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Stats -->
+    <div class="opt-c-stats">
+      <div class="opt-c-stat"><span class="opt-c-stat-num">90%+</span><span class="opt-c-stat-label">U.S. Providers Connected</span></div>
+      <div class="opt-c-stat"><span class="opt-c-stat-num">900+</span><span class="opt-c-stat-label">Health Plans Supported</span></div>
+      <div class="opt-c-stat"><span class="opt-c-stat-num">&lt;3 min</span><span class="opt-c-stat-label">To Connect Everything</span></div>
+    </div>
+
+  </div>
+</section>
+</div>
+
+<script>
+function show(id, btn) {
+  document.querySelectorAll('.alt-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
