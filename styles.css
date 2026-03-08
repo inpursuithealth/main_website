@@ -62,7 +62,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 .reveal.visible{opacity:1;transform:translateY(0);}
 
 /* ===== HERO BASE ===== */
-.hero{position:relative;min-height:100vh;background:var(--navy-deep);overflow:hidden;}
+.hero{position:relative;background:var(--navy-deep);overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(17,34,64,.8),var(--navy-deep) 70%);}
 .hero-grid{position:absolute;inset:0;opacity:.06;background-image:linear-gradient(rgba(197,164,78,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(197,164,78,.4) 1px,transparent 1px);background-size:60px 60px;animation:gridShift 20s linear infinite;}
 @keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
