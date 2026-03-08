@@ -3306,12 +3306,7 @@ window.addEventListener('load', () => {
 
 // Top bar scroll shadow
 window.addEventListener('scroll', () => {
-  document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10);
-});
-
-// Mobile nav toggle
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('mainNav').classList.toggle('open');
+  const tb = document.getElementById('topBar') || document.getElementById('iph-topbar'); if (tb) tb.classList.toggle('scrolled', window.scrollY > 10);
 });
 
 // Scroll reveal

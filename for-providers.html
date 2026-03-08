@@ -1500,10 +1500,9 @@ document.addEventListener('keydown', function(e) {
 });
 
 // ===== TOP BAR SCROLL =====
-window.addEventListener('scroll', () => { document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10); });
+window.addEventListener('scroll', () => { const tb = document.getElementById('topBar') || document.getElementById('iph-topbar'); if (tb) tb.classList.toggle('scrolled', window.scrollY > 10); });
 
 // ===== MOBILE NAV =====
-document.getElementById('navToggle').addEventListener('click', () => { document.getElementById('topNav').classList.toggle('open'); });
 
 // ===== HERO PARTICLES =====
 (function() {

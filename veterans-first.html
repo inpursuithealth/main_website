@@ -975,10 +975,7 @@
 <script>
 // ===== NAV =====
 window.addEventListener('scroll', () => {
-  document.getElementById('topBar').classList.toggle('scrolled', window.scrollY > 10);
-});
-document.getElementById('navToggle').addEventListener('click', () => {
-  document.getElementById('topNav').classList.toggle('open');
+  const tb = document.getElementById('topBar') || document.getElementById('iph-topbar'); if (tb) tb.classList.toggle('scrolled', window.scrollY > 10);
 });
 
 // ===== DoD → VA BRIDGE CANVAS =====
