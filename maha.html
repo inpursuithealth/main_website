@@ -93,6 +93,56 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 .c-num{font-family:'Instrument Serif',serif;font-size:clamp(2.2rem,3.5vw,3.4rem);color:var(--gold);line-height:1;margin-bottom:10px;}
 .c-label{font-size:12px;color:var(--text-dim);line-height:1.5;}
 
+
+/* PATIENT-CENTERED ECOSYSTEM */
+.eco-wrap{max-width:1100px;margin:0 auto 72px;text-align:center;}
+.eco-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:48px;display:flex;align-items:center;justify-content:center;gap:12px;}
+.eco-label::before,.eco-label::after{content:'';flex:1;height:1px;background:var(--gold-border);}
+.eco-diagram{position:relative;width:560px;height:560px;margin:0 auto 56px;}
+.eco-lines{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;}
+.eco-node{position:absolute;display:flex;flex-direction:column;align-items:center;gap:8px;transform:translate(-50%,-50%);}
+.eco-node-icon{width:52px;height:52px;border:1px solid var(--gold-border);background:var(--navy-deep);display:flex;align-items:center;justify-content:center;transition:all 0.3s;}
+.eco-node-icon:hover{background:var(--navy-light);border-color:rgba(197,164,78,0.5);}
+.eco-node-icon svg{width:22px;height:22px;stroke:var(--gold);opacity:0.75;transition:opacity 0.3s;}
+.eco-node:hover .eco-node-icon svg{opacity:1;}
+.eco-node span{font-size:11px;font-weight:600;letter-spacing:0.5px;color:var(--text-dim);white-space:nowrap;}
+.eco-n1{top:12%;left:50%;}
+.eco-n2{top:23%;left:85%;}
+.eco-n3{top:62%;left:94%;}
+.eco-n4{top:90%;left:63%;}
+.eco-n5{top:90%;left:37%;}
+.eco-n6{top:62%;left:6%;}
+.eco-n7{top:23%;left:15%;}
+.eco-n8{top:12%;left:39%;}
+.eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:3;}
+.eco-center-pulse{position:absolute;inset:-20px;border-radius:50%;border:2px solid rgba(197,164,78,0.2);animation:ecoPulse 3s ease-in-out infinite;}
+@keyframes ecoPulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.08);opacity:0.5;}}
+.eco-center-inner{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,rgba(197,164,78,0.18),rgba(197,164,78,0.06));border:2px solid rgba(197,164,78,0.5);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;position:relative;z-index:1;}
+.eco-center-inner svg{width:28px;height:28px;stroke:var(--gold);fill:none;stroke-width:1.2;margin-bottom:2px;}
+.eco-center-label{font-family:'Instrument Serif',serif;font-size:15px;color:var(--white);line-height:1;}
+.eco-center-sub{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:rgba(197,164,78,0.7);}
+.eco-tetra{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:240px;height:240px;border-radius:50%;border:1px dashed rgba(197,164,78,0.2);display:flex;align-items:center;justify-content:center;pointer-events:none;z-index:2;}
+.eco-tetra-inner{position:absolute;bottom:-28px;left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap;}
+.eco-tetra-label{font-family:'Instrument Serif',serif;font-size:13px;color:var(--gold);font-style:italic;}
+.eco-tetra-sub{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);}
+.eco-pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--gold-border);}
+.eco-pillar{background:var(--navy-deep);padding:36px 28px;text-align:left;transition:background 0.3s;}
+.eco-pillar:hover{background:var(--navy-light);}
+.eco-pillar-num{font-family:'Instrument Serif',serif;font-size:48px;color:var(--gold);opacity:0.12;line-height:1;margin-bottom:12px;}
+.eco-pillar:hover .eco-pillar-num{opacity:0.3;}
+.eco-pillar-title{font-family:'Instrument Serif',serif;font-size:19px;margin-bottom:8px;}
+.eco-pillar-title em{font-style:italic;color:var(--gold);}
+.eco-pillar-desc{font-size:13px;color:var(--text-dim);line-height:1.65;}
+@media(max-width:768px){
+  .eco-diagram{width:320px;height:320px;}
+  .eco-node-icon{width:40px;height:40px;}
+  .eco-node-icon svg{width:18px;height:18px;}
+  .eco-node span{font-size:9px;}
+  .eco-center-inner{width:80px;height:80px;}
+  .eco-tetra{width:150px;height:150px;}
+  .eco-pillars{grid-template-columns:1fr;}
+}
+
 /* INFRA SECTION */
 .infra{background:var(--navy-mid);padding:100px 60px;border-bottom:1px solid var(--gold-border);}
 .infra-inner{max-width:1200px;margin:0 auto;}
@@ -307,6 +357,116 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 
 <section class="infra" id="infrastructure"><div class="infra-inner">
 <div class="s-header rv"><h2 class="s-h2 s-h2-lg">The mandate is <em>infrastructure.</em><br>The mission is <em>patients first.</em></h2><p class="s-desc">CMS has defined 26 interoperability criteria. They've launched CMS-Aligned Networks. They'll share Blue Button claims data through those networks by Q1 2026. Every piece of this requires infrastructure that most providers don't have today.</p></div>
+
+<!-- PATIENT-CENTERED ECOSYSTEM DIAGRAM -->
+<div class="eco-wrap rv">
+  <div class="eco-label">The Patient-Centered Ecosystem</div>
+  <div class="eco-diagram">
+
+    <!-- Outer ring nodes -->
+    <div class="eco-node eco-n1">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>EHR Systems</span>
+    </div>
+    <div class="eco-node eco-n2">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0016.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 002 8.5c0 2.3 1.5 4.05 3 5.5l7 7 7-7z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Primary Care</span>
+    </div>
+    <div class="eco-node eco-n3">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" stroke-linecap="round" stroke-linejoin="round"/><line x1="12" y1="9" x2="12" y2="13" stroke-linecap="round"/><line x1="12" y1="17" x2="12.01" y2="17" stroke-linecap="round"/></svg>
+      </div>
+      <span>Specialists</span>
+    </div>
+    <div class="eco-node eco-n4">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Pharmacy</span>
+    </div>
+    <div class="eco-node eco-n5">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21" stroke-linecap="round"/><line x1="12" y1="17" x2="12" y2="21" stroke-linecap="round"/></svg>
+      </div>
+      <span>Payers &amp; Claims</span>
+    </div>
+    <div class="eco-node eco-n6">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 12h4l3-9 4 18 3-9h4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Labs &amp; Imaging</span>
+    </div>
+    <div class="eco-node eco-n7">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span>Blue Button / CMS</span>
+    </div>
+    <div class="eco-node eco-n8">
+      <div class="eco-node-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="2"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" stroke-linecap="round"/></svg>
+      </div>
+      <span>Wearables &amp; Devices</span>
+    </div>
+
+    <!-- Connector lines SVG -->
+    <svg class="eco-lines" viewBox="0 0 600 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="300" y1="300" x2="300" y2="70" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="512" y2="161" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="530" y2="370" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="370" y2="530" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="161" y2="512" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="70" y2="370" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="88" y2="161" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <line x1="300" y1="300" x2="230" y2="70" stroke="rgba(197,164,78,0.25)" stroke-width="1" stroke-dasharray="4 4"/>
+      <circle cx="300" cy="300" r="160" stroke="rgba(197,164,78,0.1)" stroke-width="1" stroke-dasharray="3 6"/>
+      <circle cx="300" cy="300" r="220" stroke="rgba(197,164,78,0.06)" stroke-width="1" stroke-dasharray="2 8"/>
+    </svg>
+
+    <!-- Center: Patient -->
+    <div class="eco-center">
+      <div class="eco-center-pulse"></div>
+      <div class="eco-center-inner">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="7" r="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="eco-center-label">Patient</div>
+        <div class="eco-center-sub">owns their data</div>
+      </div>
+    </div>
+
+    <!-- Middle ring: TETRA -->
+    <div class="eco-tetra">
+      <div class="eco-tetra-inner">
+        <div class="eco-tetra-label">TETRA&#8482;</div>
+        <div class="eco-tetra-sub">Orchestration Layer</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Three pillars below the diagram -->
+  <div class="eco-pillars">
+    <div class="eco-pillar">
+      <div class="eco-pillar-num">01</div>
+      <div class="eco-pillar-title">Read from <em>everywhere</em></div>
+      <div class="eco-pillar-desc">Every EHR, lab, pharmacy, specialist, claims system, and federal network — unified into one complete record.</div>
+    </div>
+    <div class="eco-pillar">
+      <div class="eco-pillar-num">02</div>
+      <div class="eco-pillar-title">Write back to <em>anywhere</em></div>
+      <div class="eco-pillar-desc">Validated clinical data flows back to every provider in a patient&#39;s network — in real time, bidirectionally.</div>
+    </div>
+    <div class="eco-pillar">
+      <div class="eco-pillar-num">03</div>
+      <div class="eco-pillar-title">Patient <em>owns it all</em></div>
+      <div class="eco-pillar-desc">For the first time, individuals hold complete control over their health story — who sees it, who updates it, who acts on it.</div>
+    </div>
+  </div>
+</div>
+
 <div class="i-grid">
 <div class="i-card rv"><div class="i-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2M9 11a4 4 0 100-8 4 4 0 000 8zM23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>Patient Data Ownership</h3><p>For the first time, patients will access records via modern identity — no usernames, no passwords, no portal per provider. The infrastructure to enable this doesn't exist in most health systems.</p></div>
 <div class="i-card rv rv-d1"><div class="i-icon"><svg viewBox="0 0 24 24"><path d="M4 12h4l3-9 4 18 3-9h4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h3>FHIR-Native Exchange</h3><p>CMS-Aligned Networks require FHIR-based APIs, appointment notifications, clinical documents in human-readable formats, and medical record locator functionality — all by July 4, 2026.</p></div>
