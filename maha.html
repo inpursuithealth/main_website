@@ -259,49 +259,6 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 .cta-actions{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
 .cta-note{font-size:13px;color:var(--text-muted);}.cta-note a{color:var(--gold);text-decoration:none;}
 
-/* TETRA DIAGRAM */
-.tetra-diagram-section{background:var(--navy-deep);padding:100px 40px;border-top:1px solid var(--gold-border);border-bottom:1px solid var(--gold-border);}
-.td-inner{max-width:1300px;margin:0 auto;}
-.td-diagram{display:flex;align-items:center;gap:0;margin-top:64px;position:relative;}
-.td-col{display:flex;flex-direction:column;gap:12px;flex-shrink:0;width:220px;}
-.td-col-label{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:4px;text-align:center;}
-.td-node{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.12);border-radius:8px;padding:12px 14px;transition:border-color 0.3s,background 0.3s;}
-.td-node:hover{border-color:rgba(197,164,78,0.35);background:rgba(197,164,78,0.05);}
-.td-node-icon{width:32px;height:32px;border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.td-node-icon svg{width:16px;height:16px;}
-.td-icon-blue{background:rgba(59,130,246,0.15);color:#60A5FA;}
-.td-icon-red{background:rgba(239,68,68,0.15);color:#F87171;}
-.td-icon-green{background:rgba(34,197,94,0.15);color:#4ADE80;}
-.td-icon-purple{background:rgba(168,85,247,0.15);color:#C084FC;}
-.td-icon-gold{background:rgba(197,164,78,0.15);color:var(--gold);}
-.td-icon-orange{background:rgba(249,115,22,0.15);color:#FB923C;}
-.td-icon-teal{background:rgba(20,184,166,0.15);color:#2DD4BF;}
-.td-node-patient{border-color:rgba(197,164,78,0.5);background:rgba(197,164,78,0.07);}
-.td-node-patient .td-node-text strong{color:var(--gold);}
-.td-outputs .td-col-label{color:#4ADE80;opacity:0.8;}
-.td-node-text{display:flex;flex-direction:column;gap:2px;}
-.td-node-text strong{font-size:12px;font-weight:600;color:var(--white);line-height:1.2;}
-.td-node-text span{font-size:10px;color:var(--text-muted);line-height:1.2;}
-.td-arrow-col{display:flex;flex-direction:column;align-items:center;justify-content:center;flex-shrink:0;width:60px;position:relative;}
-.td-flow-line{width:100%;height:1px;background:linear-gradient(90deg,rgba(197,164,78,0.1),rgba(197,164,78,0.5),rgba(197,164,78,0.1));}
-.td-flow-arrow{font-size:18px;color:var(--gold);position:absolute;margin-top:-1px;}
-.td-core{flex:1;background:rgba(197,164,78,0.04);border:1px solid rgba(197,164,78,0.25);border-radius:16px;padding:36px 28px;display:flex;flex-direction:column;gap:24px;min-width:0;position:relative;overflow:hidden;}
-.td-core::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(197,164,78,0.07),transparent 60%);pointer-events:none;}
-.td-core-title{font-family:'Instrument Serif',serif;font-size:32px;letter-spacing:3px;color:var(--gold);text-align:center;position:relative;z-index:1;}
-.td-core-sub{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(197,164,78,0.5);text-align:center;margin-top:-16px;position:relative;z-index:1;}
-.td-capabilities{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;position:relative;z-index:1;}
-.td-cap{background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;padding:16px 12px;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center;transition:border-color 0.3s,background 0.3s;}
-.td-cap:hover{border-color:rgba(197,164,78,0.3);background:rgba(197,164,78,0.06);}
-.td-cap-icon{width:32px;height:32px;background:rgba(197,164,78,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;}
-.td-cap-icon svg{width:16px;height:16px;stroke:var(--gold);}
-.td-cap span{font-size:11px;font-weight:600;color:var(--text-dim);line-height:1.3;}
-.td-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;border-top:1px solid rgba(197,164,78,0.1);padding-top:20px;position:relative;z-index:1;}
-.td-stat{text-align:center;}
-.td-stat-n{font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);}
-.td-stat-l{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-top:2px;line-height:1.3;}
-.td-inputs .td-col-label,.td-outputs .td-col-label{margin-bottom:4px;}
-@media(max-width:1100px){.td-diagram{flex-direction:column;gap:24px;}.td-col{width:100%;flex-direction:row;flex-wrap:wrap;justify-content:center;}.td-node{width:calc(50% - 6px);}.td-arrow-col{transform:rotate(90deg);height:40px;width:40px;}.td-core{width:100%;}.td-capabilities{grid-template-columns:1fr 1fr;}.td-stats{grid-template-columns:repeat(2,1fr);}.td-col-label{width:100%;text-align:center;}}
-@media(max-width:600px){.td-node{width:100%;}.td-capabilities{grid-template-columns:1fr 1fr;}.td-stats{grid-template-columns:1fr 1fr;}.tetra-diagram-section{padding:72px 24px;}}
 
 /* REVEAL + RESPONSIVE */
 .rv{opacity:0;transform:translateY(36px);transition:opacity 0.8s cubic-bezier(0.16,1,0.3,1),transform 0.8s cubic-bezier(0.16,1,0.3,1);}
@@ -498,55 +455,6 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 <div class="p-card rv rv-d3"><div class="p-num">04</div><h3>DOGE Efficiency Mandate</h3><p>Every federal health IT dollar must justify measurable ROI. Legacy systems are being defunded. Modern infrastructure is fast-tracked.</p></div>
 </div></div></section>
 
-<section class="tetra-diagram-section"><div class="td-inner">
-<div class="s-header rv"><div class="section-overline">The Platform</div><h2 class="s-h2">TETRA&#8482; — the AI-enabled data fabric<br><em>at the center of it all.</em></h2><p class="s-desc" style="margin:0 auto;">Every data source in. Every federal mandate out. One orchestration layer connecting the ecosystem.</p></div>
-<div class="td-diagram rv">
-  <div class="td-col td-inputs">
-    <div class="td-col-label">DATA IN</div>
-    <div class="td-node"><div class="td-node-icon td-icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 3H5a2 2 0 00-2 2v4m6-6h10a2 2 0 012 2v4M9 3v18m0 0h10a2 2 0 002-2V9M9 21H5a2 2 0 01-2-2V9m0 0h18" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Epic, Cerner, VistA</strong><span>EHR Systems</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>MHS GENESIS</strong><span>DoD Health Records</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Wearables &amp; IoT</strong><span>Oura, Apple, Devices</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-purple"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Labs &amp; Pharmacy</strong><span>Clinical Data Feeds</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20" stroke-linecap="round"/></svg></div><div class="td-node-text"><strong>Claims &amp; Billing</strong><span>CMS / Payer Systems</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>TrumpRX API</strong><span>MFN Drug Pricing</span></div></div>
-  </div>
-  <div class="td-arrow-col">
-    <div class="td-flow-line"></div>
-    <div class="td-flow-arrow">&#8594;</div>
-  </div>
-  <div class="td-core">
-    <div class="td-core-title">TETRA&#8482;</div>
-    <div class="td-core-sub">AI-ENABLED DATA FABRIC PLATFORM</div>
-    <div class="td-capabilities">
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 10V3L4 14h7v7l9-11h-7z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Real-Time Data Fusion</span></div>
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Adaptive Interoperability</span></div>
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>AI Clinical Intelligence</span></div>
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Zero-Trust Security</span></div>
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>FHIR / TEFCA Native</span></div>
-      <div class="td-cap"><div class="td-cap-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Modular Open Architecture</span></div>
-    </div>
-    <div class="td-stats">
-      <div class="td-stat"><div class="td-stat-n">1.8M+</div><div class="td-stat-l">Transactions / Hour</div></div>
-      <div class="td-stat"><div class="td-stat-n">95%</div><div class="td-stat-l">Interoperability Rate</div></div>
-      <div class="td-stat"><div class="td-stat-n">&lt;1%</div><div class="td-stat-l">Downtime</div></div>
-      <div class="td-stat"><div class="td-stat-n">140M+</div><div class="td-stat-l">CMS Beneficiary Access</div></div>
-    </div>
-  </div>
-  <div class="td-arrow-col">
-    <div class="td-flow-line"></div>
-    <div class="td-flow-arrow">&#8594;</div>
-  </div>
-  <div class="td-col td-outputs">
-    <div class="td-col-label">PATIENT OUTCOMES</div>
-    <div class="td-node td-node-patient"><div class="td-node-icon td-icon-gold"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>The Patient</strong><span>Whole-Person Health</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Better Outcomes</strong><span>Preventive &amp; Wellness Care</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>150M+ Beneficiaries</strong><span>Medicare &amp; Medicaid Access</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Veterans &amp; Service Members</strong><span>VA + DoD Coordinated Care</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-orange"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Safer AI in Clinics</strong><span>Supervised Clinical Intelligence</span></div></div>
-    <div class="td-node"><div class="td-node-icon td-icon-teal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="td-node-text"><strong>Care at Home</strong><span>Consumer Wellness &amp; Remote Monitoring</span></div></div>
-  </div>
-</div>
-</div></section>
 
 <section class="tl-section" id="timeline"><div class="tl-inner">
 <div class="s-header rv"><div class="section-overline">Introducing the new Outcome Based Payment Model — ACCESS</div><h2 class="s-h2 s-h2-lg">Two cohorts. Two deadlines.<br><em>Compounding advantage.</em></h2><p class="s-desc">Cohort 1 opens the door. Cohort 2 opens the floodgates. The organizations that build infrastructure now will own both windows.</p></div>
