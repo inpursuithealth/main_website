@@ -35,7 +35,7 @@
         <div class="iph-dropdown-menu">
           <a href="tetra.html">TETRA&#8482; &mdash; Data Orchestration</a>
           <a href="tetra-ex.html">TETRA Ex&#8482; &mdash; Health Data Exchange</a>
-          <a href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
+          <a  class="iph-sub-dropdown-toggle" href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
           <div class="iph-sub-dropdown">
             <div class="iph-sub-dropdown-menu">     
               <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance</a>
