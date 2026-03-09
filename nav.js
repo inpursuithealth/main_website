@@ -13,7 +13,6 @@
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="tetra.html" aria-haspopup="true">TETRA <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
-          <span class="iph-sub-label">Infrastructure Stack</span>
           <a href="tetra.html">TETRA&#8482; &mdash; Data Orchestration</a>
           <a href="tetra-ex.html">TETRA Ex&#8482; &mdash; Health Data Exchange</a>
           <a href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
