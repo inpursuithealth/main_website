@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — SAFE Term Sheet</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-mid: #111D32;
+  --gold: #C5A44E;
+  --gold-light: #D4BA7A;
+  --gold-dim: rgba(197,164,78,0.10);
+  --gold-border: rgba(197,164,78,0.25);
+  --cream: #FAF8F4;
+  --text: #1A1A1A;
+  --text-mid: #3D3D3D;
+  --text-muted: #8A8A7A;
+  --border: rgba(10,22,40,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  box-shadow: 0 1px 40px rgba(10,22,40,0.06);
+}
+
+/* ═══ HEADER ═══ */
+.header {
+  background: var(--navy);
+  padding: 40px 56px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: -50%; right: -10%;
+  width: 400px; height: 400px;
+  background: radial-gradient(ellipse, rgba(197,164,78,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 28px;
+  position: relative;
+  z-index: 1;
+}
+
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.header-wordmark {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.header-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+}
+
+.header-badge {
+  border: 1px solid var(--gold-border);
+  padding: 5px 16px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.header-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 30px;
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.2;
+  position: relative;
+  z-index: 1;
+}
+
+.header-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.header-sub {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 8px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ═══ KEY TERMS BAR ═══ */
+.key-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--navy-mid);
+  border-bottom: 1px solid rgba(197,164,78,0.12);
+}
+
+.key-item {
+  padding: 18px 24px;
+  text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.04);
+}
+
+.key-item:last-child { border-right: none; }
+
+.key-label {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 5px;
+}
+
+.key-val {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 22px;
+  color: var(--gold);
+}
+
+/* ═══ BODY ═══ */
+.body {
+  padding: 40px 56px;
+}
+
+.section-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+/* ═══ TERMS TABLE ═══ */
+.terms {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 36px;
+}
+
+.terms tr {
+  border-bottom: 1px solid var(--border);
+}
+
+.terms tr:last-child { border-bottom: none; }
+
+.terms td {
+  padding: 14px 0;
+  font-size: 14px;
+  vertical-align: top;
+  line-height: 1.6;
+}
+
+.terms td:first-child {
+  width: 200px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 13px;
+  padding-right: 24px;
+}
+
+.terms td:last-child {
+  color: var(--navy);
+  font-weight: 500;
+}
+
+.terms td:last-child strong {
+  color: var(--navy);
+  font-weight: 700;
+}
+
+.terms .highlight-row {
+  background: var(--gold-dim);
+}
+
+.terms .highlight-row td {
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.terms .highlight-row td:last-child {
+  color: var(--gold);
+  font-weight: 700;
+}
+
+/* ═══ NOTE ═══ */
+.note {
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding: 20px 24px;
+  font-size: 13px;
+  color: var(--text-mid);
+  line-height: 1.7;
+  margin-bottom: 36px;
+}
+
+.note strong { color: var(--navy); }
+
+/* ═══ CONVERSION TABLE ═══ */
+.conv-header {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 16px;
+}
+
+/* ═══ SIGNATURES ═══ */
+.sig-section {
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 2px solid var(--navy);
+}
+
+.sig-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-top: 32px;
+}
+
+.sig-block {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sig-line {
+  border-bottom: 1px solid var(--text-muted);
+  height: 40px;
+}
+
+.sig-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.sig-note {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: var(--navy);
+  padding: 16px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-left {
+  font-size: 9px;
+  color: rgba(255,255,255,0.22);
+  line-height: 1.8;
+}
+
+.footer-left strong { color: var(--gold-light); }
+
+.footer-right {
+  font-size: 9px;
+  color: rgba(255,255,255,0.22);
+  text-align: right;
+}
+
+/* ═══ PRINT ═══ */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff; }
+  .page { max-width: 100%; box-shadow: none; }
+  .header { padding: 28px 40px 24px; }
+  .body { padding: 28px 40px; }
+  .footer { padding: 12px 40px; }
+  .header-title { font-size: 24px; }
+  .terms td { font-size: 12px; padding: 10px 0; }
+
+  @page { size: letter; margin: 0; }
+}
+
+@media (max-width: 600px) {
+  .header { padding: 28px 24px; }
+  .body { padding: 28px 24px; }
+  .key-bar { grid-template-columns: 1fr; }
+  .sig-grid { grid-template-columns: 1fr; gap: 32px; }
+  .footer { padding: 16px 24px; flex-direction: column; gap: 8px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="header-brand">
+        <div class="header-wordmark">InPursuit Health</div>
+        <div class="header-tag">Harness the Power of Your Data&trade;</div>
+      </div>
+      <div class="header-badge">Term Sheet &mdash; Confidential</div>
+    </div>
+    <div class="header-title">SAFE Term Sheet<br><em>Simple Agreement for Future Equity</em></div>
+    <div class="header-sub">This summary of terms is for discussion purposes only and does not constitute a binding obligation. The actual investment will be documented via a standard SAFE instrument executed electronically through Carta.</div>
+  </div>
+
+  <!-- KEY TERMS BAR -->
+  <div class="key-bar">
+    <div class="key-item">
+      <div class="key-label">Raise Amount</div>
+      <div class="key-val">$2,000,000</div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Valuation Cap</div>
+      <div class="key-val">$25,000,000</div>
+    </div>
+    <div class="key-item">
+      <div class="key-label">Instrument</div>
+      <div class="key-val">SAFE</div>
+    </div>
+  </div>
+
+  <!-- BODY -->
+  <div class="body">
+
+    <!-- SECTION 1: OFFERING TERMS -->
+    <div class="section-label">Offering Terms</div>
+    <table class="terms">
+      <tr>
+        <td>Issuer</td>
+        <td><strong>InPursuit Health, LLC</strong>, a Wyoming limited liability company</td>
+      </tr>
+      <tr>
+        <td>Instrument</td>
+        <td>Simple Agreement for Future Equity (SAFE) &mdash; post-money valuation cap, no discount</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Offering Amount</td>
+        <td><strong>Up to $2,000,000</strong></td>
+      </tr>
+      <tr>
+        <td>Minimum Investment</td>
+        <td>At issuer's discretion</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>Valuation Cap</td>
+        <td><strong>$25,000,000</strong> (pre-money)</td>
+      </tr>
+      <tr>
+        <td>Discount Rate</td>
+        <td>None &mdash; valuation cap provides early investor advantage</td>
+      </tr>
+      <tr>
+        <td>Execution</td>
+        <td>Electronically via <strong>Carta</strong></td>
+      </tr>
+      <tr>
+        <td>Investor Qualification</td>
+        <td>Accredited investors only (self-certification at intake; Carta verification at execution)</td>
+      </tr>
+    </table>
+
+    <!-- SECTION 2: CONVERSION -->
+    <div class="section-label">Conversion Mechanics</div>
+    <table class="terms">
+      <tr>
+        <td>Conversion Trigger</td>
+        <td>Next priced equity financing round (the <strong>"Equity Financing"</strong>)</td>
+      </tr>
+      <tr>
+        <td>Planned Equity Financing</td>
+        <td><strong>Series A Preferred &mdash; $20,000,000</strong><br>Target close: September 1, 2026</td>
+      </tr>
+      <tr>
+        <td>Conversion Price</td>
+        <td>The <strong>lower</strong> of: (a) the price per share in the Equity Financing, or (b) the price implied by the $25,000,000 valuation cap</td>
+      </tr>
+      <tr>
+        <td>Resulting Securities</td>
+        <td>Same class and rights as shares issued in the Equity Financing (Series A Preferred or equivalent)</td>
+      </tr>
+      <tr>
+        <td>Pro Rata Rights</td>
+        <td>Per standard SAFE terms</td>
+      </tr>
+      <tr>
+        <td>Most Favored Nation</td>
+        <td>If the Company issues subsequent SAFEs on more favorable terms prior to conversion, this SAFE will be amended to match</td>
+      </tr>
+    </table>
+
+    <!-- SECTION 3: ADDITIONAL TERMS -->
+    <div class="section-label">Additional Terms</div>
+    <table class="terms">
+      <tr>
+        <td>Liquidity Event</td>
+        <td>In the event of a Change of Control or IPO prior to conversion, the investor receives the greater of: (a) the SAFE investment amount, or (b) the amount payable based on conversion at the valuation cap</td>
+      </tr>
+      <tr>
+        <td>Dissolution Event</td>
+        <td>Investor receives repayment of SAFE investment amount, junior to outstanding indebtedness but senior to common equity</td>
+      </tr>
+      <tr>
+        <td>Information Rights</td>
+        <td>Quarterly summary updates on financial performance and material developments</td>
+      </tr>
+      <tr>
+        <td>Governing Law</td>
+        <td>State of Wyoming</td>
+      </tr>
+      <tr>
+        <td>SAFE Form</td>
+        <td>Based on the standard Y Combinator post-money SAFE template, with modifications as reflected in the final Carta-executed document</td>
+      </tr>
+    </table>
+
+    <!-- SECTION 4: USE OF PROCEEDS -->
+    <div class="section-label">Use of Proceeds</div>
+    <table class="terms">
+      <tr>
+        <td>40% &mdash; Product</td>
+        <td>CMS MVP demonstration (March 31, 2026) across all three patient-facing categories in the Medicare App Library</td>
+      </tr>
+      <tr>
+        <td>25% &mdash; Activation</td>
+        <td>TETRA&trade; deployment at Honeycomb Medical Group; patient enrollment; first billable encounters</td>
+      </tr>
+      <tr>
+        <td>20% &mdash; Pipeline</td>
+        <td>ACCESS Model provider outreach; MNDA and LOI pipeline for Cohort 1 and Cohort 2 targets</td>
+      </tr>
+      <tr>
+        <td>15% &mdash; Operations</td>
+        <td>NPI registration, telehealth, legal, compliance, Carta SAFE execution, data room</td>
+      </tr>
+    </table>
+
+    <!-- NOTE -->
+    <div class="note">
+      <strong>SAFE Investor Advantage.</strong> Investors in the SAFE receive a $25,000,000 valuation cap. If the Series A prices above this cap, SAFE holders convert at the cap price &mdash; receiving more equity per dollar invested than Series A participants. The earlier the risk taken, the greater the reward at conversion.
+    </div>
+
+    <!-- SECTION 5: KEY MILESTONES -->
+    <div class="section-label">Key Milestones Between SAFE and Series A</div>
+    <table class="terms">
+      <tr>
+        <td>March 31, 2026</td>
+        <td>CMS MVP demonstration &mdash; all three patient-facing categories live</td>
+      </tr>
+      <tr>
+        <td>April 1, 2026</td>
+        <td>ACCESS Model Cohort 1 application deadline &mdash; Honeycomb Medical submits with InPursuit as technology backbone</td>
+      </tr>
+      <tr>
+        <td>Q2 2026</td>
+        <td>NPI obtained; telehealth launches; first billable encounters</td>
+      </tr>
+      <tr>
+        <td>July 1, 2026</td>
+        <td>ACCESS OAPs begin flowing &mdash; first recurring CMS revenue</td>
+      </tr>
+      <tr>
+        <td>July 4, 2026</td>
+        <td>White House MAHA celebration &mdash; national visibility milestone</td>
+      </tr>
+      <tr class="highlight-row">
+        <td>September 1, 2026</td>
+        <td><strong>Series A target close &mdash; SAFE converts to Series A Preferred</strong></td>
+      </tr>
+      <tr>
+        <td>January 2027</td>
+        <td>ACCESS Model Cohort 2 application deadline &mdash; primary Series A growth target</td>
+      </tr>
+    </table>
+
+    <!-- SIGNATURES -->
+    <div class="sig-section">
+      <div class="section-label" style="border: none; padding: 0; margin-bottom: 8px;">Acknowledged &amp; Agreed</div>
+      <p style="font-size: 12px; color: var(--text-muted); line-height: 1.7; margin-bottom: 4px;">This term sheet is non-binding and is intended solely to facilitate discussion. The definitive SAFE instrument will be executed electronically via Carta. By signing below, both parties acknowledge receipt and understanding of these indicative terms.</p>
+
+      <div class="sig-grid">
+        <div class="sig-block">
+          <div style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">COMPANY</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Patrick Truxillo, Founder &amp; CSO</div>
+          <div class="sig-label">InPursuit Health, LLC</div>
+          <div style="height: 20px;"></div>
+          <div class="sig-line" style="width: 160px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+        <div class="sig-block">
+          <div style="font-size: 12px; font-weight: 700; color: var(--navy); margin-bottom: 16px;">INVESTOR</div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Name</div>
+          <div style="height: 8px;"></div>
+          <div class="sig-line"></div>
+          <div class="sig-label">Title / Entity (if applicable)</div>
+          <div style="height: 8px;"></div>
+          <div class="sig-line" style="width: 160px;"></div>
+          <div class="sig-label">Date</div>
+        </div>
+      </div>
+
+      <div class="sig-note">This term sheet does not constitute an offer to sell securities. Securities will be offered only to accredited investors pursuant to applicable exemptions from registration under the Securities Act of 1933, as amended.</div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-left">
+      <strong>InPursuit Health, LLC</strong> &mdash; Wyoming &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Results Matter&trade;
+    </div>
+    <div class="footer-right">
+      <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0a63646c654a63647a7f78797f637e626f6
