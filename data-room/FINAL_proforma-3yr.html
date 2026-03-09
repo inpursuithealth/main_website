@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — 3-Year Proforma</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08)}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+.container{max-width:960px;margin:0 auto;padding:0 56px}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(24px,3vw,34px);font-weight:400;color:var(--navy);line-height:1.2;margin:14px 0 16px}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-body{font-size:15px;line-height:1.8;color:var(--text-mid);max-width:740px;margin-bottom:40px}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+.hero{background:var(--navy);padding:56px 56px 48px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40%;right:-5%;width:600px;height:600px;background:radial-gradient(ellipse,rgba(197,164,78,.05) 0%,transparent 70%);pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:36px;position:relative;z-index:1}
+.hero-brand{display:flex;flex-direction:column;gap:4px}
+.hero-wordmark{font-family:'Instrument Serif',Georgia,serif;font-size:15px;letter-spacing:4.5px;text-transform:uppercase;color:var(--gold)}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.hero-badge{border:1px solid var(--gold-border);padding:6px 18px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:400;color:#fff;line-height:1.18;max-width:720px;margin-bottom:16px;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;max-width:660px;position:relative;z-index:1}
+
+section{padding:64px 0}
+section.dark{background:var(--navy);color:#fff}
+section.dark .label{color:var(--gold-light)}
+section.dark .section-title{color:#fff}
+section.dark .section-title em{color:var(--gold-light)}
+section.dark .section-body{color:rgba(255,255,255,.50)}
+
+.data-table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:28px}
+.data-table th{text-align:left;padding:12px 14px;background:var(--navy);color:rgba(255,255,255,.7);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.data-table th:first-child{border-radius:4px 0 0 0}.data-table th:last-child{border-radius:0 4px 0 0}
+.data-table th.right,.data-table td.right{text-align:right}
+.data-table td{padding:12px 14px;border-bottom:1px solid var(--border);color:var(--text-mid)}
+.data-table tbody tr{background:#fff}.data-table tbody tr:nth-child(even){background:var(--cream)}
+.data-table .highlight-row{background:var(--gold-dim) !important;font-weight:600}.data-table .highlight-row td{color:var(--navy)}
+.data-table .total-row{background:var(--navy) !important}.data-table .total-row td{color:#fff;font-weight:700;border-bottom:none}
+.data-table .total-row .gold{color:var(--gold-light)}
+.data-table .subtotal-row{background:rgba(10,22,40,.04) !important;font-weight:600}.data-table .subtotal-row td{color:var(--navy);border-bottom:2px solid var(--border)}
+.data-table .section-header{background:rgba(197,164,78,.05) !important}.data-table .section-header td{color:var(--gold);font-weight:700;font-size:10px;letter-spacing:2px;text-transform:uppercase;border-bottom:1px solid var(--gold-border)}
+
+.dark .data-table th{background:rgba(255,255,255,.06);color:rgba(255,255,255,.50)}
+.dark .data-table td{background:transparent;color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.06)}
+.dark .data-table tbody tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.dark .data-table .highlight-row td{background:rgba(197,164,78,.08);color:var(--gold-light)}
+.dark .data-table .subtotal-row td{background:rgba(255,255,255,.04);color:#fff;border-bottom-color:rgba(255,255,255,.12)}
+.dark .data-table .section-header td{background:rgba(197,164,78,.04);border-bottom-color:rgba(197,164,78,.15)}
+
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:28px}
+.stat-box{background:#fff;border:1px solid var(--border);border-top:2px solid var(--gold);padding:24px 20px;text-align:center}
+.stat-num{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:4px}
+.stat-label{font-size:11px;color:var(--text-muted);line-height:1.4}
+.dark .stat-box{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);border-top-color:var(--gold)}
+.dark .stat-label{color:rgba(255,255,255,.35)}
+
+.callout{background:var(--gold-dim);border-left:3px solid var(--gold);padding:24px 28px;font-size:14px;color:var(--text-mid);line-height:1.75;margin-bottom:28px}
+.callout strong{color:var(--navy)}
+.dark .callout{background:rgba(197,164,78,.06);color:rgba(255,255,255,.55)}
+.dark .callout strong{color:var(--gold-light)}
+
+.assumptions{font-size:12px;color:var(--text-muted);line-height:1.8;max-width:740px}
+.assumptions strong{color:var(--text-mid)}
+
+.footer{background:var(--navy);padding:20px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-size:10px;color:rgba(255,255,255,.25);line-height:1.8}
+.footer-left strong{color:var(--gold-light)}
+.footer-right{text-align:right}
+.footer-cta{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:#fff;margin-bottom:2px}
+.footer-contact{font-size:10px;color:rgba(255,255,255,.35)}
+
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}.reveal{opacity:1 !important;transform:none !important}section{padding:40px 0;page-break-inside:avoid}.hero{padding:36px 40px 32px}.container{padding:0 40px}.data-table{font-size:11px}.data-table th,.data-table td{padding:8px 10px}@page{size:letter landscape;margin:.3in}}
+@media(max-width:768px){.container{padding:0 24px}.hero{padding:36px 24px 32px}.grid-3{grid-template-columns:1fr}.data-table{font-size:11px}.footer{padding:20px 24px;flex-direction:column;gap:16px}}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-brand"><div class="hero-wordmark">InPursuit Health</div><div class="hero-tag">Harness the Power of Your Data&trade;</div></div>
+    <div class="hero-badge">3-Year Proforma &mdash; Confidential</div>
+  </div>
+  <h1>Three-Year Revenue Projections <em>Across All Pillars.</em></h1>
+  <p class="hero-sub">Base case projections for InPursuit Health's three revenue engines: Provider VBC (ACCESS Model shared savings), Direct-to-Consumer (InPursuit App subscriptions and commerce), and Telehealth (billable encounters). Federal contracting revenue modeled separately as an upside scenario.</p>
+</div>
+
+<!-- CONSOLIDATED P&L -->
+<section style="border-bottom:1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Consolidated Proforma</div>
+    <div class="section-title">Three Pillars. <em>One Revenue Story.</em></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Revenue Line</th>
+          <th class="right">H2 2026</th>
+          <th class="right">2027</th>
+          <th class="right">2028</th>
+          <th class="right">3-Yr Cumulative</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="section-header"><td colspan="5">Pillar I &mdash; Provider VBC (ACCESS Shared Savings)</td></tr>
+        <tr><td>Providers Live</td><td class="right">5</td><td class="right">60</td><td class="right">100+</td><td class="right">&mdash;</td></tr>
+        <tr><td>Patients Enrolled</td><td class="right">15,000</td><td class="right">200,000</td><td class="right">400,000</td><td class="right">&mdash;</td></tr>
+        <tr class="subtotal-row"><td>VBC Revenue</td><td class="right">$1.5M</td><td class="right">$27.5M</td><td class="right">$78.9M</td><td class="right">$107.9M</td></tr>
+
+        <tr class="section-header"><td colspan="5">Pillar II &mdash; D2C (InPursuit App)</td></tr>
+        <tr><td>Free Users (Medicare App Library)</td><td class="right">25,000</td><td class="right">250,000</td><td class="right">750,000</td><td class="right">&mdash;</td></tr>
+        <tr><td>Paid Subscribers (avg $22/mo blended)</td><td class="right">500</td><td class="right">12,500</td><td class="right">50,000</td><td class="right">&mdash;</td></tr>
+        <tr><td>Commerce Revenue (offers &amp; cashback)</td><td class="right">$0</td><td class="right">$0.4M</td><td class="right">$2.5M</td><td class="right">$2.9M</td></tr>
+        <tr class="subtotal-row"><td>D2C Revenue</td><td class="right">$0.07M</td><td class="right">$3.7M</td><td class="right">$15.7M</td><td class="right">$19.5M</td></tr>
+
+        <tr class="section-header"><td colspan="5">Pillar III &mdash; Telehealth (Billable Encounters)</td></tr>
+        <tr><td>Monthly Encounters</td><td class="right">200</td><td class="right">3,000</td><td class="right">10,000</td><td class="right">&mdash;</td></tr>
+        <tr><td>Avg Revenue per Encounter</td><td class="right">$85</td><td class="right">$85</td><td class="right">$85</td><td class="right">&mdash;</td></tr>
+        <tr class="subtotal-row"><td>Telehealth Revenue</td><td class="right">$0.10M</td><td class="right">$3.1M</td><td class="right">$10.2M</td><td class="right">$13.4M</td></tr>
+
+        <tr class="total-row">
+          <td>Total Revenue</td>
+          <td class="right"><span class="gold">$1.67M</span></td>
+          <td class="right"><span class="gold">$34.3M</span></td>
+          <td class="right"><span class="gold">$104.8M</span></td>
+          <td class="right"><span class="gold">$140.8M</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="stat-box"><div class="stat-num">$104.8M</div><div class="stat-label">Year 3 Revenue<br>(Base Case)</div></div>
+      <div class="stat-box"><div class="stat-num">75%</div><div class="stat-label">VBC as % of<br>Year 3 Revenue</div></div>
+      <div class="stat-box"><div class="stat-num">$140.8M</div><div class="stat-label">3-Year Cumulative<br>Revenue</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- COST STRUCTURE -->
+<section class="dark">
+  <div class="container reveal">
+    <div class="label">Cost Structure &amp; Margin</div>
+    <div class="section-title">Path to Profitability: <em>Q1 2028.</em></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Cost Line</th>
+          <th class="right">H2 2026</th>
+          <th class="right">2027</th>
+          <th class="right">2028</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Cost of Revenue (infrastructure, support per provider)</td><td class="right">$0.48M</td><td class="right">$5.8M</td><td class="right">$12.0M</td></tr>
+        <tr class="subtotal-row"><td>Gross Profit</td><td class="right">$1.19M</td><td class="right">$28.5M</td><td class="right">$92.8M</td></tr>
+        <tr class="highlight-row"><td>Gross Margin</td><td class="right">71%</td><td class="right">83%</td><td class="right">89%</td></tr>
+
+        <tr class="section-header"><td colspan="4">Operating Expenses</td></tr>
+        <tr><td>Sales &amp; Business Development</td><td class="right">$1.5M</td><td class="right">$5.0M</td><td class="right">$6.0M</td></tr>
+        <tr><td>Implementation &amp; Customer Success</td><td class="right">$1.0M</td><td class="right">$4.0M</td><td class="right">$5.0M</td></tr>
+        <tr><td>Engineering &amp; Product</td><td class="right">$1.5M</td><td class="right">$4.0M</td><td class="right">$4.5M</td></tr>
+        <tr><td>G&amp;A / Operations</td><td class="right">$0.8M</td><td class="right">$2.0M</td><td class="right">$2.5M</td></tr>
+        <tr class="subtotal-row"><td>Total OpEx</td><td class="right">$4.8M</td><td class="right">$15.0M</td><td class="right">$18.0M</td></tr>
+
+        <tr class="total-row">
+          <td>Net Income / (Loss)</td>
+          <td class="right"><span class="gold">($3.6M)</span></td>
+          <td class="right"><span class="gold">$13.5M</span></td>
+          <td class="right"><span class="gold">$74.8M</span></td>
+        </tr>
+        <tr class="highlight-row"><td>Net Margin</td><td class="right">(216%)</td><td class="right">39%</td><td class="right">71%</td></tr>
+      </tbody>
+    </table>
+
+    <div class="grid-3">
+      <div class="stat-box"><div class="stat-num">Q1 2028</div><div class="stat-label">Cash flow positive<br>(company level)</div></div>
+      <div class="stat-box"><div class="stat-num">89%</div><div class="stat-label">Gross margin<br>at scale (Year 3)</div></div>
+      <div class="stat-box"><div class="stat-num">71%</div><div class="stat-label">Net margin<br>Year 3</div></div>
+    </div>
+
+    <div class="callout">
+      <strong>Margins improve dramatically with scale.</strong> The cost to serve each provider is largely fixed (~$96K/yr) while revenue per provider averages $600K+/yr. As the provider base grows, gross margins expand from 71% in the SAFE phase to 89% at 100 providers. Operating leverage is equally significant: the sales team that signs 100 providers in Year 2 does not need to double to maintain them in Year 3.
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR I DETAIL: VBC -->
+<section style="border-bottom:1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Pillar I Detail</div>
+    <div class="section-title">Provider VBC Revenue: <em>The Primary Engine.</em></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="right">H2 2026</th>
+          <th class="right">2027</th>
+          <th class="right">2028</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>New Providers Signed</td><td class="right">5</td><td class="right">55</td><td class="right">40</td></tr>
+        <tr><td>Cumulative Providers Live</td><td class="right">5</td><td class="right">60</td><td class="right">100</td></tr>
+        <tr><td>Avg Patients per Provider</td><td class="right">3,000</td><td class="right">3,333</td><td class="right">4,000</td></tr>
+        <tr><td>Total Patients Enrolled</td><td class="right">15,000</td><td class="right">200,000</td><td class="right">400,000</td></tr>
+        <tr><td>Blended Avg PMPM</td><td class="right">$47</td><td class="right">$47</td><td class="right">$47</td></tr>
+        <tr><td>Total OAPs from CMS</td><td class="right">$4.2M</td><td class="right">$78.6M</td><td class="right">$225.6M</td></tr>
+        <tr><td>Blended InPursuit Share</td><td class="right">35%</td><td class="right">35%</td><td class="right">35%</td></tr>
+        <tr class="total-row"><td>InPursuit VBC Revenue</td><td class="right"><span class="gold">$1.5M</span></td><td class="right"><span class="gold">$27.5M</span></td><td class="right"><span class="gold">$78.9M</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>H2 2026 is a partial year</strong> (OAPs begin July 2026 for Cohort 1). 2027 shows the ramp as Cohort 2 providers go live mid-year. 2028 reflects a full year with 100 providers at scale. Revenue per provider grows as enrollment deepens within each practice. All projections use the conservative $47 PMPM blended rate.
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR II DETAIL: D2C -->
+<section class="dark">
+  <div class="container reveal">
+    <div class="label">Pillar II Detail</div>
+    <div class="section-title">D2C Revenue: <em>Subscriptions + Commerce.</em></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="right">H2 2026</th>
+          <th class="right">2027</th>
+          <th class="right">2028</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Medicare App Library Impressions</td><td class="right">Initial launch</td><td class="right">Scaling</td><td class="right">Mature</td></tr>
+        <tr><td>Free Users (cumulative)</td><td class="right">25,000</td><td class="right">250,000</td><td class="right">750,000</td></tr>
+        <tr><td>Free → Paid Conversion</td><td class="right">2%</td><td class="right">5%</td><td class="right">6.7%</td></tr>
+        <tr><td>Paid Subscribers (cumulative)</td><td class="right">500</td><td class="right">12,500</td><td class="right">50,000</td></tr>
+        <tr><td>Blended ARPU (monthly)</td><td class="right">$22</td><td class="right">$22</td><td class="right">$22</td></tr>
+        <tr><td>Subscription Revenue</td><td class="right">$0.07M</td><td class="right">$3.3M</td><td class="right">$13.2M</td></tr>
+        <tr><td>Commerce Revenue (offers &amp; cashback)</td><td class="right">$0</td><td class="right">$0.4M</td><td class="right">$2.5M</td></tr>
+        <tr class="total-row"><td>Total D2C Revenue</td><td class="right"><span class="gold">$0.07M</span></td><td class="right"><span class="gold">$3.7M</span></td><td class="right"><span class="gold">$15.7M</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Blended ARPU of $22/mo</strong> reflects weighted average across Free ($0), Plus ($14.99), Family ($34.99), Total Intelligence ($49.99), and Connected ($0, provider-subsidized). Commerce revenue begins in 2027 as the transaction-moment model (offers and cashback on anonymized health signals) activates with scale. The Medicare App Library provides organic distribution to 140M+ beneficiaries at zero acquisition cost.
+    </div>
+  </div>
+</section>
+
+<!-- PILLAR III DETAIL: TELEHEALTH -->
+<section style="border-bottom:1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Pillar III Detail</div>
+    <div class="section-title">Telehealth Revenue: <em>Billable Encounters.</em></div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th class="right">H2 2026</th>
+          <th class="right">2027</th>
+          <th class="right">2028</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NPI Active</td><td class="right">Q2 2026</td><td class="right">Active</td><td class="right">Active</td></tr>
+        <tr><td>Avg Monthly Encounters</td><td class="right">200</td><td class="right">3,000</td><td class="right">10,000</td></tr>
+        <tr><td>Avg Revenue per Encounter</td><td class="right">$85</td><td class="right">$85</td><td class="right">$85</td></tr>
+        <tr><td>Service Mix</td><td class="right" colspan="3">Urgent care, chronic care mgmt, weight mgmt, mental health, specialty referrals</td></tr>
+        <tr class="total-row"><td>Total Telehealth Revenue</td><td class="right"><span class="gold">$0.10M</span></td><td class="right"><span class="gold">$3.1M</span></td><td class="right"><span class="gold">$10.2M</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Telehealth volume grows organically</strong> as the provider base and D2C user base expand. Every ACCESS patient is a potential telehealth user. Every D2C subscriber has access to virtual care. The $85 blended encounter rate is conservative across the service mix. Telehealth also serves as the "on-ramp" for D2C users who discover InPursuit through the Medicare App Library.
+    </div>
+  </div>
+</section>
+
+<!-- UPSIDE: FEDERAL -->
+<section class="dark">
+  <div class="container reveal">
+    <div class="label">Upside Scenario</div>
+    <div class="section-title">Pillar IV: Federal Contracting <em>(Not Modeled in Base Case)</em></div>
+    <div class="section-body">TETRA&trade; is available through GSA and NASA SEWP contract vehicles. The federal channel represents significant upside beyond the base case projections. Any federal contract revenue is additive to the three-pillar model above.</div>
+
+    <div class="grid-3">
+      <div class="stat-box"><div class="stat-num">$100B+</div><div class="stat-label">Annual federal IT spend</div></div>
+      <div class="stat-box"><div class="stat-num">$10B+</div><div class="stat-label">Data integration TAM</div></div>
+      <div class="stat-box"><div class="stat-num">GSA + SEWP</div><div class="stat-label">Active contract vehicles</div></div>
+    </div>
+
+    <div class="callout">
+      <strong>Conservative approach:</strong> Federal revenue is excluded from the base case because contract timelines are less predictable than CMS ACCESS milestones. However, even a single mid-size federal contract ($2&ndash;5M) would materially accelerate the path to profitability. The DoD/VA track record and VOSB status provide meaningful competitive advantages in procurement.
+    </div>
+  </div>
+</section>
+
+<!-- ASSUMPTIONS -->
+<section style="border-bottom:1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Key Assumptions</div>
+    <div class="section-title">What Drives <em>These Numbers.</em></div>
+
+    <div class="assumptions">
+      <strong>VBC / ACCESS Model:</strong> $47 blended PMPM (conservative vs. CMS estimates). 35% blended InPursuit share (weighted toward Tier 1 Full Service). 70% chronic condition prevalence among Medicare beneficiaries. 6-week deployment per provider. $60K CAC. $96K annual cost to serve per provider. OAPs begin July 2026 (Cohort 1) and mid-2027 (Cohort 2).
+      <br><br>
+      <strong>D2C:</strong> $22 blended monthly ARPU across all paid tiers. 2% free-to-paid conversion in Year 1, scaling to 6.7% by Year 3 as features mature and trust builds. Commerce revenue begins Year 2 at modest levels ($0.40 per free user per year) and scales with user base and advertiser demand.
+      <br><br>
+      <strong>Telehealth:</strong> $85 blended revenue per encounter across urgent care, CCM, weight management, mental health. Volume grows as provider and D2C user bases expand. No external marketing spend assumed &mdash; encounters are organic from existing user base.
+      <br><br>
+      <strong>Costs:</strong> Headcount scales from ~15 (SAFE phase) to ~55 (100 providers at scale). Cloud infrastructure costs scale linearly with patient volume. No federal contract revenue in base case. Working capital buffer included for OAP timing lag.
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-left">
+    <strong>InPursuit Health, LLC</strong> &mdash; Wyoming &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member<br>
+    This document does not constitute an offer to sell securities. &nbsp;|&nbsp; Results Matter&trade;
+  </div>
+  <div class="footer-right">
+    <div class="footer-cta"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="3c55525a537c55524c494e4f49554854595d504854125f5351">[email&#160;protected]</a></div>
+    <div class="footer-contact">www.InPursuitHealth.com</div>
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const observer = new IntersectionObserver((e

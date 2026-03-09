@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Series A $20M One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.5}
+.page{max-width:1000px;margin:0 auto}
+
+/* Header */
+.header{background:var(--navy);padding:44px 56px 40px;position:relative;overflow:hidden}
+.header::after{content:'';position:absolute;top:-60%;right:-10%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,164,78,.06) 0%,transparent 70%);pointer-events:none}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
+.header-brand{display:flex;flex-direction:column;gap:4px}
+.header-wordmark{font-family:'Instrument Serif',Georgia,serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.header-tag{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.30)}
+.header-badge{border:1px solid var(--gold-border);padding:6px 18px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.header-title{font-family:'Instrument Serif',Georgia,serif;font-size:36px;font-weight:400;color:#fff;line-height:1.15;margin-bottom:12px;position:relative;z-index:1}
+.header-title em{font-style:italic;color:var(--gold)}
+.header-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7;max-width:680px;position:relative;z-index:1}
+
+/* Terms Bar */
+.terms-bar{display:grid;grid-template-columns:repeat(5,1fr);background:var(--navy-mid);border-bottom:1px solid rgba(197,164,78,.12)}
+.term{padding:20px 24px;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.term:last-child{border-right:none}
+.term-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:6px}
+.term-val{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#fff}
+.term-val.gold{color:var(--gold)}
+
+/* Body */
+.body-content{padding:36px 56px 28px}
+.col-label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.col-title{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:10px;line-height:1.25}
+.col-body{font-size:13px;color:var(--text-mid);line-height:1.7}
+.col-body strong{color:var(--navy)}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-bottom:32px}
+
+/* Use of Funds */
+.funds-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:16px}
+.fund-item{background:#fff;border:1px solid var(--border);border-top:2px solid var(--gold);padding:16px 14px}
+.fund-pct{font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:var(--gold);margin-bottom:4px}
+.fund-name{font-size:11px;font-weight:600;color:var(--navy);margin-bottom:3px;line-height:1.3}
+.fund-desc{font-size:10px;color:var(--text-muted);line-height:1.5}
+
+/* Revenue Trajectory */
+.momentum{background:var(--navy);padding:28px 56px;margin:0 -56px;width:calc(100% + 112px)}
+.momentum-label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
+.rev-track{display:grid;grid-template-columns:repeat(5,1fr);gap:2px}
+.rev-item{padding:16px 14px;background:rgba(255,255,255,.025);border:1px solid rgba(255,255,255,.05)}
+.rev-item:first-child{border-radius:4px 0 0 4px}
+.rev-item:last-child{border-radius:0 4px 4px 0}
+.rev-item.highlight{background:rgba(197,164,78,.06);border-color:var(--gold-border)}
+.r-date{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.r-num{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:#fff;margin-bottom:4px}
+.r-desc{font-size:10px;color:rgba(255,255,255,.40);line-height:1.5}
+
+/* Proof & Terms */
+.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;padding-top:28px}
+.proof-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.proof-list li{display:flex;gap:10px;font-size:12px;color:var(--text-mid);line-height:1.6;align-items:flex-start}
+.proof-list li::before{content:'';flex-shrink:0;width:5px;height:5px;background:var(--gold);border-radius:50%;margin-top:6px}
+.proof-list li strong{color:var(--navy)}
+
+.terms-table{width:100%;border-collapse:collapse}
+.terms-table tr{border-bottom:1px solid var(--border)}
+.terms-table tr:last-child{border:none}
+.terms-table td{padding:8px 0;font-size:12px;vertical-align:top}
+.terms-table td:first-child{color:var(--text-muted);width:40%;font-weight:500}
+.terms-table td:last-child{color:var(--navy);font-weight:600}
+
+/* Footer */
+.footer{background:var(--navy);padding:20px 56px;display:flex;justify-content:space-between;align-items:center}
+.footer-left{font-size:10px;color:rgba(255,255,255,.25);line-height:1.8}
+.footer-left strong{color:var(--gold-light)}
+.footer-right{text-align:right}
+.footer-cta{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:#fff;margin-bottom:2px}
+.footer-contact{font-size:10px;color:rgba(255,255,255,.35)}
+
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}body{background:#fff}.header{padding:32px 40px 28px}.header-title{font-size:28px}.body-content{padding:24px 40px 20px}.momentum{padding:20px 40px;margin:0 -40px;width:calc(100% + 80px)}.footer{padding:16px 40px}@page{size:letter;margin:0}}
+@media(max-width:768px){.header{padding:32px 24px 28px}.terms-bar{grid-template-columns:repeat(3,1fr)}.two-col,.bottom-grid{grid-template-columns:1fr}.funds-grid{grid-template-columns:1fr 1fr}.rev-track{grid-template-columns:1fr}.body-content{padding:28px 24px 20px}.momentum{padding:24px;margin:0 -24px;width:calc(100% + 48px)}.footer{padding:20px 24px;flex-direction:column;gap:16px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="header">
+    <div class="header-top">
+      <div class="header-brand">
+        <div class="header-wordmark">InPursuit Health</div>
+        <div class="header-tag">Harness the Power of Your Data&trade;</div>
+      </div>
+      <div class="header-badge">Confidential &mdash; Qualified Investors Only</div>
+    </div>
+    <div class="header-title">Series A &mdash; <em>$20,000,000</em></div>
+    <div class="header-sub">Infrastructure-scale capital to dominate CMS ACCESS Model Cohort 2 provider enrollment, launch the consumer experience to 140M+ beneficiaries, and scale the TETRA&trade; infrastructure stack nationwide. $20M deployed into 75&ndash;100 providers generating $50&ndash;79M ARR by 2028.</div>
+  </div>
+
+  <div class="terms-bar">
+    <div class="term"><div class="term-label">Structure</div><div class="term-val">Preferred Equity</div></div>
+    <div class="term"><div class="term-label">Raise Amount</div><div class="term-val gold">$20M</div></div>
+    <div class="term"><div class="term-label">Target Close</div><div class="term-val gold">Sep 1, 2026</div></div>
+    <div class="term"><div class="term-label">Primary Use</div><div class="term-val">Cohort 2 Scale</div></div>
+    <div class="term"><div class="term-label">Bridge</div><div class="term-val">$2M SAFE Open</div></div>
+  </div>
+
+  <div class="body-content">
+
+    <div class="two-col">
+      <div>
+        <div class="col-label">Investment Thesis</div>
+        <div class="col-title">Capture the Dominant Share of ACCESS Model Providers.</div>
+        <div class="col-body">
+          The CMS ACCESS Model pays primary care practices monthly per-patient fees for Medicare beneficiaries with chronic conditions &mdash; <strong>for 10 years</strong>. There are 300,000 physicians in the U.S. The vast majority lack infrastructure to participate. InPursuit deploys TETRA&trade; at zero upfront cost and shares in the new revenue.
+          <br><br>
+          <strong>Cohort 2 (January 2027)</strong> is the land grab. Series A capital targets 75&ndash;100 providers. At $47 avg PMPM and blended 35% InPursuit share, that produces <strong>$50&ndash;79M ARR by 2028</strong> with 85%+ gross margins and 42:1 LTV:CAC. ACCESS applications continue rolling through 2033.
+        </div>
+      </div>
+      <div>
+        <div class="col-label">Use of Proceeds</div>
+        <div class="col-title">$20M. Every Dollar Has a Job.</div>
+        <div class="funds-grid">
+          <div class="fund-item"><div class="fund-pct">25%</div><div class="fund-name">Sales &amp; BD</div><div class="fund-desc">8&ndash;10 person team to sign 75&ndash;100 provider LOIs</div></div>
+          <div class="fund-item"><div class="fund-pct">20%</div><div class="fund-name">Implementation</div><div class="fund-desc">15&ndash;20 person team to deploy at scale. 6-week cycles.</div></div>
+          <div class="fund-item"><div class="fund-pct">20%</div><div class="fund-name">Engineering</div><div class="fund-desc">Multi-tenant scale, integrations, analytics, D2C app</div></div>
+          <div class="fund-item"><div class="fund-pct">15%</div><div class="fund-name">Customer Success</div><div class="fund-desc">Ongoing support, clinical compliance, CMS liaison</div></div>
+        </div>
+        <div class="funds-grid" style="margin-top:12px;">
+          <div class="fund-item"><div class="fund-pct">10%</div><div class="fund-name">G&amp;A / Ops</div><div class="fund-desc">Finance, legal, HR</div></div>
+          <div class="fund-item"><div class="fund-pct">10%</div><div class="fund-name">Working Capital</div><div class="fund-desc">Bridge to OAP cash flow (starts mid-2027)</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="momentum">
+      <div class="momentum-label">Revenue Trajectory</div>
+      <div class="rev-track">
+        <div class="rev-item"><div class="r-date">Q4 2026</div><div class="r-num">$3.0M</div><div class="r-desc">5 Cohort 1 providers live. 15K patients.</div></div>
+        <div class="rev-item"><div class="r-date">Q2 2027</div><div class="r-num">$14.8M</div><div class="r-desc">25 providers. Cohort 2 OAPs begin.</div></div>
+        <div class="rev-item"><div class="r-date">Q4 2027</div><div class="r-num">$39.5M</div><div class="r-desc">60 providers. 200K patients enrolled.</div></div>
+        <div class="rev-item highlight"><div class="r-date">Q4 2028</div><div class="r-num">$78.9M+</div><div class="r-desc">100+ providers. 400K+ patients. Cash flow positive.</div></div>
+        <div class="rev-item"><div class="r-date">2033</div><div class="r-num">Rolling</div><div class="r-desc">ACCESS applications continue. Cohorts 3+ expand TAM.</div></div>
+      </div>
+    </div>
+
+    <div class="bottom-grid">
+      <div>
+        <div class="col-label">Why InPursuit. Why $20M.</div>
+        <ul class="proof-list">
+          <li><strong>Federal validation at scale</strong> &mdash; TETRA&trade; on 290K+ servers. Selected over IBM, Oracle, SAP. Catalyzed $20B+ in federal EHR investments.</li>
+          <li><strong>CMS Ecosystem approved</strong> &mdash; all three patient-facing categories. Medicare App Library. 140M+ beneficiaries.</li>
+          <li><strong>First provider revenue</strong> &mdash; Honeycomb Medical (Memphis) generating ACCESS OAPs by July 2026.</li>
+          <li><strong>Unit economics proven</strong> &mdash; 86% gross margin. $60K CAC. $2.55M LTV. 42:1 LTV:CAC. 6-week deployment.</li>
+          <li><strong>Three revenue engines</strong> &mdash; VBC shared savings + D2C subscriptions + telehealth. Compounding flywheel.</li>
+          <li><strong>Defensible IP</strong> &mdash; Five-layer stack: TETRA&trade; + TETRA Ex&trade; + TETRA Conductor&trade; + TETRA Aegis&trade; + TETRA Sentinel&trade; (patent-pending). No competitor offers all five.</li>
+          <li><strong>Federal channel</strong> &mdash; GSA &amp; SEWP contract vehicles. VOSB. $100B+ federal IT TAM.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="col-label">Series A Terms</div>
+        <table class="terms-table">
+          <tr><td>Structure</td><td>Priced Preferred Equity Round</td></tr>
+          <tr><td>Amount</td><td>$20,000,000</td></tr>
+          <tr><td>Target Close</td><td>September 1, 2026</td></tr>
+          <tr><td>Primary Use</td><td>Cohort 2 provider acquisition at scale</td></tr>
+          <tr><td>Revenue Path</td><td>VBC shared savings + D2C + telehealth</td></tr>
+          <tr><td>Cohort 2 Target</td><td>75&ndash;100 providers by Jan 2027 deadline</td></tr>
+          <tr><td>ARR Target</td><td>$50&ndash;79M by Q4 2028</td></tr>
+          <tr><td>Cash Flow Positive</td><td>Q1 2028 (~50 providers, $25M+ run rate)</td></tr>
+          <tr><td>SAFE Bridge</td><td>$2M at $25M cap (now open, via Carta)</td></tr>
+          <tr><td>Entity</td><td>InPursuit Health, LLC (Wyoming)</td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <div class="footer-left">
+      <strong>InPursuit Health, LLC</strong> &mdash; Wyoming &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member<br>
+      This document does not constitute an offer to sell securities. &nbsp;|&nbsp; Results Matter&trade;
+    </div>
+    <div class="footer-right">
+      <div class="footer-cta"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5a33343c351a33342a2f28292f332e323f3b362e3274393537">[email&#160;pr

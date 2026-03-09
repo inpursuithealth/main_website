@@ -1,0 +1,1794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Series A Investment Opportunity</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-mid: #111D32;
+  --navy-light: #1A2A44;
+  --navy-soft: #1E3050;
+  --gold: #C5A44E;
+  --gold-light: #D4BA7A;
+  --gold-dim: rgba(197,164,78,0.10);
+  --gold-border: rgba(197,164,78,0.25);
+  --cream: #FAF8F4;
+  --warm: #FDFCFA;
+  --text: #1A1A1A;
+  --text-mid: #3D3D3D;
+  --text-muted: #8A8A7A;
+  --border: rgba(10,22,40,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.serif { font-family: 'Instrument Serif', Georgia, serif; }
+
+/* ═══ UTILITIES ═══ */
+.container { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+@media(min-width:768px) { .container { padding: 0 56px; } }
+
+.label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(28px, 3.5vw, 42px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 16px 0 20px;
+}
+
+.section-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.section-body {
+  font-size: 16px;
+  line-height: 1.75;
+  color: var(--text-mid);
+  max-width: 740px;
+  margin-bottom: 48px;
+}
+
+.gold-rule {
+  width: 48px;
+  height: 1px;
+  background: var(--gold);
+  margin: 32px 0;
+}
+
+/* ═══ ANIMATIONS ═══ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══ HERO ═══ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  background: var(--navy);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 80px 40px;
+  overflow: hidden;
+}
+
+.hero-canvas {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 40%, rgba(197,164,78,0.04) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-confidential {
+  position: relative;
+  display: inline-block;
+  border: 1px solid var(--gold-border);
+  padding: 8px 28px;
+  border-radius: 2px;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 48px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.3s forwards;
+}
+
+.hero-wordmark {
+  position: relative;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 36px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.5s forwards;
+}
+
+.hero h1 {
+  position: relative;
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(34px, 5vw, 64px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.15;
+  max-width: 800px;
+  margin-bottom: 28px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.7s forwards;
+}
+
+.hero h1 em { font-style: italic; color: var(--gold); }
+
+.hero-sub {
+  position: relative;
+  font-size: 15px;
+  color: rgba(255,255,255,0.50);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 56px;
+  opacity: 0; animation: fadeUp 0.8s ease 0.9s forwards;
+}
+
+.hero-stats {
+  position: relative;
+  display: flex;
+  gap: 48px;
+  opacity: 0; animation: fadeUp 0.8s ease 1.1s forwards;
+}
+
+.hero-stat { text-align: center; }
+
+.hero-stat-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 40px;
+  color: #fff;
+  line-height: 1;
+}
+
+.hero-stat-label {
+  font-size: 10px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-top: 10px;
+}
+
+.hero-stat-divider {
+  width: 1px;
+  background: rgba(197,164,78,0.2);
+  align-self: stretch;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0.3;
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+@keyframes float { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(8px); } }
+
+/* ═══ OFFERING ═══ */
+section { padding: 96px 0; }
+
+.offering { background: var(--cream); border-bottom: 1px solid var(--border); }
+
+.offering-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 40px;
+}
+
+.offer-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 40px;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.offer-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 40px rgba(10,22,40,0.06);
+}
+
+.offer-card-badge {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.offer-card h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.offer-card .amount {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 36px;
+  color: var(--gold);
+  margin-bottom: 20px;
+}
+
+.offer-card p {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.7;
+}
+
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+}
+
+.detail-row:last-child { border: none; }
+.detail-key { color: var(--text-muted); }
+.detail-val { color: var(--navy); font-weight: 600; }
+
+.offer-card.series-a {
+  background: var(--navy);
+  border-color: rgba(197,164,78,0.15);
+}
+
+.offer-card.series-a .offer-card-badge { color: var(--gold-light); }
+.offer-card.series-a h3 { color: #fff; }
+.offer-card.series-a .amount { color: var(--gold-light); }
+.offer-card.series-a p { color: rgba(255,255,255,0.55); }
+.offer-card.series-a .detail-row { border-color: rgba(255,255,255,0.06); }
+.offer-card.series-a .detail-key { color: rgba(255,255,255,0.35); }
+.offer-card.series-a .detail-val { color: rgba(255,255,255,0.85); }
+
+.exclusive-note {
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding: 24px 32px;
+  font-size: 14px;
+  line-height: 1.75;
+  color: var(--text-mid);
+  border-radius: 0 4px 4px 0;
+}
+
+.exclusive-note strong { color: var(--navy); }
+
+/* ═══ CRISIS ═══ */
+.crisis {
+  background: var(--navy);
+  color: #fff;
+}
+
+.crisis .label { color: var(--gold-light); }
+.crisis .section-title { color: #fff; }
+.crisis .section-title em { color: var(--gold-light); }
+.crisis .section-body { color: rgba(255,255,255,0.50); }
+
+.crisis-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin-bottom: 48px;
+}
+
+.crisis-stat {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+  padding: 32px;
+}
+
+.crisis-stat-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 36px;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+
+.crisis-stat-text {
+  font-size: 14px;
+  color: rgba(255,255,255,0.50);
+  line-height: 1.6;
+}
+
+.crisis-quote {
+  border-left: 3px solid var(--gold);
+  padding: 24px 32px;
+  margin: 40px 0;
+}
+
+.crisis-quote p {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  font-style: italic;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.6;
+}
+
+.crisis-quote cite {
+  display: block;
+  margin-top: 12px;
+  font-size: 12px;
+  font-style: normal;
+  color: rgba(255,255,255,0.30);
+}
+
+/* ═══ REVENUE ═══ */
+.revenue { background: var(--cream); border-bottom: 1px solid var(--border); }
+
+.revenue-streams {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 28px;
+}
+
+.stream {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px;
+  transition: transform 0.3s;
+}
+
+.stream:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(10,22,40,0.05); }
+
+.stream-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 20px;
+  color: var(--gold);
+}
+
+.stream-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.stream h4 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.stream p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+.stream-metric {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+.stream-metric-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  color: var(--gold);
+}
+
+.stream-metric-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+.flywheel-card {
+  background: linear-gradient(135deg, rgba(197,164,78,0.06) 0%, rgba(197,164,78,0.02) 100%);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 32px 40px;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.flywheel-icon { flex-shrink: 0; color: var(--gold); }
+
+.flywheel-card h4 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.flywheel-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+
+/* ═══ PROVIDER PATTERN ═══ */
+.provider-pattern { background: var(--navy); color: #fff; }
+.provider-pattern .label { color: var(--gold-light); }
+.provider-pattern .section-title { color: #fff; }
+.provider-pattern .section-title em { color: var(--gold-light); }
+.provider-pattern .section-body { color: rgba(255,255,255,0.50); }
+
+.pattern-case {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-left: 3px solid var(--gold);
+  border-radius: 0 4px 4px 0;
+  padding: 32px 36px;
+  margin-bottom: 48px;
+}
+
+.pattern-case-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 12px;
+}
+
+.pattern-case h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.pattern-case .case-meta {
+  font-size: 13px;
+  color: rgba(255,255,255,0.40);
+  margin-bottom: 16px;
+}
+
+.pattern-case p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+}
+
+.pattern-steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  margin-bottom: 48px;
+}
+
+.pattern-step {
+  background: rgba(255,255,255,0.03);
+  padding: 28px 24px;
+  position: relative;
+}
+
+.pattern-step:first-child { border-radius: 4px 0 0 4px; }
+.pattern-step:last-child { border-radius: 0 4px 4px 0; }
+
+.pattern-step-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 32px;
+  color: var(--gold);
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.pattern-step h4 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 8px;
+}
+
+.pattern-step p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.6;
+}
+
+.pattern-step-arrow {
+  position: absolute;
+  right: -10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--gold);
+  z-index: 1;
+}
+
+.scale-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.scale-card {
+  text-align: center;
+  padding: 28px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px;
+}
+
+.scale-card.active {
+  border-color: var(--gold);
+  background: rgba(197,164,78,0.06);
+}
+
+.scale-card-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 36px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.scale-card-label {
+  font-size: 12px;
+  color: rgba(255,255,255,0.40);
+  line-height: 1.5;
+}
+
+.scale-card-rev {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: #fff;
+  margin-top: 12px;
+}
+
+.tam-callout {
+  background: rgba(197,164,78,0.06);
+  border: 1px solid var(--gold-border);
+  border-radius: 4px;
+  padding: 32px 40px;
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.tam-callout-text { flex: 1; }
+
+.tam-callout-text p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+}
+
+.tam-callout-text strong { color: var(--gold-light); }
+
+.tam-stat {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.tam-stat-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 48px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.tam-stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  margin-top: 8px;
+}
+
+/* ═══ MEDICARE APP LIBRARY ═══ */
+.app-library { background: #fff; border-bottom: 1px solid var(--border); }
+
+.app-categories {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 40px;
+}
+
+.app-cat {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--gold);
+  border-radius: 0 0 4px 4px;
+  padding: 32px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.app-cat:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(10,22,40,0.05); }
+
+.app-cat-icon { width: 36px; height: 36px; margin: 0 auto 16px; color: var(--gold); }
+
+.app-cat h4 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+
+.app-cat p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+.app-callout {
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 36px 44px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.app-callout-text { flex: 1; }
+.app-callout-text .label { color: var(--gold-light); margin-bottom: 10px; display: block; }
+.app-callout-text p { font-size: 15px; color: rgba(255,255,255,0.65); line-height: 1.75; }
+.app-callout-text strong { color: var(--gold-light); }
+
+.app-callout-stat {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.app-callout-stat-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 48px;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.app-callout-stat-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  margin-top: 8px;
+}
+
+/* ═══ PATENT ═══ */
+.patent {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-soft) 100%);
+  text-align: center;
+  padding: 80px 40px;
+}
+
+.patent-badge {
+  display: inline-block;
+  border: 1px solid var(--gold-border);
+  padding: 6px 20px;
+  border-radius: 2px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 32px;
+}
+
+.patent h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.25;
+  max-width: 700px;
+  margin: 0 auto 20px;
+}
+
+.patent h2 em { font-style: italic; color: var(--gold-light); }
+
+.patent-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.45);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ═══ ACCESS MODEL ═══ */
+.access { background: var(--cream); border-bottom: 1px solid var(--border); }
+
+.timeline {
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 40px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 7px;
+  top: 8px;
+  bottom: 8px;
+  width: 1px;
+  background: linear-gradient(180deg, var(--gold), var(--border));
+}
+
+.tl-item {
+  position: relative;
+  padding: 0 0 36px 28px;
+}
+
+.tl-item:last-child { padding-bottom: 0; }
+
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -28px;
+  top: 7px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--gold);
+  border: 2px solid var(--cream);
+}
+
+.tl-item.highlight::before {
+  width: 13px;
+  height: 13px;
+  left: -30px;
+  top: 5px;
+  box-shadow: 0 0 0 4px var(--gold-dim);
+}
+
+.tl-date {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.tl-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.tl-desc {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.6;
+}
+
+.timeline-callout {
+  background: var(--navy);
+  border-radius: 4px;
+  padding: 32px 40px;
+}
+
+.timeline-callout p {
+  font-size: 15px;
+  color: rgba(255,255,255,0.60);
+  line-height: 1.8;
+}
+
+.timeline-callout strong { color: var(--gold-light); }
+
+/* ═══ D2C ═══ */
+.dtc { background: #fff; border-bottom: 1px solid var(--border); }
+
+.dtc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.dtc-feature {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.dtc-feature:last-child { border: none; }
+
+.dtc-feature-icon { flex-shrink: 0; width: 28px; height: 28px; color: var(--gold); margin-top: 2px; }
+
+.dtc-feature h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.dtc-feature p { font-size: 13px; color: var(--text-mid); line-height: 1.6; }
+
+.dtc-market {
+  background: var(--cream);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 32px;
+}
+
+.dtc-market h3 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 20px;
+  color: var(--navy);
+  margin-bottom: 24px;
+}
+
+.market-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.market-row:last-child { border: none; }
+.market-name { font-size: 14px; color: var(--text); font-weight: 500; }
+.market-note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+
+.market-val {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 20px;
+  color: var(--gold);
+}
+
+/* ═══ COMPARABLES ═══ */
+.comps { background: var(--cream); border-bottom: 1px solid var(--border); }
+
+.comp-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 32px;
+}
+
+.comp-table th {
+  text-align: left;
+  padding: 14px 16px;
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.comp-table th:first-child { border-radius: 4px 0 0 0; }
+.comp-table th:last-child { border-radius: 0 4px 0 0; }
+
+.comp-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-mid);
+  vertical-align: top;
+}
+
+.comp-table tr:last-child td { border-bottom: none; }
+
+.comp-table tbody tr { background: #fff; }
+.comp-table tbody tr:nth-child(even) { background: var(--cream); }
+
+.comp-table tbody tr:last-child {
+  background: var(--gold-dim);
+  font-weight: 600;
+}
+
+.comp-table tbody tr:last-child td { color: var(--navy); }
+
+.comp-note {
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.75;
+  border-left: 3px solid var(--gold);
+  padding-left: 24px;
+}
+
+.comp-note strong { color: var(--navy); }
+
+/* ═══ VALIDATION ═══ */
+.validation { background: #fff; border-bottom: 1px solid var(--border); }
+
+.val-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.val-card {
+  border: 1px solid var(--border);
+  border-top: 3px solid var(--navy);
+  border-radius: 0 0 4px 4px;
+  padding: 32px;
+  transition: transform 0.3s;
+}
+
+.val-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(10,22,40,0.05); }
+
+.val-card-icon {
+  width: 36px;
+  height: 36px;
+  margin-bottom: 16px;
+  color: var(--gold);
+}
+
+.val-card h4 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 18px;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.val-card p { font-size: 14px; color: var(--text-mid); line-height: 1.7; }
+.val-card strong { color: var(--navy); }
+
+/* ═══ CLOSING ═══ */
+.closing {
+  background: var(--navy);
+  text-align: center;
+  padding: 96px 40px 64px;
+}
+
+.closing .label { color: var(--gold-light); margin-bottom: 20px; display: block; }
+
+.closing h2 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(26px, 3.5vw, 40px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.25;
+  max-width: 740px;
+  margin: 0 auto 28px;
+}
+
+.closing h2 em { font-style: italic; color: var(--gold-light); }
+
+.closing-body {
+  font-size: 15px;
+  color: rgba(255,255,255,0.50);
+  max-width: 660px;
+  margin: 0 auto 56px;
+  line-height: 1.8;
+}
+
+.closing-details {
+  display: flex;
+  justify-content: center;
+  gap: 56px;
+  margin-bottom: 56px;
+  padding: 32px 0;
+  border-top: 1px solid rgba(197,164,78,0.15);
+  border-bottom: 1px solid rgba(197,164,78,0.15);
+}
+
+.closing-detail-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+  margin-bottom: 6px;
+}
+
+.closing-detail-val {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 24px;
+  color: #fff;
+}
+
+.closing-footer {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+  line-height: 2;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .offering-grid,
+  .crisis-stats,
+  .revenue-streams,
+  .val-grid,
+  .app-categories,
+  .dtc-grid { grid-template-columns: 1fr; }
+
+  .hero-stats { flex-direction: column; gap: 24px; }
+  .hero-stat-divider { width: 48px; height: 1px; align-self: center; }
+  .closing-details { flex-direction: column; gap: 28px; }
+  .app-callout { flex-direction: column; }
+  .flywheel-card { flex-direction: column; text-align: center; }
+  .comp-table { font-size: 11px; }
+  .comp-table th, .comp-table td { padding: 10px 8px; }
+}
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  
+  body { background: #fff; }
+  
+  /* Kill all animations */
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+  }
+  .reveal { transform: none !important; }
+  .hero-canvas { display: none !important; }
+  .hero-scroll { display: none !important; }
+  
+  /* Base section rules */
+  section {
+    padding: 48px 40px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  .container { max-width: 100%; padding: 0 !important; }
+  
+  /* ── HERO ── */
+  .hero {
+    min-height: auto !important;
+    padding: 72px 56px 56px !important;
+    page-break-after: always;
+  }
+  .hero h1 { font-size: 38px !important; }
+  .hero-stats { gap: 32px !important; flex-direction: row !important; }
+  .hero-stat-divider { width: 1px !important; height: 40px !important; align-self: center !important; }
+  
+  /* ── OFFERING ── */
+  .offering { page-break-after: always; padding: 48px 56px !important; }
+  .offering-grid { grid-template-columns: 1fr 1fr !important; gap: 20px !important; }
+  .offer-card { padding: 28px !important; }
+  .offer-card .amount { font-size: 28px !important; }
+  
+  /* ── MAHA OPPORTUNITY (crisis class) ── */
+  .crisis { page-break-before: always; padding: 48px 56px !important; }
+  .crisis-stats { grid-template-columns: 1fr 1fr 1fr !important; gap: 16px !important; }
+  .crisis-stat { padding: 20px !important; }
+  .crisis-stat-num { font-size: 28px !important; }
+  .crisis-quote { margin: 24px 0 !important; }
+  .crisis-quote p { font-size: 15px !important; }
+  
+  /* ── REVENUE ── */
+  .revenue { page-break-before: always; padding: 48px 56px !important; }
+  .revenue-streams { grid-template-columns: 1fr 1fr 1fr !important; gap: 16px !important; }
+  .stream { padding: 24px !important; }
+  .stream h4 { font-size: 17px !important; }
+  .stream p { font-size: 12px !important; }
+  .flywheel-card { padding: 24px 28px !important; flex-direction: row !important; }
+  
+  /* ── PROVIDER PATTERN ── */
+  .provider-pattern { page-break-before: always; padding: 48px 56px !important; }
+  .pattern-case { padding: 24px 28px !important; margin-bottom: 32px !important; }
+  .pattern-case p { font-size: 13px !important; }
+  .pattern-steps { grid-template-columns: 1fr 1fr 1fr 1fr !important; gap: 1px !important; }
+  .pattern-step { padding: 20px 16px !important; }
+  .pattern-step-num { font-size: 24px !important; }
+  .pattern-step p { font-size: 11px !important; }
+  .pattern-step-arrow { display: none; }
+  .scale-grid { grid-template-columns: 1fr 1fr 1fr 1fr !important; gap: 16px !important; margin-bottom: 24px !important; }
+  .scale-card { padding: 20px 12px !important; }
+  .scale-card-num { font-size: 28px !important; }
+  .tam-callout { padding: 24px 28px !important; flex-direction: row !important; }
+  
+  /* ── MEDICARE APP LIBRARY ── */
+  .app-library { page-break-before: always; padding: 48px 56px !important; }
+  .app-categories { grid-template-columns: 1fr 1fr 1fr !important; gap: 16px !important; }
+  .app-cat { padding: 24px !important; }
+  .app-callout { padding: 28px 32px !important; flex-direction: row !important; gap: 28px !important; }
+  .app-callout-stat-num { font-size: 36px !important; }
+  
+  /* ── PATENT ── */
+  .patent { padding: 48px 56px !important; page-break-inside: avoid; }
+  .patent h2 { font-size: 26px !important; }
+  
+  /* ── ACCESS TIMELINE ── */
+  .access { page-break-before: always; padding: 48px 56px !important; }
+  .timeline { margin-bottom: 28px !important; }
+  .tl-item { padding-bottom: 24px !important; }
+  .timeline-callout { padding: 24px 28px !important; }
+  .timeline-callout p { font-size: 13px !important; }
+  
+  /* ── D2C ── */
+  .dtc { page-break-before: always; padding: 48px 56px !important; }
+  .dtc-grid { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .dtc-feature { padding: 12px 0 !important; }
+  .dtc-market { padding: 24px !important; }
+  .dtc-market h3 { font-size: 17px !important; }
+  
+  /* ── COMPARABLES ── */
+  .comps { page-break-before: always; padding: 48px 56px !important; }
+  .comp-table { font-size: 11px !important; }
+  .comp-table th, .comp-table td { padding: 10px 12px !important; }
+  .comp-note { font-size: 12px !important; padding-left: 20px !important; }
+  
+  /* ── VALIDATION ── */
+  .validation { page-break-before: always; padding: 48px 56px !important; }
+  .val-grid { grid-template-columns: 1fr 1fr 1fr !important; gap: 16px !important; }
+  .val-card { padding: 24px !important; }
+  .val-card p { font-size: 12px !important; }
+  
+  /* ── CLOSING ── */
+  .closing { page-break-before: always; padding: 64px 56px !important; }
+  .closing h2 { font-size: 28px !important; }
+  .closing-body { font-size: 14px !important; }
+  .closing-details { flex-direction: row !important; gap: 40px !important; }
+  .closing-detail-val { font-size: 20px !important; }
+  
+  /* Typography scaling for print */
+  .section-title { font-size: 28px !important; }
+  .section-body { font-size: 14px !important; margin-bottom: 32px !important; }
+  .label { font-size: 8px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════ HERO ═══════ -->
+<section class="hero">
+  <canvas class="hero-canvas" id="particles"></canvas>
+  <div class="hero-confidential">Confidential &mdash; Qualified Investors Only</div>
+  <div class="hero-wordmark">InPursuit Health</div>
+  <h1>A Once-in-a-Generation Opportunity to Own the <em>Infrastructure of American Healthcare.</em></h1>
+  <p class="hero-sub">The MAHA movement is rebuilding healthcare around the patient. That transformation requires an orchestration layer. We built it. The federal government already proved it works. CMS selected us for all three patient-facing categories.</p>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">$2M</div>
+      <div class="hero-stat-label">SAFE Offering</div>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">$20M</div>
+      <div class="hero-stat-label">Series A Target</div>
+    </div>
+    <div class="hero-stat-divider"></div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">140M+</div>
+      <div class="hero-stat-label">CMS Beneficiaries</div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <svg width="20" height="20" fill="none" stroke="rgba(197,164,78,0.4)" stroke-width="1.5"><path d="M10 3v14M4 11l6 6 6-6"/></svg>
+  </div>
+</section>
+
+<!-- ═══════ OFFERING ═══════ -->
+<section class="offering">
+  <div class="container reveal">
+    <div class="label">Investment Opportunity</div>
+    <div class="section-title">Two Ways In. <em>One Historic Moment.</em></div>
+    <div class="section-body">The MAHA transformation is underway. CMS is building the patient-centered ecosystem. The infrastructure opportunity has a defined timeline. You are among the first investors to see both the SAFE bridge offering and the opening of our Series A round.</div>
+
+    <div class="offering-grid">
+      <div class="offer-card safe">
+        <div class="offer-card-badge">Now Open</div>
+        <h3>SAFE Bridge Note</h3>
+        <div class="amount">$2,000,000</div>
+        <p>Immediate bridge capital to deliver the March 31 CMS MVP demonstration and begin provider acquisition for ACCESS Model Cohort 2.</p>
+        <div style="margin-top: 24px;">
+          <div class="detail-row"><span class="detail-key">Structure</span><span class="detail-val">SAFE (Simple Agreement for Future Equity)</span></div>
+          <div class="detail-row"><span class="detail-key">Conversion</span><span class="detail-val">Converts to Series A Preferred</span></div>
+          <div class="detail-row"><span class="detail-key">Advantage</span><span class="detail-val">Valuation cap discount for early risk</span></div>
+          <div class="detail-row"><span class="detail-key">Use of Funds</span><span class="detail-val">CMS MVP, provider acquisition, ACCESS prep</span></div>
+        </div>
+      </div>
+
+      <div class="offer-card series-a">
+        <div class="offer-card-badge">Opening</div>
+        <h3>Series A Preferred</h3>
+        <div class="amount">$20,000,000</div>
+        <p>Infrastructure-scale capital to dominate CMS ACCESS Model Cohort 2 provider enrollment, launch the consumer experience to 140M+ beneficiaries, and scale the TETRA infrastructure stack nationwide.</p>
+        <div style="margin-top: 24px;">
+          <div class="detail-row"><span class="detail-key">Structure</span><span class="detail-val">Priced Preferred Equity Round</span></div>
+          <div class="detail-row"><span class="detail-key">Target Close</span><span class="detail-val">September 1, 2026</span></div>
+          <div class="detail-row"><span class="detail-key">Primary Use</span><span class="detail-val">Provider onboarding, D2C launch, TETRA infrastructure</span></div>
+          <div class="detail-row"><span class="detail-key">Revenue Path</span><span class="detail-val">VBC shared savings + consumer + telehealth</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="exclusive-note">
+      <strong>You Are the First.</strong> SAFE investors receive preferential conversion terms when the Series A closes, rewarding those who provide the earliest capital at this pivotal moment in American healthcare transformation.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ THE MAHA OPPORTUNITY ═══════ -->
+<section class="crisis">
+  <div class="container reveal">
+    <div class="label">The Opportunity</div>
+    <div class="section-title">MAHA Is Rebuilding Healthcare Around <em>the Patient.</em><br>That Requires Infrastructure.</div>
+    <div class="section-body">For the first time in a generation, the federal government is actively dismantling the fragmented, provider-centric healthcare system and rebuilding it around the individual. The Make America Healthy Again movement &mdash; backed by the White House, CMS, and HHS &mdash; is creating the largest structural shift in American healthcare since Medicare itself. This is not a policy paper. It is happening now.</div>
+
+    <div class="crisis-stats">
+      <div class="crisis-stat">
+        <div class="crisis-stat-num">2030</div>
+        <div class="crisis-stat-text">CMS mandate: all Medicare beneficiaries must be in accountable, outcome-based care relationships. The entire system is transitioning from fee-for-service to value-based care.</div>
+      </div>
+      <div class="crisis-stat">
+        <div class="crisis-stat-num">140M+</div>
+        <div class="crisis-stat-text">Medicare and Medicaid beneficiaries who will interact with this new ecosystem. CMS launched the Medicare App Library on Medicare.gov to connect them directly to vetted digital health tools.</div>
+      </div>
+      <div class="crisis-stat">
+        <div class="crisis-stat-num">$5.6T</div>
+        <div class="crisis-stat-text">Total U.S. healthcare spending. The transition to patient-centered, outcome-based care touches every dollar. Whoever provides the infrastructure that connects patients, providers, payers, and data wins.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;">
+      <p style="font-size:11px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:var(--gold-light); margin-bottom:16px;">What This Transformation Requires</p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.85; margin-bottom:28px;">
+        A patient-centered healthcare ecosystem cannot run on today's infrastructure. The current system was built for billing, not for patients. Transitioning 140+ million Americans to outcome-based care requires a fundamentally new orchestration layer&mdash;one that federates fragmented data across every EHR, payer, pharmacy, lab, and wearable device, then makes it actionable at the point of care. It requires interoperability that actually works, not as a compliance checkbox, but as living infrastructure that moves data in real time across the entire care continuum.
+      </p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.85; margin-bottom:28px;">
+        <strong style="color:var(--gold-light);">That is exactly what TETRA was built to do.</strong> TETRA is an AI-enabled data interoperability and orchestration infrastructure &mdash; the connective tissue that makes patient-centered care coordination, value-based payment, consumer health engagement, and clinical AI possible at national scale. It is not one application. It is the infrastructure that every application in this new ecosystem depends on.
+      </p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.85; margin-bottom:28px;">
+        TETRA operates as five integrated infrastructure layers. <strong style="color:var(--gold-light);">TETRA</strong> is the core orchestration engine &mdash; federating fragmented data across EHRs, payers, pharmacies, labs, and wearable devices into actionable intelligence at the point of care. <strong style="color:var(--gold-light);">TETRA Ex</strong> is the health data exchange layer &mdash; enabling real-time, bidirectional interoperability across the care continuum through partnerships with Particle Health, b.well Connected Health, and eHealth Exchange. <strong style="color:var(--gold-light);">TETRA Conductor&trade;</strong> is the model-agnostic AI orchestration layer &mdash; evaluating clinical context in real-time and routing each interaction to the optimal AI model, agent, or capability with zero vendor lock-in. <strong style="color:var(--gold-light);">TETRA Aegis&trade;</strong> is the AI governance layer &mdash; the autonomous supervisory control plane that ensures AI operates safely within clinical environments. <strong style="color:var(--gold-light);">TETRA Sentinel&trade;</strong> is the behavioral surveillance layer &mdash; hallucination detection, drift monitoring, and adversarial defense, structurally independent from the models it supervises.
+      </p>
+      <p style="font-size:15px; color:rgba(255,255,255,0.45); line-height:1.85;">
+        Together, these five layers form the complete infrastructure stack that the patient-centered ecosystem requires. No single competitor offers all five. And as AI becomes central to every clinical and consumer health workflow, the need for governed, interoperable, model-agnostic infrastructure only accelerates.
+      </p>
+    </div>
+
+    <div class="crisis-quote" style="margin-top:48px;">
+      <p>Could you imagine connecting your personal healthcare data directly to Claude, ChatGPT, or any AI assistant&mdash;with no governance layer in between? The potential is enormous. But $7.42 million per healthcare breach, 97% of AI deployments lacking proper access controls, and 20% of organizations already breached through shadow AI make it clear: the opportunities for AI interaction with health data will only grow, and the infrastructure that makes it safe is a trillion-dollar necessity.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ REVENUE STREAMS ═══════ -->
+<section class="revenue">
+  <div class="container reveal">
+    <div class="label">Business Model</div>
+    <div class="section-title">Infrastructure That <em>Pays for Itself.</em></div>
+    <div class="section-body">TETRA's orchestration layer generates revenue everywhere it touches the healthcare ecosystem. Providers pay nothing upfront &mdash; InPursuit deploys infrastructure and shares in the value it creates. Each revenue stream reinforces the others, building compounding network effects and a deeply defensible market position.</div>
+
+    <div class="revenue-streams">
+
+      <!-- STREAM 2: VBC (now first) -->
+      <div class="stream">
+        <svg class="stream-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="8" width="32" height="24" rx="3"/><path d="M4 16h32"/><circle cx="12" cy="24" r="3"/><path d="M20 22h12M20 26h8"/></svg>
+        <div class="stream-label">Primary Revenue Engine</div>
+        <h4>Value-Based Care Shared Savings</h4>
+        <p>The MAHA vision requires every provider to transition from fee-for-service to outcome-based payment by 2030. That transition cannot happen without real-time data interoperability, population health analytics, and cross-system care coordination &mdash; exactly what TETRA's orchestration layer delivers. We deploy at zero upfront cost and share in the savings. Every provider succeeds, InPursuit succeeds. Deeply aligned, long-term recurring revenue.</p>
+        <div class="stream-metric">
+          <div class="stream-metric-num">140M+</div>
+          <div class="stream-metric-label">CMS beneficiaries addressable</div>
+        </div>
+      </div>
+
+      <!-- STREAM 4: Consumer (now second) -->
+      <div class="stream">
+        <svg class="stream-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8" y="4" width="24" height="32" rx="4"/><path d="M14 30h12"/><circle cx="20" cy="16" r="6"/><path d="M16.5 19.5c0 0 1.5 2.5 3.5 2.5s3.5-2.5 3.5-2.5"/></svg>
+        <div class="stream-label">Consumer Engine</div>
+        <h4>Direct-to-Consumer Subscriptions</h4>
+        <p>MyPursuit premium delivers personalized health insights, prescription savings, AI wellness scoring, provider matching, and the secure bridge between wearable wellness data and clinical records. Featured on the Medicare App Library reaching 140M+ beneficiaries on Medicare.gov.</p>
+        <div class="stream-metric">
+          <div class="stream-metric-num">$208B</div>
+          <div class="stream-metric-label">Wellness tech market by 2035</div>
+        </div>
+      </div>
+
+      <!-- STREAM 1: Telehealth (now third) -->
+      <div class="stream">
+        <svg class="stream-icon" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="32" height="22" rx="3"/><path d="M16 28h8M20 28v6"/><circle cx="20" cy="17" r="5"/><path d="M17 20c0 0 1.2 2 3 2s3-2 3-2"/></svg>
+        <div class="stream-label">Immediate Revenue</div>
+        <h4>Telemedicine &amp; Virtual Care</h4>
+        <p>InPursuit is obtaining its own NPI number and building a telehealth capability to deliver virtual care through the MyPursuit experience. Billable encounters across urgent care, chronic care management, weight management, mental health, and specialty referrals from day one.</p>
+        <div class="stream-metric">
+          <div class="stream-metric-num">$100B+</div>
+          <div class="stream-metric-label">Healthcare AI market by 2030</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="flywheel-card">
+      <svg class="flywheel-icon" width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="24" r="18"/><path d="M24 12v6M24 30v6M12 24h6M30 24h6"/><circle cx="24" cy="24" r="6"/><path d="M18 18l3 3M27 27l3 3M18 30l3-3M27 21l3-3"/></svg>
+      <div>
+        <h4>The Infrastructure Flywheel</h4>
+        <p>Every provider onboarded strengthens the data network through TETRA Ex. Every consumer connected enriches the clinical picture through TETRA's orchestration. Every encounter generates insights that improve outcomes. Every outcome validates the infrastructure to the next provider. And as AI becomes central to every workflow, TETRA Aegis governs it safely &mdash; making InPursuit the complete infrastructure stack for healthcare's transformation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROVIDER PATTERN ═══════ -->
+<section class="provider-pattern">
+  <div class="container reveal">
+    <div class="label">Repeatable Growth Model</div>
+    <div class="section-title">We Have One. <em>There Are 250,000 More.</em></div>
+    <div class="section-body">InPursuit's first customer proves the repeatable pattern: a small-to-mid-size healthcare provider that needs infrastructure to transition to value-based care &mdash; and needs a technology partner to unlock the CMS ACCESS Model. We provide both. And we share in the new revenue we help create.</div>
+
+    <!-- HONEYCOMB CASE -->
+    <div class="pattern-case">
+      <div style="display:flex;align-items:center;gap:20px;margin-bottom:16px;">
+        <svg viewBox="0 0 320 80" width="200" height="50" style="flex-shrink:0;">
+          <rect width="320" height="80" rx="6" fill="#000"/>
+          <g transform="translate(24,10)" fill="none" stroke="#E5A833" stroke-width="2.5">
+            <polygon points="15,0 26.5,6.5 26.5,19.5 15,26 3.5,19.5 3.5,6.5"/>
+            <polygon points="15,28 26.5,34.5 26.5,47.5 15,54 3.5,47.5 3.5,34.5"/>
+            <polygon points="30,14 41.5,20.5 41.5,33.5 30,40 18.5,33.5 18.5,20.5"/>
+          </g>
+          <text x="80" y="48" font-family="system-ui,sans-serif" font-size="30" font-weight="400" fill="#E5A833" letter-spacing="1">honeycomb</text>
+        </svg>
+        <div class="pattern-case-label" style="margin-bottom:0;">First Customer &mdash; Proof of Pattern</div>
+      </div>
+      <h3>Honeycomb Medical Group</h3>
+      <div class="case-meta">Memphis, Tennessee &nbsp;|&nbsp; ~22,000 patients &nbsp;|&nbsp; Primary Care &amp; Chronic Care</div>
+      <p>Honeycomb represents exactly the provider InPursuit was built for: a growing medical group with a Medicare-heavy patient population, chronic care needs across hypertension, diabetes, and obesity, and no internal technology infrastructure to transition from fee-for-service to outcome-based payment. They signed an LOI with InPursuit as their technology backbone for the CMS ACCESS Model &mdash; giving them access to TETRA's orchestration, TETRA Ex's interoperability and data exchange, TETRA Conductor's model-agnostic AI routing, and TETRA Aegis's AI governance capabilities they could never build alone. InPursuit does not replace their EHR. We sit underneath it, connecting everything.</p>
+    </div>
+
+    <!-- REPEATABLE PATTERN -->
+    <div class="pattern-steps">
+      <div class="pattern-step">
+        <div class="pattern-step-num">1</div>
+        <h4>Identify the Provider</h4>
+        <p>Small-to-mid-size medical group (2&ndash;50 physicians) with Medicare patients and chronic care populations. No internal data infrastructure.</p>
+        <svg class="pattern-step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+      </div>
+      <div class="pattern-step">
+        <div class="pattern-step-num">2</div>
+        <h4>Deploy TETRA</h4>
+        <p>Zero upfront cost. InPursuit layers orchestration infrastructure beneath their existing systems &mdash; connecting EHR, payer, lab, pharmacy, and device data.</p>
+        <svg class="pattern-step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+      </div>
+      <div class="pattern-step">
+        <div class="pattern-step-num">3</div>
+        <h4>Unlock ACCESS Revenue</h4>
+        <p>InPursuit prepares and supports the provider's CMS ACCESS Model application &mdash; unlocking 10 years of recurring outcome-aligned payments from Medicare.</p>
+        <svg class="pattern-step-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 3l5 5-5 5"/></svg>
+      </div>
+      <div class="pattern-step">
+        <div class="pattern-step-num">4</div>
+        <h4>Share the Upside</h4>
+        <p>InPursuit earns 25&ndash;35% of new ACCESS revenue we help generate. Revenue the provider never had before. We only win when they win.</p>
+      </div>
+    </div>
+
+    <!-- SCALE MATH -->
+    <div style="margin-bottom:16px;">
+      <p style="font-size:11px; font-weight:700; letter-spacing:3.5px; text-transform:uppercase; color:var(--gold-light); margin-bottom:24px;">The Scale Opportunity</p>
+    </div>
+
+    <div class="scale-grid">
+      <div class="scale-card active">
+        <div class="scale-card-num">1</div>
+        <div class="scale-card-label">Provider<br>(Honeycomb &mdash; Today)</div>
+        <div class="scale-card-rev">Proof of concept</div>
+      </div>
+      <div class="scale-card">
+        <div class="scale-card-num">50</div>
+        <div class="scale-card-label">Providers<br>(Series A Target &mdash; 2027)</div>
+        <div class="scale-card-rev">~$8&ndash;15M ARR</div>
+      </div>
+      <div class="scale-card">
+        <div class="scale-card-num">500</div>
+        <div class="scale-card-label">Providers<br>(Series B Trajectory)</div>
+        <div class="scale-card-rev">~$80&ndash;150M ARR</div>
+      </div>
+      <div class="scale-card">
+        <div class="scale-card-num">5,000+</div>
+        <div class="scale-card-label">Providers<br>(National Scale)</div>
+        <div class="scale-card-rev">$1B+ ARR</div>
+      </div>
+    </div>
+
+    <div class="tam-callout">
+      <div class="tam-callout-text">
+        <p><strong>The addressable market is massive.</strong> There are approximately 300,000 physicians in the United States. Over 36% have fewer than five physicians. The vast majority lack the data infrastructure, interoperability capabilities, and technical resources to transition to value-based care or participate in models like ACCESS on their own. CMS has explicitly stated that the LEAD and ACCESS models are designed to include smaller, independent, and rural practices that have historically been shut out. These providers need exactly what InPursuit delivers &mdash; and they need it now. ACCESS applications are rolling through 2033. The Cohort 2 deadline of January 2027 is our immediate beachhead. Every provider onboarded generates recurring revenue for a decade.</p>
+      </div>
+      <div class="tam-stat">
+        <div class="tam-stat-num">300K</div>
+        <div class="tam-stat-label">Physicians<br>in the U.S.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ MEDICARE APP LIBRARY ═══════ -->
+<section class="app-library">
+  <div class="container reveal">
+    <div class="label">Distribution Channel</div>
+    <div class="section-title">Featured in the New <em>Medicare App Library.</em></div>
+    <div class="section-body">On February 23, 2026, CMS officially launched the Medicare App Library on Medicare.gov&mdash;a curated directory where 140+ million beneficiaries can discover and download vetted digital health tools. InPursuit Health was selected for all three patient-facing categories.</div>
+
+    <div class="app-categories">
+      <div class="app-cat">
+        <svg class="app-cat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="6" width="28" height="20" rx="3"/><path d="M12 26v4M24 26v4M8 30h20"/><path d="M12 14h2M18 14h6M12 18h10"/></svg>
+        <h4>Conversational AI</h4>
+        <p>AI-powered health navigation with patient consent, connected to CMS Aligned Networks</p>
+      </div>
+      <div class="app-cat">
+        <svg class="app-cat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="4" width="24" height="28" rx="2"/><path d="M12 10h12M12 16h12M12 22h8"/><path d="M24 20l-4 4-2-2"/></svg>
+        <h4>Kill the Clipboard</h4>
+        <p>Digital check-in via QR codes and Smart Health Cards&mdash;eliminating paper forms</p>
+      </div>
+      <div class="app-cat">
+        <svg class="app-cat-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 6C10.268 6 4 12.268 4 20c0 4.418 2.178 8.338 5.5 10.8"/><path d="M18 6c7.732 0 14 6.268 14 14 0 4.418-2.178 8.338-5.5 10.8"/><circle cx="18" cy="20" r="4"/><path d="M18 12v4M10 20h4M22 20h4"/></svg>
+        <h4>Chronic Care Management</h4>
+        <p>Diabetes and obesity management powered by real clinical data through TETRA</p>
+      </div>
+    </div>
+
+    <div class="app-callout">
+      <div class="app-callout-text">
+        <span class="label">What This Means</span>
+        <p>CMS is building the app distribution equivalent of the App Store&mdash;but for Medicare. InPursuit is one of the first approved across all three categories. When 140+ million beneficiaries visit Medicare.gov to find digital health tools, <strong>InPursuit will be prominently featured.</strong> This is a government-backed customer acquisition channel at a scale no startup marketing budget could replicate.</p>
+      </div>
+      <div class="app-callout-stat">
+        <div class="app-callout-stat-num">140M+</div>
+        <div class="app-callout-stat-label">Beneficiaries Can<br>Discover Our App</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ IP MOAT ═══════ -->
+<section class="patent reveal">
+  <div class="patent-badge">Provisional Patent Filed &mdash; February 2026</div>
+  <h2>The Infrastructure Is <em>Defensible.</em></h2>
+  <p class="patent-desc" style="margin-bottom:28px;">TETRA's five-layer infrastructure stack &mdash; core orchestration, TETRA Ex data exchange, TETRA Conductor&trade; model-agnostic AI routing, TETRA Aegis&trade; AI governance, and TETRA Sentinel&trade; behavioral surveillance &mdash; is protected by both trade secret and patent. The Aegis provisional patent covers the Autonomous Supervisory AI Control Plane for Safe Clinical Autonomy, establishing defensible IP around the AI governance layer that every participant in the patient-centered ecosystem will depend on.</p>
+</section>
+
+<!-- ═══════ ACCESS MODEL TIMELINE ═══════ -->
+<section class="access">
+  <div class="container reveal">
+    <div class="label">Strategic Timeline</div>
+    <div class="section-title">The CMS ACCESS Model: <em>Our Revenue Accelerant</em></div>
+    <div class="section-body">The CMS ACCESS Model pays primary care practices a monthly per-patient fee for Medicare beneficiaries with chronic conditions&mdash;for 10 years. Series A capital is squarely focused on making InPursuit the technology backbone for the maximum number of providers applying for Cohort 2.</div>
+
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-date">MAR 31, 2026</div>
+        <div class="tl-title">CMS MVP Demonstration</div>
+        <div class="tl-desc">InPursuit delivers working MVP to CMS team. All three patient-facing app categories demonstrated live.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">Q2 2026</div>
+        <div class="tl-title">NPI &amp; Telehealth Launch</div>
+        <div class="tl-desc">InPursuit obtains NPI number. Telehealth launches nationwide. Billable encounters begin.</div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-date">JUL 4, 2026</div>
+        <div class="tl-title" style="color:var(--gold);">White House MAHA Event</div>
+        <div class="tl-desc">President Trump, Secretary Kennedy, and Dr. Oz celebrate the MAHA movement. National visibility milestone for InPursuit.</div>
+      </div>
+      <div class="tl-item highlight">
+        <div class="tl-date" style="color:var(--gold); font-weight:700;">SEP 1, 2026</div>
+        <div class="tl-title" style="color:var(--gold);">Series A Target Close</div>
+        <div class="tl-desc">Capital deployment begins at scale for provider acquisition, consumer experience expansion, and TETRA infrastructure build-out.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-date">JAN 2027</div>
+        <div class="tl-title">Cohort 2 Applications</div>
+        <div class="tl-desc">Primary target. Series A capital drives maximum provider sign-ups with InPursuit as technology backbone. Every provider onboarded generates recurring revenue for 10 years.</div>
+      </div>
+    </div>
+
+    <div class="timeline-callout">
+      <p><strong>The alignment between capital deployment and the MAHA timeline is unprecedented.</strong> SAFE capital fuels the March 31 CMS MVP demonstration &mdash; proving TETRA's orchestration capabilities to the agency building the patient-centered ecosystem. That success positions InPursuit prominently at the <strong>July 4 White House MAHA celebration</strong>. Series A closes September 1 with proven CMS validation and national visibility. That momentum accelerates provider onboarding for the <strong>January 2027 Cohort 2 deadline</strong> &mdash; the primary catalyst for massive, decade-long recurring revenue. Every dollar invested today compounds across each milestone in the largest healthcare transformation of our generation.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ D2C ═══════ -->
+<section class="dtc">
+  <div class="container reveal">
+    <div class="label">Direct to Consumer</div>
+    <div class="section-title">The Patient at the Center. <em>That's the Whole Point.</em></div>
+    <div class="section-body">MAHA's vision is a healthcare system built around the individual &mdash; not the institution. Over 35% of Americans already use health apps and wearables, but that data is completely isolated from clinical care. TETRA is the only secure bridge. And now, 140+ million Medicare beneficiaries can discover MyPursuit directly through the new Medicare App Library on Medicare.gov.</div>
+
+    <div class="dtc-grid">
+      <div class="dtc-features">
+        <div class="dtc-feature">
+          <svg class="dtc-feature-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="22" height="20" rx="3"/><path d="M9 14h10M14 9v10"/></svg>
+          <div>
+            <h4>Rx Savings Engine</h4>
+            <p>Real-time prescription comparison pricing. Same medication&mdash;dramatically lower costs.</p>
+          </div>
+        </div>
+        <div class="dtc-feature">
+          <svg class="dtc-feature-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="14" cy="14" r="10"/><path d="M14 8v6l4 4"/></svg>
+          <div>
+            <h4>Lab Results in Plain Language</h4>
+            <p>Instant explanations of what's normal, what changed, and what to do next.</p>
+          </div>
+        </div>
+        <div class="dtc-feature">
+          <svg class="dtc-feature-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="5" y="7" width="18" height="14" rx="7"/><circle cx="14" cy="14" r="3"/><path d="M11 14h-2M19 14h-2"/></svg>
+          <div>
+            <h4>Wellness Device Integration</h4>
+            <p>Your Oura Ring, Apple Watch, Fitbit, and CGM data connected to your clinical record.</p>
+          </div>
+        </div>
+        <div class="dtc-feature">
+          <svg class="dtc-feature-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M14 4l8 4v7c0 5-4 8.5-8 10-4-1.5-8-5-8-10V8l8-4z"/><path d="M10 14l3 3 5-6"/></svg>
+          <div>
+            <h4>Personal AI Firewall</h4>
+            <p>Interact with any AI assistant safely. TETRA Aegis governs what your data touches and how.</p>
+          </div>
+        </div>
+        <div class="dtc-feature">
+          <svg class="dtc-feature-icon" viewBox="0 0 28 28" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="4"/><circle cx="18" cy="10" r="4"/><path d="M4 22c0-4 3-6 6-6h8c3 0 6 2 6 6"/></svg>
+          <div>
+            <h4>Family Care Hub</h4>
+            <p>Manage everyone's health in one place. Fewer missed appointments, real savings.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dtc-market">
+        <h3>Consumer Health Market Size</h3>
+        <div class="market-row">
+          <div>
+            <div class="market-name">Wellness Technology</div>
+            <div class="market-note">2025 &rarr; 2035 projected</div>
+          </div>
+          <div class="market-val">$57B &rarr; $208B</div>
+        </div>
+        <div class="market-row">
+          <div>
+            <div class="market-name">Wearable Technology</div>
+            <div class="market-note">2025 market size</div>
+          </div>
+          <div class="market-val">$92.9B</div>
+        </div>
+        <div class="market-row">
+          <div>
+            <div class="market-name">Digital Health Apps</div>
+            <div class="market-note">2025 &rarr; 2035 projected</div>
+          </div>
+          <div class="market-val">$18.6B &rarr; $81.5B</div>
+        </div>
+        <div class="market-row">
+          <div>
+            <div class="market-name">U.S. Adults Using Health Apps</div>
+            <div class="market-note">Current penetration</div>
+          </div>
+          <div class="market-val">35%+</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ COMPARABLES ═══════ -->
+<section class="comps">
+  <div class="container reveal">
+    <div class="label">Market Comparables</div>
+    <div class="section-title">Healthcare Infrastructure Companies <em>Raise Big</em>&mdash;Before Revenue.</div>
+    <div class="section-body">The market has consistently valued healthcare data infrastructure at premium levels, often well ahead of significant revenue. InPursuit is differentiated by having both federal validation and near-term revenue paths.</div>
+
+    <table class="comp-table">
+      <thead>
+        <tr>
+          <th>Company</th>
+          <th>Focus</th>
+          <th>Total Raised</th>
+          <th>Key Round</th>
+          <th>Valuation</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Datavant</td>
+          <td>Health data linkage</td>
+          <td>$83M equity</td>
+          <td>$40.5M Series A</td>
+          <td>$7B (post merger)</td>
+        </tr>
+        <tr>
+          <td>Redox</td>
+          <td>Healthcare data APIs</td>
+          <td>$98M</td>
+          <td>$45M Series D</td>
+          <td>Undisclosed (250+ clients)</td>
+        </tr>
+        <tr>
+          <td>Zus Health</td>
+          <td>Shared health data</td>
+          <td>$74M</td>
+          <td>$34M Series A (a16z)</td>
+          <td>Premium</td>
+        </tr>
+        <tr>
+          <td>Particle Health</td>
+          <td>Data exchange APIs</td>
+          <td>$49M</td>
+          <td>$25M Series B</td>
+          <td>$145M</td>
+        </tr>
+        <tr>
+          <td>Health Gorilla</td>
+          <td>Health info exchange</td>
+          <td>$75M</td>
+          <td>$50M Series C</td>
+          <td>Undisclosed</td>
+        </tr>
+        <tr>
+          <td>Lila Sciences</td>
+          <td>AI life sciences</td>
+          <td>$550M in 2025</td>
+          <td>$235M Series A</td>
+          <td>$1.3B (2 yrs old)</td>
+        </tr>
+        <tr>
+          <td style="color:var(--gold) !important; font-weight:700;">InPursuit Health</td>
+          <td>AI orchestration + VBC + D2C</td>
+          <td>$20M Series A (target)</td>
+          <td>$2M SAFE bridge + Series A</td>
+          <td>Opportunity-based</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="comp-note">
+      <strong>The critical difference:</strong> Every comparable above raised infrastructure-level capital based primarily on the opportunity to connect healthcare data. InPursuit has that same opportunity plus a once-in-a-generation tailwind: the federal government is actively building the patient-centered ecosystem that requires this infrastructure to function. Add federal court validation at 290K+ server scale, CMS ecosystem approval across all three patient-facing categories, a patent-pending AI governance layer embedded in the infrastructure, telemedicine generating billable encounters, and clear near-term revenue through value-based care and direct-to-consumer markets &mdash; and $20M is not a speculative bet. It is an infrastructure investment at a fraction of what the market has consistently paid for less differentiated companies.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ VALIDATION ═══════ -->
+<section class="validation">
+  <div class="container reveal">
+    <div class="label">Federal Validation</div>
+    <div class="section-title">The Infrastructure Is Already <em>Proven.</em></div>
+    <div class="section-body">No other early-stage company building healthcare infrastructure can point to this combination of federal proof points. TETRA is not a concept &mdash; it is validated technology that the government deployed at massive scale and now actively supports through CMS.</div>
+
+    <div class="val-grid">
+      <div class="val-card">
+        <svg class="val-card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 4L4 12v12l14 8 14-8V12L18 4z"/><path d="M18 16v8M14 20h8"/></svg>
+        <h4>DoD / VA Validation</h4>
+        <p>The most demanding technology customer on earth chose TETRA to solve the largest healthcare data interoperability challenge in our federal government. TETRA worked so well that the DoD/VA installed it on <strong>290,000 servers</strong> &mdash; violating our licensing agreement. Despite spoliation of evidence, the Court of Federal Claims confirmed it.</p>
+      </div>
+      <div class="val-card">
+        <svg class="val-card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="10" width="24" height="18" rx="2"/><path d="M18 4v6M12 4h12"/><path d="M12 18h12M12 22h8M12 26h10"/></svg>
+        <h4>CMS Ecosystem + App Library</h4>
+        <p>Approved member of the CMS Health IT Ecosystem. Selected for <strong>all three patient-facing categories</strong> in the Medicare App Library launched February 2026. Prominent placement reaching <strong>140+ million</strong> beneficiaries.</p>
+      </div>
+      <div class="val-card">
+        <svg class="val-card-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 4l4 8h8l-6 6 2 8-8-4-8 4 2-8-6-6h8l4-8z"/></svg>
+        <h4>TETRA Infrastructure IP</h4>
+        <p>Five integrated infrastructure layers &mdash; <strong>TETRA</strong> core orchestration, <strong>TETRA Ex</strong> health data exchange, <strong>TETRA Conductor&trade;</strong> model-agnostic AI routing, <strong>TETRA Aegis&trade;</strong> AI governance, and <strong>TETRA Sentinel&trade;</strong> behavioral surveillance &mdash; form a defensible infrastructure stack no competitor can replicate. Aegis provisional patent filed February 2026. Exchange partnerships with Particle Health, b.well, and eHealth Exchange expand the interoperability network.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CLOSING ═══════ -->
+<section class="closing">
+  <div class="label">Investment Thesis</div>
+  <h2>The Government Is Building the <em>Patient-Centered Ecosystem.</em><br>We Are the <em>Infrastructure</em> It Runs On.</h2>
+  <p class="closing-body">MAHA is not a slogan &mdash; it is a structural transformation of American healthcare, backed by the White House, CMS, and HHS. That transformation requires an orchestration layer to federate data, enable value-based care, power consumer engagement, and govern AI safely. InPursuit built that layer. The federal government validated it at 290,000+ servers. CMS selected it for all three patient-facing categories. Series A capital deployed now creates the dominant provider network for ACCESS Model Cohort 2 &mdash; unlocking 10 years of recurring per-patient revenue across the largest healthcare reform in a generation.</p>
+
+  <div class="closing-details">
+    <div>
+      <div class="closing-detail-label">SAFE Bridge</div>
+      <div class="closing-detail-val">$2,000,000</div>
+    </div>
+    <div>
+      <div class="closing-detail-label">Series A Target</div>
+      <div class="closing-detail-val">$20,000,000</div>
+    </div>
+    <div>
+      <div class="closing-detail-label">Target Close</div>
+      <div class="closing-detail-val">September 1, 2026</div>
+    </div>
+  </div>
+
+  <div class="closing-footer">
+    InPursuit Health, Inc. &nbsp;&mdash;&nbsp; Harness the Power of Your Data&trade;<br>
+    CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Patient-Facing Categories<br><br>
+    Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities
+  </div>
+</section>
+
+<script>
+// Gold particle canvas
+(function(){
+  const c = document.getElementById('particles');
+  if(!c) return;
+  const ctx = c.getContext('2d');
+  let w, h, particles = [];
+
+  function resize(){
+    w = c.width = c.offsetWidth;
+    h = c.height = c.offsetHeight;
+  }
+
+  function init(){
+    resize();
+    particles = [];
+    const count = Math.floor((w * h) / 12000);
+    for(let i = 0; i < count; i++){
+      particles.push({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.2 + 0.3,
+        dx: (Math.random() - 0.5) * 0.15,
+        dy: (Math.random() - 0.5) * 0.15,
+        a: Math.random() * 0.25 + 0.05
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => {
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(197,164,78,${p.a})`;
+      ctx.fill();
+      p.x += p.dx;
+      p.y += p.dy;
+      if(p.x < 0) p.x = w;
+      if(p.x > w) p.x = 0;
+      if(p.y < 0) p.y = h;
+      if(p.y > h) p.y = 0;
+    });
+
+    // Draw connections
+    for(let i = 0; i < particles.length; i++){
+      for(let j = i + 1; j < particles.length; j++){
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.sqrt(dx*dx + dy*dy);
+        if(dist < 100){
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.strokeStyle = `rgba(197,164,78,${0.04 * (1 - dist/100)})`;
+          ctx.lineWidth = 0.5;
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+
+  init();
+  draw();
+  window.addEventListener('resize', init);
+})();
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

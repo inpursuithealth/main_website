@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Capitalization Table</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:        #0A1628;
+    --charcoal:    #1E2D3D;
+    --gold:        #C5A44E;
+    --gold-light:  #D4B96A;
+    --gold-pale:   #F0E6CC;
+    --gold-ultra:  #FAF4E8;
+    --gold-ultra2: #FDF9F0;
+    --white:       #FFFFFF;
+    --off-white:   #F8F7F4;
+    --mid-gray:    #8C9BAA;
+    --border-sub:  rgba(197,164,78,0.15);
+    --amber-text:  #7A5C00;
+    --amber-bg:    #FFF8E6;
+    --green-text:  #1A5C3A;
+    --green-bg:    #F0FFF6;
+    --green-bdr:   rgba(34,120,80,0.25);
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--off-white);
+    font-family: 'Instrument Sans', system-ui, sans-serif;
+    color: var(--navy);
+    padding: 40px 24px 60px;
+  }
+  .card {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--white);
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(10,22,40,.06), 0 8px 32px rgba(10,22,40,.10), 0 0 0 1px rgba(197,164,78,.18);
+    animation: fadeUp .6s ease both;
+  }
+  @keyframes fadeUp { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:translateY(0); } }
+
+  /* HEADER */
+  .header { background: var(--navy); padding: 36px 44px 0; position: relative; overflow: hidden; }
+  .header::before {
+    content:''; position:absolute; top:-60px; right:-60px;
+    width:320px; height:320px; border-radius:50%;
+    background: radial-gradient(circle, rgba(197,164,78,.07) 0%, transparent 70%);
+    pointer-events:none;
+  }
+  .header-top { display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:10px; }
+  .company-name { font-family:'Instrument Serif',Georgia,serif; font-size:32px; font-weight:700; color:var(--gold); letter-spacing:.04em; line-height:1; }
+  .conf-badge { font-size:9px; font-weight:700; letter-spacing:.18em; color:var(--gold); border:1px solid rgba(197,164,78,.4); padding:5px 10px; border-radius:2px; text-transform:uppercase; margin-top:4px; }
+  .header-sub { display:flex; justify-content:space-between; align-items:center; padding-bottom:20px; }
+  .doc-title { font-family:'Instrument Serif',Georgia,serif; font-size:14px; color:rgba(197,164,78,.65); font-style:italic; letter-spacing:.06em; }
+  .as-of { font-size:9px; font-weight:500; letter-spacing:.12em; color:var(--mid-gray); text-transform:uppercase; }
+  .gold-rule { height:2px; background:linear-gradient(90deg, var(--gold) 0%, rgba(197,164,78,.3) 60%, transparent 100%); }
+
+  /* TABS */
+  .tab-nav { background:var(--navy); padding:0 44px; display:flex; border-bottom:2px solid rgba(197,164,78,.3); }
+  .tab {
+    padding:14px 22px 12px; font-size:9px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--mid-gray); cursor:pointer; border-bottom:2px solid transparent; margin-bottom:-2px;
+    transition:color .2s, border-color .2s; white-space:nowrap; user-select:none;
+  }
+  .tab:hover { color:var(--gold-light); }
+  .tab.active { color:var(--gold); border-bottom-color:var(--gold); }
+  .tab-num {
+    display:inline-block; width:16px; height:16px; border-radius:50%;
+    background:rgba(197,164,78,.15); color:var(--gold); font-size:8px;
+    font-weight:700; line-height:16px; text-align:center; margin-right:7px;
+  }
+  .tab.active .tab-num { background:var(--gold); color:var(--navy); }
+
+  /* PANELS */
+  .panel { display:none; }
+  .panel.active { display:block; }
+
+  /* SUMMARY BAR */
+  .sc-bar { background:var(--charcoal); padding:18px 44px; display:flex; gap:28px; align-items:center; flex-wrap:wrap; }
+  .sc-stat { display:flex; flex-direction:column; gap:3px; }
+  .sc-label { font-size:8px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); }
+  .sc-val { font-family:'Instrument Serif',Georgia,serif; font-size:20px; font-weight:600; color:var(--white); line-height:1; }
+  .sc-sub { font-size:9px; color:var(--mid-gray); font-style:italic; }
+  .sc-div { width:1px; height:36px; background:rgba(197,164,78,.2); flex-shrink:0; }
+  .sc-badge { margin-left:auto; font-size:9px; font-weight:700; letter-spacing:.10em; text-transform:uppercase; padding:6px 14px; border-radius:2px; border:1px solid; white-space:nowrap; }
+  .badge-cur  { color:var(--mid-gray); border-color:rgba(140,155,170,.4); background:rgba(140,155,170,.08); }
+  .badge-safe { color:#D4A840; border-color:rgba(212,168,64,.4); background:rgba(212,168,64,.08); }
+  .badge-ser  { color:var(--green-text); border-color:var(--green-bdr); background:var(--green-bg); }
+
+  /* NARRATIVE */
+  .narrative { padding:14px 44px; background:var(--gold-ultra); border-bottom:1px solid var(--border-sub); font-size:10px; color:var(--amber-text); line-height:1.7; font-style:italic; }
+  .narrative strong { font-style:normal; font-weight:700; color:var(--navy); }
+
+  /* TABLE */
+  .tbl-wrap { padding:28px 44px 0; overflow-x:auto; }
+  table { width:100%; border-collapse:collapse; font-size:11px; min-width:620px; }
+  thead tr { background:var(--navy); }
+  thead th { padding:11px 14px; font-size:8px; font-weight:600; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.6); text-align:center; white-space:nowrap; border-bottom:2px solid var(--gold); }
+  thead th:first-child { text-align:left; padding-left:18px; }
+  .sec-row td { background:var(--charcoal); padding:8px 14px 8px 18px; font-size:8px; font-weight:700; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border:none; }
+  .sec-row td::before { content:'▸  '; opacity:.6; }
+  tbody tr.dr { border-bottom:1px solid var(--border-sub); transition:background .15s; }
+  tbody tr.dr:hover { background:var(--gold-ultra2) !important; }
+  tbody tr.dr:nth-child(odd)  { background:var(--white); }
+  tbody tr.dr:nth-child(even) { background:var(--gold-ultra); }
+  tbody td { padding:13px 14px; text-align:center; color:var(--navy); vertical-align:middle; }
+  tbody td:first-child { text-align:left; padding-left:18px; font-weight:600; font-size:11px; }
+  .uc { font-size:9px; font-weight:500; color:var(--mid-gray); letter-spacing:.06em; }
+  .uv { font-family:'Instrument Serif',Georgia,serif; font-size:15px; font-weight:600; color:var(--navy); }
+  .pct { font-size:11px; font-weight:500; }
+  .pct-hi { font-size:11px; font-weight:700; color:var(--green-text); }
+  .cap { font-size:11px; font-weight:500; }
+  .pill { display:inline-block; font-size:8px; font-weight:600; letter-spacing:.10em; text-transform:uppercase; padding:3px 8px; border-radius:20px; white-space:nowrap; }
+  .p-founder  { background:rgba(10,22,40,.07);   color:var(--navy);       border:1px solid rgba(10,22,40,.15); }
+  .p-adv      { background:rgba(197,164,78,.10); color:#5C4A1A;           border:1px solid rgba(197,164,78,.25); }
+  .p-partner  { background:rgba(30,80,160,.07);  color:#1A3A6B;           border:1px solid rgba(30,80,160,.18); }
+  .p-seed     { background:rgba(34,120,80,.08);  color:var(--green-text); border:1px solid var(--green-bdr); }
+  .p-safe     { background:rgba(212,168,64,.12); color:#7A5C00;           border:1px solid rgba(212,168,64,.3); }
+  .p-new      { background:rgba(34,120,80,.15);  color:var(--green-text); border:1px solid var(--green-bdr); font-weight:700; animation:pulse 2s ease infinite; }
+  @keyframes pulse { 0%,100%{box-shadow:0 0 0 0 rgba(34,120,80,0);} 50%{box-shadow:0 0 0 3px rgba(34,120,80,.12);} }
+  tr.sub-row td { background:var(--gold-pale) !important; padding:10px 14px; font-size:10px; font-weight:700; color:var(--navy); border-top:1px solid var(--gold); border-bottom:1px solid var(--gold); }
+  tr.sub-row td:first-child { padding-left:18px; }
+  tr.sub-row:hover td { background:var(--gold-pale) !important; }
+  tr.tot-row td { background:var(--navy) !important; padding:14px 14px; font-size:11px; font-weight:700; color:var(--gold); border-top:2px solid var(--gold); border-bottom:2px solid var(--gold); }
+  tr.tot-row td:first-child { padding-left:18px; font-size:10px; letter-spacing:.08em; text-transform:uppercase; }
+  tr.tot-row:hover td { background:var(--navy) !important; }
+  tr.sp td { background:var(--off-white) !important; height:10px; border:none; padding:0; }
+
+  /* NOTES */
+  .note { margin:0 44px; padding:14px 18px; display:flex; gap:12px; align-items:flex-start; border-left:3px solid; }
+  .note.amber { background:var(--amber-bg); border-color:var(--gold); }
+  .note.green { background:var(--green-bg); border-color:#3DAA70; }
+  .note-icon { font-size:13px; flex-shrink:0; margin-top:1px; }
+  .note-txt { font-size:10px; line-height:1.65; }
+  .note-txt.at { color:var(--amber-text); }
+  .note-txt.gt { color:var(--green-text); }
+  .note-txt strong { font-weight:700; display:block; margin-bottom:2px; font-size:9px; letter-spacing:.08em; text-transform:uppercase; }
+
+  /* FOOTER */
+  .footer { background:var(--navy); padding:18px 44px; margin-top:28px; display:flex; justify-content:space-between; align-items:center; }
+  .footer-l { font-size:9px; color:var(--mid-gray); font-style:italic; }
+  .footer-r { font-size:9px; color:var(--gold); letter-spacing:.10em; font-weight:500; }
+  .sp20 { height:20px; }
+  .sp12 { height:12px; }
+
+  @media(max-width:720px) {
+    body { padding:12px; }
+    .header,.sc-bar,.tbl-wrap,.note,.footer,.narrative,.tab-nav { padding-left:18px; padding-right:18px; }
+    .company-name { font-size:22px; }
+    .tab-nav { overflow-x:auto; }
+    .tab { padding:12px 14px 10px; font-size:8px; }
+    .sc-badge { display:none; }
+  }
+</style>
+</head>
+<body>
+<div class="card">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-top">
+      <div class="company-name">InPursuit Health, LLC</div>
+      <div class="conf-badge">Confidential</div>
+    </div>
+    <div class="header-sub">
+      <div class="doc-title">Capitalization Table &nbsp;&middot;&nbsp; Scenario Analysis</div>
+      <div class="as-of">As of March 8, 2026</div>
+    </div>
+  </div>
+  <div class="gold-rule"></div>
+
+  <!-- TAB NAV -->
+  <div class="tab-nav">
+    <div class="tab active" onclick="switchTab(0)"><span class="tab-num">1</span>Current State</div>
+    <div class="tab" onclick="switchTab(1)"><span class="tab-num">2</span>Post-SAFE Conversion</div>
+    <div class="tab" onclick="switchTab(2)"><span class="tab-num">3</span>Post-Series A</div>
+  </div>
+
+  <!-- ═══════════════════ PANEL 1: CURRENT ═══════════════════ -->
+  <div class="panel active" id="p0">
+    <div class="sc-bar">
+      <div class="sc-stat"><div class="sc-label">Units Outstanding</div><div class="sc-val">3,030</div><div class="sc-sub">3,000 Class A · 30 Class B</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Founder Control</div><div class="sc-val">97.03%</div><div class="sc-sub">InPursuit Partners fully diluted</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Capital Contributed</div><div class="sc-val">$150,000</div><div class="sc-sub">Seed round · Closed</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">SAFE Outstanding</div><div class="sc-val">$2,000,000</div><div class="sc-sub">Unconverted · $25M post-money cap</div></div>
+      <div class="sc-badge badge-cur">Current</div>
+    </div>
+    <div class="narrative"><strong>Where we are today.</strong> InPursuit Partners retains dominant founder control at 97% fully diluted. The $2M SAFE bridge is outstanding and unconverted. The seed round is closed. The company carries zero institutional dilution.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Stakeholder</th><th>Class</th><th>Units</th><th>Outstanding %</th><th>Fully Diluted %</th><th>Capital</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Class A · Founders &amp; Advisory</td></tr>
+          <tr class="dr"><td>InPursuit Partners, LLC</td><td><span class="uc">Class A</span></td><td><span class="uv">2,940</span></td><td><span class="pct">98.000%</span></td><td><span class="pct">97.030%</span></td><td class="cap">—</td><td><span class="pill p-founder">Founders</span></td></tr>
+          <tr class="dr"><td>Jose Arrieta</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.500%</span></td><td><span class="pct">0.495%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Alexis Johnson</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.500%</span></td><td><span class="pct">0.495%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Michael Mark</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.500%</span></td><td><span class="pct">0.495%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>WellLink</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.500%</span></td><td><span class="pct">0.495%</span></td><td class="cap">—</td><td><span class="pill p-partner">Strategic Partner</span></td></tr>
+          <tr class="sub-row"><td>Class A Subtotal</td><td></td><td>3,000</td><td>100.000%</td><td>99.010%</td><td>—</td><td></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">Class B · Seed Round · Closed</td></tr>
+          <tr class="dr"><td>Angel Investor #1</td><td><span class="uc">Class B</span></td><td><span class="uv">20</span></td><td><span class="pct">0.660%</span></td><td><span class="pct">0.660%</span></td><td class="cap">$100,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="dr"><td>Angel Investor #2</td><td><span class="uc">Class B</span></td><td><span class="uv">10</span></td><td><span class="pct">0.330%</span></td><td><span class="pct">0.330%</span></td><td class="cap">$50,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="sub-row"><td>Class B Subtotal</td><td></td><td>30</td><td>0.990%</td><td>0.990%</td><td>$150,000</td><td></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="tot-row"><td>Total Outstanding</td><td></td><td>3,030</td><td>100.000%</td><td>100.000%</td><td>$150,000</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sp20"></div>
+    <div class="note amber"><span class="note-icon">◆</span><div class="note-txt at"><strong>Outstanding SAFE — Unconverted</strong>$2,000,000 SAFE bridge is outstanding and unconverted. Converts at Series A close (target September 1, 2026 · outside date December 31, 2026) at a $25M post-money valuation cap. See Tab 2 for pro-forma post-conversion ownership.</div></div>
+    <div class="sp12"></div>
+  </div>
+
+  <!-- ═══════════════════ PANEL 2: POST-SAFE ═══════════════════ -->
+  <!-- SAFE Math: $2M / $25M post-money = 8.00% ownership
+       Existing 3,030 = 92% → new units = 3,030 × (8/92) = 263.5 → 264
+       Post-SAFE total = 3,294 · Founder: 2,940/3,294 = 89.253% -->
+  <div class="panel" id="p1">
+    <div class="sc-bar">
+      <div class="sc-stat"><div class="sc-label">Total Post-Conversion</div><div class="sc-val">3,294</div><div class="sc-sub">+264 units to SAFE holder</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Founder Control</div><div class="sc-val">89.25%</div><div class="sc-sub">Post-SAFE fully diluted</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">SAFE Holder Ownership</div><div class="sc-val">8.01%</div><div class="sc-sub">$2M ÷ $25M post-money cap</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Total Capital Raised</div><div class="sc-val">$2,150,000</div><div class="sc-sub">$2M SAFE + $150K seed</div></div>
+      <div class="sc-badge badge-safe">SAFE Converted</div>
+    </div>
+    <div class="narrative"><strong>SAFE converts simultaneously with Series A close.</strong> The $2M SAFE issues 264 new units representing 8.01% of the post-conversion company. All existing holders dilute proportionally. Founder control remains decisive at 89.25% — well above any governance threshold.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Stakeholder</th><th>Class</th><th>Units</th><th>Pre-Conversion %</th><th>Post-Conversion %</th><th>Capital</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Class A · Founders &amp; Advisory</td></tr>
+          <tr class="dr"><td>InPursuit Partners, LLC</td><td><span class="uc">Class A</span></td><td><span class="uv">2,940</span></td><td><span class="pct">97.030%</span></td><td><span class="pct">89.253%</span></td><td class="cap">—</td><td><span class="pill p-founder">Founders</span></td></tr>
+          <tr class="dr"><td>Jose Arrieta</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.495%</span></td><td><span class="pct">0.455%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Alexis Johnson</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.495%</span></td><td><span class="pct">0.455%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Michael Mark</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.495%</span></td><td><span class="pct">0.455%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>WellLink</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.495%</span></td><td><span class="pct">0.455%</span></td><td class="cap">—</td><td><span class="pill p-partner">Strategic Partner</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">Class B · Seed Round · Closed</td></tr>
+          <tr class="dr"><td>Angel Investor #1</td><td><span class="uc">Class B</span></td><td><span class="uv">20</span></td><td><span class="pct">0.660%</span></td><td><span class="pct">0.607%</span></td><td class="cap">$100,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="dr"><td>Angel Investor #2</td><td><span class="uc">Class B</span></td><td><span class="uv">10</span></td><td><span class="pct">0.330%</span></td><td><span class="pct">0.304%</span></td><td class="cap">$50,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">SAFE Conversion · $2M Bridge · $25M Post-Money Cap</td></tr>
+          <tr class="dr"><td>SAFE Holder</td><td><span class="uc">Converted</span></td><td><span class="uv" style="color:#B8860B;">264</span></td><td><span class="pct">—</span></td><td><span class="pct" style="color:#7A5C00;font-weight:700;">8.015%</span></td><td class="cap">$2,000,000</td><td><span class="pill p-safe">SAFE · New</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="tot-row"><td>Total Post-Conversion</td><td></td><td>3,294</td><td>—</td><td>100.000%</td><td>$2,150,000</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sp20"></div>
+    <div class="note amber"><span class="note-icon">◆</span><div class="note-txt at"><strong>SAFE Conversion Methodology</strong>264 new units issued to SAFE holder at $2,000,000 ÷ $25,000,000 post-money cap = 8.01% ownership. All existing holders dilute proportionally. Conversion is simultaneous with Series A close. See Tab 3 for pro-forma post-Series A ownership.</div></div>
+    <div class="sp12"></div>
+  </div>
+
+  <!-- ═══════════════════ PANEL 3: POST-SERIES A ═══════════════════ -->
+  <!-- Series A Math:
+       Pre-money $50M · Raise $20M · Post-money $70M
+       Series A % = 20/70 = 28.571%
+       Post-SAFE 3,294 units = 71.429% → Series A units = 3,294 × (28.571/71.429) = 1,317.6 → 1,318
+       Post-Series A total = 4,612
+       Founder: 2,940/4,612 = 63.745% -->
+  <div class="panel" id="p2">
+    <div class="sc-bar">
+      <div class="sc-stat"><div class="sc-label">Total Post-Series A</div><div class="sc-val">4,612</div><div class="sc-sub">+1,318 Series A units issued</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Founder Control</div><div class="sc-val">63.75%</div><div class="sc-sub">Strong majority retained</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Series A Ownership</div><div class="sc-val">28.57%</div><div class="sc-sub">$20M ÷ $70M post-money</div></div>
+      <div class="sc-div"></div>
+      <div class="sc-stat"><div class="sc-label">Total Capital Raised</div><div class="sc-val">$22,150,000</div><div class="sc-sub">Series A + SAFE + Seed</div></div>
+      <div class="sc-badge badge-ser">Series A · $50M Pre / $70M Post</div>
+    </div>
+    <div class="narrative"><strong>Series A closes at $50M pre-money — founders retain 63.75%.</strong> The $20M raise issues 1,318 new units to Series A investors at 28.57% of the fully diluted company. Founder control remains decisive at nearly two-thirds of the cap table. With CMS ACCESS Model revenue online, Honeycomb Medical Group as anchor, and a direct-to-provider market of 300,000 physicians addressable at no cost with days-to-weeks deployment, this round is structured to be the final dilutive event before self-sustaining revenue growth.</div>
+    <div class="tbl-wrap">
+      <table>
+        <thead><tr><th>Stakeholder</th><th>Class</th><th>Units</th><th>Pre-Series A %</th><th>Post-Series A %</th><th>Capital</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr class="sec-row"><td colspan="7">Class A · Founders &amp; Advisory</td></tr>
+          <tr class="dr"><td>InPursuit Partners, LLC</td><td><span class="uc">Class A</span></td><td><span class="uv">2,940</span></td><td><span class="pct">89.253%</span></td><td><span class="pct-hi">63.745%</span></td><td class="cap">—</td><td><span class="pill p-founder">Founders</span></td></tr>
+          <tr class="dr"><td>Jose Arrieta</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.455%</span></td><td><span class="pct">0.325%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Alexis Johnson</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.455%</span></td><td><span class="pct">0.325%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>Michael Mark</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.455%</span></td><td><span class="pct">0.325%</span></td><td class="cap">—</td><td><span class="pill p-adv">Advisory</span></td></tr>
+          <tr class="dr"><td>WellLink</td><td><span class="uc">Class A</span></td><td><span class="uv">15</span></td><td><span class="pct">0.455%</span></td><td><span class="pct">0.325%</span></td><td class="cap">—</td><td><span class="pill p-partner">Strategic Partner</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">Class B · Seed Round · Closed</td></tr>
+          <tr class="dr"><td>Angel Investor #1</td><td><span class="uc">Class B</span></td><td><span class="uv">20</span></td><td><span class="pct">0.607%</span></td><td><span class="pct">0.434%</span></td><td class="cap">$100,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="dr"><td>Angel Investor #2</td><td><span class="uc">Class B</span></td><td><span class="uv">10</span></td><td><span class="pct">0.304%</span></td><td><span class="pct">0.217%</span></td><td class="cap">$50,000</td><td><span class="pill p-seed">Seed · Closed</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">SAFE Conversion · $2M Bridge · $25M Post-Money Cap</td></tr>
+          <tr class="dr"><td>SAFE Holder</td><td><span class="uc">Converted</span></td><td><span class="uv">264</span></td><td><span class="pct">8.015%</span></td><td><span class="pct">5.724%</span></td><td class="cap">$2,000,000</td><td><span class="pill p-safe">SAFE · Converted</span></td></tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="sec-row"><td colspan="7">Series A · $20M Raise · $50M Pre / $70M Post · Target Close September 1, 2026</td></tr>
+          <tr class="dr" style="background:var(--green-bg) !important;">
+            <td style="color:var(--green-text);font-weight:700;">Series A Investors</td>
+            <td><span class="uc" style="color:var(--green-text);">Series A</span></td>
+            <td><span class="uv" style="color:var(--green-text);">1,318</span></td>
+            <td><span class="pct">—</span></td>
+            <td><span class="pct" style="color:var(--green-text);font-weight:700;">28.571%</span></td>
+            <td class="cap" style="color:var(--green-text);font-weight:700;">$20,000,000</td>
+            <td><span class="pill p-new">Series A · New</span></td>
+          </tr>
+          <tr class="sp"><td colspan="7"></td></tr>
+          <tr class="tot-row"><td>Total Post-Series A</td><td></td><td>4,612</td><td>—</td><td>100.000%</td><td>$22,150,000</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sp20"></div>
+    <div class="note green"><span class="note-icon">◆</span><div class="note-txt gt"><strong>Series A Assumptions &amp; Strategic Context</strong>$20,000,000 raised at $50,000,000 pre-money / $70,000,000 post-money valuation. 1,318 new units issued representing 28.571% of the fully diluted company. SAFE converts simultaneously. InPursuit Partners retains 63.745% — decisive founder control. Structured as the final dilutive event before self-sustaining revenue growth driven by the CMS ACCESS Model, Honeycomb Medical Group anchor customer, and direct-to-provider go-to-market across 300,000 physicians at no cost with days-to-weeks deployment.</div></div>
+    <div class="sp12"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="footer-l">InPursuit Health, LLC &nbsp;&middot;&nbsp; Wyoming &nbsp;&middot;&nbsp; CMS Health IT Ecosystem &mdash; Approved Member &nbsp;&middot;&nbsp; Results Matter&trade;</div>
+    <div class="footer-r"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="d6bfb8b0b996bfb8a6a3a4a5a3bfa2beb3b7baa2bef8b5b9bb">[email&#160;protected]</a> &nbsp;&middot;&nbsp; www.InPursuitHealth.com</div>
+  </div>
+
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  functio
