@@ -12,7 +12,7 @@
     <nav id="iph-nav" role="navigation" aria-label="Main navigation">
       <a class="iph-nav-item" href="for-you.html">For You</a>
       <div class="iph-dropdown">
-        <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For VBC Providers <span class="iph-caret">&#9660;</span></a>
+        <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For Providers <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
           <span class="iph-sub-label">CMS Value-Based Care Models</span>
           <a href="access.html">CMS ACCESS Model</a>
