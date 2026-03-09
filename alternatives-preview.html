@@ -141,25 +141,43 @@ body { font-family: 'Instrument Sans', sans-serif; background: #1a1a1a; color: #
 }
 .opt-a-engine-core {
   position: relative; z-index: 2;
-  width: 140px; height: 140px;
+  width: 148px; height: 148px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #112240, #0A1628);
-  border: 1px solid rgba(197,164,78,0.25);
+  background: linear-gradient(145deg, #112240, #0A1628);
+  border: 1px solid rgba(197,164,78,0.3);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   text-align: center;
-  box-shadow: 0 0 60px rgba(197,164,78,0.08), inset 0 0 40px rgba(197,164,78,0.04);
+  box-shadow: 0 0 60px rgba(197,164,78,0.1), inset 0 0 40px rgba(197,164,78,0.05);
+  padding: 12px;
 }
-.opt-a-engine-name {
+.opt-a-patient-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: rgba(197,164,78,0.08);
+  border: 1px solid rgba(197,164,78,0.2);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 8px;
+}
+.opt-a-patient-name {
   font-family: 'Instrument Serif', serif;
-  font-size: 16px; color: var(--gold); line-height: 1.1;
+  font-size: 18px; color: var(--white); line-height: 1; margin-bottom: 3px;
 }
-.opt-a-engine-name em { font-style: italic; }
-.opt-a-engine-sub {
-  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.3); margin-top: 6px;
+.opt-a-patient-meta {
+  font-size: 9px; letter-spacing: 1px; color: rgba(255,255,255,0.4); margin-bottom: 8px;
 }
-.opt-a-engine-shield {
-  margin-top: 10px;
+.opt-a-patient-status {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 3px 9px; border-radius: 20px;
+  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);
+  font-size: 8px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  color: #4ade80;
+}
+.opt-a-status-dot {
+  width: 5px; height: 5px; border-radius: 50%; background: #4ade80;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
 }
 /* Orbiting dot on ring */
 .opt-a-orbit-dot {
@@ -169,7 +187,7 @@ body { font-family: 'Instrument Sans', sans-serif; background: #1a1a1a; color: #
   box-shadow: 0 0 8px rgba(197,164,78,0.6);
   top: -4px; left: 50%;
   transform: translateX(-50%);
-  transform-origin: 50% 144px;
+  transform-origin: 50% 148px;
   animation: ringRotate 20s linear infinite;
 }
 .opt-a-orbit-dot-2 {
@@ -739,12 +757,14 @@ body { font-family: 'Instrument Sans', sans-serif; background: #1a1a1a; color: #
           <div class="opt-a-orbit-dot"></div>
           <div class="opt-a-orbit-dot-2"></div>
           <div class="opt-a-engine-core">
-            <div class="opt-a-engine-name">TETRA <em>ex</em>™</div>
-            <div class="opt-a-engine-sub">+ Aegis™</div>
-            <div style="margin-top:10px;">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+            <div class="opt-a-patient-avatar">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="rgba(197,164,78,0.25)" stroke="var(--gold)" stroke-width="1.2"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" stroke="var(--gold)" stroke-width="1.2" stroke-linecap="round" fill="none"/></svg>
             </div>
-            <div class="opt-a-badge">Patient-Owned</div>
+            <div class="opt-a-patient-name">Sarah</div>
+            <div class="opt-a-patient-meta">32 · Cigna PPO</div>
+            <div class="opt-a-patient-status">
+              <span class="opt-a-status-dot"></span>Active
+            </div>
           </div>
         </div>
       </div>
