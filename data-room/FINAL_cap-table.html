@@ -327,4 +327,12 @@
 </div>
 
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  functio
+  function switchTab(index) {
+    document.querySelectorAll('.tab').forEach(function(t, i) {
+      t.classList.toggle('active', i === index);
+    });
+    document.querySelectorAll('.panel').forEach(function(p, i) {
+      p.classList.toggle('active', i === index);
+    });
+  }
+</script>
