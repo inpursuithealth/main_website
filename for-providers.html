@@ -834,10 +834,19 @@
 
       <!-- LEFT: ROTATING PATIENT PROFILE -->
       <div id="patientPanel" style="transition:opacity 0.6s ease;">
-        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:12px;padding:16px;text-align:center;margin-bottom:10px;position:relative;overflow:hidden;">
-          <img id="patientImg" src="mrs_johnson.png" alt="" onerror="this.style.display='none'" style="width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;border:2px solid rgba(201,151,0,0.2);margin:0 auto 10px;display:block;background:rgba(201,151,0,0.05);">
-          <div id="patientName" style="font-family:'Instrument Serif',serif;font-size:17px;color:var(--white);">Mrs. Johnson, 72</div>
-          <div id="patientSub" style="font-size:10px;color:rgba(255,255,255,0.25);">Medicare FFS &middot; Attributed to MSSP ACO</div>
+        <div style="background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:14px;margin-bottom:10px;position:relative;overflow:hidden;">
+          <div style="position:relative;width:100%;height:200px;overflow:hidden;border-radius:14px 14px 0 0;">
+            <img id="patientImg" src="Assets/mrs_johnson.png" alt="" onerror="this.style.display='none'" style="width:100%;height:100%;object-fit:cover;object-position:center top;display:block;">
+            <div style="position:absolute;inset:0;background:linear-gradient(to bottom,transparent 40%,rgba(4,12,28,0.85) 100%);"></div>
+            <div style="position:absolute;bottom:12px;left:14px;right:14px;">
+              <div id="patientName" style="font-family:'Instrument Serif',serif;font-size:19px;color:#fff;line-height:1.2;">Mrs. Johnson, 72</div>
+              <div id="patientSub" style="font-size:9px;color:rgba(255,255,255,0.5);margin-top:2px;">Medicare FFS &middot; Attributed to MSSP ACO</div>
+            </div>
+          </div>
+          <div id="patientOutcomeTag" style="padding:9px 14px;background:linear-gradient(90deg,rgba(34,197,94,0.07),rgba(34,197,94,0.03));border-top:1px solid rgba(34,197,94,0.15);display:flex;align-items:center;gap:7px;">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2.5"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            <span id="patientOutcome" style="font-size:9px;color:#4ade80;font-weight:600;letter-spacing:0.5px;">Better health outcomes. More revenue.</span>
+          </div>
         </div>
         <div style="background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px;">
           <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.12);margin-bottom:6px;">Conditions</div>
@@ -896,6 +905,13 @@
       <div id="revenuePanel" style="display:flex;flex-direction:column;gap:7px;transition:opacity 0.6s ease;">
         <div style="font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(201,151,0,0.35);text-align:center;margin-bottom:2px;">Revenue Streams &mdash; <span id="revPatientName">Mrs. Johnson</span></div>
         <div id="revenueCards"></div>
+        <!-- OUTCOMES CALLOUT -->
+        <div style="background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(34,197,94,0.02));border:1px solid rgba(34,197,94,0.18);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden;">
+          <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#4ade80,transparent);"></div>
+          <div style="font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:#4ade80;margin-bottom:8px;">Better Health Outcomes</div>
+          <div id="patientOutcomeItems" style="display:flex;flex-direction:column;gap:5px;"></div>
+        </div>
+
         <!-- TOTAL -->
         <div style="background:rgba(201,151,0,0.08);border:1px solid rgba(201,151,0,0.25);border-radius:10px;padding:14px;text-align:center;position:relative;overflow:hidden;">
           <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--gold),transparent);"></div>
@@ -908,8 +924,8 @@
 
     <!-- Bottom callout -->
     <div style="text-align:center;margin-top:40px;padding:20px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;max-width:700px;margin-left:auto;margin-right:auto;" class="reveal">
-      <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;">Without TETRA, you pick one model. With TETRA, you pick all of them.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.25);line-height:1.7;">The same clinical work generates revenue across every eligible payment pathway. One deployment. Every model. Maximum revenue per patient.</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;">Better outcomes for patients. Maximum revenue for providers.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25);line-height:1.7;">TETRA aligns every incentive &mdash; the same coordinated care that improves patient outcomes is the care that unlocks every eligible payment pathway. One deployment. Every model. Every dollar earned, every outcome earned.</div>
     </div>
   </div>
 </section>
@@ -1542,7 +1558,7 @@ if (routerEl) routerObs.observe(routerEl);
 /* ══ PATIENT PROFILE ROTATION ══ */
 const patients = [
   {
-    img: 'mrs_johnson.png',
+    img: 'Assets/mrs_johnson.png',
     name: 'Mrs. Johnson, 72',
     sub: 'Medicare FFS &middot; Attributed to MSSP ACO',
     conditions: [
@@ -1565,10 +1581,16 @@ const patients = [
       { model: 'FFS Care Management', desc: 'AWV + CCM + RPM + BHI', amount: '$2,507', detail: '$155 + $720 + $1,008 + $624', bg: 'rgba(201,151,0,0.04)', border: 'rgba(201,151,0,0.15)', color: 'var(--gold)' }
     ],
     total: '$3,250',
-    shortName: 'Mrs. Johnson'
+    shortName: 'Mrs. Johnson',
+    outcomes: [
+      { label: 'CKD progression slowed by 40%', icon: '↓' },
+      { label: 'Depression severity reduced (PHQ-9)', icon: '↓' },
+      { label: 'A1C at target — fewer complications', icon: '✓' },
+      { label: 'No unplanned hospitalizations (12 mo)', icon: '✓' }
+    ]
   },
   {
-    img: 'mr_davis.png',
+    img: 'Assets/mr_davis.png',
     name: 'Mr. Davis, 68',
     sub: 'Medicare FFS &middot; In Mandatory TEAM CBSA',
     conditions: [
@@ -1590,10 +1612,16 @@ const patients = [
       { model: 'FFS Care Management', desc: 'AWV + CCM + RPM', amount: '$1,883', detail: '$155 + $720 + $1,008', bg: 'rgba(201,151,0,0.04)', border: 'rgba(201,151,0,0.15)', color: 'var(--gold)' }
     ],
     total: '$3,144',
-    shortName: 'Mr. Davis'
+    shortName: 'Mr. Davis',
+    outcomes: [
+      { label: 'Surgical readmission risk reduced 35%', icon: '↓' },
+      { label: 'CHF exacerbations monitored via RPM', icon: '✓' },
+      { label: 'BP controlled pre-surgery', icon: '✓' },
+      { label: 'Recovery on track — shorter LOS', icon: '↓' }
+    ]
   },
   {
-    img: 'ms_chen.png',
+    img: 'Assets/ms_chen.png',
     name: 'Ms. Chen, 81',
     sub: 'Dual-eligible &middot; Homebound &middot; Rural County',
     conditions: [
@@ -1615,7 +1643,13 @@ const patients = [
       { model: 'FFS Care Management', desc: 'AWV + CCM + RPM', amount: '$1,883', detail: '$155 + $720 + $1,008', bg: 'rgba(201,151,0,0.04)', border: 'rgba(201,151,0,0.15)', color: 'var(--gold)' }
     ],
     total: '$2,819',
-    shortName: 'Ms. Chen'
+    shortName: 'Ms. Chen',
+    outcomes: [
+      { label: 'CKD Stage 4 stabilized at home', icon: '✓' },
+      { label: 'O2 use optimized — fewer ER visits', icon: '↓' },
+      { label: 'Rural access gap closed via telehealth', icon: '✓' },
+      { label: 'Dual-eligible coordination improved', icon: '↑' }
+    ]
   }
 ];
 
@@ -1627,6 +1661,12 @@ function renderCondition(c) {
 }
 function renderProgram(p) {
   return '<span style="padding:2px 6px;font-size:8px;font-weight:600;border-radius:3px;background:'+p.bg+';color:'+p.color+';">'+p.label+'</span>';
+}
+function renderOutcome(o) {
+  const iconColor = o.icon === '↓' ? '#4ade80' : o.icon === '↑' ? '#60a5fa' : '#4ade80';
+  return '<div style="display:flex;align-items:center;gap:7px;font-size:10px;color:rgba(255,255,255,0.45);">' +
+    '<span style="width:16px;height:16px;border-radius:4px;background:rgba(34,197,94,0.1);display:inline-flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;color:' + iconColor + ';flex-shrink:0;">' + o.icon + '</span>' +
+    o.label + '</div>';
 }
 function renderRevCard(r) {
   return '<div style="background:'+r.bg+';border:1px solid '+r.border+';border-radius:10px;padding:12px;margin-bottom:7px;">' +
@@ -1662,6 +1702,11 @@ function showPatient(idx) {
     document.getElementById('revenueCards').innerHTML = p.revenue.map(renderRevCard).join('');
     document.getElementById('revTotal').textContent = p.total;
 
+    // Update outcomes
+    if (p.outcomes && document.getElementById('patientOutcomeItems')) {
+      document.getElementById('patientOutcomeItems').innerHTML = p.outcomes.map(renderOutcome).join('');
+    }
+
     // Update dots
     for (let i = 0; i < 3; i++) {
       document.getElementById('pdot' + i).style.background = i === idx ? 'var(--gold)' : 'rgba(255,255,255,0.15)';
@@ -1696,6 +1741,8 @@ function showPatient(idx) {
   if (revCardsEl) revCardsEl.innerHTML = p.revenue.map(renderRevCard).join('');
   const revTotalEl = document.getElementById('revTotal');
   if (revTotalEl) revTotalEl.textContent = p.total;
+  const outEl = document.getElementById('patientOutcomeItems');
+  if (outEl && p.outcomes) outEl.innerHTML = p.outcomes.map(renderOutcome).join('');
 })();
 
 // Start auto-rotation every 7 seconds
