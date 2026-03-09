@@ -17,7 +17,7 @@
         </div>
       </div>
       <div class="iph-dropdown">                          
-        <a iph-dropdown-toggle>For Providers</a>
+        <a class="iph-dropdown-toggle">For Providers</a>
         <div class="iph-dropdown-menu">
           <div class="iph-sub-dropdown">                  
             <a class="iph-sub-dropdown-toggle">Results Matter</a>
