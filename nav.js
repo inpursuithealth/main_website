@@ -13,7 +13,7 @@
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="for-you.html" aria-haspopup="true">For You <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
-          <a href="for-you.html">Harness the Power of Your Data&#8482;</a>
+          <a href="for-you.html">Harness the Power of Your Data &#8482;</a>
         </div>
       </div>
       <div class="iph-dropdown">
