@@ -10,7 +10,12 @@
       <a id="iph-maha" href="maha.html">MAHA Policy Accelerant</a>
     </div>
     <nav id="iph-nav" role="navigation" aria-label="Main navigation">
-      <a class="iph-nav-item" href="for-you.html">For You</a>
+      <div class="iph-dropdown">
+        <a class="iph-nav-item iph-dropdown-toggle" href="for-you.html" aria-haspopup="true">For You <span class="iph-caret">&#9660;</span></a>
+        <div class="iph-dropdown-menu">
+          <a href="for-you.html">Harness the Power of Your Data&#8482;</a>
+        </div>
+      </div>
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For Providers <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
