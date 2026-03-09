@@ -288,7 +288,25 @@
           <div class="hero-cta-row">
           <div class="hero-cta-row" style="flex-direction:column;align-items:center;gap:12px;">
             <a class="btn-gold" href="for-you.html">Harness the Power of Your Data™ →</a>
-																				
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4: Value-Based Care Providers -->
+    <div class="hero-slide" data-slide="3">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="hero-badge" style="background:rgba(46,204,113,0.08);border-color:rgba(46,204,113,0.25);">
+            <span class="pulse-dot" style="background:#2ecc71;box-shadow:0 0 0 0 rgba(46,204,113,0.4);"></span>
+            Value-Based &amp; Outcome-Based Care
+          </div>
+          <div class="slide-overline">RESULTS MATTER™</div>
+          <h1>Stop getting penalized for<br>data <em>you never had.</em></h1>
+          <p class="hero-tagline">Value-based care contracts grade you on outcomes across your entire attributed population — including patients you haven't seen in months. TETRA gives you real-time visibility into every care gap, every quality measure, and every shared savings opportunity before the reporting period closes.</p>
+          <p class="hero-tagline-bold">"Close care gaps automatically.<br>Capture every dollar you've already earned."</p>
+          <div class="hero-cta-row">
+            <a class="btn-gold" href="for-providers.html">See How TETRA Works for VBC →</a>
           </div>
         </div>
       </div>
@@ -302,6 +320,7 @@
       <button class="slider-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+      <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -769,7 +788,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=3,stm=null,sp=false,SMS=10000;
+var sc=0,st=4,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
