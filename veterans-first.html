@@ -7,31 +7,36 @@
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
-/* page-specific extra tokens */
 :root {
   --blue-flag: #3C3B6E;
+  --red-flag: #B22234;
   --serif: 'Instrument Serif', serif;
   --sans: 'Instrument Sans', sans-serif;
 }
 
-/* ===== NAV (synced with index.html) ===== */
+/* ===== NAV ===== */
 .top-bar {
-  background: var(--navy-deep);
-  border-bottom: 1px solid rgba(197,164,78,0.2);
+  background: transparent;
+  border-bottom: 1px solid rgba(197,164,78,0.0);
   position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000; transition: box-shadow 0.3s ease;
+  z-index: 1000; transition: all 0.4s ease;
 }
-.top-bar.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.4); }
+.top-bar.scrolled {
+  background: rgba(6,14,26,0.95);
+  border-bottom-color: rgba(197,164,78,0.15);
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0,0,0,0.4);
+}
 .top-bar-inner {
-  max-width: 1400px; margin: 0 auto; padding: 0 40px;
-  display: flex; justify-content: space-between; align-items: center; height: 64px;
+  max-width: 1400px; margin: 0 auto; padding: 0 48px;
+  display: flex; justify-content: space-between; align-items: center; height: 72px;
 }
 .top-bar-brand { display: flex; align-items: center; text-decoration: none; cursor: pointer; }
 .top-bar-wordmark { font-family: var(--serif); font-size: 22px; color: var(--gold); letter-spacing: 1px; line-height: 1; }
 .top-bar-nav { display: flex; align-items: center; gap: 0; }
 .nav-item {
-  position: relative; padding: 20px 14px; font-size: 11px; font-weight: 500;
-  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.6);
+  position: relative; padding: 20px 16px; font-size: 11px; font-weight: 500;
+  letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.65);
   text-decoration: none; transition: color 0.3s ease; cursor: pointer;
 }
 .nav-item:hover, .nav-item.active { color: var(--gold); }
@@ -52,510 +57,658 @@
 .nav-toggle span:nth-child(2) { top: 15px; }
 .nav-toggle span:nth-child(3) { top: 22px; }
 
-/* ===== HERO (page-specific overrides) ===== */
-.hero {
-  padding-top: 64px;
-  display: flex; align-items: center;
+/* ===== HERO ===== */
+.vf-hero {
+  position: relative; min-height: 100vh;
+  background: var(--navy-deep); overflow: hidden;
+  display: flex; flex-direction: column;
 }
-.hero-bg {
-  background: radial-gradient(ellipse at 30% 40%, rgba(17,34,64,0.8), var(--navy-deep) 70%);
+.vf-hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(178,34,52,0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(60,59,110,0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 80%, rgba(197,164,78,0.04) 0%, transparent 50%);
 }
-.hero-stars { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
-.star { position: absolute; width: 2px; height: 2px; background: rgba(197,164,78,0.35); border-radius: 50%; }
-.star:nth-child(odd) { width: 3px; height: 3px; }
-.star:nth-child(1){top:8%;left:5%}.star:nth-child(2){top:22%;left:68%}.star:nth-child(3){top:42%;left:12%}
-.star:nth-child(4){top:58%;left:82%}.star:nth-child(5){top:78%;left:32%}.star:nth-child(6){top:14%;left:52%}
-.star:nth-child(7){top:66%;left:58%}.star:nth-child(8){top:33%;left:90%}.star:nth-child(9){top:86%;left:76%}
-.star:nth-child(10){top:48%;left:42%}.star:nth-child(11){top:6%;left:28%}.star:nth-child(12){top:90%;left:10%}
+.vf-hero-grid {
+  position: absolute; inset: 0; opacity: 0.04;
+  background-image:
+    linear-gradient(rgba(197,164,78,0.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197,164,78,0.5) 1px, transparent 1px);
+  background-size: 80px 80px;
+  animation: gridDrift 30s linear infinite;
+}
+@keyframes gridDrift { 0%{transform:translate(0,0)} 100%{transform:translate(80px,80px)} }
 
-/* Flag stripe accent */
-.hero-flag-stripe {
-  position: absolute; bottom: 0; left: 0; right: 0; height: 4px; z-index: 5;
-  background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, var(--white) 33%, var(--white) 66%, var(--blue-flag) 66%);
+.vf-hero-stars { position: absolute; inset: 0; pointer-events: none; }
+.vf-star {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.6);
+  animation: starTwinkle var(--dur, 3s) ease-in-out infinite;
+  animation-delay: var(--delay, 0s);
+}
+@keyframes starTwinkle { 0%,100%{opacity:0.2} 50%{opacity:0.8} }
+
+.vf-hero-inner {
+  position: relative; z-index: 2;
+  max-width: 1200px; margin: 0 auto; padding: 0 48px;
+  flex: 1; display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+  padding-top: 120px; padding-bottom: 80px;
+}
+.vf-hero-content {}
+.vf-hero-badge {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 8px 18px;
+  background: rgba(178,34,52,0.08);
+  border: 1px solid rgba(178,34,52,0.25);
+  border-radius: 40px;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(220,80,80,0.9);
+  margin-bottom: 32px;
+}
+.vf-hero-badge .flag-stars { font-size: 14px; }
+.vf-hero-title {
+  font-family: var(--serif);
+  font-size: clamp(44px, 5.5vw, 74px);
+  color: var(--white); line-height: 1.05;
+  margin-bottom: 28px; letter-spacing: -1px;
+}
+.vf-hero-title em { font-style: italic; color: var(--gold); }
+.vf-hero-title .line-accent {
+  position: relative; display: inline-block;
+}
+.vf-hero-title .line-accent::after {
+  content: '';
+  position: absolute; bottom: -4px; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--gold), rgba(197,164,78,0));
+}
+.vf-hero-desc {
+  font-size: 17px; color: rgba(255,255,255,0.5);
+  line-height: 1.75; margin-bottom: 44px; max-width: 500px;
+}
+.vf-hero-cta {
+  display: flex; gap: 16px; flex-wrap: wrap;
+}
+.vf-hero-proof {
+  margin-top: 52px; padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.07);
+  display: flex; gap: 40px;
+}
+.vf-proof-item {}
+.vf-proof-num {
+  font-family: var(--serif); font-size: 28px; color: var(--gold);
+  line-height: 1; margin-bottom: 4px;
+}
+.vf-proof-label {
+  font-size: 11px; color: rgba(255,255,255,0.3);
+  letter-spacing: 1.5px; text-transform: uppercase;
 }
 
-.hero-inner {
-  position: relative; z-index: 2; max-width: 1200px; margin: 0 auto;
-  padding: 80px 40px; width: 100%;
-  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+/* Visual side */
+.vf-hero-visual {
+  position: relative; display: flex; align-items: center; justify-content: center;
 }
-.hero-content {}
-.hero-eyebrow {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-size: 11px; font-weight: 600; letter-spacing: 3px;
-  text-transform: uppercase; color: var(--gold); margin-bottom: 20px;
-}
-.hero-eyebrow .flag-icon { font-size: 16px; }
-.hero-title {
-  font-family: var(--serif); font-size: clamp(36px, 4.5vw, 60px);
-  color: var(--white); line-height: 1.1; margin-bottom: 24px;
-}
-.hero-title em { font-style: italic; color: var(--gold); }
-.hero-desc {
-  font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 40px; max-width: 520px;
-}
-/* Bridge visual */
-.hero-visual { position: relative; }
-.bridge-canvas-wrap {
-  position: relative; width: 100%; aspect-ratio: 1;
-  max-width: 500px; margin: 0 auto;
+.vf-bridge-wrap {
+  position: relative; width: 100%; max-width: 520px; aspect-ratio: 1;
 }
 #bridgeCanvas { width: 100%; height: 100%; display: block; }
 
-/* ===== IMPACT STATS BAR ===== */
-.stats-bar {
-  background: var(--navy); border-top: 1px solid rgba(197,164,78,0.1);
-  border-bottom: 1px solid rgba(197,164,78,0.1);
-  padding: 48px 40px;
+/* Flag stripe at bottom of hero */
+.vf-flag-stripe {
+  width: 100%; height: 5px; position: relative;
+  background: linear-gradient(90deg,
+    var(--red-flag) 0%, var(--red-flag) 33.3%,
+    #fff 33.3%, #fff 66.6%,
+    var(--blue-flag) 66.6% 100%
+  );
+  opacity: 0.6;
 }
-.stats-bar-inner {
+
+/* ===== IMPACT BAR ===== */
+.vf-impact-bar {
+  background: var(--navy);
+  border-top: 1px solid rgba(197,164,78,0.08);
+  border-bottom: 1px solid rgba(197,164,78,0.08);
+  padding: 0;
+}
+.vf-impact-inner {
   max-width: 1200px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
 }
-.stat-block { text-align: center; }
-.stat-num {
-  font-family: var(--serif); font-size: 42px; color: var(--gold); line-height: 1; margin-bottom: 6px;
+.vf-impact-item {
+  padding: 48px 32px; text-align: center;
+  border-right: 1px solid rgba(255,255,255,0.05);
+  position: relative; transition: background 0.3s;
 }
-.stat-label {
-  font-size: 11px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.4);
+.vf-impact-item:last-child { border-right: none; }
+.vf-impact-item:hover { background: rgba(197,164,78,0.03); }
+.vf-impact-item::before {
+  content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  width: 0; height: 2px; background: var(--gold); transition: width 0.4s ease;
 }
-.stat-sub { font-size: 12px; color: rgba(255,255,255,0.25); margin-top: 4px; }
+.vf-impact-item:hover::before { width: 60%; }
+.vf-impact-num {
+  font-family: var(--serif); font-size: 48px; color: var(--gold);
+  line-height: 1; margin-bottom: 8px; display: block;
+}
+.vf-impact-label {
+  font-size: 11px; font-weight: 600; letter-spacing: 2px;
+  text-transform: uppercase; color: rgba(255,255,255,0.45);
+  margin-bottom: 4px;
+}
+.vf-impact-sub { font-size: 12px; color: rgba(255,255,255,0.2); }
 
-/* ===== SERVICES (dark) ===== */
-.services-section { background: var(--navy-deep); }
-.services-section .section-title { color: var(--white); }
-.services-section .section-subtitle { color: rgba(255,255,255,0.5); }
-.services-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 28px; margin-top: 56px;
+/* ===== SECTION BASE ===== */
+.vf-section {
+  padding: 112px 48px; position: relative; overflow: hidden;
 }
-.service-card {
-  background: rgba(17,34,64,0.6); border: 1px solid rgba(197,164,78,0.08);
-  border-radius: 12px; padding: 40px 32px; position: relative;
-  transition: all 0.4s ease; overflow: hidden;
+.vf-section-inner { max-width: 1200px; margin: 0 auto; }
+.vf-overline {
+  font-size: 10px; font-weight: 700; letter-spacing: 4px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
 }
-.service-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--red), var(--gold));
-  transform: scaleX(0); transition: transform 0.4s ease; transform-origin: left;
+.vf-overline::before {
+  content: ''; display: block; width: 32px; height: 1px; background: var(--gold); opacity: 0.4;
 }
-.service-card:hover::before { transform: scaleX(1); }
-.service-card:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-4px); }
-.service-icon {
-  width: 52px; height: 52px; border-radius: 50%;
-  background: rgba(197,164,78,0.08); border: 1px solid rgba(197,164,78,0.15);
-  display: flex; align-items: center; justify-content: center; margin-bottom: 24px;
+.vf-heading {
+  font-family: var(--serif); font-size: clamp(32px, 3.5vw, 50px);
+  line-height: 1.1; margin-bottom: 20px; letter-spacing: -0.5px;
 }
-.service-icon svg { width: 24px; height: 24px; fill: var(--gold); }
-.service-card h3 {
-  font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 12px;
+.vf-heading em { font-style: italic; color: var(--gold); }
+.vf-heading-light { color: var(--white); }
+.vf-heading-dark { color: var(--navy); }
+.vf-subheading {
+  font-size: 16px; line-height: 1.75; max-width: 600px; margin-bottom: 0;
 }
-.service-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; margin-bottom: 24px; }
-.service-stat {
-  border-top: 1px solid rgba(197,164,78,0.1); padding-top: 20px;
-  display: flex; align-items: baseline; gap: 8px;
+.vf-subheading-light { color: rgba(255,255,255,0.45); }
+.vf-subheading-dark { color: var(--text-muted); }
+
+/* ===== TELEMEDICINE SECTION ===== */
+.vf-tele-section {
+  background: #fafaf8;
 }
-.service-stat-num { font-family: var(--serif); font-size: 28px; color: var(--gold); }
-.service-stat-label { font-size: 12px; color: rgba(255,255,255,0.35); }
-.services-breakdown {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 24px; margin-top: 48px;
+.vf-tele-header {
+  text-align: center; margin-bottom: 72px;
+}
+.vf-tele-header .vf-overline { justify-content: center; }
+.vf-tele-header .vf-overline::before { display: none; }
+.vf-tele-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-bottom: 48px;
+}
+.vf-tele-card {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px; padding: 36px 28px;
+  position: relative; overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.vf-tele-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(197,164,78,0.04), transparent 60%);
+  opacity: 0; transition: opacity 0.35s;
+}
+.vf-tele-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(0,0,0,0.1); border-color: rgba(197,164,78,0.3); }
+.vf-tele-card:hover::after { opacity: 1; }
+.vf-tele-card-top {
+  height: 3px; position: absolute; top: 0; left: 0; right: 0;
+  background: linear-gradient(90deg, var(--gold) 0%, rgba(197,164,78,0.2) 100%);
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+}
+.vf-tele-card:hover .vf-tele-card-top { transform: scaleX(1); }
+.vf-tele-icon {
+  width: 56px; height: 56px; border-radius: 14px;
+  background: rgba(197,164,78,0.08); border: 1px solid rgba(197,164,78,0.18);
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 20px; transition: all 0.35s;
+}
+.vf-tele-card:hover .vf-tele-icon {
+  background: rgba(197,164,78,0.14); border-color: rgba(197,164,78,0.4);
+}
+.vf-tele-card h3 {
+  font-family: var(--serif); font-size: 20px; color: var(--navy);
+  margin-bottom: 10px; line-height: 1.3;
+}
+.vf-tele-card p {
+  font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px;
+}
+.vf-tele-pill {
+  display: inline-block; padding: 5px 14px; border-radius: 20px;
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  background: rgba(197,164,78,0.08); color: var(--gold); border: 1px solid rgba(197,164,78,0.2);
+}
+.vf-tele-banner {
+  background: var(--navy-deep); border-radius: 16px;
+  padding: 36px 48px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 0; border: 1px solid rgba(197,164,78,0.1);
+}
+.vf-tele-banner-item {
+  text-align: center; padding: 12px 24px;
+  border-right: 1px solid rgba(255,255,255,0.06);
+}
+.vf-tele-banner-item:last-child { border-right: none; }
+.vf-tele-banner-num {
+  font-family: var(--serif); font-size: 32px; color: var(--gold);
+  display: block; margin-bottom: 6px;
+}
+.vf-tele-banner-label {
+  font-size: 11px; color: rgba(255,255,255,0.35);
+  letter-spacing: 1.5px; text-transform: uppercase;
 }
 
-/* ===== LIVSOLO CONNECT ===== */
-.livsolo-section { background: var(--navy); position: relative; overflow: hidden; }
-.livsolo-section::before {
-  content: ''; position: absolute; top: -100px; right: -100px;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(197,164,78,0.04) 0%, transparent 60%);
+/* ===== SERVICES SECTION (dark) ===== */
+.vf-services-section {
+  background: var(--navy-deep);
+}
+.vf-services-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background:
+    radial-gradient(ellipse at 10% 50%, rgba(178,34,52,0.05) 0%, transparent 40%),
+    radial-gradient(ellipse at 90% 20%, rgba(60,59,110,0.05) 0%, transparent 40%);
   pointer-events: none;
 }
-.livsolo-section .section-title { color: var(--white); }
-.livsolo-section .section-subtitle { color: rgba(255,255,255,0.5); }
-
-.livsolo-card {
-  background: rgba(17,34,64,0.5); border: 1px solid rgba(197,164,78,0.12);
-  border-radius: 16px; padding: 48px 40px; position: relative;
-  overflow: hidden; transition: all 0.4s ease;
+.vf-services-header { margin-bottom: 64px; }
+.vf-services-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+  margin-bottom: 32px;
 }
-.livsolo-card:hover { border-color: rgba(197,164,78,0.25); }
-.livsolo-card::before {
+.vf-svc-card {
+  background: rgba(17,34,64,0.5);
+  border: 1px solid rgba(197,164,78,0.08);
+  border-radius: 16px; padding: 44px 36px;
+  position: relative; overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.vf-svc-card::before {
   content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--red), var(--blue-flag));
+  background: linear-gradient(90deg, var(--red-flag), var(--gold));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
 }
-.livsolo-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+.vf-svc-card:hover::before { transform: scaleX(1); }
+.vf-svc-card:hover {
+  border-color: rgba(197,164,78,0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 32px 80px rgba(0,0,0,0.4);
 }
-.livsolo-quote {
-  font-family: var(--serif); font-size: 20px; font-style: italic;
-  color: rgba(255,255,255,0.7); line-height: 1.6; margin-bottom: 24px;
-  padding-left: 20px; border-left: 3px solid var(--gold);
+.vf-svc-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: rgba(197,164,78,0.07); border: 1px solid rgba(197,164,78,0.15);
+  display: flex; align-items: center; justify-content: center; margin-bottom: 28px;
+  transition: all 0.35s;
 }
-.livsolo-attribution {
-  font-size: 13px; color: var(--gold); font-weight: 600;
-  letter-spacing: 1px; margin-bottom: 8px;
+.vf-svc-card:hover .vf-svc-icon { background: rgba(197,164,78,0.14); border-color: rgba(197,164,78,0.35); }
+.vf-svc-card h3 {
+  font-family: var(--serif); font-size: 24px; color: var(--white); margin-bottom: 14px;
 }
-.livsolo-attribution-sub {
+.vf-svc-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.75; margin-bottom: 28px; }
+.vf-svc-metric {
+  border-top: 1px solid rgba(197,164,78,0.1); padding-top: 22px;
+  display: flex; align-items: baseline; gap: 8px;
+}
+.vf-svc-metric-num { font-family: var(--serif); font-size: 30px; color: var(--gold); }
+.vf-svc-metric-label { font-size: 12px; color: rgba(255,255,255,0.3); line-height: 1.4; }
+
+.vf-services-breakdown {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;
+}
+.vf-breakdown-col {
+  background: rgba(17,34,64,0.4);
+  border-radius: 12px; padding: 32px;
+}
+.vf-breakdown-col-title {
+  font-size: 10px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; margin-bottom: 18px;
+}
+.vf-breakdown-col-title.red { color: rgba(178,34,52,0.6); border-bottom: 1px solid rgba(178,34,52,0.1); padding-bottom: 14px; }
+.vf-breakdown-col-title.gold { color: rgba(197,164,78,0.6); border-bottom: 1px solid rgba(197,164,78,0.1); padding-bottom: 14px; }
+.vf-breakdown-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  font-size: 13px; color: rgba(255,255,255,0.45); line-height: 1.5; padding: 8px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+}
+.vf-breakdown-item:last-child { border-bottom: none; padding-bottom: 0; }
+.vf-breakdown-dot {
+  width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; margin-top: 6px;
+}
+.vf-breakdown-dot.red { background: rgba(178,34,52,0.5); }
+.vf-breakdown-dot.gold { background: rgba(197,164,78,0.5); }
+
+/* ===== LIVSOLO SECTION ===== */
+.vf-livsolo-section {
+  background: var(--navy);
+}
+.vf-livsolo-section::before {
+  content: ''; position: absolute; top: -150px; right: -150px;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(197,164,78,0.04), transparent 60%);
+  pointer-events: none;
+}
+.vf-livsolo-header { text-align: center; margin-bottom: 64px; }
+.vf-livsolo-header .vf-overline { justify-content: center; }
+.vf-livsolo-header .vf-overline::before { display: none; }
+
+.vf-livsolo-card {
+  background: rgba(17,34,64,0.5);
+  border: 1px solid rgba(197,164,78,0.12);
+  border-radius: 24px; padding: 56px 52px;
+  position: relative; overflow: hidden;
+}
+.vf-livsolo-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), var(--red-flag), var(--blue-flag));
+}
+.vf-livsolo-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start;
+}
+.vf-livsolo-quote {
+  font-family: var(--serif); font-size: 21px; font-style: italic;
+  color: rgba(255,255,255,0.75); line-height: 1.65; margin-bottom: 28px;
+  padding-left: 24px; border-left: 3px solid var(--gold);
+}
+.vf-livsolo-attr-name {
+  font-size: 14px; color: var(--gold); font-weight: 700; letter-spacing: 1px; margin-bottom: 4px;
+}
+.vf-livsolo-attr-role {
   font-size: 12px; color: rgba(255,255,255,0.35);
 }
-.livsolo-flow {
-  display: flex; flex-direction: column; gap: 0; position: relative;
-}
-.livsolo-flow-step {
-  display: flex; align-items: center; gap: 16px; padding: 16px 0;
-  position: relative;
-}
-.livsolo-flow-step::before {
-  content: ''; position: absolute; left: 20px; top: 0; bottom: 0;
-  width: 2px; background: rgba(197,164,78,0.12);
-}
-.livsolo-flow-step:first-child::before { top: 50%; }
-.livsolo-flow-step:last-child::before { bottom: 50%; }
-.livsolo-flow-icon {
-  width: 40px; height: 40px; min-width: 40px; border-radius: 50%;
-  background: rgba(197,164,78,0.08); border: 1px solid rgba(197,164,78,0.2);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 16px; position: relative; z-index: 1;
-}
-.livsolo-flow-text h4 {
-  font-family: var(--serif); font-size: 16px; color: var(--white); margin-bottom: 2px;
-}
-.livsolo-flow-text p {
-  font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5;
-}
-.livsolo-flow-arrow {
-  text-align: center; padding: 4px 0; color: rgba(197,164,78,0.3); font-size: 14px;
-  letter-spacing: 4px;
-}
-.livsolo-stats-row {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; margin-top: 40px;
-}
-.livsolo-stat {
-  text-align: center; padding: 24px 16px;
-  background: rgba(17,34,64,0.4); border: 1px solid rgba(197,164,78,0.08);
-  border-radius: 10px;
-}
-.livsolo-stat-num {
-  font-family: var(--serif); font-size: 28px; color: var(--gold); margin-bottom: 4px;
-}
-.livsolo-stat-label {
-  font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1px; text-transform: uppercase;
-}
-
-/* Expandable story */
-.livsolo-expand-trigger {
+.vf-livsolo-expand-btn {
   display: inline-flex; align-items: center; gap: 8px;
-  padding: 12px 28px; margin-top: 24px;
+  padding: 12px 28px; margin-top: 28px;
   background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.2);
-  border-radius: 4px; color: var(--gold); font-size: 12px; font-weight: 600;
+  border-radius: 4px; color: var(--gold); font-size: 11px; font-weight: 700;
   letter-spacing: 2px; text-transform: uppercase; cursor: pointer;
   transition: all 0.3s ease;
 }
-.livsolo-expand-trigger:hover {
-  background: rgba(197,164,78,0.12); border-color: var(--gold);
+.vf-livsolo-expand-btn:hover { background: rgba(197,164,78,0.12); border-color: var(--gold); }
+.vf-livsolo-expand-btn .arrow { transition: transform 0.3s; }
+.vf-livsolo-expand-btn.open .arrow { transform: rotate(180deg); }
+
+.vf-livsolo-flow-header {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: rgba(197,164,78,0.5); margin-bottom: 24px;
 }
-.livsolo-expand-trigger .arrow {
-  transition: transform 0.3s ease; display: inline-block;
+.vf-flow {
+  display: flex; flex-direction: column; gap: 0; position: relative;
 }
-.livsolo-expand-trigger.open .arrow { transform: rotate(180deg); }
-.livsolo-story {
-  max-height: 0; overflow: hidden; transition: max-height 0.6s ease;
+.vf-flow::before {
+  content: ''; position: absolute; left: 19px; top: 20px; bottom: 20px;
+  width: 2px; background: linear-gradient(to bottom, rgba(197,164,78,0.2), rgba(197,164,78,0.05));
 }
-.livsolo-story.open { max-height: 2000px; }
-.livsolo-story-inner {
-  padding-top: 40px;
+.vf-flow-step {
+  display: flex; align-items: flex-start; gap: 16px; padding: 14px 0;
 }
-.livsolo-story-grid {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 32px;
+.vf-flow-icon {
+  width: 40px; height: 40px; min-width: 40px;
+  border-radius: 50%; background: rgba(197,164,78,0.08);
+  border: 1px solid rgba(197,164,78,0.2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 16px; position: relative; z-index: 1; transition: all 0.3s;
 }
-.livsolo-story-block {
+.vf-flow-icon.active {
+  background: rgba(197,164,78,0.15); border-color: var(--gold);
+}
+.vf-flow-icon.complete {
+  background: rgba(16,185,129,0.1); border-color: rgba(16,185,129,0.3);
+}
+.vf-flow-text h4 { font-family: var(--serif); font-size: 16px; color: var(--white); margin-bottom: 3px; }
+.vf-flow-text p { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+
+.vf-livsolo-story { max-height: 0; overflow: hidden; transition: max-height 0.7s ease; }
+.vf-livsolo-story.open { max-height: 3000px; }
+.vf-livsolo-story-inner { padding-top: 48px; }
+.vf-livsolo-story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+.vf-story-block {
   background: rgba(17,34,64,0.4); border: 1px solid rgba(197,164,78,0.08);
-  border-radius: 10px; padding: 32px;
+  border-radius: 12px; padding: 32px;
 }
-.livsolo-story-block h4 {
-  font-family: var(--serif); font-size: 20px; color: var(--white); margin-bottom: 12px;
-}
-.livsolo-story-block p {
-  font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7;
-}
-.livsolo-story-block .highlight {
-  color: var(--gold); font-weight: 600;
-}
-.livsolo-data-points {
-  display: flex; flex-direction: column; gap: 12px; margin-top: 16px;
-}
-.livsolo-data-point {
+.vf-story-block h4 { font-family: var(--serif); font-size: 20px; color: var(--white); margin-bottom: 14px; }
+.vf-story-block p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+.vf-story-block p + p { margin-top: 12px; }
+.vf-story-highlight { color: var(--gold); font-weight: 600; }
+.vf-data-points { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; }
+.vf-data-point {
   display: flex; align-items: baseline; gap: 10px;
   font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.5;
 }
-.livsolo-data-point strong {
-  font-family: var(--serif); font-size: 18px; color: var(--gold); min-width: 60px;
-}
+.vf-data-point strong { font-family: var(--serif); font-size: 20px; color: var(--gold); min-width: 54px; }
 
-@media (max-width: 1024px) {
-  .livsolo-grid { grid-template-columns: 1fr; }
-  .livsolo-stats-row { grid-template-columns: 1fr; }
-  .livsolo-story-grid { grid-template-columns: 1fr; }
+.vf-livsolo-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px;
 }
-@media (max-width: 768px) {
-  .livsolo-card { padding: 32px 20px; }
+.vf-livsolo-stat {
+  text-align: center; padding: 28px 20px;
+  background: rgba(17,34,64,0.4); border: 1px solid rgba(197,164,78,0.08);
+  border-radius: 12px; transition: all 0.3s;
 }
+.vf-livsolo-stat:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-3px); }
+.vf-livsolo-stat-num { font-family: var(--serif); font-size: 36px; color: var(--gold); margin-bottom: 6px; }
+.vf-livsolo-stat-label { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 1.5px; text-transform: uppercase; }
 
-/* ===== FLYWHEEL / BEFORE & AFTER ===== */
-.flywheel-section { background: var(--navy); position: relative; overflow: hidden; }
-.flywheel-section::before {
+/* ===== FLYWHEEL SECTION ===== */
+.vf-flywheel-section {
+  background: var(--navy-deep);
+}
+.vf-flywheel-section::before {
   content: ''; position: absolute; top: -200px; left: 50%; transform: translateX(-50%);
-  width: 800px; height: 800px;
-  background: radial-gradient(circle, rgba(197,164,78,0.03) 0%, transparent 60%);
+  width: 900px; height: 900px;
+  background: radial-gradient(circle, rgba(197,164,78,0.025) 0%, transparent 60%);
   pointer-events: none;
 }
-.flywheel-section .section-title { color: var(--white); }
-.flywheel-section .section-subtitle { color: rgba(255,255,255,0.5); }
-.flywheel-flow {
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; margin-top: 56px;
-  align-items: start;
+.vf-flywheel-header { text-align: center; margin-bottom: 72px; }
+.vf-flywheel-header .vf-overline { justify-content: center; }
+.vf-flywheel-header .vf-overline::before { display: none; }
+.vf-flywheel-layout {
+  display: grid; grid-template-columns: 1fr 120px 1fr; gap: 0; align-items: start;
 }
-.flywheel-col { display: flex; flex-direction: column; gap: 20px; }
-.flywheel-center {
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  padding: 20px 24px; position: relative;
+.vf-fw-col { display: flex; flex-direction: column; gap: 16px; }
+.vf-fw-col-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; text-align: center;
+  padding: 12px 16px; border-radius: 8px; margin-bottom: 4px;
 }
-.flywheel-center-line {
-  width: 2px; height: 100%; background: linear-gradient(to bottom, transparent, rgba(197,164,78,0.15), transparent);
-  position: absolute; top: 0;
+.vf-fw-col-label.before { color: rgba(178,34,52,0.8); background: rgba(178,34,52,0.06); border: 1px solid rgba(178,34,52,0.12); }
+.vf-fw-col-label.after  { color: rgba(197,164,78,0.8); background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.12); }
+.vf-fw-step {
+  background: rgba(17,34,64,0.5); border: 1px solid rgba(197,164,78,0.07);
+  border-radius: 12px; padding: 28px 26px;
+  transition: all 0.3s; position: relative;
 }
-.flywheel-center-badge {
-  background: rgba(197,164,78,0.08); border: 1px solid rgba(197,164,78,0.2);
-  border-radius: 50%; width: 80px; height: 80px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  position: sticky; top: 50%;
-}
-.flywheel-center-badge span:first-child {
-  font-family: var(--serif); font-size: 11px; color: var(--gold); letter-spacing: 1px;
-}
-.flywheel-center-badge span:last-child {
-  font-size: 7px; color: rgba(197,164,78,0.5); text-transform: uppercase; letter-spacing: 1.5px;
-}
-.fw-step {
-  background: rgba(17,34,64,0.5); border: 1px solid rgba(197,164,78,0.08);
-  border-radius: 10px; padding: 28px 24px; position: relative;
-  transition: all 0.3s ease;
-}
-.fw-step:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-2px); }
-.fw-step-num {
-  font-family: var(--serif); font-size: 11px; color: var(--gold); opacity: 0.5;
-  margin-bottom: 8px;
-}
-.fw-step h4 { font-family: var(--serif); font-size: 18px; color: var(--white); margin-bottom: 8px; }
-.fw-step p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.6; }
-.fw-step-stat {
-  margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(197,164,78,0.08);
+.vf-fw-step:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-3px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+.vf-fw-step-num { font-size: 10px; color: rgba(197,164,78,0.4); font-weight: 700; letter-spacing: 2px; margin-bottom: 8px; }
+.vf-fw-step h4 { font-family: var(--serif); font-size: 19px; color: var(--white); margin-bottom: 8px; }
+.vf-fw-step p { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.65; }
+.vf-fw-step-stat {
+  margin-top: 14px; padding-top: 14px;
+  border-top: 1px solid rgba(197,164,78,0.08);
   display: flex; align-items: baseline; gap: 6px;
 }
-.fw-step-stat strong { font-family: var(--serif); font-size: 20px; color: var(--gold); }
-.fw-step-stat span { font-size: 11px; color: rgba(255,255,255,0.3); }
-.fw-col-header {
-  font-size: 11px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase;
-  text-align: center; padding: 12px 16px; margin-bottom: 4px; border-radius: 8px;
+.vf-fw-step-stat strong { font-family: var(--serif); font-size: 22px; color: var(--gold); }
+.vf-fw-step-stat span { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+.vf-fw-center {
+  display: flex; flex-direction: column; align-items: center; justify-content: flex-start;
+  padding: 56px 0 0; position: relative;
 }
-.fw-col-header.before { color: var(--red); background: rgba(178,34,52,0.06); border: 1px solid rgba(178,34,52,0.1); }
-.fw-col-header.after { color: var(--gold); background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.1); }
-.flywheel-summary {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 24px; margin-top: 56px; padding-top: 40px;
+.vf-fw-center-line {
+  position: absolute; top: 0; bottom: 0; left: 50%; transform: translateX(-50%);
+  width: 1px; background: linear-gradient(to bottom, transparent, rgba(197,164,78,0.15), transparent);
+}
+.vf-fw-center-badge {
+  position: sticky; top: 50%;
+  background: rgba(197,164,78,0.08); border: 1px solid rgba(197,164,78,0.25);
+  border-radius: 50%; width: 84px; height: 84px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 1; box-shadow: 0 0 40px rgba(197,164,78,0.1);
+  animation: centerPulse 3s ease-in-out infinite;
+}
+@keyframes centerPulse {
+  0%,100% { box-shadow: 0 0 40px rgba(197,164,78,0.08); }
+  50% { box-shadow: 0 0 60px rgba(197,164,78,0.18); }
+}
+.vf-fw-center-badge span:first-child { font-family: var(--serif); font-size: 12px; color: var(--gold); letter-spacing: 1px; }
+.vf-fw-center-badge span:last-child { font-size: 7px; color: rgba(197,164,78,0.5); text-transform: uppercase; letter-spacing: 1.5px; }
+
+.vf-flywheel-summary {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;
+  margin-top: 64px; padding-top: 48px;
   border-top: 1px solid rgba(197,164,78,0.08);
 }
+.vf-fw-summary-item {
+  text-align: center; padding: 32px 24px;
+  background: rgba(17,34,64,0.4); border: 1px solid rgba(197,164,78,0.07);
+  border-radius: 12px; transition: all 0.3s;
+}
+.vf-fw-summary-item:hover { border-color: rgba(197,164,78,0.18); }
+.vf-fw-summary-num { font-family: var(--serif); font-size: 40px; color: var(--gold); margin-bottom: 8px; }
+.vf-fw-summary-label { font-size: 11px; color: rgba(255,255,255,0.35); letter-spacing: 2px; text-transform: uppercase; line-height: 1.5; }
 
-/* ===== TELEMEDICINE DIRECT ACCESS ===== */
-.tele-section { background: var(--white); }
-.tele-section .section-title { color: var(--text-dark); }
-.tele-section .section-subtitle { color: var(--text-muted); }
-.tele-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 20px; margin-bottom: 40px;
+/* ===== VA PARTNERSHIP ===== */
+.vf-va-section { background: #fafaf8; }
+.vf-va-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px;
 }
-.tele-card {
-  background: var(--white); border: 1px solid rgba(0,0,0,0.07);
-  border-radius: 12px; padding: 28px 24px;
-  transition: all 0.3s ease; position: relative; overflow: hidden;
+.vf-va-card {
+  background: #fff; border: 1px solid rgba(0,0,0,0.07);
+  border-radius: 16px; padding: 40px 32px;
+  position: relative; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1); overflow: hidden;
 }
-.tele-card::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0;
-  height: 3px; background: linear-gradient(90deg, var(--gold), rgba(197,164,78,0.3));
-  transform: scaleX(0); transform-origin: left; transition: transform 0.3s ease;
+.vf-va-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(90deg, var(--gold), rgba(197,164,78,0.2));
+  transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
 }
-.tele-card:hover::before { transform: scaleX(1); }
-.tele-card:hover {
-  transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.08);
-  border-color: rgba(197,164,78,0.2);
+.vf-va-card:hover::before { transform: scaleX(1); }
+.vf-va-card:hover { transform: translateY(-6px); box-shadow: 0 24px 64px rgba(0,0,0,0.1); border-color: rgba(197,164,78,0.25); }
+.vf-va-badge {
+  display: inline-flex; align-items: center; padding: 5px 14px;
+  border-radius: 20px; font-size: 10px; font-weight: 700;
+  letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px;
 }
-.tele-card-icon {
-  width: 52px; height: 52px; border-radius: 12px;
-  background: rgba(197,164,78,0.07); border: 1px solid rgba(197,164,78,0.15);
-  display: flex; align-items: center; justify-content: center;
-  margin-bottom: 16px;
-}
-.tele-card h3 {
-  font-family: var(--serif); font-size: 18px; color: var(--text-dark);
-  margin-bottom: 8px; line-height: 1.3;
-}
-.tele-card p {
-  font-size: 13.5px; color: var(--text-muted); line-height: 1.65; margin-bottom: 16px;
-}
-.tele-card-badge {
-  display: inline-block; padding: 4px 12px; border-radius: 20px;
-  font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase;
-  background: rgba(197,164,78,0.08); color: var(--gold); border: 1px solid rgba(197,164,78,0.2);
-}
-.tele-banner {
-  display: flex; align-items: center; justify-content: center;
-  gap: 0; background: var(--navy); border-radius: 12px;
-  padding: 28px 40px; margin-top: 8px;
-}
-.tele-banner-stat {
-  display: flex; flex-direction: column; align-items: center;
-  flex: 1; text-align: center;
-}
-.tele-banner-stat span {
-  font-family: var(--serif); font-size: 28px; color: var(--gold);
-  display: block; margin-bottom: 4px;
-}
-.tele-banner-stat { font-size: 11px; color: rgba(255,255,255,0.45); letter-spacing: 1px; text-transform: uppercase; }
-.tele-banner-divider {
-  width: 1px; height: 40px; background: rgba(255,255,255,0.1); flex-shrink: 0;
-}
-@media (max-width: 900px) {
-  .tele-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 600px) {
-  .tele-grid { grid-template-columns: 1fr; }
-  .tele-banner { flex-wrap: wrap; gap: 20px; }
-  .tele-banner-divider { display: none; }
-}
-
-/* ===== VA OPPORTUNITIES (light) ===== */
-.va-section { background: var(--white); }
-.va-section .section-title { color: var(--text-dark); }
-.va-section .section-subtitle { color: var(--text-muted); }
-.va-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 24px; margin-top: 56px;
-}
-.va-card {
-  background: var(--white); border: 1px solid rgba(0,0,0,0.06);
-  border-radius: 12px; padding: 36px 32px; position: relative;
-  transition: all 0.3s ease;
-}
-.va-card:hover {
-  transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.08);
-  border-color: rgba(197,164,78,0.25);
-}
-.va-card-badge {
-  display: inline-block; padding: 5px 14px; border-radius: 20px;
-  font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
-  margin-bottom: 16px;
-}
-.va-card-badge.red { background: rgba(178,34,52,0.08); color: var(--red); }
-.va-card-badge.gold { background: rgba(197,164,78,0.1); color: var(--gold); }
-.va-card-badge.blue { background: rgba(60,59,110,0.08); color: var(--blue-flag); }
-.va-card h3 {
-  font-family: var(--serif); font-size: 22px; color: var(--text-dark); margin-bottom: 10px;
-}
-.va-card p { font-size: 14px; color: var(--text-muted); line-height: 1.65; margin-bottom: 20px; }
-.va-card-footer {
+.vf-va-badge.red { background: rgba(178,34,52,0.07); color: var(--red-flag); border: 1px solid rgba(178,34,52,0.12); }
+.vf-va-badge.gold { background: rgba(197,164,78,0.08); color: var(--gold); border: 1px solid rgba(197,164,78,0.18); }
+.vf-va-badge.blue { background: rgba(60,59,110,0.07); color: #5c5ba8; border: 1px solid rgba(60,59,110,0.12); }
+.vf-va-card h3 { font-family: var(--serif); font-size: 22px; color: var(--navy); margin-bottom: 10px; }
+.vf-va-card p { font-size: 14px; color: var(--text-muted); line-height: 1.7; margin-bottom: 20px; }
+.vf-va-card-footer {
   display: flex; justify-content: space-between; align-items: center;
-  border-top: 1px solid rgba(0,0,0,0.06); padding-top: 16px;
+  border-top: 1px solid rgba(0,0,0,0.05); padding-top: 18px;
 }
-.va-card-metric { display: flex; align-items: baseline; gap: 6px; }
-.va-metric-num { font-family: var(--serif); font-size: 24px; color: var(--gold); }
-.va-metric-label { font-size: 11px; color: var(--text-muted); }
+.vf-va-metric-num { font-family: var(--serif); font-size: 26px; color: var(--gold); }
+.vf-va-metric-label { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
 
 /* ===== TRUST / WHY ===== */
-.trust-section {
-  background: var(--navy); position: relative; overflow: hidden;
-}
-.trust-section::before {
-  content: ''; position: absolute; top: 0; right: 0;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(178,34,52,0.04) 0%, transparent 70%);
-  pointer-events: none;
-}
-.trust-section .section-title { color: var(--white); }
-.trust-section .section-subtitle { color: rgba(255,255,255,0.5); }
-.trust-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 28px; margin-top: 56px;
-}
-.trust-card {
-  text-align: center; padding: 48px 32px;
-  background: rgba(17,34,64,0.5); border: 1px solid rgba(197,164,78,0.08);
-  border-radius: 12px; transition: all 0.3s ease;
-}
-.trust-card:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-4px); }
-.trust-card-icon {
-  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 24px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 32px;
-}
-.trust-card h3 {
-  font-family: var(--serif); font-size: 22px; color: var(--white); margin-bottom: 12px;
-}
-.trust-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.65; }
-
-/* ===== CTA ===== */
-.cta-section {
-  background: var(--navy-deep); text-align: center; padding: 100px 40px;
+.vf-trust-section {
+  background: var(--navy);
   position: relative; overflow: hidden;
 }
-.cta-section::before {
+.vf-trust-section::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: radial-gradient(ellipse at 30% 70%, rgba(178,34,52,0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+.vf-trust-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 64px;
+}
+.vf-trust-card {
+  text-align: center; padding: 56px 36px;
+  background: rgba(17,34,64,0.5); border: 1px solid rgba(197,164,78,0.08);
+  border-radius: 16px; transition: all 0.35s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative; overflow: hidden;
+}
+.vf-trust-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent);
+  opacity: 0; transition: opacity 0.35s;
+}
+.vf-trust-card:hover::after { opacity: 1; }
+.vf-trust-card:hover { border-color: rgba(197,164,78,0.2); transform: translateY(-6px); box-shadow: 0 32px 80px rgba(0,0,0,0.4); }
+.vf-trust-icon {
+  width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 28px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 36px; position: relative;
+  background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.12);
+  transition: all 0.35s;
+}
+.vf-trust-card:hover .vf-trust-icon { background: rgba(197,164,78,0.12); border-color: rgba(197,164,78,0.3); }
+.vf-trust-card h3 { font-family: var(--serif); font-size: 24px; color: var(--white); margin-bottom: 14px; }
+.vf-trust-card p { font-size: 14px; color: rgba(255,255,255,0.45); line-height: 1.7; }
+
+/* ===== CTA ===== */
+.vf-cta-section {
+  background: var(--navy-deep);
+  position: relative; overflow: hidden;
+  padding: 120px 48px;
+}
+.vf-cta-section::before {
   content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, rgba(178,34,52,0.04) 0%, transparent 50%);
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(197,164,78,0.05) 0%, transparent 55%),
+    radial-gradient(ellipse at 20% 100%, rgba(178,34,52,0.04) 0%, transparent 40%);
 }
-.cta-flag-stripe {
+.vf-cta-flag-stripe {
   position: absolute; top: 0; left: 0; right: 0; height: 4px;
-  background: linear-gradient(90deg, var(--red) 0%, var(--red) 33%, var(--white) 33%, var(--white) 66%, var(--blue-flag) 66%);
+  background: linear-gradient(90deg, var(--red-flag) 33.3%, #fff 33.3% 66.6%, var(--blue-flag) 66.6%);
+  opacity: 0.5;
 }
-.cta-content { position: relative; z-index: 1; max-width: 700px; margin: 0 auto; }
-.cta-content h2 {
-  font-family: var(--serif); font-size: clamp(28px, 3.5vw, 44px);
-  color: var(--white); line-height: 1.3; margin-bottom: 20px;
+.vf-cta-inner {
+  position: relative; z-index: 1; max-width: 740px; margin: 0 auto; text-align: center;
 }
-.cta-content p { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.7; margin-bottom: 36px; }
+.vf-cta-inner h2 {
+  font-family: var(--serif); font-size: clamp(32px, 4vw, 52px);
+  color: var(--white); line-height: 1.2; margin-bottom: 22px; letter-spacing: -0.5px;
+}
+.vf-cta-inner h2 em { font-style: italic; color: var(--gold); }
+.vf-cta-inner p { font-size: 17px; color: rgba(255,255,255,0.45); line-height: 1.75; margin-bottom: 44px; }
+.vf-cta-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+/* ===== SCROLL REVEAL ===== */
+.reveal { opacity: 0; transform: translateY(32px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
-  .hero-inner { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .hero-desc { margin-left: auto; margin-right: auto; }
-  .hero-cta-row { justify-content: center; }
-  .services-grid { grid-template-columns: 1fr; }
-  .services-breakdown { grid-template-columns: 1fr; }
-  .flywheel-flow { grid-template-columns: 1fr; gap: 32px; }
-  .flywheel-summary { grid-template-columns: 1fr; }
-  .flywheel-center { flex-direction: row; padding: 0; }
-  .flywheel-center-line { display: none; }
-  .va-grid { grid-template-columns: 1fr; }
-  .trust-grid { grid-template-columns: 1fr; }
-  .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+  .vf-hero-inner { grid-template-columns: 1fr; gap: 48px; padding-top: 100px; }
+  .vf-hero-visual { display: none; }
+  .vf-impact-inner { grid-template-columns: repeat(2, 1fr); }
+  .vf-impact-item { border-bottom: 1px solid rgba(255,255,255,0.05); }
+  .vf-tele-grid { grid-template-columns: repeat(2, 1fr); }
+  .vf-services-grid { grid-template-columns: 1fr; }
+  .vf-services-breakdown { grid-template-columns: 1fr; }
+  .vf-livsolo-grid { grid-template-columns: 1fr; }
+  .vf-livsolo-stats { grid-template-columns: 1fr; }
+  .vf-livsolo-story-grid { grid-template-columns: 1fr; }
+  .vf-flywheel-layout { grid-template-columns: 1fr; gap: 32px; }
+  .vf-fw-center { flex-direction: row; padding: 0; justify-content: center; }
+  .vf-fw-center-line { display: none; }
+  .vf-flywheel-summary { grid-template-columns: 1fr; }
+  .vf-va-grid { grid-template-columns: 1fr; }
+  .vf-trust-grid { grid-template-columns: 1fr; }
+  .vf-tele-banner { grid-template-columns: repeat(2, 1fr); }
+  .vf-hero-proof { flex-wrap: wrap; gap: 24px; }
 }
 @media (max-width: 768px) {
-  .top-bar-inner { padding: 0 20px; }
+  .vf-section { padding: 72px 24px; }
+  .vf-hero-inner { padding: 100px 24px 60px; }
+  .vf-cta-section { padding: 80px 24px; }
+  .top-bar-inner { padding: 0 24px; }
   .top-bar-nav { display: none; }
   .nav-toggle { display: block; }
   .top-bar-nav.open {
     display: flex; flex-direction: column;
-    position: absolute; top: 64px; left: 0; right: 0;
-    background: var(--navy-deep); border-bottom: 1px solid rgba(197,164,78,0.2);
-    padding: 16px 0;
+    position: absolute; top: 72px; left: 0; right: 0;
+    background: rgba(6,14,26,0.97); border-bottom: 1px solid rgba(197,164,78,0.2);
+    padding: 16px 0; backdrop-filter: blur(20px);
   }
   .top-bar-nav.open .nav-item { padding: 14px 24px; }
-  .hero-inner { padding: 40px 20px; }
-  .section { padding: 60px 20px; }
-  .stats-bar { padding: 32px 20px; }
-  .stats-bar-inner { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .stat-num { font-size: 32px; }
-  .bridge-canvas-wrap { max-width: 320px; }
+  .vf-impact-inner { grid-template-columns: 1fr 1fr; }
+  .vf-tele-grid { grid-template-columns: 1fr; }
+  .vf-tele-banner { grid-template-columns: 1fr 1fr; }
+  .vf-livsolo-card { padding: 36px 24px; }
+  .vf-hero-proof { display: grid; grid-template-columns: 1fr 1fr; }
 }
 </style>
 </head>
@@ -564,570 +717,600 @@
 <!-- Nav injected by nav.js -->
 
 <!-- ===== HERO ===== -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-stars">
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-    <div class="star"></div><div class="star"></div><div class="star"></div>
-  </div>
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-eyebrow"><span class="flag-icon">&#127482;&#127480;</span> Veterans First Initiative</div>
-      <h1 class="hero-title">They served us.<br>Now we serve <em>them.</em></h1>
-      <p class="hero-desc">The InPursuit app sits on top of both DoD and VA systems — bridging the gap so no veteran's records are lost in transition. AI-powered preparation before every visit. Intelligent engagement after. One app, seamless care, powered by TETRA&trade;.</p>
-      <div class="hero-cta-row">
+<section class="vf-hero">
+  <div class="vf-hero-bg"></div>
+  <div class="vf-hero-grid"></div>
+  <div class="vf-hero-stars" id="heroStars"></div>
+
+  <div class="vf-hero-inner">
+    <div class="vf-hero-content">
+      <div class="vf-hero-badge reveal">
+        <span class="flag-stars">&#9733;&#9733;&#9733;</span>
+        Veterans First Initiative
+      </div>
+      <h1 class="vf-hero-title reveal">
+        They served us.<br>
+        Now we serve <em>them.</em>
+      </h1>
+      <p class="vf-hero-desc reveal">The InPursuit app bridges DoD and VA systems so no veteran's record is ever lost in transition. AI-powered preparation before every visit. Intelligent engagement after. One app, seamless care — powered by TETRA&trade;.</p>
+      <div class="vf-hero-cta reveal">
         <a class="btn-gold" href="#services">Explore Veterans First &darr;</a>
         <a class="btn-outline" href="mailto:veterans@inpursuithealth.com">Partner With Us</a>
       </div>
+      <div class="vf-hero-proof reveal">
+        <div class="vf-proof-item">
+          <div class="vf-proof-num">18M</div>
+          <div class="vf-proof-label">U.S. Veterans</div>
+        </div>
+        <div class="vf-proof-item">
+          <div class="vf-proof-num">95%</div>
+          <div class="vf-proof-label">Record Continuity</div>
+        </div>
+        <div class="vf-proof-item">
+          <div class="vf-proof-num">41K+</div>
+          <div class="vf-proof-label">DoD &amp; VA Servers</div>
+        </div>
+        <div class="vf-proof-item">
+          <div class="vf-proof-num">100%</div>
+          <div class="vf-proof-label">Veteran-Owned</div>
+        </div>
+      </div>
     </div>
-    <div class="hero-visual">
-      <div class="bridge-canvas-wrap">
+    <div class="vf-hero-visual reveal">
+      <div class="vf-bridge-wrap">
         <canvas id="bridgeCanvas"></canvas>
       </div>
     </div>
   </div>
-  <div class="hero-flag-stripe"></div>
+  <div class="vf-flag-stripe"></div>
 </section>
 
-<!-- ===== IMPACT STATS ===== -->
-<div class="stats-bar">
-  <div class="stats-bar-inner">
-    <div class="stat-block reveal">
-      <div class="stat-num" data-count="18">0</div>
-      <div class="stat-label">Million U.S. Veterans</div>
-      <div class="stat-sub">Deserving seamless care</div>
+<!-- ===== IMPACT BAR ===== -->
+<div class="vf-impact-bar">
+  <div class="vf-impact-inner">
+    <div class="vf-impact-item reveal">
+      <span class="vf-impact-num">18M</span>
+      <div class="vf-impact-label">U.S. Veterans</div>
+      <div class="vf-impact-sub">Deserving seamless care</div>
     </div>
-    <div class="stat-block reveal">
-      <div class="stat-num">95%</div>
-      <div class="stat-label">Record Continuity</div>
-      <div class="stat-sub">DoD &rarr; VA transition</div>
+    <div class="vf-impact-item reveal">
+      <span class="vf-impact-num">95%</span>
+      <div class="vf-impact-label">Record Continuity</div>
+      <div class="vf-impact-sub">DoD &rarr; VA transition</div>
     </div>
-    <div class="stat-block reveal">
-      <div class="stat-num">2.7M</div>
-      <div class="stat-label">Rural Veterans</div>
-      <div class="stat-sub">Limited facility access</div>
+    <div class="vf-impact-item reveal">
+      <span class="vf-impact-num">2.7M</span>
+      <div class="vf-impact-label">Rural Veterans</div>
+      <div class="vf-impact-sub">Now with full virtual access</div>
     </div>
-    <div class="stat-block reveal">
-      <div class="stat-num">41K+</div>
-      <div class="stat-label">DoD &amp; VA Servers</div>
-      <div class="stat-sub">Battle-tested platform</div>
+    <div class="vf-impact-item reveal">
+      <span class="vf-impact-num">41K+</span>
+      <div class="vf-impact-label">DoD &amp; VA Servers</div>
+      <div class="vf-impact-sub">Battle-tested platform</div>
     </div>
   </div>
 </div>
 
-<!-- ===== TELEMEDICINE DIRECT ACCESS ===== -->
-<section class="section tele-section" id="telemedicine">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal" style="text-align:center;">Direct Access for Service Members &amp; Veterans</p>
-    <h2 class="section-title reveal" style="text-align:center;">Your phone is now<br><em>your clinic.</em></h2>
-    <p class="section-subtitle reveal" style="text-align:center; margin: 0 auto 56px;">No waiting rooms. No referral delays. No lost records. InPursuit gives every service member and veteran on-demand virtual care — with full DoD and VA record context built in.</p>
+<!-- ===== TELEMEDICINE ===== -->
+<section class="vf-section vf-tele-section" id="telemedicine">
+  <div class="vf-section-inner">
+    <div class="vf-tele-header">
+      <div class="vf-overline reveal">Direct Access for Service Members &amp; Veterans</div>
+      <h2 class="vf-heading vf-heading-dark reveal">Your phone is now<br><em>your clinic.</em></h2>
+      <p class="vf-subheading vf-subheading-dark reveal" style="margin: 16px auto 0; text-align:center;">No waiting rooms. No referral delays. No lost records. InPursuit gives every service member and veteran on-demand virtual care — with full DoD and VA record context built in.</p>
+    </div>
 
-    <div class="tele-grid">
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+    <div class="vf-tele-grid">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 .01h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
         </div>
         <h3>24/7 On-Demand Visits</h3>
         <p>Connect with a board-certified provider in minutes — primary care, urgent care, PTSD counseling, and specialist consults available around the clock, wherever you are deployed or stationed.</p>
-        <div class="tele-card-badge">Available Now</div>
+        <div class="vf-tele-pill">Available Now</div>
       </div>
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><circle cx="12" cy="10" r="3"/></svg>
         </div>
         <h3>Full Record Context, Every Visit</h3>
         <p>Every virtual visit is pre-loaded with your complete DoD and VA record — providers see your service history, medications, prior conditions, and TETRA-unified health data before you say a word.</p>
-        <div class="tele-card-badge">TETRA Powered</div>
+        <div class="vf-tele-pill">TETRA Powered</div>
       </div>
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
         </div>
         <h3>Mental Health &amp; PTSD Support</h3>
         <p>Therapy, substance abuse counseling, and 24/7 crisis intervention — with AI-powered risk assessment that flags early warning signs and routes to the right level of care before a crisis occurs.</p>
-        <div class="tele-card-badge">Crisis-Ready</div>
+        <div class="vf-tele-pill">Crisis-Ready</div>
       </div>
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
         </div>
         <h3>Chronic Condition Management</h3>
-        <p>Remote patient monitoring for diabetes, hypertension, TBI recovery, and MSK pain — with wearable data flowing directly to your care team, creating proactive alerts 30-60 days before issues escalate.</p>
-        <div class="tele-card-badge">Remote Monitoring</div>
+        <p>Remote monitoring for diabetes, hypertension, TBI recovery, and MSK pain — with wearable data flowing directly to your care team, creating proactive alerts 30–60 days before issues escalate.</p>
+        <div class="vf-tele-pill">Remote Monitoring</div>
       </div>
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"/></svg>
         </div>
         <h3>E-Prescriptions &amp; Rx Intelligence</h3>
-        <p>Virtual providers can prescribe directly to any pharmacy. InPursuit then price-compares generics, stacks coupons, and flags VA formulary options — ensuring veterans never overpay for medications.</p>
-        <div class="tele-card-badge">Instant Rx</div>
+        <p>Virtual providers prescribe directly to any pharmacy. InPursuit price-compares generics, stacks coupons, and flags VA formulary options — ensuring veterans never overpay for medications.</p>
+        <div class="vf-tele-pill">Instant Rx</div>
       </div>
-
-      <div class="tele-card reveal">
-        <div class="tele-card-icon">
+      <div class="vf-tele-card reveal">
+        <div class="vf-tele-card-top"></div>
+        <div class="vf-tele-icon">
           <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
         </div>
         <h3>Rural &amp; Deployed Access</h3>
-        <p>For the 2.7M veterans in rural areas and active service members abroad — full virtual care with no facility proximity required. Low-bandwidth optimized for field connectivity, available in all 50 states.</p>
-        <div class="tele-card-badge">Nationwide</div>
+        <p>For the 2.7M veterans in rural areas and active service members abroad — full virtual care with no facility proximity required. Low-bandwidth optimized, available in all 50 states.</p>
+        <div class="vf-tele-pill">Nationwide</div>
       </div>
-
     </div>
 
-    <div class="tele-banner reveal">
-      <div class="tele-banner-stat"><span>24/7</span>On-Demand Care</div>
-      <div class="tele-banner-divider"></div>
-      <div class="tele-banner-stat"><span>&lt;5 min</span>Average Wait Time</div>
-      <div class="tele-banner-divider"></div>
-      <div class="tele-banner-stat"><span>20–40%</span>vs. In-Person Cost</div>
-      <div class="tele-banner-divider"></div>
-      <div class="tele-banner-stat"><span>All 50</span>States Covered</div>
+    <div class="vf-tele-banner reveal">
+      <div class="vf-tele-banner-item">
+        <span class="vf-tele-banner-num">24/7</span>
+        <div class="vf-tele-banner-label">On-Demand Care</div>
+      </div>
+      <div class="vf-tele-banner-item">
+        <span class="vf-tele-banner-num">&lt;5 min</span>
+        <div class="vf-tele-banner-label">Average Wait Time</div>
+      </div>
+      <div class="vf-tele-banner-item">
+        <span class="vf-tele-banner-num">20–40%</span>
+        <div class="vf-tele-banner-label">vs. In-Person Cost</div>
+      </div>
+      <div class="vf-tele-banner-item">
+        <span class="vf-tele-banner-num">All 50</span>
+        <div class="vf-tele-banner-label">States Covered</div>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ===== CORE SERVICES (dark) ===== -->
-<section class="section services-section" id="services">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal">Veteran-Centric Virtual Care</p>
-    <h2 class="section-title reveal">From pre-visit to post-visit.<br><em>Every step, covered.</em></h2>
-    <p class="section-subtitle reveal">TETRA powers the full continuum of veteran care — AI preparation before the appointment, comprehensive virtual services during, and engagement tools that keep veterans healthy after.</p>
-    <div class="services-grid">
+<section class="vf-section vf-services-section" id="services">
+  <div class="vf-section-inner">
+    <div class="vf-services-header">
+      <div class="vf-overline reveal">Veteran-Centric Virtual Care</div>
+      <h2 class="vf-heading vf-heading-light reveal">From pre-visit to post-visit.<br><em>Every step, covered.</em></h2>
+      <p class="vf-subheading vf-subheading-light reveal">TETRA powers the full continuum of veteran care — AI preparation before the appointment, comprehensive virtual services during, and engagement tools that keep veterans healthy after.</p>
+    </div>
 
-      <!-- Pre-Visit AI -->
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg></div>
+    <div class="vf-services-grid">
+      <div class="vf-svc-card reveal">
+        <div class="vf-svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+        </div>
         <h3>Pre-Visit AI Preparation</h3>
         <p>Revolutionary AI fuses VA and civilian records into personalized doctor notes, surfaces the right questions for each appointment, and shows exact costs, deductibles, and coverage options — before you walk in.</p>
-        <div class="service-stat">
-          <div class="service-stat-num">20-30</div>
-          <div class="service-stat-label">hours saved / veteran / year</div>
+        <div class="vf-svc-metric">
+          <div class="vf-svc-metric-num">20–30</div>
+          <div class="vf-svc-metric-label">hours saved<br>per veteran / year</div>
         </div>
       </div>
-
-      <!-- Comprehensive Virtual Care -->
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M18 14h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg></div>
+      <div class="vf-svc-card reveal">
+        <div class="vf-svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)"><path d="M18 14h-4v4h-4v-4H6v-4h4V6h4v4h4v4z"/></svg>
+        </div>
         <h3>Comprehensive Virtual Care</h3>
         <p>24/7 virtual primary care, urgent care, chronic disease management, MSK care with 50%+ pain reduction, specialty consults, and mental health counseling including PTSD and substance abuse support.</p>
-        <div class="service-stat">
-          <div class="service-stat-num">20-40%</div>
-          <div class="service-stat-label">cost savings vs. in-person</div>
+        <div class="vf-svc-metric">
+          <div class="vf-svc-metric-num">20–40%</div>
+          <div class="vf-svc-metric-label">cost savings<br>vs. in-person</div>
         </div>
       </div>
-
-      <!-- Post-Visit Engagement -->
-      <div class="service-card reveal">
-        <div class="service-icon"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></div>
+      <div class="vf-svc-card reveal">
+        <div class="vf-svc-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--gold)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
         <h3>Post-Visit Engagement</h3>
-        <p>AI-driven adherence nudges, gamified rewards marketplace where veterans earn $500-$1,000 annually, wearable integration with proactive alerts 30-60 days early, and family sharing for support networks.</p>
-        <div class="service-stat">
-          <div class="service-stat-num">89.4%</div>
-          <div class="service-stat-label">medication adherence vs 67.8% baseline</div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Comprehensive Services Breakdown -->
-    <div class="services-breakdown reveal">
-      <div style="background:rgba(17,34,64,0.4); border:1px solid rgba(178,34,52,0.15); border-radius:10px; padding:32px;">
-        <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(178,34,52,0.6); margin-bottom:16px;">Traditional Healthcare</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(178,34,52,0.2);">Virtual Primary Care — routine management, sick visits, refills</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(178,34,52,0.2);">Urgent Care — 24/7 video for non-emergencies, e-prescriptions</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(178,34,52,0.2);">Chronic Management — RPM for diabetes &amp; hypertension, care plans</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(178,34,52,0.2);">MSK Care — therapy for pain/joints via wearables (50%+ pain reduction)</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(178,34,52,0.2);">Specialty Consults — dermatology, cardiology, virtual nursing</div>
-        </div>
-      </div>
-      <div style="background:rgba(17,34,64,0.4); border:1px solid rgba(197,164,78,0.15); border-radius:10px; padding:32px;">
-        <div style="font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(197,164,78,0.6); margin-bottom:16px;">Wellness &amp; Behavioral Health</div>
-        <div style="display:flex; flex-direction:column; gap:10px;">
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(197,164,78,0.2);">Preventive Care — screenings, SDOH assessments, automated nudges</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(197,164,78,0.2);">Digital Behavioral Health — self-guided tools for stress, sleep, mood</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(197,164,78,0.2);">Mental Health Counseling — therapy for anxiety, PTSD, substance abuse</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(197,164,78,0.2);">Automated Programs — AI companions for recovery &amp; habit building</div>
-          <div style="font-size:13px; color:rgba(255,255,255,0.5); padding-left:16px; border-left:2px solid rgba(197,164,78,0.2);">Whole-Person Support — family/perinatal wellness, alcohol reduction</div>
+        <p>AI-driven adherence nudges, gamified rewards where veterans earn $500–$1,000 annually, wearable integration with proactive alerts 30–60 days early, and family sharing for support networks.</p>
+        <div class="vf-svc-metric">
+          <div class="vf-svc-metric-num">89.4%</div>
+          <div class="vf-svc-metric-label">medication adherence<br>vs. 67.8% baseline</div>
         </div>
       </div>
     </div>
-    <div style="text-align:center; margin-top:20px; padding:14px 24px; background:rgba(197,164,78,0.04); border:1px solid rgba(197,164,78,0.08); border-radius:8px; font-size:12px; color:rgba(255,255,255,0.4); letter-spacing:1px;" class="reveal">
-      Hybrid Care Nationwide &nbsp;&middot;&nbsp; 24/7 Access &nbsp;&middot;&nbsp; AI-Personalized &nbsp;&middot;&nbsp; 20-40% Cost Savings
-    </div>
 
+    <div class="vf-services-breakdown">
+      <div class="vf-breakdown-col reveal">
+        <div class="vf-breakdown-col-title red">Traditional Healthcare</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot red"></div>Virtual Primary Care — routine management, sick visits, refills</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot red"></div>Urgent Care — 24/7 video for non-emergencies, e-prescriptions</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot red"></div>Chronic Management — RPM for diabetes &amp; hypertension, care plans</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot red"></div>MSK Care — therapy for pain/joints via wearables (50%+ pain reduction)</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot red"></div>Specialty Consults — dermatology, cardiology, virtual nursing</div>
+      </div>
+      <div class="vf-breakdown-col reveal">
+        <div class="vf-breakdown-col-title gold">Wellness &amp; Behavioral Health</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot gold"></div>Preventive Care — screenings, SDOH assessments, automated nudges</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot gold"></div>Digital Behavioral Health — self-guided tools for stress, sleep, mood</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot gold"></div>Mental Health Counseling — therapy for anxiety, PTSD, substance abuse</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot gold"></div>Automated Programs — AI companions for recovery &amp; habit building</div>
+        <div class="vf-breakdown-item"><div class="vf-breakdown-dot gold"></div>Whole-Person Support — family/perinatal wellness, alcohol reduction</div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ===== LIVSOLO CONNECT ===== -->
-<section class="section livsolo-section" id="livsolo">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal" style="text-align:center;">&#127482;&#127480; Independence Through Technology</p>
-    <h2 class="section-title reveal" style="text-align:center;">LivSolo Connect&trade;<br><em>When voice is all you have, it should connect to everything.</em></h2>
-    <p class="section-subtitle reveal" style="text-align:center; margin: 0 auto;">Born from necessity. Built by a quadriplegic Marine. Powered by TETRA. LivSolo Connect turns a voice assistant into a gateway to enterprise healthcare — not just the consumer internet.</p>
+<section class="vf-section vf-livsolo-section" id="livsolo">
+  <div class="vf-section-inner">
+    <div class="vf-livsolo-header">
+      <div class="vf-overline reveal">&#127482;&#127480; Independence Through Technology</div>
+      <h2 class="vf-heading vf-heading-light reveal">LivSolo Connect&trade;<br><em>When voice is all you have, it should connect to everything.</em></h2>
+      <p class="vf-subheading vf-subheading-light reveal" style="margin: 16px auto 0; text-align:center;">Born from necessity. Built by a quadriplegic Marine. Powered by TETRA. LivSolo Connect turns a voice assistant into a gateway to enterprise healthcare — not just the consumer internet.</p>
+    </div>
 
-    <div class="livsolo-card reveal" style="margin-top:56px;">
-      <div class="livsolo-grid">
-        <!-- Left: Charlie's story -->
+    <div class="vf-livsolo-card reveal">
+      <div class="vf-livsolo-grid">
         <div>
-          <div class="livsolo-quote">
-            &ldquo;Since breaking my neck in 2014, one of the major disruptions of my daily life is making sure my refills for medications are current and ordered timely. Often, I forget &mdash; and that directly affects my ability to prevent acute issues because of my spinal cord injury.&rdquo;
+          <div class="vf-livsolo-quote">
+            &ldquo;Since breaking my neck in 2014, one of the major disruptions of my daily life is making sure my refills for medications are current and ordered timely. Often, I forget — and that directly affects my ability to prevent acute issues because of my spinal cord injury.&rdquo;
           </div>
-          <div class="livsolo-attribution">Charlie Merrit</div>
-          <div class="livsolo-attribution-sub">C3 Quadriplegic &nbsp;&middot;&nbsp; Former U.S. Marine &nbsp;&middot;&nbsp; LivSolo's Founding Patient</div>
-
-          <div class="livsolo-expand-trigger" id="livsoloTrigger" onclick="toggleLivsoloStory()">
-            Charlie's Full Story <span class="arrow">&darr;</span>
-          </div>
+          <div class="vf-livsolo-attr-name">Charlie Merrit</div>
+          <div class="vf-livsolo-attr-role">C3 Quadriplegic &nbsp;&middot;&nbsp; Former U.S. Marine &nbsp;&middot;&nbsp; LivSolo's Founding Patient</div>
+          <button class="vf-livsolo-expand-btn" id="livsoloTrigger" onclick="toggleLivsoloStory()">
+            Charlie's Full Story <span class="arrow">&#8595;</span>
+          </button>
         </div>
-
-        <!-- Right: How it works flow -->
         <div>
-          <div style="font-size:10px; font-weight:600; letter-spacing:3px; text-transform:uppercase; color:rgba(197,164,78,0.5); margin-bottom:20px;">How LivSolo Connect Works</div>
-          <div class="livsolo-flow">
-            <div class="livsolo-flow-step">
-              <div class="livsolo-flow-icon">&#127908;</div>
-              <div class="livsolo-flow-text">
+          <div class="vf-livsolo-flow-header">How LivSolo Connect Works</div>
+          <div class="vf-flow">
+            <div class="vf-flow-step">
+              <div class="vf-flow-icon">&#127908;</div>
+              <div class="vf-flow-text">
                 <h4>Charlie Speaks</h4>
-                <p>Voice command to any Alexa-enabled device &mdash; Show, Dot, phone, or watch</p>
+                <p>Voice command to any Alexa-enabled device — Show, Dot, phone, or watch</p>
               </div>
             </div>
-            <div class="livsolo-flow-arrow">&darr;&darr;&darr;</div>
-            <div class="livsolo-flow-step">
-              <div class="livsolo-flow-icon" style="background:rgba(197,164,78,0.12); border-color:rgba(197,164,78,0.35);">&#9881;</div>
-              <div class="livsolo-flow-text">
+            <div class="vf-flow-step">
+              <div class="vf-flow-icon active">&#9881;</div>
+              <div class="vf-flow-text">
                 <h4>LivSolo Connect Skill</h4>
                 <p>Single Alexa skill brokers all commands through the TETRA Alexa Bridge</p>
               </div>
             </div>
-            <div class="livsolo-flow-arrow">&darr;&darr;&darr;</div>
-            <div class="livsolo-flow-step">
-              <div class="livsolo-flow-icon" style="background:rgba(197,164,78,0.15); border-color:var(--gold);">&#9830;</div>
-              <div class="livsolo-flow-text">
+            <div class="vf-flow-step">
+              <div class="vf-flow-icon active" style="border-color:var(--gold);">&#9830;</div>
+              <div class="vf-flow-text">
                 <h4>TETRA Engine</h4>
-                <p>AI routes to enterprise data &mdash; VA VistA, prescriptions, scheduling, telehealth, local pharmacy</p>
+                <p>AI routes to enterprise data — VA VistA, prescriptions, scheduling, telehealth, local pharmacy</p>
               </div>
             </div>
-            <div class="livsolo-flow-arrow">&darr;&darr;&darr;</div>
-            <div class="livsolo-flow-step">
-              <div class="livsolo-flow-icon" style="background:rgba(16,185,129,0.1); border-color:rgba(16,185,129,0.3);">&#10003;</div>
-              <div class="livsolo-flow-text">
+            <div class="vf-flow-step">
+              <div class="vf-flow-icon complete">&#10003;</div>
+              <div class="vf-flow-text">
                 <h4>Action Completed</h4>
-                <p>Prescription refilled, appointment booked, provider contacted &mdash; all by voice</p>
+                <p>Prescription refilled, appointment booked, provider contacted — all by voice</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <!-- Expandable Story Section -->
-      <div class="livsolo-story" id="livsoloStory">
-        <div class="livsolo-story-inner">
-          <div class="livsolo-story-grid">
-            <div class="livsolo-story-block">
+      <div class="vf-livsolo-story" id="livsoloStory">
+        <div class="vf-livsolo-story-inner">
+          <div class="vf-livsolo-story-grid">
+            <div class="vf-story-block">
               <h4>The Problem</h4>
-              <p>For a C3 quadriplegic, voice is the primary — often <span class="highlight">only</span> — interface to the world. Consumer smart home devices connect to the general internet: music, weather, shopping. But they don't connect to the systems that matter most — VA medical records, prescription management, provider scheduling, and emergency services.</p>
-              <p style="margin-top:12px;">Charlie couldn't refill his own medications. He couldn't check his VA appointment. He couldn't alert his care team without someone physically present to make the call.</p>
+              <p>For a C3 quadriplegic, voice is the primary — often <span class="vf-story-highlight">only</span> — interface to the world. Consumer smart home devices connect to the general internet: music, weather, shopping. But they don't connect to the systems that matter most — VA medical records, prescription management, provider scheduling, and emergency services.</p>
+              <p>Charlie couldn't refill his own medications. He couldn't check his VA appointment. He couldn't alert his care team without someone physically present to make the call.</p>
             </div>
-            <div class="livsolo-story-block">
+            <div class="vf-story-block">
               <h4>The Breakthrough</h4>
-              <p>Using TETRA's interoperability engine, we built <span class="highlight">LivSolo Connect</span> — a single Alexa skill that bridges consumer voice technology to enterprise healthcare systems. One wake word. Unlimited capabilities.</p>
-              <p style="margin-top:12px;">Charlie says <span class="highlight">"Alexa, open LivSolo"</span> — and TETRA connects him to VA VistA, pharmacy systems, telehealth scheduling, prescription tracking, package notifications, and even 911 emergency services with automatic caregiver alerts.</p>
+              <p>Using TETRA's interoperability engine, we built <span class="vf-story-highlight">LivSolo Connect</span> — a single Alexa skill that bridges consumer voice technology to enterprise healthcare systems. One wake word. Unlimited capabilities.</p>
+              <p>Charlie says <span class="vf-story-highlight">"Alexa, open LivSolo"</span> — and TETRA connects him to VA VistA, pharmacy systems, telehealth scheduling, prescription tracking, package notifications, and even 911 emergency services with automatic caregiver alerts.</p>
             </div>
-            <div class="livsolo-story-block">
+            <div class="vf-story-block">
               <h4>Beyond Charlie</h4>
-              <div class="livsolo-data-points">
-                <div class="livsolo-data-point"><strong>5.4M</strong> Americans live with paralysis (CDC, 2013)</div>
-                <div class="livsolo-data-point"><strong>42K</strong> veterans live with spinal cord injuries, diseases, and disorders</div>
-                <div class="livsolo-data-point"><strong>17,730</strong> new spinal cord injuries occur each year</div>
-                <div class="livsolo-data-point"><strong>1.7%</strong> of the U.S. population lives with some form of paralysis</div>
+              <div class="vf-data-points">
+                <div class="vf-data-point"><strong>5.4M</strong> Americans live with paralysis (CDC, 2013)</div>
+                <div class="vf-data-point"><strong>42K</strong> veterans live with spinal cord injuries, diseases, and disorders</div>
+                <div class="vf-data-point"><strong>17,730</strong> new spinal cord injuries occur each year</div>
+                <div class="vf-data-point"><strong>1.7%</strong> of the U.S. population lives with some form of paralysis</div>
               </div>
             </div>
-            <div class="livsolo-story-block">
+            <div class="vf-story-block">
               <h4>What LivSolo Connect Does</h4>
-              <div class="livsolo-data-points">
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> Prescription refill alerts and pharmacy interface</div>
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> Schedule in-person or telehealth visits by voice</div>
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> 911 emergency with automatic caregiver notification</div>
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> Remote patient monitoring and vital data on-demand</div>
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> Full smart home environmental control</div>
-                <div class="livsolo-data-point" style="align-items:center;"><span style="color:var(--gold); min-width:24px;">&#8226;</span> Expandable to Google, Apple, Microsoft, and IoT devices</div>
+              <div class="vf-data-points">
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> Prescription refill alerts and pharmacy interface</div>
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> Schedule in-person or telehealth visits by voice</div>
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> 911 emergency with automatic caregiver notification</div>
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> Remote patient monitoring and vital data on-demand</div>
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> Full smart home environmental control</div>
+                <div class="vf-data-point"><span style="color:var(--gold);min-width:20px;">&#8226;</span> Expandable to Google, Apple, Microsoft, and IoT devices</div>
               </div>
             </div>
-          </div>
-          <div style="text-align:center; margin-top:32px; padding:16px 24px; background:rgba(197,164,78,0.04); border:1px solid rgba(197,164,78,0.08); border-radius:8px; font-size:12px; color:rgba(255,255,255,0.4); letter-spacing:1px;">
-            Out-of-the-Box &nbsp;&middot;&nbsp; Voice-First &nbsp;&middot;&nbsp; Enterprise-Connected &nbsp;&middot;&nbsp; Under $20,000 per patient (FAR 18.2)
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Stats row -->
-    <div class="livsolo-stats-row reveal">
-      <div class="livsolo-stat">
-        <div class="livsolo-stat-num">42K</div>
-        <div class="livsolo-stat-label">Veterans with SCI</div>
+    <div class="vf-livsolo-stats reveal">
+      <div class="vf-livsolo-stat">
+        <div class="vf-livsolo-stat-num">42K</div>
+        <div class="vf-livsolo-stat-label">Veterans with SCI</div>
       </div>
-      <div class="livsolo-stat">
-        <div class="livsolo-stat-num">5.4M</div>
-        <div class="livsolo-stat-label">Americans with Paralysis</div>
+      <div class="vf-livsolo-stat">
+        <div class="vf-livsolo-stat-num">5.4M</div>
+        <div class="vf-livsolo-stat-label">Americans with Paralysis</div>
       </div>
-      <div class="livsolo-stat">
-        <div class="livsolo-stat-num">1</div>
-        <div class="livsolo-stat-label">Voice Command Away</div>
+      <div class="vf-livsolo-stat">
+        <div class="vf-livsolo-stat-num">1</div>
+        <div class="vf-livsolo-stat-label">Voice Command Away</div>
       </div>
     </div>
-
   </div>
 </section>
 
-<section class="section flywheel-section" id="flywheel">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal" style="text-align:center;">Powered by TETRA&trade;</p>
-    <h2 class="section-title reveal" style="text-align:center;">Before the visit. <em>After the visit.</em><br>The InPursuit app never stops working.</h2>
-    <p class="section-subtitle reveal" style="text-align:center; margin: 0 auto;">The real innovation isn't the appointment — it's everything around it. AI-powered preparation before, intelligent engagement after, delivered through a single veteran-centric app.</p>
+<!-- ===== FLYWHEEL ===== -->
+<section class="vf-section vf-flywheel-section" id="flywheel">
+  <div class="vf-section-inner">
+    <div class="vf-flywheel-header">
+      <div class="vf-overline reveal">Powered by TETRA&trade;</div>
+      <h2 class="vf-heading vf-heading-light reveal">Before the visit. <em>After the visit.</em><br>The InPursuit app never stops working.</h2>
+      <p class="vf-subheading vf-subheading-light reveal" style="margin: 16px auto 0; text-align:center; max-width:640px;">The real innovation isn't the appointment — it's everything around it. AI-powered preparation before, intelligent engagement after, delivered through a single veteran-centric app.</p>
+    </div>
 
-    <div class="flywheel-flow">
-      <!-- BEFORE Column -->
-      <div class="flywheel-col reveal">
-        <div class="fw-col-header before">&#9664; Before the Visit</div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">01</div>
+    <div class="vf-flywheel-layout">
+      <div class="vf-fw-col reveal">
+        <div class="vf-fw-col-label before">&#9664; Before the Visit</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">01</div>
           <h4>Deep Record Fusion</h4>
           <p>AI scans complete VA and civilian EHR data to create tailored doctor notes and personalized patient questions — highlighting critical history for PTSD, HBOT, or chronic condition preparation.</p>
-          <div class="fw-step-stat">
-            <strong>80%</strong><span>of unstructured veteran data — unified</span>
-          </div>
+          <div class="vf-fw-step-stat"><strong>80%</strong><span>of unstructured veteran data — unified</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">02</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">02</div>
           <h4>Cost Intelligence</h4>
           <p>Real-time payer and VA integration reveals exact deductibles, coverage options, and $20 copay vs. $200 out-of-pocket comparisons — before the veteran walks in.</p>
-          <div class="fw-step-stat">
-            <strong>20-30%</strong><span>reduction in out-of-pocket surprises</span>
-          </div>
+          <div class="vf-fw-step-stat"><strong>20–30%</strong><span>reduction in out-of-pocket surprises</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">03</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">03</div>
           <h4>Proactive Health Alerts</h4>
-          <p>Wearable data surfaces wellness gaps 30-60 days early — suggesting preventive interventions like therapy adjustments before issues escalate into ED visits.</p>
-          <div class="fw-step-stat">
-            <strong>82.5%</strong><span>better intervention response rates</span>
-          </div>
+          <p>Wearable data surfaces wellness gaps 30–60 days early — suggesting preventive interventions before issues escalate into ED visits.</p>
+          <div class="vf-fw-step-stat"><strong>82.5%</strong><span>better intervention response rates</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">04</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">04</div>
           <h4>AI Question Generator</h4>
           <p>Personalized question lists and eligibility checks ensure veterans arrive prepared for meaningful consultations — turning raw data into actionable briefing packets.</p>
-          <div class="fw-step-stat">
-            <strong>50%</strong><span>higher veteran engagement</span>
-          </div>
+          <div class="vf-fw-step-stat"><strong>50%</strong><span>higher veteran engagement</span></div>
         </div>
       </div>
 
-      <!-- CENTER - TETRA Phone -->
-      <div class="flywheel-center reveal">
-        <div class="flywheel-center-line"></div>
-        <div class="flywheel-center-badge">
+      <div class="vf-fw-center reveal">
+        <div class="vf-fw-center-line"></div>
+        <div class="vf-fw-center-badge">
           <span>TETRA</span>
           <span>Engine</span>
         </div>
       </div>
 
-      <!-- AFTER Column -->
-      <div class="flywheel-col reveal">
-        <div class="fw-col-header after">After the Visit &#9654;</div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">01</div>
+      <div class="vf-fw-col reveal">
+        <div class="vf-fw-col-label after">After the Visit &#9654;</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">01</div>
           <h4>Automatic Data Merge</h4>
           <p>Visit outcomes automatically integrate into longitudinal records — feeding back for seamless therapy follow-ups, HBOT tracking, and medication adjustments across all providers.</p>
-          <div class="fw-step-stat">
-            <strong>95%</strong><span>record continuity maintained</span>
-          </div>
+          <div class="vf-fw-step-stat"><strong>95%</strong><span>record continuity maintained</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">02</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">02</div>
           <h4>AI Adherence Nudges</h4>
-          <p>Intelligent reminders and tracking boost medication and therapy compliance from 67.8% baseline to 89.4% — cutting the $300B annual medication waste problem.</p>
-          <div class="fw-step-stat">
-            <strong>89.4%</strong><span>adherence vs. 67.8% baseline</span>
-          </div>
+          <p>Intelligent reminders and tracking boost medication and therapy compliance from 67.8% to 89.4% — cutting the $300B annual medication waste problem.</p>
+          <div class="vf-fw-step-stat"><strong>89.4%</strong><span>adherence vs. 67.8% baseline</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">03</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">03</div>
           <h4>Rewards Marketplace</h4>
-          <p>Gamified system where veterans earn points for therapy logging, wellness activities, and health milestones — redeeming $500-$1,000 annually in perks and benefits.</p>
-          <div class="fw-step-stat">
-            <strong>$500-$1K</strong><span>annual veteran rewards</span>
-          </div>
+          <p>Gamified system where veterans earn points for therapy logging, wellness activities, and health milestones — redeeming $500–$1,000 annually in perks and benefits.</p>
+          <div class="vf-fw-step-stat"><strong>$500–$1K</strong><span>annual veteran rewards</span></div>
         </div>
-
-        <div class="fw-step">
-          <div class="fw-step-num">04</div>
+        <div class="vf-fw-step">
+          <div class="vf-fw-step-num">04</div>
           <h4>Family Connection</h4>
           <p>Share progress with support networks, track integrative therapies together, and keep family engaged in the healing journey — driving 85% satisfaction through continuous engagement.</p>
-          <div class="fw-step-stat">
-            <strong>85%</strong><span>veteran satisfaction rate</span>
-          </div>
+          <div class="vf-fw-step-stat"><strong>85%</strong><span>veteran satisfaction rate</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Bottom summary bar -->
-    <div class="flywheel-summary reveal">
-      <div style="text-align:center;">
-        <div style="font-family:var(--serif); font-size:32px; color:var(--gold);">20-30</div>
-        <div style="font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase;">Hours Saved / Veteran / Year</div>
+    <div class="vf-flywheel-summary">
+      <div class="vf-fw-summary-item reveal">
+        <div class="vf-fw-summary-num">20–30</div>
+        <div class="vf-fw-summary-label">Hours Saved<br>Per Veteran / Year</div>
       </div>
-      <div style="text-align:center;">
-        <div style="font-family:var(--serif); font-size:32px; color:var(--gold);">24/7</div>
-        <div style="font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase;">Always-On Virtual Access</div>
+      <div class="vf-fw-summary-item reveal">
+        <div class="vf-fw-summary-num">24/7</div>
+        <div class="vf-fw-summary-label">Always-On<br>Virtual Access</div>
       </div>
-      <div style="text-align:center;">
-        <div style="font-family:var(--serif); font-size:32px; color:var(--gold);">50%</div>
-        <div style="font-size:11px; color:rgba(255,255,255,0.4); letter-spacing:1.5px; text-transform:uppercase;">Better Chronic Management</div>
+      <div class="vf-fw-summary-item reveal">
+        <div class="vf-fw-summary-num">50%</div>
+        <div class="vf-fw-summary-label">Better Chronic<br>Condition Management</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== VA PARTNERSHIP OPPORTUNITIES (light) ===== -->
-<section class="section va-section">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal">VA Partnership Opportunities</p>
-    <h2 class="section-title reveal">Delivering value to <em>Veterans Affairs.</em></h2>
-    <p class="section-subtitle reveal">Proven solutions for the VA's most pressing challenges — from EHR patient-facing layers to rural access and the veteran mental health crisis.</p>
-    <div class="va-grid">
+<!-- ===== VA PARTNERSHIP ===== -->
+<section class="vf-section vf-va-section">
+  <div class="vf-section-inner">
+    <div class="vf-overline reveal">VA Partnership Opportunities</div>
+    <h2 class="vf-heading vf-heading-dark reveal">Delivering value to <em>Veterans Affairs.</em></h2>
+    <p class="vf-subheading vf-subheading-dark reveal">Proven solutions for the VA's most pressing challenges — from EHR patient-facing layers to rural access and the veteran mental health crisis.</p>
 
-      <div class="va-card reveal">
-        <div class="va-card-badge red">170 Medical Centers</div>
+    <div class="vf-va-grid">
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge red">170 Medical Centers</div>
         <h3>EHR Patient-Facing Layer</h3>
         <p>Oracle-Cerner Federal EHR lacks veteran-friendly interfaces. TETRA provides the missing layer — mobile access, scheduling, medication management, and care coordination that veterans actually want to use.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">$100-300M</div><div class="va-metric-label">10-year contract potential</div></div>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">$100–300M</div>
+            <div class="vf-va-metric-label">10-year contract potential</div>
+          </div>
         </div>
       </div>
-
-      <div class="va-card reveal">
-        <div class="va-card-badge gold">Rural Healthcare Gap</div>
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge gold">Rural Healthcare Gap</div>
         <h3>Rural Veteran Access</h3>
         <p>Over 2.7 million veterans live in rural areas with limited VA facility access. InPursuit's telemedicine platform provides comprehensive virtual care, reducing travel burden and improving health outcomes.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">2.7M</div><div class="va-metric-label">rural veterans served</div></div>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">2.7M</div>
+            <div class="vf-va-metric-label">rural veterans served</div>
+          </div>
         </div>
       </div>
-
-      <div class="va-card reveal">
-        <div class="va-card-badge red">Mental Health Crisis</div>
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge red">Mental Health Crisis</div>
         <h3>Veteran Mental Health Platform</h3>
         <p>22 veterans die by suicide daily. InPursuit provides comprehensive mental health support — PTSD therapy, substance abuse counseling, 24/7 crisis intervention, and AI-powered risk assessment for proactive outreach.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">22</div><div class="va-metric-label">veteran suicides per day</div></div>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">22</div>
+            <div class="vf-va-metric-label">veteran suicides per day</div>
+          </div>
         </div>
       </div>
-
-      <div class="va-card reveal">
-        <div class="va-card-badge blue">Operational Efficiency</div>
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge blue">Operational Efficiency</div>
         <h3>Administrative Automation</h3>
-        <p>VA staff spend 60% of time on paperwork instead of patient care. InPursuit's AI reduces administrative tasks from 5-7 minutes to under 30 seconds — freeing clinicians to focus on veterans.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">60%</div><div class="va-metric-label">admin time reduction</div></div>
+        <p>VA staff spend 60% of time on paperwork instead of patient care. InPursuit's AI reduces administrative tasks from 5–7 minutes to under 30 seconds — freeing clinicians to focus on veterans.</p>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">60%</div>
+            <div class="vf-va-metric-label">admin time reduction</div>
+          </div>
         </div>
       </div>
-
-      <div class="va-card reveal">
-        <div class="va-card-badge gold">Financial Transparency</div>
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge gold">Financial Transparency</div>
         <h3>Veteran Cost Transparency</h3>
         <p>Veterans face $1,142 average out-of-pocket costs with limited visibility into coverage options. InPursuit provides real-time cost transparency, coverage comparison, and payment planning tools.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">$1,142</div><div class="va-metric-label">avg out-of-pocket reduced</div></div>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">$1,142</div>
+            <div class="vf-va-metric-label">avg out-of-pocket reduced</div>
+          </div>
         </div>
       </div>
-
-      <div class="va-card reveal">
-        <div class="va-card-badge blue">DoD-VA Bridge</div>
+      <div class="vf-va-card reveal">
+        <div class="vf-va-badge blue">DoD-VA Bridge</div>
         <h3>Seamless DoD-VA Transition</h3>
         <p>Service members transitioning to veteran status face fragmented care and lost records. TETRA bridges DoD and VA systems with 95% record continuity — eliminating gaps that delay care.</p>
-        <div class="va-card-footer">
-          <div class="va-card-metric"><div class="va-metric-num">95%</div><div class="va-metric-label">transition success rate</div></div>
+        <div class="vf-va-card-footer">
+          <div>
+            <div class="vf-va-metric-num">95%</div>
+            <div class="vf-va-metric-label">transition success rate</div>
+          </div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ===== WHY INPURSUIT FOR VETERANS ===== -->
-<section class="section trust-section">
-  <div class="section-inner">
-    <p class="section-eyebrow reveal">Why InPursuit for Veterans</p>
-    <h2 class="section-title reveal">Veteran-led. <em>Battle-tested.</em></h2>
-    <div class="trust-grid">
-
-      <div class="trust-card reveal">
-        <div class="trust-card-icon">&#127482;&#127480;</div>
+<section class="vf-section vf-trust-section">
+  <div class="vf-section-inner">
+    <div class="vf-overline reveal">Why InPursuit for Veterans</div>
+    <h2 class="vf-heading vf-heading-light reveal">Veteran-led. <em>Battle-tested.</em></h2>
+    <div class="vf-trust-grid">
+      <div class="vf-trust-card reveal">
+        <div class="vf-trust-icon">&#127482;&#127480;</div>
         <h3>100% Veteran-Owned</h3>
         <p>We understand the unique needs of those who served — because we served too. Veteran-first values drive every decision we make.</p>
       </div>
-
-      <div class="trust-card reveal">
-        <div class="trust-card-icon">&#9733;</div>
+      <div class="vf-trust-card reveal">
+        <div class="vf-trust-icon">&#9733;</div>
         <h3>Battle-Tested Platform</h3>
         <p>TETRA powers 41,000+ DoD and VA servers with proven performance — outperforming IBM, SAP, and Oracle in federal government testing.</p>
       </div>
-
-      <div class="trust-card reveal">
-        <div class="trust-card-icon">&#9876;</div>
+      <div class="vf-trust-card reveal">
+        <div class="vf-trust-icon">&#9876;</div>
         <h3>Proven Results</h3>
-        <p>85% veteran retention rate. 50% better chronic condition management. $500-$1,000 annual rewards for engaged veterans. Results that speak.</p>
+        <p>85% veteran retention rate. 50% better chronic condition management. $500–$1,000 annual rewards for engaged veterans. Results that speak for themselves.</p>
       </div>
-
     </div>
   </div>
 </section>
 
 <!-- ===== CTA ===== -->
-<section class="cta-section">
-  <div class="cta-flag-stripe"></div>
-  <div class="cta-content reveal">
-    <p class="section-eyebrow">Get Started</p>
-    <h2>Those who defended our nation<br>deserve seamless care.</h2>
+<section class="vf-cta-section">
+  <div class="vf-cta-flag-stripe"></div>
+  <div class="vf-cta-inner reveal">
+    <div class="vf-overline" style="justify-content:center;margin-bottom:24px;">
+      <span style="display:block;width:32px;height:1px;background:rgba(197,164,78,0.4);"></span>
+      Get Started
+      <span style="display:block;width:32px;height:1px;background:rgba(197,164,78,0.4);"></span>
+    </div>
+    <h2>Those who defended our nation<br>deserve <em>seamless care.</em></h2>
     <p>100% U.S. Veteran-owned and operated, InPursuit Health delivers battle-tested healthcare technology trusted by 41,000+ DoD and VA servers nationwide. Let's build something worthy of their service.</p>
-    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+    <div class="vf-cta-btns">
       <a class="btn-gold" href="mailto:veterans@inpursuithealth.com">Schedule a Veterans First Demo &rarr;</a>
-      <a class="btn-outline" href="partner-network.html">Explore Partner Network</a>
+      <a class="btn-outline" href="for-providers.html">Explore Provider Solutions</a>
     </div>
   </div>
 </section>
 
-
 <script>
-// ===== NAV =====
 window.addEventListener('scroll', () => {
-  const tb = document.getElementById('topBar') || document.getElementById('iph-topbar'); if (tb) tb.classList.toggle('scrolled', window.scrollY > 10);
+  const tb = document.getElementById('topBar') || document.getElementById('iph-topbar');
+  if (tb) tb.classList.toggle('scrolled', window.scrollY > 10);
 });
 
-// ===== DoD → VA BRIDGE CANVAS =====
+(function() {
+  const starsEl = document.getElementById('heroStars');
+  if (!starsEl) return;
+  const stars = [
+    {top:'8%',left:'5%',size:1.5,dur:3.2,delay:0},
+    {top:'22%',left:'68%',size:2,dur:2.8,delay:0.5},
+    {top:'42%',left:'12%',size:1.5,dur:4,delay:1.2},
+    {top:'58%',left:'82%',size:2,dur:3.5,delay:0.3},
+    {top:'78%',left:'32%',size:1.5,dur:2.9,delay:1.8},
+    {top:'14%',left:'52%',size:2.5,dur:3.8,delay:0.7},
+    {top:'66%',left:'58%',size:1.5,dur:3.1,delay:2.1},
+    {top:'33%',left:'90%',size:2,dur:4.2,delay:0.9},
+    {top:'86%',left:'76%',size:1.5,dur:2.7,delay:1.5},
+    {top:'48%',left:'42%',size:2,dur:3.6,delay:0.2},
+    {top:'6%',left:'28%',size:1.5,dur:3.3,delay:2.4},
+    {top:'90%',left:'10%',size:2.5,dur:4.5,delay:0.6},
+    {top:'15%',left:'78%',size:1.5,dur:3.7,delay:1.1},
+    {top:'72%',left:'24%',size:2,dur:2.6,delay:1.9},
+    {top:'38%',left:'62%',size:1.5,dur:3.9,delay:0.4},
+  ];
+  stars.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'vf-star';
+    el.style.top = s.top;
+    el.style.left = s.left;
+    el.style.width = s.size + 'px';
+    el.style.height = s.size + 'px';
+    el.style.setProperty('--dur', s.dur + 's');
+    el.style.setProperty('--delay', s.delay + 's');
+    starsEl.appendChild(el);
+  });
+})();
+
 (function() {
   const canvas = document.getElementById('bridgeCanvas');
   if (!canvas) return;
   const ctx = canvas.getContext('2d');
-  // roundRect polyfill
   if (!ctx.roundRect) {
     CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
       if (typeof r === 'number') r = [r,r,r,r];
@@ -1144,7 +1327,6 @@ window.addEventListener('scroll', () => {
     };
   }
   const wrap = canvas.parentElement;
-
   function resize() {
     const r = wrap.getBoundingClientRect();
     canvas.width = r.width * 2;
@@ -1153,14 +1335,11 @@ window.addEventListener('scroll', () => {
   }
   resize();
   window.addEventListener('resize', resize);
-
   const W = () => wrap.getBoundingClientRect().width;
   const H = () => wrap.getBoundingClientRect().height;
 
-  // Particles flowing from DoD → TETRA → VA
   const particles = [];
-  const PARTICLE_COUNT = 40;
-
+  const PARTICLE_COUNT = 45;
   function spawnParticle() {
     const w = W(), h = H();
     const cx = w / 2, cy = h / 2;
@@ -1170,8 +1349,7 @@ window.addEventListener('scroll', () => {
     return {
       progress: 0,
       speed: 0.003 + Math.random() * 0.004,
-      path: path,
-      startX: path < 0.5 ? dodX : cx,
+      path, startX: path < 0.5 ? dodX : cx,
       startY: path < 0.5 ? dodY : cy,
       endX: path < 0.5 ? cx : vaX,
       endY: path < 0.5 ? cy : vaY,
@@ -1181,39 +1359,34 @@ window.addEventListener('scroll', () => {
       b: path < 0.5 ? 78 : 100,
     };
   }
-
   for (let i = 0; i < PARTICLE_COUNT; i++) {
     const p = spawnParticle();
     p.progress = Math.random();
     particles.push(p);
   }
-
   const orbitDots = [];
-  for (let i = 0; i < 20; i++) {
+  for (let i = 0; i < 24; i++) {
     orbitDots.push({
-      angle: (Math.PI * 2 / 20) * i,
-      radius: 80 + Math.random() * 50,
+      angle: (Math.PI * 2 / 24) * i,
+      radius: 85 + Math.random() * 55,
       speed: 0.002 + Math.random() * 0.003,
       size: 1 + Math.random() * 1.5,
-      alpha: 0.15 + Math.random() * 0.2,
+      alpha: 0.12 + Math.random() * 0.18,
     });
   }
-
   let time = 0;
-
   function draw() {
     time += 0.016;
     const w = W(), h = H();
     const cx = w / 2, cy = h / 2;
     const dodX = w * 0.15, dodY = h * 0.25;
     const vaX = w * 0.85, vaY = h * 0.75;
-
     ctx.clearRect(0, 0, w, h);
 
-    [70, 110, 150].forEach((r, i) => {
+    [75, 115, 155, 195].forEach((r, i) => {
       ctx.beginPath();
       ctx.arc(cx, cy, r, 0, Math.PI * 2);
-      ctx.strokeStyle = `rgba(197,164,78,${0.04 - i * 0.01})`;
+      ctx.strokeStyle = `rgba(197,164,78,${0.035 - i * 0.007})`;
       ctx.lineWidth = 1;
       ctx.stroke();
     });
@@ -1221,14 +1394,13 @@ window.addEventListener('scroll', () => {
     ctx.beginPath();
     ctx.moveTo(dodX, dodY);
     ctx.quadraticCurveTo(cx * 0.6, cy * 0.4, cx, cy);
-    ctx.strokeStyle = 'rgba(197,164,78,0.08)';
+    ctx.strokeStyle = 'rgba(197,164,78,0.1)';
     ctx.lineWidth = 2;
     ctx.stroke();
-
     ctx.beginPath();
     ctx.moveTo(cx, cy);
     ctx.quadraticCurveTo(cx * 1.4, cy * 1.6, vaX, vaY);
-    ctx.strokeStyle = 'rgba(197,164,78,0.08)';
+    ctx.strokeStyle = 'rgba(197,164,78,0.1)';
     ctx.lineWidth = 2;
     ctx.stroke();
 
@@ -1244,10 +1416,7 @@ window.addEventListener('scroll', () => {
 
     particles.forEach((p, i) => {
       p.progress += p.speed;
-      if (p.progress >= 1) {
-        Object.assign(particles[i], spawnParticle());
-        return;
-      }
+      if (p.progress >= 1) { Object.assign(particles[i], spawnParticle()); return; }
       const t = p.progress;
       let px, py;
       if (p.path < 0.5) {
@@ -1259,7 +1428,7 @@ window.addEventListener('scroll', () => {
         px = (1-t)*(1-t)*p.startX + 2*(1-t)*t*cpx + t*t*p.endX;
         py = (1-t)*(1-t)*p.startY + 2*(1-t)*t*cpy + t*t*p.endY;
       }
-      const alpha = t < 0.1 ? t * 8 : t > 0.9 ? (1 - t) * 8 : 0.7;
+      const alpha = t < 0.1 ? t * 8 : t > 0.9 ? (1 - t) * 8 : 0.75;
       ctx.beginPath();
       ctx.arc(px, py, p.size, 0, Math.PI * 2);
       ctx.fillStyle = `rgba(${p.r},${p.g},${p.b},${alpha})`;
@@ -1270,203 +1439,108 @@ window.addEventListener('scroll', () => {
     ctx.save();
     ctx.translate(dodX, dodY);
     ctx.scale(dodPulse, dodPulse);
-    ctx.beginPath();
-    ctx.arc(0, 0, 38, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(178,34,52,0.06)';
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(0, 0, 30, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(10,22,40,0.9)';
-    ctx.strokeStyle = 'rgba(178,34,52,0.4)';
-    ctx.lineWidth = 1.5;
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.font = '600 9px "Instrument Sans"';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.letterSpacing = '1px';
-    ctx.fillText('DoD', 0, -2);
+    const dodGlow = ctx.createRadialGradient(0,0,20,0,0,50);
+    dodGlow.addColorStop(0, 'rgba(178,34,52,0.15)');
+    dodGlow.addColorStop(1, 'rgba(178,34,52,0)');
+    ctx.beginPath(); ctx.arc(0,0,50,0,Math.PI*2); ctx.fillStyle = dodGlow; ctx.fill();
+    ctx.beginPath(); ctx.arc(0,0,32,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(10,22,40,0.95)';
+    ctx.strokeStyle = 'rgba(178,34,52,0.5)';
+    ctx.lineWidth = 1.5; ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.font = '700 9px "Instrument Sans"';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('DoD', 0, -3);
     ctx.fillStyle = 'rgba(255,255,255,0.35)';
     ctx.font = '500 7px "Instrument Sans"';
-    ctx.fillText('MHS', 0, 9);
+    ctx.fillText('MHS', 0, 8);
     ctx.restore();
 
     const vaPulse = 1 + Math.sin(time * 2 + 1) * 0.05;
     ctx.save();
     ctx.translate(vaX, vaY);
     ctx.scale(vaPulse, vaPulse);
-    ctx.beginPath();
-    ctx.arc(0, 0, 38, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(60,59,110,0.06)';
-    ctx.fill();
-    ctx.beginPath();
-    ctx.arc(0, 0, 30, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(10,22,40,0.9)';
-    ctx.strokeStyle = 'rgba(60,59,110,0.5)';
-    ctx.lineWidth = 1.5;
-    ctx.fill();
-    ctx.stroke();
-    ctx.fillStyle = 'rgba(255,255,255,0.7)';
-    ctx.font = '600 9px "Instrument Sans"';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('VA', 0, -2);
+    const vaGlow = ctx.createRadialGradient(0,0,20,0,0,50);
+    vaGlow.addColorStop(0, 'rgba(60,59,110,0.15)');
+    vaGlow.addColorStop(1, 'rgba(60,59,110,0)');
+    ctx.beginPath(); ctx.arc(0,0,50,0,Math.PI*2); ctx.fillStyle = vaGlow; ctx.fill();
+    ctx.beginPath(); ctx.arc(0,0,32,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(10,22,40,0.95)';
+    ctx.strokeStyle = 'rgba(60,59,110,0.6)';
+    ctx.lineWidth = 1.5; ctx.fill(); ctx.stroke();
+    ctx.fillStyle = 'rgba(255,255,255,0.8)';
+    ctx.font = '700 9px "Instrument Sans"';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('VA', 0, -3);
     ctx.fillStyle = 'rgba(255,255,255,0.35)';
     ctx.font = '500 7px "Instrument Sans"';
-    ctx.fillText('CARE', 0, 9);
+    ctx.fillText('CARE', 0, 8);
     ctx.restore();
 
     const tetraPulse = 1 + Math.sin(time * 1.5) * 0.015;
     ctx.save();
     ctx.translate(cx, cy);
     ctx.scale(tetraPulse, tetraPulse);
-
-    const phoneGlow = ctx.createRadialGradient(0, 0, 50, 0, 0, 100);
-    phoneGlow.addColorStop(0, 'rgba(197,164,78,0.12)');
+    const phoneGlow = ctx.createRadialGradient(0,0,50,0,0,120);
+    phoneGlow.addColorStop(0, 'rgba(197,164,78,0.14)');
     phoneGlow.addColorStop(1, 'rgba(197,164,78,0)');
-    ctx.beginPath();
-    ctx.arc(0, 0, 100, 0, Math.PI * 2);
-    ctx.fillStyle = phoneGlow;
-    ctx.fill();
-
-    const pw = 62, ph = 110;
-    const pr = 10;
-    ctx.beginPath();
-    ctx.roundRect(-pw/2, -ph/2, pw, ph, pr);
-    ctx.fillStyle = 'rgba(6,14,26,0.97)';
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(197,164,78,0.45)';
-    ctx.lineWidth = 1.5;
-    ctx.stroke();
-
-    ctx.beginPath();
-    ctx.roundRect(-12, -ph/2 + 3, 24, 5, 2.5);
-    ctx.fillStyle = 'rgba(197,164,78,0.15)';
-    ctx.fill();
-
+    ctx.beginPath(); ctx.arc(0,0,120,0,Math.PI*2); ctx.fillStyle = phoneGlow; ctx.fill();
+    const pw = 64, ph = 114, pr = 11;
+    ctx.beginPath(); ctx.roundRect(-pw/2, -ph/2, pw, ph, pr);
+    ctx.fillStyle = 'rgba(6,14,26,0.97)'; ctx.fill();
+    ctx.strokeStyle = 'rgba(197,164,78,0.55)'; ctx.lineWidth = 1.5; ctx.stroke();
+    ctx.beginPath(); ctx.roundRect(-13, -ph/2+4, 26, 5, 2.5);
+    ctx.fillStyle = 'rgba(197,164,78,0.18)'; ctx.fill();
     const sm = 5;
-    ctx.beginPath();
-    ctx.roundRect(-pw/2 + sm, -ph/2 + 12, pw - sm*2, ph - 24, 4);
-    ctx.fillStyle = 'rgba(17,34,64,0.6)';
-    ctx.fill();
-
-    ctx.fillStyle = 'rgba(197,164,78,0.9)';
-    ctx.font = '600 8px "Instrument Sans"';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('InPursuit', 0, -32);
-
-    ctx.beginPath();
-    ctx.moveTo(0, -20);
-    ctx.lineTo(-8, -14);
-    ctx.lineTo(-8, -6);
-    ctx.quadraticCurveTo(0, 2, 0, 2);
-    ctx.quadraticCurveTo(0, 2, 8, -6);
-    ctx.lineTo(8, -14);
-    ctx.closePath();
-    ctx.fillStyle = 'rgba(197,164,78,0.12)';
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(197,164,78,0.4)';
-    ctx.lineWidth = 0.8;
-    ctx.stroke();
-
-    const screenPulse = Math.sin(time * 3);
-    [-2, 10, 22].forEach((yy, i) => {
-      const lineW = 30 - i * 4;
-      const alpha = 0.15 + (i === Math.floor((time * 0.5) % 3) ? 0.15 : 0);
-      ctx.beginPath();
-      ctx.roundRect(-lineW/2, yy, lineW, 5, 2);
-      ctx.fillStyle = `rgba(197,164,78,${alpha})`;
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(-lineW/2 - 5, yy + 2.5, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = i === 0 ? 'rgba(16,185,129,0.5)' : i === 1 ? 'rgba(197,164,78,0.3)' : 'rgba(178,34,52,0.4)';
+    ctx.beginPath(); ctx.roundRect(-pw/2+sm, -ph/2+14, pw-sm*2, ph-28, 4);
+    ctx.fillStyle = 'rgba(17,34,64,0.6)'; ctx.fill();
+    ctx.fillStyle = 'rgba(197,164,78,0.95)';
+    ctx.font = '700 8px "Instrument Sans"';
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText('InPursuit', 0, -33);
+    [-3, 9, 21].forEach((yy, i) => {
+      const lineW = 32 - i * 4;
+      const alpha = 0.15 + (i === Math.floor((time * 0.5) % 3) ? 0.2 : 0);
+      ctx.beginPath(); ctx.roundRect(-lineW/2, yy, lineW, 5, 2);
+      ctx.fillStyle = `rgba(197,164,78,${alpha})`; ctx.fill();
+      ctx.beginPath(); ctx.arc(-lineW/2 - 6, yy + 2.5, 1.8, 0, Math.PI * 2);
+      ctx.fillStyle = i===0 ? 'rgba(16,185,129,0.6)' : i===1 ? 'rgba(197,164,78,0.4)' : 'rgba(178,34,52,0.5)';
       ctx.fill();
     });
-
-    ctx.fillStyle = 'rgba(197,164,78,0.5)';
-    ctx.font = '500 6px "Instrument Sans"';
-    ctx.fillText('TETRA\u2122', 0, ph/2 - 7);
-
-    ctx.beginPath();
-    ctx.arc(0, ph/2 - 7, 3, 0, Math.PI * 2);
-    ctx.strokeStyle = 'rgba(197,164,78,0.15)';
-    ctx.lineWidth = 0.5;
-    ctx.stroke();
-
+    ctx.fillStyle = 'rgba(197,164,78,0.55)';
+    ctx.font = '600 6px "Instrument Sans"';
+    ctx.fillText('TETRA\u2122', 0, ph/2 - 8);
     ctx.restore();
 
-    ctx.fillStyle = 'rgba(197,164,78,0.25)';
+    ctx.fillStyle = 'rgba(197,164,78,0.3)';
     ctx.font = '500 8px "Instrument Sans"';
     ctx.textAlign = 'center';
-    ctx.fillText('Active Duty Records', dodX, dodY + 46);
-    ctx.fillText('Veteran Healthcare', vaX, vaY + 46);
-
-    ctx.fillStyle = 'rgba(197,164,78,0.35)';
+    ctx.fillText('Active Duty Records', dodX, dodY + 50);
+    ctx.fillText('Veteran Healthcare', vaX, vaY + 50);
+    ctx.fillStyle = 'rgba(197,164,78,0.4)';
     ctx.font = '600 8px "Instrument Sans"';
-    ctx.fillText('Powered by TETRA\u2122', cx, cy + 68);
-    ctx.fillStyle = 'rgba(255,255,255,0.2)';
+    ctx.fillText('Powered by TETRA\u2122', cx, cy + 72);
+    ctx.fillStyle = 'rgba(255,255,255,0.22)';
     ctx.font = '500 7px "Instrument Sans"';
-    ctx.fillText('Zero Records Lost', cx, cy + 80);
+    ctx.fillText('Zero Records Lost', cx, cy + 84);
 
     requestAnimationFrame(draw);
   }
   draw();
 })();
 
-// ===== LIVSOLO STORY TOGGLE =====
 function toggleLivsoloStory() {
   const story = document.getElementById('livsoloStory');
-  const trigger = document.getElementById('livsoloTrigger');
+  const btn = document.getElementById('livsoloTrigger');
   story.classList.toggle('open');
-  trigger.classList.toggle('open');
-  if (trigger.classList.contains('open')) {
-    trigger.innerHTML = 'Close Story <span class="arrow">&darr;</span>';
-  } else {
-    trigger.innerHTML = 'Charlie\'s Full Story <span class="arrow">&darr;</span>';
-  }
+  btn.classList.toggle('open');
 }
 
-// ===== COUNTER ANIMATION =====
-function animateCounter(el, target, duration) {
-  const start = performance.now();
-  const update = (now) => {
-    const progress = Math.min((now - start) / duration, 1);
-    const eased = 1 - Math.pow(1 - progress, 3);
-    el.textContent = Math.round(eased * target);
-    if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target;
-  };
-  requestAnimationFrame(update);
-}
-
-// ===== SCROLL REVEAL =====
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      const numEl = entry.target.querySelector('[data-count]');
-      if (numEl && !numEl.dataset.animated) {
-        numEl.dataset.animated = 'true';
-        animateCounter(numEl, parseInt(numEl.dataset.count), 1800);
-      }
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-// Star parallax
-document.addEventListener('mousemove', (e) => {
-  const stars = document.querySelectorAll('.star');
-  const x = (e.clientX / window.innerWidth - 0.5) * 15;
-  const y = (e.clientY / window.innerHeight - 0.5) * 15;
-  stars.forEach((star, i) => {
-    const depth = (i % 3 + 1) * 0.3;
-    star.style.transform = `translate(${x * depth}px, ${y * depth}px)`;
-  });
-});
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+}, { threshold: 0.1 });
+reveals.forEach(el => observer.observe(el));
 </script>
-<script src="nav.js"></script>
 </body>
 </html>
