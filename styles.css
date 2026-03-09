@@ -162,6 +162,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 .iph-dropdown-toggle{display:inline-flex;align-items:center;gap:5px;}
 .iph-caret{font-size:8px;opacity:0.5;transition:transform 0.25s,opacity 0.25s;}
 .iph-dropdown:hover .iph-caret{transform:rotate(180deg);opacity:1;}
+.iph-sub-dropdown:hover > .iph-sub-dropdown-toggle .iph-caret
 .iph-dropdown-menu{display:none;position:absolute;top:calc(100% - 2px);left:0;background:#0B1628;border:1px solid rgba(197,164,78,0.15);border-radius:0 0 8px 8px;box-shadow:0 20px 60px rgba(0,0,0,0.5);min-width:260px;z-index:10000;overflow:hidden;}
 .iph-dropdown:hover .iph-dropdown-menu{display:block;}
 .iph-dropdown-menu a,.iph-dropdown-menu span{display:block;padding:13px 20px;font-size:11px;font-weight:500;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,0.5);text-decoration:none;border-bottom:1px solid rgba(197,164,78,0.06);transition:all 0.2s;white-space:nowrap;}
