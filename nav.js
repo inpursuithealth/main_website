@@ -10,6 +10,17 @@
       <a id="iph-maha" href="maha.html">MAHA Policy Accelerant</a>
     </div>
     <nav id="iph-nav" role="navigation" aria-label="Main navigation">
+      <a class="iph-nav-item" href="for-you.html">For You</a>
+      <div class="iph-dropdown">
+        <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For VBC Providers <span class="iph-caret">&#9660;</span></a>
+        <div class="iph-dropdown-menu">
+          <span class="iph-sub-label">CMS Value-Based Care Models</span>
+          <a href="access.html">CMS ACCESS Model</a>
+          <a href="mssp.html">MSSP / ACO</a>
+          <a href="lead.html">LEAD Model</a>
+          <a href="team.html">TEAM Model</a>
+        </div>
+      </div>
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="tetra.html" aria-haspopup="true">TETRA <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
@@ -20,17 +31,6 @@
             <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance</a>
             <a href="tetra-aegis.html#sentinel">TETRA Sentinel&#8482; &mdash; Behavioral Surveillance</a>
           </div>
-        </div>
-      </div>
-      <a class="iph-nav-item" href="for-you.html">For You</a>
-      <div class="iph-dropdown">
-        <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For VBC Providers <span class="iph-caret">&#9660;</span></a>
-        <div class="iph-dropdown-menu">
-          <span class="iph-sub-label">CMS Value-Based Care Models</span>
-          <a href="access.html">CMS ACCESS Model</a>
-          <a href="mssp.html">MSSP / ACO</a>
-          <a href="lead.html">LEAD Model</a>
-          <a href="team.html">TEAM Model</a>
         </div>
       </div>
       <a class="iph-nav-item" href="veterans-first.html">Veterans First</a>
