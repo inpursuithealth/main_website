@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — VBC Customer Base vs. Total Provider Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #0A1628;
+    --gold: #C5A55A;
+    --gold-light: #D4BA7A;
+    --cream: #F8F6F1;
+    --warm-white: #FDFCFA;
+    --text: #1A1A1A;
+    --text-mid: #3D3D3D;
+    --text-muted: #999;
+  }
+
+  body {
+    font-family: 'Instrument Sans', sans-serif;
+    background: var(--warm-white);
+    color: var(--text);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: var(--navy);
+    padding: 32px 48px 28px;
+    position: relative;
+  }
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 48px;
+    right: 48px;
+    height: 1.5px;
+    background: var(--gold);
+  }
+  .brand {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    color: #fff;
+    font-weight: 400;
+    letter-spacing: -0.5px;
+  }
+
+  /* ── BLUF ── */
+  .bluf {
+    background: var(--navy);
+    margin: 36px 48px 0;
+    padding: 28px 32px;
+    border-left: 2px solid var(--gold);
+  }
+  .bluf p {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    color: #fff;
+    line-height: 1.55;
+    margin-bottom: 14px;
+    max-width: 640px;
+  }
+  .bluf .strategy {
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 11px;
+    color: var(--gold-light);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    margin-bottom: 0;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  /* ── NAV TABS ── */
+  .nav {
+    display: flex;
+    gap: 0;
+    margin: 32px 48px 0;
+    border-bottom: 1px solid var(--cream);
+  }
+  .nav-btn {
+    padding: 10px 24px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    color: var(--text-muted);
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .nav-btn.active {
+    color: var(--navy);
+    border-bottom-color: var(--gold);
+  }
+
+  /* ── CONTENT ── */
+  .content {
+    padding: 36px 48px 48px;
+  }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── STATS ROW ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+  .stat {
+    padding: 0 28px;
+    border-left: 2px solid var(--gold);
+  }
+  .stat:first-child {
+    padding-left: 0;
+    border-left: none;
+  }
+  .stat-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 20px;
+    color: var(--navy);
+    letter-spacing: -0.5px;
+    margin-bottom: 4px;
+  }
+  .stat.highlight .stat-value {
+    font-size: 22px;
+    color: var(--gold);
+  }
+  .stat-sub {
+    font-size: 10px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+
+  /* ── DIVIDER ── */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+    margin-bottom: 32px;
+  }
+
+  /* ── BAR LEGEND ── */
+  .legend {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+  .legend-swatch { width: 10px; height: 10px; display: inline-block; }
+
+  /* ── BAR ROWS ── */
+  .bar-row {
+    margin-bottom: 14px;
+    cursor: pointer;
+  }
+  .bar-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+  }
+  .bar-label {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-mid);
+  }
+  .bar-stat {
+    font-size: 10px;
+    color: var(--text-muted);
+  }
+  .bar-pct {
+    font-family: 'Instrument Serif', serif;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .bar-track {
+    position: relative;
+    height: 20px;
+    background: #E8E4DC;
+    overflow: hidden;
+  }
+  .bar-fill {
+    position: absolute;
+    left: 0; top: 0;
+    height: 100%;
+    transition: width 0.6s ease;
+  }
+  .bar-note {
+    margin-top: 6px;
+    font-size: 10px;
+    color: var(--text-mid);
+    border-left: 2px solid var(--gold);
+    padding-left: 12px;
+    line-height: 1.65;
+    display: none;
+  }
+  .bar-row.expanded .bar-note { display: block; }
+
+  /* ── TABLE ── */
+  .detail-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .detail-table th {
+    padding: 10px 14px;
+    text-align: left;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1.5px solid var(--gold);
+    background: var(--navy);
+  }
+  .detail-table td {
+    padding: 9px 14px;
+    font-size: 10px;
+    color: var(--text-mid);
+    border-bottom: 1px solid var(--cream);
+  }
+  .detail-table tr:nth-child(even) td { background: var(--cream); }
+  .detail-table tr:nth-child(odd) td { background: var(--warm-white); }
+  .detail-table td:first-child { font-weight: 600; color: var(--navy); }
+  .detail-table td:nth-child(4) { font-family: 'Instrument Serif', serif; font-size: 12px; }
+  .table-note {
+    margin-top: 20px;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  /* ── STRATEGY PILLARS ── */
+  .hero-statement {
+    font-family: 'Instrument Serif', serif;
+    font-size: 21px;
+    color: var(--navy);
+    line-height: 1.45;
+    letter-spacing: -0.2px;
+    max-width: 560px;
+    margin-bottom: 36px;
+  }
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0;
+    margin-bottom: 40px;
+  }
+  .pillar {
+    padding: 0 28px;
+    border-left: 2px solid var(--gold);
+  }
+  .pillar:first-child { padding-left: 0; border-left: none; }
+  .pillar-number {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+  .pillar-title {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    color: var(--navy);
+    margin-bottom: 4px;
+    line-height: 1.3;
+  }
+  .pillar-timeline {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-bottom: 10px;
+    font-weight: 500;
+  }
+  .pillar-text {
+    font-size: 10px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 12px;
+  }
+  .pillar-size {
+    font-size: 10px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  /* ── BOTTOM ROW ── */
+  .bottom-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+  }
+  .term-line {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 9px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+  }
+  .term-label {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 500;
+  }
+  .term-value {
+    font-family: 'Instrument Serif', serif;
+    font-size: 13px;
+    color: var(--navy);
+  }
+  .term-value-small {
+    font-size: 10px;
+    color: var(--text-mid);
+    text-align: right;
+    max-width: 200px;
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    background: var(--navy);
+    padding: 14px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-text {
+    font-size: 8px;
+    color: rgba(255,255,255,0.35);
+    letter-spacing: 0.5px;
+  }
+  .footer-conf {
+    font-size: 8px;
+    color: var(--gold);
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  @media print {
+    .nav { display: none; }
+    .tab-panel { display: block !important; page-break-inside: avoid; margin-bottom: 40px; }
+    .tab-panel::before {
+      content: attr(data-title);
+      display: block;
+      font-size: 9px; font-weight: 700; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
+      padding-top: 20px; border-top: 1px solid var(--gold);
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="brand">InPursuit Health</div>
+  <div class="header-title">VBC Customer Base vs. Total Provider Market</div>
+</div>
+
+<!-- BLUF -->
+<div class="bluf">
+  <div class="section-label">Bottom Line Up Front (BLUF)</div>
+  <p>Your VBC customer base (~830K physicians, ~60K facilities in VBC arrangements) is roughly 35–40% of the total US provider market. That's your beachhead — the people who already understand VBC and need interoperability now.</p>
+  <p>The other 60% (~370K physicians + ~380K facilities) is where the massive growth is. CMS is mandating that all Traditional Medicare beneficiaries be in accountable care by 2030. Those providers will need data interoperability. They just don't know it yet.</p>
+  <p class="strategy">Strategy: Win VBC-first customers (they're in pain now), then ride the CMS mandate wave as the market expands to 100%.</p>
+</div>
+
+<!-- NAV -->
+<div class="nav">
+  <button class="nav-btn active" onclick="switchTab('overview')">Market Overview</button>
+  <button class="nav-btn" onclick="switchTab('detail')">Segment Detail</button>
+  <button class="nav-btn" onclick="switchTab('strategy')">Go-to-Market</button>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- ═══════════════════════════════════════ OVERVIEW ═══════════════════════════════════════ -->
+  <div id="tab-overview" class="tab-panel active" data-title="Market Overview">
+
+    <div class="stats-row">
+      <div class="stat">
+        <div class="section-label">Total US Provider Market</div>
+        <div class="stat-value">~1.2M Physicians</div>
+        <div class="stat-sub">$5.15T Market (2026)</div>
+      </div>
+      <div class="stat">
+        <div class="section-label">Currently in VBC</div>
+        <div class="stat-value">~830K Physicians</div>
+        <div class="stat-sub">14.3M Medicare Beneficiaries</div>
+      </div>
+      <div class="stat">
+        <div class="section-label">VBC Penetration</div>
+        <div class="stat-value">~35–40%</div>
+        <div class="stat-sub">CMS Goal: 100% by 2030</div>
+      </div>
+      <div class="stat highlight">
+        <div class="section-label">Untapped Market</div>
+        <div class="stat-value">~370K+ Physicians</div>
+        <div class="stat-sub">InPursuit's expansion runway</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="section-label">VBC Penetration by Provider Type</div>
+
+    <div class="legend">
+      <span class="legend-item"><span class="legend-swatch" style="background:var(--navy)"></span> In VBC</span>
+      <span class="legend-item"><span class="legend-swatch" style="background:#E8E4DC"></span> Total Market</span>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Hospitals</span>
+        <span class="bar-stat">~2,400 of ~6,100 <span class="bar-pct" style="color:var(--text-mid)">39%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:39%;background:var(--navy)"></div></div>
+      <div class="bar-note">511 MSSP ACOs include hospitals + TEAM mandatory hospitals in selected CBSAs + BPCI Advanced hospitals</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Physician Groups / Practices</span>
+        <span class="bar-stat">~50,000 of ~395,000 <span class="bar-pct" style="color:var(--gold)">13%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:13%;background:var(--gold)"></div></div>
+      <div class="bar-note">700K+ providers in MSSP + ACO REACH + BPCI Advanced PGPs. Many independent practices not yet in VBC.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Individual Physicians</span>
+        <span class="bar-stat">~830K of ~1.2M <span class="bar-pct" style="color:var(--navy)">69%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:69%;background:var(--navy)"></div></div>
+      <div class="bar-note">700K+ in MSSP alone, 126K in ACO REACH, plus QPP/MIPS participants. CMS goal: 100% by 2030.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Health Systems / IDNs</span>
+        <span class="bar-stat">~350 of 639 <span class="bar-pct" style="color:var(--navy)">55%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:55%;background:var(--navy)"></div></div>
+      <div class="bar-note">Most large health systems participate in at least one VBC model. Smaller systems are the gap.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Skilled Nursing Facilities</span>
+        <span class="bar-stat">~3,500 of ~16,600 <span class="bar-pct" style="color:var(--gold)">21%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--gold)"></div></div>
+      <div class="bar-note">MSSP SNF affiliates + BPCI/TEAM post-acute partners. Huge untapped market.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Home Health Agencies</span>
+        <span class="bar-stat">~2,000 of ~17,300 <span class="bar-pct" style="color:var(--gold)">12%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:12%;background:var(--gold)"></div></div>
+      <div class="bar-note">Growing fast with home-based care models. TEAM + ACO care coordination driving adoption.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">FQHCs / Community Health Centers</span>
+        <span class="bar-stat">~800 of ~1,400 <span class="bar-pct" style="color:var(--navy)">57%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:57%;background:var(--navy)"></div></div>
+      <div class="bar-note">614 FQHCs in ACO REACH alone. Strong VBC participation due to mission alignment.</div>
+    </div>
+
+    <div class="bar-row" onclick="toggleBar(this)">
+      <div class="bar-header">
+        <span class="bar-label">Ambulatory Surgery Centers</span>
+        <span class="bar-stat">~500 of ~6,100 <span class="bar-pct" style="color:var(--gold)">8%</span></span>
+      </div>
+      <div class="bar-track"><div class="bar-fill" style="width:8%;background:var(--gold)"></div></div>
+      <div class="bar-note">Early stage VBC adoption. TEAM model now includes outpatient surgical episodes.</div>
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════ DETAIL ═══════════════════════════════════════ -->
+  <div id="tab-detail" class="tab-panel" data-title="Segment Detail">
+
+    <div class="section-label">Detailed Segment Breakdown</div>
+
+    <table class="detail-table">
+      <thead>
+        <tr>
+          <th>Provider Type</th>
+          <th>Total US Market</th>
+          <th>In VBC Today</th>
+          <th>VBC %</th>
+          <th>Not Yet in VBC</th>
+          <th>Key VBC Models</th>
+          <th>Interop Pain</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Hospitals (IPPS)</td><td>~6,100</td><td>~2,400</td><td>39%</td><td>~3,700</td><td>MSSP, TEAM, BPCI-A, ACO REACH</td><td>Extreme</td></tr>
+        <tr><td>Physician Group Practices</td><td>~395,000</td><td>~50,000</td><td>13%</td><td>~345,000</td><td>MSSP, ACO REACH, QPP/MIPS</td><td>High</td></tr>
+        <tr><td>Individual Physicians</td><td>~1.2M</td><td>~830K</td><td>69%</td><td>~370K</td><td>MSSP, ACO REACH, MIPS</td><td>Moderate–High</td></tr>
+        <tr><td>Health Systems / IDNs</td><td>639</td><td>~350</td><td>55%</td><td>~289</td><td>MSSP, TEAM, MA VBC, Commercial</td><td>Extreme</td></tr>
+        <tr><td>Skilled Nursing Facilities</td><td>~16,600</td><td>~3,500</td><td>21%</td><td>~13,100</td><td>MSSP SNF Affiliates, TEAM</td><td>Extreme</td></tr>
+        <tr><td>Home Health Agencies</td><td>~17,300</td><td>~2,000</td><td>12%</td><td>~15,300</td><td>ACO care coordination, TEAM</td><td>High</td></tr>
+        <tr><td>FQHCs / CHCs</td><td>~1,400</td><td>~800</td><td>57%</td><td>~600</td><td>ACO REACH (614), MSSP</td><td>Moderate</td></tr>
+        <tr><td>Ambulatory Surgery Centers</td><td>~6,100</td><td>~500</td><td>8%</td><td>~5,600</td><td>TEAM (new), BPCI-A legacy</td><td>Moderate</td></tr>
+        <tr><td>Dialysis / Renal Facilities</td><td>~8,000</td><td>~2,000</td><td>25%</td><td>~6,000</td><td>KCC (74 KCEs), ETC Model</td><td>High</td></tr>
+        <tr><td>Behavioral Health</td><td>~18,000</td><td>~1,000</td><td>6%</td><td>~17,000</td><td>Limited — emerging models</td><td>High</td></tr>
+        <tr><td>Telehealth / Digital Health</td><td>~500+</td><td>~200+</td><td>40%+</td><td>~300</td><td>ACCESS Model, ACO REACH waivers</td><td>Low — built for this</td></tr>
+      </tbody>
+    </table>
+
+    <div class="table-note">
+      Sources: CMS Public Use Files, Definitive Healthcare, AHA Annual Survey, AHRQ Compendium 2023, CDC/NCHS. Individual physicians overlap across categories. Facility counts are distinct entities.
+    </div>
+
+  </div>
+
+  <!-- ═══════════════════════════════════════ STRATEGY ═══════════════════════════════════════ -->
+  <div id="tab-strategy" class="tab-panel" data-title="Go-to-Market Strategy">
+
+    <div class="hero-statement">
+      Three phases to capture the $5.15 trillion provider market — from VBC beachhead to CMS-mandated national adoption.
+    </div>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-number">Phase I</div>
+        <div class="pillar-title">Beachhead — VBC-Active Providers</div>
+        <div class="pillar-timeline">Now – Q3 2026</div>
+        <div class="pillar-text">Providers already in VBC arrangements need interoperability today. 511 MSSP ACOs, 74 ACO REACH entities, TEAM hospitals, and ACCESS Model applicants — all with CMS-mandated data exchange requirements that TETRA fulfills.</div>
+        <div class="pillar-size">~830K physicians · ~60K facilities</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">Phase II</div>
+        <div class="pillar-title">Expansion — VBC-Adjacent Providers</div>
+        <div class="pillar-timeline">Q4 2026 – 2027</div>
+        <div class="pillar-text">Providers being pushed into VBC by MIPS penalties, TEAM mandates, and payer pressure. They need infrastructure but don't have it. LEAD Model launching 2027 opens smaller and rural practices. First-mover advantage.</div>
+        <div class="pillar-size">~200K physicians · ~30K facilities</div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">Phase III</div>
+        <div class="pillar-title">Total Market — The CMS Mandate Wave</div>
+        <div class="pillar-timeline">2028 – 2030</div>
+        <div class="pillar-text">CMS goal: all Traditional Medicare beneficiaries in accountable care by 2030. Remaining fee-for-service providers will require data interoperability infrastructure. By then, InPursuit is the established, CMS-approved standard.</div>
+        <div class="pillar-size">~370K physicians · ~350K+ facilities</div>
+      </div>
+    </div>
+
+    <div class="divider"></div>
+
+    <div class="bottom-row">
+      <div>
+        <div class="section-label">Revenue Per Phase</div>
+        <div class="term-line">
+          <span class="term-label">Phase I: Beachhead</span>
+          <span class="term-value">$50K–$500K per ACO</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">Phase II: Expansion</span>
+          <span class="term-value">$25K–$250K per org</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">Phase III: Total Market</span>
+          <span class="term-value">PMPM at national scale</span>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Why InPursuit Wins</div>
+        <div class="term-line">
+          <span class="term-label">CMS Health Tech Ecosystem</span>
+          <span class="term-value-small">Approved across 3 patient-facing categories</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">TETRA Performance</span>
+          <span class="term-value-small">95% interoperability · 1.8M tx/hour</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">Federal Validation</span>
+          <span class="term-value-small">DoD/VA deployed on 290K+ servers</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">Zero Adoption Friction</span>
+          <span class="term-value-small">Outcome-aligned — providers pay nothing upfront</span>
+        </div>
+        <div class="term-line">
+          <span class="term-label">ACCESS Model Ready</span>
+          <span class="term-value-small">CMS requires HIE data sharing. That's TETRA.</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-text">InPursuit Health, LLC &nbsp;&nbsp;|&nbsp;&nbsp; CMS Health IT Ecosystem Approved &nbsp;&nbsp;|&nbsp;&nbsp; www.InPursuitHealth.com</div>
+  <div class="footer-conf">Confidential</div>
+</div>
+
+<script>
+function switchTab(tab) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  event.target.classList.add('active');
+}
+function toggleBar(el) {
+  el.classList.toggle('expanded');
+}
+</script>
+
+</body>
+</html>
