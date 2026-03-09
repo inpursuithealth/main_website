@@ -17,10 +17,10 @@
         </div>
       </div>
       <div class="iph-dropdown">                          
-        <a class="iph-nav-item iph-dropdown-toggle">For Providers <span class="iph-caret">&#9660;</span></a>
+        <a href="for-providers.html" class="iph-nav-item iph-dropdown-toggle">For Providers <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
           <div class="iph-sub-dropdown">                  
-            <a class="iph-sub-dropdown-toggle">Results Matter <span class="iph-sub-caret">&#9654;</span></a>
+            <a href="for-providers.html" class="iph-sub-dropdown-toggle">Results Matter <span class="iph-sub-caret">&#9654;</span></a>
             <div class="iph-sub-dropdown-menu">           
               <a href="access.html">CMS ACCESS Model</a>
               <a href="mssp.html">MSSP / ACO</a>
