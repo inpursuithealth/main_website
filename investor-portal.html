@@ -812,6 +812,23 @@
     .stat-item { padding: 0 1.5rem; }
   }
 
+  /* ── PLACEHOLDER CARDS ── */
+  .doc-card.doc-placeholder {
+    opacity: .52;
+    cursor: default;
+    pointer-events: none;
+  }
+  .doc-card.doc-placeholder:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255,255,255,.07);
+  }
+  .doc-card.doc-placeholder:hover::before { opacity: 0; }
+  .doc-tag-pending {
+    color: var(--text-mute);
+    font-style: italic;
+  }
+
   /* ── TOAST ── */
   #toast {
     position: fixed; bottom: 1.75rem; left: 50%;
@@ -1112,24 +1129,31 @@
     <div class="section-label">SAFE Bridge — $2M at $25M Valuation Cap</div>
     <div class="doc-grid">
 
-      <a class="doc-card" href="safe-one-pager.html" target="_blank">
+      <a class="doc-card" href="data-room/FINAL_safe-term-sheet.html" target="_blank">
+        <span class="doc-badge b-safe">SAFE Bridge</span>
+        <div class="doc-title">SAFE Term Sheet</div>
+        <div class="doc-desc">Non-binding summary of instrument terms, valuation cap, conversion mechanics, and investor protections.</div>
+        <div class="doc-foot"><span class="doc-tag">Term Sheet</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+      <a class="doc-card" href="data-room/FINAL_safe-one-pager.html" target="_blank">
         <span class="doc-badge b-safe">SAFE Bridge</span>
         <div class="doc-title">SAFE One-Pager</div>
-        <div class="doc-desc">Single-page summary of instrument terms, valuation cap, and deployment timeline.</div>
+        <div class="doc-desc">Single-page summary of instrument terms, valuation cap, use of proceeds, and deployment timeline.</div>
         <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </a>
 
-      <a class="doc-card" href="safe-executive-summary.html" target="_blank">
+      <a class="doc-card" href="data-room/FINAL_safe-exec-summary.html" target="_blank">
         <span class="doc-badge b-safe">SAFE Bridge</span>
         <div class="doc-title">SAFE Executive Summary</div>
-        <div class="doc-desc">Full executive summary covering the bridge opportunity, use of proceeds, and investment rationale.</div>
+        <div class="doc-desc">Full executive summary covering the bridge opportunity, investment thesis, use of proceeds, and federal validation.</div>
         <div class="doc-foot"><span class="doc-tag">6 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </a>
 
-      <a class="doc-card" href="safe-revenue-projections.html" target="_blank">
+      <a class="doc-card" href="data-room/FINAL_safe-revenue-projections.html" target="_blank">
         <span class="doc-badge b-safe">SAFE Bridge</span>
         <div class="doc-title">SAFE Revenue Projections</div>
-        <div class="doc-desc">Three-year revenue model, provider pipeline assumptions, and CMS ACCESS Model economics.</div>
+        <div class="doc-desc">Honeycomb unit economics, provider scaling model, and CMS ACCESS Model financial projections through 2028.</div>
         <div class="doc-foot"><span class="doc-tag">Financials</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </a>
 
@@ -1140,43 +1164,43 @@
 
   <!-- ── SERIES A ── -->
   <div class="doc-section">
-    <div class="section-label">Series A — $20M Target &nbsp;·&nbsp; August 2026</div>
+    <div class="section-label">Series A — $20M Target &nbsp;·&nbsp; September 2026</div>
     <div class="doc-grid">
 
-      <a class="doc-card" href="series-a-one-pager.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-series">Series A</span>
         <div class="doc-title">Series A One-Pager</div>
         <div class="doc-desc">Concise overview of the round, target raise, key milestones, and investor return scenario.</div>
-        <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
-      <a class="doc-card" href="series-a-executive-summary.html" target="_blank">
+      <a class="doc-card" href="data-room/FINAL_series-a-exec-summary.html" target="_blank">
         <span class="doc-badge b-series">Series A</span>
         <div class="doc-title">Series A Executive Summary</div>
-        <div class="doc-desc">Market opportunity, TETRA&#8482; infrastructure, federal validation, and growth plan — the full narrative.</div>
+        <div class="doc-desc">Market opportunity, TETRA&#8482; infrastructure, federal validation, revenue model, and growth plan — the full narrative.</div>
         <div class="doc-foot"><span class="doc-tag">8 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </a>
 
-      <a class="doc-card" href="pitch-deck.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">5-Page Pitch Deck</div>
-        <div class="doc-desc">Visual pitch narrative — problem, solution, market, traction, and the ask. Built for partner meetings.</div>
-        <div class="doc-foot"><span class="doc-tag">Presentation</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-title">10-Page Pitch Deck</div>
+        <div class="doc-desc">Visual pitch narrative — problem, solution, infrastructure, market, traction, and the ask. Built for partner meetings.</div>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
-      <a class="doc-card" href="proforma.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-series">Series A</span>
         <div class="doc-title">3-Year Proforma</div>
-        <div class="doc-desc">Detailed financial model with revenue by segment, margin expansion, and deployment schedule.</div>
-        <div class="doc-foot"><span class="doc-tag">Financials</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-desc">Detailed financial model with revenue by segment, margin expansion, provider acquisition schedule, and cash flow bridge.</div>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
-      <a class="doc-card" href="series-a-investor-pamphlet.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-series">Series A</span>
         <div class="doc-title">Series A Investor Pamphlet</div>
         <div class="doc-desc">The complete investment case — team, technology, market, and terms in one comprehensive document.</div>
-        <div class="doc-foot"><span class="doc-tag">Full Document</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
     </div>
   </div>
@@ -1188,19 +1212,19 @@
     <div class="section-label">Market Analysis &amp; Supporting Research</div>
     <div class="doc-grid">
 
-      <a class="doc-card" href="market-analysis.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-analysis">Analysis</span>
-        <div class="doc-title">Market Analysis</div>
-        <div class="doc-desc">TAM, competitive landscape, CMS ACCESS Model sizing, and VBC provider pipeline analysis.</div>
-        <div class="doc-foot"><span class="doc-tag">Research</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-title">Market Analysis (4 Pillars)</div>
+        <div class="doc-desc">TAM, competitive landscape, CMS ACCESS Model sizing, VBC provider pipeline analysis, and MAHA policy tailwinds.</div>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
-      <a class="doc-card" href="market-comps-v2.html" target="_blank">
+      <div class="doc-card doc-placeholder">
         <span class="doc-badge b-analysis">Analysis</span>
-        <div class="doc-title">Market Comparables</div>
-        <div class="doc-desc">Pre-revenue infrastructure companies that attracted institutional capital on regulatory mandates — the historical precedent for InPursuit.</div>
-        <div class="doc-foot"><span class="doc-tag">Comps</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <div class="doc-title">Cap Table</div>
+        <div class="doc-desc">Current ownership structure, SAFE conversion scenarios, and post-Series A pro-forma capitalization summary.</div>
+        <div class="doc-foot"><span class="doc-tag doc-tag-pending">Coming Soon</span><svg viewBox="0 0 20 20" fill="currentColor" style="opacity:.25"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
 
     </div>
   </div>
