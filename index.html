@@ -167,6 +167,28 @@
 .cta-content h2{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);color:var(--white);line-height:1.3;margin-bottom:20px;}
 .cta-content p{font-size:16px;color:rgba(255,255,255,.5);line-height:1.7;margin-bottom:36px;}
 
+/* ===== APP PREVIEW SHOWCASE ===== */
+.app-preview-section{background:var(--navy-deep);padding:100px 40px;position:relative;overflow:hidden;}
+.app-preview-section::before{content:'';position:absolute;top:0;right:0;width:700px;height:700px;background:radial-gradient(circle,rgba(197,164,78,.05) 0%,transparent 65%);pointer-events:none;}
+.app-preview-section::after{content:'';position:absolute;bottom:0;left:0;width:500px;height:500px;background:radial-gradient(circle,rgba(197,164,78,.03) 0%,transparent 65%);pointer-events:none;}
+.app-preview-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;position:relative;z-index:1;}
+.app-preview-overline{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.app-preview-headline{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,46px);font-weight:400;color:var(--white);line-height:1.2;margin-bottom:20px;}
+.app-preview-headline em{font-style:italic;color:var(--gold);}
+.app-preview-desc{font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:40px;max-width:480px;}
+.app-value-list{display:flex;flex-direction:column;gap:24px;margin-bottom:40px;}
+.app-value-item{display:flex;align-items:flex-start;gap:16px;}
+.app-value-icon{width:40px;height:40px;border-radius:10px;background:rgba(197,164,78,.1);border:1px solid rgba(197,164,78,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;}
+.app-value-icon svg{width:20px;height:20px;fill:var(--gold);}
+.app-value-title{font-size:14px;font-weight:600;color:var(--white);margin-bottom:4px;}
+.app-value-sub{font-size:13px;color:rgba(255,255,255,.4);line-height:1.55;}
+.app-preview-cta{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+
+.app-preview-right{display:flex;justify-content:center;align-items:center;}
+.app-phone-wrap{position:relative;display:inline-block;}
+.app-phone-img{width:440px;max-width:100%;aspect-ratio:540/900;display:block;position:relative;z-index:2;background-size:contain;background-repeat:no-repeat;background-position:center;filter:drop-shadow(0 40px 80px rgba(0,0,0,.6));}
+.app-phone-glow{position:absolute;bottom:-40px;left:50%;transform:translateX(-50%);width:80%;height:120px;background:radial-gradient(ellipse,rgba(197,164,78,.18) 0%,transparent 70%);pointer-events:none;z-index:1;}
+
 /* ===== RESPONSIVE ===== */
 @media(max-width:1024px){
   .apply-grid{grid-template-columns:1fr;}
@@ -174,6 +196,9 @@
   .why-grid{grid-template-columns:1fr;}
   .cms-stamp{flex-direction:column;align-items:center;text-align:center;}
   .cms-pledge-cats{grid-template-columns:1fr;text-align:left;}
+  .app-preview-inner{grid-template-columns:1fr;gap:60px;}
+  .app-preview-right{order:-1;}
+  .app-phone-img{max-width:340px;}
 }
 @media(max-width:768px){
   .hero-content{padding:40px 20px;}
@@ -193,6 +218,9 @@
   .ai-logo-circle{width:56px;height:56px;border-radius:14px;}
   .cms-stamp{padding:24px;}
   .cms-pledge-cats{grid-template-columns:1fr;}
+  .app-preview-section{padding:60px 20px;}
+  .app-preview-inner{gap:40px;}
+  .app-phone-img{max-width:280px;}
 }
 </style>
 </head>
@@ -343,6 +371,68 @@
         <p>You're being graded on patients you can't see, on data you can't access, in time you don't have.<br><br>Value-based care works on paper. In practice it's 47 open care gaps, a quality report that's three months old, and a shared savings check that didn't come.<br><br>TETRA closes the gaps automatically. You just see the patients, increase margins and produce better outcomes!</p>
         <a class="apply-card-link" href="for-providers.html">Provider Solutions →</a>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== APP PREVIEW SHOWCASE ===== -->
+<section class="app-preview-section" id="app-preview">
+  <div class="app-preview-inner">
+    <div class="app-preview-left">
+      <p class="app-preview-overline reveal">The InPursuit App</p>
+      <h2 class="app-preview-headline reveal">Everything that matters.<br><em>In your pocket.</em></h2>
+      <p class="app-preview-desc reveal">Most health apps show you fragments. InPursuit shows you the full picture — your complete record, your coverage, your costs, and your AI health guide, all in one place. Protected by TETRA Aegis&trade; so your data never leaves your vault.</p>
+
+      <div class="app-value-list reveal">
+        <div class="app-value-item">
+          <div class="app-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+          </div>
+          <div class="app-value-text">
+            <div class="app-value-title">Your complete health record</div>
+            <div class="app-value-sub">Labs, vitals, visits, prescriptions — every provider, unified in one view</div>
+          </div>
+        </div>
+        <div class="app-value-item">
+          <div class="app-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>
+          </div>
+          <div class="app-value-text">
+            <div class="app-value-title">Hidden savings, found automatically</div>
+            <div class="app-value-sub">Benefits you're not using, generics that save you money — surfaced before you even ask</div>
+          </div>
+        </div>
+        <div class="app-value-item">
+          <div class="app-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg>
+          </div>
+          <div class="app-value-text">
+            <div class="app-value-title">AI that is safe to use</div>
+            <div class="app-value-sub">TETRA Aegis&trade; keeps your data in the vault — not in a training model, not in the cloud</div>
+          </div>
+        </div>
+        <div class="app-value-item">
+          <div class="app-value-icon">
+            <svg viewBox="0 0 24 24"><path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm2 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg>
+          </div>
+          <div class="app-value-text">
+            <div class="app-value-title">Proactive, not reactive</div>
+            <div class="app-value-sub">Know about care gaps, upcoming visits, and coverage insights before they become problems</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="app-preview-cta reveal">
+        <a class="btn-gold" href="for-you.html">See What You Get →</a>
+      </div>
+    </div>
+
+    <div class="app-preview-right reveal">
+      <div class="app-phone-wrap">
+        <div class="app-phone-img" id="appPhoneImg"></div>
+        <div class="app-phone-glow"></div>
+      </div>
+      <script>document.getElementById('appPhoneImg').style.backgroundImage="url('Assets/image copy.png')";</script>
     </div>
   </div>
 </section>
