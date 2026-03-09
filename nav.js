@@ -14,7 +14,6 @@
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="for-providers.html" aria-haspopup="true">For Providers <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
-          <span class="iph-sub-label">CMS Value-Based Care Models</span>
           <a href="access.html">CMS ACCESS Model</a>
           <a href="mssp.html">MSSP / ACO</a>
           <a href="lead.html">LEAD Model</a>
