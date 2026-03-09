@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — D2C Market Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--navy-light:#1A2A44;--navy-soft:#1E3050;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);--charcoal:#1E2D3D}
+*{margin:0;padding:0;box-sizing:border-box}html{scroll-behavior:smooth}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55;padding:40px 24px 60px}
+.card{max-width:1100px;margin:0 auto;background:#fff;border-radius:4px;overflow:hidden;box-shadow:0 2px 4px rgba(10,22,40,.06),0 8px 32px rgba(10,22,40,.10),0 0 0 1px rgba(197,164,78,.18);animation:fadeUp .6s ease both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.header{background:var(--navy);padding:36px 44px 0;position:relative;overflow:hidden}
+.header::before{content:'';position:absolute;top:-60px;right:-60px;width:320px;height:320px;border-radius:50%;background:radial-gradient(circle,rgba(197,164,78,.07) 0%,transparent 70%);pointer-events:none}
+.header-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px}
+.company-name{font-family:'Instrument Serif',Georgia,serif;font-size:32px;font-weight:700;color:var(--gold);letter-spacing:.04em;line-height:1}
+.conf-badge{font-size:9px;font-weight:700;letter-spacing:.18em;color:var(--gold);border:1px solid rgba(197,164,78,.4);padding:5px 10px;border-radius:2px;text-transform:uppercase;margin-top:4px}
+.header-sub{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px}
+.doc-title{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:rgba(197,164,78,.65);font-style:italic;letter-spacing:.06em}
+.as-of{font-size:9px;font-weight:500;letter-spacing:.12em;color:#8C9BAA;text-transform:uppercase}
+.gold-rule{height:2px;background:linear-gradient(90deg,var(--gold) 0%,rgba(197,164,78,.3) 60%,transparent 100%)}
+
+.tab-nav{background:var(--navy);padding:0 44px;display:flex;border-bottom:2px solid rgba(197,164,78,.3)}
+.tab{padding:14px 22px 12px;font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#8C9BAA;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s;white-space:nowrap;user-select:none}
+.tab:hover{color:var(--gold-light)}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab-num{display:inline-block;width:16px;height:16px;border-radius:50%;background:rgba(197,164,78,.15);color:var(--gold);font-size:8px;font-weight:700;line-height:16px;text-align:center;margin-right:7px}
+.tab.active .tab-num{background:var(--gold);color:var(--navy)}
+.panel{display:none}
+.panel.active{display:block}
+
+.bluf{background:var(--charcoal);padding:20px 44px;border-bottom:1px solid rgba(197,164,78,.15)}
+.bluf-inner{border-left:2px solid var(--gold);padding-left:18px}
+.bluf-label{font-size:8px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.bluf-text{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:rgba(255,255,255,.80);line-height:1.65;max-width:860px}
+.bluf-text strong{color:var(--gold-light)}
+
+.narrative{padding:14px 44px;background:#FFF8E6;border-bottom:1px solid rgba(197,164,78,.2);font-size:10px;color:#7A5C00;line-height:1.7;font-style:italic}
+.narrative strong{font-style:normal;font-weight:700;color:var(--navy)}
+
+.sc-bar{background:var(--charcoal);padding:18px 44px;display:flex;gap:28px;align-items:center;flex-wrap:wrap}
+.sc-stat{display:flex;flex-direction:column;gap:3px}
+.sc-label{font-size:8px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.sc-val{font-family:'Instrument Serif',Georgia,serif;font-size:20px;font-weight:600;color:#fff;line-height:1}
+.sc-sub{font-size:9px;color:#8C9BAA;font-style:italic}
+.sc-div{width:1px;height:36px;background:rgba(197,164,78,.2);flex-shrink:0}
+.sc-badge{margin-left:auto;font-size:9px;font-weight:700;letter-spacing:.10em;text-transform:uppercase;padding:6px 14px;border-radius:2px;border:1px solid;white-space:nowrap;color:var(--gold);border-color:rgba(197,164,78,.4);background:rgba(197,164,78,.08)}
+
+.section-wrap{padding:32px 44px 40px}
+.section-label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.hero-stmt{font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:var(--navy);line-height:1.4;letter-spacing:-.2px;max-width:680px;margin-bottom:32px}
+.hero-stmt em{font-style:italic;color:var(--gold)}
+
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:36px}
+.sg-item{padding:0 28px;border-left:2px solid var(--gold)}
+.sg-item:first-child{padding-left:0;border-left:none}
+.sg-val{font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:var(--navy);letter-spacing:-.5px;margin-bottom:4px}
+.sg-item.hl .sg-val{color:var(--gold)}
+.sg-lbl{font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:3px}
+.sg-sub{font-size:10px;color:var(--text-muted);line-height:1.5}
+
+.gold-div{height:1px;background:linear-gradient(90deg,var(--gold) 0%,transparent 100%);margin:28px 0}
+
+.callout{background:var(--gold-dim);border-left:3px solid var(--gold);padding:20px 24px;font-size:13px;color:var(--text-mid);line-height:1.75;margin-bottom:28px}
+.callout strong{color:var(--navy)}
+.callout-dark{background:var(--navy);border-left:3px solid var(--gold);padding:22px 26px;margin-bottom:28px}
+.callout-dark p{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:rgba(255,255,255,.82);line-height:1.65}
+.callout-dark p strong{color:var(--gold-light)}
+
+/* MARKET CARDS */
+.mkt-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:28px}
+.mkt-card{background:#fff;border:1px solid var(--border);border-top:2px solid var(--gold);padding:24px 22px}
+.mkt-card-label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+.mkt-card-val{font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:var(--navy);margin-bottom:6px;letter-spacing:-.3px}
+.mkt-card-sub{font-size:11px;color:var(--text-muted);line-height:1.55}
+
+/* COMPARISON TABLE */
+.tbl-wrap{overflow-x:auto;margin-bottom:28px}
+.dt{width:100%;border-collapse:collapse;font-size:11px;min-width:620px}
+.dt thead tr{background:var(--navy)}
+.dt th{text-align:left;padding:11px 14px;color:rgba(255,255,255,.7);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.dt td{padding:10px 14px;border-bottom:1px solid var(--border);color:var(--text-mid)}
+.dt tbody tr:nth-child(odd) td{background:#fff}
+.dt tbody tr:nth-child(even) td{background:var(--cream)}
+.dt td:first-child{font-weight:600;color:var(--navy)}
+.dt td.hi{color:var(--gold);font-weight:700}
+.dt td.yes{color:#1A5C3A;font-weight:700}
+.dt td.no{color:#8A8A7A}
+.dt tr.total td{background:var(--navy);color:#fff;font-weight:700}
+.dt tr.total td.g{color:var(--gold-light)}
+
+/* TIER LIST */
+.tier-list{display:flex;flex-direction:column;gap:0;margin-bottom:28px;border:1px solid var(--border)}
+.tier{display:flex;gap:20px;padding:18px 22px;border-bottom:1px solid var(--border);align-items:flex-start}
+.tier:last-child{border-bottom:none}
+.tier.featured{background:var(--gold-dim);border-left:3px solid var(--gold)}
+.tier-price{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--gold);flex-shrink:0;width:90px;line-height:1.1}
+.tier-price .tier-per{font-size:10px;color:var(--text-muted);font-family:'Instrument Sans',sans-serif;font-weight:400}
+.tier-name{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.tier.featured .tier-name{color:#7A5C00}
+.tier-desc{font-size:10px;color:var(--text-muted);line-height:1.55;flex:1}
+.tier-rev{font-size:10px;color:var(--text-mid);font-weight:600;white-space:nowrap;flex-shrink:0}
+
+/* COMPARISON GRID */
+.comp-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:28px}
+.comp-card{border:1px solid var(--border);padding:20px 16px;text-align:center}
+.comp-card.us{border-color:var(--gold);border-top:2px solid var(--gold)}
+.comp-name{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:4px}
+.comp-val{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--gold);margin-bottom:4px}
+.comp-desc{font-size:10px;color:var(--text-muted);line-height:1.5}
+.comp-card.us .comp-name{color:var(--gold)}
+
+/* ADVANTAGE LIST */
+.adv-list{display:flex;flex-direction:column;gap:8px;margin-bottom:28px}
+.adv-item{display:flex;gap:14px;padding:14px 18px;background:#fff;border:1px solid var(--border);border-left:3px solid var(--gold);align-items:flex-start}
+.adv-num{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--gold);flex-shrink:0;width:24px}
+.adv-title{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.adv-desc{font-size:10px;color:var(--text-muted);line-height:1.55}
+
+/* REVENUE MODEL */
+.rev-row{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.rev-lbl{font-size:11px;color:var(--text-mid);font-weight:500}
+.rev-val{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:var(--navy)}
+.rev-sub{font-size:9px;color:var(--text-muted);margin-top:1px}
+
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.term-row{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.05)}
+.term-lbl{font-size:10px;color:var(--text-muted);font-weight:500}
+.term-val{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--navy)}
+.term-val-sm{font-size:10px;color:var(--text-mid);text-align:right;max-width:220px}
+
+/* GAP VISUAL */
+.gap-visual{background:var(--cream);border:1px solid var(--border);padding:28px;margin-bottom:28px}
+.gap-row{display:flex;gap:12px;align-items:center;margin-bottom:12px}
+.gap-row:last-child{margin-bottom:0}
+.gap-app{font-size:11px;font-weight:600;color:var(--navy);width:140px;flex-shrink:0}
+.gap-bar-wrap{flex:1;display:flex;gap:6px;align-items:center}
+.gap-check{width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:700;flex-shrink:0}
+.chk-yes{background:#1A5C3A;color:#fff}
+.chk-no{background:#E8E4DC;color:#999}
+.gap-feat{font-size:10px;color:var(--text-muted);white-space:nowrap}
+.gap-title-row{display:flex;gap:12px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.gap-title-row .gap-app{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.gap-feat-col{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);width:20px;text-align:center;writing-mode:vertical-rl;white-space:nowrap}
+
+.footer{background:var(--navy);padding:14px 44px;display:flex;justify-content:space-between;align-items:center}
+.footer-l{font-size:8px;color:rgba(255,255,255,.3);letter-spacing:.5px}
+.footer-r{font-size:8px;color:var(--gold);font-weight:700;letter-spacing:2px;text-transform:uppercase}
+
+@media(max-width:768px){
+  .stat-grid,.mkt-grid,.comp-grid,.two-col{grid-template-columns:1fr}
+  .sg-item{padding:16px 0;border-left:none;border-top:1px solid rgba(197,164,78,.2)}
+  .sg-item:first-child{border-top:none}
+  .section-wrap,.bluf,.sc-bar,.narrative{padding-left:20px;padding-right:20px}
+  .header{padding:24px 20px 0}
+  .tab-nav{padding:0 20px;overflow-x:auto}
+  .footer{padding:14px 20px}
+  .tier{flex-direction:column}
+  .tier-price{width:auto}
+}
+</style>
+</head>
+<body>
+<div class="card">
+
+<div class="header">
+  <div class="header-top">
+    <div class="company-name">InPursuit Health, LLC</div>
+    <div class="conf-badge">Confidential</div>
+  </div>
+  <div class="header-sub">
+    <div class="doc-title">Direct-to-Consumer Health &amp; Wellness &nbsp;&middot;&nbsp; Market Analysis</div>
+    <div class="as-of">As of March 2026</div>
+  </div>
+</div>
+<div class="gold-rule"></div>
+
+<div class="tab-nav">
+  <div class="tab active" onclick="switchTab(0)"><span class="tab-num">1</span>Market Overview</div>
+  <div class="tab" onclick="switchTab(1)"><span class="tab-num">2</span>The Unmet Need</div>
+  <div class="tab" onclick="switchTab(2)"><span class="tab-num">3</span>Revenue Model</div>
+  <div class="tab" onclick="switchTab(3)"><span class="tab-num">4</span>Competitive Position</div>
+</div>
+
+<!-- ═══════ PANEL 1: OVERVIEW ═══════ -->
+<div class="panel active" id="p0">
+
+  <div class="bluf">
+    <div class="bluf-inner">
+      <div class="bluf-label">Bottom Line Up Front</div>
+      <div class="bluf-text">The American consumer health market is a $350B+ opportunity — and it is structurally broken. Apps don't talk to EHRs. Wearables don't talk to labs. Prescriptions don't know your lifestyle. No single consumer product unifies clinical records, wellness data, AI intelligence, and financial benefits into one experience — <strong>connected to the actual healthcare system.</strong> InPursuit does. And we are the only consumer health app featured across all three patient-facing categories on Medicare.gov. That is government-validated distribution to 140M beneficiaries at zero acquisition cost.</div>
+    </div>
+  </div>
+
+  <div class="sc-bar">
+    <div class="sc-stat">
+      <div class="sc-label">Digital Health App Market (2035)</div>
+      <div class="sc-val">$81.5B</div>
+      <div class="sc-sub">24% CAGR from 2025</div>
+    </div>
+    <div class="sc-div"></div>
+    <div class="sc-stat">
+      <div class="sc-label">Wellness Technology Market (2035)</div>
+      <div class="sc-val">$208B</div>
+      <div class="sc-sub">Consumer health + wearables combined</div>
+    </div>
+    <div class="sc-div"></div>
+    <div class="sc-stat">
+      <div class="sc-label">Medicare Beneficiaries on Medicare.gov</div>
+      <div class="sc-val">140M+</div>
+      <div class="sc-sub">InPursuit's government-backed distribution channel</div>
+    </div>
+    <div class="sc-div"></div>
+    <div class="sc-stat">
+      <div class="sc-label">InPursuit Customer Acquisition Cost</div>
+      <div class="sc-val">$0</div>
+      <div class="sc-sub">Via Medicare App Library — no paid acquisition</div>
+    </div>
+    <div class="sc-badge">D2C Market</div>
+  </div>
+
+  <div class="narrative"><strong>Most consumer health companies spend 40–60% of revenue on customer acquisition.</strong> That forces them into a treadmill: raise more capital, spend more on ads, acquire more users, repeat. InPursuit's primary channel is Medicare.gov. The government brings us the customers. We build the product that keeps them — and earns recurring revenue across subscriptions, health commerce, and provider-funded enrollment.</div>
+
+  <div class="section-wrap">
+    <div class="hero-stmt">The largest organic healthcare distribution channel in America <em>is already pointed at us.</em></div>
+
+    <div class="stat-grid">
+      <div class="sg-item">
+        <div class="sg-lbl">Americans Using Health Apps / Wearables</div>
+        <div class="sg-val">35%+</div>
+        <div class="sg-sub">Data isolated from clinical care — the gap InPursuit bridges</div>
+      </div>
+      <div class="sg-item">
+        <div class="sg-lbl">Wearable Technology Market (2025)</div>
+        <div class="sg-val">$92.9B</div>
+        <div class="sg-sub">No consumer product today connects wearables to EHRs at scale</div>
+      </div>
+      <div class="sg-item">
+        <div class="sg-lbl">Consumer Health Exits (Comparable)</div>
+        <div class="sg-val">$18.5B</div>
+        <div class="sg-sub">Livongo → Teladoc acquisition. Single condition. No infrastructure.</div>
+      </div>
+      <div class="sg-item hl">
+        <div class="sg-lbl">InPursuit Medicare.gov Categories</div>
+        <div class="sg-val">3 of 3</div>
+        <div class="sg-sub">Conversational AI, Kill the Clipboard, Chronic Care Management</div>
+      </div>
+    </div>
+
+    <div class="gold-div"></div>
+    <div class="section-label">Total Addressable Market — D2C Health &amp; Wellness</div>
+
+    <div class="mkt-grid">
+      <div class="mkt-card">
+        <div class="mkt-card-label">Digital Health Apps</div>
+        <div class="mkt-card-val">$81.5B by 2035</div>
+        <div class="mkt-card-sub">24% CAGR. Remote monitoring, chronic disease management, and AI-powered health guidance. InPursuit competes in all three sub-segments simultaneously — unlike any single-condition competitor.</div>
+      </div>
+      <div class="mkt-card">
+        <div class="mkt-card-label">Health &amp; Wellness Technology</div>
+        <div class="mkt-card-val">$208B by 2035</div>
+        <div class="mkt-card-sub">Consumer wellness apps, wearables, fitness technology, and digital coaching. The market is large but fragmented. No single product unifies the full stack. InPursuit connects all of it through TETRA's data fabric.</div>
+      </div>
+      <div class="mkt-card">
+        <div class="mkt-card-label">Prescription &amp; Pharmacy D2C</div>
+        <div class="mkt-card-val">$18B+ by 2030</div>
+        <div class="mkt-card-sub">Medication management, Rx savings programs, and adherence tools. InPursuit Plus includes Rx savings — a built-in stickiness driver that no pure health app competitor offers without a pharmacy partnership or separate app.</div>
+      </div>
+      <div class="mkt-card">
+        <div class="mkt-card-label">Health Commerce &amp; Benefits</div>
+        <div class="mkt-card-val">$40B+ opportunity</div>
+        <div class="mkt-card-sub">Brand spending against anonymized health signals. HSA/FSA digital commerce. InPursuit's Total Intelligence tier connects grocery loyalty, lifestyle data, and health signals — brands bid for moment-of-decision placement. Users capture the value.</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The consumer health market has never had a product that does what InPursuit does.</strong> Apple Health stores data. MyChart shows it. GoodRx saves on prescriptions. Oura tracks sleep. None of them talk to each other, and none of them are connected to the actual healthcare system in real-time. InPursuit unifies all of it — and is the only consumer app validated and featured by the federal government as a Medicare patient tool. That combination does not exist anywhere else in the market.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PANEL 2: UNMET NEED ═══════ -->
+<div class="panel" id="p1">
+
+  <div class="sc-bar">
+    <div class="sc-stat"><div class="sc-label">Consumer Data Siloed from Clinical Care</div><div class="sc-val">~90%</div><div class="sc-sub">Of wearable and app data never reaches a provider</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Americans with 3+ Health Apps</div><div class="sc-val">42M+</div><div class="sc-sub">Managing health across fragmented, disconnected tools</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Avg Annual Healthcare Spend Per American</div><div class="sc-val">$13,500</div><div class="sc-sub">Most of it opaque, fragmented, and reactive</div></div>
+    <div class="sc-badge">The Gap</div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="hero-stmt">Americans have dozens of health tools. <em>None of them talk to each other — or to their doctor.</em></div>
+
+    <div class="section-label">The Fragmentation Problem — What Every American Faces Today</div>
+
+    <div class="callout-dark">
+      <p>Your Apple Watch knows your heart rate. Your Oura Ring knows your sleep. Your MyChart portal has your lab results. Your GoodRx account saves on prescriptions. Your insurance app shows your claims. <strong>None of these products know about each other. None of them provide AI analysis across your full health picture. None of them are connected to your doctor's EHR in real time.</strong> Every year, this fragmentation contributes to $760B in wasted healthcare spending — duplicate tests, missed diagnoses, medication errors, and avoidable hospitalizations. InPursuit connects the entire stack.</p>
+    </div>
+
+    <div class="section-label">The Competitive Gap — What Exists vs. What InPursuit Delivers</div>
+
+    <div class="tbl-wrap">
+      <table class="dt">
+        <thead>
+          <tr><th>Feature / Capability</th><th>Apple Health</th><th>MyChart</th><th>GoodRx</th><th>Oura / Fitbit</th><th>InPursuit</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Unified health record (EHR-connected)</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Wearable + lab + Rx data in one view</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>AI-powered health insights (multi-source)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">Partial</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Model-agnostic AI routing (TETRA Conductor)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Rx savings integration</td><td class="no">No</td><td class="no">No</td><td class="yes">Yes</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Health commerce / brand benefits</td><td class="no">No</td><td class="no">No</td><td class="no">Partial</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Medicare.gov government distribution</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes — 3 categories</td></tr>
+          <tr><td>Connected to CMS VBC / ACCESS Model</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Provider-subsidized free tier (ACCESS)</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes — $0 for patients</td></tr>
+          <tr><td>Chronic care management (clinical grade)</td><td class="no">No</td><td class="no">Partial</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes</td></tr>
+          <tr><td>Family plan with elderly parent coverage</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="no">No</td><td class="yes hi">Yes — $34.99/mo</td></tr>
+          <tr class="total"><td>Features Available</td><td class="no">2 of 11</td><td class="no">2 of 11</td><td class="no">2 of 11</td><td class="no">1 of 11</td><td class="g">11 of 11</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="callout">
+      <strong>The most important column is the last one.</strong> No single competitor offers more than 2 of these 11 capabilities. InPursuit is the only product in the market that delivers all 11 — and the only one that closes the loop between consumer health data, clinical care, and financial benefits. The government has already validated this by featuring InPursuit across all three patient-facing categories on Medicare.gov.
+    </div>
+
+    <div class="gold-div"></div>
+    <div class="section-label">Why This Market Has Waited for InPursuit</div>
+
+    <div class="adv-list">
+      <div class="adv-item">
+        <div class="adv-num">1</div>
+        <div>
+          <div class="adv-title">The Infrastructure Didn't Exist</div>
+          <div class="adv-desc">Connecting consumer wellness data to clinical EHRs in real-time requires healthcare data exchange infrastructure that most companies cannot build. TETRA's five-layer stack — built for DoD/VA at 290K+ server scale — makes this possible. Consumer health companies built apps without the infrastructure underneath.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">2</div>
+        <div>
+          <div class="adv-title">Distribution Was Always the Blocker</div>
+          <div class="adv-desc">Healthcare consumer apps face brutal acquisition economics. HIPAA-compliant advertising is restrictive. Trust is hard to earn. The only shortcut is institutional credibility — and InPursuit has the federal government's endorsement via the CMS Medicare App Library. No competitor has this distribution advantage.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">3</div>
+        <div>
+          <div class="adv-title">Model-Agnostic AI Changes Everything</div>
+          <div class="adv-desc">Every consumer health AI app today is locked to one model. When that model is wrong, there's no fallback. TETRA Conductor routes each user's query to the optimal AI model for their specific health context — a specialized pharmacogenomics model for medication questions, a population health model for chronic disease, a behavioral AI for mental health. The AI surface that consumers interact with is always best-in-class.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">4</div>
+        <div>
+          <div class="adv-title">The Provider-to-Consumer Flywheel</div>
+          <div class="adv-desc">InPursuit's VBC provider network creates a bidirectional flywheel. Providers enrolled in ACCESS Model fund the free Consumer Connected tier for their patients. Those patients generate health data that flows back into the provider's care coordination. Every new provider adds patients. Every new patient improves outcomes. Outcomes drive higher OAPs. Higher OAPs pay for more patient enrollments.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PANEL 3: REVENUE MODEL ═══════ -->
+<div class="panel" id="p2">
+
+  <div class="sc-bar">
+    <div class="sc-stat"><div class="sc-label">Subscription Revenue (Blended ARPU)</div><div class="sc-val">$14–$50/mo</div><div class="sc-sub">Across paid tier spectrum</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Commerce Revenue (Per Transaction)</div><div class="sc-val">5–15%</div><div class="sc-sub">Health commerce and brand placements</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Provider-Funded Free Tier (ACCESS)</div><div class="sc-val">$0 to Patient</div><div class="sc-sub">Provider pays InPursuit from OAP revenue share</div></div>
+    <div class="sc-badge">Revenue Model</div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="hero-stmt">Five revenue streams. Zero acquisition spend. <em>Paid once, compounding forever.</em></div>
+
+    <div class="section-label">Subscription Tiers — Built for Every Consumer Segment</div>
+
+    <div class="tier-list">
+      <div class="tier">
+        <div class="tier-price">$0<div class="tier-per">/ month</div></div>
+        <div>
+          <div class="tier-name">Free — Unified Health Record</div>
+          <div class="tier-desc">Complete, unified health record connecting EHR, labs, pharmacy, and insurance. The baseline that builds habit and drives upgrade. Every free user is a future paid subscriber or a candidate for the provider-funded Connected tier.</div>
+        </div>
+        <div class="tier-rev">Volume Driver</div>
+      </div>
+      <div class="tier featured">
+        <div class="tier-price">$14.99<div class="tier-per">/ month</div></div>
+        <div>
+          <div class="tier-name">Plus — AI Intelligence + Wearables + Rx Savings</div>
+          <div class="tier-desc">The primary paid conversion target. AI-powered health analysis across all data sources. Wearable integration with clinical correlation. Prescription savings via integrated Rx programs. $14.99/mo is below the psychological friction threshold for health-motivated consumers — comparable to a streaming subscription.</div>
+        </div>
+        <div class="tier-rev">Primary Revenue</div>
+      </div>
+      <div class="tier featured">
+        <div class="tier-price">$34.99<div class="tier-per">/ month</div></div>
+        <div>
+          <div class="tier-name">Family — Unlimited Household Including Elderly Parents</div>
+          <div class="tier-desc">The highest-value tier for the sandwich generation. Adult children managing parents' healthcare — a 53M+ person segment — gain full coverage for the entire household. Elderly parents are the highest-utilization Medicare demographic. This tier connects consumer health to InPursuit's Medicare distribution advantage.</div>
+        </div>
+        <div class="tier-rev">Highest LTV</div>
+      </div>
+      <div class="tier">
+        <div class="tier-price">$49.99<div class="tier-per">/ month</div></div>
+        <div>
+          <div class="tier-name">Total Intelligence — Grocery Loyalty + Lifestyle-Clinical Correlation</div>
+          <div class="tier-desc">The premium tier for health-optimized consumers. Grocery purchase data correlated with health outcomes. Brand benefits, HSA/FSA commerce, and lifestyle optimization at the intersection of what you eat, how you live, and how you feel. Brands bid against anonymized health signals for placement.</div>
+        </div>
+        <div class="tier-rev">Commerce Upside</div>
+      </div>
+      <div class="tier">
+        <div class="tier-price">$0<div class="tier-per">/ month</div></div>
+        <div>
+          <div class="tier-name">Connected — Provider-Subsidized via ACCESS Model</div>
+          <div class="tier-desc">Free to the patient. Funded by the provider's ACCESS Model revenue share. The provider pays InPursuit's per-patient fee from their CMS outcome-based payment. This tier scales automatically as InPursuit enrolls more providers — every new practice adds enrolled patients at no additional acquisition cost.</div>
+        </div>
+        <div class="tier-rev">Auto-Scales w/ Providers</div>
+      </div>
+    </div>
+
+    <div class="gold-div"></div>
+    <div class="section-label">Revenue Stream Breakdown</div>
+
+    <div class="two-col">
+      <div>
+        <div class="rev-row">
+          <div><div class="rev-lbl">Subscription Revenue</div><div class="rev-sub">$14.99–$49.99/mo per paid user</div></div>
+          <div class="rev-val">Recurring</div>
+        </div>
+        <div class="rev-row">
+          <div><div class="rev-lbl">Health Commerce</div><div class="rev-sub">Brand placements on anonymized health signals</div></div>
+          <div class="rev-val">5–15% per transaction</div>
+        </div>
+        <div class="rev-row">
+          <div><div class="rev-lbl">Rx Savings Program</div><div class="rev-sub">Revenue share with pharmacy benefit managers</div></div>
+          <div class="rev-val">Per prescription</div>
+        </div>
+        <div class="rev-row">
+          <div><div class="rev-lbl">HSA/FSA Commerce</div><div class="rev-sub">Eligible health purchase facilitation</div></div>
+          <div class="rev-val">Transaction fee</div>
+        </div>
+        <div class="rev-row">
+          <div><div class="rev-lbl">Provider-Funded Connected Tier</div><div class="rev-sub">Per-patient fee from ACCESS revenue share</div></div>
+          <div class="rev-val">PMPM · scales w/ VBC</div>
+        </div>
+      </div>
+      <div>
+        <div class="section-label">Unit Economics at Scale</div>
+        <div class="term-row"><span class="term-lbl">1M paid subscribers (Plus tier)</span><span class="term-val">$179.9M ARR</span></div>
+        <div class="term-row"><span class="term-lbl">500K Family tier subscribers</span><span class="term-val">$209.9M ARR</span></div>
+        <div class="term-row"><span class="term-lbl">0.1% of Medicare beneficiaries (140K)</span><span class="term-val">~$25M ARR</span></div>
+        <div class="term-row"><span class="term-lbl">Commerce on 1M active users (5% take)</span><span class="term-val">$20M+ ARR</span></div>
+        <div class="term-row"><span class="term-lbl">Provider-funded (1M patients @ $5 PMPM)</span><span class="term-val">$60M ARR</span></div>
+        <div class="callout" style="margin-top:20px;margin-bottom:0">
+          <strong>D2C and VBC revenue are not additive — they are multiplicative.</strong> Every provider enrolled in ACCESS generates enrolled patients. Every enrolled patient is a D2C acquisition with zero cost. The two business lines compound each other.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PANEL 4: COMPETITIVE POSITION ═══════ -->
+<div class="panel" id="p3">
+
+  <div class="sc-bar">
+    <div class="sc-stat"><div class="sc-label">Livongo → Teladoc Exit (2020)</div><div class="sc-val">$18.5B</div><div class="sc-sub">Single condition. No infrastructure. No government distribution.</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Hims &amp; Hers Market Cap</div><div class="sc-val">$4B+</div><div class="sc-sub">DTC telehealth only. No data integration. No CMS relationship.</div></div>
+    <div class="sc-div"></div>
+    <div class="sc-stat"><div class="sc-label">Omada Health (Raised)</div><div class="sc-val">$500M+</div><div class="sc-sub">Chronic conditions only. No five-layer infrastructure.</div></div>
+    <div class="sc-badge">Market Position</div>
+  </div>
+
+  <div class="section-wrap">
+    <div class="hero-stmt">The market rewards integrated consumer health at premium valuations. <em>InPursuit is the only integrated product in the market.</em></div>
+
+    <div class="section-label">Comparable Exit Analysis</div>
+
+    <div class="comp-grid">
+      <div class="comp-card">
+        <div class="comp-name">Livongo</div>
+        <div class="comp-val">$18.5B</div>
+        <div class="comp-desc">Teladoc acquisition (2020). Diabetes management only. No data infrastructure. No government distribution. Single condition.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">Hims &amp; Hers</div>
+        <div class="comp-val">$4B+</div>
+        <div class="comp-desc">DTC telehealth marketplace. No clinical data integration. No EHR connectivity. No CMS relationship. Subscription and commerce revenue only.</div>
+      </div>
+      <div class="comp-card">
+        <div class="comp-name">Omada Health</div>
+        <div class="comp-val">$500M+</div>
+        <div class="comp-desc">Chronic disease programs. Employer-focused. No consumer app. No Medicare distribution. No AI orchestration. Raised $500M+ for single-vertical play.</div>
+      </div>
+      <div class="comp-card us">
+        <div class="comp-name">InPursuit Health</div>
+        <div class="comp-val">$25M Cap</div>
+        <div class="comp-desc">Full-stack. Five-layer infrastructure. Medicare.gov distribution. VBC + D2C flywheel. Model-agnostic AI. Federal validation. Multiple conditions. $0 acquisition cost.</div>
+      </div>
+    </div>
+
+    <div class="callout-dark">
+      <p><strong>Livongo was acquired for $18.5B managing one condition — diabetes — for employer groups.</strong> InPursuit manages every chronic condition, for every member of a family, connected to clinical care, with government-validated distribution to 140M beneficiaries, on a five-layer infrastructure stack with federal validation. The SAFE raise at a $25M post-money cap represents an extraordinary early-entry valuation relative to the comparable company landscape.</p>
+    </div>
+
+    <div class="gold-div"></div>
+    <div class="section-label">InPursuit's Structural Advantages — Why This Is Defensible</div>
+
+    <div class="adv-list">
+      <div class="adv-item">
+        <div class="adv-num">1</div>
+        <div>
+          <div class="adv-title">Government Distribution — The Medicare App Library</div>
+          <div class="adv-desc">CMS launched the Medicare App Library on Medicare.gov in February 2026. InPursuit is featured in all three patient-facing categories. 140M+ beneficiaries see InPursuit as a CMS-recommended tool. No amount of paid advertising can replicate government-endorsed placement at this scale — and it costs InPursuit nothing in acquisition.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">2</div>
+        <div>
+          <div class="adv-title">The Five-Layer Infrastructure Stack — No One Can Fast-Follow</div>
+          <div class="adv-desc">Competitors can build a consumer app. They cannot build TETRA in six months. The five-layer stack — data fabric, exchange network, AI routing, governance, and surveillance — took years to build and was stress-tested at 290K+ server scale. This is the moat that prevents any consumer health company from replicating what InPursuit does.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">3</div>
+        <div>
+          <div class="adv-title">The Provider-Consumer Flywheel — A Self-Reinforcing Network</div>
+          <div class="adv-desc">Every provider enrolled in InPursuit's VBC program sends their Medicare patients to the InPursuit App. Those patients generate health data, become subscribers or commerce users, and generate better outcomes — which drive higher OAPs for the provider. Higher OAPs fund more patient enrollments. The flywheel is structural, not acquired.</div>
+        </div>
+      </div>
+      <div class="adv-item">
+        <div class="adv-num">4</div>
+        <div>
+          <div class="adv-title">MAHA Policy Tailwind — The MAHA Vision Is InPursuit</div>
+          <div class="adv-desc">The Make America Healthy Again policy agenda calls for a healthcare system built around the individual — preventive, personalized, data-driven. InPursuit's consumer product is the exact manifestation of that vision: a single health intelligence platform connecting clinical data, wellness data, AI guidance, and financial benefits in the hands of every American. Federal policy is pointing toward InPursuit's D2C product.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-bottom:0">
+      <strong>The consumer health market has consistently rewarded integrated, data-driven platforms at premium multiples.</strong> The companies that built single-condition, single-channel products were acquired at $4–18B. InPursuit is building the platform that replaces all of them — with government distribution, federal infrastructure validation, and a provider network that automatically grows the consumer base. At $25M post-money cap, we are at the very beginning of a venture-scale outcome.
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  <div class="footer-l">InPursuit Health, LLC &nbsp;&nbsp;|&nbsp;&nbsp; CMS Health IT Ecosystem Approved &nbsp;&nbsp;|&nbsp;&nbsp; www.InPursuitHealth.com</div>
+  <div class="footer-r">Confidential</div>
+</div>
+
+</div>
+<script>
+function switchTab(index) {
+  document.querySelectorAll('.tab').forEach(function(t, i) { t.classList.toggle('active', i === index); });
+  document.querySelectorAll('.panel').forEach(function(p, i) { p.classList.toggle('active', i === index); });
+}
+</script>
+</body>
+</html>
