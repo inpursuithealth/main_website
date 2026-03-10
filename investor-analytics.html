@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Analytics — InPursuit Health</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0A1628;
+    --navy-mid:  #111f35;
+    --navy-card: #152236;
+    --gold:      #C5A44E;
+    --gold-lt:   #d4b86a;
+    --gold-pale: rgba(197,164,78,.10);
+    --gold-line: rgba(197,164,78,.22);
+    --text-on:   rgba(255,255,255,.90);
+    --text-dim:  rgba(255,255,255,.48);
+    --text-mute: rgba(255,255,255,.28);
+    --green:     #2ecc71;
+    --red:       #e05252;
+    --serif:     'Instrument Serif', Georgia, serif;
+    --sans:      'Instrument Sans', system-ui, sans-serif;
+    --mono:      'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--text-on);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -5%, rgba(197,164,78,.07) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 35% at 88% 85%, rgba(197,164,78,.03) 0%, transparent 55%);
+  }
+
+  /* ── AUTH GATE ── */
+  #auth-gate {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    background: var(--navy);
+  }
+
+  .auth-card {
+    background: var(--navy-card);
+    border: 1px solid var(--gold-line);
+    border-radius: 16px;
+    padding: 2.5rem 2.25rem;
+    width: 100%; max-width: 380px;
+    position: relative;
+  }
+
+  .auth-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    border-radius: 16px 16px 0 0;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .auth-eyebrow {
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .auth-title {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    color: #fff;
+    margin-bottom: .4rem;
+  }
+
+  .auth-sub {
+    font-size: .82rem;
+    color: var(--text-dim);
+    margin-bottom: 1.75rem;
+    line-height: 1.55;
+  }
+
+  .auth-input {
+    width: 100%;
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 8px;
+    color: var(--text-on);
+    font-family: var(--mono);
+    font-size: .9rem;
+    padding: .75rem 1rem;
+    outline: none;
+    transition: border-color .2s;
+    margin-bottom: .85rem;
+  }
+
+  .auth-input:focus { border-color: var(--gold); }
+  .auth-input.error { border-color: var(--red); }
+
+  .auth-btn {
+    width: 100%;
+    background: var(--gold);
+    color: #0A1628;
+    border: none;
+    border-radius: 8px;
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: .78rem 1.5rem;
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .auth-btn:hover { background: var(--gold-lt); }
+
+  .auth-err {
+    font-size: .78rem;
+    color: var(--red);
+    margin-top: .6rem;
+    display: none;
+  }
+
+  .auth-err.show { display: block; }
+
+  /* ── DASHBOARD ── */
+  #dashboard { display: none; position: relative; z-index: 1; }
+
+  .dash-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 2.5rem;
+    border-bottom: 1px solid rgba(255,255,255,.07);
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .dash-wordmark {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: #FAF8F4;
+    letter-spacing: -.01em;
+  }
+
+  .dash-badge {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: rgba(197,164,78,.08);
+    border: 1px solid rgba(197,164,78,.2);
+    border-radius: 20px;
+    padding: .35rem .9rem;
+  }
+
+  .dash-live-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    animation: pulse-dot 2s infinite;
+  }
+
+  @keyframes pulse-dot {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: .5; transform: scale(.8); }
+  }
+
+  .dash-refresh-btn {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    color: var(--text-dim);
+    border-radius: 7px;
+    padding: .4rem .85rem;
+    font-size: .78rem;
+    cursor: pointer;
+    transition: all .2s;
+    display: flex; align-items: center; gap: .4rem;
+  }
+
+  .dash-refresh-btn:hover { background: rgba(255,255,255,.09); color: var(--text-on); }
+
+  .dash-main {
+    padding: 2rem 2.5rem 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .dash-title-row {
+    margin-bottom: 2rem;
+  }
+
+  .dash-page-title {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    letter-spacing: -.02em;
+    color: #fff;
+    margin-bottom: .3rem;
+  }
+
+  .dash-page-sub {
+    font-size: .82rem;
+    color: var(--text-dim);
+  }
+
+  /* ── KPI STRIP ── */
+  .kpi-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 860px) { .kpi-strip { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 480px) { .kpi-strip { grid-template-columns: 1fr; } }
+
+  .kpi-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    padding: 1.25rem 1.4rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .kpi-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, transparent, rgba(197,164,78,.4), transparent);
+  }
+
+  .kpi-label {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: .6rem;
+  }
+
+  .kpi-val {
+    font-family: var(--serif);
+    font-size: 2.1rem;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: -.03em;
+  }
+
+  .kpi-sub {
+    font-size: .73rem;
+    color: var(--text-dim);
+    margin-top: .4rem;
+  }
+
+  /* ── SECTION HEADERS ── */
+  .section-hdr {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+  }
+
+  .section-hdr-title {
+    font-family: var(--mono);
+    font-size: .68rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* ── DOC POPULARITY ── */
+  .doc-pop-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 700px) { .doc-pop-grid { grid-template-columns: 1fr; } }
+
+  .pop-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    padding: 1.4rem;
+  }
+
+  .pop-row {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    padding: .55rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+
+  .pop-row:last-child { border-bottom: none; }
+
+  .pop-rank {
+    font-family: var(--mono);
+    font-size: .68rem;
+    color: var(--text-mute);
+    width: 20px;
+    flex-shrink: 0;
+    text-align: center;
+  }
+
+  .pop-bar-wrap {
+    flex: 1;
+  }
+
+  .pop-doc-title {
+    font-size: .82rem;
+    color: var(--text-on);
+    margin-bottom: .3rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .pop-bar-track {
+    height: 4px;
+    background: rgba(255,255,255,.07);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .pop-bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: var(--gold);
+    transition: width .6s cubic-bezier(.4,0,.2,1);
+  }
+
+  .pop-count {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    min-width: 28px;
+    text-align: right;
+  }
+
+  .pop-dur {
+    font-family: var(--mono);
+    font-size: .65rem;
+    color: var(--text-mute);
+    flex-shrink: 0;
+    min-width: 48px;
+    text-align: right;
+  }
+
+  /* ── SESSIONS TABLE ── */
+  .sessions-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 2rem;
+  }
+
+  .sessions-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: .82rem;
+  }
+
+  .sessions-table th {
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    padding: .85rem 1.25rem;
+    text-align: left;
+    border-bottom: 1px solid rgba(255,255,255,.06);
+    white-space: nowrap;
+  }
+
+  .sessions-table td {
+    padding: .85rem 1.25rem;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+    color: var(--text-on);
+    vertical-align: top;
+  }
+
+  .sessions-table tr:last-child td { border-bottom: none; }
+
+  .sessions-table tbody tr:hover td { background: rgba(255,255,255,.02); }
+
+  .session-name {
+    font-weight: 600;
+    color: #fff;
+  }
+
+  .session-email {
+    font-size: .75rem;
+    color: var(--text-dim);
+    margin-top: .15rem;
+  }
+
+  .session-code {
+    display: inline-block;
+    background: rgba(197,164,78,.1);
+    border: 1px solid rgba(197,164,78,.2);
+    color: var(--gold);
+    font-family: var(--mono);
+    font-size: .65rem;
+    letter-spacing: .08em;
+    padding: .2rem .55rem;
+    border-radius: 4px;
+    text-transform: uppercase;
+  }
+
+  .session-docs {
+    font-family: var(--mono);
+    font-size: .75rem;
+    color: var(--text-dim);
+  }
+
+  .session-time {
+    font-size: .75rem;
+    color: var(--text-dim);
+    white-space: nowrap;
+  }
+
+  /* ── ACTIVITY FEED ── */
+  .activity-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    padding: 1.4rem;
+  }
+
+  .feed-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: .75rem 0;
+    border-bottom: 1px solid rgba(255,255,255,.04);
+  }
+
+  .feed-item:last-child { border-bottom: none; }
+
+  .feed-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+
+  .feed-icon.open  { background: rgba(46,204,113,.1); color: #2ecc71; }
+  .feed-icon.entry { background: rgba(197,164,78,.1); color: var(--gold); }
+
+  .feed-body { flex: 1; }
+
+  .feed-action {
+    font-size: .83rem;
+    color: var(--text-on);
+    line-height: 1.4;
+  }
+
+  .feed-action strong { color: #fff; }
+
+  .feed-meta {
+    font-family: var(--mono);
+    font-size: .65rem;
+    color: var(--text-mute);
+    margin-top: .25rem;
+  }
+
+  .feed-dur {
+    font-family: var(--mono);
+    font-size: .72rem;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: .1rem;
+  }
+
+  /* ── EMPTY STATES ── */
+  .empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: var(--text-mute);
+  }
+
+  .empty-icon {
+    font-size: 2.5rem;
+    margin-bottom: .75rem;
+    opacity: .4;
+  }
+
+  .empty-state p { font-size: .85rem; }
+
+  /* ── LOADING ── */
+  .loading-overlay {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem;
+  }
+
+  .spinner-ring {
+    width: 32px; height: 32px;
+    border: 2.5px solid rgba(197,164,78,.2);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin .7s linear infinite;
+  }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── LAST UPDATED ── */
+  .last-updated {
+    font-family: var(--mono);
+    font-size: .65rem;
+    color: var(--text-mute);
+    text-align: center;
+    padding-bottom: 1.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── AUTH GATE ── -->
+<div id="auth-gate">
+  <div class="auth-card">
+    <div class="auth-eyebrow">InPursuit Health</div>
+    <h2 class="auth-title">Analytics Dashboard</h2>
+    <p class="auth-sub">Enter the admin password to view investor portal activity.</p>
+    <input type="password" class="auth-input" id="admin-pw" placeholder="Admin password" autocomplete="off">
+    <p class="auth-err" id="auth-err">Incorrect password.</p>
+    <button class="auth-btn" id="auth-btn">Access Dashboard</button>
+  </div>
+</div>
+
+<!-- ── DASHBOARD ── -->
+<div id="dashboard">
+
+  <header class="dash-header">
+    <span class="dash-wordmark">InPursuit Health</span>
+    <div class="dash-badge">
+      <span class="dash-live-dot"></span>
+      Live Analytics
+    </div>
+    <button class="dash-refresh-btn" id="refresh-btn">
+      <svg width="13" height="13" viewBox="0 0 20 20" fill="currentColor">
+        <path fill-rule="evenodd" d="M4 2a1 1 0 011 1v2.101a7.002 7.002 0 0111.601 2.566 1 1 0 11-1.885.666A5.002 5.002 0 005.999 7H9a1 1 0 010 2H4a1 1 0 01-1-1V3a1 1 0 011-1zm.008 9.057a1 1 0 011.276.61A5.002 5.002 0 0014.001 13H11a1 1 0 110-2h5a1 1 0 011 1v5a1 1 0 11-2 0v-2.101a7.002 7.002 0 01-11.601-2.566 1 1 0 01.61-1.276z" clip-rule="evenodd"/>
+      </svg>
+      Refresh
+    </button>
+  </header>
+
+  <main class="dash-main">
+
+    <div class="dash-title-row">
+      <h1 class="dash-page-title">Investor Portal Activity</h1>
+      <p class="dash-page-sub">Real-time tracking of investor sessions and document engagement.</p>
+    </div>
+
+    <!-- KPI STRIP -->
+    <div class="kpi-strip" id="kpi-strip">
+      <div class="kpi-card">
+        <div class="kpi-label">Total Sessions</div>
+        <div class="kpi-val" id="kpi-sessions">—</div>
+        <div class="kpi-sub">Unique portal entries</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Doc Opens</div>
+        <div class="kpi-val" id="kpi-docs">—</div>
+        <div class="kpi-sub">Total document views</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Docs / Session</div>
+        <div class="kpi-val" id="kpi-avg">—</div>
+        <div class="kpi-sub">Engagement depth</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg Time on Docs</div>
+        <div class="kpi-val" id="kpi-time">—</div>
+        <div class="kpi-sub">Seconds per open</div>
+      </div>
+    </div>
+
+    <!-- DOC POPULARITY -->
+    <div class="section-hdr">
+      <div class="section-hdr-title">Document Popularity</div>
+    </div>
+    <div class="doc-pop-grid">
+      <div class="pop-card" id="pop-by-opens">
+        <div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:.85rem;">By Opens</div>
+        <div id="pop-opens-list"><div class="loading-overlay"><div class="spinner-ring"></div></div></div>
+      </div>
+      <div class="pop-card" id="pop-by-time">
+        <div style="font-family:var(--mono);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--text-mute);margin-bottom:.85rem;">By Time Spent</div>
+        <div id="pop-time-list"><div class="loading-overlay"><div class="spinner-ring"></div></div></div>
+      </div>
+    </div>
+
+    <!-- SESSIONS -->
+    <div class="section-hdr">
+      <div class="section-hdr-title">Investor Sessions</div>
+    </div>
+    <div class="sessions-card">
+      <div id="sessions-table-wrap"><div class="loading-overlay"><div class="spinner-ring"></div></div></div>
+    </div>
+
+    <!-- ACTIVITY FEED -->
+    <div class="section-hdr">
+      <div class="section-hdr-title">Recent Activity</div>
+    </div>
+    <div class="activity-card">
+      <div id="activity-feed"><div class="loading-overlay"><div class="spinner-ring"></div></div></div>
+    </div>
+
+    <p class="last-updated" id="last-updated"></p>
+
+  </main>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+const SUPA_URL  = 'https://weaektyawlgxhqusjymw.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYWVrdHlhd2xneGhxdXNqeW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4NzEsImV4cCI6MjA4ODY4MDg3MX0.W7Zu3CueXLGOHaeUmuKDkduquaJzUpZCrXQ4jp9IYi4';
+const ADMIN_PW  = 'inpursuit2026';
+
+const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
+
+// ── AUTH ──
+document.getElementById('admin-pw').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('auth-btn').click();
+});
+
+document.getElementById('auth-btn').addEventListener('click', () => {
+  const pw  = document.getElementById('admin-pw').value;
+  const err = document.getElementById('auth-err');
+  if (pw === ADMIN_PW) {
+    document.getElementById('auth-gate').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    loadDashboard();
+  } else {
+    document.getElementById('admin-pw').classList.add('error');
+    err.classList.add('show');
+    setTimeout(() => {
+      document.getElementById('admin-pw').classList.remove('error');
+      err.classList.remove('show');
+    }, 2500);
+  }
+});
+
+document.getElementById('refresh-btn').addEventListener('click', loadDashboard);
+
+// ── DATA ──
+async function loadDashboard() {
+  const [sessionsRes, viewsRes] = await Promise.all([
+    supa.from('investor_sessions').select('*').order('entered_at', { ascending: false }),
+    supa.from('investor_doc_views').select('*').order('opened_at', { ascending: false })
+  ]);
+
+  const sessions = sessionsRes.data || [];
+  const views    = viewsRes.data || [];
+
+  renderKPIs(sessions, views);
+  renderDocPopularity(views);
+  renderSessionsTable(sessions, views);
+  renderActivityFeed(sessions, views);
+
+  document.getElementById('last-updated').textContent =
+    'Last refreshed: ' + new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+}
+
+function renderKPIs(sessions, views) {
+  document.getElementById('kpi-sessions').textContent = sessions.length;
+  document.getElementById('kpi-docs').textContent     = views.length;
+
+  const avg = sessions.length > 0
+    ? (views.length / sessions.length).toFixed(1)
+    : '—';
+  document.getElementById('kpi-avg').textContent = avg;
+
+  const timed = views.filter(v => v.seconds_open != null && v.seconds_open > 0);
+  const avgTime = timed.length > 0
+    ? Math.round(timed.reduce((a, v) => a + v.seconds_open, 0) / timed.length) + 's'
+    : '—';
+  document.getElementById('kpi-time').textContent = avgTime;
+}
+
+function renderDocPopularity(views) {
+  if (views.length === 0) {
+    document.getElementById('pop-opens-list').innerHTML = emptyState('No document views yet');
+    document.getElementById('pop-time-list').innerHTML  = emptyState('No document views yet');
+    return;
+  }
+
+  const byDoc = {};
+  views.forEach(v => {
+    if (!byDoc[v.doc_slug]) byDoc[v.doc_slug] = { title: v.doc_title, opens: 0, totalSecs: 0, timedOpens: 0 };
+    byDoc[v.doc_slug].opens++;
+    if (v.seconds_open > 0) {
+      byDoc[v.doc_slug].totalSecs += v.seconds_open;
+      byDoc[v.doc_slug].timedOpens++;
+    }
+  });
+
+  const docs = Object.values(byDoc);
+
+  const byOpens = [...docs].sort((a,b) => b.opens - a.opens).slice(0, 8);
+  const maxOpens = byOpens[0]?.opens || 1;
+  document.getElementById('pop-opens-list').innerHTML = byOpens.map((d, i) => `
+    <div class="pop-row">
+      <span class="pop-rank">${i+1}</span>
+      <div class="pop-bar-wrap">
+        <div class="pop-doc-title">${d.title}</div>
+        <div class="pop-bar-track"><div class="pop-bar-fill" style="width:${Math.round((d.opens/maxOpens)*100)}%"></div></div>
+      </div>
+      <span class="pop-count">${d.opens}</span>
+    </div>
+  `).join('');
+
+  const byTime = docs.filter(d => d.timedOpens > 0)
+    .sort((a,b) => (b.totalSecs/b.timedOpens) - (a.totalSecs/a.timedOpens))
+    .slice(0, 8);
+
+  if (byTime.length === 0) {
+    document.getElementById('pop-time-list').innerHTML = emptyState('Time data not yet available');
+    return;
+  }
+
+  const maxAvg = (byTime[0].totalSecs / byTime[0].timedOpens) || 1;
+  document.getElementById('pop-time-list').innerHTML = byTime.map((d, i) => {
+    const avg = Math.round(d.totalSecs / d.timedOpens);
+    return `
+      <div class="pop-row">
+        <span class="pop-rank">${i+1}</span>
+        <div class="pop-bar-wrap">
+          <div class="pop-doc-title">${d.title}</div>
+          <div class="pop-bar-track"><div class="pop-bar-fill" style="width:${Math.round((avg/maxAvg)*100)}%;background:#5ba4d4;"></div></div>
+        </div>
+        <span class="pop-dur">${fmtDur(avg)}</span>
+      </div>
+    `;
+  }).join('');
+}
+
+function renderSessionsTable(sessions, views) {
+  if (sessions.length === 0) {
+    document.getElementById('sessions-table-wrap').innerHTML = emptyState('No investor sessions yet');
+    return;
+  }
+
+  const docCountBySession = {};
+  views.forEach(v => {
+    docCountBySession[v.session_id] = (docCountBySession[v.session_id] || 0) + 1;
+  });
+
+  const rows = sessions.map(s => `
+    <tr>
+      <td>
+        <div class="session-name">${esc(s.first_name)} ${esc(s.last_name)}</div>
+        <div class="session-email">${esc(s.email)}</div>
+      </td>
+      <td><span class="session-code">${esc(s.access_code)}</span></td>
+      <td><span class="session-docs">${docCountBySession[s.id] || 0} docs</span></td>
+      <td><span class="session-time">${fmtDate(s.entered_at)}</span></td>
+    </tr>
+  `).join('');
+
+  document.getElementById('sessions-table-wrap').innerHTML = `
+    <table class="sessions-table">
+      <thead>
+        <tr>
+          <th>Investor</th>
+          <th>Access Code</th>
+          <th>Docs Opened</th>
+          <th>Entered</th>
+        </tr>
+      </thead>
+      <tbody>${rows}</tbody>
+    </table>
+  `;
+}
+
+function renderActivityFeed(sessions, views) {
+  if (sessions.length === 0 && views.length === 0) {
+    document.getElementById('activity-feed').innerHTML = emptyState('No activity yet');
+    return;
+  }
+
+  const sessionMap = {};
+  sessions.forEach(s => { sessionMap[s.id] = s; });
+
+  const events = [];
+
+  sessions.slice(0, 30).forEach(s => {
+    events.push({ type: 'entry', ts: new Date(s.entered_at), session: s });
+  });
+
+  views.slice(0, 60).forEach(v => {
+    const s = sessionMap[v.session_id];
+    events.push({ type: 'open', ts: new Date(v.opened_at), view: v, session: s });
+  });
+
+  events.sort((a,b) => b.ts - a.ts);
+
+  const items = events.slice(0, 40).map(e => {
+    if (e.type === 'entry') {
+      return `
+        <div class="feed-item">
+          <div class="feed-icon entry">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="feed-body">
+            <div class="feed-action"><strong>${esc(e.session.first_name)} ${esc(e.session.last_name)}</strong> entered the data room</div>
+            <div class="feed-meta">${esc(e.session.email)} &nbsp;·&nbsp; code: ${esc(e.session.access_code)} &nbsp;·&nbsp; ${fmtDate(e.session.entered_at)}</div>
+          </div>
+        </div>
+      `;
+    } else {
+      const name = e.session ? `${esc(e.session.first_name)} ${esc(e.session.last_name)}` : 'Unknown';
+      const dur  = e.view.seconds_open > 0 ? fmtDur(e.view.seconds_open) : null;
+      return `
+        <div class="feed-item">
+          <div class="feed-icon open">
+            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd"/></svg>
+          </div>
+          <div class="feed-body">
+            <div class="feed-action"><strong>${name}</strong> opened <strong>${esc(e.view.doc_title)}</strong></div>
+            <div class="feed-meta">${esc(e.view.doc_category)} &nbsp;·&nbsp; ${fmtDate(e.view.opened_at)}</div>
+          </div>
+          ${dur ? `<div class="feed-dur">${dur}</div>` : ''}
+        </div>
+      `;
+    }
+  }).join('');
+
+  document.getElementById('activity-feed').innerHTML = items || emptyState('No activity yet');
+}
+
+// ── UTILS ──
+function fmtDate(iso) {
+  if (!iso) return '—';
+  return new Date(iso).toLocaleString('en-US', {
+    month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit',
+    hour12: true
+  });
+}
+
+function fmtDur(secs) {
+  if (!secs || secs <= 0) return '—';
+  if (secs < 60) return secs + 's';
+  return Math.floor(secs / 60) + 'm ' + (secs % 60) + 's';
+}
+
+function esc(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function emptyState(msg) {
+  return `<div class="empty-state"><div class="empty-icon">◦</div><p>${msg}</p></div>`;
+}
+</script>
+</body>
+</html>

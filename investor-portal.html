@@ -1253,19 +1253,27 @@
 
 <div id="toast"></div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ── SUPABASE ────────────────────────────────────
+const SUPA_URL  = 'https://weaektyawlgxhqusjymw.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYWVrdHlhd2xneGhxdXNqeW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4NzEsImV4cCI6MjA4ODY4MDg3MX0.W7Zu3CueXLGOHaeUmuKDkduquaJzUpZCrXQ4jp9IYi4';
+const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
+
 // ── LOGO ───────────────────────────────────────
-const LOGO = null; // logo removed — use text fallback
+const LOGO = null;
 
 // ── ACCESS CODES ───────────────────────────────
 const VALID_CODES = ['julio','shawn','omega'];
 
-// ── FORMSPREE (replace YOUR_FORM_ID) ───────────
+// ── FORMSPREE ──────────────────────────────────
 const FORMSPREE = 'https://formspree.io/f/mvzwobkj';
 
 // ── STATE ──────────────────────────────────────
 let accessCode = '';
 let contact    = {};
+let sessionId  = null;
 
 // ── INJECT LOGOS ───────────────────────────────
 // Logo: replace img tags with styled text mark
@@ -1404,8 +1412,101 @@ document.getElementById('btn-s3').addEventListener('click', async () => {
     });
   } catch(e) { console.warn('Formspree error:', e); }
 
+  await createSession();
   openDataRoom();
 });
+
+// ── SUPABASE TRACKING ──────────────────────────
+
+async function createSession() {
+  try {
+    const { data, error } = await supa
+      .from('investor_sessions')
+      .insert({
+        access_code: accessCode,
+        first_name:  contact.first,
+        last_name:   contact.last,
+        email:       contact.email,
+        user_agent:  navigator.userAgent.slice(0, 300),
+        referrer:    document.referrer.slice(0, 300)
+      })
+      .select('id')
+      .single();
+    if (!error && data) sessionId = data.id;
+  } catch(e) { console.warn('Supabase session error:', e); }
+}
+
+async function trackDocOpen(slug, title, category) {
+  if (!sessionId) return null;
+  try {
+    const { data, error } = await supa
+      .from('investor_doc_views')
+      .insert({
+        session_id:   sessionId,
+        doc_slug:     slug,
+        doc_title:    title,
+        doc_category: category,
+        opened_at:    new Date().toISOString()
+      })
+      .select('id')
+      .single();
+    if (!error && data) return data.id;
+  } catch(e) { console.warn('Supabase doc view error:', e); }
+  return null;
+}
+
+async function trackDocClose(viewId, openedAt) {
+  if (!viewId) return;
+  try {
+    const seconds = Math.round((Date.now() - openedAt) / 1000);
+    await supa
+      .from('investor_doc_views')
+      .update({
+        closed_at:    new Date().toISOString(),
+        seconds_open: seconds
+      })
+      .eq('id', viewId);
+  } catch(e) { console.warn('Supabase doc close error:', e); }
+}
+
+function wireDocTracking() {
+  document.querySelectorAll('a.doc-card[href]').forEach(link => {
+    const title    = link.querySelector('.doc-title')?.textContent?.trim() || link.href;
+    const badge    = link.querySelector('.doc-badge')?.textContent?.trim() || 'General';
+    const slug     = link.getAttribute('href').split('/').pop().replace('.html','');
+
+    link.addEventListener('click', async (e) => {
+      if (!sessionId) return;
+      const viewId   = await trackDocOpen(slug, title, badge);
+      const openedAt = Date.now();
+
+      if (!viewId) return;
+
+      const poll = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, 500);
+
+      window.addEventListener('visibilitychange', function onVis() {
+        if (document.visibilityState === 'visible') {
+          window.removeEventListener('visibilitychange', onVis);
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, { once: true });
+    });
+  });
+
+  const cartaBtn = document.querySelector('a.btn-carta');
+  if (cartaBtn) {
+    cartaBtn.addEventListener('click', async () => {
+      if (!sessionId) return;
+      await trackDocOpen('docusign-safe-subscription', 'Execute Subscription Documents (DocuSign)', 'Execution');
+    });
+  }
+}
 
 // ── HELPERS ────────────────────────────────────
 function showStep(n) {
@@ -1428,7 +1529,10 @@ function openDataRoom() {
     room.style.display = 'block';
     room.style.opacity = '0';
     room.style.transition = 'opacity .5s ease';
-    setTimeout(() => room.style.opacity = '1', 20);
+    setTimeout(() => {
+      room.style.opacity = '1';
+      wireDocTracking();
+    }, 20);
   }, 460);
 }
 </script>
