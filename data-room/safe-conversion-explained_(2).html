@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — SAFE Conversion Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);--green:#27AE60;--green-dim:rgba(39,174,96,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+.page{max-width:960px;margin:0 auto}
+
+/* Hero */
+.hero{background:var(--navy);padding:48px 56px 40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40%;right:-5%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,164,78,.05) 0%,transparent 70%);pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
+.hero-brand{font-family:'Instrument Serif',Georgia,serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.hero-badge{border:1px solid var(--gold-border);padding:6px 18px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Instrument Serif',Georgia,serif;font-size:34px;font-weight:400;color:#fff;line-height:1.18;max-width:700px;margin-bottom:12px;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;max-width:640px;position:relative;z-index:1}
+
+/* Terms strip */
+.terms-strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy-mid);border-bottom:1px solid rgba(197,164,78,.12)}
+.ts{padding:18px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.ts:last-child{border:none}
+.ts-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:5px}
+.ts-val{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#fff}
+.ts-val.gold{color:var(--gold)}
+
+/* Sections */
+.section{padding:48px 56px}
+.section.dark{background:var(--navy);color:#fff}
+.section.light{background:#fff;border-bottom:1px solid var(--border)}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.dark .label{color:var(--gold-light)}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:26px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:12px}
+.stitle em{font-style:italic;color:var(--gold)}
+.dark .stitle{color:#fff}
+.dark .stitle em{color:var(--gold-light)}
+.sbody{font-size:14px;line-height:1.8;color:var(--text-mid);max-width:700px;margin-bottom:32px}
+.dark .sbody{color:rgba(255,255,255,.50)}
+
+/* How it works cards */
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.how-card{padding:28px;border-radius:8px}
+.how-card.cap{background:var(--gold-dim);border:2px solid var(--gold)}
+.how-card.disc{background:rgba(58,124,165,.06);border:2px solid rgba(58,124,165,.25)}
+.how-tag{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.how-card.cap .how-tag{color:var(--gold)}
+.how-card.disc .how-tag{color:#3A7CA5}
+.how-card h3{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.how-card .formula{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin:16px 0;padding:14px;background:rgba(255,255,255,.7);border-radius:6px;text-align:center}
+.how-card.cap .formula{background:rgba(197,164,78,.08)}
+.how-card.disc .formula{background:rgba(58,124,165,.06)}
+
+/* Main chart */
+.chart-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:32px}
+.chart-header{padding:20px 24px;background:var(--navy);display:flex;justify-content:space-between;align-items:center}
+.chart-title{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:#fff}
+.chart-legend{display:flex;gap:20px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.5)}
+.legend-dot{width:10px;height:10px;border-radius:2px}
+.legend-dot.cap{background:var(--gold)}
+.legend-dot.disc{background:#3A7CA5}
+.legend-dot.same{background:var(--green)}
+
+.chart-table{width:100%;border-collapse:collapse}
+.chart-table th{padding:14px 16px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);background:var(--cream);border-bottom:2px solid var(--border)}
+.chart-table th:not(:first-child){text-align:center}
+.chart-table td{padding:16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-mid);text-align:center}
+.chart-table td:first-child{text-align:left;font-weight:600;color:var(--navy)}
+.chart-table tr:last-child td{border:none}
+.chart-table .val-gold{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--gold);font-weight:700}
+.chart-table .val-blue{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:#3A7CA5;font-weight:700}
+.chart-table .val-green{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--green);font-weight:700}
+.chart-table .winner{background:var(--gold-dim)}
+.chart-table .same-row{background:var(--green-dim)}
+.chart-table .target-row{background:var(--gold-dim);border-left:3px solid var(--gold)}
+.chart-table .target-row td:first-child{color:var(--gold)}
+.mult{font-size:11px;font-weight:600;color:var(--text-muted);margin-top:2px}
+.target-badge{display:inline-block;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:3px;margin-left:8px;vertical-align:middle}
+
+/* Visual bar chart */
+.bar-chart{margin:32px 0}
+.bar-row{display:grid;grid-template-columns:100px 1fr 80px;gap:12px;align-items:center;margin-bottom:8px}
+.bar-label{font-size:11px;font-weight:600;color:var(--navy);text-align:right}
+.bar-track{height:32px;background:var(--cream);border-radius:4px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:10px;font-weight:700;color:#fff;transition:width .6s ease}
+.bar-fill.gold{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.bar-fill.green{background:linear-gradient(90deg,var(--green),#2ECC71)}
+.bar-mult{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--navy)}
+.dark .bar-label{color:rgba(255,255,255,.6)}
+.dark .bar-track{background:rgba(255,255,255,.06)}
+.dark .bar-mult{color:var(--gold)}
+
+/* Callout */
+.callout{border-left:3px solid var(--gold);padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0}
+.callout.light-bg{background:var(--gold-dim)}
+.callout.dark-bg{background:rgba(197,164,78,.06)}
+.callout p{font-size:14px;line-height:1.75}
+.callout strong{color:var(--navy)}
+.dark .callout strong{color:var(--gold-light)}
+.dark .callout p{color:rgba(255,255,255,.55)}
+
+/* Breakeven */
+.breakeven{display:flex;align-items:center;gap:24px;padding:24px 28px;background:rgba(58,124,165,.06);border:1px solid rgba(58,124,165,.15);border-radius:8px;margin:24px 0}
+.breakeven-icon{width:48px;height:48px;border-radius:50%;background:rgba(58,124,165,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.breakeven p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.breakeven strong{color:var(--navy)}
+
+/* Bottom line */
+.bottom-line{background:var(--navy);text-align:center;padding:48px 56px}
+.bottom-line h2{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;margin-bottom:12px}
+.bottom-line h2 em{font-style:italic;color:var(--gold)}
+.bottom-line p{font-size:14px;color:rgba(255,255,255,.45);max-width:600px;margin:0 auto;line-height:1.8}
+
+/* Footer */
+.footer{background:var(--navy-mid);padding:16px 56px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:rgba(255,255,255,.2)}
+.footer strong{color:var(--gold-light)}
+
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}body{background:#fff}@page{size:letter;margin:.4in}}
+@media(max-width:768px){.hero,.section,.bottom-line{padding-left:24px;padding-right:24px}.terms-strip{grid-template-columns:1fr 1fr}.how-grid{grid-template-columns:1fr}.bar-row{grid-template-columns:70px 1fr 60px}.footer{padding:16px 24px;flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-brand">InPursuit Health</div>
+    <div class="hero-badge">SAFE Conversion Guide</div>
+  </div>
+  <h1>How Your SAFE Converts to <em>Equity.</em></h1>
+  <p class="hero-sub">A visual guide to how a $100K SAFE investment converts at different Series A valuations. Our SAFE uses a valuation cap only (no discount) — here's exactly what that means for your return.</p>
+</div>
+
+<div class="terms-strip">
+  <div class="ts"><div class="ts-label">SAFE Amount</div><div class="ts-val gold">$100K</div></div>
+  <div class="ts"><div class="ts-label">Valuation Cap</div><div class="ts-val gold">$25M</div></div>
+  <div class="ts"><div class="ts-label">Discount</div><div class="ts-val">None</div></div>
+  <div class="ts"><div class="ts-label">Series A Target</div><div class="ts-val gold">$50M Pre</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="label">How It Works</div>
+  <div class="stitle">Two Mechanisms. <em>Investor Gets the Better Deal.</em></div>
+  <div class="sbody">A SAFE can include a valuation cap, a discount, or both. InPursuit's SAFE uses a cap only. Here's the difference — and why it doesn't change your return at our target Series A price.</div>
+
+  <div class="how-grid">
+    <div class="how-card cap">
+      <div class="how-tag">Your SAFE — Cap Only</div>
+      <h3>$25M Valuation Cap</h3>
+      <p>No matter what the Series A prices at, your SAFE converts as if the company were worth $25M. If the Series A is at $50M, you're buying units at half price.</p>
+      <div class="formula">$100K &divide; $25M = 0.40% ownership</div>
+      <p>At a $50M Series A, your 0.40% is worth <strong>$200K</strong> on Day 1.</p>
+    </div>
+    <div class="how-card disc">
+      <div class="how-tag">Alternative — Cap + 20% Discount</div>
+      <h3>Better of Cap or Discount</h3>
+      <p>With a discount, the investor converts at the lower of the cap OR 20% off the Series A price. The investor always gets whichever is better for them.</p>
+      <div class="formula">Better of: $25M cap OR 80% &times; Series A price</div>
+      <p>At $50M Series A: Cap = $25M, Discount = $40M. <strong>Cap wins.</strong> Same result.</p>
+    </div>
+  </div>
+
+  <div class="breakeven">
+    <div class="breakeven-icon">&#8652;</div>
+    <div>
+      <p><strong>The breakeven point is $31.25M.</strong> Below that, a 20% discount would give investors a better deal than the cap. Above that, the cap always wins. Since your Series A targets $50M pre-money — well above the breakeven — the discount is irrelevant. Both mechanisms produce the exact same outcome.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN COMPARISON TABLE -->
+<div class="section light">
+  <div class="label">Conversion Scenarios</div>
+  <div class="stitle">$100K SAFE at Every Possible <em>Series A Price.</em></div>
+  <div class="sbody">The table below shows how your $100K converts at each Series A valuation. The gold column is your actual SAFE (cap only). The blue column shows what a cap + discount would produce. Green rows mean both are identical.</div>
+
+  <div class="chart-wrap">
+    <div class="chart-header">
+      <div class="chart-title">$100K SAFE — Conversion at Series A</div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot cap"></div>Cap Only (Your SAFE)</div>
+        <div class="legend-item"><div class="legend-dot disc"></div>Cap + 20% Discount</div>
+        <div class="legend-item"><div class="legend-dot same"></div>Same Result</div>
+      </div>
+    </div>
+    <table class="chart-table">
+      <thead>
+        <tr>
+          <th>Series A Pre-Money</th>
+          <th>Cap Only<br>Converts At</th>
+          <th>Cap + Discount<br>Converts At</th>
+          <th>Which Wins?</th>
+          <th>$100K Becomes</th>
+          <th>Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$20M</td>
+          <td><span class="val-gold">$20M</span></td>
+          <td><span class="val-blue">$16M</span></td>
+          <td style="font-size:11px;color:#3A7CA5;font-weight:600">Discount wins</td>
+          <td>Cap: $100K &nbsp;|&nbsp; Disc: $125K</td>
+          <td><div class="mult">1.0x &nbsp;|&nbsp; 1.25x</div></td>
+        </tr>
+        <tr>
+          <td>$25M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-blue">$20M</span></td>
+          <td style="font-size:11px;color:#3A7CA5;font-weight:600">Discount wins</td>
+          <td>Cap: $100K &nbsp;|&nbsp; Disc: $125K</td>
+          <td><div class="mult">1.0x &nbsp;|&nbsp; 1.25x</div></td>
+        </tr>
+        <tr style="background:rgba(58,124,165,.04)">
+          <td>$31.25M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-blue">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong>$125K</strong></td>
+          <td><div class="mult">1.25x</div></td>
+        </tr>
+        <tr class="same-row">
+          <td>$40M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong>$160K</strong></td>
+          <td><div class="mult">1.6x</div></td>
+        </tr>
+        <tr class="target-row">
+          <td>$50M <span class="target-badge">Target</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong style="color:var(--gold);font-size:15px">$200K</strong></td>
+          <td><div class="mult" style="color:var(--gold);font-size:14px">2.0x</div></td>
+        </tr>
+        <tr class="same-row">
+          <td>$75M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong>$300K</strong></td>
+          <td><div class="mult">3.0x</div></td>
+        </tr>
+        <tr class="same-row">
+          <td>$100M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong>$400K</strong></td>
+          <td><div class="mult">4.0x</div></td>
+        </tr>
+        <tr class="same-row">
+          <td>$150M</td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-gold">$25M</span></td>
+          <td><span class="val-green">Identical</span></td>
+          <td><strong>$600K</strong></td>
+          <td><div class="mult">6.0x</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout light-bg">
+    <p><strong>Key insight:</strong> At every Series A valuation above $31.25M, the cap and the discount produce identical results. Since InPursuit targets $50M pre-money — and comparable VBC infrastructure companies (Aledade, Pearl Health) have raised at $50M+ — the discount would never activate. Cap-only is simpler, cleaner, and produces the same investor return.</p>
+  </div>
+</div>
+
+<!-- VISUAL BAR CHART -->
+<div class="section dark">
+  <div class="label">Return Visualization</div>
+  <div class="stitle">$100K SAFE → <em>Value at Series A</em></div>
+  <div class="sbody">Every bar below shows the Day 1 value of a $100K SAFE investment when the Series A closes. The cap ensures your conversion price stays at $25M regardless of how high the Series A prices.</div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">$30M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:20%">$120K</div></div>
+      <div class="bar-mult">1.2x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$40M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:27%">$160K</div></div>
+      <div class="bar-mult">1.6x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="color:var(--gold)">$50M Target</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:33%">$200K</div></div>
+      <div class="bar-mult" style="font-size:20px">2.0x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$75M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:50%">$300K</div></div>
+      <div class="bar-mult">3.0x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$100M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:67%">$400K</div></div>
+      <div class="bar-mult">4.0x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$150M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:100%">$600K</div></div>
+      <div class="bar-mult">6.0x</div>
+    </div>
+  </div>
+
+  <div class="callout dark-bg">
+    <p><strong>The math is simple:</strong> Your SAFE converts at $25M no matter what. So your return = (Series A valuation &divide; $25M) &times; your investment. At the $50M target, that's exactly 2.0x. At Aledade-comparable scale ($1B+), it's 40x+. The cap is your price lock — the higher the Series A goes, the more your early entry is worth.</p>
+  </div>
+</div>
+
+<!-- BOTTOM LINE -->
+<div class="bottom-line">
+  <div class="label" style="color:var(--gold-light);margin-bottom:16px">The Bottom Line</div>
+  <h2>Cap Only = Simpler. <em>Same Return.</em></h2>
+  <p>At InPursuit's target $50M pre-money Series A, a $25M cap with no discount and a $25M cap with 20% discount produce the exact same result: 2.0x Day 1 markup. The discount only matters below $31.25M — a scenario nobody is planning for. Your attorney structured it right.</p>
+</div>
+
+<div class="footer">
+  <div><strong>InPursuit Health, LLC</strong> &nbsp;|&nbsp; CMS Health Tech Ecosystem &mdash; Approved Member</div>
+  <div>Confidential &mdash; Investor Education</div>
+</div>
+
+</div>
+</body>
+</html>
