@@ -1562,6 +1562,10 @@ function openDataRoom() {
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
 
+  sessionStorage.setItem('ip_portal_unlocked', '1');
+  sessionStorage.setItem('ip_portal_contact', JSON.stringify(contact));
+  sessionStorage.setItem('ip_portal_code', accessCode);
+
   const gate = document.getElementById('gate-container');
   gate.style.transition = 'opacity .45s ease, transform .45s ease';
   gate.style.opacity    = '0';
@@ -1578,6 +1582,23 @@ function openDataRoom() {
     }, 20);
   }, 460);
 }
+
+(function restoreSession() {
+  if (sessionStorage.getItem('ip_portal_unlocked') !== '1') return;
+  try {
+    contact    = JSON.parse(sessionStorage.getItem('ip_portal_contact') || '{}');
+    accessCode = sessionStorage.getItem('ip_portal_code') || '';
+  } catch(e) { return; }
+  if (!contact.first) return;
+  document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
+  document.getElementById('display-email').textContent = contact.email;
+  const gate = document.getElementById('gate-container');
+  gate.style.display = 'none';
+  const room = document.getElementById('data-room');
+  room.style.display = 'block';
+  room.style.opacity = '1';
+  wireDocTracking();
+})();
 </script>
 </body>
 </html>
