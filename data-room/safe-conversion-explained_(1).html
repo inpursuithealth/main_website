@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — SAFE Conversion Explained</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);--green:#27AE60;--green-dim:rgba(39,174,96,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+.page{max-width:960px;margin:0 auto}
+.hero{background:var(--navy);padding:48px 56px 40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40%;right:-5%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,164,78,.05) 0%,transparent 70%);pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
+.hero-brand{display:flex;flex-direction:column;gap:4px}
+.hero-wm{font-family:'Instrument Serif',Georgia,serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.hero-tag{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.hero-badge{border:1px solid var(--gold-border);padding:6px 18px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Instrument Serif',Georgia,serif;font-size:34px;font-weight:400;color:#fff;line-height:1.18;max-width:700px;margin-bottom:12px;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;max-width:640px;position:relative;z-index:1}
+.ts-bar{display:grid;grid-template-columns:repeat(5,1fr);background:var(--navy-mid);border-bottom:1px solid rgba(197,164,78,.12)}
+.ts{padding:18px 16px;text-align:center;border-right:1px solid rgba(255,255,255,.04)}.ts:last-child{border:none}
+.ts-label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:5px}
+.ts-val{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:#fff}.ts-val.gold{color:var(--gold)}
+.sec{padding:48px 56px}.sec.dk{background:var(--navy);color:#fff}.sec.lt{background:#fff;border-bottom:1px solid var(--border)}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}.dk .label{color:var(--gold-light)}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:26px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:12px}.stitle em{font-style:italic;color:var(--gold)}.dk .stitle{color:#fff}.dk .stitle em{color:var(--gold-light)}
+.sbody{font-size:14px;line-height:1.8;color:var(--text-mid);max-width:700px;margin-bottom:32px}.sbody strong{color:var(--navy)}.dk .sbody{color:rgba(255,255,255,.50)}.dk .sbody strong{color:var(--gold-light)}
+.def-box{background:var(--cream);border:1px solid var(--border);border-left:3px solid var(--gold);padding:20px 24px;margin-bottom:28px;border-radius:0 8px 8px 0}
+.def-box h4{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.def-row{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px solid rgba(0,0,0,.04);gap:12px}.def-row:last-child{border:none}
+.def-k{font-size:12px;color:var(--text-muted);font-weight:500}.def-v{font-size:13px;color:var(--navy);font-weight:600;text-align:right;max-width:380px}.def-v em{font-style:italic;font-weight:400;color:var(--text-muted);font-size:11px}
+.mech-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-bottom:32px;align-items:stretch}
+.mech{padding:28px;border-radius:8px}.mech.cap{background:var(--gold-dim);border:1.5px solid var(--gold)}.mech.result{background:var(--green-dim);border:1.5px solid rgba(39,174,96,.3)}
+.mech-arrow{display:flex;align-items:center;justify-content:center;padding:0 16px;font-size:28px;color:var(--gold)}
+.mech-tag{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:10px}.mech.cap .mech-tag{color:var(--gold)}.mech.result .mech-tag{color:var(--green)}
+.mech h3{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:8px}
+.mech p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.mech .formula{font-family:'Instrument Serif',Georgia,serif;font-size:17px;color:var(--navy);margin:14px 0;padding:12px;border-radius:6px;text-align:center}
+.mech.cap .formula{background:rgba(197,164,78,.08)}.mech.result .formula{background:rgba(39,174,96,.06)}
+.chart-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:32px}
+.chart-hdr{padding:18px 24px;background:var(--navy);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.chart-title{font-family:'Instrument Serif',Georgia,serif;font-size:17px;color:#fff}.chart-note{font-size:10px;color:rgba(255,255,255,.35)}
+.ct{width:100%;border-collapse:collapse}
+.ct th{padding:13px 16px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);background:var(--cream);border-bottom:2px solid var(--border)}.ct th:not(:first-child){text-align:center}
+.ct td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-mid);text-align:center}.ct td:first-child{text-align:left;font-weight:600;color:var(--navy)}.ct tr:last-child td{border:none}
+.ct .vg{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--gold);font-weight:700}
+.ct .target{background:var(--gold-dim);border-left:3px solid var(--gold)}.ct .target td:first-child{color:var(--gold)}.ct .target .vg{font-size:18px}
+.tbadge{display:inline-block;font-size:7px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:2px 7px;border-radius:3px;margin-left:6px;vertical-align:middle}
+.mult{font-size:11px;font-weight:600;color:var(--text-muted);margin-top:2px}
+.bars{margin:28px 0}
+.bar-row{display:grid;grid-template-columns:90px 1fr 70px;gap:12px;align-items:center;margin-bottom:10px}
+.bar-label{font-size:11px;font-weight:600;color:var(--navy);text-align:right}.bar-track{height:36px;background:var(--cream);border-radius:6px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:12px;font-size:11px;font-weight:700;color:#fff;min-width:60px}
+.bar-fill.gold{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.bar-mult{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy)}
+.dk .bar-label{color:rgba(255,255,255,.6)}.dk .bar-track{background:rgba(255,255,255,.06)}.dk .bar-mult{color:var(--gold)}
+.bar-row.target .bar-label{color:var(--gold);font-size:12px}.bar-row.target .bar-mult{font-size:22px;color:var(--gold)}
+.co{border-left:3px solid var(--gold);padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0}.co.lbg{background:var(--gold-dim)}.co.dbg{background:rgba(197,164,78,.06)}
+.co p{font-size:14px;line-height:1.75}.co strong{color:var(--navy)}.dk .co strong{color:var(--gold-light)}.dk .co p{color:rgba(255,255,255,.55)}
+.pra{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0}
+.pra-card{padding:24px;border-radius:8px;border:1px solid var(--border)}.pra-card.yes{background:var(--gold-dim);border-color:var(--gold)}
+.pra-tag{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;color:var(--gold)}
+.pra-card h4{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:6px}
+.pra-card p{font-size:12px;color:var(--text-mid);line-height:1.7}
+.mfn{background:rgba(58,124,165,.06);border:1px solid rgba(58,124,165,.15);border-radius:8px;padding:24px 28px;margin:24px 0;display:flex;gap:16px;align-items:flex-start}
+.mfn-icon{width:40px;height:40px;border-radius:50%;background:rgba(58,124,165,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px}
+.mfn p{font-size:13px;color:var(--text-mid);line-height:1.7}.mfn strong{color:var(--navy)}
+.bottom{background:var(--navy);text-align:center;padding:48px 56px}
+.bottom h2{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;margin-bottom:16px;line-height:1.25}.bottom h2 em{font-style:italic;color:var(--gold)}
+.bottom p{font-size:14px;color:rgba(255,255,255,.45);max-width:620px;margin:0 auto;line-height:1.8}
+.bottom-terms{display:flex;justify-content:center;gap:48px;margin:28px 0;padding:24px 0;border-top:1px solid rgba(197,164,78,.15);border-bottom:1px solid rgba(197,164,78,.15)}
+.bt-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:4px}.bt-val{font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:var(--gold)}
+.footer{background:var(--navy-mid);padding:16px 56px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:rgba(255,255,255,.2)}.footer strong{color:var(--gold-light)}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}body{background:#fff}@page{size:letter;margin:.4in}}
+@media(max-width:768px){.hero,.sec,.bottom{padding-left:24px;padding-right:24px}.ts-bar{grid-template-columns:repeat(3,1fr)}.mech-grid{grid-template-columns:1fr}.mech-arrow{transform:rotate(90deg);padding:8px 0}.pra{grid-template-columns:1fr}.bar-row{grid-template-columns:70px 1fr 50px}.bottom-terms{flex-direction:column;gap:20px}.footer{padding:16px 24px;flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-brand"><div class="hero-wm">InPursuit Health</div><div class="hero-tag">Harness the Power of Your Data&trade;</div></div>
+    <div class="hero-badge">SAFE Conversion Guide</div>
+  </div>
+  <h1>How Your SAFE Converts to <em>Membership Units.</em></h1>
+  <p class="hero-sub">A visual guide to how a SAFE investment in InPursuit Health, LLC converts into Safe Preferred Units when the Company raises an Equity Financing of $1,000,000 or more.</p>
+</div>
+
+<div class="ts-bar">
+  <div class="ts"><div class="ts-label">Instrument</div><div class="ts-val">Post-Money SAFE</div></div>
+  <div class="ts"><div class="ts-label">Valuation Cap</div><div class="ts-val gold">$25,000,000</div></div>
+  <div class="ts"><div class="ts-label">Discount</div><div class="ts-val">None</div></div>
+  <div class="ts"><div class="ts-label">Pro Rata</div><div class="ts-val gold">&ge;$100K</div></div>
+  <div class="ts"><div class="ts-label">MFN</div><div class="ts-val gold">Yes</div></div>
+</div>
+
+<div class="sec">
+  <div class="label">How Conversion Works</div>
+  <div class="stitle">Your SAFE Converts at the <em>Lower of Two Prices.</em></div>
+  <div class="sbody">Per Section 1(a) of the SAFE Agreement, when InPursuit raises an Equity Financing of $1,000,000 or more, your SAFE automatically converts into Safe Preferred Units. The number of units you receive equals your Purchase Amount divided by the <strong>Conversion Price</strong> &mdash; which is the lower of the Safe Price or the Liquidity Price.</div>
+
+  <div class="def-box">
+    <h4>From Your SAFE Agreement (Section 2 &mdash; Definitions)</h4>
+    <div class="def-row"><span class="def-k">Post-Money Valuation Cap</span><span class="def-v">$25,000,000</span></div>
+    <div class="def-row"><span class="def-k">Conversion Price</span><span class="def-v">Lower of Safe Price or Liquidity Price</span></div>
+    <div class="def-row"><span class="def-k">Safe Price</span><span class="def-v">$25,000,000 &divide; Company Capitalization</span></div>
+    <div class="def-row"><span class="def-k">Liquidity Price</span><span class="def-v">$25,000,000 &divide; Liquidity Capitalization</span></div>
+    <div class="def-row"><span class="def-k">Equity Financing Trigger</span><span class="def-v">$1,000,000 in gross proceeds <em>(Section 2)</em></span></div>
+    <div class="def-row"><span class="def-k">Safe Preferred Units</span><span class="def-v">Identical rights to Preferred Units <em>(except liquidation pref)</em></span></div>
+    <div class="def-row"><span class="def-k">Common Units</span><span class="def-v">Class A membership units <em>(Section 2)</em></span></div>
+  </div>
+
+  <div class="mech-grid">
+    <div class="mech cap">
+      <div class="mech-tag">Your $25M Cap</div>
+      <h3>What It Means in Practice</h3>
+      <p>No matter how high the Equity Financing prices the Company, your SAFE converts as if the Company were worth $25,000,000. The higher the Equity Financing price, the greater your advantage.</p>
+      <div class="formula">Purchase Amount &divide; $25M cap = Your Units</div>
+    </div>
+    <div class="mech-arrow">&rarr;</div>
+    <div class="mech result">
+      <div class="mech-tag">The Result</div>
+      <h3>Immediate Markup</h3>
+      <p>If the Equity Financing values the Company at $50M pre-money, you receive units at $25M &mdash; effectively buying at 50% of the price new investors pay. Your units are worth 2x your investment on Day 1.</p>
+      <div class="formula">$50M valuation &divide; $25M cap = 2.0x</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec lt">
+  <div class="label">Conversion Scenarios</div>
+  <div class="stitle">$100,000 SAFE &mdash; <em>At Every Equity Financing Price.</em></div>
+  <div class="sbody">The table below shows exactly what happens to a $100,000 investment at various Equity Financing valuations. Because InPursuit's SAFE has <strong>no discount</strong>, the cap is the only conversion mechanism. Your return equals the Equity Financing valuation divided by $25M, multiplied by your investment.</div>
+
+  <div class="chart-wrap">
+    <div class="chart-hdr">
+      <div class="chart-title">$100,000 SAFE &mdash; Conversion at Equity Financing</div>
+      <div class="chart-note">Cap-only &middot; No discount &middot; $25M Post-Money Valuation Cap</div>
+    </div>
+    <table class="ct">
+      <thead><tr><th>Equity Financing Pre-Money</th><th>Your Conversion Price</th><th>Effective Ownership</th><th>Day 1 Value</th><th>Return</th></tr></thead>
+      <tbody>
+        <tr><td>$25M <em style="font-size:10px;color:var(--text-muted)">(at cap)</em></td><td><span class="vg">$25M</span></td><td>0.40%</td><td>$100,000</td><td><div class="mult">1.0x</div></td></tr>
+        <tr><td>$30M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td>$120,000</td><td><div class="mult">1.2x</div></td></tr>
+        <tr><td>$40M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td>$160,000</td><td><div class="mult">1.6x</div></td></tr>
+        <tr class="target"><td>$50M <span class="tbadge">Series A Target</span></td><td><span class="vg">$25M</span></td><td style="font-weight:700;color:var(--gold)">0.40%</td><td><span class="vg" style="font-size:20px">$200,000</span></td><td><div class="mult" style="color:var(--gold);font-size:14px;font-weight:700">2.0x</div></td></tr>
+        <tr><td>$75M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td><span class="vg">$300,000</span></td><td><div class="mult">3.0x</div></td></tr>
+        <tr><td>$100M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td><span class="vg">$400,000</span></td><td><div class="mult">4.0x</div></td></tr>
+        <tr><td>$150M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td><span class="vg">$600,000</span></td><td><div class="mult">6.0x</div></td></tr>
+        <tr><td>$250M</td><td><span class="vg">$25M</span></td><td>0.40%</td><td><span class="vg">$1,000,000</span></td><td><div class="mult">10.0x</div></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="co lbg"><p><strong>The pattern is simple:</strong> Your conversion price is locked at $25M regardless of how high the Equity Financing values the Company. At InPursuit's target $20M Series A raise at $50M pre-money ($70M post), your $100K becomes $200K on Day 1 &mdash; a 2.0x immediate markup with no additional risk.</p></div>
+</div>
+
+<div class="sec dk">
+  <div class="label">Return Visualization</div>
+  <div class="stitle">$100,000 SAFE &rarr; <em>Day 1 Value at Equity Financing</em></div>
+  <div class="sbody">The $25M cap means you always convert at $25M. The higher the Equity Financing price, the wider the gap between what you paid and what your units are worth.</div>
+  <div class="bars">
+    <div class="bar-row"><div class="bar-label">$25M</div><div class="bar-track"><div class="bar-fill gold" style="width:10%">$100K</div></div><div class="bar-mult">1.0x</div></div>
+    <div class="bar-row"><div class="bar-label">$30M</div><div class="bar-track"><div class="bar-fill gold" style="width:12%">$120K</div></div><div class="bar-mult">1.2x</div></div>
+    <div class="bar-row"><div class="bar-label">$40M</div><div class="bar-track"><div class="bar-fill gold" style="width:16%">$160K</div></div><div class="bar-mult">1.6x</div></div>
+    <div class="bar-row target"><div class="bar-label">$50M Target</div><div class="bar-track"><div class="bar-fill gold" style="width:20%">$200K</div></div><div class="bar-mult" style="font-size:22px;color:var(--gold)">2.0x</div></div>
+    <div class="bar-row"><div class="bar-label">$75M</div><div class="bar-track"><div class="bar-fill gold" style="width:30%">$300K</div></div><div class="bar-mult">3.0x</div></div>
+    <div class="bar-row"><div class="bar-label">$100M</div><div class="bar-track"><div class="bar-fill gold" style="width:40%">$400K</div></div><div class="bar-mult">4.0x</div></div>
+    <div class="bar-row"><div class="bar-label">$150M</div><div class="bar-track"><div class="bar-fill gold" style="width:60%">$600K</div></div><div class="bar-mult">6.0x</div></div>
+    <div class="bar-row"><div class="bar-label">$250M</div><div class="bar-track"><div class="bar-fill gold" style="width:100%">$1.0M</div></div><div class="bar-mult">10.0x</div></div>
+  </div>
+</div>
+
+<div class="sec">
+  <div class="label">Investor Protections</div>
+  <div class="stitle">Your SAFE Includes Two Key <em>Protections.</em></div>
+  <div class="sbody">In addition to the $25M valuation cap, your SAFE includes a Most Favored Nation provision and pro rata rights &mdash; both detailed in the executed agreements.</div>
+  <div class="pra">
+    <div class="pra-card yes">
+      <div class="pra-tag">Pro Rata Rights</div>
+      <h4>Maintain Your Ownership</h4>
+      <p>If your investment is $100,000 or greater, you have the right (but not the obligation) to participate in the Equity Financing on the same terms as new investors &mdash; maintaining your ownership percentage. You must notify the Company within 10 days of the Equity Financing closing. <em style="color:var(--text-muted)">(Subscription Agreement, Section 4)</em></p>
+    </div>
+    <div class="pra-card yes">
+      <div class="pra-tag">Most Favored Nation (MFN)</div>
+      <h4>Always Get the Best Terms</h4>
+      <p>If InPursuit issues any future SAFEs or convertible securities with more favorable terms (lower cap, added discount, better economics), you can elect to adopt those terms within 10 days of notice. Your SAFE is automatically amended to match. <em style="color:var(--text-muted)">(SAFE Agreement, Section 6)</em></p>
+    </div>
+  </div>
+  <div class="mfn">
+    <div class="mfn-icon">&#x1F6E1;</div>
+    <div><p><strong>What the MFN means in practice:</strong> If InPursuit later offers a SAFE with a $20M cap or a 20% discount, you automatically get those better terms if you choose. You can never be disadvantaged by being early. The MFN ensures the earliest investors always have access to the best deal the Company offers to anyone.</p></div>
+  </div>
+</div>
+
+<div class="sec lt">
+  <div class="label">What Happens at Exit</div>
+  <div class="stitle">Liquidation Priority: <em>Where You Stand.</em></div>
+  <div class="sbody">Per Section 1(d) of the SAFE Agreement, in a Liquidity Event (acquisition, IPO) or Dissolution Event, your claim is structured as follows:</div>
+  <div class="def-box">
+    <h4>Liquidation Priority (SAFE Agreement, Section 1(d))</h4>
+    <div class="def-row"><span class="def-k">First Priority</span><span class="def-v">Outstanding indebtedness and creditor claims</span></div>
+    <div class="def-row"><span class="def-k">Second Priority (You)</span><span class="def-v">SAFE holders and convertible notes <em>(on par)</em></span></div>
+    <div class="def-row"><span class="def-k">Third Priority</span><span class="def-v">Common Units (Class A members)</span></div>
+  </div>
+  <div class="co lbg"><p><strong>In a Liquidity Event</strong> (Section 1(b)), you receive the greater of your Purchase Amount (cash-out) or the conversion value at the Liquidity Price. <strong>In a Dissolution Event</strong> (Section 1(c)), you receive your Purchase Amount. In both cases, SAFE holders are senior to Common Unit holders &mdash; meaning founders and Class A members are paid after you.</p></div>
+</div>
+
+<div class="bottom">
+  <div class="label" style="color:var(--gold-light);margin-bottom:16px">The Investment</div>
+  <h2>$25M Cap. No Discount. <em>Maximum Simplicity.</em></h2>
+  <div class="bottom-terms">
+    <div><div class="bt-label">Valuation Cap</div><div class="bt-val">$25,000,000</div></div>
+    <div><div class="bt-label">Series A Target</div><div class="bt-val">$50M Pre / $70M Post</div></div>
+    <div><div class="bt-label">Day 1 Markup</div><div class="bt-val">2.0x</div></div>
+    <div><div class="bt-label">Pro Rata</div><div class="bt-val">&ge;$100K</div></div>
+  </div>
+  <p>Your SAFE converts at $25M no matter where the Equity Financing prices. The higher it goes, the more your early conviction is worth. MFN ensures you always get the best terms. Pro rata rights let you maintain your position. The math is simple, the protections are real, and the upside scales with the Company's success.</p>
+</div>
+
+<div class="footer">
+  <div><strong>InPursuit Health, LLC</strong> &nbsp;|&nbsp; Wyoming &nbsp;|&nbsp; CMS Health Tech Ecosystem &mdash; Approved Member</div>
+  <div>Confidential &mdash; Investor Education &nbsp;|&nbsp; This document supplements, but does not replace, the SAFE Agreement</div>
+</div>
+
+</div>
+</body>
+</html>
