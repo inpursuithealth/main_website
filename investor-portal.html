@@ -853,6 +853,86 @@
     .gate-card-inner, .card-header, .card-body, .card-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
     .doc-grid { grid-template-columns: 1fr; }
   }
+
+  /* ═══ PATH TO REVENUE TIMELINE ═══ */
+  .ml-section { padding: 1.5rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .ml-label { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .ml-row { display: flex; gap: 0; position: relative; }
+  .ml-row::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: rgba(197,164,78,0.12); }
+  .ml-item { flex: 1; position: relative; padding-top: 24px; }
+  .ml-item::before { content: ''; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--text-mute); background: var(--navy); }
+  .ml-item.gold::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 8px rgba(197,164,78,0.3); }
+  .ml-item.rev::before { border-color: var(--green); background: var(--green); box-shadow: 0 0 8px rgba(46,204,113,0.3); }
+  .ml-date { font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 3px; }
+  .ml-item.gold .ml-date { color: var(--gold); }
+  .ml-item.rev .ml-date { color: var(--green); }
+  .ml-txt { font-size: .75rem; color: var(--text-dim); line-height: 1.45; padding-right: 12px; }
+  .ml-txt strong { color: var(--text-on); }
+  .ml-item.gold .ml-txt strong { color: var(--gold); }
+  .ml-item.rev .ml-txt strong { color: var(--green); }
+
+  /* ═══ INSTRUMENT TABS ═══ */
+  .inst-section { padding: 2.25rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .inst-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gold-line); margin-bottom: 1.75rem; }
+  .inst-tab { flex: 1; padding: .9rem .5rem; text-align: center; font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mute); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; }
+  .inst-tab:hover { color: var(--text-dim); }
+  .inst-tab.on { color: var(--gold); border-bottom-color: var(--gold); }
+  .inst-tab .tdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .inst-tab .tdot.g { background: var(--gold); }
+  .inst-tab .tdot.s { background: var(--text-mute); }
+  .inst-pane { display: none; }
+  .inst-pane.on { display: block; }
+  .inst-badge { display: inline-block; font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: .85rem; background: var(--gold-pale); color: var(--gold); }
+  .inst-title { font-family: var(--serif); font-size: 1.35rem; color: #fff; margin-bottom: .4rem; }
+  .inst-desc { font-size: .82rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.25rem; max-width: 640px; }
+  .inst-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: .65rem; margin-bottom: 1.25rem; }
+  .ist { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 8px; padding: .65rem .85rem; }
+  .ist-l { font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mute); margin-bottom: .25rem; }
+  .ist-v { font-family: var(--serif); font-size: 1rem; color: #fff; }
+
+  /* ═══ ACCORDION ═══ */
+  .iacc { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; margin-bottom: .85rem; overflow: hidden; }
+  .iacc-h { display: flex; align-items: center; justify-content: space-between; padding: .85rem 1.15rem; cursor: pointer; transition: background .2s; }
+  .iacc-h:hover { background: rgba(255,255,255,.02); }
+  .iacc-t { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .iacc-c { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; transition: transform .25s; }
+  .iacc-c svg { width: 12px; height: 12px; }
+  .iacc.op .iacc-c { transform: rotate(180deg); }
+  .iacc-b { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .iacc.op .iacc-b { max-height: 5000px; }
+  .iacc-i { padding: 0 1.15rem 1.15rem; }
+  .ifeat { display: flex; align-items: flex-start; gap: .65rem; padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .ifeat:last-child { border: none; }
+  .ifeat-ck { flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .ifeat-ck svg { width: 10px; height: 10px; }
+  .ifeat-t { font-size: .78rem; color: var(--text-dim); line-height: 1.5; }
+  .ifeat-t strong { color: var(--text-on); }
+  .itax { background: rgba(255,255,255,.03); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: .85rem 1rem; margin-bottom: .65rem; }
+  .itax:last-of-type { margin-bottom: 0; }
+  .itax-c { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
+  .itax-h { font-family: var(--serif); font-size: .95rem; color: #fff; margin-bottom: .25rem; }
+  .itax-d { font-size: .72rem; color: var(--text-dim); line-height: 1.6; }
+  .itax-d strong { color: rgba(255,255,255,.75); }
+  .ipill { display: inline-block; font-family: var(--serif); font-size: .85rem; background: var(--gold-pale); border: 1px solid var(--gold-line); border-radius: 4px; padding: 1px 6px; color: var(--gold); margin-top: 4px; margin-right: 3px; }
+  .ireq { display: inline-block; font-family: var(--mono); font-size: .56rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-top: 4px; }
+  .ireq.now { background: rgba(46,204,113,.1); color: #5dd48a; }
+  .ireq.cc { background: rgba(99,179,237,.1); color: #7ec8f0; }
+  .itax-note { font-size: .68rem; color: var(--text-mute); font-style: italic; line-height: 1.5; margin-top: .65rem; }
+  .itax-intro { font-size: .78rem; color: var(--text-dim); line-height: 1.6; margin-bottom: .85rem; }
+  .inst-cta { display: flex; align-items: center; gap: 1rem; background: var(--gold-pale); border: 1px solid var(--gold-line); border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1.25rem; }
+  .inst-cta-h { font-family: var(--serif); font-size: .95rem; color: #fff; margin-bottom: .2rem; }
+  .inst-cta-s { font-size: .72rem; color: var(--text-dim); }
+  .b-note { background: rgba(99,179,237,.08); color: #7ec8f0; border: 1px solid rgba(99,179,237,.18); }
+  .b-equity { background: rgba(168,130,60,.08); color: var(--gold-lt); border: 1px solid rgba(197,164,78,.22); }
+
+  @media (max-width: 600px) {
+    .ml-row { flex-direction: column; gap: 1rem; }
+    .ml-row::before { display: none; }
+    .ml-item { padding-top: 0; padding-left: 28px; }
+    .ml-item::before { top: 0; left: 0; }
+    .inst-stats { grid-template-columns: repeat(2, 1fr); }
+    .ml-section, .inst-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
 </style>
 </head>
 <body>
@@ -1032,16 +1112,16 @@
 
   <!-- HERO -->
   <div class="portal-hero">
-    <div class="portal-kicker">Confidential Data Room &nbsp;·&nbsp; Series A + SAFE Bridge</div>
+    <div class="portal-kicker">Confidential Data Room &nbsp;·&nbsp; Bridge Financing + Series A</div>
     <h1 class="portal-headline">InPursuit Health<br><em>Investor Materials</em></h1>
-    <p class="portal-desc">Complete investment documentation for the SAFE bridge raise ($2M at $25M cap) and Series A ($20M target · August 2026). All materials are confidential and subject to your signed NDA.</p>
+    <p class="portal-desc">InPursuit Health is raising $2M in bridge financing at a $25M valuation cap ahead of a $20M Series A (target close: September 2026). Every investor has different objectives. We offer multiple investment instruments tailored to your specific needs — whether you prioritize simplicity, downside protection, or immediate tax-advantaged pass-through benefits. All materials are confidential and subject to your signed NDA.</p>
   </div>
 
   <!-- STATS STRIP -->
   <div class="stats-strip">
     <div class="stat-item">
       <div class="stat-val">$2M</div>
-      <div class="stat-label">SAFE Bridge Raise</div>
+      <div class="stat-label">Bridge Raise</div>
     </div>
     <div class="stat-divider"></div>
     <div class="stat-item">
@@ -1060,69 +1140,268 @@
     </div>
   </div>
 
-  <hr class="room-divider">
-
-  <!-- ── EXECUTION DOCUMENTS ── -->
-  <div class="doc-section">
-    <div class="section-label">Execution Documents</div>
-
-    <!-- DOCSEND PANEL -->
-    <div class="carta-panel">
-      <div class="carta-left">
-        <div class="carta-eyebrow">
-          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="flex-shrink:0"><path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
-          SAFE Note · $2M Bridge Round
-        </div>
-        <h3 class="carta-title">SAFE Bridge — $2M at $25M Cap</h3>
-        <p class="carta-desc">InPursuit Health is raising a $2M SAFE bridge at a $25M valuation cap with no discount. The full subscription package — including the SAFE instrument, term sheet, and supporting diligence materials — is available via DocuSign. Click the button to review and execute your subscription documents electronically.</p>
-        <div class="carta-terms">
-          <div class="carta-term">
-            <div class="ct-label">Instrument</div>
-            <div class="ct-val">SAFE (Simple Agreement for Future Equity)</div>
-          </div>
-          <div class="carta-term">
-            <div class="ct-label">Valuation Cap</div>
-            <div class="ct-val">$25,000,000</div>
-          </div>
-          <div class="carta-term">
-            <div class="ct-label">Discount Rate</div>
-            <div class="ct-val">None</div>
-          </div>
-          <div class="carta-term">
-            <div class="ct-label">Minimum Check</div>
-            <div class="ct-val">$50,000</div>
-          </div>
-          <div class="carta-term">
-            <div class="ct-label">Total Raise</div>
-            <div class="ct-val">$2,000,000</div>
-          </div>
-          <div class="carta-term">
-            <div class="ct-label">Data Room</div>
-            <div class="ct-val">DocuSign (SAFE — March 2026)</div>
-          </div>
-        </div>
+  <!-- PATH TO REVENUE TIMELINE -->
+  <div class="ml-section">
+    <div class="ml-label">Path to Revenue</div>
+    <div class="ml-row">
+      <div class="ml-item gold">
+        <div class="ml-date">Mar 31</div>
+        <div class="ml-txt"><strong>CMS MVP validated</strong> across all 3 app categories</div>
       </div>
-      <div class="carta-right">
-        <div class="carta-cta-box">
-          <div class="carta-logo-mark">
-            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
-              <rect width="32" height="32" rx="8" fill="rgba(197,164,78,.12)"/>
-              <path d="M7 10h18M7 16h12M7 22h8" stroke="#C5A44E" stroke-width="2.5" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="carta-cta-title">Ready to Subscribe? Execute Here.</div>
-          <div class="carta-cta-sub">Sign your SAFE subscription agreement securely via DocuSign and complete your investment.</div>
-          <a class="btn-carta" href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=98bb49d2-965c-4412-b67a-a5e0e1e97224&env=na4&acct=6a3e7c58-1fd0-42b0-942a-b6c7c928bc58&v=2" target="_blank" rel="noopener">
-            Execute Subscription Documents
-            <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
-          </a>
-          <div class="carta-sub-action">
-            Questions? <a href="mailto:invest@inpursuithealth.com">invest@inpursuithealth.com</a>
-          </div>
-        </div>
+      <div class="ml-item gold">
+        <div class="ml-date">Apr 1</div>
+        <div class="ml-txt"><strong>ACCESS Cohort 1</strong> application with Honeycomb</div>
+      </div>
+      <div class="ml-item gold">
+        <div class="ml-date">Jul 4</div>
+        <div class="ml-txt"><strong>Medicare App Library launch</strong> — CMS Health IT Ecosystem approval. 140M+ beneficiaries.</div>
+      </div>
+      <div class="ml-item rev">
+        <div class="ml-date">Jul 5</div>
+        <div class="ml-txt"><strong>First revenue.</strong> ACCESS OAPs begin. $56,400/mo from Honeycomb Medical Group.</div>
+      </div>
+      <div class="ml-item">
+        <div class="ml-date">Sep 1</div>
+        <div class="ml-txt"><strong>Series A close.</strong> Bridge converts. Pipeline proven. Unit economics validated.</div>
       </div>
     </div>
   </div>
+
+  <hr class="room-divider">
+
+  <!-- ── INVESTMENT INSTRUMENTS (TABBED) ── -->
+  <div class="inst-section">
+    <div class="ml-label">Investment Instruments</div>
+
+    <div class="inst-tabs">
+      <div class="inst-tab on" data-pane="pane-safe"><span class="tdot g"></span>SAFE Note</div>
+      <div class="inst-tab" data-pane="pane-note"><span class="tdot s"></span>Convertible Note</div>
+      <div class="inst-tab" data-pane="pane-equity"><span class="tdot s"></span>Priced Equity</div>
+    </div>
+
+    <!-- ═══ SAFE PANE ═══ -->
+    <div class="inst-pane on" id="pane-safe">
+      <div class="inst-badge">&bull; Live — accepting subscriptions</div>
+      <div class="inst-title">SAFE Bridge — $2M at $25M Cap</div>
+      <div class="inst-desc">InPursuit Health is raising a $2M SAFE bridge at a $25M valuation cap with no discount. The SAFE converts to Series A Preferred equity when the Series A closes (target: September 1, 2026). This is the primary fundraising instrument and is execution-ready via Carta.</div>
+
+      <div class="inst-stats">
+        <div class="ist"><div class="ist-l">Instrument</div><div class="ist-v">SAFE</div></div>
+        <div class="ist"><div class="ist-l">Valuation Cap</div><div class="ist-v">$25,000,000</div></div>
+        <div class="ist"><div class="ist-l">Discount Rate</div><div class="ist-v">None</div></div>
+        <div class="ist"><div class="ist-l">Total Raise</div><div class="ist-v">$2,000,000</div></div>
+        <div class="ist"><div class="ist-l">Minimum Check</div><div class="ist-v">$50,000</div></div>
+        <div class="ist"><div class="ist-l">Execution</div><div class="ist-v">Carta / DocuSign</div></div>
+      </div>
+
+      <!-- Key Terms accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Key Terms</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Converts at Series A close.</strong> SAFE holders receive preferred equity at the $25M cap price, regardless of the Series A valuation (target: $50M+ pre-money).</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>No debt, no interest, no maturity.</strong> The SAFE is not a loan. No repayment obligation. Clean and founder-friendly.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Early investor advantage.</strong> SAFE investors lock in at $25M while the Series A targets $50M+ — capturing significant upside from the valuation step-up.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Pro rata rights.</strong> SAFE holders receive the right to participate in the Series A to maintain their ownership percentage.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>120-day bridge to revenue.</strong> Funds deploy from close through July 5, 2026 when ACCESS OAP revenue begins flowing from Honeycomb Medical Group.</div></div>
+        </div></div>
+      </div>
+
+      <!-- Tax Advantages accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Tax Advantages — 2 provisions (upon conversion)</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="itax-intro">The SAFE is a contractual right to future equity — not current ownership. It does not generate K-1 reporting or pass-through benefits. Tax advantages activate when the SAFE converts to preferred stock at the Series A close.</div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1202 — QSBS</div>
+            <div class="itax-h">Up to 100% capital gains exclusion</div>
+            <div class="itax-d">When the SAFE converts to preferred stock at the Series A, those shares may qualify for QSBS treatment — enabling exclusion of up to 100% of capital gains (up to $10M or 10&times; cost basis) for shares held 5+ years.</div>
+            <div><span class="ipill">$10M+ exclusion</span><span class="ipill">5-year hold</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1244 — Ordinary loss protection</div>
+            <div class="itax-h">Deduct up to $100K/year as ordinary loss</div>
+            <div class="itax-d">If the investment results in a loss after conversion, Section 1244 allows investors to deduct up to $50,000 ($100,000 for joint filers) as an ordinary loss.</div>
+            <div><span class="ipill">$100K ordinary loss (joint)</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax-note">Tax benefits activate at Series A conversion. The SAFE itself is not equity or debt and does not generate K-1 pass-through benefits. Consult your tax advisor.</div>
+        </div></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="inst-cta">
+        <div style="flex:1">
+          <div class="inst-cta-h">Ready to subscribe? Execute here.</div>
+          <div class="inst-cta-s">Sign your SAFE subscription agreement securely via DocuSign.</div>
+        </div>
+        <a class="btn-carta" href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=98bb49d2-965c-4412-b67a-a5e0e1e97224&env=na4&acct=6a3e7c58-1fd0-42b0-942a-b6c7c928bc58&v=2" target="_blank" rel="noopener" style="width:auto;white-space:nowrap;">
+          Execute Subscription Documents&nbsp;
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div><!-- /pane-safe -->
+
+    <!-- ═══ CONVERTIBLE NOTE PANE ═══ -->
+    <div class="inst-pane" id="pane-note">
+      <div class="inst-badge">&bull; Live — accepting subscriptions</div>
+      <div class="inst-title">Convertible Promissory Note — $25M Cap</div>
+      <div class="inst-desc">A debt instrument that accrues interest and converts to Series A Preferred equity at the earlier of the Series A close or maturity. Provides additional downside protection through a repayment obligation and interest accrual.</div>
+
+      <div class="inst-stats">
+        <div class="ist"><div class="ist-l">Instrument</div><div class="ist-v">Conv. Note</div></div>
+        <div class="ist"><div class="ist-l">Valuation Cap</div><div class="ist-v">$25,000,000</div></div>
+        <div class="ist"><div class="ist-l">Interest Rate</div><div class="ist-v">5% Annual</div></div>
+        <div class="ist"><div class="ist-l">Maturity</div><div class="ist-v">18 Months</div></div>
+        <div class="ist"><div class="ist-l">Minimum Check</div><div class="ist-v">$50,000</div></div>
+        <div class="ist"><div class="ist-l">Conversion</div><div class="ist-v">Series A Close</div></div>
+      </div>
+
+      <!-- Key Terms accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Key Terms</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Same $25M cap as the SAFE.</strong> Converts at the same price as SAFE holders, maintaining cap table parity. Interest accrual adds incremental equity at conversion.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Legally enforceable debt.</strong> Unlike a SAFE, the note creates a repayment obligation at maturity. If the Series A doesn't close, investors have a legal claim to principal + accrued interest.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Interest accrues at 5% annually.</strong> Accrued interest converts to additional equity at the Series A, increasing total shares received beyond the principal amount.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>18-month maturity.</strong> If no qualifying financing occurs, the note matures and principal + interest become due. Provides a contractual backstop that SAFEs do not offer.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Ideal for investors seeking downside protection.</strong> Combines the upside of equity conversion with the security of a debt instrument.</div></div>
+        </div></div>
+      </div>
+
+      <!-- Tax Advantages accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Tax Advantages — 3 provisions (upon conversion + debt benefit)</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="itax-intro">The convertible note is debt until conversion. Tax advantages activate upon conversion at the Series A. The debt structure provides a unique additional protection that neither the SAFE nor priced equity offer.</div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1202 — QSBS</div>
+            <div class="itax-h">Up to 100% capital gains exclusion</div>
+            <div class="itax-d">When the note converts, shares may qualify for QSBS — up to 100% of capital gains excluded (up to $10M or 10&times; cost basis) for shares held 5+ years. Accrued interest increases cost basis.</div>
+            <div><span class="ipill">$10M+ exclusion</span><span class="ipill">5-year hold</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1244 — Ordinary loss protection</div>
+            <div class="itax-h">Deduct up to $100K/year as ordinary loss</div>
+            <div class="itax-d">If converted shares result in a loss, deduct up to $50,000 ($100,000 joint) as an ordinary loss against wages and other income.</div>
+            <div><span class="ipill">$100K ordinary loss (joint)</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;166 — Bad debt deduction (unique to notes)</div>
+            <div class="itax-h">Full ordinary loss if note becomes worthless</div>
+            <div class="itax-d">If the note is not converted and becomes wholly worthless, investors may claim a bad debt deduction under &sect;166 — treating the entire loss as an ordinary deduction. Dual-layer downside protection unique to the convertible note.</div>
+            <div><span class="ipill">Full principal as ordinary loss</span></div>
+            <div><span class="ireq now">&bull; Available now — debt instrument</span></div>
+          </div>
+
+          <div class="itax-note">&sect;1202 and &sect;1244 activate at Series A conversion. &sect;166 bad debt deduction is available if the note becomes worthless without converting. Consult your tax advisor.</div>
+        </div></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="inst-cta">
+        <div style="flex:1">
+          <div class="inst-cta-h">Ready to subscribe? Execute here.</div>
+          <div class="inst-cta-s">Our team will prepare custom note documents consistent with the SAFE terms.</div>
+        </div>
+        <a class="btn-carta" href="mailto:invest@inpursuithealth.com?subject=Convertible%20Note%20—%20InPursuit%20Health" style="width:auto;white-space:nowrap;">
+          Request Note Terms&nbsp;
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div><!-- /pane-note -->
+
+    <!-- ═══ PRICED EQUITY PANE ═══ -->
+    <div class="inst-pane" id="pane-equity">
+      <div class="inst-badge">&bull; Live — most tax-advantaged instrument</div>
+      <div class="inst-title">Priced Equity — LLC Membership Units</div>
+      <div class="inst-desc">Purchase membership units in InPursuit Health, LLC at a negotiated valuation. Provides immediate ownership with K-1 pass-through — including R&amp;D tax credit flow-through and the &sect;199A QBI deduction. The strongest tax-advantaged position of all three instruments.</div>
+
+      <div class="inst-stats">
+        <div class="ist"><div class="ist-l">Instrument</div><div class="ist-v">LLC Units</div></div>
+        <div class="ist"><div class="ist-l">Valuation</div><div class="ist-v">$25M Pre-Money</div></div>
+        <div class="ist"><div class="ist-l">Ownership</div><div class="ist-v">Immediate</div></div>
+        <div class="ist"><div class="ist-l">Tax Reporting</div><div class="ist-v">K-1 Pass-Through</div></div>
+        <div class="ist"><div class="ist-l">Minimum Check</div><div class="ist-v">$50,000</div></div>
+        <div class="ist"><div class="ist-l">Tax Provisions</div><div class="ist-v">4 (2 Now)</div></div>
+      </div>
+
+      <!-- Key Terms accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Key Terms</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Immediate equity ownership.</strong> No waiting for a conversion event. Units are issued upon closing and reflected in the operating agreement and Carta cap table.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>K-1 pass-through tax benefits.</strong> As an LLC member, you receive annual K-1 reporting. Your pro-rata share of the company's R&amp;D tax credits and qualified business income flows through to your personal return.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Valuation certainty.</strong> Price is fixed at investment, not deferred to a future round. You know exactly what you own from day one.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Participates in Series A.</strong> If InPursuit converts to a C-Corp, LLC units convert to preferred stock — unlocking &sect;1202 QSBS and &sect;1244 protections on top of R&amp;D credits and QBI deductions already received.</div></div>
+          <div class="ifeat"><div class="ifeat-ck"><svg viewBox="0 0 20 20" fill="#C5A44E"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/></svg></div><div class="ifeat-t"><strong>Ideal for GPs, family offices, and high-net-worth investors.</strong> The combination of immediate pass-through benefits and future QSBS eligibility creates the strongest risk-adjusted, tax-optimized position of any instrument offered.</div></div>
+        </div></div>
+      </div>
+
+      <!-- Tax Advantages accordion -->
+      <div class="iacc">
+        <div class="iacc-h"><span class="iacc-t">Tax Advantages — 4 provisions (2 available now, 2 upon conversion)</span><span class="iacc-c"><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></span></div>
+        <div class="iacc-b"><div class="iacc-i">
+          <div class="itax-intro">Priced equity is the most tax-advantaged instrument. As an LLC member, you receive two immediate K-1 pass-through benefits. Upon C-Corp conversion, two additional protections unlock. Four IRC provisions total.</div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;41 — R&amp;D tax credit pass-through</div>
+            <div class="itax-h">Dollar-for-dollar federal tax reduction</div>
+            <div class="itax-d">Your pro-rata share of InPursuit's qualified R&amp;D expenditures generates tax credits via K-1. TETRA&#8482; development, TETRA Aegis&#8482; AI governance, and clinical validation are qualifying expenses. Credit rate: up to 20% of QREs over base amount.</div>
+            <div><span class="ipill">Up to 20% credit</span><span class="ipill">K-1 pass-through</span></div>
+            <div><span class="ireq now">&bull; Available now — LLC structure</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;199A — Qualified business income deduction</div>
+            <div class="itax-h">Deduct up to 20% of your share of business income</div>
+            <div class="itax-d">Made permanent by the One Big Beautiful Bill Act (July 4, 2025). For a family office with $200K of pass-through income, that is a potential $40,000 deduction. Only available while InPursuit operates as an LLC.</div>
+            <div><span class="ipill">20% QBI deduction</span><span class="ipill">Permanent (OBBBA)</span></div>
+            <div><span class="ireq now">&bull; Available now — LLC structure</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1202 — QSBS</div>
+            <div class="itax-h">Up to 100% capital gains exclusion</div>
+            <div class="itax-d">Upon C-Corp conversion, up to 100% of capital gains excluded ($10M or 10&times; cost basis) for shares held 5+ years. Stacks on top of R&amp;D credits and QBI deductions already received.</div>
+            <div><span class="ipill">$10M+ exclusion</span><span class="ipill">5-year hold</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax">
+            <div class="itax-c">IRC &sect;1244 — Ordinary loss protection</div>
+            <div class="itax-h">Deduct up to $100K/year as ordinary loss</div>
+            <div class="itax-d">If the investment results in a loss after conversion, deduct up to $50,000 ($100,000 joint) as an ordinary loss. Combined with benefits already received, creates the strongest risk-adjusted position.</div>
+            <div><span class="ipill">$100K ordinary loss (joint)</span></div>
+            <div><span class="ireq cc">&bull; Available upon C-Corp conversion</span></div>
+          </div>
+
+          <div class="itax-note">&sect;41 and &sect;199A are available immediately via K-1. &sect;199A was made permanent by OBBBA (July 4, 2025). &sect;1202 and &sect;1244 activate upon C-Corp conversion. Consult your tax advisor. InPursuit Health does not provide tax advice.</div>
+        </div></div>
+      </div>
+
+      <!-- CTA -->
+      <div class="inst-cta">
+        <div style="flex:1">
+          <div class="inst-cta-h">Ready to subscribe? Execute here.</div>
+          <div class="inst-cta-s">Our team will walk you through the operating agreement, K-1 implications, and R&amp;D credit projections.</div>
+        </div>
+        <a class="btn-carta" href="mailto:invest@inpursuithealth.com?subject=Priced%20Equity%20—%20InPursuit%20Health" style="width:auto;white-space:nowrap;">
+          Request Equity Terms&nbsp;
+          <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+        </a>
+      </div>
+    </div><!-- /pane-equity -->
+
+  </div><!-- /inst-section -->
 
   <hr class="room-divider">
 
@@ -1209,6 +1488,68 @@
         <div class="doc-title">Series A Investor Pamphlet</div>
         <div class="doc-desc">The complete investment case — team, technology, market, and terms in one comprehensive document.</div>
         <div class="doc-foot"><span class="doc-tag">Full Document</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- ── CONVERTIBLE NOTE DOCS ── -->
+  <div class="doc-section">
+    <div class="section-label">Convertible Note — $2M at $25M Valuation Cap</div>
+    <div class="doc-grid">
+
+      <a class="doc-card" href="data-room/FINAL_safe-term-sheet.html" target="_blank">
+        <span class="doc-badge b-note">Conv. Note</span>
+        <div class="doc-title">Convertible Note Term Sheet</div>
+        <div class="doc-desc">Non-binding summary of note terms, interest rate, maturity, conversion mechanics, repayment provisions, and three IRC tax provisions.</div>
+        <div class="doc-foot"><span class="doc-tag">Term Sheet</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+      <a class="doc-card" href="data-room/FINAL_safe-one-pager.html" target="_blank">
+        <span class="doc-badge b-note">Conv. Note</span>
+        <div class="doc-title">Convertible Note One-Pager</div>
+        <div class="doc-desc">Single-page summary: same upside as the SAFE with 5% interest accrual, 18-month maturity, and legally enforceable repayment backstop.</div>
+        <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+      <a class="doc-card" href="data-room/FINAL_safe-exec-summary.html" target="_blank">
+        <span class="doc-badge b-note">Conv. Note</span>
+        <div class="doc-title">Convertible Note Executive Summary</div>
+        <div class="doc-desc">Full executive summary covering the note opportunity, investment thesis, downside protections, and federal validation.</div>
+        <div class="doc-foot"><span class="doc-tag">6 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- ── PRICED EQUITY DOCS ── -->
+  <div class="doc-section">
+    <div class="section-label">Priced Equity — LLC Membership Units at $25M Pre-Money</div>
+    <div class="doc-grid">
+
+      <a class="doc-card" href="data-room/FINAL_safe-term-sheet.html" target="_blank">
+        <span class="doc-badge b-equity">Priced Equity</span>
+        <div class="doc-title">Priced Equity Term Sheet</div>
+        <div class="doc-desc">Non-binding summary of LLC unit terms, K-1 pass-through reporting, four IRC tax provisions (2 available now), and C-Corp conversion mechanics.</div>
+        <div class="doc-foot"><span class="doc-tag">Term Sheet</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+      <a class="doc-card" href="data-room/FINAL_safe-one-pager.html" target="_blank">
+        <span class="doc-badge b-equity">Priced Equity</span>
+        <div class="doc-title">Priced Equity One-Pager</div>
+        <div class="doc-desc">Single-page summary: immediate ownership, K-1 R&amp;D credits, &sect;199A QBI deduction, plus QSBS and loss protection upon C-Corp conversion.</div>
+        <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </a>
+
+      <a class="doc-card" href="data-room/FINAL_safe-exec-summary.html" target="_blank">
+        <span class="doc-badge b-equity">Priced Equity</span>
+        <div class="doc-title">Priced Equity Executive Summary</div>
+        <div class="doc-desc">Full executive summary covering immediate tax benefits, investment thesis, K-1 pass-through advantages, and federal validation.</div>
+        <div class="doc-foot"><span class="doc-tag">6 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </a>
 
     </div>
@@ -1608,6 +1949,23 @@ function openDataRoom() {
   room.style.opacity = '1';
   wireDocTracking();
 })();
+
+// ── INSTRUMENT TABS ──────────────────────────────
+document.querySelectorAll('.inst-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.inst-tab').forEach(t => { t.classList.remove('on'); t.querySelector('.tdot').className = 'tdot s'; });
+    document.querySelectorAll('.inst-pane').forEach(p => p.classList.remove('on'));
+    tab.classList.add('on');
+    tab.querySelector('.tdot').className = 'tdot g';
+    const pane = document.getElementById(tab.dataset.pane);
+    if (pane) pane.classList.add('on');
+  });
+});
+
+// ── ACCORDION TOGGLE ─────────────────────────────
+document.querySelectorAll('.iacc-h').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('op'));
+});
 </script>
 </body>
 </html>
