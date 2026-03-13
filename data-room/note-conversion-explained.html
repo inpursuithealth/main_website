@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Convertible Note Conversion Explained</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-mid:#111D32;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);--green:#27AE60;--green-dim:rgba(39,174,96,.08)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.55}
+.page{max-width:960px;margin:0 auto}
+
+/* Back button */
+.back-bar{padding:12px 56px;background:var(--navy)}
+.back-bar a{font-size:12px;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:0.5px;display:inline-flex;align-items:center;gap:6px}
+.back-bar a:hover{color:var(--gold-light)}
+
+/* Hero */
+.hero{background:var(--navy);padding:48px 56px 40px;position:relative;overflow:hidden}
+.hero::after{content:'';position:absolute;top:-40%;right:-5%;width:500px;height:500px;background:radial-gradient(ellipse,rgba(197,164,78,.05) 0%,transparent 70%);pointer-events:none}
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:28px;position:relative;z-index:1}
+.hero-brand{font-family:'Instrument Serif',Georgia,serif;font-size:14px;letter-spacing:4px;text-transform:uppercase;color:var(--gold)}
+.hero-badge{border:1px solid var(--gold-border);padding:6px 18px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold)}
+.hero h1{font-family:'Instrument Serif',Georgia,serif;font-size:34px;font-weight:400;color:#fff;line-height:1.18;max-width:700px;margin-bottom:12px;position:relative;z-index:1}
+.hero h1 em{font-style:italic;color:var(--gold)}
+.hero-sub{font-size:14px;color:rgba(255,255,255,.45);line-height:1.75;max-width:640px;position:relative;z-index:1}
+
+/* Terms strip */
+.terms-strip{display:grid;grid-template-columns:repeat(4,1fr);background:var(--navy-mid);border-bottom:1px solid rgba(197,164,78,.12)}
+.ts{padding:18px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.04)}
+.ts:last-child{border:none}
+.ts-label{font-size:8px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-bottom:5px}
+.ts-val{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#fff}
+.ts-val.gold{color:var(--gold)}
+
+/* Sections */
+.section{padding:48px 56px}
+.section.dark{background:var(--navy);color:#fff}
+.section.light{background:#fff;border-bottom:1px solid var(--border)}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px}
+.dark .label{color:var(--gold-light)}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:26px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:12px}
+.stitle em{font-style:italic;color:var(--gold)}
+.dark .stitle{color:#fff}
+.dark .stitle em{color:var(--gold-light)}
+.sbody{font-size:14px;line-height:1.8;color:var(--text-mid);max-width:700px;margin-bottom:32px}
+.dark .sbody{color:rgba(255,255,255,.50)}
+
+/* How it works cards */
+.how-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:32px}
+.how-card{padding:28px;border-radius:8px}
+.how-card.cap{background:var(--gold-dim);border:2px solid var(--gold)}
+.how-card.maturity{background:rgba(58,124,165,.06);border:2px solid rgba(58,124,165,.25)}
+.how-tag{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.how-card.cap .how-tag{color:var(--gold)}
+.how-card.maturity .how-tag{color:#3A7CA5}
+.how-card h3{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:8px}
+.how-card p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.how-card .formula{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin:16px 0;padding:14px;background:rgba(255,255,255,.7);border-radius:6px;text-align:center}
+.how-card.cap .formula{background:rgba(197,164,78,.08)}
+.how-card.maturity .formula{background:rgba(58,124,165,.06)}
+
+/* Main chart */
+.chart-wrap{background:#fff;border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:32px}
+.chart-header{padding:20px 24px;background:var(--navy);display:flex;justify-content:space-between;align-items:center}
+.chart-title{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:#fff}
+.chart-legend{display:flex;gap:20px}
+.legend-item{display:flex;align-items:center;gap:6px;font-size:10px;color:rgba(255,255,255,.5)}
+.legend-dot{width:10px;height:10px;border-radius:2px}
+.legend-dot.cap{background:var(--gold)}
+.legend-dot.interest{background:var(--green)}
+
+.chart-table{width:100%;border-collapse:collapse}
+.chart-table th{padding:14px 16px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);background:var(--cream);border-bottom:2px solid var(--border)}
+.chart-table th:not(:first-child){text-align:center}
+.chart-table td{padding:16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--text-mid);text-align:center}
+.chart-table td:first-child{text-align:left;font-weight:600;color:var(--navy)}
+.chart-table tr:last-child td{border:none}
+.chart-table .val-gold{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--gold);font-weight:700}
+.chart-table .val-blue{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:#3A7CA5;font-weight:700}
+.chart-table .val-green{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--green);font-weight:700}
+.chart-table .winner{background:var(--gold-dim)}
+.chart-table .same-row{background:var(--green-dim)}
+.chart-table .target-row{background:var(--gold-dim);border-left:3px solid var(--gold)}
+.chart-table .target-row td:first-child{color:var(--gold)}
+.mult{font-size:11px;font-weight:600;color:var(--text-muted);margin-top:2px}
+.target-badge{display:inline-block;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--gold);color:var(--navy);padding:2px 8px;border-radius:3px;margin-left:8px;vertical-align:middle}
+
+/* Visual bar chart */
+.bar-chart{margin:32px 0}
+.bar-row{display:grid;grid-template-columns:100px 1fr 80px;gap:12px;align-items:center;margin-bottom:8px}
+.bar-label{font-size:11px;font-weight:600;color:var(--navy);text-align:right}
+.bar-track{height:32px;background:var(--cream);border-radius:4px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:10px;font-weight:700;color:#fff;transition:width .6s ease}
+.bar-fill.gold{background:linear-gradient(90deg,var(--gold),var(--gold-light))}
+.bar-fill.green{background:linear-gradient(90deg,var(--green),#2ECC71)}
+.bar-mult{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--navy)}
+.dark .bar-label{color:rgba(255,255,255,.6)}
+.dark .bar-track{background:rgba(255,255,255,.06)}
+.dark .bar-mult{color:var(--gold)}
+
+/* Callout */
+.callout{border-left:3px solid var(--gold);padding:20px 24px;margin:24px 0;border-radius:0 8px 8px 0}
+.callout.light-bg{background:var(--gold-dim)}
+.callout.dark-bg{background:rgba(197,164,78,.06)}
+.callout p{font-size:14px;line-height:1.75}
+.callout strong{color:var(--navy)}
+.dark .callout strong{color:var(--gold-light)}
+.dark .callout p{color:rgba(255,255,255,.55)}
+
+/* Debt protection callout */
+.protection{display:flex;align-items:center;gap:24px;padding:24px 28px;background:rgba(58,124,165,.06);border:1px solid rgba(58,124,165,.15);border-radius:8px;margin:24px 0}
+.protection-icon{width:48px;height:48px;border-radius:50%;background:rgba(58,124,165,.12);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:22px}
+.protection p{font-size:13px;color:var(--text-mid);line-height:1.7}
+.protection strong{color:var(--navy)}
+
+/* Bottom line */
+.bottom-line{background:var(--navy);text-align:center;padding:48px 56px}
+.bottom-line h2{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;margin-bottom:12px}
+.bottom-line h2 em{font-style:italic;color:var(--gold)}
+.bottom-line p{font-size:14px;color:rgba(255,255,255,.45);max-width:600px;margin:0 auto;line-height:1.8}
+
+/* Footer */
+.footer{background:var(--navy-mid);padding:16px 56px;display:flex;justify-content:space-between;align-items:center;font-size:9px;color:rgba(255,255,255,.2)}
+.footer strong{color:var(--gold-light)}
+
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important}body{background:#fff}@page{size:letter;margin:.4in}}
+@media(max-width:768px){.hero,.section,.bottom-line,.back-bar{padding-left:24px;padding-right:24px}.terms-strip{grid-template-columns:1fr 1fr}.how-grid{grid-template-columns:1fr}.bar-row{grid-template-columns:70px 1fr 60px}.footer{padding:16px 24px;flex-direction:column;gap:8px}}
+</style>
+</head>
+<body>
+<div class="page">
+
+<div class="back-bar">
+  <a href="../investor-portal.html">&larr; Back to Investor Portal</a>
+</div>
+
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-brand">InPursuit Health</div>
+    <div class="hero-badge">Convertible Note Conversion Guide</div>
+  </div>
+  <h1>How Your Note Converts to <em>Equity.</em></h1>
+  <p class="hero-sub">A visual guide to how a $100K convertible note investment converts at different Series A valuations. Your note accrues 5% annual interest and converts at a $25M valuation cap — here's exactly what that means for your return.</p>
+</div>
+
+<div class="terms-strip">
+  <div class="ts"><div class="ts-label">Note Amount</div><div class="ts-val gold">$100K</div></div>
+  <div class="ts"><div class="ts-label">Valuation Cap</div><div class="ts-val gold">$25M</div></div>
+  <div class="ts"><div class="ts-label">Interest Rate</div><div class="ts-val gold">5% Annual</div></div>
+  <div class="ts"><div class="ts-label">Maturity</div><div class="ts-val gold">18 Months</div></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="label">How It Works</div>
+  <div class="stitle">Two Protections. <em>Equity Upside + Debt Backstop.</em></div>
+  <div class="sbody">A convertible note is a debt instrument that converts to equity upon a qualifying financing event. Your note accrues interest at 5% annually, and the total — principal plus accrued interest — converts at the $25M valuation cap. Here's how both mechanisms protect you.</div>
+
+  <div class="how-grid">
+    <div class="how-card cap">
+      <div class="how-tag">Cap Conversion</div>
+      <h3>$25M Valuation Cap</h3>
+      <p>Your note converts at the $25M cap regardless of the Series A price. $100K principal + ~$3,750 accrued interest (9 months at 5%) = $103,750 converts at the $25M cap.</p>
+      <div class="formula">$103,750 &divide; $25M = 0.415% ownership</div>
+      <p>At a $50M Series A, your 0.415% is worth <strong>$207,500</strong> on Day 1.</p>
+    </div>
+    <div class="how-card maturity">
+      <div class="how-tag">Maturity Protection</div>
+      <h3>18-Month Debt Backstop</h3>
+      <p>If no qualifying financing occurs within 18 months, your principal + accrued interest ($105,000 at maturity) becomes due and payable. This is your safety net.</p>
+      <div class="formula">$100K + $5,000 interest = $105,000 due at maturity</div>
+      <p>Dual protection: <strong>equity upside</strong> if things go well + <strong>debt backstop</strong> if they don't.</p>
+    </div>
+  </div>
+
+  <div class="protection">
+    <div class="protection-icon">&#x1F6E1;</div>
+    <div>
+      <p><strong>Why a note instead of a SAFE?</strong> Unlike a SAFE, a convertible note is a legal debt obligation. If the company doesn't raise a qualifying round before maturity, you have a contractual right to repayment of principal plus accrued interest. This gives note holders a layer of downside protection that SAFE investors don't have — while still providing the same equity conversion upside when things go right.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN COMPARISON TABLE -->
+<div class="section light">
+  <div class="label">Conversion Scenarios</div>
+  <div class="stitle">$103,750 Converting at Every Possible <em>Series A Price.</em></div>
+  <div class="sbody">The table below shows how your $100K note (plus ~$3,750 in accrued interest at 9 months) converts at each Series A valuation. The cap ensures you always convert at $25M, no matter how high the Series A prices.</div>
+
+  <div class="chart-wrap">
+    <div class="chart-header">
+      <div class="chart-title">$100K Convertible Note — Conversion at Series A</div>
+      <div class="chart-legend">
+        <div class="legend-item"><div class="legend-dot cap"></div>Cap Conversion ($25M)</div>
+        <div class="legend-item"><div class="legend-dot interest"></div>Includes Accrued Interest</div>
+      </div>
+    </div>
+    <table class="chart-table">
+      <thead>
+        <tr>
+          <th>Series A Pre-Money</th>
+          <th>Converts At</th>
+          <th>Ownership</th>
+          <th>Note Becomes</th>
+          <th>Return</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>$30M</td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong>$124,500</strong></td>
+          <td><div class="mult">1.24x</div></td>
+        </tr>
+        <tr>
+          <td>$40M</td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong>$166,000</strong></td>
+          <td><div class="mult">1.66x</div></td>
+        </tr>
+        <tr class="target-row">
+          <td>$50M <span class="target-badge">Target</span></td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong style="color:var(--gold);font-size:15px">$207,500</strong></td>
+          <td><div class="mult" style="color:var(--gold);font-size:14px">2.08x</div></td>
+        </tr>
+        <tr>
+          <td>$75M</td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong>$311,250</strong></td>
+          <td><div class="mult">3.11x</div></td>
+        </tr>
+        <tr>
+          <td>$100M</td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong>$415,000</strong></td>
+          <td><div class="mult">4.15x</div></td>
+        </tr>
+        <tr>
+          <td>$150M</td>
+          <td><span class="val-gold">$25M Cap</span></td>
+          <td>0.415%</td>
+          <td><strong>$622,500</strong></td>
+          <td><div class="mult">6.23x</div></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout light-bg">
+    <p><strong>Key insight:</strong> Because the $25M cap is well below the target $50M Series A, the cap always governs conversion. The accrued interest ($3,750 at 9 months) converts alongside your principal — effectively giving you 3.75% more equity than a SAFE investor with the same cap. At the $50M target, that means $207,500 in Day 1 value instead of $200,000. Interest accrual rewards you for the time value of your money.</p>
+  </div>
+</div>
+
+<!-- VISUAL BAR CHART -->
+<div class="section dark">
+  <div class="label">Return Visualization</div>
+  <div class="stitle">$100K Note → <em>Value at Series A</em></div>
+  <div class="sbody">Every bar below shows the Day 1 value of a $100K convertible note when the Series A closes (assuming 9 months of accrued interest at 5%). The cap ensures your conversion price stays at $25M regardless of how high the Series A prices.</div>
+
+  <div class="bar-chart">
+    <div class="bar-row">
+      <div class="bar-label">$30M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:20%">$124.5K</div></div>
+      <div class="bar-mult">1.24x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$40M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:27%">$166K</div></div>
+      <div class="bar-mult">1.66x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label" style="color:var(--gold)">$50M Target</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:33%">$207.5K</div></div>
+      <div class="bar-mult" style="font-size:20px">2.08x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$75M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:50%">$311.3K</div></div>
+      <div class="bar-mult">3.11x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$100M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:67%">$415K</div></div>
+      <div class="bar-mult">4.15x</div>
+    </div>
+    <div class="bar-row">
+      <div class="bar-label">$150M</div>
+      <div class="bar-track"><div class="bar-fill gold" style="width:100%">$622.5K</div></div>
+      <div class="bar-mult">6.23x</div>
+    </div>
+  </div>
+
+  <div class="callout dark-bg">
+    <p><strong>The math is simple:</strong> Your note converts at $25M no matter what. So your return = (Series A valuation &divide; $25M) &times; $103,750 (principal + interest). At the $50M target, that's 2.08x. At Aledade-comparable scale ($1B+), it's 41.5x+. The cap is your price lock — the higher the Series A goes, the more your early entry is worth. And unlike a SAFE, if things don't go as planned, you have a legal claim to your $105,000 at maturity.</p>
+  </div>
+</div>
+
+<!-- BOTTOM LINE -->
+<div class="bottom-line">
+  <div class="label" style="color:var(--gold-light);margin-bottom:16px">The Bottom Line</div>
+  <h2>Interest Accrual = Extra Equity. <em>Plus Debt Protection.</em></h2>
+  <p>Unlike a SAFE, a convertible note gives you both equity upside AND a legal claim to repayment if things don't work out. Your 5% annual interest accrues as extra equity upon conversion — and if no qualifying round occurs within 18 months, your $105,000 (principal + interest) becomes a debt obligation. It's the best of both worlds: startup upside with a safety net.</p>
+</div>
+
+<div class="footer">
+  <div><strong>InPursuit Health, LLC</strong> &nbsp;|&nbsp; CMS Health Tech Ecosystem &mdash; Approved Member</div>
+  <div>Confidential &mdash; Investor Education</div>
+</div>
+
+</div>
+</body>
+</html>

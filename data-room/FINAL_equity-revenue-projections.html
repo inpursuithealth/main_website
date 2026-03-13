@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Priced Equity Revenue Projections</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-mid: #111D32;
+  --navy-light: #1A2A44;
+  --navy-soft: #1E3050;
+  --gold: #C5A44E;
+  --gold-light: #D4BA7A;
+  --gold-dim: rgba(197,164,78,0.10);
+  --gold-border: rgba(197,164,78,0.25);
+  --cream: #FAF8F4;
+  --warm: #FDFCFA;
+  --text: #1A1A1A;
+  --text-mid: #3D3D3D;
+  --text-muted: #8A8A7A;
+  --border: rgba(10,22,40,0.08);
+  --green: #3A7D44;
+  --green-dim: rgba(58,125,68,0.08);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.container { max-width: 920px; margin: 0 auto; padding: 0 56px; }
+
+.label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.section-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 400;
+  color: var(--navy);
+  line-height: 1.2;
+  margin: 14px 0 16px;
+}
+
+.section-title em { font-style: italic; color: var(--gold); }
+
+.section-body {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-mid);
+  max-width: 740px;
+  margin-bottom: 40px;
+}
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ═══ HERO ═══ */
+.hero {
+  background: var(--navy);
+  padding: 56px 56px 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -40%; right: -5%;
+  width: 600px; height: 600px;
+  background: radial-gradient(ellipse, rgba(197,164,78,0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 36px;
+  position: relative; z-index: 1;
+}
+
+.hero-brand { display: flex; flex-direction: column; gap: 4px; }
+
+.hero-wordmark {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 15px;
+  letter-spacing: 4.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.28);
+}
+
+.hero-badge {
+  border: 1px solid var(--gold-border);
+  padding: 6px 18px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.hero h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 400;
+  color: #fff;
+  line-height: 1.18;
+  max-width: 720px;
+  margin-bottom: 16px;
+  position: relative; z-index: 1;
+}
+
+.hero h1 em { font-style: italic; color: var(--gold); }
+
+.hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.75;
+  max-width: 660px;
+  position: relative; z-index: 1;
+  margin-bottom: 36px;
+}
+
+.hero-kpis {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2px;
+  position: relative; z-index: 1;
+}
+
+.hero-kpi {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  padding: 20px;
+  text-align: center;
+}
+
+.hero-kpi:first-child { border-radius: 4px 0 0 4px; }
+.hero-kpi:last-child { border-radius: 0 4px 4px 0; }
+
+.hero-kpi-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 26px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hero-kpi-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.30);
+}
+
+/* ═══ SECTIONS ═══ */
+section { padding: 64px 0; }
+section.dark { background: var(--navy); color: #fff; }
+section.dark .label { color: var(--gold-light); }
+section.dark .section-title { color: #fff; }
+section.dark .section-title em { color: var(--gold-light); }
+section.dark .section-body { color: rgba(255,255,255,0.50); }
+section.light { background: #fff; border-bottom: 1px solid var(--border); }
+
+/* ═══ TABLES ═══ */
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin-bottom: 28px;
+}
+
+.data-table th {
+  text-align: left;
+  padding: 12px 16px;
+  background: var(--navy);
+  color: rgba(255,255,255,0.7);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.data-table th:first-child { border-radius: 4px 0 0 0; }
+.data-table th:last-child { border-radius: 0 4px 0 0; }
+
+.data-table td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-mid);
+  vertical-align: top;
+}
+
+.data-table tr:last-child td { border-bottom: none; }
+.data-table tbody tr { background: #fff; }
+.data-table tbody tr:nth-child(even) { background: var(--cream); }
+
+.data-table .highlight-row {
+  background: var(--gold-dim) !important;
+  font-weight: 600;
+}
+
+.data-table .highlight-row td { color: var(--navy); }
+
+.data-table .total-row {
+  background: var(--navy) !important;
+}
+
+.data-table .total-row td {
+  color: #fff;
+  font-weight: 700;
+  border-bottom: none;
+}
+
+.data-table .total-row td .gold { color: var(--gold-light); }
+
+/* Dark tables */
+.dark .data-table th {
+  background: rgba(255,255,255,0.06);
+  color: rgba(255,255,255,0.50);
+}
+
+.dark .data-table td {
+  background: transparent;
+  color: var(--text-mid);
+  border-color: rgba(255,255,255,0.06);
+}
+
+.dark .data-table tbody tr:nth-child(even) td {
+  background: rgba(255,255,255,0.02);
+}
+
+.dark .data-table .highlight-row td {
+  background: rgba(197,164,78,0.08);
+  color: var(--gold-light);
+  font-weight: 600;
+}
+
+.dark .data-table .total-row td {
+  background: rgba(197,164,78,0.12);
+  color: #fff;
+}
+
+/* ═══ STAT CARDS ═══ */
+.stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-top: 2px solid var(--gold);
+  padding: 24px 20px;
+  text-align: center;
+}
+
+.stat-card-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.stat-card-label {
+  font-size: 11px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+/* Dark stat cards */
+.dark .stat-card {
+  background: rgba(255,255,255,0.03);
+  border-color: rgba(255,255,255,0.06);
+  border-top-color: var(--gold);
+}
+
+.dark .stat-card-label { color: rgba(255,255,255,0.35); }
+
+/* ═══ CALLOUT ═══ */
+.callout {
+  background: var(--gold-dim);
+  border-left: 3px solid var(--gold);
+  padding: 24px 28px;
+  font-size: 14px;
+  color: var(--text-mid);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.callout strong { color: var(--navy); }
+
+.dark .callout {
+  background: rgba(197,164,78,0.06);
+  border-left-color: var(--gold);
+  color: rgba(255,255,255,0.55);
+}
+
+.dark .callout strong { color: var(--gold-light); }
+
+/* ═══ TWO COL ═══ */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+}
+
+.col-label {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 16px;
+}
+
+/* ═══ SCENARIO CARDS ═══ */
+.scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.scenario-card {
+  border: 1px solid var(--border);
+  padding: 28px 24px;
+  background: #fff;
+  text-align: center;
+}
+
+.scenario-card.active {
+  border-color: var(--gold);
+  background: var(--gold-dim);
+  border-width: 2px;
+}
+
+.scenario-tag {
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.scenario-card.active .scenario-tag { color: var(--gold); }
+
+.scenario-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 32px;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.scenario-card.active .scenario-num { color: var(--gold); }
+
+.scenario-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 16px;
+}
+
+.scenario-detail {
+  font-size: 12px;
+  color: var(--text-mid);
+  line-height: 1.6;
+  text-align: left;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+}
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: var(--navy);
+  padding: 24px 56px;
+  text-align: center;
+  color: rgba(255,255,255,0.22);
+  font-size: 11px;
+  line-height: 2;
+}
+
+/* ═══ PRINT ═══ */
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff; }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  section { padding: 40px 0; page-break-inside: avoid; }
+  .hero { padding: 36px 40px 32px; }
+  .container { padding: 0 40px; }
+  @page { size: letter; margin: 0.4in; }
+}
+
+@media (max-width: 768px) {
+  .container { padding: 0 24px; }
+  .hero { padding: 36px 24px 32px; }
+  .hero-kpis { grid-template-columns: 1fr 1fr; }
+  .stat-row { grid-template-columns: 1fr 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .scenario-grid { grid-template-columns: 1fr; }
+  .data-table { font-size: 11px; }
+  .data-table th, .data-table td { padding: 8px 10px; }
+  .footer { padding: 20px 24px; }
+}
+</style>
+</head>
+<body>
+<a class="doc-back-btn" href="../investor-portal.html">&#8592; Back to Data Room</a>
+<style>.doc-back-btn{position:fixed;top:16px;left:16px;z-index:9999;display:inline-flex;align-items:center;gap:.45rem;background:rgba(10,22,40,.92);border:1px solid rgba(197,164,78,.35);color:#C5A44E;font-family:"Instrument Sans",system-ui,sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.04em;padding:.5rem .95rem;border-radius:8px;text-decoration:none;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);transition:background .2s,border-color .2s;box-shadow:0 2px 12px rgba(0,0,0,.45);}.doc-back-btn:hover{background:rgba(10,22,40,1);border-color:#C5A44E;color:#d4b86a;}</style>
+
+<!-- ═══════ HERO ═══════ -->
+<div class="hero">
+  <div class="hero-top">
+    <div class="hero-brand">
+      <div class="hero-wordmark">InPursuit Health</div>
+      <div class="hero-tag">Harness the Power of Your Data&trade;</div>
+    </div>
+    <div class="hero-badge">Priced Equity Revenue Projections &mdash; Confidential</div>
+  </div>
+
+  <h1>How $2M in Equity Becomes <em>Repeatable Revenue.</em></h1>
+  <p class="hero-sub">The priced equity investment funds the critical path from CMS validation to first ACCESS Model revenue through Honeycomb Medical Group &mdash; then proves the unit economics that make provider-by-provider scaling a capital-efficient machine.</p>
+
+  <div class="hero-kpis">
+    <div class="hero-kpi">
+      <div class="hero-kpi-num">$677K</div>
+      <div class="hero-kpi-label">Year 1 Revenue<br>(Honeycomb alone)</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-num">86%</div>
+      <div class="hero-kpi-label">Gross Margin<br>Per Provider</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-num">42:1</div>
+      <div class="hero-kpi-label">LTV : CAC<br>Ratio</div>
+    </div>
+    <div class="hero-kpi">
+      <div class="hero-kpi-num">10 yr</div>
+      <div class="hero-kpi-label">Recurring Revenue<br>Per Provider</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ HONEYCOMB UNIT ECONOMICS ═══════ -->
+<section style="border-bottom: 1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Proof of Unit Economics</div>
+    <div class="section-title">Honeycomb Medical Group: <em>The Template.</em></div>
+    <div class="section-body">Honeycomb is InPursuit's first ACCESS Model partner. Every assumption below is grounded in their actual patient population, Medicare mix, and chronic condition prevalence. This is not a hypothetical &mdash; it is the revenue model for a signed LOI partner launching July 2026.</div>
+
+    <!-- Patient Population -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Population Segment</th>
+          <th>Count</th>
+          <th>% of Total</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Patients</td>
+          <td>22,000</td>
+          <td>100%</td>
+          <td>Honeycomb Medical patient base</td>
+        </tr>
+        <tr>
+          <td>Medicare Patients</td>
+          <td>6,400</td>
+          <td>29%</td>
+          <td>ACCESS-eligible payer</td>
+        </tr>
+        <tr>
+          <td>Medicare w/ Chronic Conditions</td>
+          <td>4,480</td>
+          <td>70% of Medicare</td>
+          <td>Consistent with CMS data (68% have 2+ chronic conditions)</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Conservative ACCESS Target</td>
+          <td>4,000</td>
+          <td>63% of Medicare</td>
+          <td>Year 1 enrollment goal</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Clinical Tracks -->
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Clinical Track</th>
+          <th>% of Chronic</th>
+          <th>Honeycomb Patients</th>
+          <th>Monthly OAP (PMPM)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Early CKM (Hypertension / Obesity)</td>
+          <td>35%</td>
+          <td>1,400</td>
+          <td>$40</td>
+        </tr>
+        <tr>
+          <td>CKM (Diabetes / CKD)</td>
+          <td>30%</td>
+          <td>1,200</td>
+          <td>$55</td>
+        </tr>
+        <tr>
+          <td>Musculoskeletal</td>
+          <td>20%</td>
+          <td>800</td>
+          <td>$45</td>
+        </tr>
+        <tr>
+          <td>Behavioral Health</td>
+          <td>15%</td>
+          <td>600</td>
+          <td>$50</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total / Blended Average</td>
+          <td>100%</td>
+          <td><span class="gold">4,000</span></td>
+          <td><span class="gold">$47 avg</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Revenue Split -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-card-num">$2.26M</div>
+        <div class="stat-card-label">Total Annual OAPs<br>from CMS</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">$677K</div>
+        <div class="stat-card-label">InPursuit Share<br>(30% &mdash; Tier 2)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">$96K</div>
+        <div class="stat-card-label">Cost to Serve<br>(Annual)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">$581K</div>
+        <div class="stat-card-label">Gross Profit<br>(86% Margin)</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Revenue share is tiered by service level.</strong> Honeycomb's 70/30 split reflects Tier 2 (Supported). Full Service providers (Tier 1) pay 35% to InPursuit. Infrastructure Only providers (Tier 3) pay 25%. The blended average across the portfolio is expected to be 30&ndash;35% as most small and mid-size providers require Full Service or Supported tiers.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ HONEYCOMB SCENARIOS ═══════ -->
+<section class="light">
+  <div class="container reveal">
+    <div class="label">Scenario Analysis</div>
+    <div class="section-title">Honeycomb Revenue: <em>Three Cases.</em></div>
+    <div class="section-body">Even the conservative case generates meaningful revenue from a single mid-size provider, demonstrating the power of the ACCESS Model's per-patient-per-month payment structure.</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Scenario</th>
+          <th>Patients</th>
+          <th>Avg PMPM</th>
+          <th>Total OAPs</th>
+          <th>InPursuit (30%)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Conservative</td>
+          <td>3,500</td>
+          <td>$45</td>
+          <td>$1,890,000</td>
+          <td>$567,000</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Base Case</td>
+          <td>4,000</td>
+          <td>$47</td>
+          <td>$2,256,000</td>
+          <td>$676,800</td>
+        </tr>
+        <tr>
+          <td>Upside</td>
+          <td>4,500</td>
+          <td>$50</td>
+          <td>$2,700,000</td>
+          <td>$810,000</td>
+        </tr>
+        <tr>
+          <td>Full Medicare (Stretch)</td>
+          <td>6,400</td>
+          <td>$47</td>
+          <td>$3,609,600</td>
+          <td>$1,082,880</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>The $47 blended PMPM is already conservative.</strong> CMS estimated OAPs have ranged higher in preliminary ACCESS guidance. The model works even at $40 PMPM, producing $576K in annual InPursuit revenue from Honeycomb alone.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ COST TO SERVE ═══════ -->
+<section style="border-bottom: 1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Unit Economics</div>
+    <div class="section-title">Cost to Serve: <em>$96K/year per Provider.</em></div>
+    <div class="section-body">InPursuit's marginal cost to serve each provider is dominated by cloud infrastructure and a partial dedicated support FTE. The TETRA&trade; infrastructure is production-ready and does not require custom builds per client.</div>
+
+    <div class="two-col">
+      <div>
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Cost Category</th>
+              <th>Monthly</th>
+              <th>Annual</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Cloud Infrastructure</td>
+              <td>$2,500</td>
+              <td>$30,000</td>
+            </tr>
+            <tr>
+              <td>Integration &amp; Data Pipelines</td>
+              <td>$1,500</td>
+              <td>$18,000</td>
+            </tr>
+            <tr>
+              <td>Customer Success (Partial FTE)</td>
+              <td>$3,000</td>
+              <td>$36,000</td>
+            </tr>
+            <tr>
+              <td>Compliance &amp; Security</td>
+              <td>$1,000</td>
+              <td>$12,000</td>
+            </tr>
+            <tr class="total-row">
+              <td>Total Cost to Serve</td>
+              <td><span class="gold">$8,000</span></td>
+              <td><span class="gold">$96,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <div class="col-label">Per-Patient Economics</div>
+        <div class="stat-row" style="grid-template-columns: 1fr 1fr; margin-top: 8px;">
+          <div class="stat-card">
+            <div class="stat-card-num">$169</div>
+            <div class="stat-card-label">Revenue per Patient<br>per Year</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-card-num">$24</div>
+            <div class="stat-card-label">Cost per Patient<br>per Year</div>
+          </div>
+        </div>
+        <div class="callout" style="margin-top: 16px;">
+          <strong>86% gross margin at the provider level.</strong> Cost to serve is largely fixed per provider, meaning margins improve as patient enrollment grows. A provider with 6,400 enrolled patients would generate $1.08M at the same $96K cost &mdash; a 91% margin.
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ EQUITY CAPITAL → REVENUE PATH ═══════ -->
+<section class="dark">
+  <div class="container reveal">
+    <div class="label">Equity Capital &rarr; Revenue</div>
+    <div class="section-title">$2M Deployed. <em>Revenue by Q3 2026.</em></div>
+    <div class="section-body">The equity investment funds the 120-day bridge from today to first ACCESS OAP revenue. Every dollar is tied to a milestone that generates or accelerates revenue.</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Milestone</th>
+          <th>Date</th>
+          <th>Equity Allocation</th>
+          <th>Revenue Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>CMS MVP Demonstration</td>
+          <td>Mar 31, 2026</td>
+          <td>$800K (40%)</td>
+          <td>CMS validation across all 3 categories. Unlocks Medicare App Library visibility to 140M+ beneficiaries.</td>
+        </tr>
+        <tr>
+          <td>Honeycomb ACCESS Application</td>
+          <td>Apr 1, 2026</td>
+          <td>Included above</td>
+          <td>Joint submission. InPursuit as technology backbone for 4,000 ACCESS patients.</td>
+        </tr>
+        <tr>
+          <td>Honeycomb Activation &amp; Go-Live</td>
+          <td>Q2 2026</td>
+          <td>$500K (25%)</td>
+          <td>TETRA&trade; deployed. Patient enrollment begins. First billable telehealth encounters.</td>
+        </tr>
+        <tr>
+          <td>ACCESS OAPs Begin</td>
+          <td>Jul 1, 2026</td>
+          <td>&mdash;</td>
+          <td>CMS payments flow. $56,400/mo to InPursuit from Honeycomb alone.</td>
+        </tr>
+        <tr>
+          <td>Provider Pipeline &amp; LOIs</td>
+          <td>Q2&ndash;Q3 2026</td>
+          <td>$400K (20%)</td>
+          <td>MNDA &rarr; LOI pipeline for Cohort 1 late additions and Cohort 2 targets.</td>
+        </tr>
+        <tr>
+          <td>Operations &amp; Legal</td>
+          <td>Ongoing</td>
+          <td>$300K (15%)</td>
+          <td>NPI, telehealth, Carta, compliance, data room.</td>
+        </tr>
+        <tr class="highlight-row">
+          <td><strong>Series A Close</strong></td>
+          <td>Sep 1, 2026</td>
+          <td>&mdash;</td>
+          <td>Equity investment validated. Honeycomb live and generating revenue. Pipeline proven. Unit economics validated.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>The critical proof point:</strong> By September 1, equity investors will see Honeycomb generating ACCESS OAPs, telehealth encounters producing billable revenue, a validated CMS MVP, and a pipeline of LOI-stage providers for Cohort 2. That is the evidence base for the $20M Series A.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PROVIDER SCALING MODEL ═══════ -->
+<section style="border-bottom: 1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Scaling the Model</div>
+    <div class="section-title">Honeycomb Is the First. <em>Here's What Comes Next.</em></div>
+    <div class="section-body">The equity proves the unit economics. The Series A scales them. Each row below assumes Honeycomb-equivalent providers (4,000 ACCESS patients, $47 avg PMPM) at blended 35% InPursuit share (weighted toward Full Service Tier 1 as most providers need end-to-end support).</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th># of Partners</th>
+          <th>Total Patients</th>
+          <th>Total OAPs</th>
+          <th>InPursuit Revenue (35%)</th>
+          <th>Timeframe</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="highlight-row">
+          <td>1 (Honeycomb)</td>
+          <td>4,000</td>
+          <td>$2.3M</td>
+          <td>$677K</td>
+          <td>Equity Phase &mdash; Year 1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>20,000</td>
+          <td>$11.3M</td>
+          <td>$3.9M</td>
+          <td>Year 1&ndash;2</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>60,000</td>
+          <td>$33.8M</td>
+          <td>$11.8M</td>
+          <td>Year 2</td>
+        </tr>
+        <tr>
+          <td>30</td>
+          <td>120,000</td>
+          <td>$67.7M</td>
+          <td>$23.7M</td>
+          <td>Year 2&ndash;3</td>
+        </tr>
+        <tr>
+          <td>50</td>
+          <td>200,000</td>
+          <td>$112.8M</td>
+          <td>$39.5M</td>
+          <td>Year 3</td>
+        </tr>
+        <tr class="total-row">
+          <td>75&ndash;100 (Cohort 2 Target)</td>
+          <td>262K&ndash;400K</td>
+          <td>$148&ndash;226M</td>
+          <td colspan="2"><span class="gold">$51.8&ndash;78.9M ARR by 2028</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- CAC / LTV -->
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-card-num">$60K</div>
+        <div class="stat-card-label">Customer Acquisition<br>Cost (CAC)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">$2.55M</div>
+        <div class="stat-card-label">Lifetime Value<br>(5-yr conservative)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">42:1</div>
+        <div class="stat-card-label">LTV:CAC<br>Ratio</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">6 wk</div>
+        <div class="stat-card-label">Deployment<br>Cycle</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>Every $1 spent acquiring a provider returns $42 in gross profit.</strong> CAC of $60K covers the full sales cycle, ACCESS application support, 6-week deployment, and training. Revenue begins when CMS OAPs flow and continues for 10 years. The ACCESS program's legislative backing makes this among the most predictable revenue models in healthcare.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ BROADER MARKET ═══════ -->
+<section class="dark">
+  <div class="container reveal">
+    <div class="label">Total Addressable Market</div>
+    <div class="section-title">106 Million Patients. <em>31,000+ Providers.</em></div>
+    <div class="section-body">Honeycomb and Cohort 2 targets represent a fraction of the addressable market. ACCESS applications continue rolling through 2033.</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Market Segment</th>
+          <th>Providers</th>
+          <th>Avg Medicare Patients</th>
+          <th>Total Patient Market</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Community Health Centers</td>
+          <td>1,400+</td>
+          <td>8,000</td>
+          <td>11.2M</td>
+        </tr>
+        <tr>
+          <td>Rural Health Clinics</td>
+          <td>5,000+</td>
+          <td>3,000</td>
+          <td>15M</td>
+        </tr>
+        <tr>
+          <td>Primary Care Groups</td>
+          <td>10,000+</td>
+          <td>5,000</td>
+          <td>50M</td>
+        </tr>
+        <tr>
+          <td>Specialty Practices</td>
+          <td>15,000+</td>
+          <td>2,000</td>
+          <td>30M</td>
+        </tr>
+        <tr class="total-row">
+          <td>Total Addressable</td>
+          <td><span class="gold">31,400+</span></td>
+          <td>&mdash;</td>
+          <td><span class="gold">106M+ patients</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="scenario-grid" style="margin-top: 28px;">
+      <div class="scenario-card" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06);">
+        <div class="scenario-tag" style="color: rgba(255,255,255,0.35);">0.5% Penetration</div>
+        <div class="scenario-num" style="color: var(--gold);">$84.5M</div>
+        <div class="scenario-sub" style="color: rgba(255,255,255,0.35);">Annual InPursuit Revenue</div>
+        <div class="scenario-detail" style="color: rgba(255,255,255,0.40); border-color: rgba(255,255,255,0.06);">~500K patients enrolled across providers</div>
+      </div>
+      <div class="scenario-card active" style="background: rgba(197,164,78,0.06); border-color: var(--gold);">
+        <div class="scenario-tag">1% Penetration</div>
+        <div class="scenario-num">$169M</div>
+        <div class="scenario-sub" style="color: var(--gold-light);">Annual InPursuit Revenue</div>
+        <div class="scenario-detail" style="color: rgba(255,255,255,0.50); border-color: var(--gold-border);">~1M patients enrolled across providers</div>
+      </div>
+      <div class="scenario-card" style="background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06);">
+        <div class="scenario-tag" style="color: rgba(255,255,255,0.35);">2.5% Penetration</div>
+        <div class="scenario-num" style="color: var(--gold);">$422M</div>
+        <div class="scenario-sub" style="color: rgba(255,255,255,0.35);">Annual InPursuit Revenue</div>
+        <div class="scenario-detail" style="color: rgba(255,255,255,0.40); border-color: rgba(255,255,255,0.06);">~2.5M patients enrolled across providers</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ PATH TO SERIES A ═══════ -->
+<section style="border-bottom: 1px solid var(--border);">
+  <div class="container reveal">
+    <div class="label">Series A Revenue Build</div>
+    <div class="section-title">$20M Deployed to Capture <em>Cohort 2.</em></div>
+    <div class="section-body">The Series A targets 75&ndash;100 providers for ACCESS Model Cohort 2 (application deadline January 2027). Revenue begins when OAPs flow mid-2027 and scales through 2028.</div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Period</th>
+          <th>Providers Live</th>
+          <th>Patients Enrolled</th>
+          <th>Annual Revenue Run Rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Q4 2026 (Cohort 1)</td>
+          <td>5</td>
+          <td>15,000</td>
+          <td>$3.0M</td>
+        </tr>
+        <tr>
+          <td>Q2 2027 (Cohort 2 Launch)</td>
+          <td>25</td>
+          <td>75,000</td>
+          <td>$14.8M</td>
+        </tr>
+        <tr>
+          <td>Q4 2027</td>
+          <td>60</td>
+          <td>200,000</td>
+          <td>$39.5M</td>
+        </tr>
+        <tr>
+          <td>Q2 2028</td>
+          <td>85</td>
+          <td>300,000</td>
+          <td>$59.2M</td>
+        </tr>
+        <tr class="highlight-row">
+          <td>Q4 2028</td>
+          <td>100+</td>
+          <td>400,000+</td>
+          <td>$78.9M+</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="stat-row">
+      <div class="stat-card">
+        <div class="stat-card-num">Q1 2028</div>
+        <div class="stat-card-label">Cash Flow Positive<br>(Company Level)</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">85%+</div>
+        <div class="stat-card-label">Gross Margin<br>at Scale</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">Mid-2028</div>
+        <div class="stat-card-label">Series B /<br>Growth Capital</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-num">2033</div>
+        <div class="stat-card-label">ACCESS Applications<br>Continue Rolling</div>
+      </div>
+    </div>
+
+    <div class="callout">
+      <strong>The equity proves the model. The Series A scales it.</strong> Equity investors enter at a $25M pre-money valuation with immediate ownership &mdash; if Cohort 2 execution succeeds &mdash; in a company that will be generating $39&ndash;79M in annual revenue run rate within 24 months of the Series A close. That is the investment thesis in one sentence.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<div class="footer">
+    InPursuit Health, LLC &nbsp;&mdash;&nbsp; Wyoming &nbsp;|&nbsp; Harness the Power of Your Data&trade;<br>
+    CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Patient-Facing Categories<br><br>
+    Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities &nbsp;|&nbsp; Results Matter&trade;
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
