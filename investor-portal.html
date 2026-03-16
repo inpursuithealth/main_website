@@ -2079,9 +2079,9 @@ function openDataRoom() {
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
 
-  sessionStorage.setItem('ip_portal_unlocked', '1');
-  sessionStorage.setItem('ip_portal_contact', JSON.stringify(contact));
-  sessionStorage.setItem('ip_portal_code', accessCode);
+  localStorage.setItem('ip_portal_unlocked', '1');
+  localStorage.setItem('ip_portal_contact', JSON.stringify(contact));
+  localStorage.setItem('ip_portal_code', accessCode);
 
   history.pushState({ portal: true }, '', window.location.pathname);
 
@@ -2111,10 +2111,10 @@ window.addEventListener('popstate', (e) => {
 });
 
 (function restoreSession() {
-  if (sessionStorage.getItem('ip_portal_unlocked') !== '1') return;
+  if (localStorage.getItem('ip_portal_unlocked') !== '1') return;
   try {
-    contact    = JSON.parse(sessionStorage.getItem('ip_portal_contact') || '{}');
-    accessCode = sessionStorage.getItem('ip_portal_code') || '';
+    contact    = JSON.parse(localStorage.getItem('ip_portal_contact') || '{}');
+    accessCode = localStorage.getItem('ip_portal_code') || '';
   } catch(e) { return; }
   if (!contact.first) return;
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
