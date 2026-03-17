@@ -22,6 +22,20 @@
 .hero-tagline-bold{font-family:'Instrument Serif',serif;font-size:20px;color:var(--gold-light);line-height:1.5;margin-bottom:36px;font-style:italic;}
 .slide-overline{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
 
+/* Download Trap comparison */
+.trap-comparison{display:flex;gap:0;margin:8px auto 0;max-width:780px;background:rgba(17,34,64,.45);border:1px solid rgba(197,164,78,.12);border-radius:12px;overflow:hidden;}
+.trap-col{flex:1;padding:32px 36px;display:flex;flex-direction:column;align-items:center;text-align:center;}
+.trap-col-label{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.55);}
+.trap-col-spacer{flex:1;min-height:48px;}
+.trap-col-stat{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1.5;}
+.trap-divider{width:1px;background:rgba(197,164,78,.15);flex-shrink:0;}
+@media(max-width:640px){
+  .trap-comparison{flex-direction:column;}
+  .trap-divider{width:100%;height:1px;}
+  .trap-col{padding:24px 20px;}
+  .trap-col-spacer{min-height:24px;}
+}
+
 /* Slider controls */
 .slider-controls{position:relative;display:flex;align-items:center;justify-content:center;gap:20px;z-index:10;padding-bottom:28px;}
 .slider-dots{display:flex;gap:10px;align-items:center;}
@@ -239,8 +253,45 @@
   <!-- ===== HERO SLIDER ===== -->
   <div class="hero-slider" id="heroSlider">
 
-    <!-- SLIDE 1: Main Infrastructure Thesis -->
+    <!-- SLIDE 1: The Download Trap -->
     <div class="hero-slide active" data-slide="0">
+      <div class="hero-content" style="max-width:1000px;">
+        <div class="hero-text">
+          <div class="hero-badge" style="background:rgba(178,34,52,0.1);border-color:rgba(178,34,52,0.3);">
+            <span class="pulse-dot" style="background:var(--red);"></span>
+            The Download Trap
+          </div>
+          <div class="slide-overline">HARNESS THE POWER OF YOUR DATA&trade;</div>
+          <h1>The apps are failing you.<br><em>Both of you.</em></h1>
+
+          <div class="trap-comparison">
+            <div class="trap-col">
+              <div class="trap-col-label">If You're a Patient</div>
+              <div class="trap-col-spacer"></div>
+              <div class="trap-col-stat">$1,092/yr. Unused. Unconnected.</div>
+            </div>
+            <div class="trap-divider"></div>
+            <div class="trap-col">
+              <div class="trap-col-label">If You're a Provider</div>
+              <div class="trap-col-spacer"></div>
+              <div class="trap-col-stat">200M+ accounts. 76% barely open.</div>
+            </div>
+          </div>
+
+          <p class="hero-tagline-bold" style="margin-top:32px;">"InPursuit Health is the connective tissue between both failures."</p>
+
+          <div class="hero-cta-row" style="gap:12px;">
+            <a class="btn-gold" href="for-you.html">For You</a>
+            <a class="btn-outline" href="for-you.html#get-started">Get Started Free</a>
+            <a class="btn-outline" href="for-providers.html">For Providers</a>
+            <a class="btn-outline" href="tetra.html">See the Model</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2: Main Infrastructure Thesis -->
+    <div class="hero-slide" data-slide="1">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge">
@@ -258,8 +309,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 2: MAHA Alignment -->
-    <div class="hero-slide" data-slide="1">
+    <!-- SLIDE 3: MAHA Alignment -->
+    <div class="hero-slide" data-slide="2">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -277,8 +328,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 3: For You -->
-    <div class="hero-slide" data-slide="2">
+    <!-- SLIDE 4: For You -->
+    <div class="hero-slide" data-slide="3">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.2);">
@@ -295,8 +346,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 4: Value-Based Care Providers -->
-    <div class="hero-slide" data-slide="3">
+    <!-- SLIDE 5: Value-Based Care Providers -->
+    <div class="hero-slide" data-slide="4">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.35);">
@@ -323,6 +374,7 @@
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+      <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -790,7 +842,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=4,stm=null,sp=false,SMS=10000;
+var sc=0,st=5,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
