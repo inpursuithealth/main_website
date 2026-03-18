@@ -310,6 +310,60 @@
   .captcha-wrap input[type="number"]:focus { border-color: rgba(197,164,78,.55); }
   .captcha-wrap input[type="number"].error { border-color: rgba(224,82,82,.6); }
 
+  /* ── DISCLOSURE SCROLL BOX ── */
+  .disc-scroll-box {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    padding: 1.35rem;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-bottom: 1.1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-line) transparent;
+  }
+  .disc-scroll-box::-webkit-scrollbar { width: 3px; }
+  .disc-scroll-box::-webkit-scrollbar-thumb { background: var(--gold-line); border-radius: 3px; }
+  .disc-scroll-box h4 {
+    font-family: var(--serif);
+    font-size: .98rem;
+    color: var(--gold-lt);
+    margin-bottom: .6rem;
+    margin-top: 1rem;
+  }
+  .disc-scroll-box h4:first-child { margin-top: 0; }
+  .disc-scroll-box p {
+    font-size: .875rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,.7);
+    margin-bottom: .9rem;
+  }
+  .disc-scroll-box p:last-child { margin-bottom: 0; }
+  .disc-scroll-box strong { color: rgba(255,255,255,.9); }
+
+  /* ── DISCLOSURE PDF BUTTON ── */
+  .disc-pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    background: rgba(197,164,78,.12);
+    border: 1px solid rgba(197,164,78,.3);
+    border-radius: 8px;
+    color: var(--gold-lt);
+    font-size: .835rem;
+    font-weight: 500;
+    letter-spacing: .015em;
+    padding: .6rem 1rem;
+    text-decoration: none;
+    transition: background .2s, border-color .2s, color .2s;
+    margin-bottom: .5rem;
+  }
+  .disc-pdf-btn:hover {
+    background: rgba(197,164,78,.2);
+    border-color: rgba(197,164,78,.5);
+    color: #fff;
+  }
+
   /* ── CERT BOX ── */
   .cert-box {
     background: rgba(255,255,255,.035);
@@ -973,6 +1027,7 @@
           <div class="dot active"></div>
           <div class="dot"></div>
           <div class="dot"></div>
+          <div class="dot"></div>
         </div>
         <button class="btn-go" id="btn-s1">
           <span class="btn-text">Continue →</span>
@@ -1028,6 +1083,7 @@
           <div class="dot done"></div>
           <div class="dot active"></div>
           <div class="dot"></div>
+          <div class="dot"></div>
         </div>
         <button class="btn-go" id="btn-s2">
           <span class="btn-text">Continue →</span>
@@ -1038,8 +1094,69 @@
     <p class="gate-note">Your information is never shared or sold.</p>
   </div>
 
-  <!-- ── STEP 3: CERTIFICATION ── -->
+  <!-- ── STEP 3: DISCLOSURES ── -->
   <div class="step" id="step-3">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card" style="max-width:540px;width:100%">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Investor Portal</div>
+        <h2 class="card-title">Required Disclosures</h2>
+        <p class="card-sub">Before proceeding, you must review the required disclosures for this offering. Please read the document below or download the full PDF.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="disc-scroll-box">
+          <h4>Notice to Recipients</h4>
+          <p>This offering memorandum provides information about an offer to sell securities of <strong>InPursuit Health, LLC</strong> to a limited number of accredited investors, in a manner defined by Regulation D promulgated by the SEC. The Company in its sole discretion may accept or reject any subscription, in whole or in part, at any time prior to completion of this offering.</p>
+
+          <h4>Confidentiality</h4>
+          <p>This memorandum is submitted on a confidential basis solely for consideration of the securities described herein in a private placement. The acceptance of this memorandum constitutes an agreement to maintain strict confidentiality of all information contained herein. This memorandum may not be reproduced in whole or in part, and its use for any purpose other than an investment in the described securities is not authorized and is prohibited.</p>
+
+          <h4>Non-Registration &amp; Transfer Restrictions</h4>
+          <p>The offered securities have not been registered under the Securities Act of 1933 or any state securities laws. This offering is made in reliance upon an exemption from registration pursuant to Rule 506(b) of Regulation D. The securities are restricted and may not be transferred without an effective registration statement or an opinion of counsel acceptable to the Company.</p>
+
+          <h4>Risk Factors</h4>
+          <p>Investment in a small business involves a <strong>high degree of risk</strong>. Investors should not invest any funds in this offering unless they can afford to lose their entire investment. Key risks include: early-stage development with no assurance of profitability; risk of total loss; dependence on key personnel; need for additional financing; extensive government regulation including HIPAA; reimbursement uncertainty; illiquidity of the investment; and no public market for the securities.</p>
+
+          <h4>Investor Suitability</h4>
+          <p>The securities are suitable only for long-term investment by persons who have sufficient financial means to bear the risk of total loss and who have no need for liquidity. Each investor must qualify as an <strong>Accredited Investor</strong> as defined under Rule 501(a) of Regulation D, and must have the financial ability to bear the economic risks of the entire investment for an indefinite period.</p>
+
+          <h4>Forward-Looking Statements</h4>
+          <p>Certain information constitutes forward-looking statements. Due to various risks and uncertainties, actual events or results may differ materially from those reflected in such statements. The information contained in this memorandum has been compiled by the Company as of March 1, 2026.</p>
+        </div>
+
+        <a class="disc-pdf-btn" href="/disclosures/InPursuit_Disclosures_General.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          Download Full Disclosures (PDF)
+        </a>
+
+        <label class="check-wrap" style="margin-top:1.1rem">
+          <input type="checkbox" id="disc-check">
+          <span>I have read and understand the required disclosures for this offering, and I agree to maintain strict confidentiality of all materials in this data room.</span>
+        </label>
+
+        <div class="err-msg" id="disc-err">You must acknowledge the disclosures to proceed.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+        </div>
+        <button class="btn-go" id="btn-s3" disabled>
+          <span class="btn-text">Continue →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Confidential · For Accredited Investors Only</p>
+  </div>
+
+  <!-- ── STEP 4: CERTIFICATION ── -->
+  <div class="step" id="step-4">
     <div class="gate-logo">
       <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
     </div>
@@ -1081,9 +1198,10 @@
         <div class="dot-row">
           <div class="dot done"></div>
           <div class="dot done"></div>
+          <div class="dot done"></div>
           <div class="dot active"></div>
         </div>
-        <button class="btn-go" id="btn-s3" disabled>
+        <button class="btn-go" id="btn-s4" disabled>
           <span class="btn-text">Access Data Room →</span>
           <span class="spinner"></span>
         </button>
@@ -1753,14 +1871,24 @@ document.getElementById('btn-s2').addEventListener('click', () => {
   showStep(3);
 });
 
-// ── STEP 3 ─────────────────────────────────────
-document.getElementById('cert-check').addEventListener('change', function() {
+// ── STEP 3: DISCLOSURES ────────────────────────
+document.getElementById('disc-check').addEventListener('change', function() {
   document.getElementById('btn-s3').disabled = !this.checked;
+  document.getElementById('disc-err').classList.remove('show');
+});
+
+document.getElementById('btn-s3').addEventListener('click', () => {
+  showStep(4);
+});
+
+// ── STEP 4: CERTIFICATION ──────────────────────
+document.getElementById('cert-check').addEventListener('change', function() {
+  document.getElementById('btn-s4').disabled = !this.checked;
   document.getElementById('cert-err').classList.remove('show');
 });
 
-document.getElementById('btn-s3').addEventListener('click', async () => {
-  const btn = document.getElementById('btn-s3');
+document.getElementById('btn-s4').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-s4');
   btn.classList.add('loading'); btn.disabled = true;
 
   const payload = {
@@ -1771,6 +1899,7 @@ document.getElementById('btn-s3').addEventListener('click', async () => {
     'Email': contact.email,
     'Phone': contact.phone || '—',
     'Firm': contact.firm || '—',
+    'Disclosures Acknowledged': 'Yes',
     'Accredited Investor Certified': 'Yes',
     'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
     '_replyto': contact.email,
