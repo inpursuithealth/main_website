@@ -23,21 +23,21 @@
 .slide-overline{font-size:11px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
 
 /* Download Trap comparison */
-.trap-comparison{display:flex;gap:16px;margin:24px auto 0;max-width:920px;}
-.trap-col{flex:1;position:relative;border-radius:14px;overflow:hidden;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;}
-.trap-col-bg{position:absolute;inset:0;background-size:cover;background-position:center;filter:grayscale(30%);}
-.trap-col-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,.97) 0%,rgba(5,12,28,.82) 50%,rgba(5,12,28,.55) 100%);}
-.trap-col-content{position:relative;z-index:2;padding:28px 28px 24px;}
-.trap-col-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:18px;display:block;}
+.trap-comparison{display:flex;gap:14px;margin:20px auto 0;max-width:100%;}
+.trap-col{flex:1;position:relative;border-radius:16px;overflow:hidden;min-height:420px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(197,164,78,.15);}
+.trap-col-bg{position:absolute;inset:0;background-size:cover;background-position:center top;filter:grayscale(40%) brightness(0.75);}.trap-col-bg img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;}
+.trap-col-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,1) 0%,rgba(5,12,28,.88) 45%,rgba(5,12,28,.4) 100%);}
+.trap-col-content{position:relative;z-index:2;padding:26px 26px 24px;text-align:left;}
+.trap-col-label{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:16px;display:block;}
 .trap-col-spacer{flex:1;min-height:48px;}
-.trap-stat-num{font-family:'Instrument Serif',serif;font-size:clamp(38px,4vw,56px);color:var(--gold);line-height:1;margin-bottom:4px;}
-.trap-stat-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px;}
-.trap-stat-num2{font-family:'Instrument Serif',serif;font-size:clamp(30px,3.2vw,46px);color:var(--white);line-height:1.1;margin-bottom:4px;}
-.trap-col-stat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1.55;margin-top:18px;padding-top:18px;border-top:1px solid rgba(197,164,78,.2);}
+.trap-stat-num{font-family:'Instrument Serif',serif;font-size:clamp(36px,3.8vw,54px);color:var(--gold);line-height:1;margin-bottom:4px;}
+.trap-stat-label{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:16px;}
+.trap-stat-num2{font-family:'Instrument Serif',serif;font-size:clamp(28px,3vw,44px);color:var(--white);line-height:1.15;margin-bottom:4px;}
+.trap-col-stat{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);line-height:1.6;margin-top:16px;padding-top:16px;border-top:1px solid rgba(197,164,78,.25);}
 .trap-divider{display:none;}
 @media(max-width:680px){
   .trap-comparison{flex-direction:column;gap:12px;}
-  .trap-col{min-height:300px;}
+  .trap-col{min-height:340px;}
 }
 
 /* Slider controls */
@@ -259,22 +259,45 @@
 
     <!-- SLIDE 1: The Download Trap (Full Detail) -->
     <div class="hero-slide active" data-slide="0">
-      <div class="hero-content" style="max-width:1200px;">
+      <div class="hero-content" style="max-width:1160px;">
         <div class="hero-text" style="text-align:left;">
           <div class="hero-badge" style="background:rgba(178,34,52,0.1);border-color:rgba(178,34,52,0.3);">
             <span class="pulse-dot" style="background:var(--red);"></span>
             The Download Trap
           </div>
-          <div class="slide-overline">HARNESS THE POWER OF YOUR DATA&trade;</div>
-          <h1>Health &amp; wellness apps are failing you.<br><em>Both of you.</em></h1>
+          <div class="slide-overline" style="text-align:center;">HARNESS THE POWER OF YOUR DATA&trade;</div>
+          <h1 style="text-align:center;">Health &amp; wellness apps are failing you.<br><em>Both of you.</em></h1>
 
-          <div class="trap-image-wrap">
-            <img src="Assets/Gemini_Generated_Image_ay55vway55vway55.png" alt="Health app failure — consumer and provider perspective" style="width:100%;max-width:1100px;border-radius:16px;display:block;margin:0;box-shadow:0 8px 48px rgba(0,0,0,0.5);">
+          <div class="trap-comparison">
+            <div class="trap-col">
+              <div class="trap-col-bg"><img src="Assets/sarah.jpg" alt="Sarah"></div>
+              <div class="trap-col-overlay"></div>
+              <div class="trap-col-content">
+                <span class="trap-col-label">IF YOU&rsquo;RE A CONSUMER OR PATIENT</span>
+                <div class="trap-stat-num">$1,092<span style="font-size:0.5em;">/yr</span></div>
+                <div class="trap-stat-label">spent on digital health &amp; wellness apps</div>
+                <div class="trap-stat-num2">3&ndash;7 Health /<br>Wellness Apps</div>
+                <div class="trap-stat-label">on the average person&rsquo;s phone &mdash; none talking to each other</div>
+                <div class="trap-col-stat">STOP FEEDING THE MACHINE.<br>START OWNING YOUR HEALTH.</div>
+              </div>
+            </div>
+            <div class="trap-col">
+              <div class="trap-col-bg" style="background-image:url('https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg');"></div>
+              <div class="trap-col-overlay"></div>
+              <div class="trap-col-content">
+                <span class="trap-col-label">IF YOU&rsquo;RE A PROVIDER</span>
+                <div class="trap-stat-num">500M+</div>
+                <div class="trap-stat-label">patient portal app downloads</div>
+                <div class="trap-stat-num2">76% of patients<br>open Once</div>
+                <div class="trap-stat-label">and never come back</div>
+                <div class="trap-col-stat">ENGAGEMENT ISN&rsquo;T SATISFACTION.<br>IT&rsquo;S A REVENUE STRATEGY.</div>
+              </div>
+            </div>
           </div>
 
-          <p class="hero-tagline-bold" style="margin-top:28px;">&ldquo;InPursuit Health is the connective tissue between both failures.&rdquo;</p>
+          <p class="hero-tagline-bold" style="margin-top:28px;text-align:center;">&ldquo;InPursuit Health is the connective tissue between both failures.&rdquo;</p>
 
-          <div class="hero-cta-row" style="gap:12px;justify-content:flex-start;">
+          <div class="hero-cta-row" style="gap:12px;justify-content:center;">
             <a class="btn-gold" href="for-you.html">For You &mdash; Harness the Power of Your Data&trade;</a>
             <a class="btn-outline" href="for-providers.html">For Providers &mdash; Results Matter&trade;</a>
           </div>
@@ -284,22 +307,45 @@
 
     <!-- SLIDE 2: The Download Trap (Summary) -->
     <div class="hero-slide" data-slide="1">
-      <div class="hero-content" style="max-width:1200px;">
+      <div class="hero-content" style="max-width:1160px;">
         <div class="hero-text" style="text-align:left;">
           <div class="hero-badge" style="background:rgba(178,34,52,0.1);border-color:rgba(178,34,52,0.3);">
             <span class="pulse-dot" style="background:var(--red);"></span>
             The Download Trap
           </div>
-          <div class="slide-overline">HARNESS THE POWER OF YOUR DATA&trade;</div>
-          <h1>The apps are failing you.<br><em>Both of you.</em></h1>
+          <div class="slide-overline" style="text-align:center;">HARNESS THE POWER OF YOUR DATA&trade;</div>
+          <h1 style="text-align:center;">The apps are failing you.<br><em>Both of you.</em></h1>
 
-          <div class="trap-image-wrap">
-            <img src="Assets/Gemini_Generated_Image_ay55vway55vway55.png" alt="Health app failure — consumer and provider perspective" style="width:100%;max-width:1100px;border-radius:16px;display:block;margin:0;box-shadow:0 8px 48px rgba(0,0,0,0.5);">
+          <div class="trap-comparison">
+            <div class="trap-col">
+              <div class="trap-col-bg"><img src="Assets/sarah.jpg" alt="Sarah"></div>
+              <div class="trap-col-overlay"></div>
+              <div class="trap-col-content">
+                <span class="trap-col-label">IF YOU&rsquo;RE A CONSUMER OR PATIENT</span>
+                <div class="trap-stat-num">$1,092<span style="font-size:0.5em;">/yr</span></div>
+                <div class="trap-stat-label">spent on digital health &amp; wellness apps</div>
+                <div class="trap-stat-num2">3&ndash;7 Health /<br>Wellness Apps</div>
+                <div class="trap-stat-label">on the average person&rsquo;s phone &mdash; none talking to each other</div>
+                <div class="trap-col-stat">STOP FEEDING THE MACHINE.<br>START OWNING YOUR HEALTH.</div>
+              </div>
+            </div>
+            <div class="trap-col">
+              <div class="trap-col-bg" style="background-image:url('https://images.pexels.com/photos/4173251/pexels-photo-4173251.jpeg');"></div>
+              <div class="trap-col-overlay"></div>
+              <div class="trap-col-content">
+                <span class="trap-col-label">IF YOU&rsquo;RE A PROVIDER</span>
+                <div class="trap-stat-num">500M+</div>
+                <div class="trap-stat-label">patient portal app downloads</div>
+                <div class="trap-stat-num2">76% of patients<br>open Once</div>
+                <div class="trap-stat-label">and never come back</div>
+                <div class="trap-col-stat">ENGAGEMENT ISN&rsquo;T SATISFACTION.<br>IT&rsquo;S A REVENUE STRATEGY.</div>
+              </div>
+            </div>
           </div>
 
-          <p class="hero-tagline-bold" style="margin-top:32px;">"InPursuit Health is the connective tissue between both failures."</p>
+          <p class="hero-tagline-bold" style="margin-top:32px;text-align:center;">&ldquo;InPursuit Health is the connective tissue between both failures.&rdquo;</p>
 
-          <div class="hero-cta-row" style="gap:12px;justify-content:flex-start;">
+          <div class="hero-cta-row" style="gap:12px;justify-content:center;">
             <a class="btn-gold" href="for-you.html">For You</a>
             <a class="btn-outline" href="for-you.html#get-started">Get Started Free</a>
             <a class="btn-outline" href="for-providers.html">For Providers</a>
