@@ -64,7 +64,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 /* ===== HERO BASE ===== */
 .hero{position:relative;background:var(--navy-deep);overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(17,34,64,.8),var(--navy-deep) 70%);}
-.hero-grid{position:absolute;inset:0;opacity:.06;background-image:linear-gradient(rgba(197,164,78,.4) 1px,transparent 1px),linear-gradient(90deg,rgba(197,164,78,.4) 1px,transparent 1px);background-size:60px 60px;animation:gridShift 20s linear infinite;}
+.hero-grid{display:none;}
 @keyframes gridShift{0%{transform:translate(0,0)}100%{transform:translate(60px,60px)}}
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(197,164,78,.08);border:1px solid rgba(197,164,78,.2);border-radius:24px;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
 .hero-badge .pulse-dot{width:6px;height:6px;background:var(--gold);border-radius:50%;animation:dotPulse 2s ease-in-out infinite;}
