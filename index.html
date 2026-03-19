@@ -40,6 +40,24 @@
   .trap-col{min-height:340px;}
 }
 
+/* ===== SLIDE 0: THE DOWNLOAD TRAP ===== */
+.trap-slide-layout{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px auto 0;max-width:820px;}
+.trap-panel{position:relative;border-radius:16px;overflow:hidden;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(197,164,78,.15);}
+.trap-panel-bg{position:absolute;inset:0;background-size:cover;background-position:center top;}
+.trap-panel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,1) 0%,rgba(5,12,28,.85) 40%,rgba(5,12,28,.45) 100%);}
+.trap-panel-content{position:relative;z-index:2;padding:24px 22px 22px;text-align:left;}
+.trap-panel-eyebrow{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:14px;display:block;}
+.trap-stat-primary{font-family:'Instrument Serif',serif;font-size:clamp(32px,3.5vw,50px);color:var(--gold);line-height:1;margin-bottom:4px;}
+.trap-stat-desc{font-size:10px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:14px;line-height:1.5;}
+.trap-stat-secondary{font-family:'Instrument Serif',serif;font-size:clamp(24px,2.8vw,40px);color:var(--white);line-height:1.15;margin-bottom:4px;}
+.trap-divider-line{width:100%;height:1px;background:rgba(197,164,78,.25);margin:14px 0;}
+.trap-call-to-action{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);line-height:1.6;}
+.trap-bottom-quote{font-family:'Instrument Serif',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,.45);margin-top:22px;text-align:center;line-height:1.5;}
+@media(max-width:680px){
+  .trap-slide-layout{grid-template-columns:1fr;gap:10px;}
+  .trap-panel{min-height:300px;}
+}
+
 /* Slider controls */
 .slider-controls{position:relative;display:flex;align-items:center;justify-content:center;gap:20px;z-index:10;padding-bottom:28px;}
 .slider-dots{display:flex;gap:10px;align-items:center;}
@@ -257,8 +275,63 @@
   <!-- ===== HERO SLIDER ===== -->
   <div class="hero-slider" id="heroSlider">
 
-    <!-- SLIDE 1: Main Infrastructure Thesis -->
+    <!-- SLIDE 0: The Download Trap -->
     <div class="hero-slide active" data-slide="0">
+      <div class="hero-content">
+        <div class="hero-text">
+
+          <div class="hero-badge">
+            <span class="pulse-dot"></span>
+            The Download Trap
+          </div>
+
+          <div class="slide-overline">HARNESS THE POWER OF YOUR DATA™</div>
+
+          <h1>Health &amp; wellness apps are failing you.<br><em>Both of you.</em></h1>
+
+          <div class="trap-slide-layout">
+
+            <!-- Left panel: Patient -->
+            <div class="trap-panel">
+              <div class="trap-panel-bg" style="background-image:url('Assets/Frustrated_Patient.png');"></div>
+              <div class="trap-panel-overlay"></div>
+              <div class="trap-panel-content">
+                <span class="trap-panel-eyebrow">If you're a consumer or patient</span>
+                <div class="trap-stat-primary">$1,092<span style="font-size:0.45em;color:rgba(197,164,78,.7);">/yr</span></div>
+                <div class="trap-stat-desc">Spent on digital health &amp;<br>wellness apps</div>
+                <div class="trap-stat-secondary">3–7 Apps</div>
+                <div class="trap-stat-desc">On the average person's phone<br>— none talking to each other</div>
+                <div class="trap-divider-line"></div>
+                <div class="trap-call-to-action">Stop feeding the machine.<br>Start owning your health.</div>
+              </div>
+            </div>
+
+            <!-- Right panel: Provider -->
+            <div class="trap-panel">
+              <div class="trap-panel-bg" style="background-image:url('Assets/Frustrated_Doctor.png');"></div>
+              <div class="trap-panel-overlay"></div>
+              <div class="trap-panel-content">
+                <span class="trap-panel-eyebrow">If you're a provider</span>
+                <div class="trap-stat-primary">500M<span style="font-size:0.45em;color:rgba(197,164,78,.7);">+</span></div>
+                <div class="trap-stat-desc">Patient portal app downloads</div>
+                <div class="trap-stat-secondary">76% Gone</div>
+                <div class="trap-stat-desc">Open once — and never come back</div>
+                <div class="trap-divider-line"></div>
+                <div class="trap-call-to-action">Engagement isn't satisfaction.<br>It's a revenue strategy.</div>
+              </div>
+            </div>
+
+          </div>
+
+          <p class="trap-bottom-quote">"InPursuit Health is where both experiences finally meet."</p>
+
+        </div>
+      </div>
+    </div>
+    <!-- END SLIDE 0 -->
+
+    <!-- SLIDE 1: Main Infrastructure Thesis -->
+    <div class="hero-slide" data-slide="1">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge">
@@ -277,7 +350,7 @@
     </div>
 
     <!-- SLIDE 2: MAHA Alignment -->
-    <div class="hero-slide" data-slide="1">
+    <div class="hero-slide" data-slide="2">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -296,7 +369,7 @@
     </div>
 
     <!-- SLIDE 3: For You -->
-    <div class="hero-slide" data-slide="2">
+    <div class="hero-slide" data-slide="3">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.2);">
@@ -314,7 +387,7 @@
     </div>
 
     <!-- SLIDE 4: Value-Based Care Providers -->
-    <div class="hero-slide" data-slide="3">
+    <div class="hero-slide" data-slide="4">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.35);">
@@ -341,6 +414,7 @@
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+      <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -808,7 +882,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=6,stm=null,sp=false,SMS=10000;
+var sc=0,st=5,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
