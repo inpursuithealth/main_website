@@ -45,7 +45,9 @@
 .trap-panel{position:relative;border-radius:16px;overflow:hidden;min-height:400px;display:flex;flex-direction:column;justify-content:flex-end;border:1px solid rgba(197,164,78,.15);}
 .trap-panel-bg{position:absolute;inset:0;background-size:cover;background-position:center top;}
 .trap-panel-bg.patient{background-position:right top;}
-.trap-panel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,1) 0%,rgba(5,12,28,.85) 40%,rgba(5,12,28,.45) 100%);}
+/* .trap-panel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,1) 0%,rgba(5,12,28,.85) 40%,rgba(5,12,28,.45) 100%);} */
+.trap-panel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,12,28,1) 0%,rgba(5,12,28,.85) 40%,rgba(5,12,28,.45) 100%),linear-gradient(to right,rgba(5,12,28,.92) 0%,rgba(5,12,28,.6) 35%,rgba(5,12,28,.0) 65%);}
+
 .trap-panel-content{position:relative;z-index:2;padding:24px 22px 22px;text-align:left;}
 .trap-panel-eyebrow{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:0;display:block;}
 .trap-panel-eyebrow-top{position:absolute;top:18px;left:22px;z-index:3;font-size:12px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.6);}
