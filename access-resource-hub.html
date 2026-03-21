@@ -689,6 +689,49 @@
   .hub-section { padding: 64px 24px; }
 }
 
+/* ── ELIGIBILITY ── */
+.hub-elig-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:48px;margin-bottom:40px;}
+.hub-elig-subhead{font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:20px;}
+.hub-elig-list{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;}
+.hub-elig-list li{font-size:14px;color:var(--text-muted);padding-left:22px;position:relative;line-height:1.6;}
+.hub-elig-list li::before{content:'';position:absolute;left:0;top:8px;width:8px;height:8px;border-radius:50%;background:var(--gold);opacity:.5;}
+.hub-elig-timeline{display:flex;flex-direction:column;position:relative;padding-left:28px;}
+.hub-elig-timeline::before{content:'';position:absolute;left:6px;top:10px;bottom:10px;width:1px;background:linear-gradient(to bottom,var(--gold),rgba(197,164,78,.1));}
+.hub-elig-tl-item{position:relative;padding-bottom:24px;display:flex;flex-direction:column;gap:2px;}
+.hub-elig-tl-item-last{padding-bottom:0;}
+.hub-elig-tl-dot{position:absolute;left:-25px;top:4px;width:13px;height:13px;border-radius:50%;background:rgba(0,0,0,.1);border:2px solid rgba(0,0,0,.15);}
+.hub-elig-tl-dot-done{background:rgba(197,164,78,.4);border-color:rgba(197,164,78,.4);}
+.hub-elig-tl-dot-active{background:var(--gold);border-color:var(--gold);box-shadow:0 0 0 4px rgba(197,164,78,.15);}
+.hub-elig-tl-dot-future{background:transparent;border-color:rgba(0,0,0,.12);}
+.hub-elig-tl-date{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:2px;}
+.hub-elig-tl-title{font-size:14px;font-weight:600;color:var(--navy);margin-bottom:3px;}
+.hub-elig-tl-desc{font-size:12px;color:var(--text-muted);line-height:1.5;}
+.hub-elig-cta-box{background:var(--navy-deep);border:1px solid rgba(197,164,78,.15);border-radius:12px;padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;}
+.hub-elig-cta-overline{font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.hub-elig-cta-text{font-size:14px;color:rgba(255,255,255,.55);line-height:1.7;max-width:520px;}
+.hub-elig-cta-btns{display:flex;flex-direction:column;gap:10px;flex-shrink:0;}
+.hub-elig-outline-btn{display:inline-block;padding:12px 24px;border:1px solid rgba(197,164,78,.3);border-radius:4px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;text-align:center;transition:all .25s;}
+.hub-elig-outline-btn:hover{background:rgba(197,164,78,.07);border-color:var(--gold);}
+@media(max-width:900px){.hub-elig-grid{grid-template-columns:1fr;gap:40px;}.hub-elig-cta-box{flex-direction:column;align-items:flex-start;}.hub-elig-cta-btns{flex-direction:row;flex-wrap:wrap;}}
+
+/* ── WATCH & LEARN ── */
+.hub-video-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:48px;margin-bottom:24px;}
+.hub-video-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:12px;overflow:hidden;transition:all .3s;display:flex;flex-direction:column;}
+.hub-video-card:hover{transform:translateY(-4px);box-shadow:0 12px 36px rgba(0,0,0,.07);border-color:rgba(197,164,78,.15);}
+.hub-video-thumb{background:var(--navy-deep);aspect-ratio:16/9;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;border-bottom:1px solid rgba(197,164,78,.08);}
+.hub-video-play-btn{width:60px;height:60px;border-radius:50%;background:rgba(197,164,78,.08);border:1px solid rgba(197,164,78,.25);display:flex;align-items:center;justify-content:center;transition:all .25s;}
+.hub-video-card:hover .hub-video-play-btn{background:rgba(197,164,78,.15);border-color:var(--gold);}
+.hub-video-soon{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);}
+.hub-video-body{padding:20px 22px 22px;flex:1;display:flex;flex-direction:column;}
+.hub-video-tag{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.hub-video-title{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);line-height:1.35;margin-bottom:8px;}
+.hub-video-desc{font-size:13px;color:var(--text-muted);line-height:1.6;margin-bottom:16px;flex:1;}
+.hub-video-link{font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:gap .2s;}
+.hub-video-link:hover{gap:10px;}
+.hub-video-source{font-size:12px;color:var(--text-muted);text-align:center;}
+.hub-video-source a{color:var(--gold);text-decoration:none;}
+@media(max-width:900px){.hub-video-grid{grid-template-columns:1fr;}}
+
 </style>
 </head>
 <body>
@@ -956,6 +999,146 @@
         <a href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank" class="hub-pillar-explore">Visit CMS &rarr;</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ELIGIBILITY -->
+<section class="hub-section light" id="eligibility">
+  <div class="hub-section-inner">
+    <p class="hub-overline reveal">Participation</p>
+    <h2 class="hub-h2 reveal">Who can participate — and <em>how to apply.</em></h2>
+    <p class="hub-desc reveal">ACCESS is open to a broad range of Medicare-enrolled organizations. Here's what you need to qualify and what the timeline looks like.</p>
+
+    <div class="hub-elig-grid reveal">
+      <div class="hub-elig-col">
+        <div class="hub-elig-subhead">Eligibility Requirements</div>
+        <ul class="hub-elig-list">
+          <li>Must be a Medicare Part B-enrolled provider or supplier</li>
+          <li>Must designate a physician Clinical Director responsible for quality and compliance</li>
+          <li>Must have FHIR-based API capabilities for data reporting to CMS</li>
+          <li>Technology companies may participate directly with Medicare enrollment</li>
+          <li>Available in all 50 states, U.S. territories, and Washington D.C.</li>
+          <li>Must maintain HIPAA compliance and appropriate device oversight</li>
+          <li>Must share electronic care plans with primary care and referring clinicians</li>
+        </ul>
+      </div>
+      <div class="hub-elig-col">
+        <div class="hub-elig-subhead">Application Timeline</div>
+        <div class="hub-elig-timeline">
+          <div class="hub-elig-tl-item">
+            <div class="hub-elig-tl-dot hub-elig-tl-dot-done"></div>
+            <div class="hub-elig-tl-content">
+              <div class="hub-elig-tl-date">January 2026</div>
+              <div class="hub-elig-tl-title">Applications Open</div>
+              <div class="hub-elig-tl-desc">CMS Participant Portal live — applications now accepted</div>
+            </div>
+          </div>
+          <div class="hub-elig-tl-item">
+            <div class="hub-elig-tl-dot hub-elig-tl-dot-active"></div>
+            <div class="hub-elig-tl-content">
+              <div class="hub-elig-tl-date" style="color:var(--gold);">April 1, 2026 — 11:59 PM PT</div>
+              <div class="hub-elig-tl-title">Cohort 1 Deadline</div>
+              <div class="hub-elig-tl-desc">Miss this and the next entry point is January 2027</div>
+            </div>
+          </div>
+          <div class="hub-elig-tl-item">
+            <div class="hub-elig-tl-dot"></div>
+            <div class="hub-elig-tl-content">
+              <div class="hub-elig-tl-date">July 5, 2026</div>
+              <div class="hub-elig-tl-title">Model Launch</div>
+              <div class="hub-elig-tl-desc">First performance period begins — OAPs start flowing</div>
+            </div>
+          </div>
+          <div class="hub-elig-tl-item">
+            <div class="hub-elig-tl-dot hub-elig-tl-dot-future"></div>
+            <div class="hub-elig-tl-content">
+              <div class="hub-elig-tl-date" style="color:rgba(0,0,0,0.2);">January 1, 2027</div>
+              <div class="hub-elig-tl-title" style="color:rgba(0,0,0,0.3);">Cohort 2 Start</div>
+              <div class="hub-elig-tl-desc" style="color:rgba(0,0,0,0.25);">For applications received after April 1, 2026</div>
+            </div>
+          </div>
+          <div class="hub-elig-tl-item hub-elig-tl-item-last">
+            <div class="hub-elig-tl-dot hub-elig-tl-dot-future"></div>
+            <div class="hub-elig-tl-content">
+              <div class="hub-elig-tl-date" style="color:rgba(0,0,0,0.2);">Through 2033</div>
+              <div class="hub-elig-tl-title" style="color:rgba(0,0,0,0.3);">Rolling Applications</div>
+              <div class="hub-elig-tl-desc" style="color:rgba(0,0,0,0.25);">Quarterly cohorts available through July 1, 2033</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hub-elig-cta-box reveal">
+      <div class="hub-elig-cta-left">
+        <div class="hub-elig-cta-overline">Ready to apply?</div>
+        <div class="hub-elig-cta-text">InPursuit Health is a CMS Health Tech Ecosystem approved member and active ACCESS participant. We pre-fill your application, handle all FHIR and TEFCA requirements, and deploy TETRA™ to maximize your revenue from day one.</div>
+      </div>
+      <div class="hub-elig-cta-btns">
+        <a class="btn-gold" href="https://calendly.com/inpursuit" target="_blank" rel="noopener">Schedule a Call →</a>
+        <a class="hub-elig-outline-btn" href="https://app.innovationmodels.cms.gov/" target="_blank" rel="noopener">Apply on CMS Portal →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WATCH & LEARN -->
+<section class="hub-section cream" id="watch">
+  <div class="hub-section-inner">
+    <p class="hub-overline reveal">Watch &amp; Learn</p>
+    <h2 class="hub-h2 reveal">Straight from <em>CMS.</em></h2>
+    <p class="hub-desc reveal">Official ACCESS Model webinars and educational sessions from the CMS Innovation Center. Video links will be updated as CMS publishes recordings.</p>
+
+    <div class="hub-video-grid reveal">
+      <div class="hub-video-card">
+        <div class="hub-video-thumb">
+          <div class="hub-video-play-btn">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="var(--gold)"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <div class="hub-video-soon">Recording Pending</div>
+        </div>
+        <div class="hub-video-body">
+          <div class="hub-video-tag">Overview</div>
+          <div class="hub-video-title">ACCESS Model Overview Webinar</div>
+          <div class="hub-video-desc">Introduction to the model structure, eligibility, and participation requirements from the CMS Innovation Center.</div>
+          <a class="hub-video-link" href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank" rel="noopener">Visit CMS for recording →</a>
+        </div>
+      </div>
+
+      <div class="hub-video-card">
+        <div class="hub-video-thumb">
+          <div class="hub-video-play-btn">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="var(--gold)"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <div class="hub-video-soon">March 4, 2026</div>
+        </div>
+        <div class="hub-video-body">
+          <div class="hub-video-tag">Financial Structure</div>
+          <div class="hub-video-title">Financial Structure &amp; Clinical Performance</div>
+          <div class="hub-video-desc">Deep dive into payment rates, the 50/50 withhold structure, and outcome attainment thresholds. CMS Innovation Center webinar slides available.</div>
+          <a class="hub-video-link" href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank" rel="noopener">Download slides →</a>
+        </div>
+      </div>
+
+      <div class="hub-video-card">
+        <div class="hub-video-thumb">
+          <div class="hub-video-play-btn">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="var(--gold)"><polygon points="5,3 19,12 5,21"/></svg>
+          </div>
+          <div class="hub-video-soon">Recording Pending</div>
+        </div>
+        <div class="hub-video-body">
+          <div class="hub-video-tag">How to Apply</div>
+          <div class="hub-video-title">Participant Portal Walkthrough</div>
+          <div class="hub-video-desc">Step-by-step guide to submitting your ACCESS application through the CMS Participant Portal before the April 1 deadline.</div>
+          <a class="hub-video-link" href="https://app.innovationmodels.cms.gov/" target="_blank" rel="noopener">Go to CMS Portal →</a>
+        </div>
+      </div>
+    </div>
+
+    <p class="hub-video-source reveal">
+      Videos sourced from the CMS Innovation Center. Visit <a href="https://www.cms.gov/priorities/innovation/innovation-models/access" target="_blank" rel="noopener">cms.gov/priorities/innovation/innovation-models/access</a> for the latest recordings and updates.
+    </p>
   </div>
 </section>
 
