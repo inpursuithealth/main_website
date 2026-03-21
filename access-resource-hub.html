@@ -11,122 +11,12 @@
 <link rel="stylesheet" href="styles.css">
 <style>
 
-/* ── PREVIEW BANNER ── */
-.preview-banner {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 9999;
-  background: linear-gradient(90deg, #C5A44E, #D4B96A);
-  color: #060E1A;
-  font-family: 'Instrument Sans', sans-serif;
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  text-align: center;
-  padding: 10px 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-}
-.preview-banner a {
-  color: #060E1A;
-  text-decoration: underline;
-  opacity: 0.6;
-  transition: opacity 0.2s;
-}
-.preview-banner a:hover { opacity: 1; }
-.preview-dot {
-  width: 6px; height: 6px;
-  background: #060E1A;
-  border-radius: 50%;
-  opacity: 0.35;
-}
-
-/* ── NAV ── */
-.hub-nav {
-  position: sticky;
-  top: 38px;
-  z-index: 100;
-  background: rgba(6, 14, 26, 0.97);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(197,164,78,0.1);
-}
-.hub-nav-inner {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 40px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 60px;
-}
-.hub-nav-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  text-decoration: none;
-}
-.hub-nav-wordmark {
-  font-family: 'Instrument Serif', serif;
-  font-size: 16px;
-  color: rgba(255,255,255,0.9);
-  letter-spacing: 0.3px;
-}
-.hub-nav-sep {
-  width: 1px;
-  height: 16px;
-  background: rgba(197,164,78,0.2);
-}
-.hub-nav-sub {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-.hub-nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-.hub-nav-link {
-  font-size: 12px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.45);
-  text-decoration: none;
-  letter-spacing: 0.5px;
-  transition: color 0.2s;
-}
-.hub-nav-link:hover { color: rgba(255,255,255,0.85); }
-.hub-nav-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 20px;
-  background: var(--gold);
-  color: var(--navy-deep);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  text-decoration: none;
-  border-radius: 4px;
-  transition: all 0.25s;
-}
-.hub-nav-cta:hover {
-  background: var(--gold-bright);
-  transform: translateY(-1px);
-}
-
 /* ── HERO ── */
 .hub-hero {
   background: var(--navy-deep);
   position: relative;
   overflow: hidden;
   padding: 100px 40px 80px;
-  margin-top: 38px;
 }
 .hub-hero::before {
   content: '';
@@ -795,8 +685,7 @@
 }
 @media (max-width: 600px) {
   .hub-tracks { grid-template-columns: 1fr; }
-  .hub-nav-links { display: none; }
-  .hub-hero { padding: 80px 24px 60px; }
+.hub-hero { padding: 80px 24px 60px; }
   .hub-section { padding: 64px 24px; }
 }
 
@@ -804,31 +693,8 @@
 </head>
 <body>
 
-<!-- PREVIEW BANNER -->
-<div class="preview-banner">
-  <div class="preview-dot"></div>
-  Preview Page &mdash; ACCESS Model Resource Hub
-  <div class="preview-dot"></div>
-  <a href="/access.html">Back to CMS ACCESS Model &rarr;</a>
-</div>
-
-<!-- NAV -->
-<nav class="hub-nav">
-  <div class="hub-nav-inner">
-    <a href="/access.html" class="hub-nav-brand">
-      <span class="hub-nav-wordmark">InPursuit Health</span>
-      <div class="hub-nav-sep"></div>
-      <span class="hub-nav-sub">Resource Hub</span>
-    </a>
-    <div class="hub-nav-links">
-      <a href="#understand" class="hub-nav-link">Understand</a>
-      <a href="#payment" class="hub-nav-link">Payment</a>
-      <a href="#resources" class="hub-nav-link">Resources</a>
-      <a href="#updates" class="hub-nav-link">Updates</a>
-      <a href="https://calendly.com/inpursuit" target="_blank" class="hub-nav-cta">Apply Now</a>
-    </div>
-  </div>
-</nav>
+<!-- Nav injected by nav.js -->
+<script src="nav.js"></script>
 
 <!-- ANNOUNCEMENT BAR -->
 <div class="announce-bar" style="background:var(--navy-deep);position:relative;top:0;">
