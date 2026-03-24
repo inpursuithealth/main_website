@@ -16,20 +16,7 @@
           <a href="for-you.html">Harness the Power of Your Data &#8482;</a>
         </div>
       </div>
-      <div class="iph-dropdown">                          
-        <a href="for-providers.html" class="iph-nav-item iph-dropdown-toggle">For Providers <span class="iph-caret">&#9660;</span></a>
-        <div class="iph-dropdown-menu">
-          <div class="iph-sub-dropdown">                  
-            <a href="for-providers.html" class="iph-sub-dropdown-toggle">Results Matter &#8482; <span class="iph-sub-caret">&#9654;</span></a>
-            <div class="iph-sub-dropdown-menu">           
-              <a href="access.html">CMS ACCESS Model</a>
-              <a href="lead.html">CMS LEAD Model</a>
-              <a href="mssp.html">MSSP / ACO</a>
-              <a href="team.html">CMS TEAM Model</a>
-            </div>
-          </div>
-        </div>
-      </div>
+      <a class="iph-nav-item" href="for-providers.html">For Providers</a>
       <div class="iph-dropdown">
         <a class="iph-nav-item iph-dropdown-toggle" href="tetra.html" aria-haspopup="true">TETRA <span class="iph-caret">&#9660;</span></a>
         <div class="iph-dropdown-menu">
