@@ -31,14 +31,15 @@
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; padding-top: 32px; }
+.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; padding-top: 32px; }
 .hero-float-cards > .fc-label-header { grid-column: 1 / -1; }
-.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 20px 20px 16px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
+.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 18px 18px 14px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
 .float-card:nth-child(2) { animation-delay: 0s; }
-.float-card:nth-child(3) { animation-delay: 1s; margin-top: 28px; }
-.float-card:nth-child(4) { animation-delay: 2s; }
-.float-card:nth-child(5) { animation-delay: 3s; margin-top: 28px; }
-.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; max-width: 280px; margin: 0 auto; }
+.float-card:nth-child(3) { animation-delay: 1s; }
+.float-card:nth-child(4) { animation-delay: 2s; margin-top: 20px; }
+.float-card:nth-child(5) { animation-delay: 3s; margin-top: 20px; }
+.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; }
+.float-card.fc-wide { grid-column: 1 / -1; }
 .float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
 .float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-4px); animation-play-state: paused; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
@@ -573,42 +574,35 @@
     </div>
     <div class="hero-float-cards">
       <div class="fc-label-header" style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);margin-bottom:4px;">The Between-Visit Gap — Click Any Stat</div>
-      <div class="float-card" onclick="openStatModal(0)">
-        <div class="fc-num">54 min</div>
-        <div class="fc-label">Total Face Time With Your Doctor Per Year</div>
-        <div class="fc-desc">3 visits × 18 minutes. The other 525,546 minutes, your patients are on their own.</div>
-        <div class="fc-source">JAMA Internal Medicine</div>
-        <div class="fc-expand-hint">Read more →</div>
-      </div>
-      <div class="float-card fc-urgent" onclick="openStatModal(1)">
+      <div class="float-card fc-urgent" onclick="openStatModal(0)">
         <div class="fc-countdown">500M+</div>
         <div class="fc-label">Health App Downloads — 80% Abandoned Within 2 Weeks</div>
         <div class="fc-desc">The demand is there. The apps just don't deliver anything worth coming back for.</div>
         <div class="fc-source">IQVIA Institute / Rock Health</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-tech" onclick="openStatModal(2)">
+      <div class="float-card fc-tech" onclick="openStatModal(1)">
         <div class="fc-num">70%+</div>
         <div class="fc-label">of Patients Want Digital Tools to Manage Their Health</div>
         <div class="fc-desc">The intent is proven. They've downloaded the apps. They just need one that's actually connected to their care.</div>
         <div class="fc-source">Accenture Health Consumer Survey</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-urgent" onclick="openStatModal(3)">
+      <div class="float-card fc-urgent" onclick="openStatModal(2)">
         <div class="fc-num">11 min</div>
         <div class="fc-label">Average Visit Length — Down 40% in a Decade</div>
         <div class="fc-desc">Face time is shrinking while panel sizes grow. The practice that wins is the one that extends care beyond the appointment.</div>
         <div class="fc-source">Health Affairs / AMA Practice Data</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" onclick="openStatModal(4)">
+      <div class="float-card" onclick="openStatModal(3)">
         <div class="fc-num">$125K</div>
         <div class="fc-label">Revenue Left on the Table Per Practice Per Year</div>
         <div class="fc-desc">Uncaptured VBC codes, missed care gaps, and unbilled chronic care management — on patients you already see.</div>
         <div class="fc-source">Advisory Board / MGMA</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" onclick="openStatModal(5)">
+      <div class="float-card fc-wide" onclick="openStatModal(4)">
         <div class="fc-num">86%</div>
         <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
         <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
@@ -1330,13 +1324,6 @@ window.addEventListener('load', () => { setTimeout(() => document.getElementById
 
 // ===== STAT MODAL =====
 const statData = [
-  {
-    num: '54 min',
-    label: 'Total Face Time With Your Doctor Per Year',
-    body: 'The average American primary care patient visits their physician <strong>approximately 3 times per year</strong>, with each visit lasting roughly 18 minutes. That adds up to <strong>54 minutes of face-to-face clinical care annually</strong> — out of 525,600 minutes in a year. For the remaining <strong>99.99% of their lives</strong>, patients are managing chronic conditions, taking (or not taking) medications, making dietary choices, and navigating symptoms entirely on their own, with no clinical support, no monitoring, and no connection to their care team. This is the structural gap that has defined American primary care for decades — and that InPursuit exists to close.',
-    source: 'JAMA Internal Medicine; Commonwealth Fund Primary Care Report',
-    takeaway: 'Your patients are being managed for 54 minutes a year. InPursuit turns that into continuous, daily engagement — medication reminders, vitals monitoring, AI health insights, and real-time alerts that surface back to you inside your EHR. The 525,546 minutes that used to be a blind spot become a clinical asset.'
-  },
   {
     num: '500M+',
     label: 'Health App Downloads — 80% Abandoned Within 2 Weeks',
