@@ -31,15 +31,16 @@
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-float-cards { position: relative; height: 540px; }
-.float-card { position: absolute; background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 22px 22px 18px; backdrop-filter: blur(16px); animation: floatCard 6s ease-in-out infinite; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); }
+.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-content: start; padding-top: 32px; }
+.hero-float-cards > .fc-label-header { grid-column: 1 / -1; }
+.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 20px 20px 16px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
+.float-card:nth-child(2) { animation-delay: 0s; }
+.float-card:nth-child(3) { animation-delay: 1s; margin-top: 28px; }
+.float-card:nth-child(4) { animation-delay: 2s; }
+.float-card:nth-child(5) { animation-delay: 3s; margin-top: -14px; }
+.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
 .float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
-.float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-6px); animation-play-state: paused; }
-.float-card:nth-child(1) { top: 20px; left: 4%; animation-delay: 0s; }
-.float-card:nth-child(2) { top: 0px; right: 2%; animation-delay: 1.5s; }
-.float-card:nth-child(3) { top: 220px; left: 0%; animation-delay: 3s; }
-.float-card:nth-child(4) { top: 200px; right: 5%; animation-delay: 4.5s; }
-.float-card:nth-child(5) { bottom: 20px; left: calc(50% - 120px); animation-delay: 2s; }
+.float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-4px); animation-play-state: paused; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
 .float-card.fc-tech .fc-num { color: #66BB6A; }
 .float-card.fc-tech .fc-label { color: rgba(102,187,106,0.7); }
@@ -549,7 +550,7 @@
       <div style="margin-bottom:20px;"><span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);letter-spacing:2px;font-style:italic;display:block;opacity:0.9;">Results Matter&#8482;</span></div>
       <div class="hero-badge"><span class="pulse"></span> CMS Health IT Ecosystem Member — Medicare App Library Approved</div>
       <p class="hero-overline">For Providers Who Put Patients First</p>
-      <h1>Your patients deserve better care <em>between visits.</em><br>Your practice deserves the revenue that <em>comes with it.</em></h1>
+      <h1>Your patients deserve better care <em>between visits.</em><br>Your practice deserves the growth that <em>comes with it.</em></h1>
       <p class="hero-sub">Most patients leave your office and disappear until their next appointment — or until something goes wrong. InPursuit changes that. We deploy continuous patient engagement, remote monitoring, and AI-driven care management that keeps your patients healthier between visits. Better engagement drives better outcomes. Better outcomes drive better revenue. We handle everything. It costs you nothing.</p>
       <div class="hero-ctas" style="margin-top:32px;">
         <a class="btn-gold" href="mailto:providers@inpursuithealth.com?subject=Practice%20Analysis%20Request">Request a Practice Analysis →</a>
@@ -571,39 +572,39 @@
       </div>
     </div>
     <div class="hero-float-cards">
-      <div style="position:absolute;top:-28px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);z-index:20;">The Between-Visit Gap — Click Any Stat</div>
-      <div class="float-card" style="width: 240px;" onclick="openStatModal(0)">
+      <div class="fc-label-header" style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);margin-bottom:4px;">The Between-Visit Gap — Click Any Stat</div>
+      <div class="float-card" onclick="openStatModal(0)">
         <div class="fc-num">54 min</div>
         <div class="fc-label">Total Face Time With Your Doctor Per Year</div>
-        <div class="fc-desc">The average primary care patient sees their physician 3x/year — 18 minutes each time. The other 525,546 minutes, they're on their own.</div>
+        <div class="fc-desc">3 visits × 18 minutes. The other 525,546 minutes, your patients are on their own.</div>
         <div class="fc-source">JAMA Internal Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-urgent" style="width: 240px;" onclick="openStatModal(1)">
+      <div class="float-card fc-urgent" onclick="openStatModal(1)">
         <div class="fc-countdown">76%</div>
         <div class="fc-label">of Patient Portals Opened Once — Never Returned</div>
-        <div class="fc-desc">The existing "between visit" solution is broken. Appointment reminders aren't engagement. They're notifications.</div>
-        <div class="fc-source">KLAS Research / Gartner Digital Health</div>
+        <div class="fc-desc">The existing "solution" isn't working. Appointment reminders aren't engagement.</div>
+        <div class="fc-source">KLAS Research / Gartner</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 240px;" onclick="openStatModal(2)">
-        <div class="fc-num">$300B</div>
-        <div class="fc-label">Annual Cost of Medication Non-Adherence</div>
-        <div class="fc-desc">125,000 Americans die each year because they don't take their medications as prescribed. All preventable with proper between-visit support.</div>
-        <div class="fc-source">Annals of Internal Medicine</div>
+      <div class="float-card fc-tech" onclick="openStatModal(2)">
+        <div class="fc-num">17%</div>
+        <div class="fc-label">of Eligible Patients Complete Their Annual Wellness Visit</div>
+        <div class="fc-desc">You're losing $400–$600 per missed AWV — on patients already in your panel — because no one follows up.</div>
+        <div class="fc-source">CMS Medicare Data</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-tech" style="width: 240px;" onclick="openStatModal(3)">
-        <div class="fc-num">21%</div>
-        <div class="fc-label">Lower Hospital Costs — Highly Activated Patients</div>
-        <div class="fc-desc">Patients who are engaged in their own care have 21% lower inpatient costs and 38% lower readmission rates. Engagement is the mechanism.</div>
-        <div class="fc-source">Health Affairs / Hibbard et al.</div>
+      <div class="float-card" onclick="openStatModal(3)">
+        <div class="fc-num">$125K</div>
+        <div class="fc-label">Revenue Left on the Table Per Practice Per Year</div>
+        <div class="fc-desc">Uncaptured VBC codes, missed care gaps, and unbilled chronic care management — on patients you already see.</div>
+        <div class="fc-source">Advisory Board / MGMA</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 240px;" onclick="openStatModal(4)">
+      <div class="float-card" onclick="openStatModal(4)">
         <div class="fc-num">86%</div>
         <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
-        <div class="fc-desc">Only 14% of chronic disease management happens during clinical visits. The other 86% — diet, exercise, medication, stress — happens in daily life, where no one is watching.</div>
+        <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
         <div class="fc-source">New England Journal of Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
@@ -1337,25 +1338,25 @@ const statData = [
     takeaway: 'If your existing portal isn\'t engaging your patients, you have no between-visit infrastructure. InPursuit replaces a document repository with a daily health companion — personalized, proactive, and connected to your clinical data. When patients use the app daily, you get continuous data. When you have continuous data, you close care gaps. When you close care gaps, you earn.'
   },
   {
-    num: '$300B',
-    label: 'Annual Cost of Medication Non-Adherence',
-    body: 'Research published in the <em>Annals of Internal Medicine</em> found that <strong>medication non-adherence causes approximately 125,000 preventable deaths annually</strong> in the United States and contributes to <strong>10–25% of hospitalizations and nursing home admissions</strong>. The total economic cost — including avoidable hospitalizations, emergency department visits, and downstream complications — has been estimated at <strong>$100 to $300 billion per year</strong>. The core driver isn\'t patient resistance to medication: it\'s <strong>the absence of any systematic support system between prescribing and taking</strong>. No reminders. No refill coordination. No accountability. No connection to their care team between visits.',
-    source: 'Annals of Internal Medicine; New England Healthcare Institute; NEJM Catalyst',
-    takeaway: 'Every patient on your panel who isn\'t taking their medication as prescribed is a hospitalization waiting to happen — and a quality measure you\'re going to miss. InPursuit\'s medication tracking module sends daily reminders, flags non-adherence to your team, and coordinates refills automatically. The data flows back to your QB View so you can intervene before a crisis.'
+    num: '17%',
+    label: 'of Eligible Medicare Patients Complete Their Annual Wellness Visit',
+    body: 'CMS data shows that <strong>only 17% of Medicare beneficiaries eligible for an Annual Wellness Visit actually complete one</strong> in a given year — despite the fact that AWVs are fully covered by Medicare with no patient cost-sharing. The AWV is one of the highest-value, lowest-friction services a primary care practice can provide: it pays $150–$600 per visit (depending on complexity), it\'s the gateway to closing multiple care gaps in a single appointment, and it establishes the baseline that supports accurate HCC coding. The <strong>83% non-completion rate isn\'t patient refusal</strong> — it\'s the absence of systematic outreach, reminder infrastructure, and scheduling support. Most practices rely on appointment reminder calls that never get returned. <strong>InPursuit\'s care gap module identifies every eligible patient, sends automated outreach through the consumer app, and prompts patients to schedule directly.</strong>',
+    source: 'CMS Medicare Annual Wellness Visit Utilization Data; MGMA Practice Revenue Report',
+    takeaway: 'If you have 500 Medicare patients, approximately 415 of them are eligible for an AWV they haven\'t completed. At an average of $400 per visit, that\'s $166,000 sitting uncaptured in your existing panel. InPursuit\'s automated outreach and scheduling tools can move your AWV completion rate from 17% toward 60%+. Honeycomb Medical is already on that path.'
   },
   {
-    num: '21%',
-    label: 'Lower Hospital Costs for Highly Activated Patients',
-    body: 'A landmark study by Judith Hibbard and colleagues published in <em>Health Affairs</em> found that patients with high "activation" scores — meaning they are knowledgeable, skilled, and confident in managing their own health — have <strong>21% lower inpatient costs</strong> and <strong>38% lower hospital readmission rates</strong> compared to low-activation patients with the same conditions and demographics. A follow-up study found that <strong>increasing a patient\'s activation level by even one stage</strong> (on a 4-stage scale) was associated with meaningful reductions in emergency department use, hospitalizations, and total healthcare costs. <strong>Patient activation isn\'t a soft metric. It\'s the strongest predictor of outcomes and costs we have.</strong>',
-    source: 'Health Affairs — Hibbard, Mahoney, Stock, Tusler (2007); NEJM Catalyst Patient Engagement Review',
-    takeaway: 'The data is unambiguous: engaged patients cost less, stay healthier, and require fewer emergency interventions. InPursuit\'s entire consumer app layer is built to increase patient activation — personalized health coaching, goal-setting, wearable data integration, and regular feedback that helps patients understand and act on their own health status. Higher activation means better outcomes. Better outcomes mean better revenue.'
+    num: '$125K',
+    label: 'Revenue Left on the Table Per Practice Per Year',
+    body: 'Research from the Advisory Board and MGMA consistently finds that the average primary care practice leaves <strong>$100,000–$150,000 annually in uncaptured revenue</strong> from services they are already delivering but not optimally documenting, coding, or billing. The key sources: <strong>missed HCC codes</strong> (conditions documented in notes but not coded on claims), <strong>uncaptured chronic care management billing</strong> (CCM is billable for patients with 2+ chronic conditions spending 20+ minutes in non-face-to-face management per month — most practices bill it for fewer than 5% of eligible patients), <strong>unbilled AWVs</strong>, and <strong>unreported quality measures</strong> that reduce MIPS bonuses and value-based contract performance. <strong>This isn\'t revenue you need to generate. It\'s revenue you\'re already earning and not capturing.</strong>',
+    source: 'Advisory Board Primary Care Revenue Optimization Report; MGMA Annual Data Report; CMS CCM Billing Data',
+    takeaway: 'The $125K is a floor, not a ceiling. InPursuit\'s TETRA infrastructure identifies every missed HCC code, every eligible CCM patient, every unbilled AWV, and every quality measure gap — and surfaces it inside your existing EHR as actionable items at the point of care. No new workflow. No new system. Just the revenue you\'re already missing.'
   },
   {
     num: '86%',
     label: 'of Chronic Disease Managed Outside the Clinic',
-    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for 54 minutes a year while patients are on their own for the remaining 525,546 — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending.',
+    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for 54 minutes a year while patients are on their own for the remaining 525,546 — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending. <strong>You can only manage what you can see. Right now, you can\'t see 86% of what\'s driving your patients\' health.</strong>',
     source: 'New England Journal of Medicine; Institute for Healthcare Improvement; CDC Chronic Disease Report',
-    takeaway: 'Your patients\' outcomes are determined by what happens between your visits — not during them. InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you. The outcomes improve. The revenue follows.'
+    takeaway: 'InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you inside your existing EHR. You can only intervene when you know something is wrong — and right now, you don\'t find out until they show up in the ER.'
   }
 ];
 
