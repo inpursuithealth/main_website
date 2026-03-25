@@ -32,13 +32,14 @@
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
 .hero-float-cards { position: relative; height: 540px; }
-.float-card { position: absolute; background: rgba(17,34,64,0.7); border: 1px solid rgba(197,164,78,0.15); border-radius: 12px; padding: 28px 24px; backdrop-filter: blur(12px); animation: floatCard 6s ease-in-out infinite; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
-.float-card:hover { border-color: rgba(197,164,78,0.4); box-shadow: 0 8px 32px rgba(197,164,78,0.12); transform: translateY(-4px); animation-play-state: paused; }
-.float-card:nth-child(1) { top: 0; left: 8%; animation-delay: 0s; }
-.float-card:nth-child(2) { top: 10px; right: 5%; animation-delay: 1.5s; }
-.float-card:nth-child(3) { top: 200px; left: 3%; animation-delay: 3s; }
-.float-card:nth-child(4) { top: 180px; right: 8%; animation-delay: 4.5s; }
-.float-card:nth-child(5) { bottom: 0; left: calc(50% - 120px); animation-delay: 2s; }
+.float-card { position: absolute; background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 22px 22px 18px; backdrop-filter: blur(16px); animation: floatCard 6s ease-in-out infinite; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); }
+.float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
+.float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-6px); animation-play-state: paused; }
+.float-card:nth-child(1) { top: 20px; left: 4%; animation-delay: 0s; }
+.float-card:nth-child(2) { top: 0px; right: 2%; animation-delay: 1.5s; }
+.float-card:nth-child(3) { top: 220px; left: 0%; animation-delay: 3s; }
+.float-card:nth-child(4) { top: 200px; right: 5%; animation-delay: 4.5s; }
+.float-card:nth-child(5) { bottom: 20px; left: calc(50% - 120px); animation-delay: 2s; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
 .float-card.fc-tech .fc-num { color: #66BB6A; }
 .float-card.fc-tech .fc-label { color: rgba(102,187,106,0.7); }
@@ -69,8 +70,10 @@
 .float-card .fc-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
 .float-card .fc-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.4; }
 .float-card .fc-source { font-size: 8px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(197,164,78,0.35); margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(197,164,78,0.08); }
-.float-card.fc-urgent { border-color: rgba(178,34,52,0.4); background: rgba(178,34,52,0.08); }
-.float-card.fc-urgent .fc-label { color: rgba(255,120,120,0.7); }
+.float-card.fc-urgent { border-color: rgba(178,34,52,0.45); background: rgba(178,34,52,0.07); }
+.float-card.fc-urgent::before { background: linear-gradient(90deg, transparent, rgba(178,34,52,0.5), transparent); }
+.float-card.fc-urgent .fc-label { color: rgba(255,120,120,0.8); }
+.float-card.fc-urgent:hover { border-color: rgba(239,83,80,0.6); box-shadow: 0 12px 40px rgba(178,34,52,0.15), 0 4px 16px rgba(0,0,0,0.4); }
 .fc-countdown { font-family: 'Instrument Serif', serif; font-size: 42px; color: #ef5350; line-height: 1; }
 
 /* === PAIN POINTS === */
@@ -543,36 +546,65 @@
   <div class="hero-particles" id="heroParticles"></div>
   <div class="hero-inner">
     <div class="hero-text">
+      <div style="margin-bottom:20px;"><span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);letter-spacing:2px;font-style:italic;display:block;opacity:0.9;">Results Matter&#8482;</span></div>
       <div class="hero-badge"><span class="pulse"></span> CMS Health IT Ecosystem Member — Medicare App Library Approved</div>
       <p class="hero-overline">For Providers Who Put Patients First</p>
       <h1>Your patients deserve better care <em>between visits.</em><br>Your practice deserves the revenue that <em>comes with it.</em></h1>
       <p class="hero-sub">Most patients leave your office and disappear until their next appointment — or until something goes wrong. InPursuit changes that. We deploy continuous patient engagement, remote monitoring, and AI-driven care management that keeps your patients healthier between visits. Better engagement drives better outcomes. Better outcomes drive better revenue. We handle everything. It costs you nothing.</p>
-      <div style="margin-top:28px;"><span style="font-family:'Instrument Serif',serif;font-size:32px;color:var(--gold);letter-spacing:2px;font-style:italic;display:block;">Results Matter&#8482;</span></div>
+      <div class="hero-ctas" style="margin-top:32px;">
+        <a class="btn-gold" href="mailto:providers@inpursuithealth.com?subject=Practice%20Analysis%20Request">Request a Practice Analysis →</a>
+        <a class="btn-outline" href="#proof">See It Working</a>
+      </div>
+      <div style="margin-top:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">CMS Credentialed</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">$0 Cost to Practice</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">Live in 6 Weeks</span>
+        </div>
+      </div>
     </div>
     <div class="hero-float-cards">
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(0)">
-        <div class="fc-num">76%</div>
-        <div class="fc-label">of C-Suites Moving to VBC</div>
+      <div style="position:absolute;top:-28px;left:50%;transform:translateX(-50%);white-space:nowrap;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);z-index:20;">The Between-Visit Gap — Click Any Stat</div>
+      <div class="float-card" style="width: 240px;" onclick="openStatModal(0)">
+        <div class="fc-num">54 min</div>
+        <div class="fc-label">Total Face Time With Your Doctor Per Year</div>
+        <div class="fc-desc">The average primary care patient sees their physician 3x/year — 18 minutes each time. The other 525,546 minutes, they're on their own.</div>
+        <div class="fc-source">JAMA Internal Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(1)">
-        <div class="fc-num">32%</div>
-        <div class="fc-label">Fewer Hospitalizations</div>
+      <div class="float-card fc-urgent" style="width: 240px;" onclick="openStatModal(1)">
+        <div class="fc-countdown">76%</div>
+        <div class="fc-label">of Patient Portals Opened Once — Never Returned</div>
+        <div class="fc-desc">The existing "between visit" solution is broken. Appointment reminders aren't engagement. They're notifications.</div>
+        <div class="fc-source">KLAS Research / Gartner Digital Health</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(2)">
-        <div class="fc-num">2:1</div>
-        <div class="fc-label">Paperwork vs. Patients</div>
+      <div class="float-card" style="width: 240px;" onclick="openStatModal(2)">
+        <div class="fc-num">$300B</div>
+        <div class="fc-label">Annual Cost of Medication Non-Adherence</div>
+        <div class="fc-desc">125,000 Americans die each year because they don't take their medications as prescribed. All preventable with proper between-visit support.</div>
+        <div class="fc-source">Annals of Internal Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(3)">
-        <div class="fc-num">$0</div>
-        <div class="fc-label">Your Investment</div>
+      <div class="float-card fc-tech" style="width: 240px;" onclick="openStatModal(3)">
+        <div class="fc-num">21%</div>
+        <div class="fc-label">Lower Hospital Costs — Highly Activated Patients</div>
+        <div class="fc-desc">Patients who are engaged in their own care have 21% lower inpatient costs and 38% lower readmission rates. Engagement is the mechanism.</div>
+        <div class="fc-source">Health Affairs / Hibbard et al.</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-tech" style="width: 240px;" onclick="openStatModal(4)">
-        <div class="fc-num">81%</div>
-        <div class="fc-label">Saw VBC Contracts Grow with Tech</div>
+      <div class="float-card" style="width: 240px;" onclick="openStatModal(4)">
+        <div class="fc-num">86%</div>
+        <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
+        <div class="fc-desc">Only 14% of chronic disease management happens during clinical visits. The other 86% — diet, exercise, medication, stress — happens in daily life, where no one is watching.</div>
+        <div class="fc-source">New England Journal of Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
     </div>
@@ -1291,39 +1323,39 @@ window.addEventListener('load', () => { setTimeout(() => document.getElementById
 // ===== STAT MODAL =====
 const statData = [
   {
+    num: '54 min',
+    label: 'Total Face Time With Your Doctor Per Year',
+    body: 'The average American primary care patient visits their physician <strong>approximately 3 times per year</strong>, with each visit lasting roughly 18 minutes. That adds up to <strong>54 minutes of face-to-face clinical care annually</strong> — out of 525,600 minutes in a year. For the remaining <strong>99.99% of their lives</strong>, patients are managing chronic conditions, taking (or not taking) medications, making dietary choices, and navigating symptoms entirely on their own, with no clinical support, no monitoring, and no connection to their care team. This is the structural gap that has defined American primary care for decades — and that InPursuit exists to close.',
+    source: 'JAMA Internal Medicine; Commonwealth Fund Primary Care Report',
+    takeaway: 'Your patients are being managed for 54 minutes a year. InPursuit turns that into continuous, daily engagement — medication reminders, vitals monitoring, AI health insights, and real-time alerts that surface back to you inside your EHR. The 525,546 minutes that used to be a blind spot become a clinical asset.'
+  },
+  {
     num: '76%',
-    label: 'of C-Suites Are Moving to Value-Based Care',
-    body: 'A December 2025 survey by Sage Growth Partners found that <strong>over three-quarters of hospital and health system C-suite executives</strong> plan to increase their value-based care participation within the next one to two years — up from 57% in the prior survey. Only 1% expect a decline. The message is clear: the industry\'s top decision-makers are betting on outcome-based models, not fee-for-service. Free-text responses from executives pointed to <strong>higher potential upside</strong> and growing pressure from payers and demographic shifts pushing organizations toward greater risk.',
-    source: 'Sage Growth Partners C-Suite Survey, Fierce Healthcare (December 2025)',
-    takeaway: 'Your competitors aren\'t waiting. Three out of four health system leaders are actively expanding VBC participation. Providers who lack the technology infrastructure to participate will watch revenue shift to those who have it. InPursuit gives you that infrastructure at zero cost.'
+    label: 'of Patient Portals Opened Once — Never Returned',
+    body: 'Industry research consistently shows that <strong>between 70–80% of patients who register for a patient portal open it once — to check a test result or confirm an appointment — and never return</strong>. This phenomenon, documented by KLAS Research and Gartner Digital Health, reflects a fundamental problem: patient portals were designed for providers, not patients. They surface clinical data in clinical language, offer no personalization, and provide zero reason for daily engagement. <strong>They\'re not patient engagement platforms. They\'re document repositories with a patient login.</strong> The InPursuit app was designed from the ground up to be something patients actually want to open every day.',
+    source: 'KLAS Research Patient Portal Engagement Study; Gartner Digital Health Survey',
+    takeaway: 'If your existing portal isn\'t engaging your patients, you have no between-visit infrastructure. InPursuit replaces a document repository with a daily health companion — personalized, proactive, and connected to your clinical data. When patients use the app daily, you get continuous data. When you have continuous data, you close care gaps. When you close care gaps, you earn.'
   },
   {
-    num: '32%',
-    label: 'Fewer Hospitalizations Under VBC',
-    body: 'Humana\'s 2025 Value-Based Care Report — their 11th annual — found that Medicare Advantage patients in value-based care arrangements experienced <strong>32.1% fewer inpatient hospital admissions</strong> and <strong>11.6% fewer emergency department visits</strong> compared to Original Medicare. Patients also completed preventive screenings at a <strong>14.6% higher rate</strong>. The financial impact is staggering: Humana\'s VBC arrangements saved an estimated <strong>$11 billion in 2023 alone</strong> — 25.8% less than Original Medicare costs. These savings get reinvested into expanded benefits and better care.',
-    source: 'Humana 11th Annual Value-Based Care Report (November 2025)',
-    takeaway: 'Better outcomes aren\'t just good medicine — they\'re how you earn more under CMS payment models. Every prevented hospitalization and closed care gap directly increases your Outcome-Aligned Payments. InPursuit\'s AI flags at-risk patients before they end up in the ER.'
+    num: '$300B',
+    label: 'Annual Cost of Medication Non-Adherence',
+    body: 'Research published in the <em>Annals of Internal Medicine</em> found that <strong>medication non-adherence causes approximately 125,000 preventable deaths annually</strong> in the United States and contributes to <strong>10–25% of hospitalizations and nursing home admissions</strong>. The total economic cost — including avoidable hospitalizations, emergency department visits, and downstream complications — has been estimated at <strong>$100 to $300 billion per year</strong>. The core driver isn\'t patient resistance to medication: it\'s <strong>the absence of any systematic support system between prescribing and taking</strong>. No reminders. No refill coordination. No accountability. No connection to their care team between visits.',
+    source: 'Annals of Internal Medicine; New England Healthcare Institute; NEJM Catalyst',
+    takeaway: 'Every patient on your panel who isn\'t taking their medication as prescribed is a hospitalization waiting to happen — and a quality measure you\'re going to miss. InPursuit\'s medication tracking module sends daily reminders, flags non-adherence to your team, and coordinates refills automatically. The data flows back to your QB View so you can intervene before a crisis.'
   },
   {
-    num: '2:1',
-    label: 'Paperwork vs. Patient Time',
-    body: 'Research published in the Annals of Internal Medicine found that <strong>physicians spend twice as much time on paperwork and EHR documentation as they do face-to-face with patients</strong>. A separate time-allocation study showed physicians spend <strong>49% of their day in the EHR</strong>, with only <strong>27% spent caring for patients</strong>. The American Medical Association found that 63% of physicians report burnout — and administrative tasks are the <strong>#1 cited cause</strong>. The Canadian Federation of Independent Business calculated that family physicians spend 18.5 million hours per year on admin — equivalent to 55.6 million lost patient visits.',
-    source: 'PMC / Annals of Internal Medicine; AMA Physician Burnout Survey; EvidenceCare',
-    takeaway: 'You didn\'t go to medical school to fill out forms. InPursuit\'s TETRA infrastructure automates up to 80% of administrative tasks — coding recommendations, care gap alerts, patient outreach, quality reporting — all embedded inside your existing EHR. More time with patients, less time on paperwork.'
+    num: '21%',
+    label: 'Lower Hospital Costs for Highly Activated Patients',
+    body: 'A landmark study by Judith Hibbard and colleagues published in <em>Health Affairs</em> found that patients with high "activation" scores — meaning they are knowledgeable, skilled, and confident in managing their own health — have <strong>21% lower inpatient costs</strong> and <strong>38% lower hospital readmission rates</strong> compared to low-activation patients with the same conditions and demographics. A follow-up study found that <strong>increasing a patient\'s activation level by even one stage</strong> (on a 4-stage scale) was associated with meaningful reductions in emergency department use, hospitalizations, and total healthcare costs. <strong>Patient activation isn\'t a soft metric. It\'s the strongest predictor of outcomes and costs we have.</strong>',
+    source: 'Health Affairs — Hibbard, Mahoney, Stock, Tusler (2007); NEJM Catalyst Patient Engagement Review',
+    takeaway: 'The data is unambiguous: engaged patients cost less, stay healthier, and require fewer emergency interventions. InPursuit\'s entire consumer app layer is built to increase patient activation — personalized health coaching, goal-setting, wearable data integration, and regular feedback that helps patients understand and act on their own health status. Higher activation means better outcomes. Better outcomes mean better revenue.'
   },
   {
-    num: '$0',
-    label: 'Your Upfront Investment',
-    body: 'Most health IT implementations cost <strong>$50,000 to $200,000 upfront</strong> and take 6–18 months to deploy. InPursuit flips that model entirely. We charge <strong>zero implementation fees, zero monthly licenses, and zero subscription costs</strong>. InPursuit earns by billing Medicare and commercial payers directly under our own NPI and Medicare Part B enrollment for care management services — RPM, CCM, TCM, and behavioral health integration. We handle patient outreach, monitoring, documentation, and claims submission. Your physicians provide clinical oversight and earn <strong>fair market value supervision fees</strong> paid by InPursuit. If your patients don\'t get better care, we don\'t earn. Our incentives are aligned — but <strong>no money flows between us tied to federal payment volume</strong>.',
-    source: 'InPursuit Health Clinical Partnership Model — AKS-Compliant Direct Billing Structure',
-    takeaway: 'No budget approval needed. No capital outlay. No IT staff required. InPursuit deploys in 6 weeks. Your physicians earn oversight income. Your quality scores improve. Your patients get better care. And you never write us a check. We bill the payers ourselves.'
-  },
-  {
-    num: '81%',
-    label: 'of Providers Saw VBC Contracts Grow',
-    body: 'The 2025 State of Technology in Value-Based Care Report — a national survey by Reveleer, Mathematica, and The Harris Poll of 203 payer and provider organizations — found that <strong>81% of providers saw their VBC contracts grow in the past 12 months</strong>, with <strong>83% forecasting even more growth ahead</strong>. The key enabler? Technology. Every organization surveyed now uses AI, with <strong>93% of providers increasing AI usage</strong> in the past year. And <strong>98% view AI as critical</strong> to VBC success. Yet <strong>75% cited lack of data interoperability</strong> as the biggest barrier to capturing that growth.',
-    source: 'Reveleer / Mathematica / Harris Poll — State of Technology in VBC (August 2025)',
-    takeaway: 'The providers who invested in VBC technology saw their contracts — and revenue — grow. The ones who didn\'t are falling behind. InPursuit is purpose-built for this moment: federally validated interoperability, AI-powered analytics, and an infrastructure that solves the exact technology gap holding 75% of providers back.'
+    num: '86%',
+    label: 'of Chronic Disease Managed Outside the Clinic',
+    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for 54 minutes a year while patients are on their own for the remaining 525,546 — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending.',
+    source: 'New England Journal of Medicine; Institute for Healthcare Improvement; CDC Chronic Disease Report',
+    takeaway: 'Your patients\' outcomes are determined by what happens between your visits — not during them. InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you. The outcomes improve. The revenue follows.'
   }
 ];
 
