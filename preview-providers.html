@@ -38,8 +38,6 @@
 .float-card:nth-child(3) { animation-delay: 1s; }
 .float-card:nth-child(4) { animation-delay: 2s; }
 .float-card:nth-child(5) { animation-delay: 3s; }
-.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; }
-.float-card.fc-wide { grid-column: 1 / -1; }
 .float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
 .float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-4px); animation-play-state: paused; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
@@ -588,11 +586,11 @@
         <div class="fc-source">Accenture Health Consumer Survey</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card fc-urgent" onclick="openStatModal(2)">
-        <div class="fc-num">11 min</div>
-        <div class="fc-label">Average Visit Length — Down 40% in a Decade</div>
-        <div class="fc-desc">Face time is shrinking while panel sizes grow. The practice that wins is the one that extends care beyond the appointment.</div>
-        <div class="fc-source">Health Affairs / AMA Practice Data</div>
+      <div class="float-card fc-tech" onclick="openStatModal(2)">
+        <div class="fc-num">86%</div>
+        <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
+        <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
+        <div class="fc-source">New England Journal of Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
       <div class="float-card" onclick="openStatModal(3)">
@@ -600,13 +598,6 @@
         <div class="fc-label">Revenue Left on the Table Per Practice Per Year</div>
         <div class="fc-desc">Uncaptured VBC codes, missed care gaps, and unbilled chronic care management — on patients you already see.</div>
         <div class="fc-source">Advisory Board / MGMA</div>
-        <div class="fc-expand-hint">Read more →</div>
-      </div>
-      <div class="float-card fc-wide" onclick="openStatModal(4)">
-        <div class="fc-num">86%</div>
-        <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
-        <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
-        <div class="fc-source">New England Journal of Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
     </div>
@@ -1339,11 +1330,11 @@ const statData = [
     takeaway: 'Your patients have already raised their hand. They want this. InPursuit is the first between-visit engagement platform built around the patient\'s relationship with their actual provider — not a wellness brand, not a step counter, not a symptom checker. The demand is proven. The question is whether they find it through you or somewhere else.'
   },
   {
-    num: '11 min',
-    label: 'Average Visit Length — Down 40% in a Decade',
-    body: 'Research published in <em>Health Affairs</em> and AMA practice data show that <strong>the average primary care visit has declined from approximately 18–20 minutes to under 12 minutes over the past decade</strong>, driven by rising panel sizes, administrative burden, and EHR documentation requirements. Physicians now spend more time on documentation than on patient interaction. <strong>The clinical relationship is being compressed at exactly the moment chronic disease burden is expanding.</strong> Practices carrying panels of 1,500–2,500 patients cannot meaningfully manage chronic disease in a series of 11-minute visits. The practices that grow — in outcomes, revenue, and reputation — will be the ones that extend the care relationship into the 525,546 minutes between appointments.',
-    source: 'Health Affairs Primary Care Visit Duration Study; AMA Practice Data; JAMA Internal Medicine',
-    takeaway: 'InPursuit turns those 11 minutes into the start of a continuous relationship. The data your patients generate between visits — vitals, adherence, symptoms, lifestyle — flows back to you before they arrive, so every minute of face time is spent on decisions, not catch-up. Shorter visits become more valuable when you already know everything that happened since the last one.'
+    num: '86%',
+    label: 'of Chronic Disease Managed Outside the Clinic',
+    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for a handful of minutes a year while patients are on their own for the rest — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending. <strong>You can only manage what you can see. Right now, you can\'t see 86% of what\'s driving your patients\' health.</strong>',
+    source: 'New England Journal of Medicine; Institute for Healthcare Improvement; CDC Chronic Disease Report',
+    takeaway: 'InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you inside your existing EHR. You can only intervene when you know something is wrong — and right now, you don\'t find out until they show up in the ER.'
   },
   {
     num: '$125K',
@@ -1351,13 +1342,6 @@ const statData = [
     body: 'Research from the Advisory Board and MGMA consistently finds that the average primary care practice leaves <strong>$100,000–$150,000 annually in uncaptured revenue</strong> from services they are already delivering but not optimally documenting, coding, or billing. The key sources: <strong>missed HCC codes</strong> (conditions documented in notes but not coded on claims), <strong>uncaptured chronic care management billing</strong> (CCM is billable for patients with 2+ chronic conditions spending 20+ minutes in non-face-to-face management per month — most practices bill it for fewer than 5% of eligible patients), <strong>unbilled AWVs</strong>, and <strong>unreported quality measures</strong> that reduce MIPS bonuses and value-based contract performance. <strong>This isn\'t revenue you need to generate. It\'s revenue you\'re already earning and not capturing.</strong>',
     source: 'Advisory Board Primary Care Revenue Optimization Report; MGMA Annual Data Report; CMS CCM Billing Data',
     takeaway: 'The $125K is a floor, not a ceiling. InPursuit\'s TETRA infrastructure identifies every missed HCC code, every eligible CCM patient, every unbilled AWV, and every quality measure gap — and surfaces it inside your existing EHR as actionable items at the point of care. No new workflow. No new system. Just the revenue you\'re already missing.'
-  },
-  {
-    num: '86%',
-    label: 'of Chronic Disease Managed Outside the Clinic',
-    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for 54 minutes a year while patients are on their own for the remaining 525,546 — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending. <strong>You can only manage what you can see. Right now, you can\'t see 86% of what\'s driving your patients\' health.</strong>',
-    source: 'New England Journal of Medicine; Institute for Healthcare Improvement; CDC Chronic Disease Report',
-    takeaway: 'InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you inside your existing EHR. You can only intervene when you know something is wrong — and right now, you don\'t find out until they show up in the ER.'
   }
 ];
 
