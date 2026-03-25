@@ -37,8 +37,8 @@
 .float-card:nth-child(2) { animation-delay: 0s; }
 .float-card:nth-child(3) { animation-delay: 1s; margin-top: 28px; }
 .float-card:nth-child(4) { animation-delay: 2s; }
-.float-card:nth-child(5) { animation-delay: 3s; margin-top: -14px; }
-.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; max-width: 260px; margin: 0 auto; }
+.float-card:nth-child(5) { animation-delay: 3s; margin-top: 28px; }
+.float-card:nth-child(6) { animation-delay: 1.5s; grid-column: 1 / -1; max-width: 280px; margin: 0 auto; }
 .float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
 .float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-4px); animation-play-state: paused; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
@@ -583,25 +583,32 @@
       <div class="float-card fc-urgent" onclick="openStatModal(1)">
         <div class="fc-countdown">500M+</div>
         <div class="fc-label">Health App Downloads — 80% Abandoned Within 2 Weeks</div>
-        <div class="fc-desc">Patients want to engage. The apps just don't give them a reason to stay.</div>
+        <div class="fc-desc">The demand is there. The apps just don't deliver anything worth coming back for.</div>
         <div class="fc-source">IQVIA Institute / Rock Health</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
       <div class="float-card fc-tech" onclick="openStatModal(2)">
-        <div class="fc-num">17%</div>
-        <div class="fc-label">of Eligible Patients Complete Their Annual Wellness Visit</div>
-        <div class="fc-desc">You're losing $400–$600 per missed AWV — on patients already in your panel — because no one follows up.</div>
-        <div class="fc-source">CMS Medicare Data</div>
+        <div class="fc-num">70%+</div>
+        <div class="fc-label">of Patients Want Digital Tools to Manage Their Health</div>
+        <div class="fc-desc">The intent is proven. They've downloaded the apps. They just need one that's actually connected to their care.</div>
+        <div class="fc-source">Accenture Health Consumer Survey</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" onclick="openStatModal(3)">
+      <div class="float-card fc-urgent" onclick="openStatModal(3)">
+        <div class="fc-num">11 min</div>
+        <div class="fc-label">Average Visit Length — Down 40% in a Decade</div>
+        <div class="fc-desc">Face time is shrinking while panel sizes grow. The practice that wins is the one that extends care beyond the appointment.</div>
+        <div class="fc-source">Health Affairs / AMA Practice Data</div>
+        <div class="fc-expand-hint">Read more →</div>
+      </div>
+      <div class="float-card" onclick="openStatModal(4)">
         <div class="fc-num">$125K</div>
         <div class="fc-label">Revenue Left on the Table Per Practice Per Year</div>
         <div class="fc-desc">Uncaptured VBC codes, missed care gaps, and unbilled chronic care management — on patients you already see.</div>
         <div class="fc-source">Advisory Board / MGMA</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" onclick="openStatModal(4)">
+      <div class="float-card" onclick="openStatModal(5)">
         <div class="fc-num">86%</div>
         <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
         <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
@@ -1338,11 +1345,18 @@ const statData = [
     takeaway: 'Your patients have already downloaded a health app. They already want to be engaged. They just need one that\'s connected to their actual care team, gives them personalized clinical insights, and gives them a reason to open it every single day. That\'s what the InPursuit app was built to be — not a portal, not a symptom tracker, but a daily health companion tied directly to their provider relationship and the clinical data that actually matters.'
   },
   {
-    num: '17%',
-    label: 'of Eligible Medicare Patients Complete Their Annual Wellness Visit',
-    body: 'CMS data shows that <strong>only 17% of Medicare beneficiaries eligible for an Annual Wellness Visit actually complete one</strong> in a given year — despite the fact that AWVs are fully covered by Medicare with no patient cost-sharing. The AWV is one of the highest-value, lowest-friction services a primary care practice can provide: it pays $150–$600 per visit (depending on complexity), it\'s the gateway to closing multiple care gaps in a single appointment, and it establishes the baseline that supports accurate HCC coding. The <strong>83% non-completion rate isn\'t patient refusal</strong> — it\'s the absence of systematic outreach, reminder infrastructure, and scheduling support. Most practices rely on appointment reminder calls that never get returned. <strong>InPursuit\'s care gap module identifies every eligible patient, sends automated outreach through the consumer app, and prompts patients to schedule directly.</strong>',
-    source: 'CMS Medicare Annual Wellness Visit Utilization Data; MGMA Practice Revenue Report',
-    takeaway: 'If you have 500 Medicare patients, approximately 415 of them are eligible for an AWV they haven\'t completed. At an average of $400 per visit, that\'s $166,000 sitting uncaptured in your existing panel. InPursuit\'s automated outreach and scheduling tools can move your AWV completion rate from 17% toward 60%+. Honeycomb Medical is already on that path.'
+    num: '70%+',
+    label: 'of Patients Want Digital Tools to Manage Their Health',
+    body: 'Accenture\'s annual health consumer survey found that <strong>more than 70% of patients say they want digital tools to help manage their health conditions</strong> — and that number climbs above 80% among patients with chronic disease. The demand for digital health engagement isn\'t a hypothesis. It\'s documented, consistent, and growing. <strong>The 500 million downloads prove it. The 80% abandonment rate also proves something:</strong> patients are willing to try. They download the apps. They create the accounts. They show up. And then the apps fail them — generic advice, no clinical connection, no reason to return. The market isn\'t waiting to be created. It\'s waiting to be served properly.',
+    source: 'Accenture Health Consumer Survey; IQVIA Institute Digital Health Trends; Rock Health Digital Health Consumer Adoption Survey',
+    takeaway: 'Your patients have already raised their hand. They want this. InPursuit is the first between-visit engagement platform built around the patient\'s relationship with their actual provider — not a wellness brand, not a step counter, not a symptom checker. The demand is proven. The question is whether they find it through you or somewhere else.'
+  },
+  {
+    num: '11 min',
+    label: 'Average Visit Length — Down 40% in a Decade',
+    body: 'Research published in <em>Health Affairs</em> and AMA practice data show that <strong>the average primary care visit has declined from approximately 18–20 minutes to under 12 minutes over the past decade</strong>, driven by rising panel sizes, administrative burden, and EHR documentation requirements. Physicians now spend more time on documentation than on patient interaction. <strong>The clinical relationship is being compressed at exactly the moment chronic disease burden is expanding.</strong> Practices carrying panels of 1,500–2,500 patients cannot meaningfully manage chronic disease in a series of 11-minute visits. The practices that grow — in outcomes, revenue, and reputation — will be the ones that extend the care relationship into the 525,546 minutes between appointments.',
+    source: 'Health Affairs Primary Care Visit Duration Study; AMA Practice Data; JAMA Internal Medicine',
+    takeaway: 'InPursuit turns those 11 minutes into the start of a continuous relationship. The data your patients generate between visits — vitals, adherence, symptoms, lifestyle — flows back to you before they arrive, so every minute of face time is spent on decisions, not catch-up. Shorter visits become more valuable when you already know everything that happened since the last one.'
   },
   {
     num: '$125K',
