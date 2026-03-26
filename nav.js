@@ -28,6 +28,7 @@
           <a href="tetra.html">TETRA&#8482; &mdash; Data Orchestration</a>
           <a href="tetra-ex.html">TETRA Ex&#8482; &mdash; Health Data Exchange</a>
           <a href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
+          <a href="tetra-vault.html">TETRA Vault&#8482; &mdash; Sovereign Data Infrastructure</a>
           <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance</a>
           <a href="tetra-aegis.html#sentinel">TETRA Sentinel&#8482; &mdash; Behavioral Surveillance</a>
         </div>
