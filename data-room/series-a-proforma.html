@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; 3-Year Pro Forma Financial Model</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0A1628;
+  --navy-mid: #111D32;
+  --navy-light: #1A2A44;
+  --gold: #C5A44E;
+  --gold-light: #D4BA7A;
+  --gold-dim: rgba(197,164,78,0.10);
+  --gold-border: rgba(197,164,78,0.25);
+  --cream: #FAF8F4;
+  --text: #1A1A1A;
+  --text-mid: #3D3D3D;
+  --text-muted: #8A8A7A;
+  --border: rgba(10,22,40,0.08);
+  --green: #2A8C5F;
+  --green-dim: rgba(42,140,95,0.08);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'Instrument Sans', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--cream);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.55;
+}
+
+.container { max-width: 1120px; margin: 0 auto; padding: 0 40px; }
+
+.label {
+  font-size: 9px; font-weight: 700; letter-spacing: 3.5px;
+  text-transform: uppercase; color: var(--gold);
+}
+
+/* ═══ HEADER ═══ */
+.header {
+  background: var(--navy);
+  padding: 48px 0 40px;
+  text-align: center;
+  border-bottom: 2px solid var(--gold);
+}
+.header-conf {
+  display: inline-block;
+  border: 1px solid var(--gold-border);
+  padding: 6px 24px; border-radius: 2px;
+  font-size: 9px; letter-spacing: 3px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 28px;
+}
+.header-wordmark {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 16px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.header h1 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(28px, 4vw, 48px); font-weight: 400;
+  color: #fff; line-height: 1.2; margin-bottom: 12px;
+}
+.header h1 em { font-style: italic; color: var(--gold); }
+.header-sub {
+  font-size: 14px; color: rgba(255,255,255,0.40); max-width: 600px;
+  margin: 0 auto; line-height: 1.6;
+}
+
+/* ═══ SECTIONS ═══ */
+section { padding: 64px 0; }
+.section-title {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: clamp(22px, 3vw, 32px); font-weight: 400;
+  color: var(--navy); line-height: 1.2; margin: 12px 0 16px;
+}
+.section-title em { font-style: italic; color: var(--gold); }
+.section-body {
+  font-size: 15px; line-height: 1.7; color: var(--text-mid);
+  max-width: 740px; margin-bottom: 40px;
+}
+
+.dark { background: var(--navy); color: #fff; }
+.dark .label { color: var(--gold-light); }
+.dark .section-title { color: #fff; }
+.dark .section-title em { color: var(--gold-light); }
+.dark .section-body { color: rgba(255,255,255,0.50); }
+
+/* ═══ ASSUMPTIONS ═══ */
+.assumptions-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; margin-bottom: 36px;
+}
+.a-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 4px; padding: 20px;
+}
+.a-card-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.a-card-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 28px; color: #fff; line-height: 1; margin-bottom: 6px;
+}
+.a-card-desc { margin-top:4px;
+  font-size: 12px; color: rgba(255,255,255,0.40); line-height: 1.5;
+}
+
+/* ═══ TABLES ═══ */
+.fin-table {
+  width: 100%; border-collapse: collapse; margin-bottom: 24px;
+}
+.fin-table th {
+  text-align: left; padding: 14px 16px;
+  background: var(--navy); color: rgba(255,255,255,0.55);
+  font-size: 10px; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.fin-table th.r { text-align: right; }
+.fin-table th:first-child { border-radius: 4px 0 0 0; }
+.fin-table th:last-child { border-radius: 0 4px 0 0; }
+.fin-table td {
+  padding: 14px 16px; border-bottom: 1px solid var(--border);
+  font-size: 14px; color: var(--text-mid);
+}
+.fin-table td.r { text-align: right; font-family: 'Instrument Serif', Georgia, serif; font-size: 16px; }
+.fin-table td.r.gold { color: var(--gold); font-weight: 400; }
+.fin-table td.label-cell { font-weight: 600; color: var(--navy); }
+.fin-table td.sub { padding-left: 32px; font-size: 13px; color: var(--text-muted); }
+.fin-table tr.total { background: var(--gold-dim); }
+.fin-table tr.total td { font-weight: 700; color: var(--navy); border-bottom: 2px solid var(--gold); }
+.fin-table tr.total td.r { font-size: 18px; color: var(--gold); }
+.fin-table tr.subtotal { background: rgba(10,22,40,0.02); }
+.fin-table tr.subtotal td { font-weight: 600; color: var(--navy); }
+.fin-table tr.subtotal td.r { color: var(--navy); }
+.fin-table tr.spacer td { padding: 4px; border: none; }
+.fin-table .note { font-size: 11px; color: var(--text-muted); font-weight: 400; display: block; margin-top: 2px; }
+
+/* Dark table variant */
+.dark .fin-table th { background: rgba(255,255,255,0.05); color: var(--gold-light); }
+.dark .fin-table td { border-color: rgba(255,255,255,0.06); color: rgba(255,255,255,0.55); }
+.dark .fin-table td.label-cell { color: #fff; }
+.dark .fin-table td.sub { color: rgba(255,255,255,0.35); }
+.dark .fin-table td.r { color: #fff; }
+.dark .fin-table td.r.gold { color: var(--gold-light); }
+.dark .fin-table tr.total { background: rgba(197,164,78,0.08); }
+.dark .fin-table tr.total td { color: var(--gold-light); border-color: var(--gold); }
+.dark .fin-table tr.total td.r { color: var(--gold); }
+.dark .fin-table tr.subtotal { background: rgba(255,255,255,0.02); }
+.dark .fin-table tr.subtotal td { color: #fff; }
+.dark .fin-table tr.subtotal td.r { color: #fff; }
+
+/* ═══ SUMMARY CARDS ═══ */
+.summary-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-bottom: 36px;
+}
+.s-card {
+  background: #fff; border: 1px solid var(--border);
+  border-top: 3px solid var(--gold); border-radius: 0 0 4px 4px;
+  padding: 28px; text-align: center;
+}
+.s-card-label {
+  font-size: 10px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--text-muted); margin-bottom: 8px;
+}
+.s-card-num {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 36px; color: var(--navy); line-height: 1; margin-bottom: 4px;
+}
+.s-card-sub {
+  font-size: 12px; color: var(--text-muted);
+}
+.s-card.highlight { background: var(--navy); border-color: var(--gold); }
+.s-card.highlight .s-card-label { color: var(--gold-light); }
+.s-card.highlight .s-card-num { color: var(--gold); }
+.s-card.highlight .s-card-sub { color: rgba(255,255,255,0.35); }
+
+/* ═══ FOOTNOTES ═══ */
+.footnote {
+  font-size: 12px; color: var(--text-muted); line-height: 1.6;
+  border-left: 3px solid var(--gold); padding-left: 20px;
+  margin: 28px 0;
+}
+.footnote strong { color: var(--navy); }
+
+/* ═══ FOOTER ═══ */
+.footer {
+  background: var(--navy); border-top: 2px solid var(--gold);
+  padding: 32px 0; text-align: center;
+}
+.footer p {
+  font-size: 11px; color: rgba(255,255,255,0.25); line-height: 1.8;
+}
+.footer .brand {
+  font-family: 'Instrument Serif', Georgia, serif;
+  font-size: 14px; color: var(--gold); letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+/* ═══ RESPONSIVE ═══ */
+@media (max-width: 900px) {
+  .assumptions-grid { grid-template-columns: 1fr 1fr; }
+  .summary-grid { grid-template-columns: 1fr; }
+  .fin-table { font-size: 12px; }
+  .fin-table td, .fin-table th { padding: 8px 10px; }
+}
+
+@media print {
+  * { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: #fff; }
+  section { padding: 32px 0 !important; page-break-inside: avoid; }
+  .header { padding: 40px 0 32px !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<div class="header">
+  <div class="header-conf">Confidential &mdash; For Qualified Investors Only</div>
+  <div class="header-wordmark">InPursuit Health</div>
+  <h1>Three-Year <em>Pro Forma</em> Financial Model</h1>
+  <p class="header-sub">Four independent revenue streams. One infrastructure stack. Moderate provider ramp: 1 &rarr; 10 &rarr; 50 providers over three years.</p>
+</div>
+
+<!-- ═══ KEY ASSUMPTIONS ═══ -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Key Assumptions</div>
+    <div class="section-title" style="color:#fff;">Model <em>Parameters</em></div>
+
+    <div class="assumptions-grid">
+      <div class="a-card">
+        <div class="a-card-label">Provider Ramp</div>
+        <div class="a-card-num">1 &rarr; 10 &rarr; 50</div>
+        <div class="a-card-desc">Partner providers onboarded by year. Avg 2,000 ACCESS-eligible patients per provider (small-to-mid-size practice).</div>
+      </div>
+      <div class="a-card">
+        <div class="a-card-label">Enrollment Ramp</div>
+        <div class="a-card-num">50%</div>
+        <div class="a-card-desc">Average enrollment rate within each provider's eligible panel during the first year of participation. Reaches 75% by Year 2 at that provider.</div>
+      </div>
+      <div class="a-card">
+        <div class="a-card-label">ACCESS OAP Blend</div>
+        <div class="a-card-num">$325</div>
+        <div class="a-card-desc">Blended annual OAP per patient across eCKM ($360), CKM ($420), MSK ($180), and BH ($180) tracks. Weighted toward eCKM/CKM.</div>
+      </div>
+      <div class="a-card">
+        <div class="a-card-label">D2C Users</div>
+        <div class="a-card-num">10K &rarr; 250K</div>
+        <div class="a-card-desc">Consumer app users. 20% paid conversion, $30/mo blended ARPU. Commerce: $12/user/year all users. Medicare App Library + app stores.</div>
+      </div>
+    </div>
+
+    <table class="fin-table" style="margin-bottom:16px;">
+      <tr>
+        <th>Assumption</th>
+        <th class="r">Year 1 (Jul 2026&ndash;Jun 2027)</th>
+        <th class="r">Year 2 (Jul 2027&ndash;Jun 2028)</th>
+        <th class="r">Year 3 (Jul 2028&ndash;Jun 2029)</th>
+      </tr>
+      <tr>
+        <td class="label-cell">Provider partners</td>
+        <td class="r">1</td>
+        <td class="r">10</td>
+        <td class="r">50</td>
+      </tr>
+      <tr>
+        <td class="label-cell">ACCESS-eligible patients (cumulative)</td>
+        <td class="r">2,000</td>
+        <td class="r">20,000</td>
+        <td class="r">100,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Enrolled ACCESS patients (avg)</td>
+        <td class="r">1,000</td>
+        <td class="r">10,500</td>
+        <td class="r">55,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">RPM/CCM patients (non-ACCESS)</td>
+        <td class="r">100</td>
+        <td class="r">1,000</td>
+        <td class="r">7,500</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Telehealth encounters/year</td>
+        <td class="r">250</td>
+        <td class="r">5,000</td>
+        <td class="r">37,500</td>
+      </tr>
+      <tr>
+        <td class="label-cell">D2C total users</td>
+        <td class="r">10,000</td>
+        <td class="r">75,000</td>
+        <td class="r">250,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">D2C paid subscribers (20%)</td>
+        <td class="r">2,000</td>
+        <td class="r">15,000</td>
+        <td class="r">50,000</td>
+      </tr>
+    </table>
+    <p style="font-size:11px; color:rgba(255,255,255,0.25); line-height:1.5;">Year 1 begins July 5, 2026 (ACCESS go-live). Enrollment ramp assumes 50% of eligible panel enrolled on average during provider's first year, reaching 75% in subsequent years. RPM/CCM patients are non-ACCESS commercial, MA, and Medicaid patients at the same practices billed under InPursuit's NPI once InPursuit Medical PC is operational. Telehealth ramps with PC establishment in Year 1, scaling in Years 2&ndash;3.</p>
+  </div>
+</section>
+
+<!-- ═══ REVENUE SUMMARY ═══ -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Summary</div>
+    <div class="section-title">Combined <em>Revenue Projections</em></div>
+    <div class="section-body">Four independent revenue streams flowing through one infrastructure stack. Each stream is separately billable. A single patient can generate revenue from multiple streams simultaneously.</div>
+
+    <div class="summary-grid">
+      <div class="s-card">
+        <div class="s-card-label">Year 1</div>
+        <div class="s-card-num">$841K</div>
+        <div class="s-card-sub">Jul 2026 &ndash; Jun 2027</div>
+      </div>
+      <div class="s-card">
+        <div class="s-card-label">Year 2</div>
+        <div class="s-card-num">$9.2M</div>
+        <div class="s-card-sub">Jul 2027 &ndash; Jun 2028</div>
+      </div>
+      <div class="s-card highlight">
+        <div class="s-card-label">Year 3</div>
+        <div class="s-card-num">$46.2M</div>
+        <div class="s-card-sub">Jul 2028 &ndash; Jun 2029</div>
+      </div>
+    </div>
+
+    <table class="fin-table">
+      <tr>
+        <th>Revenue Stream</th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+
+      <!-- ACCESS OAPs -->
+      <tr>
+        <td class="label-cell">ACCESS Outcome-Aligned Payments
+          <span class="note">InPursuit bills CMS directly as ACCESS participant</span>
+        </td>
+        <td class="r gold">$162,500</td>
+        <td class="r gold">$3,412,500</td>
+        <td class="r gold">$17,875,000</td>
+      </tr>
+      <tr>
+        <td class="sub">Enrolled patients &times; $325 blended OAP (Y1: 6-month partial year)</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+
+      <!-- RPM/CCM -->
+      <tr>
+        <td class="label-cell">RPM + CCM (Non-ACCESS Patients)
+          <span class="note">Commercial, MA, Medicaid patients billed under InPursuit NPI</span>
+        </td>
+        <td class="r gold">$180,000</td>
+        <td class="r gold">$1,800,000</td>
+        <td class="r gold">$13,500,000</td>
+      </tr>
+      <tr>
+        <td class="sub">RPM ~$100/pt/mo + CCM ~$50/pt/mo blended = $150/pt/mo &times; 12 months</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+
+      <!-- Telehealth -->
+      <tr>
+        <td class="label-cell">Telehealth &amp; Virtual Care
+          <span class="note">InPursuit Medical PC (MSA with InPursuit Health LLC)</span>
+        </td>
+        <td class="r gold">$18,750</td>
+        <td class="r gold">$375,000</td>
+        <td class="r gold">$2,812,500</td>
+      </tr>
+      <tr>
+        <td class="sub">Billable encounters &times; $75 avg reimbursement per encounter</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+
+      <!-- D2C -->
+      <tr>
+        <td class="label-cell">D2C Subscriptions + Commerce
+          <span class="note">Consumer app (all payers, all app stores)</span>
+        </td>
+        <td class="r gold">$480,000</td>
+        <td class="r gold">$3,600,000</td>
+        <td class="r gold">$12,000,000</td>
+      </tr>
+      <tr>
+        <td class="sub">Subscriptions: paid users &times; $30/mo ARPU. Commerce: all users &times; $12/yr</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+
+      <tr class="spacer"><td colspan="4"></td></tr>
+
+      <!-- Additional: Co-management (informational) -->
+      <tr>
+        <td class="label-cell" style="color:var(--text-muted); font-weight:400; font-style:italic;">Referring provider co-management (CMS pays provider, not InPursuit)
+          <span class="note">Included for context only &mdash; this is NOT InPursuit revenue</span>
+        </td>
+        <td class="r" style="color:var(--text-muted); font-style:italic;">$100,000</td>
+        <td class="r" style="color:var(--text-muted); font-style:italic;">$1,050,000</td>
+        <td class="r" style="color:var(--text-muted); font-style:italic;">$5,500,000</td>
+      </tr>
+
+      <tr class="spacer"><td colspan="4"></td></tr>
+
+      <tr class="total">
+        <td>Total InPursuit Revenue</td>
+        <td class="r">$841,250</td>
+        <td class="r">$9,187,500</td>
+        <td class="r">$46,187,500</td>
+      </tr>
+    </table>
+
+    <div class="footnote">
+      <strong>Note on ACCESS OAP cash flow:</strong> CMS pays 50% of OAPs monthly, with the remaining 50% withheld and reconciled after each 12-month care period based on outcome attainment. The projections above reflect total earned revenue assuming the 50% Outcome Attainment Threshold is met. Actual cash receipts will be front-loaded at ~50% with reconciliation payments following.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ STREAM 1: ACCESS OAPs ═══ -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Revenue Stream 1</div>
+    <div class="section-title" style="color:#fff;">ACCESS <em>Outcome-Aligned Payments</em></div>
+    <div class="section-body" style="color:rgba(255,255,255,0.50);">InPursuit bills CMS directly as the ACCESS participant for every enrolled Medicare beneficiary with qualifying chronic conditions. Fixed monthly payments per patient, per clinical track. Full payment contingent on meeting outcome thresholds.</div>
+
+    <table class="fin-table">
+      <tr>
+        <th>Clinical Track</th>
+        <th class="r">Annual OAP (Initial)</th>
+        <th class="r">Annual OAP (Follow-on)</th>
+        <th class="r">Conditions</th>
+      </tr>
+      <tr>
+        <td class="label-cell">eCKM (Early Cardio-Kidney-Metabolic)</td>
+        <td class="r">$360</td>
+        <td class="r">$264</td>
+        <td class="r" style="font-family:'Instrument Sans'; font-size:12px;">Hypertension, obesity, prediabetes, dyslipidemia</td>
+      </tr>
+      <tr>
+        <td class="label-cell">CKM (Cardio-Kidney-Metabolic)</td>
+        <td class="r">$420</td>
+        <td class="r">$312</td>
+        <td class="r" style="font-family:'Instrument Sans'; font-size:12px;">Diabetes, CKD, cardiovascular disease</td>
+      </tr>
+      <tr>
+        <td class="label-cell">MSK (Musculoskeletal)</td>
+        <td class="r">$180</td>
+        <td class="r">N/A</td>
+        <td class="r" style="font-family:'Instrument Sans'; font-size:12px;">Chronic pain conditions</td>
+      </tr>
+      <tr>
+        <td class="label-cell">BH (Behavioral Health)</td>
+        <td class="r">$180</td>
+        <td class="r">$84</td>
+        <td class="r" style="font-family:'Instrument Sans'; font-size:12px;">Depression, anxiety</td>
+      </tr>
+    </table>
+
+    <table class="fin-table">
+      <tr>
+        <th>ACCESS Revenue Build</th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+      <tr>
+        <td class="label-cell">Partner providers</td>
+        <td class="r">1</td>
+        <td class="r">10</td>
+        <td class="r">50</td>
+      </tr>
+      <tr>
+        <td class="sub">New providers added in year</td>
+        <td class="r">1</td>
+        <td class="r">9</td>
+        <td class="r">40</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Avg enrolled patients</td>
+        <td class="r">1,000</td>
+        <td class="r">10,500</td>
+        <td class="r">55,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Blended OAP/patient/year</td>
+        <td class="r">$325</td>
+        <td class="r">$325</td>
+        <td class="r">$325</td>
+      </tr>
+      <tr>
+        <td class="sub">Year 1 adjusted for 6-month partial year (Jul&ndash;Dec 2026)</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr class="subtotal">
+        <td>ACCESS OAP Revenue</td>
+        <td class="r gold">$162,500</td>
+        <td class="r gold">$3,412,500</td>
+        <td class="r gold">$17,875,000</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ STREAM 2: RPM/CCM ═══ -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Stream 2</div>
+    <div class="section-title">RPM + CCM <em>Direct Payer Billing</em></div>
+    <div class="section-body">Non-ACCESS patients at the same provider practices &mdash; commercial, Medicare Advantage, and Medicaid patients &mdash; billed directly under InPursuit's NPI for remote patient monitoring and chronic care management. Scales as InPursuit Medical PC becomes operational.</div>
+
+    <table class="fin-table">
+      <tr>
+        <th>RPM/CCM Revenue Build</th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+      <tr>
+        <td class="label-cell">Non-ACCESS patients enrolled</td>
+        <td class="r">100</td>
+        <td class="r">1,000</td>
+        <td class="r">7,500</td>
+      </tr>
+      <tr>
+        <td class="sub">~100&ndash;150 per provider, scaling as PC matures</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Blended RPM + CCM/patient/month</td>
+        <td class="r">$150</td>
+        <td class="r">$150</td>
+        <td class="r">$150</td>
+      </tr>
+      <tr>
+        <td class="sub">RPM ~$100/mo (CPT 99453/54/57/58) + CCM ~$50/mo (CPT 99490)</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr class="subtotal">
+        <td>RPM/CCM Revenue</td>
+        <td class="r gold">$180,000</td>
+        <td class="r gold">$1,800,000</td>
+        <td class="r gold">$13,500,000</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ STREAM 3: TELEHEALTH ═══ -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Revenue Stream 3</div>
+    <div class="section-title" style="color:#fff;">Telehealth &amp; <em>Virtual Care</em></div>
+    <div class="section-body" style="color:rgba(255,255,255,0.50);">Delivered through InPursuit Medical, PC &mdash; a clinician-owned entity with a managed services agreement (MSA) with InPursuit Health, LLC. Billable encounters across chronic care follow-ups, urgent care, weight management, mental health, and specialty referrals.</div>
+
+    <table class="fin-table">
+      <tr>
+        <th>Telehealth Revenue Build</th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+      <tr>
+        <td class="label-cell">Billable encounters</td>
+        <td class="r">250</td>
+        <td class="r">5,000</td>
+        <td class="r">37,500</td>
+      </tr>
+      <tr>
+        <td class="sub">Y1 limited (PC establishment). Scales with patient volume and provider network.</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr>
+        <td class="label-cell">Avg reimbursement/encounter</td>
+        <td class="r">$75</td>
+        <td class="r">$75</td>
+        <td class="r">$75</td>
+      </tr>
+      <tr>
+        <td class="sub">Blended across E/M telehealth codes (99213&ndash;99215 equivalent)</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr class="subtotal">
+        <td>Telehealth Revenue</td>
+        <td class="r gold">$18,750</td>
+        <td class="r gold">$375,000</td>
+        <td class="r gold">$2,812,500</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ STREAM 4: D2C ═══ -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Stream 4</div>
+    <div class="section-title">Direct-to-Consumer <em>Subscriptions &amp; Commerce</em></div>
+    <div class="section-body">The InPursuit consumer app is available to every American regardless of payer. Revenue from subscription tiers (Plus $14.99, Family $34.99, Total Intelligence $49.99) and transaction-moment commerce (offers and cashback) where brands bid on anonymized health signals.</div>
+
+    <table class="fin-table">
+      <tr>
+        <th>D2C Revenue Build</th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+      <tr><td colspan="4" style="font-weight:700; color:var(--navy); font-size:12px; letter-spacing:1px; text-transform:uppercase; padding-top:16px;">Subscription Revenue</td></tr>
+      <tr>
+        <td class="label-cell">Total app users</td>
+        <td class="r">10,000</td>
+        <td class="r">75,000</td>
+        <td class="r">250,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Paid subscribers (20% conversion)</td>
+        <td class="r">2,000</td>
+        <td class="r">15,000</td>
+        <td class="r">50,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Blended ARPU</td>
+        <td class="r">$30/mo</td>
+        <td class="r">$30/mo</td>
+        <td class="r">$30/mo</td>
+      </tr>
+      <tr class="subtotal">
+        <td>Subscription Revenue</td>
+        <td class="r">$720,000</td>
+        <td class="r">$5,400,000</td>
+        <td class="r">$18,000,000</td>
+      </tr>
+      <tr>
+        <td class="sub">Adjusted for ramp (50% avg enrollment in acquisition year)</td>
+        <td class="r gold">$360,000</td>
+        <td class="r gold">$2,700,000</td>
+        <td class="r gold">$9,000,000</td>
+      </tr>
+
+      <tr><td colspan="4" style="font-weight:700; color:var(--navy); font-size:12px; letter-spacing:1px; text-transform:uppercase; padding-top:16px;">Commerce Revenue (Offers &amp; Cashback)</td></tr>
+      <tr>
+        <td class="label-cell">All users (free + paid)</td>
+        <td class="r">10,000</td>
+        <td class="r">75,000</td>
+        <td class="r">250,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Revenue per user/year</td>
+        <td class="r">$12</td>
+        <td class="r">$12</td>
+        <td class="r">$12</td>
+      </tr>
+      <tr>
+        <td class="sub">Adjusted for ramp (avg users during year)</td>
+        <td class="r"></td><td class="r"></td><td class="r"></td>
+      </tr>
+      <tr class="subtotal">
+        <td>Commerce Revenue</td>
+        <td class="r gold">$120,000</td>
+        <td class="r gold">$900,000</td>
+        <td class="r gold">$3,000,000</td>
+      </tr>
+
+      <tr class="spacer"><td colspan="4"></td></tr>
+
+      <tr class="total">
+        <td>Total D2C Revenue</td>
+        <td class="r">$480,000</td>
+        <td class="r">$3,600,000</td>
+        <td class="r">$12,000,000</td>
+      </tr>
+    </table>
+  </div>
+</section>
+
+<!-- ═══ CONSOLIDATED P&L ═══ -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Consolidated View</div>
+    <div class="section-title" style="color:#fff;">Three-Year <em>Consolidated Revenue</em></div>
+
+    <table class="fin-table">
+      <tr>
+        <th></th>
+        <th class="r">Year 1</th>
+        <th class="r">Year 2</th>
+        <th class="r">Year 3</th>
+      </tr>
+
+      <tr><td colspan="4" style="font-weight:700; color:var(--gold-light); font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:16px 14px 8px;">Provider-Side Revenue</td></tr>
+      <tr>
+        <td class="label-cell">ACCESS OAPs</td>
+        <td class="r gold">$162,500</td>
+        <td class="r gold">$3,412,500</td>
+        <td class="r gold">$17,875,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">RPM + CCM</td>
+        <td class="r gold">$180,000</td>
+        <td class="r gold">$1,800,000</td>
+        <td class="r gold">$13,500,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Telehealth</td>
+        <td class="r gold">$18,750</td>
+        <td class="r gold">$375,000</td>
+        <td class="r gold">$2,812,500</td>
+      </tr>
+      <tr class="subtotal">
+        <td>Provider-Side Subtotal</td>
+        <td class="r">$361,250</td>
+        <td class="r">$5,587,500</td>
+        <td class="r">$34,187,500</td>
+      </tr>
+
+      <tr><td colspan="4" style="font-weight:700; color:var(--gold-light); font-size:11px; letter-spacing:2px; text-transform:uppercase; padding:16px 14px 8px;">Consumer-Side Revenue</td></tr>
+      <tr>
+        <td class="label-cell">D2C Subscriptions</td>
+        <td class="r gold">$360,000</td>
+        <td class="r gold">$2,700,000</td>
+        <td class="r gold">$9,000,000</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Commerce (Offers &amp; Cashback)</td>
+        <td class="r gold">$120,000</td>
+        <td class="r gold">$900,000</td>
+        <td class="r gold">$3,000,000</td>
+      </tr>
+      <tr class="subtotal">
+        <td>Consumer-Side Subtotal</td>
+        <td class="r">$480,000</td>
+        <td class="r">$3,600,000</td>
+        <td class="r">$12,000,000</td>
+      </tr>
+
+      <tr class="spacer"><td colspan="4"></td></tr>
+
+      <tr class="total">
+        <td>Total InPursuit Revenue</td>
+        <td class="r">$841,250</td>
+        <td class="r">$9,187,500</td>
+        <td class="r">$46,187,500</td>
+      </tr>
+    </table>
+
+    <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:20px; margin-top:32px;">
+      <div style="background:rgba(197,164,78,0.06); border:1px solid var(--gold-border); border-radius:4px; padding:24px; text-align:center;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px;">Provider : Consumer Split (Y1)</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif; font-size:28px; color:#fff;">43% : 57%</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-top:4px;">D2C provides early floor</div>
+      </div>
+      <div style="background:rgba(197,164,78,0.06); border:1px solid var(--gold-border); border-radius:4px; padding:24px; text-align:center;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px;">Provider : Consumer Split (Y3)</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif; font-size:28px; color:#fff;">74% : 26%</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-top:4px;">Clinical billing dominates at scale</div>
+      </div>
+      <div style="background:rgba(197,164,78,0.06); border:1px solid var(--gold-border); border-radius:4px; padding:24px; text-align:center;">
+        <div style="font-size:10px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:var(--gold-light); margin-bottom:6px;">3-Year Cumulative Revenue</div>
+        <div style="font-family:'Instrument Serif',Georgia,serif; font-size:28px; color:var(--gold);">$56.2M</div>
+        <div style="font-size:11px; color:rgba(255,255,255,0.35); margin-top:4px;">Across all four streams</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ DISCLAIMERS ═══ -->
+<section>
+  <div class="container">
+    <div class="label">Important Disclosures</div>
+    <div class="section-title">Assumptions &amp; <em>Risk Factors</em></div>
+
+    <div class="footnote" style="margin-bottom:20px;">
+      <strong>ACCESS OAP Reconciliation:</strong> CMS pays 50% of OAPs monthly. The remaining 50% is withheld and reconciled after each 12-month care period. Full payment requires meeting the Outcome Attainment Threshold (50% of patients meeting clinical targets). Revenue projections assume this threshold is met. If not met, the withheld portion is reduced or forfeited.
+    </div>
+    <div class="footnote" style="margin-bottom:20px;">
+      <strong>RPM/CCM Billing:</strong> Full direct billing under InPursuit's NPI requires establishment of InPursuit Medical, PC (Phase 2). Year 1 RPM/CCM revenue is limited, reflecting the time required to operationalize the PC entity and MSA with InPursuit Health, LLC.
+    </div>
+    <div class="footnote" style="margin-bottom:20px;">
+      <strong>D2C Growth:</strong> User acquisition projections assume Medicare App Library listing (July 2026), app store distribution, and referral from provider network. Actual growth rates may vary. Commerce revenue depends on brand partner adoption of transaction-moment bidding model.
+    </div>
+    <div class="footnote" style="margin-bottom:20px;">
+      <strong>No Revenue Sharing:</strong> InPursuit does not charge providers a percentage of VBC revenue. All InPursuit revenue comes from direct payer billing under its own NPI and consumer subscriptions/commerce. Referring providers earn CMS co-management payments independently (~$100/patient/year/track), paid by CMS directly.
+    </div>
+    <div class="footnote">
+      <strong>Forward-Looking Statements:</strong> These projections are management estimates based on current CMS payment rates, market conditions, and operational plans. Actual results may differ materially. This document does not constitute an offer to sell securities.
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade;<br>
+    CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Patient-Facing Categories<br><br>
+    Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities</p>
+  </div>
+</div>
+
+</body>
+</html>

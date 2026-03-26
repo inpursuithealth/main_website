@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Series A One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page { size: 8.5in 11in; margin: 0; }
+:root {
+  --navy: #0A1628; --gold: #C5A44E; --gold-light: #D4BA7A;
+  --gold-dim: rgba(197,164,78,0.10); --gold-border: rgba(197,164,78,0.25);
+  --cream: #FAF8F4; --text: #1A1A1A; --text-mid: #3D3D3D; --text-muted: #8A8A7A;
+  --border: rgba(10,22,40,0.08);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'Instrument Sans',system-ui,sans-serif;
+  color:var(--text); background:#fff;
+  width:8.5in; min-height:11in; overflow:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+
+.top-bar { background:var(--navy); padding:0 40px; height:40px; display:flex; align-items:center; justify-content:space-between; border-bottom:2px solid var(--gold); }
+.top-bar .wm { font-family:'Instrument Serif',Georgia,serif; font-size:15px; color:var(--gold); letter-spacing:1.5px; }
+.top-bar .nav { font-size:9px; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.35); }
+
+.hero { background:var(--navy); padding:32px 44px 24px; }
+.hero h1 { font-family:'Instrument Serif',Georgia,serif; font-size:28px; font-weight:400; color:#fff; line-height:1.2; margin-bottom:10px; }
+.hero h1 em { font-style:italic; color:var(--gold); }
+.hero p { font-size:12px; color:rgba(255,255,255,0.42); line-height:1.65; max-width:520px; }
+
+.stats-bar { display:flex; background:var(--navy); padding:4px 44px 24px; gap:36px; }
+.stat { text-align:center; }
+.stat-num { font-family:'Instrument Serif',Georgia,serif; font-size:22px; color:var(--gold); }
+.stat-label { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,0.30); margin-top:2px; }
+.stat-div { width:1px; background:rgba(197,164,78,0.15); align-self:stretch; }
+
+.content { padding:20px 44px 12px; }
+
+.sh { font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; margin-top:18px; padding-bottom:5px; border-bottom:1px solid var(--border); }
+.sh:first-child { margin-top:0; }
+
+.two-col { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:18px; }
+.three-col { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:18px; }
+.four-col { display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:10px; margin-bottom:18px; }
+
+.card { background:var(--cream); border:1px solid var(--border); border-radius:4px; padding:12px 14px; }
+.card-t { font-size:11px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.card-d { font-size:9.5px; color:var(--text-muted); line-height:1.5; }
+.card-n { font-family:'Instrument Serif',Georgia,serif; font-size:18px; color:var(--gold); margin-bottom:2px; }
+
+.dark-card { background:var(--navy); border-color:rgba(197,164,78,0.15); }
+.dark-card .card-t { color:#fff; }
+.dark-card .card-d { color:rgba(255,255,255,0.40); }
+.dark-card .card-n { color:var(--gold-light); }
+
+.rev-table { width:100%; border-collapse:collapse; margin-bottom:14px; }
+.rev-table th { background:var(--navy); color:rgba(255,255,255,0.50); font-size:8px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; padding:8px 10px; text-align:left; }
+.rev-table th.r { text-align:right; }
+.rev-table th:first-child { border-radius:3px 0 0 0; }
+.rev-table th:last-child { border-radius:0 3px 0 0; }
+.rev-table td { padding:7px 10px; border-bottom:1px solid var(--border); font-size:11px; color:var(--text-mid); }
+.rev-table td.r { text-align:right; font-family:'Instrument Serif',Georgia,serif; font-size:13px; }
+.rev-table td.r.gold { color:var(--gold); }
+.rev-table td.label { font-weight:600; color:var(--navy); }
+.rev-table tr.total { background:var(--gold-dim); }
+.rev-table tr.total td { font-weight:700; color:var(--navy); border-bottom:2px solid var(--gold); }
+.rev-table tr.total td.r { font-size:14px; color:var(--gold); }
+.rev-table .note { font-size:8px; color:var(--text-muted); display:block; }
+
+.traction-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:18px; }
+.tr-item { border-left:2px solid var(--gold); padding-left:10px; }
+.tr-item h4 { font-size:10px; font-weight:600; color:var(--navy); margin-bottom:2px; }
+.tr-item p { font-size:9px; color:var(--text-muted); line-height:1.4; }
+
+.ask-bar { background:var(--navy); border:1px solid rgba(197,164,78,0.15); border-radius:4px; padding:14px 24px; display:flex; align-items:center; justify-content:space-between; margin-bottom:16px; }
+.ask-bar .ask-label { font-size:8px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:var(--gold-light); }
+.ask-bar .ask-num { font-family:'Instrument Serif',Georgia,serif; font-size:22px; color:#fff; }
+.ask-bar .ask-detail { font-size:9px; color:rgba(255,255,255,0.35); }
+
+.team-row { display:flex; gap:18px; margin-bottom:10px; }
+.team-member { font-size:9px; color:var(--text-mid); line-height:1.4; }
+.team-member strong { color:var(--navy); font-size:10px; display:block; }
+
+.footer { background:var(--navy); border-top:2px solid var(--gold); padding:8px 40px; display:flex; justify-content:space-between; align-items:center; position:absolute; bottom:0; left:0; right:0; }
+.footer .fl { font-size:7.5px; color:rgba(255,255,255,0.25); line-height:1.4; }
+.footer .fr { font-family:'Instrument Serif',Georgia,serif; font-size:11px; color:var(--gold); letter-spacing:1px; }
+
+@media print {
+  * { -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+  body { overflow:visible; }
+}
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <span class="wm">InPursuit Health</span>
+  <span class="nav">Series A &middot; Confidential</span>
+</div>
+
+<div class="hero">
+  <h1>The Infrastructure Beneath <em>Every Payer, Every Provider, Every Patient.</em></h1>
+  <p>TETRA&trade; is the payer-agnostic orchestration layer that connects fragmented healthcare data, governs AI safely, and powers the transition from fee-for-service to outcome-based care. InPursuit bills payers directly under its own NPI.</p>
+</div>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">$20M</div><div class="stat-label">Series A Target</div></div>
+  <div class="stat-div"></div>
+  <div class="stat"><div class="stat-num">$46.2M</div><div class="stat-label">Year 3 Revenue</div></div>
+  <div class="stat-div"></div>
+  <div class="stat"><div class="stat-num">300K</div><div class="stat-label">Physicians Addressable</div></div>
+  <div class="stat-div"></div>
+  <div class="stat"><div class="stat-num">$5.6T</div><div class="stat-label">U.S. Healthcare Spend</div></div>
+</div>
+
+<div class="content">
+
+<div class="sh">The Problem</div>
+<p style="font-size:11px; color:var(--text-mid); line-height:1.6; margin-bottom:18px;">The $5.6T U.S. healthcare system was built for billing, not patients. Provider data is siloed across thousands of incompatible EHRs. Every payer&mdash;CMS, commercial, MA&mdash;is mandating outcome-based care. AI is entering healthcare faster than anyone can govern it. The transition cannot happen without a new orchestration layer. <strong style="color:var(--navy);">TETRA is that layer.</strong></p>
+
+<div class="sh">Four Revenue Streams &mdash; One Infrastructure Stack</div>
+<table class="rev-table">
+  <tr>
+    <th>Revenue Stream</th>
+    <th class="r">Year 1</th>
+    <th class="r">Year 2</th>
+    <th class="r">Year 3</th>
+  </tr>
+  <tr>
+    <td class="label">ACCESS OAPs (CMS direct billing)<span class="note">InPursuit is the ACCESS participant, bills CMS under own NPI</span></td>
+    <td class="r gold">$162.5K</td>
+    <td class="r gold">$3.4M</td>
+    <td class="r gold">$17.9M</td>
+  </tr>
+  <tr>
+    <td class="label">RPM + CCM (all payers)<span class="note">Commercial, MA, Medicaid patients at partner practices</span></td>
+    <td class="r gold">$180K</td>
+    <td class="r gold">$1.8M</td>
+    <td class="r gold">$13.5M</td>
+  </tr>
+  <tr>
+    <td class="label">Telehealth (InPursuit Medical PC)<span class="note">Clinician-owned PC with MSA to InPursuit Health LLC</span></td>
+    <td class="r gold">$18.75K</td>
+    <td class="r gold">$375K</td>
+    <td class="r gold">$2.8M</td>
+  </tr>
+  <tr>
+    <td class="label">D2C Subscriptions + Commerce<span class="note">All payers, all app stores. Offers &amp; cashback commerce.</span></td>
+    <td class="r gold">$480K</td>
+    <td class="r gold">$3.6M</td>
+    <td class="r gold">$12.0M</td>
+  </tr>
+  <tr class="total">
+    <td>Total InPursuit Revenue</td>
+    <td class="r">$841K</td>
+    <td class="r">$9.2M</td>
+    <td class="r">$46.2M</td>
+  </tr>
+</table>
+<p style="font-size:7.5px; color:var(--text-muted); margin-bottom:18px;">Conservative ramp: 1 &rarr; 10 &rarr; 50 providers. InPursuit NEVER charges a percentage of VBC revenue. Referring providers earn CMS co-management payments (~$100/pt/yr/track) paid by CMS directly. D2C: 4 tiers (Free, Plus $14.99, Family $34.99, Total Intelligence $49.99).</p>
+
+<div class="sh">TETRA&trade; Infrastructure Stack &mdash; The Moat</div>
+<div style="display:grid; grid-template-columns:repeat(6,1fr); gap:6px; margin-bottom:18px;">
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">TETRA</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">DATA FABRIC</div>
+  </div>
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">eX</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">EXCHANGE</div>
+  </div>
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">Conductor</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">AI ORCH.</div>
+  </div>
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">Vault</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">DATA OWNER</div>
+  </div>
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">Aegis</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">PROTECTION</div>
+  </div>
+  <div style="background:var(--navy); border-radius:3px; padding:10px 8px; text-align:center;">
+    <div style="font-family:'Instrument Serif',Georgia,serif; font-size:10px; color:var(--gold);">Sentinel</div>
+    <div style="font-size:7px; color:rgba(255,255,255,0.35); letter-spacing:1px;">AI AGENT</div>
+  </div>
+</div>
+
+<div class="sh">Traction &amp; Validation</div>
+<div class="traction-grid">
+  <div class="tr-item">
+    <h4>DoD/VA &mdash; 41,000 Servers</h4>
+    <p>Selected over IBM, Oracle, SAP, Informatica in formal Analysis of Alternatives. Deployed at federal scale.</p>
+  </div>
+  <div class="tr-item">
+    <h4>CMS App Library &mdash; All 3 Categories</h4>
+    <p>Approved for Conversational AI, Kill the Clipboard, and Chronic Care Management. 140M+ beneficiaries.</p>
+  </div>
+  <div class="tr-item">
+    <h4>Honeycomb Medical Group &mdash; Signed</h4>
+    <p>First provider partner. Memphis, TN. ~22,000 patients. ACCESS Cohort 1. Revenue July 5, 2026.</p>
+  </div>
+</div>
+
+<div class="sh">The Ask</div>
+<div class="ask-bar">
+  <div>
+    <div class="ask-label">Series A Target</div>
+    <div class="ask-num">$20,000,000</div>
+  </div>
+  <div style="text-align:center;">
+    <div class="ask-label">SAFE Bridge (Now Open)</div>
+    <div class="ask-num">$2,000,000</div>
+    <div class="ask-detail">$25M cap &middot; $50K minimum</div>
+  </div>
+  <div style="text-align:right;">
+    <div class="ask-label">Target Close</div>
+    <div class="ask-num">Sep 1, 2026</div>
+  </div>
+</div>
+
+<div class="sh">Leadership</div>
+<div class="team-row">
+  <div class="team-member"><strong>Bennett McPhatter</strong>CEO &amp; Co-Founder</div>
+  <div class="team-member"><strong>Hongda Lin</strong>CTO &amp; Co-Founder</div>
+  <div class="team-member"><strong>Patrick Truxillo</strong>CSO &amp; Co-Founder</div>
+  <div class="team-member"><strong>Christopher Ingram</strong>CPO &amp; Co-Founder</div>
+  <div class="team-member"><strong>Dr. Joseph M. Chalil</strong>Chief Medical Officer</div>
+</div>
+<p style="font-size:8px; color:var(--text-muted);">Advisors: Jose Arrieta &middot; Michael Mark &middot; Alison Cossette</p>
+
+</div>
+
+<div class="footer">
+  <div class="fl">
+    InPursuit Health, LLC &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member<br>
+    Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities
+  </div>
+  <div class="fr">InPursuit Health</div>
+</div>
+
+</body>
+</html>

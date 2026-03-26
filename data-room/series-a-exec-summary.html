@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Series A Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A1628; --navy-mid:#111D32; --gold:#C5A44E; --gold-light:#D4BA7A;
+  --gold-dim:rgba(197,164,78,0.10); --gold-border:rgba(197,164,78,0.25);
+  --cream:#FAF8F4; --text:#1A1A1A; --text-mid:#3D3D3D; --text-muted:#8A8A7A;
+  --border:rgba(10,22,40,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:0 48px;}
+
+/* Header */
+.header{background:var(--navy);padding:56px 0 44px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:12px;max-width:680px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:14px;color:rgba(255,255,255,0.40);max-width:560px;margin:0 auto;line-height:1.7;}
+
+/* Sections */
+section{padding:56px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--navy);line-height:1.2;margin:10px 0 16px;}
+.stitle em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.85;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark .stitle{color:#fff;}
+.dark .stitle em{color:var(--gold-light);}
+.dark p.body{color:rgba(255,255,255,0.55);}
+.dark p.body strong{color:var(--gold-light);}
+
+/* Stat row */
+.stat-row{display:flex;gap:36px;margin:32px 0;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.dark .stat-row{border-color:rgba(255,255,255,0.06);}
+.stat-item{text-align:center;flex:1;}
+.stat-num{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--gold);line-height:1;}
+.stat-lab{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+.dark .stat-lab{color:rgba(255,255,255,0.30);}
+
+/* Table */
+.fin-table{width:100%;border-collapse:collapse;margin:24px 0;}
+.fin-table th{text-align:left;padding:10px 12px;background:var(--navy);color:rgba(255,255,255,0.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.fin-table th.r{text-align:right;}
+.fin-table th:first-child{border-radius:4px 0 0 0;}
+.fin-table th:last-child{border-radius:0 4px 0 0;}
+.fin-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);}
+.fin-table td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:16px;}
+.fin-table td.r.gold{color:var(--gold);}
+.fin-table td.label-cell{font-weight:600;color:var(--navy);}
+.fin-table tr.total{background:var(--gold-dim);}
+.fin-table tr.total td{font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);}
+.fin-table tr.total td.r{font-size:18px;color:var(--gold);}
+.fin-table .note{font-size:11px;color:var(--text-muted);display:block;margin-top:2px;}
+
+/* Callout */
+.callout{background:var(--gold-dim);border-left:3px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;margin:24px 0;font-size:14px;line-height:1.7;color:var(--text-mid);}
+.callout strong{color:var(--navy);}
+.dark .callout{background:rgba(197,164,78,0.06);border-color:var(--gold);}
+.dark .callout strong{color:var(--gold-light);}
+
+/* Layers */
+.layer-row{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:20px 0;}
+.layer{background:var(--navy);border-radius:4px;padding:12px 8px;text-align:center;}
+.layer h4{font-family:'Instrument Serif',Georgia,serif;font-size:12px;color:var(--gold);}
+.layer span{font-size:7px;color:rgba(255,255,255,0.30);letter-spacing:1.5px;text-transform:uppercase;}
+
+/* Timeline */
+.tl{position:relative;padding-left:28px;margin:20px 0;}
+.tl::before{content:'';position:absolute;left:5px;top:6px;bottom:6px;width:1px;background:linear-gradient(180deg,var(--gold),var(--border));}
+.tl-item{position:relative;padding:0 0 24px 24px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-item::before{content:'';position:absolute;left:-24px;top:5px;width:8px;height:8px;border-radius:50%;background:var(--gold);border:2px solid var(--cream);}
+.tl-date{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:2px;}
+.tl-title{font-family:'Instrument Serif',Georgia,serif;font-size:16px;color:var(--navy);margin-bottom:3px;}
+.tl-desc{font-size:13px;color:var(--text-mid);line-height:1.5;}
+
+/* Footer */
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:28px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,0.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+
+@media print {
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  body{background:#fff;}
+  section{padding:32px 0 !important;page-break-inside:avoid;}
+}
+@media(max-width:768px){
+  .container{padding:0 24px;}
+  .stat-row{flex-direction:column;gap:16px;}
+  .layer-row{grid-template-columns:repeat(3,1fr);}
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Confidential &mdash; Qualified Investors Only</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>Series A <em>Executive Summary</em></h1>
+  <p class="header-sub">Payer-agnostic clinical data infrastructure powering the transition from fee-for-service to outcome-based care. $20M Series A &middot; September 1, 2026.</p>
+</div>
+
+<!-- COMPANY OVERVIEW -->
+<section>
+  <div class="container">
+    <div class="label">Company Overview</div>
+    <div class="stitle">InPursuit Health builds the infrastructure beneath <em>every payer, every provider, every patient.</em></div>
+    <p class="body">InPursuit Health, LLC is a healthcare infrastructure company operating in the CMS Health IT Ecosystem. We build TETRA&trade;&mdash;a clinical data interoperability and orchestration layer that connects fragmented provider, payer, pharmacy, lab, and device data into actionable intelligence. TETRA is payer-agnostic, model-agnostic, and EHR-agnostic. It powers both provider-facing value-based care programs and a direct-to-consumer health app available to every American.</p>
+    <p class="body"><strong>InPursuit is infrastructure, not an app.</strong> The consumer app and provider tools are outputs of the TETRA stack. AI companies, EHR vendors, payer systems, and consumer applications sit on top of TETRA. When any of these systems need to interact with health data safely, interoperably, and with governance, they depend on our infrastructure.</p>
+
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">$5.6T</div><div class="stat-lab">U.S. Healthcare Spend</div></div>
+      <div class="stat-item"><div class="stat-num">300K</div><div class="stat-lab">Physicians Addressable</div></div>
+      <div class="stat-item"><div class="stat-num">140M+</div><div class="stat-lab">CMS Beneficiaries</div></div>
+      <div class="stat-item"><div class="stat-num">2030</div><div class="stat-lab">CMS VBC Mandate</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- INFRASTRUCTURE -->
+<section class="dark">
+  <div class="container">
+    <div class="label">The Infrastructure Moat</div>
+    <div class="stitle">Six Layers. <em>Payer-Agnostic. Model-Agnostic.</em></div>
+    <p class="body">TETRA operates as six integrated infrastructure layers. Each is independently valuable. Together, they form the complete stack that healthcare's transformation to outcome-based care requires&mdash;regardless of which payer is writing the check.</p>
+
+    <div class="layer-row">
+      <div class="layer"><h4>TETRA&trade;</h4><span>Data Fabric</span></div>
+      <div class="layer"><h4>eX&trade;</h4><span>Exchange</span></div>
+      <div class="layer"><h4>Conductor&trade;</h4><span>AI Orch.</span></div>
+      <div class="layer"><h4>Vault&trade;</h4><span>Consumer</span></div>
+      <div class="layer"><h4>Aegis&trade;</h4><span>Protection</span></div>
+      <div class="layer"><h4>Sentinel&trade;</h4><span>AI Agent</span></div>
+    </div>
+
+    <div class="callout">
+      <strong>InPursuit is the infrastructure for AI.</strong> Every major AI company is building toward healthcare. None have the interoperability layer, clinical data governance, or regulatory positioning to operate safely. TETRA Conductor routes clinical interactions to the optimal AI model. Aegis governs access. Sentinel monitors behavior independently. When AI enters healthcare at scale, it runs on TETRA.
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE MODEL -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Model</div>
+    <div class="stitle">Direct Payer Billing. <em>Four Independent Streams.</em></div>
+    <p class="body">InPursuit bills payers directly under its own NPI. We do not charge providers a percentage of VBC revenue. Referring providers earn CMS co-management payments (~$100/patient/year/track) paid by CMS independently. Our four revenue streams are independently billable and compound on the same patient base.</p>
+
+    <table class="fin-table">
+      <tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th></tr>
+      <tr>
+        <td class="label-cell">ACCESS Outcome-Aligned Payments<span class="note">CMS direct billing as ACCESS participant</span></td>
+        <td class="r gold">$162.5K</td><td class="r gold">$3.4M</td><td class="r gold">$17.9M</td>
+      </tr>
+      <tr>
+        <td class="label-cell">RPM + CCM (all payers)<span class="note">Commercial, MA, Medicaid at partner practices</span></td>
+        <td class="r gold">$180K</td><td class="r gold">$1.8M</td><td class="r gold">$13.5M</td>
+      </tr>
+      <tr>
+        <td class="label-cell">Telehealth &amp; Virtual Care<span class="note">InPursuit Medical PC with MSA to InPursuit Health</span></td>
+        <td class="r gold">$18.75K</td><td class="r gold">$375K</td><td class="r gold">$2.8M</td>
+      </tr>
+      <tr>
+        <td class="label-cell">D2C Subscriptions + Commerce<span class="note">All payers, all app stores. 4 tiers + offers &amp; cashback.</span></td>
+        <td class="r gold">$480K</td><td class="r gold">$3.6M</td><td class="r gold">$12.0M</td>
+      </tr>
+      <tr class="total">
+        <td>Total InPursuit Revenue</td>
+        <td class="r">$841K</td><td class="r">$9.2M</td><td class="r">$46.2M</td>
+      </tr>
+    </table>
+    <p style="font-size:11px; color:var(--text-muted); line-height:1.5;">Conservative provider ramp: 1 &rarr; 10 &rarr; 50 over three years. ACCESS OAPs subject to 50% outcome reconciliation. D2C: 10K 100K &rarr; 500K &rarr; 2M usersrarr; 75K 100K &rarr; 500K &rarr; 2M usersrarr; 250K users, 20% paid conversion, $30/mo blended ARPU. Full model available in 3-Year Pro Forma.</p>
+  </div>
+</section>
+
+<!-- ENTITY STRATEGY -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Entity Architecture</div>
+    <div class="stitle">Two Entities. <em>One Infrastructure.</em></div>
+    <p class="body"><strong>Phase 1 (now):</strong> InPursuit Health, LLC is the operating entity. Provider partners refer patients. InPursuit delivers technology-enabled care and bills payers through partner physician billing arrangements. First revenue July 5, 2026 from Honeycomb Medical Group via ACCESS Model.</p>
+    <p class="body"><strong>Phase 2 (volume-triggered):</strong> InPursuit Medical, PC&mdash;a clinician-owned professional corporation with a managed services agreement (MSA) with InPursuit Health, LLC&mdash;delivers telehealth and virtual care. Owns an organizational NPI for direct billing of RPM, CCM, telehealth, and annual wellness visits without routing through partner physicians. Triggers at ~$500K/month billing volume, ~10+ practices.</p>
+    <p class="body">Both entities generate independent revenue from the same patient base. The TETRA infrastructure serves both without rebuilding a single layer.</p>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section>
+  <div class="container">
+    <div class="label">Traction &amp; Validation</div>
+    <div class="stitle">Federal Proof Points. <em>First Revenue in Sight.</em></div>
+    <p class="body"><strong>DoD/VA Validation:</strong> The Department of Defense and Veterans Affairs selected TETRA over IBM, Oracle, SAP, and Informatica in a formal Analysis of Alternatives to solve the largest healthcare data interoperability challenge in the federal government. TETRA was deployed on 41,000 servers.</p>
+    <p class="body"><strong>CMS Health IT Ecosystem:</strong> InPursuit is an approved member of the CMS Health IT Ecosystem and was selected for all three patient-facing categories in the Medicare App Library launched February 2026&mdash;Conversational AI, Kill the Clipboard, and Chronic Care Management.</p>
+    <p class="body"><strong>Honeycomb Medical Group:</strong> First signed provider partner. Memphis, Tennessee. ~22,000 patients. Submitting CMS ACCESS Model Cohort 1 application. Revenue begins July 5, 2026.</p>
+    <p class="body"><strong>IP Protection:</strong> TETRA Aegis provisional patent filed February 2026 covering the Autonomous Supervisory AI Control Plane across six domains. Six-layer infrastructure stack protected by trade secret and patent.</p>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section style="background:#fff; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label">Strategic Timeline</div>
+    <div class="stitle">Capital Deployed at <em>the Inflection Point.</em></div>
+
+    <div class="tl">
+      <div class="tl-item"><div class="tl-date">Mar 31, 2026</div><div class="tl-title">Consumer App MVP</div><div class="tl-desc">Delivers to CMS. Available to all Americans on all app stores.</div></div>
+      <div class="tl-item"><div class="tl-date">Apr 1, 2026</div><div class="tl-title">ACCESS Cohort 1 Deadline</div><div class="tl-desc">Honeycomb Medical Group submits with InPursuit as technology backbone.</div></div>
+      <div class="tl-item"><div class="tl-date">Apr 9, 2026</div><div class="tl-title">CMS In-Person Demonstration</div><div class="tl-desc">Live demo to CMS evaluation team.</div></div>
+      <div class="tl-item"><div class="tl-date">Jul 4, 2026</div><div class="tl-title">Medicare App Library + National Launch</div><div class="tl-desc">InPursuit listed on Medicare.gov. Simultaneously live on Apple and Google Play.</div></div>
+      <div class="tl-item"><div class="tl-date">Jul 5, 2026</div><div class="tl-title">First Revenue</div><div class="tl-desc">ACCESS Model goes live. InPursuit begins billing CMS directly.</div></div>
+      <div class="tl-item"><div class="tl-date">Sep 1, 2026</div><div class="tl-title" style="color:var(--gold);">Series A Close</div><div class="tl-desc">$20M deployment: provider acquisition, D2C growth, TETRA build-out.</div></div>
+      <div class="tl-item"><div class="tl-date">Jan 2027</div><div class="tl-title">ACCESS Cohort 2 + LEAD Model</div><div class="tl-desc">Series A capital drives maximum provider enrollment. LEAD go-live Jan 1, 2027.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section>
+  <div class="container">
+    <div class="label">Leadership</div>
+    <div class="stitle">The Team Behind <em>the Infrastructure.</em></div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:20px;">
+      <div><strong style="color:var(--navy); font-size:15px;">Bennett McPhatter</strong><br><span style="font-size:13px; color:var(--text-muted);">CEO &amp; Co-Founder</span></div>
+      <div><strong style="color:var(--navy); font-size:15px;">Hongda Lin</strong><br><span style="font-size:13px; color:var(--text-muted);">CTO &amp; Co-Founder</span></div>
+      <div><strong style="color:var(--navy); font-size:15px;">Patrick Truxillo</strong><br><span style="font-size:13px; color:var(--text-muted);">CSO &amp; Co-Founder</span></div>
+      <div><strong style="color:var(--navy); font-size:15px;">Christopher Ingram</strong><br><span style="font-size:13px; color:var(--text-muted);">CPO &amp; Co-Founder</span></div>
+      <div><strong style="color:var(--navy); font-size:15px;">Dr. Joseph M. Chalil</strong><br><span style="font-size:13px; color:var(--text-muted);">Chief Medical Officer</span></div>
+    </div>
+    <p style="font-size:13px; color:var(--text-muted); margin-top:16px;">Advisors: Jose Arrieta &middot; Michael Mark &middot; Alison Cossette</p>
+  </div>
+</section>
+
+<!-- THE ASK -->
+<section class="dark">
+  <div class="container" style="text-align:center;">
+    <div class="label">The Ask</div>
+    <div class="stitle" style="color:#fff;">$20 Million to Own the <em>Infrastructure Layer.</em></div>
+    <p class="body" style="max-width:600px; margin:0 auto 32px;">Series A capital deploys at the exact moment healthcare's infrastructure transition is accelerating across CMS, commercial payers, Medicare Advantage, and the direct-to-consumer market simultaneously.</p>
+
+    <div style="display:flex; justify-content:center; gap:48px; padding:28px 0; border-top:1px solid rgba(197,164,78,0.15); border-bottom:1px solid rgba(197,164,78,0.15); margin-bottom:28px;">
+      <div><div style="font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.30); margin-bottom:4px;">SAFE Bridge</div><div style="font-family:'Instrument Serif',Georgia,serif; font-size:24px; color:#fff;">$2,000,000</div></div>
+      <div><div style="font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.30); margin-bottom:4px;">Series A</div><div style="font-family:'Instrument Serif',Georgia,serif; font-size:24px; color:#fff;">$20,000,000</div></div>
+      <div><div style="font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; color:rgba(255,255,255,0.30); margin-bottom:4px;">Target Close</div><div style="font-family:'Instrument Serif',Georgia,serif; font-size:24px; color:#fff;">Sep 1, 2026</div></div>
+    </div>
+
+    <p style="font-size:13px; color:rgba(255,255,255,0.35);">invest@inpursuithealth.com &nbsp;|&nbsp; inpursuithealth.com</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>
+    CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Patient-Facing Categories<br><br>
+    Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities</p>
+  </div>
+</div>
+
+</body>
+</html>

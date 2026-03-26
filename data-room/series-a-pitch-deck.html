@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Series A Pitch Deck</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy:#0A1628; --navy-mid:#111D32; --navy-light:#1A2A44;
+  --gold:#C5A44E; --gold-light:#D4BA7A; --gold-dim:rgba(197,164,78,0.10);
+  --gold-border:rgba(197,164,78,0.25);
+  --cream:#FAF8F4; --text:#1A1A1A; --text-mid:#3D3D3D; --text-muted:#8A8A7A;
+  --border:rgba(10,22,40,0.08);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:#000;-webkit-font-smoothing:antialiased;}
+
+.slide{
+  width:960px; height:540px;
+  margin:20px auto; position:relative;
+  overflow:hidden; border-radius:4px;
+  box-shadow:0 8px 40px rgba(0,0,0,0.4);
+}
+
+/* Dark slide */
+.slide.dark{background:var(--navy);color:#fff;}
+/* Light slide */
+.slide.light{background:var(--cream);color:var(--text);}
+/* White slide */
+.slide.white{background:#fff;color:var(--text);}
+
+.slide-content{padding:52px 64px;height:100%;position:relative;display:flex;flex-direction:column;}
+
+.slide-num{
+  position:absolute; bottom:20px; right:28px;
+  font-size:10px; letter-spacing:2px; color:rgba(255,255,255,0.20);
+}
+.slide.light .slide-num, .slide.white .slide-num{color:var(--text-muted);}
+
+.slide-brand{
+  position:absolute; bottom:20px; left:28px;
+  font-family:'Instrument Serif',Georgia,serif; font-size:11px;
+  color:rgba(197,164,78,0.4); letter-spacing:1.5px;
+}
+
+.s-label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.slide.dark .s-label{color:var(--gold-light);}
+
+.s-title{font-family:'Instrument Serif',Georgia,serif;font-size:32px;font-weight:400;line-height:1.2;margin-bottom:20px;}
+.s-title em{font-style:italic;color:var(--gold);}
+.slide.dark .s-title{color:#fff;}
+.slide.dark .s-title em{color:var(--gold-light);}
+
+.s-body{font-size:14px;line-height:1.75;max-width:580px;}
+.slide.dark .s-body{color:rgba(255,255,255,0.50);}
+.slide.light .s-body, .slide.white .s-body{color:var(--text-mid);}
+
+/* Grids */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:28px;}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:16px;}
+.g6{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;}
+
+/* Cards */
+.sc{border-radius:4px;padding:18px 20px;}
+.sc.navy{background:var(--navy);border:1px solid rgba(255,255,255,0.06);}
+.sc.cream{background:var(--cream);border:1px solid var(--border);}
+.sc.gold-b{background:var(--gold-dim);border:1px solid var(--gold-border);}
+.sc-n{font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:var(--gold);line-height:1;margin-bottom:4px;}
+.sc-t{font-size:11px;font-weight:600;margin-bottom:3px;}
+.sc-d{font-size:10px;line-height:1.45;}
+.slide.dark .sc-t{color:#fff;}
+.slide.dark .sc-d{color:rgba(255,255,255,0.40);}
+.slide.white .sc-t, .slide.light .sc-t{color:var(--navy);}
+.slide.white .sc-d, .slide.light .sc-d{color:var(--text-muted);}
+
+/* Table */
+.deck-table{width:100%;border-collapse:collapse;}
+.deck-table th{text-align:left;padding:10px 12px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.deck-table th.r{text-align:right;}
+.slide.dark .deck-table th{background:rgba(255,255,255,0.04);color:var(--gold-light);}
+.slide.white .deck-table th, .slide.light .deck-table th{background:var(--navy);color:rgba(255,255,255,0.55);border-radius:3px 3px 0 0;}
+.deck-table td{padding:9px 12px;font-size:12px;}
+.deck-table td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:14px;}
+.deck-table td.r.gold{color:var(--gold);}
+.deck-table td.label{font-weight:600;}
+.slide.dark .deck-table td{border-bottom:1px solid rgba(255,255,255,0.04);color:rgba(255,255,255,0.55);}
+.slide.dark .deck-table td.label{color:#fff;}
+.slide.white .deck-table td, .slide.light .deck-table td{border-bottom:1px solid var(--border);color:var(--text-mid);}
+.slide.white .deck-table td.label, .slide.light .deck-table td.label{color:var(--navy);}
+.deck-table tr.total td{font-weight:700;border-bottom:2px solid var(--gold);}
+.slide.dark .deck-table tr.total td{color:var(--gold-light);}
+.slide.white .deck-table tr.total td, .slide.light .deck-table tr.total td{color:var(--gold);background:var(--gold-dim);}
+.deck-table .note{font-size:9px;display:block;margin-top:1px;}
+.slide.dark .deck-table .note{color:rgba(255,255,255,0.25);}
+.slide.white .deck-table .note, .slide.light .deck-table .note{color:var(--text-muted);}
+
+/* Layer blocks */
+.lb{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);border-radius:3px;padding:10px 8px;text-align:center;}
+.lb h4{font-family:'Instrument Serif',Georgia,serif;font-size:11px;color:var(--gold);}
+.lb span{font-size:7px;color:rgba(255,255,255,0.30);letter-spacing:1.2px;text-transform:uppercase;}
+
+/* Steps */
+.step{display:flex;align-items:flex-start;gap:14px;margin-bottom:14px;}
+.step-num{font-family:'Instrument Serif',Georgia,serif;font-size:24px;color:var(--gold);line-height:1;flex-shrink:0;width:28px;}
+.step-text h4{font-size:12px;font-weight:600;margin-bottom:2px;}
+.step-text p{font-size:10.5px;line-height:1.4;}
+
+/* Print */
+@media print{
+  *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+  body{background:#fff;}
+  .slide{margin:0;page-break-after:always;box-shadow:none;border-radius:0;}
+}
+</style>
+</head>
+<body>
+
+<!-- ══ SLIDE 1: TITLE ══ -->
+<div class="slide dark">
+  <div class="slide-content" style="justify-content:center;align-items:center;text-align:center;">
+    <div style="border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:36px;">Confidential &mdash; Qualified Investors Only</div>
+    <div style="font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;">InPursuit Health</div>
+    <div class="s-title" style="font-size:38px;max-width:700px;margin-bottom:20px;">The Infrastructure Beneath <em>Every Payer, Every Provider, Every Patient.</em></div>
+    <p class="s-body" style="max-width:500px;text-align:center;margin-bottom:36px;">Series A &middot; $20,000,000 &middot; September 1, 2026</p>
+    <div style="display:flex;gap:40px;">
+      <div style="text-align:center;"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;">$46.2M</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:4px;">Year 3 Revenue</div></div>
+      <div style="width:1px;background:rgba(197,164,78,0.15);"></div>
+      <div style="text-align:center;"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;">300K</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:4px;">Physicians Addressable</div></div>
+      <div style="width:1px;background:rgba(197,164,78,0.15);"></div>
+      <div style="text-align:center;"><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;">$5.6T</div><div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.25);margin-top:4px;">U.S. Healthcare Spend</div></div>
+    </div>
+  </div>
+  <div class="slide-num">1 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 2: THE PROBLEM ══ -->
+<div class="slide dark">
+  <div class="slide-content">
+    <div class="s-label">The Problem</div>
+    <div class="s-title" style="font-size:28px;">Healthcare Runs on <em>Broken Pipes.</em></div>
+    <p class="s-body" style="margin-bottom:28px;">The $5.6T system was built for billing, not patients. Every payer is mandating outcome-based care. AI is entering healthcare faster than anyone can govern it. The transition requires infrastructure no one has built.</p>
+    <div class="g3" style="flex:1;align-content:start;">
+      <div class="sc navy">
+        <div class="sc-n">78%</div>
+        <div class="sc-t">EHR Fragmentation</div>
+        <div class="sc-d">of practices use systems that can't share data with the provider next door.</div>
+      </div>
+      <div class="sc navy">
+        <div class="sc-n">2030</div>
+        <div class="sc-t">CMS VBC Mandate</div>
+        <div class="sc-d">All Medicare beneficiaries in outcome-based care. Every payer following.</div>
+      </div>
+      <div class="sc navy">
+        <div class="sc-n">$0</div>
+        <div class="sc-t">AI Governance</div>
+        <div class="sc-d">spent on infrastructure to govern AI in healthcare. The gap is existential.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">2 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 3: THE SOLUTION ══ -->
+<div class="slide dark">
+  <div class="slide-content">
+    <div class="s-label">The Solution</div>
+    <div class="s-title" style="font-size:26px;">TETRA&trade; &mdash; Six Layers of <em>Defensible Infrastructure.</em></div>
+    <p class="s-body" style="margin-bottom:24px;">Payer-agnostic. Model-agnostic. EHR-agnostic. The consumer app and provider tools are outputs. This is what everything else sits on.</p>
+    <div class="g6" style="margin-bottom:20px;">
+      <div class="lb"><h4>TETRA</h4><span>Data Fabric</span></div>
+      <div class="lb"><h4>eX</h4><span>Exchange</span></div>
+      <div class="lb"><h4>Conductor</h4><span>AI Orch.</span></div>
+      <div class="lb"><h4>Vault</h4><span>Consumer</span></div>
+      <div class="lb"><h4>Aegis</h4><span>Protection</span></div>
+      <div class="lb"><h4>Sentinel</h4><span>AI Agent</span></div>
+    </div>
+    <div style="background:rgba(197,164,78,0.06);border:1px solid var(--gold-border);border-radius:4px;padding:16px 20px;">
+      <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:6px;">The Dependency Stack</div>
+      <p style="font-size:12px;color:rgba(255,255,255,0.50);line-height:1.6;">AI companies, EHR vendors, payer systems, and consumer apps sit on top of TETRA. When any system needs to interact with health data safely, interoperably, and with governance&mdash;it depends on this infrastructure. Provisional patent filed February 2026.</p>
+    </div>
+  </div>
+  <div class="slide-num">3 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 4: INFRASTRUCTURE FOR AI ══ -->
+<div class="slide dark">
+  <div class="slide-content">
+    <div class="s-label">Market Positioning</div>
+    <div class="s-title" style="font-size:28px;">InPursuit Is the <em>Infrastructure for AI.</em></div>
+    <div class="g2" style="flex:1;">
+      <div>
+        <p class="s-body" style="font-size:13px;margin-bottom:20px;">Every major AI company&mdash;Anthropic, OpenAI, Google, Microsoft&mdash;is building toward healthcare. None have the interoperability, clinical governance, or regulatory positioning to operate safely.</p>
+        <p class="s-body" style="font-size:13px;">They need infrastructure beneath them. TETRA is that infrastructure.</p>
+      </div>
+      <div>
+        <div class="sc navy" style="margin-bottom:12px;">
+          <div class="sc-t">TETRA Conductor&trade;</div>
+          <div class="sc-d">Routes clinical interactions to the optimal AI model. Zero vendor lock-in. Model-agnostic orchestration.</div>
+        </div>
+        <div class="sc navy" style="margin-bottom:12px;">
+          <div class="sc-t">TETRA Aegis&trade;</div>
+          <div class="sc-d">Governs what health data AI can access and how. Patent-pending autonomous supervisory control plane.</div>
+        </div>
+        <div class="sc navy">
+          <div class="sc-t">TETRA Sentinel&trade;</div>
+          <div class="sc-d">Monitors AI behavior independently. Hallucination detection, drift monitoring, adversarial defense.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">4 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 5: REVENUE MODEL ══ -->
+<div class="slide white">
+  <div class="slide-content">
+    <div class="s-label">Revenue Model</div>
+    <div class="s-title" style="font-size:26px;">Direct Payer Billing. <em>Four Independent Streams.</em></div>
+    <p class="s-body" style="font-size:12px;margin-bottom:16px;">InPursuit bills payers directly under its own NPI. No percentage of VBC revenue. Referring providers earn CMS co-management payments independently.</p>
+    <table class="deck-table" style="flex:1;">
+      <tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th></tr>
+      <tr><td class="label">ACCESS OAPs<span class="note">CMS direct billing</span></td><td class="r gold">$162.5K</td><td class="r gold">$3.4M</td><td class="r gold">$17.9M</td></tr>
+      <tr><td class="label">RPM + CCM<span class="note">All payers, own NPI</span></td><td class="r gold">$180K</td><td class="r gold">$1.8M</td><td class="r gold">$13.5M</td></tr>
+      <tr><td class="label">Telehealth<span class="note">InPursuit Medical PC (MSA)</span></td><td class="r gold">$18.75K</td><td class="r gold">$375K</td><td class="r gold">$2.8M</td></tr>
+      <tr><td class="label">D2C Subs + Commerce<span class="note">All payers, all app stores</span></td><td class="r gold">$480K</td><td class="r gold">$3.6M</td><td class="r gold">$12.0M</td></tr>
+      <tr class="total"><td>Total</td><td class="r">$841K</td><td class="r">$9.2M</td><td class="r">$46.2M</td></tr>
+    </table>
+    <p style="font-size:9px;color:var(--text-muted);">Conservative ramp: 1 &rarr; 10 &rarr; 50 providers. 3-year cumulative: $56.2M.</p>
+  </div>
+  <div class="slide-num">5 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 6: PROVIDER PATTERN ══ -->
+<div class="slide dark">
+  <div class="slide-content">
+    <div class="s-label">Repeatable Growth</div>
+    <div class="s-title" style="font-size:26px;">We Have One. <em>There Are 250,000 More.</em></div>
+    <div class="g2" style="flex:1;">
+      <div>
+        <div style="border-left:2px solid var(--gold);padding-left:12px;margin-bottom:20px;">
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;">First Customer</div>
+          <div style="font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:#fff;margin-bottom:4px;">Honeycomb Medical Group</div>
+          <div style="font-size:11px;color:rgba(255,255,255,0.35);">Memphis, TN &middot; ~22,000 patients &middot; Revenue Jul 5, 2026</div>
+        </div>
+        <div class="step"><div class="step-num">1</div><div class="step-text"><h4 style="color:#fff;">Identify</h4><p style="color:rgba(255,255,255,0.40);">2&ndash;50 physician group, chronic care, any payer mix</p></div></div>
+        <div class="step"><div class="step-num">2</div><div class="step-text"><h4 style="color:#fff;">Deploy TETRA</h4><p style="color:rgba(255,255,255,0.40);">Zero upfront cost. Layers beneath existing EHR.</p></div></div>
+        <div class="step"><div class="step-num">3</div><div class="step-text"><h4 style="color:#fff;">Refer &amp; Engage</h4><p style="color:rgba(255,255,255,0.40);">Provider refers chronic care patients to InPursuit</p></div></div>
+        <div class="step"><div class="step-num">4</div><div class="step-text"><h4 style="color:#fff;">InPursuit Bills Directly</h4><p style="color:rgba(255,255,255,0.40);">Own NPI. CMS pays provider co-mgmt separately.</p></div></div>
+      </div>
+      <div>
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:12px;">Why Providers Say Yes</div>
+        <div class="sc navy" style="margin-bottom:8px;">
+          <div class="sc-n" style="font-size:20px;">~$100</div>
+          <div class="sc-d">per patient/year/track CMS co-management payment. CMS pays the provider directly. Not InPursuit.</div>
+        </div>
+        <div class="sc navy" style="margin-bottom:8px;">
+          <div class="sc-t">FFS billing unaffected</div>
+          <div class="sc-d">Exclusion applies only to InPursuit (ACCESS participant), not referring clinicians.</div>
+        </div>
+        <div class="sc navy" style="margin-bottom:8px;">
+          <div class="sc-t">Zero cost to patients</div>
+          <div class="sc-d">No Part B cost-sharing on co-management.</div>
+        </div>
+        <div class="sc navy">
+          <div class="sc-t">Patient relationships intact</div>
+          <div class="sc-d">InPursuit sends care updates. PCP stays in the loop.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">6 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 7: D2C ══ -->
+<div class="slide white">
+  <div class="slide-content">
+    <div class="s-label">Direct to Consumer</div>
+    <div class="s-title" style="font-size:26px;">Every American. <em>Every App Store. Every Payer.</em></div>
+    <div class="g2" style="flex:1;">
+      <div>
+        <p class="s-body" style="font-size:12px;margin-bottom:16px;">The InPursuit consumer app is available to everyone regardless of insurance. Two revenue engines: subscription tiers and transaction-moment commerce (offers and cashback).</p>
+        <div class="g2" style="gap:8px;margin-bottom:12px;">
+          <div class="sc cream" style="text-align:center;padding:10px;">
+            <div style="font-size:9px;color:var(--text-muted);">FREE</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);">$0</div>
+            <div style="font-size:8px;color:var(--text-muted);">Unified record</div>
+          </div>
+          <div class="sc cream" style="text-align:center;padding:10px;border-top:2px solid var(--gold);">
+            <div style="font-size:9px;color:var(--gold);">PLUS</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);">$14.99</div>
+            <div style="font-size:8px;color:var(--text-muted);">/month</div>
+          </div>
+          <div class="sc cream" style="text-align:center;padding:10px;border-top:2px solid var(--gold);">
+            <div style="font-size:9px;color:var(--gold);">FAMILY</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);">$34.99</div>
+            <div style="font-size:8px;color:var(--text-muted);">/month</div>
+          </div>
+          <div class="sc cream" style="text-align:center;padding:10px;border-top:2px solid var(--gold);">
+            <div style="font-size:9px;color:var(--gold);">TOTAL INTEL</div>
+            <div style="font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);">$49.99</div>
+            <div style="font-size:8px;color:var(--text-muted);">/month</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <table class="deck-table">
+          <tr><th></th><th class="r">Y1</th><th class="r">Y2</th><th class="r">Y3</th></tr>
+          <tr><td class="label">Users</td><td class="r">10K</td><td class="r">75K</td><td class="r">250K</td></tr>
+          <tr><td class="label">Paid (20%)</td><td class="r">2K</td><td class="r">15K</td><td class="r">50K</td></tr>
+          <tr><td class="label">Sub ARR</td><td class="r gold">$180K</td><td class="r gold">$2.7M</td><td class="r gold">$1.8M</td></tr>
+          <tr><td class="label">Commerce</td><td class="r gold">$120K</td><td class="r gold">$900K</td><td class="r gold">$3.0M</td></tr>
+          <tr class="total"><td>D2C Total</td><td class="r">$480K</td><td class="r">$3.6M</td><td class="r">$12.0M</td></tr>
+        </table>
+        <div class="sc gold-b" style="margin-top:12px;">
+          <div class="sc-t" style="color:var(--navy);">Medicare App Library</div>
+          <div class="sc-d" style="color:var(--text-mid);">All 3 patient-facing categories. 140M+ beneficiaries can discover InPursuit on Medicare.gov. One channel among many.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">7 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 8: PAYER AGNOSTIC ══ -->
+<div class="slide dark">
+  <div class="slide-content">
+    <div class="s-label">Payer-Agnostic Infrastructure</div>
+    <div class="s-title" style="font-size:28px;">CMS Is the Beachhead. <em>Not the Ceiling.</em></div>
+    <p class="s-body" style="font-size:13px;margin-bottom:24px;">The same TETRA infrastructure serves every payer simultaneously. No rebuilding required.</p>
+    <div class="g4" style="margin-bottom:24px;">
+      <div class="sc navy" style="text-align:center;">
+        <div class="sc-n" style="font-size:20px;">Medicare</div>
+        <div class="sc-d">ACCESS, LEAD, MSSP, TEAM. 140M+ beneficiaries.</div>
+      </div>
+      <div class="sc navy" style="text-align:center;">
+        <div class="sc-n" style="font-size:20px;">Commercial</div>
+        <div class="sc-d">UHC, Aetna, Cigna, BCBS. All moving to VBC.</div>
+      </div>
+      <div class="sc navy" style="text-align:center;">
+        <div class="sc-n" style="font-size:20px;">MA</div>
+        <div class="sc-d">Independently adopting outcome-aligned payments.</div>
+      </div>
+      <div class="sc navy" style="text-align:center;">
+        <div class="sc-n" style="font-size:20px;">D2C</div>
+        <div class="sc-d">No payer needed. Subscriptions + commerce.</div>
+      </div>
+    </div>
+    <div style="display:flex;gap:28px;padding:16px 20px;background:rgba(197,164,78,0.06);border:1px solid var(--gold-border);border-radius:4px;">
+      <div style="flex:1;">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light);margin-bottom:4px;">Provider : Consumer Split</div>
+        <p style="font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;">Year 1: D2C provides 57% of revenue. By Year 3: clinical billing dominates at 74% as provider network scales. Both sides compound independently.</p>
+      </div>
+      <div style="text-align:center;flex-shrink:0;">
+        <div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);">$56.2M</div>
+        <div style="font-size:9px;color:rgba(255,255,255,0.25);letter-spacing:1.5px;text-transform:uppercase;">3-Yr Cumulative</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">8 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 9: TRACTION ══ -->
+<div class="slide light">
+  <div class="slide-content">
+    <div class="s-label">Traction &amp; Validation</div>
+    <div class="s-title" style="font-size:26px;">The Infrastructure Is <em>Already Proven.</em></div>
+    <div class="g3" style="flex:1;align-content:start;">
+      <div class="sc cream" style="border-top:3px solid var(--navy);">
+        <div class="sc-t">DoD / VA &mdash; 41,000 Servers</div>
+        <div class="sc-d" style="margin-bottom:8px;">Selected over IBM, Oracle, SAP, Informatica in formal Analysis of Alternatives. Deployed at federal scale.</div>
+      </div>
+      <div class="sc cream" style="border-top:3px solid var(--navy);">
+        <div class="sc-t">CMS App Library &mdash; All 3</div>
+        <div class="sc-d" style="margin-bottom:8px;">Conversational AI, Kill the Clipboard, Chronic Care Mgmt. 140M+ beneficiaries on Medicare.gov.</div>
+      </div>
+      <div class="sc cream" style="border-top:3px solid var(--navy);">
+        <div class="sc-t">Honeycomb &mdash; Signed</div>
+        <div class="sc-d" style="margin-bottom:8px;">First provider. Memphis, TN. ~22K patients. ACCESS Cohort 1. Revenue Jul 5, 2026.</div>
+      </div>
+      <div class="sc cream" style="border-top:3px solid var(--gold);">
+        <div class="sc-t">Patent-Pending IP</div>
+        <div class="sc-d">Aegis provisional patent Feb 2026. Six-domain AI governance control plane.</div>
+      </div>
+      <div class="sc cream" style="border-top:3px solid var(--gold);">
+        <div class="sc-t">CMS Demo &mdash; Apr 9</div>
+        <div class="sc-d">In-person demonstration to CMS evaluation team. Not virtual&mdash;in the room.</div>
+      </div>
+      <div class="sc cream" style="border-top:3px solid var(--gold);">
+        <div class="sc-t">TEFCA Exchange Partners</div>
+        <div class="sc-d">Particle Health, b.well Connected Health, eHealth Exchange.</div>
+      </div>
+    </div>
+  </div>
+  <div class="slide-num">9 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+<!-- ══ SLIDE 10: THE ASK ══ -->
+<div class="slide dark">
+  <div class="slide-content" style="justify-content:center;text-align:center;">
+    <div class="s-label" style="margin-bottom:16px;">The Ask</div>
+    <div class="s-title" style="font-size:32px;max-width:700px;margin:0 auto 24px;">Healthcare Is Transitioning to <em>Outcome-Based Care.</em><br>We Are the <em>Infrastructure</em> It Runs On.</div>
+
+    <div style="display:flex;justify-content:center;gap:48px;padding:24px 0;border-top:1px solid rgba(197,164,78,0.15);border-bottom:1px solid rgba(197,164,78,0.15);margin-bottom:28px;">
+      <div><div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.30);margin-bottom:4px;">SAFE Bridge</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;">$2,000,000</div><div style="font-size:10px;color:rgba(255,255,255,0.25);">$25M cap &middot; $50K min</div></div>
+      <div><div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.30);margin-bottom:4px;">Series A</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);">$20,000,000</div></div>
+      <div><div style="font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.30);margin-bottom:4px;">Close</div><div style="font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:#fff;">Sep 1, 2026</div></div>
+    </div>
+
+    <div style="display:flex;justify-content:center;gap:32px;margin-bottom:28px;">
+      <div style="text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Bennett McPhatter</div><div style="font-size:9px;color:rgba(255,255,255,0.30);">CEO &amp; Co-Founder</div></div>
+      <div style="text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Hongda Lin</div><div style="font-size:9px;color:rgba(255,255,255,0.30);">CTO &amp; Co-Founder</div></div>
+      <div style="text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Patrick Truxillo</div><div style="font-size:9px;color:rgba(255,255,255,0.30);">CSO &amp; Co-Founder</div></div>
+      <div style="text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Christopher Ingram</div><div style="font-size:9px;color:rgba(255,255,255,0.30);">CPO &amp; Co-Founder</div></div>
+      <div style="text-align:center;"><div style="font-size:11px;font-weight:600;color:#fff;">Dr. Joseph Chalil</div><div style="font-size:9px;color:rgba(255,255,255,0.30);">CMO</div></div>
+    </div>
+
+    <p style="font-size:13px;color:var(--gold);">invest@inpursuithealth.com</p>
+    <p style="font-size:11px;color:rgba(255,255,255,0.20);margin-top:4px;">Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;</p>
+  </div>
+  <div class="slide-num">10 / 10</div>
+  <div class="slide-brand">InPursuit Health</div>
+</div>
+
+</body>
+</html>
