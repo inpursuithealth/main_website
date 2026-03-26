@@ -558,6 +558,63 @@
   .portal-hero {
     padding: 3.5rem 3rem 2rem;
     max-width: 1200px; margin: 0 auto;
+    position: relative;
+  }
+
+  .cms-badge {
+    position: absolute;
+    top: 3rem; right: 3rem;
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(10,14,20,0.72);
+    border: 1px solid rgba(197,164,78,0.35);
+    border-radius: 12px;
+    padding: 1rem 1.25rem 0.9rem;
+    max-width: 210px;
+    backdrop-filter: blur(8px);
+    text-align: center;
+    gap: 0.45rem;
+  }
+  .cms-badge-rank {
+    font-family: var(--serif);
+    font-size: 2.6rem;
+    line-height: 1;
+    color: var(--gold);
+    letter-spacing: -.02em;
+  }
+  .cms-badge-rank sup {
+    font-size: 1.1rem;
+    vertical-align: super;
+    line-height: 0;
+  }
+  .cms-badge-of {
+    font-family: var(--mono);
+    font-size: .58rem;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: rgba(197,164,78,0.55);
+  }
+  .cms-badge-label {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.45;
+    margin-top: .1rem;
+  }
+  .cms-badge-label strong {
+    color: rgba(230,210,160,0.85);
+    display: block;
+    margin-bottom: .15rem;
+  }
+  .cms-badge-pip {
+    width: 28px; height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(197,164,78,0.6), transparent);
+    border-radius: 2px;
+    margin: .1rem auto 0;
+  }
+  @media (max-width: 768px) {
+    .cms-badge { display: none; }
   }
 
   .portal-kicker {
@@ -1256,6 +1313,15 @@
 
   <!-- HERO -->
   <div class="portal-hero">
+    <div class="cms-badge">
+      <div class="cms-badge-rank">1<sup>of 3</sup></div>
+      <div class="cms-badge-pip"></div>
+      <div class="cms-badge-label">
+        <strong>CMS HealthIT Ecosystem</strong>
+        Patient-facing app with direct feed to Medicare providers
+      </div>
+      <div class="cms-badge-of">CMS · HealthIT Ecosystem</div>
+    </div>
     <div class="portal-kicker">Confidential Data Room &nbsp;·&nbsp; Bridge Financing + Series A</div>
     <h1 class="portal-headline">InPursuit Health<br><em>Investor Materials</em></h1>
     <p class="portal-desc">InPursuit Health is raising $2M in bridge financing at a $25M valuation cap ahead of a $20M Series A (target close: September 2026). Every investor has different objectives. We offer multiple investment instruments tailored to your specific needs — whether you prioritize simplicity, downside protection, or immediate tax-advantaged pass-through benefits. All materials are strictly confidential.</p>
