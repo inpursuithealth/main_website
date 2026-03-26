@@ -11,195 +11,108 @@
 <style>
 .legal-hero {
   background: var(--navy-deep);
-  padding: 80px 40px 60px;
-  border-bottom: 1px solid rgba(197,164,78,0.1);
+  padding: 120px 40px 64px;
+  border-bottom: 1px solid rgba(197,164,78,0.12);
 }
-.legal-hero-inner {
-  max-width: 860px;
-  margin: 0 auto;
-}
+.legal-hero-inner { max-width: 900px; margin: 0 auto; }
 .legal-eyebrow {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
 }
 .legal-hero h1 {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(32px, 5vw, 52px);
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 20px;
+  font-size: clamp(34px, 5vw, 54px);
+  color: var(--white); line-height: 1.12; margin-bottom: 20px;
 }
 .legal-meta {
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 13px; color: rgba(255,255,255,0.38);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px; margin-top: 20px;
 }
-.legal-meta span strong {
-  color: rgba(255,255,255,0.6);
-  font-weight: 500;
-}
-.legal-body {
-  background: #F9F8F6;
-  padding: 80px 40px;
-}
+.legal-meta span strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+
+.legal-body { background: #F9F8F6; padding: 80px 40px; }
 .legal-body-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 60px;
-  align-items: start;
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 210px 1fr; gap: 64px; align-items: start;
 }
-.legal-toc {
-  position: sticky;
-  top: 88px;
-}
+.legal-toc { position: sticky; top: 88px; }
 .legal-toc-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--navy);
-  opacity: 0.4;
-  margin-bottom: 16px;
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--navy); opacity: 0.35; margin-bottom: 14px;
 }
 .legal-toc a {
-  display: block;
-  font-size: 13px;
-  color: rgba(10,22,40,0.5);
-  text-decoration: none;
-  padding: 6px 0 6px 12px;
-  border-left: 2px solid transparent;
-  transition: all 0.2s;
-  line-height: 1.4;
+  display: block; font-size: 13px; color: rgba(10,22,40,0.45);
+  text-decoration: none; padding: 6px 0 6px 14px;
+  border-left: 2px solid transparent; transition: all 0.2s; line-height: 1.45;
 }
-.legal-toc a:hover {
-  color: var(--navy);
-  border-left-color: var(--gold);
-}
+.legal-toc a:hover { color: var(--navy); border-left-color: var(--gold); }
+
 .legal-content h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 26px;
-  color: var(--navy);
-  margin: 56px 0 16px;
-  padding-top: 56px;
-  border-top: 1px solid rgba(10,22,40,0.08);
-  scroll-margin-top: 88px;
+  font-family: 'Instrument Serif', serif; font-size: 26px; color: var(--navy);
+  margin: 56px 0 14px; padding-top: 56px;
+  border-top: 1px solid rgba(10,22,40,0.08); scroll-margin-top: 88px;
 }
-.legal-content h2:first-child {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-}
-.legal-content h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--navy);
-  margin: 32px 0 10px;
-}
-.legal-content p {
-  font-size: 15px;
-  color: rgba(10,22,40,0.7);
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-.legal-content ul, .legal-content ol {
-  margin: 12px 0 20px 0;
-  padding-left: 24px;
-}
-.legal-content li {
-  font-size: 15px;
-  color: rgba(10,22,40,0.7);
-  line-height: 1.8;
-  margin-bottom: 8px;
-}
-.legal-content a {
-  color: var(--navy);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+.legal-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.legal-content h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 28px 0 10px; }
+.legal-content p { font-size: 15px; color: rgba(10,22,40,0.68); line-height: 1.82; margin-bottom: 14px; }
+.legal-content ul, .legal-content ol { margin: 10px 0 18px 0; padding-left: 22px; }
+.legal-content li { font-size: 15px; color: rgba(10,22,40,0.68); line-height: 1.82; margin-bottom: 7px; }
+.legal-content a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
 .legal-content a:hover { color: var(--gold); }
-.legal-highlight {
-  background: rgba(197,164,78,0.08);
-  border: 1px solid rgba(197,164,78,0.2);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin: 24px 0;
-  font-size: 14px;
-  color: rgba(10,22,40,0.75);
-  line-height: 1.7;
+
+.oath-block {
+  background: var(--navy-deep); border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 22px 26px; margin: 28px 0;
 }
-.legal-highlight strong { color: var(--navy); }
+.oath-block-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
+}
+.oath-block p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; margin: 0; }
+.oath-block a { color: rgba(197,164,78,0.8); }
+
+.commitment-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0;
+}
+.commitment-item {
+  background: white; border: 1px solid rgba(10,22,40,0.07);
+  border-radius: 8px; padding: 18px 20px;
+}
+.commitment-item-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 8px;
+}
+.commitment-item p { font-size: 13px; color: rgba(10,22,40,0.62); line-height: 1.6; margin: 0; }
+
 .legal-contact-box {
-  background: var(--navy-deep);
-  border-radius: 10px;
-  padding: 32px 36px;
-  margin-top: 48px;
+  background: var(--navy-deep); border-radius: 10px; padding: 32px 36px; margin-top: 48px;
 }
-.legal-contact-box h3 {
-  color: var(--gold);
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-.legal-contact-box p {
-  color: rgba(255,255,255,0.5);
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.legal-contact-box a { color: rgba(255,255,255,0.7); }
+.legal-contact-box h3 { color: var(--gold); font-size: 16px; margin-bottom: 12px; }
+.legal-contact-box p { color: rgba(255,255,255,0.48); font-size: 14px; margin-bottom: 8px; }
+.legal-contact-box a { color: rgba(255,255,255,0.68); }
 .legal-contact-box a:hover { color: var(--gold); }
 
 .legal-footer {
-  background: var(--navy-deep);
-  border-top: 1px solid rgba(197,164,78,0.1);
-  padding: 48px 40px;
-  text-align: center;
+  background: var(--navy-deep); border-top: 1px solid rgba(197,164,78,0.1); padding: 48px 40px;
 }
 .legal-footer-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
 }
-.legal-footer-brand {
-  font-family: 'Instrument Serif', serif;
-  font-size: 20px;
-  color: var(--gold);
-}
-.legal-footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.legal-footer-links a {
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.legal-footer-links a:hover { color: rgba(255,255,255,0.7); }
-.legal-footer-copy {
-  width: 100%;
-  font-size: 12px;
-  color: rgba(255,255,255,0.2);
-  margin-top: 16px;
-  text-align: center;
-}
+.legal-footer-brand { font-family: 'Instrument Serif', serif; font-size: 20px; color: var(--gold); }
+.legal-footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.legal-footer-links a { font-size: 12px; color: rgba(255,255,255,0.32); text-decoration: none; transition: color 0.2s; }
+.legal-footer-links a:hover { color: rgba(255,255,255,0.65); }
+.legal-footer-copy { width: 100%; font-size: 12px; color: rgba(255,255,255,0.18); margin-top: 16px; text-align: center; }
 
 @media (max-width: 768px) {
   .legal-body-inner { grid-template-columns: 1fr; }
   .legal-toc { position: static; display: none; }
-  .legal-hero { padding: 60px 24px 40px; }
+  .legal-hero { padding: 80px 24px 48px; }
   .legal-body { padding: 48px 24px; }
+  .commitment-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -209,6 +122,9 @@
   <div class="legal-hero-inner">
     <div class="legal-eyebrow">Legal</div>
     <h1>Privacy Policy</h1>
+    <p style="color:rgba(255,255,255,0.45); font-size:15px; line-height:1.7; max-width:620px; margin-bottom:0;">
+      This policy does not contradict our <a href="data-oath.html" style="color:rgba(197,164,78,0.8);">Data Oath</a>. Every commitment made on that page is a legally binding obligation reflected in this document. If you find a conflict, <a href="mailto:privacy@InPursuitHealth.com" style="color:rgba(197,164,78,0.8);">tell us immediately</a>.
+    </p>
     <div class="legal-meta">
       <span><strong>Effective Date:</strong> March 1, 2025</span>
       <span><strong>Last Updated:</strong> March 1, 2025</span>
@@ -221,200 +137,270 @@
   <div class="legal-body-inner">
 
     <nav class="legal-toc">
-      <div class="legal-toc-label">Table of Contents</div>
-      <a href="#overview">1. Overview</a>
-      <a href="#information-we-collect">2. Information We Collect</a>
-      <a href="#how-we-use">3. How We Use Information</a>
-      <a href="#hipaa">4. HIPAA &amp; PHI</a>
-      <a href="#sharing">5. Information Sharing</a>
-      <a href="#data-retention">6. Data Retention</a>
-      <a href="#security">7. Security</a>
-      <a href="#your-rights">8. Your Rights</a>
-      <a href="#children">9. Children's Privacy</a>
-      <a href="#cookies">10. Cookies &amp; Tracking</a>
-      <a href="#state-rights">11. State Privacy Rights</a>
-      <a href="#changes">12. Changes to This Policy</a>
-      <a href="#contact">13. Contact Us</a>
+      <div class="legal-toc-label">Contents</div>
+      <a href="#who-we-are">1. Who We Are</a>
+      <a href="#our-commitments">2. Our Unconditional Commitments</a>
+      <a href="#what-we-collect">3. What We Collect</a>
+      <a href="#how-we-use">4. How We Use Information</a>
+      <a href="#phi-hipaa">5. PHI &amp; HIPAA</a>
+      <a href="#tetra-vault">6. The TETRA Vault</a>
+      <a href="#sharing">7. When We Share Information</a>
+      <a href="#ai-governance">8. AI &amp; Data Governance</a>
+      <a href="#retention">9. Data Retention</a>
+      <a href="#security">10. Security</a>
+      <a href="#your-rights">11. Your Rights</a>
+      <a href="#children">12. Children's Privacy</a>
+      <a href="#cookies">13. Cookies</a>
+      <a href="#state-rights">14. State Privacy Rights</a>
+      <a href="#breach">15. Breach Response</a>
+      <a href="#changes">16. Changes to This Policy</a>
+      <a href="#contact">17. Contact</a>
     </nav>
 
     <div class="legal-content">
 
-      <div class="legal-highlight">
-        <strong>Plain-Language Summary:</strong> InPursuit Health collects information you provide and information generated by your use of our platform. We use it to operate the TETRA platform, comply with HIPAA, and improve our services. We do not sell your data. We do not use your health data to train AI models without your explicit written consent. You have the right to access, correct, and delete your information.
+      <h2 id="who-we-are">1. Who We Are</h2>
+      <p>InPursuit Health, Inc. ("<strong>InPursuit Health</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") is a veteran-owned health data orchestration company. We build the TETRA&trade; platform — infrastructure that unifies, protects, and puts health data to work for the people and organizations that generate it. We are not a data company that happens to offer software. We are an infrastructure company whose revenue comes from delivering outcomes — not from monetizing the information that flows through our systems.</p>
+      <p>This Privacy Policy governs how we collect, handle, protect, and limit the use of personal information and protected health information (PHI) across our websites, the TETRA&trade; platform, TETRA Ex&trade;, TETRA Conductor&trade;, TETRA Aegis&trade;, TETRA Sentinel&trade;, the InPursuit consumer application, and all related services (collectively, the "<strong>Services</strong>").</p>
+
+      <h2 id="our-commitments">2. Our Unconditional Commitments</h2>
+      <p>These commitments are not aspirational language. They are legally binding obligations. They do not have carve-outs. They cannot be overridden by a future policy update. They are the foundation everything else in this document is built on.</p>
+
+      <div class="commitment-grid">
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 1</div>
+          <p><strong style="color:var(--navy);">We will never sell your data.</strong> Your health information will never be sold, traded, brokered, or transferred to any third party for profit — not to advertisers, data brokers, pharmaceutical companies, insurers, or anyone else. No exceptions. No loopholes.</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 2</div>
+          <p><strong style="color:var(--navy);">You own your data — always.</strong> Every provider and patient retains full intellectual property ownership of their data at all times. InPursuit Health is a custodian and a tool. If you leave, your data leaves with you, in full, in standard formats, at no cost.</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 3</div>
+          <p><strong style="color:var(--navy);">Your data trains only your insights.</strong> We do not aggregate, anonymize, pool, or repurpose your clinical data to train AI models, build commercial products, or develop benchmarks sold to or shared with any other organization. Your patient population is yours.</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 4</div>
+          <p><strong style="color:var(--navy);">Full transparency — always.</strong> You will always know exactly what data we hold, how it is used, and who has accessed it. There are no hidden processes, no shadow analytics, and no secondary uses you have not explicitly approved.</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 5</div>
+          <p><strong style="color:var(--navy);">Data is never our product.</strong> Our revenue comes from infrastructure subscriptions and outcome-based arrangements. We have no financial interest in the content of the data that flows through our platform. Data monetization does not supplement our fees — it is prohibited.</p>
+        </div>
+        <div class="commitment-item">
+          <div class="commitment-item-label">Commitment 6</div>
+          <p><strong style="color:var(--navy);">Security is ongoing, not a checkbox.</strong> We continuously invest in penetration testing, vulnerability assessments, compliance audits, and emerging threat intelligence. Your data protection does not expire.</p>
+        </div>
       </div>
 
-      <h2 id="overview">1. Overview</h2>
-      <p>InPursuit Health, Inc. ("<strong>InPursuit Health</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>") is a health technology company that builds data orchestration infrastructure for value-based care. We are committed to protecting the privacy and security of personal information, including protected health information (PHI), in compliance with the Health Insurance Portability and Accountability Act of 1996 (HIPAA), the Health Information Technology for Economic and Clinical Health (HITECH) Act, and applicable state privacy laws.</p>
-      <p>This Privacy Policy describes how we collect, use, disclose, and safeguard information obtained through our websites (including InPursuitHealth.com), the TETRA&trade; platform, the TETRA Ex&trade; health data exchange, TETRA Conductor&trade;, TETRA Aegis&trade;, TETRA Sentinel&trade;, mobile applications, and any other products or services we offer (collectively, the "<strong>Services</strong>").</p>
-      <p>By accessing or using our Services, you agree to the terms of this Privacy Policy. If you do not agree, please do not use our Services.</p>
-
-      <h2 id="information-we-collect">2. Information We Collect</h2>
-
-      <h3>2.1 Information You Provide to Us</h3>
-      <ul>
-        <li><strong>Account information:</strong> Name, email address, phone number, professional credentials (for providers), National Provider Identifier (NPI), and organizational affiliation.</li>
-        <li><strong>Contact and inquiry data:</strong> Information you submit through contact forms, email, or when you request a demo or partnership.</li>
-        <li><strong>Payment information:</strong> Billing address and payment card details (processed securely through our PCI-DSS compliant payment processor; we do not store raw card data).</li>
-        <li><strong>Communications:</strong> Records of your correspondence with us, including support tickets and feedback.</li>
-      </ul>
-
-      <h3>2.2 Protected Health Information (PHI)</h3>
-      <p>If you are a healthcare provider, health plan, or other HIPAA-covered entity using our platform, or if you are a patient whose data flows through the TETRA infrastructure, we may handle Protected Health Information as a Business Associate. See <a href="#hipaa">Section 4</a> for details on how we handle PHI.</p>
-
-      <h3>2.3 Automatically Collected Information</h3>
-      <ul>
-        <li><strong>Log data:</strong> IP address, browser type, operating system, referring URLs, pages viewed, and timestamps.</li>
-        <li><strong>Device data:</strong> Device identifiers, hardware model, and network information.</li>
-        <li><strong>Usage data:</strong> Features accessed, queries run, and interaction patterns within the platform.</li>
-        <li><strong>Cookies and similar technologies:</strong> See <a href="#cookies">Section 10</a> for details.</li>
-      </ul>
-
-      <h3>2.4 Information from Third Parties</h3>
-      <ul>
-        <li>Data received through health information exchanges and interoperability connections you authorize (e.g., FHIR endpoints, HL7 interfaces).</li>
-        <li>Identity verification and professional licensure data from third-party verification services.</li>
-        <li>Publicly available information for business development and compliance purposes.</li>
-      </ul>
-
-      <h2 id="how-we-use">3. How We Use Information</h2>
-      <p>We use the information we collect for the following purposes:</p>
-      <ul>
-        <li><strong>Providing and improving the Services:</strong> Operating, maintaining, and enhancing the TETRA platform and related products.</li>
-        <li><strong>Account management:</strong> Creating and managing your account, verifying identity, and authenticating access.</li>
-        <li><strong>Communications:</strong> Sending transactional emails, service updates, security alerts, and, with your consent, marketing communications.</li>
-        <li><strong>Analytics and research:</strong> Analyzing de-identified usage patterns to improve platform performance, user experience, and clinical outcomes. We do not use PHI for commercial analytics without a valid authorization.</li>
-        <li><strong>Compliance and legal obligations:</strong> Fulfilling HIPAA, HITECH, and applicable state law requirements; responding to lawful government requests; and enforcing our agreements.</li>
-        <li><strong>Security and fraud prevention:</strong> Detecting, investigating, and preventing unauthorized access, security incidents, and fraudulent activity.</li>
-        <li><strong>Business operations:</strong> Processing payments, providing customer support, and conducting internal audits.</li>
-      </ul>
-
-      <div class="legal-highlight">
-        <strong>Our Data Oath Commitment:</strong> We will never sell your personal data or PHI to third parties. We will never use your health data to train artificial intelligence or machine learning models without your explicit written consent. These are unconditional commitments. See our full <a href="data-oath.html">Data Oath</a>.
+      <div class="oath-block">
+        <div class="oath-block-label">The Data Oath</div>
+        <p>"We built InPursuit Health on a simple, unbreakable rule: the people who generate health data are the people who own it. No exceptions. No loopholes. No fine print." — InPursuit Health Leadership. Read the full <a href="data-oath.html">Data Oath &rarr;</a></p>
       </div>
 
-      <h2 id="hipaa">4. HIPAA &amp; Protected Health Information</h2>
+      <h2 id="what-we-collect">3. What We Collect</h2>
 
-      <h3>4.1 Business Associate Relationship</h3>
-      <p>When InPursuit Health handles PHI on behalf of a HIPAA-covered entity (such as a hospital, clinic, health plan, or clearinghouse), we function as a <strong>Business Associate</strong> as defined under 45 C.F.R. § 160.103. In this capacity, we are required to:</p>
+      <h3>3.1 Information You Provide</h3>
       <ul>
-        <li>Use or disclose PHI only as permitted or required by the applicable Business Associate Agreement (BAA) and the HIPAA Privacy Rule (45 C.F.R. Part 164).</li>
-        <li>Implement safeguards in accordance with the HIPAA Security Rule (45 C.F.R. §§ 164.302–318).</li>
-        <li>Report breaches of unsecured PHI in compliance with the HIPAA Breach Notification Rule (45 C.F.R. §§ 164.400–414).</li>
-        <li>Provide individuals with access to their PHI upon request through the applicable covered entity.</li>
+        <li><strong>Account information:</strong> Name, email address, phone number, professional credentials, NPI number, and organizational affiliation for provider accounts.</li>
+        <li><strong>Contact and inquiry data:</strong> Information you submit through contact forms, demo requests, or direct correspondence.</li>
+        <li><strong>Payment information:</strong> Billing address and payment details, processed through PCI-DSS compliant processors. We do not store raw card data.</li>
+        <li><strong>Platform interactions:</strong> Queries, configurations, and workflow settings you create inside the TETRA platform.</li>
       </ul>
 
-      <h3>4.2 Permitted Uses and Disclosures of PHI</h3>
-      <p>As a Business Associate, we may use or disclose PHI only: (a) as directed by the covered entity in the BAA; (b) as required for the proper management and administration of our business; (c) to carry out our legal responsibilities; or (d) as otherwise permitted by HIPAA. We do not use PHI for marketing, advertising, or commercial data analytics without a valid HIPAA authorization.</p>
+      <h3>3.2 Protected Health Information (PHI)</h3>
+      <p>When you are a healthcare provider, health plan, or other HIPAA-covered entity using the TETRA platform, or a patient whose records are orchestrated through TETRA Ex&trade;, we handle PHI as a Business Associate under a signed Business Associate Agreement (BAA). See <a href="#phi-hipaa">Section 5</a> and <a href="#tetra-vault">Section 6</a> for how PHI is governed and protected within the TETRA Vault architecture.</p>
 
-      <h3>4.3 Minimum Necessary Standard</h3>
-      <p>We apply the HIPAA minimum necessary standard, limiting access to PHI to those workforce members and systems that need it to perform their job functions. Role-based access controls are enforced across all TETRA platform components.</p>
-
-      <h3>4.4 Breach Notification</h3>
-      <p>In the event of a breach of unsecured PHI, we will notify the relevant covered entity without unreasonable delay and within 60 calendar hours of discovery, in accordance with 45 C.F.R. § 164.410. Covered entities retain responsibility for notifying affected individuals and, where applicable, the Department of Health and Human Services (HHS).</p>
-
-      <h3>4.5 De-Identification</h3>
-      <p>Data that has been de-identified in accordance with 45 C.F.R. § 164.514(b) (Safe Harbor method) or § 164.514(c) (Expert Determination method) is no longer PHI under HIPAA and may be used for analytics, research, and platform improvement without restriction.</p>
-
-      <h2 id="sharing">5. Information Sharing and Disclosure</h2>
-      <p>We do not sell, rent, or trade your personal information or PHI. We may share information in the following limited circumstances:</p>
-
-      <h3>5.1 Service Providers (Subprocessors)</h3>
-      <p>We engage vetted third-party vendors to help us deliver our Services, including cloud infrastructure providers, security monitoring services, and payment processors. These subprocessors are bound by data processing agreements and, where applicable, Business Associate Agreements. They are prohibited from using your data for any purpose other than providing services to InPursuit Health. A current subprocessor list is available upon request at <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
-
-      <h3>5.2 Legal Requirements and Safety</h3>
-      <p>We may disclose information if required by law, regulation, judicial or governmental order, or where we believe in good faith that disclosure is necessary to: (a) comply with a legal obligation; (b) protect the rights, property, or safety of InPursuit Health, our users, or the public; or (c) detect, prevent, or address fraud, security, or technical issues.</p>
-
-      <h3>5.3 Business Transfers</h3>
-      <p>In the event of a merger, acquisition, reorganization, or sale of all or substantially all of our assets, personal information may be transferred to the successor entity. We will provide notice prior to any such transfer becoming subject to a materially different privacy policy, and affected individuals will have the opportunity to exercise any applicable rights.</p>
-
-      <h3>5.4 With Your Consent</h3>
-      <p>We may share your information for any other purpose with your explicit prior consent.</p>
-
-      <h2 id="data-retention">6. Data Retention</h2>
-      <p>We retain personal information for as long as necessary to provide our Services, comply with our legal obligations, resolve disputes, and enforce our agreements. Specifically:</p>
+      <h3>3.3 Automatically Collected Technical Data</h3>
       <ul>
-        <li><strong>Account data:</strong> Retained for the duration of your account plus 7 years after closure (to satisfy HIPAA record retention requirements).</li>
-        <li><strong>PHI:</strong> Retained in accordance with the applicable BAA and applicable state law (minimum 6 years from creation or last effective date under 45 C.F.R. § 164.530(j)).</li>
-        <li><strong>Log and audit data:</strong> Retained for a minimum of 6 years per HIPAA Security Rule requirements.</li>
-        <li><strong>Anonymized/de-identified data:</strong> May be retained indefinitely for analytics and platform improvement.</li>
+        <li><strong>Log data:</strong> IP address, browser type, operating system, pages viewed, and session timestamps — collected to operate and secure the Services.</li>
+        <li><strong>Usage data:</strong> Features accessed and interaction patterns within the platform — used only to improve reliability and performance. This data is never linked to PHI or used to build commercial profiles.</li>
+        <li><strong>Device data:</strong> Device identifiers and network information for security monitoring and access control.</li>
       </ul>
-      <p>Upon expiration of the applicable retention period or upon a valid deletion request, we will securely destroy or de-identify information in accordance with NIST SP 800-88 media sanitization guidelines.</p>
 
-      <h2 id="security">7. Security</h2>
-      <p>We implement administrative, physical, and technical safeguards designed to protect personal information and PHI against unauthorized access, disclosure, alteration, and destruction. Our security program includes:</p>
+      <h3>3.4 Health Data You Authorize Through TETRA Ex&trade;</h3>
+      <p>If you use TETRA Ex&trade; — either as a provider connecting to health information exchanges or as an individual exercising your data rights — we access clinical records, lab results, medications, claims, and other health information from connected systems solely on your direction and with your explicit authorization. We are the pipe, not the destination. This data lives in your TETRA Vault and is governed by your permissions.</p>
+
+      <h3>3.5 What We Do Not Collect</h3>
       <ul>
-        <li>AES-256 encryption at rest and TLS 1.3 encryption in transit for all data</li>
-        <li>Role-based access controls (RBAC) with least-privilege enforcement</li>
-        <li>Multi-factor authentication (MFA) for all system access</li>
-        <li>Continuous security monitoring and intrusion detection</li>
+        <li>We do not collect data for advertising targeting or behavioral profiling.</li>
+        <li>We do not collect or share reproductive health data, mental health records, or substance use data for any purpose other than direct care coordination you authorize.</li>
+        <li>We do not use third-party advertising pixels, behavioral tracking scripts, or cross-site tracking on our clinical platform.</li>
+      </ul>
+
+      <h2 id="how-we-use">4. How We Use Information</h2>
+      <p>We use the information we collect only for the following purposes:</p>
+      <ul>
+        <li><strong>Delivering and operating the Services:</strong> Running the TETRA platform, processing data exchange transactions, managing your account, and providing customer support.</li>
+        <li><strong>Security and access control:</strong> Authenticating users, detecting unauthorized access, monitoring for security threats, and operating immutable audit logs.</li>
+        <li><strong>Compliance:</strong> Fulfilling HIPAA, HITECH, and applicable state law obligations; responding to lawful government requests; and enforcing our agreements.</li>
+        <li><strong>Platform reliability:</strong> Diagnosing technical issues, optimizing performance, and ensuring system availability. Technical performance data is never linked to PHI.</li>
+        <li><strong>Communications:</strong> Sending transactional emails, security alerts, and service updates. Marketing communications require separate opt-in consent.</li>
+      </ul>
+      <p><strong>We do not use your information for:</strong> advertising, behavioral profiling, commercial data analytics, AI model training on behalf of third parties, or any purpose not listed above.</p>
+
+      <h2 id="phi-hipaa">5. PHI &amp; HIPAA Compliance</h2>
+
+      <h3>5.1 Our Role as a Business Associate</h3>
+      <p>When InPursuit Health handles PHI on behalf of a HIPAA-covered entity, we act as a <strong>Business Associate</strong> under 45 C.F.R. § 160.103. A signed Business Associate Agreement (BAA) must be in place before any PHI is processed through our platform. We do not treat HIPAA compliance as a badge or a marketing claim — it is a legal obligation that is operationally enforced at every layer of our architecture.</p>
+      <p>To request a BAA: <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
+
+      <h3>5.2 Permitted Uses of PHI</h3>
+      <p>As a Business Associate, we use or disclose PHI only: (a) as directed by the covered entity in the BAA; (b) as required for the proper management and administration of our services to that covered entity; or (c) as required by law. We do not use PHI for any commercial purpose, AI training, or analytics that benefit InPursuit Health commercially.</p>
+
+      <h3>5.3 Minimum Necessary Standard</h3>
+      <p>Role-based access controls (RBAC) are enforced across every component of the TETRA platform. Access to PHI is granted only to personnel and systems with a documented need. Audit logs record every access event with full provenance.</p>
+
+      <h3>5.4 Individual Rights Under HIPAA</h3>
+      <p>Individuals have rights to access, amend, and obtain an accounting of disclosures of their PHI under 45 C.F.R. §§ 164.524–164.528. For PHI handled on behalf of a covered entity, requests should be directed first to that covered entity, who will coordinate with us. For PHI held in your personal TETRA Vault through the consumer application, you may exercise these rights directly by contacting <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
+
+      <h2 id="tetra-vault">6. The TETRA Vault</h2>
+      <p>The TETRA Vault is the architectural model by which your data is stored and governed within our platform. It is not a marketing concept — it is how the system is built.</p>
+      <ul>
+        <li><strong>Logical isolation:</strong> Each organization's and each individual's data is logically isolated. Your data does not share a storage context with another customer's data.</li>
+        <li><strong>No cross-customer data pooling:</strong> We do not combine, compare, or aggregate your clinical data with data from any other organization. Your patient population's data remains exclusively yours.</li>
+        <li><strong>You control the keys:</strong> Access permissions are yours to grant and revoke. TETRA Aegis&trade; enforces those permissions at the architectural level — not just as a policy setting.</li>
+        <li><strong>Real-time audit visibility:</strong> You have access to real-time audit logs showing who accessed your data, when, what action was taken, and what the outcome was. This is a platform capability, not a report generated on request.</li>
+        <li><strong>TETRA Aegis&trade; protection:</strong> Every interaction with an AI model — whether initiated by a provider, patient, or automated agent — passes through TETRA Aegis&trade;, which intercepts, classifies, risk-scores, and mediates the interaction before any data leaves your Vault. TETRA Sentinel&trade; monitors continuously for anomalies, hallucinations, and unauthorized data access attempts.</li>
+      </ul>
+
+      <h2 id="sharing">7. When We Share Information</h2>
+      <p>We share information in only the following limited circumstances, and we do not share beyond what is necessary for each purpose.</p>
+
+      <h3>7.1 Authorized Data Exchange</h3>
+      <p>Through TETRA Ex&trade;, we transmit PHI and clinical data to providers, systems, and networks that <strong>you have explicitly authorized</strong> to receive it. This is the core function of the platform — bidirectional exchange at your direction. We are executing your instructions, not making independent sharing decisions.</p>
+
+      <h3>7.2 Infrastructure Subprocessors</h3>
+      <p>We engage a limited set of vetted infrastructure providers (cloud compute, storage, security monitoring) to operate the TETRA platform. All subprocessors are bound by:</p>
+      <ul>
+        <li>Data processing agreements with the same no-resale, no-training obligations in our Data Oath</li>
+        <li>HIPAA Business Associate Agreements where applicable</li>
+        <li>Contractual prohibition on using your data for any purpose other than providing infrastructure services to InPursuit Health</li>
+      </ul>
+      <p>Our current subprocessor list is publicly available at <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>. We update this list before adding any new subprocessor with access to PHI and notify affected customers.</p>
+
+      <h3>7.3 Legal Requirements</h3>
+      <p>We may disclose information when required by law, court order, or government authority. Where legally permitted, we will notify you before disclosure and cooperate with any efforts to obtain a protective order. We will not disclose PHI in response to a voluntary government request without a BAA or court order.</p>
+
+      <h3>7.4 Business Transfers</h3>
+      <p>In the event of a merger, acquisition, or sale of substantially all assets, we will provide at least 60 days' advance notice to affected customers. Any successor entity will be required to honor all existing Data Oath commitments and BAAs as a condition of the transfer. You may terminate your agreement and export your data before any transfer takes effect.</p>
+
+      <h3>7.5 What We Will Never Do</h3>
+      <ul>
+        <li>Sell, rent, lease, or broker your data to any third party — ever</li>
+        <li>Share PHI or personal data with pharmaceutical companies, insurers, advertisers, or data brokers</li>
+        <li>Provide access to your data for market research, population studies, or commercial analytics without a valid HIPAA authorization signed by you</li>
+        <li>Share anonymized or de-identified data derived from your patient population with any external party for commercial gain</li>
+        <li>License AI-derived insights, risk scores, or predictive models built on your data to any other organization</li>
+      </ul>
+
+      <h2 id="ai-governance">8. AI &amp; Data Governance</h2>
+
+      <h3>8.1 AI That Serves You — Not Us</h3>
+      <p>AI capabilities within the TETRA platform exist for one purpose: to improve health outcomes for patients and reduce administrative burden for providers. TETRA Conductor&trade; routes clinical AI interactions to the appropriate model. TETRA Aegis&trade; and TETRA Sentinel&trade; ensure those interactions are safe, auditable, and confined to your authorized data scope.</p>
+
+      <h3>8.2 No Cross-Customer AI Training</h3>
+      <p>Your data trains only your insights. When AI learns from your patient population, those insights stay within your TETRA Vault. We never pool clinical data across customers to build, fine-tune, or benchmark AI models — for ourselves or for any third party. This applies equally to anonymized, de-identified, or aggregated derivatives of your data. The only exception is internal platform improvements that use technical (non-clinical) performance data — never PHI, never patient-level records.</p>
+
+      <h3>8.3 Explainability and Auditability</h3>
+      <p>Every AI-generated recommendation produced through the TETRA platform includes the reasoning behind it. No black boxes. Every AI interaction — input, classification, risk score, decision, output — is captured in your immutable audit log. You can review any AI decision at any time.</p>
+
+      <h3>8.4 TETRA Aegis&trade; and TETRA Sentinel&trade;</h3>
+      <p>TETRA Aegis&trade; is the supervisory control layer between your users and any AI model. It intercepts every prompt, classifies the sensitivity of the content, scores the interaction for risk, and either passes, mediates, or blocks the interaction — all in under 200ms, before any data leaves your organization. TETRA Sentinel&trade; is the intelligence inside that layer — the AI that watches AI — providing continuous behavioral surveillance, hallucination detection, and anomaly monitoring across all AI interactions in your environment.</p>
+
+      <h3>8.5 AI Clinical Responsibility</h3>
+      <p>The TETRA platform supports clinical decision-making. It does not replace it. AI-generated outputs are informational. All clinical decisions remain the exclusive responsibility of licensed healthcare providers. InPursuit Health does not assume liability for clinical outcomes based on AI-generated recommendations.</p>
+
+      <h2 id="retention">9. Data Retention</h2>
+      <p>We retain data for the shortest period consistent with our legal obligations and your business needs. We do not retain data to build commercial value from it.</p>
+      <ul>
+        <li><strong>PHI (as Business Associate):</strong> Retained in accordance with the applicable BAA and state law. HIPAA requires a minimum of 6 years from creation or last effective date (45 C.F.R. § 164.530(j)). We cannot delete PHI during the applicable retention period even upon request — this is a federal legal obligation, not a data hoarding practice.</li>
+        <li><strong>Account data:</strong> Retained for the duration of your active account, plus the longer of: (a) 7 years to satisfy HIPAA record retention requirements, or (b) any longer period required by applicable state law.</li>
+        <li><strong>Audit logs:</strong> Retained for a minimum of 6 years per HIPAA Security Rule requirements (45 C.F.R. § 164.312). Audit logs are immutable — they cannot be altered or deleted, by you or by us, during the retention period. This protects both parties.</li>
+        <li><strong>Technical performance data:</strong> Retained for 90 days and then automatically purged, unless a specific incident investigation requires extended retention, in which case only the relevant records are preserved.</li>
+        <li><strong>Marketing and contact data:</strong> Retained until you request deletion or unsubscribe, with no minimum retention requirement.</li>
+      </ul>
+      <p>Upon request or account termination, we will provide a full export of your data in standard formats and confirm in writing when destruction is complete.</p>
+
+      <h2 id="security">10. Security</h2>
+      <p>The TETRA platform was built to meet Department of Defense security standards — forged in the U.S. Military Health System and the Department of Veterans Affairs before entering the commercial market. Security is not a feature we added — it is the foundation the platform was built on.</p>
+      <p>Our security program includes:</p>
+      <ul>
+        <li>AES-256 encryption at rest and TLS 1.3 encryption in transit — on every data path, without exception</li>
+        <li>Role-based access controls (RBAC) with least-privilege enforcement across all platform components</li>
+        <li>Multi-factor authentication (MFA) required for all accounts with access to PHI or clinical data</li>
+        <li>Zero-trust architecture — no implicit trust between systems or users, regardless of network location</li>
+        <li>Real-time immutable audit logging of all data access events</li>
+        <li>Continuous intrusion detection and behavioral anomaly monitoring via TETRA Sentinel&trade;</li>
         <li>Annual third-party penetration testing and HIPAA security risk assessments</li>
+        <li>FIPS-compliant cryptographic standards</li>
         <li>SOC 2 Type II audit program (in progress)</li>
-        <li>Workforce security training and background checks</li>
-        <li>Documented incident response and disaster recovery plans</li>
+        <li>Documented incident response, business continuity, and disaster recovery plans</li>
       </ul>
-      <p>No security system is impenetrable. If you believe your account has been compromised, contact us immediately at <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a>.</p>
+      <p>If you believe your account has been compromised or you have identified a security vulnerability, contact us immediately at <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a>.</p>
 
-      <h2 id="your-rights">8. Your Rights</h2>
-
-      <h3>8.1 Access and Portability</h3>
-      <p>You have the right to request access to the personal information we hold about you and to receive it in a structured, commonly used, machine-readable format where technically feasible.</p>
-
-      <h3>8.2 Correction</h3>
-      <p>You have the right to request correction of inaccurate or incomplete personal information. For PHI corrections, requests should be submitted to the applicable covered entity, who will coordinate with us.</p>
-
-      <h3>8.3 Deletion</h3>
-      <p>You may request deletion of your personal information, subject to our legal retention obligations. Note that we may be required to retain certain information for compliance purposes even after account closure.</p>
-
-      <h3>8.4 Restriction and Objection</h3>
-      <p>You may request that we restrict processing of your personal information, or object to certain uses, where permitted by applicable law.</p>
-
-      <h3>8.5 Withdrawal of Consent</h3>
-      <p>Where processing is based on your consent, you may withdraw consent at any time without affecting the lawfulness of processing prior to withdrawal.</p>
-
-      <h3>8.6 How to Exercise Your Rights</h3>
-      <p>To exercise any of the above rights, contact our Privacy Officer at <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a> or by mail at the address in <a href="#contact">Section 13</a>. We will respond to verified requests within 30 days (or such shorter period as required by applicable law).</p>
-
-      <h2 id="children">9. Children's Privacy</h2>
-      <p>Our Services are not directed to individuals under 18 years of age. We do not knowingly collect personal information from children under 18. If we become aware that we have inadvertently collected personal information from a child under 18, we will take prompt steps to delete that information. If you believe we have collected information from a child under 18, please contact us immediately at <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
-      <p>For minor patients whose PHI flows through our platform, access and authorization are governed by applicable HIPAA rules and state law regarding parental and guardian rights.</p>
-
-      <h2 id="cookies">10. Cookies and Tracking Technologies</h2>
-      <p>We use cookies and similar technologies on our websites to:</p>
+      <h2 id="your-rights">11. Your Rights</h2>
+      <p>These rights apply to personal information we hold about you directly. For PHI handled on behalf of a covered entity, coordinate requests through that entity.</p>
       <ul>
-        <li><strong>Essential cookies:</strong> Maintain session state, authentication, and security. These cannot be disabled without affecting core functionality.</li>
-        <li><strong>Functional cookies:</strong> Remember your preferences and settings.</li>
-        <li><strong>Analytics cookies:</strong> Understand how visitors interact with our website using privacy-preserving analytics tools. We configure these tools to anonymize IP addresses and disable data sharing with third-party ad networks.</li>
+        <li><strong>Access:</strong> Request a copy of the personal information we hold about you.</li>
+        <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format. For clinical data in your TETRA Vault, export is available at any time, in standard FHIR R4 format, at no cost.</li>
+        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information.</li>
+        <li><strong>Deletion:</strong> Request deletion of personal information, subject to applicable retention obligations (see Section 9). We will confirm in writing what has been deleted and what is being retained, and why.</li>
+        <li><strong>Restriction:</strong> Request that we limit processing of your personal information in specific contexts.</li>
+        <li><strong>Withdrawal of Consent:</strong> Where processing is based on your consent, you may withdraw that consent at any time without affecting the lawfulness of prior processing.</li>
+        <li><strong>Audit Log Access:</strong> Access your real-time audit trail directly within the platform. No request required — it is always available to you.</li>
       </ul>
-      <p>We do not use third-party advertising cookies or behavioral tracking technologies on our clinical platform. You may configure your browser to refuse cookies or to alert you when cookies are being sent. Note that some features of our website may not function properly if cookies are disabled.</p>
+      <p>To exercise any right, contact <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>. We respond within 30 days, or sooner as required by applicable law, and at no charge.</p>
 
-      <h2 id="state-rights">11. State-Specific Privacy Rights</h2>
+      <h2 id="children">12. Children's Privacy</h2>
+      <p>Our Services are not directed to individuals under 18. We do not knowingly collect personal information from minors under 18. If we become aware of such a collection, we will delete it promptly. Contact <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a> if you believe a minor's information has been collected.</p>
+      <p>For minor patients whose PHI flows through the TETRA platform as part of authorized care coordination, access and authorization rights are governed by HIPAA and applicable state law regarding parental and guardian rights.</p>
 
+      <h2 id="cookies">13. Cookies and Tracking</h2>
+      <p>On our marketing website (InPursuitHealth.com):</p>
+      <ul>
+        <li><strong>Essential cookies:</strong> Required for authentication, session management, and security. Cannot be disabled.</li>
+        <li><strong>Analytics cookies:</strong> Used only with privacy-preserving tools configured to anonymize IP addresses and disable third-party data sharing. We do not use Google Analytics, Meta Pixel, or any behavioral advertising tracking tool.</li>
+        <li><strong>No advertising cookies:</strong> We do not use, and will never use, behavioral advertising tracking technologies on any InPursuit property.</li>
+      </ul>
+      <p>On the clinical TETRA platform, there are no third-party tracking scripts of any kind. All logging is internal, audit-purpose only, and accessible to you.</p>
+
+      <h2 id="state-rights">14. State Privacy Rights</h2>
       <h3>California (CCPA/CPRA)</h3>
-      <p>California residents have rights under the California Consumer Privacy Act (CCPA) as amended by the California Privacy Rights Act (CPRA), including the right to know what personal information we collect, the right to delete, the right to correct, the right to opt out of sale or sharing, and the right to limit use of sensitive personal information. We do not sell personal information. California residents may submit rights requests to <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>. We will not discriminate against you for exercising these rights.</p>
-
-      <h3>Texas (TDPSA)</h3>
-      <p>Texas residents have rights under the Texas Data Privacy and Security Act (TDPSA), including rights to access, correct, delete, and obtain a portable copy of personal data, and to opt out of targeted advertising and profiling. Requests may be submitted to our Privacy Officer.</p>
-
+      <p>California residents have rights to know, delete, correct, and opt out of sale or sharing of personal information. We do not sell personal information. We do not share personal information for cross-context behavioral advertising. California residents may submit requests to <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>. We will not discriminate against you for exercising your rights.</p>
+      <h3>Texas (TDPSA), Virginia (VCDPA), Colorado (CPA), Connecticut (CTDPA)</h3>
+      <p>Residents of these states have rights to access, correct, delete, and port personal data, and to opt out of targeted advertising and profiling. Submit requests to our Privacy Officer. We respond within the timeframes required by each applicable state law.</p>
       <h3>Other States</h3>
-      <p>Residents of Virginia (VCDPA), Colorado (CPA), Connecticut (CTDPA), and other states with comprehensive privacy laws have similar rights. We will honor verified requests in accordance with applicable law. Contact our Privacy Officer to submit a request.</p>
+      <p>We extend the same rights to residents of all states with comprehensive privacy legislation and will continue to update our practices as new state laws take effect.</p>
 
-      <h2 id="changes">12. Changes to This Policy</h2>
-      <p>We may update this Privacy Policy from time to time to reflect changes in our practices, technology, legal requirements, or other factors. When we make material changes, we will:</p>
+      <h2 id="breach">15. Breach Response Commitment</h2>
+      <p>In the event of a confirmed breach of unsecured PHI or personal information, InPursuit Health commits to:</p>
+      <ol>
+        <li>Notify affected covered entities within <strong>60 hours of discovery</strong> — ahead of the HIPAA Breach Notification Rule requirement — with full details of what occurred, what data was involved, and what steps we are taking</li>
+        <li>Provide a plain-language explanation accessible to affected individuals, not just technical or legal language</li>
+        <li>Offer complimentary credit monitoring and identity protection services to any individual whose personal information was exposed</li>
+        <li>Publish a post-incident transparency report, available publicly, within 90 days of containment</li>
+      </ol>
+      <p>We will not minimize, delay, or obscure the nature or scope of any breach. Transparency after an incident is an extension of the same commitment we make before one.</p>
+
+      <h2 id="changes">16. Changes to This Policy</h2>
+      <p>We will not retroactively change this policy to enable uses of your data that were not permitted when you signed up. Any material change to this Privacy Policy requires:</p>
       <ul>
-        <li>Update the "Last Updated" date at the top of this policy</li>
-        <li>Post a prominent notice on our website</li>
-        <li>Send an email notification to registered users at least 30 days before the changes take effect</li>
+        <li>At least 60 days' written notice to all registered users</li>
+        <li>A clear, plain-language explanation of what is changing and why</li>
+        <li>The right to terminate your account and export all data before the change takes effect, at no cost and with no penalty</li>
       </ul>
-      <p>Your continued use of our Services after the effective date of a revised policy constitutes your acceptance of the changes. If you do not agree with any changes, you should stop using our Services and contact us to close your account.</p>
+      <p>The "Last Updated" date at the top of this page reflects the most recent revision. Prior versions are available upon request.</p>
 
       <div class="legal-contact-box" id="contact">
-        <h3>13. Contact Us</h3>
-        <p>If you have questions about this Privacy Policy, wish to exercise your rights, or need to report a privacy concern, please contact:</p>
-        <p><strong style="color:rgba(255,255,255,0.75);">HIPAA Privacy Officer</strong><br>
+        <h3>17. Contact Us</h3>
+        <p>For privacy inquiries, rights requests, BAA execution, or breach reports:</p>
+        <p><strong style="color:rgba(255,255,255,0.72);">HIPAA Privacy Officer</strong><br>
         InPursuit Health, Inc.<br>
-        Email: <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a></p>
-        <p>General inquiries: <a href="mailto:info@InPursuitHealth.com">info@InPursuitHealth.com</a></p>
-        <p>To file a complaint with the U.S. Department of Health and Human Services Office for Civil Rights: <a href="https://www.hhs.gov/ocr/complaints/" target="_blank" rel="noopener">hhs.gov/ocr/complaints</a></p>
+        <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a></p>
+        <p>Security incidents: <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a></p>
+        <p>General: <a href="mailto:info@InPursuitHealth.com">info@InPursuitHealth.com</a></p>
+        <p style="margin-top:16px; color:rgba(255,255,255,0.3); font-size:12px;">To file a complaint with HHS Office for Civil Rights: hhs.gov/ocr/complaints</p>
       </div>
 
     </div>
@@ -431,7 +417,7 @@
       <a href="terms-of-service.html">Terms of Service</a>
       <a href="public/disclosures/InPursuit_Disclosures_General.pdf" target="_blank" rel="noopener">General Disclosures</a>
     </div>
-    <div class="legal-footer-copy">&copy; 2025 InPursuit Health, Inc. All rights reserved. &bull; Veteran-Owned &bull; HIPAA Compliant</div>
+    <div class="legal-footer-copy">&copy; 2025 InPursuit Health, Inc. All rights reserved. &bull; Veteran-Owned &bull; HIPAA-Ready &bull; DoD Validated</div>
   </div>
 </footer>
 

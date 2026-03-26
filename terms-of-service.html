@@ -11,203 +11,100 @@
 <style>
 .legal-hero {
   background: var(--navy-deep);
-  padding: 80px 40px 60px;
-  border-bottom: 1px solid rgba(197,164,78,0.1);
+  padding: 120px 40px 64px;
+  border-bottom: 1px solid rgba(197,164,78,0.12);
 }
-.legal-hero-inner {
-  max-width: 860px;
-  margin: 0 auto;
-}
+.legal-hero-inner { max-width: 900px; margin: 0 auto; }
 .legal-eyebrow {
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 16px;
+  font-size: 10px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 16px;
 }
 .legal-hero h1 {
   font-family: 'Instrument Serif', serif;
-  font-size: clamp(32px, 5vw, 52px);
-  color: var(--white);
-  line-height: 1.15;
-  margin-bottom: 20px;
+  font-size: clamp(34px, 5vw, 54px);
+  color: var(--white); line-height: 1.12; margin-bottom: 20px;
 }
 .legal-meta {
-  display: flex;
-  gap: 28px;
-  flex-wrap: wrap;
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  display: flex; gap: 28px; flex-wrap: wrap;
+  font-size: 13px; color: rgba(255,255,255,0.38);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 20px; margin-top: 20px;
 }
-.legal-meta span strong {
-  color: rgba(255,255,255,0.6);
-  font-weight: 500;
-}
-.legal-body {
-  background: #F9F8F6;
-  padding: 80px 40px;
-}
+.legal-meta span strong { color: rgba(255,255,255,0.55); font-weight: 500; }
+
+.legal-body { background: #F9F8F6; padding: 80px 40px; }
 .legal-body-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 60px;
-  align-items: start;
+  max-width: 900px; margin: 0 auto;
+  display: grid; grid-template-columns: 210px 1fr; gap: 64px; align-items: start;
 }
-.legal-toc {
-  position: sticky;
-  top: 88px;
-}
+.legal-toc { position: sticky; top: 88px; }
 .legal-toc-label {
-  font-size: 9px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  text-transform: uppercase;
-  color: var(--navy);
-  opacity: 0.4;
-  margin-bottom: 16px;
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--navy); opacity: 0.35; margin-bottom: 14px;
 }
 .legal-toc a {
-  display: block;
-  font-size: 13px;
-  color: rgba(10,22,40,0.5);
-  text-decoration: none;
-  padding: 6px 0 6px 12px;
-  border-left: 2px solid transparent;
-  transition: all 0.2s;
-  line-height: 1.4;
+  display: block; font-size: 13px; color: rgba(10,22,40,0.45);
+  text-decoration: none; padding: 6px 0 6px 14px;
+  border-left: 2px solid transparent; transition: all 0.2s; line-height: 1.45;
 }
-.legal-toc a:hover {
-  color: var(--navy);
-  border-left-color: var(--gold);
-}
+.legal-toc a:hover { color: var(--navy); border-left-color: var(--gold); }
+
 .legal-content h2 {
-  font-family: 'Instrument Serif', serif;
-  font-size: 26px;
-  color: var(--navy);
-  margin: 56px 0 16px;
-  padding-top: 56px;
-  border-top: 1px solid rgba(10,22,40,0.08);
-  scroll-margin-top: 88px;
+  font-family: 'Instrument Serif', serif; font-size: 26px; color: var(--navy);
+  margin: 56px 0 14px; padding-top: 56px;
+  border-top: 1px solid rgba(10,22,40,0.08); scroll-margin-top: 88px;
 }
-.legal-content h2:first-child {
-  margin-top: 0;
-  padding-top: 0;
-  border-top: none;
-}
-.legal-content h3 {
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--navy);
-  margin: 32px 0 10px;
-}
-.legal-content p {
-  font-size: 15px;
-  color: rgba(10,22,40,0.7);
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-.legal-content ul, .legal-content ol {
-  margin: 12px 0 20px 0;
-  padding-left: 24px;
-}
-.legal-content li {
-  font-size: 15px;
-  color: rgba(10,22,40,0.7);
-  line-height: 1.8;
-  margin-bottom: 8px;
-}
-.legal-content a {
-  color: var(--navy);
-  text-decoration: underline;
-  text-underline-offset: 3px;
-}
+.legal-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+.legal-content h3 { font-size: 15px; font-weight: 600; color: var(--navy); margin: 28px 0 10px; }
+.legal-content p { font-size: 15px; color: rgba(10,22,40,0.68); line-height: 1.82; margin-bottom: 14px; }
+.legal-content ul, .legal-content ol { margin: 10px 0 18px 0; padding-left: 22px; }
+.legal-content li { font-size: 15px; color: rgba(10,22,40,0.68); line-height: 1.82; margin-bottom: 7px; }
+.legal-content a { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
 .legal-content a:hover { color: var(--gold); }
-.legal-highlight {
-  background: rgba(197,164,78,0.08);
-  border: 1px solid rgba(197,164,78,0.2);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin: 24px 0;
-  font-size: 14px;
-  color: rgba(10,22,40,0.75);
-  line-height: 1.7;
+
+.oath-block {
+  background: var(--navy-deep); border-left: 3px solid var(--gold);
+  border-radius: 0 8px 8px 0; padding: 22px 26px; margin: 28px 0;
 }
-.legal-highlight strong { color: var(--navy); }
-.legal-warning {
-  background: rgba(178,34,52,0.04);
-  border: 1px solid rgba(178,34,52,0.15);
-  border-radius: 8px;
-  padding: 20px 24px;
-  margin: 24px 0;
-  font-size: 14px;
-  color: rgba(10,22,40,0.75);
-  line-height: 1.7;
+.oath-block-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 2.5px;
+  text-transform: uppercase; color: var(--gold); margin-bottom: 10px;
 }
-.legal-warning strong { color: rgba(100,10,20,0.8); }
+.oath-block p { font-size: 14px; color: rgba(255,255,255,0.65); line-height: 1.75; margin: 0; }
+.oath-block a { color: rgba(197,164,78,0.8); }
+
+.notice-block {
+  background: rgba(197,164,78,0.06); border: 1px solid rgba(197,164,78,0.18);
+  border-radius: 8px; padding: 20px 24px; margin: 24px 0;
+}
+.notice-block p { font-size: 14px; color: rgba(10,22,40,0.65); line-height: 1.75; margin: 0; }
+.notice-block strong { color: var(--navy); }
+
 .legal-contact-box {
-  background: var(--navy-deep);
-  border-radius: 10px;
-  padding: 32px 36px;
-  margin-top: 48px;
+  background: var(--navy-deep); border-radius: 10px; padding: 32px 36px; margin-top: 48px;
 }
-.legal-contact-box h3 {
-  color: var(--gold);
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-.legal-contact-box p {
-  color: rgba(255,255,255,0.5);
-  font-size: 14px;
-  margin-bottom: 8px;
-}
-.legal-contact-box a { color: rgba(255,255,255,0.7); }
+.legal-contact-box h3 { color: var(--gold); font-size: 16px; margin-bottom: 12px; }
+.legal-contact-box p { color: rgba(255,255,255,0.48); font-size: 14px; margin-bottom: 8px; }
+.legal-contact-box a { color: rgba(255,255,255,0.68); }
 .legal-contact-box a:hover { color: var(--gold); }
+
 .legal-footer {
-  background: var(--navy-deep);
-  border-top: 1px solid rgba(197,164,78,0.1);
-  padding: 48px 40px;
+  background: var(--navy-deep); border-top: 1px solid rgba(197,164,78,0.1); padding: 48px 40px;
 }
 .legal-footer-inner {
-  max-width: 860px;
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+  max-width: 900px; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
 }
-.legal-footer-brand {
-  font-family: 'Instrument Serif', serif;
-  font-size: 20px;
-  color: var(--gold);
-}
-.legal-footer-links {
-  display: flex;
-  gap: 24px;
-  flex-wrap: wrap;
-}
-.legal-footer-links a {
-  font-size: 12px;
-  color: rgba(255,255,255,0.35);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.legal-footer-links a:hover { color: rgba(255,255,255,0.7); }
-.legal-footer-copy {
-  width: 100%;
-  font-size: 12px;
-  color: rgba(255,255,255,0.2);
-  margin-top: 16px;
-  text-align: center;
-}
+.legal-footer-brand { font-family: 'Instrument Serif', serif; font-size: 20px; color: var(--gold); }
+.legal-footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+.legal-footer-links a { font-size: 12px; color: rgba(255,255,255,0.32); text-decoration: none; transition: color 0.2s; }
+.legal-footer-links a:hover { color: rgba(255,255,255,0.65); }
+.legal-footer-copy { width: 100%; font-size: 12px; color: rgba(255,255,255,0.18); margin-top: 16px; text-align: center; }
 
 @media (max-width: 768px) {
   .legal-body-inner { grid-template-columns: 1fr; }
   .legal-toc { position: static; display: none; }
-  .legal-hero { padding: 60px 24px 40px; }
+  .legal-hero { padding: 80px 24px 48px; }
   .legal-body { padding: 48px 24px; }
 }
 </style>
@@ -218,6 +115,9 @@
   <div class="legal-hero-inner">
     <div class="legal-eyebrow">Legal</div>
     <h1>Terms of Service</h1>
+    <p style="color:rgba(255,255,255,0.45); font-size:15px; line-height:1.7; max-width:640px; margin-bottom:0;">
+      These Terms are built around our <a href="data-oath.html" style="color:rgba(197,164,78,0.8);">Data Oath</a>. Every commitment we make publicly is a legally binding obligation here. We are a health data infrastructure company, not a generic software vendor — and these Terms reflect that.
+    </p>
     <div class="legal-meta">
       <span><strong>Effective Date:</strong> March 1, 2025</span>
       <span><strong>Last Updated:</strong> March 1, 2025</span>
@@ -230,234 +130,344 @@
   <div class="legal-body-inner">
 
     <nav class="legal-toc">
-      <div class="legal-toc-label">Table of Contents</div>
-      <a href="#acceptance">1. Acceptance of Terms</a>
-      <a href="#definitions">2. Definitions</a>
-      <a href="#services">3. Description of Services</a>
-      <a href="#eligibility">4. Eligibility</a>
-      <a href="#accounts">5. Accounts &amp; Access</a>
-      <a href="#acceptable-use">6. Acceptable Use</a>
-      <a href="#data-rights">7. Data Rights</a>
-      <a href="#hipaa">8. HIPAA Compliance</a>
-      <a href="#ip">9. Intellectual Property</a>
-      <a href="#fees">10. Fees &amp; Payment</a>
-      <a href="#confidentiality">11. Confidentiality</a>
-      <a href="#disclaimers">12. Disclaimers</a>
-      <a href="#limitation">13. Limitation of Liability</a>
-      <a href="#indemnification">14. Indemnification</a>
-      <a href="#termination">15. Termination</a>
-      <a href="#governing-law">16. Governing Law</a>
-      <a href="#disputes">17. Dispute Resolution</a>
-      <a href="#general">18. General Provisions</a>
-      <a href="#contact">19. Contact</a>
+      <div class="legal-toc-label">Contents</div>
+      <a href="#nature-of-services">1. Nature of Services</a>
+      <a href="#acceptance">2. Acceptance of Terms</a>
+      <a href="#definitions">3. Definitions</a>
+      <a href="#services">4. What We Provide</a>
+      <a href="#eligibility">5. Eligibility</a>
+      <a href="#accounts">6. Accounts &amp; Access</a>
+      <a href="#acceptable-use">7. Acceptable Use</a>
+      <a href="#data-oath-obligations">8. Data Oath Obligations</a>
+      <a href="#data-ownership">9. Data Ownership</a>
+      <a href="#hipaa-baa">10. HIPAA &amp; BAA</a>
+      <a href="#tetra-vault">11. TETRA Vault Architecture</a>
+      <a href="#ai-governance">12. AI Governance</a>
+      <a href="#ip">13. Intellectual Property</a>
+      <a href="#fees">14. Fees &amp; Payment</a>
+      <a href="#confidentiality">15. Confidentiality</a>
+      <a href="#warranties">16. Warranties &amp; Disclaimers</a>
+      <a href="#liability">17. Limitation of Liability</a>
+      <a href="#indemnification">18. Indemnification</a>
+      <a href="#termination">19. Termination</a>
+      <a href="#governing-law">20. Governing Law</a>
+      <a href="#disputes">21. Dispute Resolution</a>
+      <a href="#general">22. General Provisions</a>
+      <a href="#contact">23. Contact</a>
     </nav>
 
     <div class="legal-content">
 
-      <div class="legal-warning">
-        <strong>Please Read Carefully.</strong> These Terms of Service constitute a legally binding agreement between you and InPursuit Health, Inc. By accessing or using our Services, you agree to be bound by these Terms. If you are entering into this agreement on behalf of an organization, you represent that you have authority to bind that organization. If you do not agree, do not use the Services.
+      <h2 id="nature-of-services">1. Nature of Services — What InPursuit Health Is</h2>
+      <p>InPursuit Health is a veteran-owned health data orchestration company. We build infrastructure — the TETRA&trade; platform — that unifies, protects, and puts health data to work for the people and organizations that generate it.</p>
+      <p>We are not a generic software-as-a-service company. We are healthcare data infrastructure. That distinction matters and it shapes every provision in these Terms:</p>
+      <ul>
+        <li><strong>Your data is never our product.</strong> Our revenue comes from infrastructure access and outcome-based arrangements, not from monetizing what flows through our systems.</li>
+        <li><strong>We are a Business Associate, not a data controller.</strong> For covered entities, we handle PHI under a BAA — not under a standard cloud service agreement.</li>
+        <li><strong>Security is the foundation.</strong> TETRA was built to DoD and VA standards before entering the commercial market. Security is not a feature layer — it is the architecture.</li>
+        <li><strong>Our commitments are unconditional.</strong> The Data Oath is not marketing. Every promise made on that page is a legally binding obligation incorporated into these Terms.</li>
+      </ul>
+
+      <div class="oath-block">
+        <div class="oath-block-label">Incorporated by Reference</div>
+        <p>The InPursuit Health <a href="data-oath.html">Data Oath</a> and <a href="privacy-policy.html">Privacy Policy</a> are incorporated into these Terms in their entirety. If you identify any language in these Terms that contradicts either document, that contradiction is an error — contact us at <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a> immediately.</p>
       </div>
 
-      <h2 id="acceptance">1. Acceptance of Terms</h2>
-      <p>These Terms of Service ("<strong>Terms</strong>") govern your access to and use of the websites, platforms, APIs, applications, and related services (collectively, the "<strong>Services</strong>") provided by InPursuit Health, Inc. ("<strong>InPursuit Health</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>"), a Delaware corporation.</p>
-      <p>By clicking "I Agree," creating an account, accessing the TETRA platform, or otherwise using the Services, you ("<strong>User</strong>," "<strong>you</strong>," or "<strong>your</strong>") acknowledge that you have read, understood, and agree to be bound by these Terms and our <a href="privacy-policy.html">Privacy Policy</a>, which is incorporated herein by reference.</p>
-      <p>We reserve the right to modify these Terms at any time. We will provide 30 days' written notice of material changes to registered users. Your continued use of the Services after the effective date of any changes constitutes acceptance of the revised Terms.</p>
+      <h2 id="acceptance">2. Acceptance of Terms</h2>
+      <p>These Terms of Service ("<strong>Terms</strong>") govern your access to and use of the Services provided by InPursuit Health, Inc. ("<strong>InPursuit Health</strong>," "<strong>we</strong>," "<strong>us</strong>," or "<strong>our</strong>"), a Delaware corporation.</p>
+      <p>By creating an account, accessing the TETRA platform, or otherwise using the Services, you ("<strong>User</strong>," "<strong>you</strong>," or "<strong>your</strong>") acknowledge that you have read, understood, and agree to be bound by these Terms, the Data Oath, and the Privacy Policy.</p>
+      <p>If you are entering into this agreement on behalf of an organization, you represent and warrant that you have the authority to bind that organization to these Terms.</p>
+      <p>We will not retroactively change these Terms to expand our use of your data or reduce your rights without your explicit consent. Material changes require 60 days' advance written notice and the right to exit at no cost.</p>
 
-      <h2 id="definitions">2. Definitions</h2>
+      <h2 id="definitions">3. Definitions</h2>
       <ul>
-        <li><strong>"Agreement"</strong> means these Terms, together with any Order Forms, Statements of Work, Business Associate Agreements, and any other documents incorporated by reference.</li>
-        <li><strong>"Authorized Users"</strong> means individuals permitted by Customer to access and use the Services under Customer's account.</li>
-        <li><strong>"Customer"</strong> means the organization or individual that has entered into a subscription or enterprise agreement with InPursuit Health.</li>
-        <li><strong>"Customer Data"</strong> means all data, including PHI, submitted to or processed through the Services by or on behalf of Customer.</li>
-        <li><strong>"Documentation"</strong> means technical specifications, user guides, and operational documentation provided by InPursuit Health.</li>
-        <li><strong>"PHI"</strong> means Protected Health Information as defined under HIPAA (45 C.F.R. § 160.103).</li>
-        <li><strong>"Platform"</strong> means the TETRA&trade; data orchestration platform and all associated components, including TETRA Ex&trade;, TETRA Conductor&trade;, TETRA Aegis&trade;, and TETRA Sentinel&trade;.</li>
-        <li><strong>"Subscription"</strong> means the paid or trial right to access and use the Services as specified in an Order Form.</li>
+        <li><strong>"Agreement"</strong> — These Terms, together with the Data Oath, Privacy Policy, any Order Form or Statement of Work, and any Business Associate Agreement (BAA), all of which are incorporated by reference.</li>
+        <li><strong>"Authorized Users"</strong> — Individuals authorized by Customer to access and use the Services under Customer's account.</li>
+        <li><strong>"BAA"</strong> — A Business Associate Agreement executed between InPursuit Health and a covered entity, governing the handling of PHI.</li>
+        <li><strong>"Customer"</strong> — An organization or individual that has entered into a subscription or enterprise agreement with InPursuit Health.</li>
+        <li><strong>"Customer Data"</strong> — All data, including PHI, submitted to or processed through the Services by or on behalf of Customer. Customer Data remains Customer's property at all times.</li>
+        <li><strong>"Data Oath"</strong> — The six unconditional commitments published at InPursuitHealth.com/data-oath.html, incorporated into these Terms as legally binding obligations.</li>
+        <li><strong>"PHI"</strong> — Protected Health Information as defined under HIPAA (45 C.F.R. § 160.103).</li>
+        <li><strong>"Services"</strong> — The TETRA&trade; platform and all associated products described in Section 4.</li>
+        <li><strong>"TETRA Vault"</strong> — The logical data isolation architecture described in Section 11 by which each Customer's data is stored, governed, and protected separately.</li>
       </ul>
 
-      <h2 id="services">3. Description of Services</h2>
-      <p>InPursuit Health provides health data orchestration, interoperability, and AI governance infrastructure designed for value-based care organizations, healthcare providers, health plans, and their partners. The Services include:</p>
+      <h2 id="services">4. What We Provide</h2>
+      <p>InPursuit Health provides health data orchestration, interoperability, and AI governance infrastructure. The Services include:</p>
       <ul>
-        <li><strong>TETRA&trade;</strong> — Core data orchestration layer for structured and unstructured clinical data.</li>
-        <li><strong>TETRA Ex&trade;</strong> — Health data exchange infrastructure for FHIR-based interoperability and provider data access.</li>
-        <li><strong>TETRA Conductor&trade;</strong> — AI orchestration layer for managing clinical AI workflows, model routing, and output governance.</li>
-        <li><strong>TETRA Aegis&trade;</strong> — AI governance and risk management platform for healthcare AI compliance.</li>
-        <li><strong>TETRA Sentinel&trade;</strong> — Behavioral surveillance and anomaly detection for AI systems in clinical environments.</li>
-        <li><strong>For You</strong> — Consumer-facing health data management and rewards platform.</li>
+        <li><strong>TETRA&trade;</strong> — Core data orchestration platform. The data fabric foundation that unifies disparate health systems, eliminates silos, and provides a unified data substrate for every connected layer. Validated at 135,000 writes/second and tested at 8 billion+ transactions over a five-day stress test.</li>
+        <li><strong>TETRA Ex&trade;</strong> — Bidirectional health data exchange infrastructure. Reads from every major data source in U.S. healthcare and writes validated data back to source systems. Covers 97% of U.S. hospitals and 280M+ patient records. TEFCA-aligned, FHIR R4 native.</li>
+        <li><strong>TETRA Conductor&trade;</strong> — Model-agnostic AI orchestration. The intelligent routing layer that evaluates clinical context in real time and directs each interaction to the optimal AI model or agent. No vendor lock-in. &lt;200ms routing decision latency.</li>
+        <li><strong>TETRA Aegis&trade;</strong> — Supervisory AI control plane. Intercepts, classifies, risk-scores, and mediates every AI interaction before sensitive data leaves your organization. Enforces HIPAA, NIST, and custom governance policies at the architectural level.</li>
+        <li><strong>TETRA Sentinel&trade;</strong> — The AI that watches AI. Continuous behavioral surveillance, hallucination detection, drift monitoring, and adversarial defense across all AI interactions in your environment.</li>
+        <li><strong>InPursuit Consumer Application</strong> — A consumer-facing personal health data vault and wellness platform that gives individuals unified access to their complete health record, patient-controlled permissions, and AI-powered care navigation.</li>
         <li><strong>Website and marketing properties</strong> at InPursuitHealth.com and related domains.</li>
       </ul>
-      <p>The specific Services available to you depend on your subscription tier and any applicable Order Form. InPursuit Health reserves the right to add, modify, or discontinue features of the Services at any time, with reasonable notice to affected Customers.</p>
+      <p>The specific Services available to you depend on your subscription tier and any applicable Order Form. We reserve the right to add and evolve features, with notice to Customers for material changes.</p>
 
-      <h2 id="eligibility">4. Eligibility</h2>
+      <h2 id="eligibility">5. Eligibility</h2>
       <p>To access the Services, you must:</p>
       <ul>
         <li>Be at least 18 years of age;</li>
-        <li>Have the legal authority to enter into a binding agreement (or be authorized to do so on behalf of an organization);</li>
-        <li>Not be prohibited by applicable law from receiving the Services;</li>
-        <li>Comply with all applicable federal, state, and local laws and regulations, including HIPAA, the HITECH Act, and applicable state health privacy laws; and</li>
-        <li>For provider users: hold a valid, active professional license in good standing in the applicable jurisdiction.</li>
+        <li>Have legal authority to enter into a binding agreement (or be expressly authorized to do so on behalf of an organization);</li>
+        <li>Comply with all applicable federal, state, and local laws and regulations, including HIPAA, the HITECH Act, CMS conditions of participation, and applicable state health privacy laws; and</li>
+        <li>For provider accounts: hold a valid, active professional license in good standing in the applicable jurisdiction.</li>
       </ul>
-      <p>Healthcare provider accounts are subject to NPI verification and credentialing review. InPursuit Health reserves the right to suspend or deny access to any account that does not meet eligibility requirements.</p>
+      <p>Provider accounts are subject to NPI verification. InPursuit Health may suspend or deny access to any account that does not meet eligibility requirements.</p>
 
-      <h2 id="accounts">5. Accounts and Access</h2>
+      <h2 id="accounts">6. Accounts and Access</h2>
 
-      <h3>5.1 Account Registration</h3>
-      <p>You must provide accurate, current, and complete information during registration and maintain the accuracy of that information throughout the term of your account. You are responsible for all activity that occurs under your account.</p>
+      <h3>6.1 Account Registration</h3>
+      <p>You must provide accurate, current, and complete information during registration and maintain the accuracy of that information throughout the term of your account. You are responsible for all activity that occurs under your account credentials.</p>
 
-      <h3>5.2 Credentials and Security</h3>
-      <p>You are responsible for maintaining the confidentiality of your login credentials. You must promptly notify us at <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a> if you suspect unauthorized access to your account. InPursuit Health will not be liable for any loss resulting from unauthorized use of your credentials.</p>
+      <h3>6.2 Credential Security</h3>
+      <p>You are responsible for maintaining the confidentiality of your login credentials. Report any suspected unauthorized access immediately to <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a>.</p>
 
-      <h3>5.3 Multi-Factor Authentication</h3>
-      <p>Multi-factor authentication (MFA) is required for all accounts with access to PHI or clinical data. Failure to maintain MFA may result in access suspension.</p>
+      <h3>6.3 Multi-Factor Authentication</h3>
+      <p>MFA is required for all accounts with access to PHI or clinical data. This is not optional. Failure to maintain MFA will result in access suspension until the requirement is met.</p>
 
-      <h3>5.4 Authorized Users</h3>
-      <p>Customers are responsible for managing Authorized Users, ensuring that all Authorized Users comply with these Terms, and promptly deprovisioning access for individuals who are no longer authorized.</p>
+      <h3>6.4 Authorized User Management</h3>
+      <p>Customers are responsible for managing their Authorized Users, ensuring all Authorized Users comply with these Terms, and immediately deprovisioning access for individuals who are no longer employed or authorized. All access changes are reflected in your real-time audit log.</p>
 
-      <h2 id="acceptable-use">6. Acceptable Use</h2>
+      <h2 id="acceptable-use">7. Acceptable Use</h2>
 
-      <h3>6.1 Permitted Use</h3>
-      <p>You may use the Services solely for lawful purposes consistent with your subscription and these Terms, including operating value-based care programs, managing clinical data, and facilitating health information exchange in compliance with applicable law.</p>
+      <h3>7.1 Permitted Use</h3>
+      <p>You may use the Services for lawful purposes consistent with your subscription — including operating value-based care programs, managing clinical workflows, facilitating health information exchange, and empowering patients to access and control their health data.</p>
 
-      <h3>6.2 Prohibited Conduct</h3>
+      <h3>7.2 Prohibited Conduct</h3>
       <p>You agree not to:</p>
       <ul>
-        <li>Use the Services in violation of any applicable law, regulation, or third-party rights, including HIPAA, state health privacy laws, and federal anti-kickback statutes;</li>
+        <li>Use the Services in violation of any applicable law, including HIPAA, the HITECH Act, federal anti-kickback statutes, or applicable state health privacy laws;</li>
         <li>Access, collect, or transmit PHI or personal information without appropriate authorization;</li>
-        <li>Attempt to circumvent, disable, or interfere with security features, access controls, or audit logging;</li>
-        <li>Reverse engineer, decompile, disassemble, or attempt to derive the source code of the Platform;</li>
-        <li>Use the Services to train, fine-tune, or develop AI or machine learning models without InPursuit Health's express written consent;</li>
+        <li>Attempt to circumvent, disable, or tamper with security features, access controls, or audit logging;</li>
+        <li>Reverse engineer, decompile, or attempt to derive the source code of any component of the TETRA platform;</li>
+        <li>Use the Services or Customer Data to train, fine-tune, or benchmark AI or machine learning models for purposes outside your own clinical workflows, without our express written consent;</li>
         <li>Resell, sublicense, or provide access to the Services to unauthorized third parties;</li>
-        <li>Introduce malware, viruses, or other malicious code into the Services;</li>
-        <li>Use the Services to engage in fraudulent billing, upcoding, or other healthcare fraud schemes;</li>
-        <li>Harvest, scrape, or bulk-download data from the Services except as expressly permitted by your subscription;</li>
-        <li>Use the Services in any manner that could impair, overburden, or damage InPursuit Health's infrastructure.</li>
+        <li>Introduce malware, ransomware, or any malicious code into the Services;</li>
+        <li>Use the Services to facilitate healthcare fraud, fraudulent billing, upcoding, or any scheme that violates the False Claims Act or related statutes;</li>
+        <li>Use the Services in any manner that could damage, overburden, or impair our infrastructure or interfere with other customers' use.</li>
       </ul>
 
-      <h3>6.3 Clinical Decision-Making</h3>
-      <p>The Services are designed to support — not replace — clinical judgment. No output of the TETRA platform or any AI component should be treated as a substitute for the professional judgment of a licensed healthcare provider. Providers retain sole responsibility for all clinical decisions affecting patient care.</p>
+      <h3>7.3 Clinical Decision Responsibility</h3>
+      <p>The TETRA platform supports clinical decision-making. It does not replace it. AI-generated outputs, care gap alerts, risk scores, and clinical recommendations are informational. The licensed provider is always the decision-maker. InPursuit Health does not assume clinical liability for patient outcomes.</p>
 
-      <h2 id="data-rights">7. Data Rights and Ownership</h2>
+      <h2 id="data-oath-obligations">8. Data Oath Obligations — Our Binding Commitments to You</h2>
+      <p>The following commitments are unconditional legally binding obligations. They are not qualified by other provisions of these Terms. No carve-out, exception, or future amendment may narrow them without your explicit written consent.</p>
 
-      <h3>7.1 Customer Data Ownership</h3>
-      <p>As between InPursuit Health and Customer, Customer retains all right, title, and interest in and to Customer Data, including PHI. InPursuit Health claims no ownership rights in Customer Data.</p>
+      <ul>
+        <li><strong>We will never sell your data.</strong> Customer Data and PHI will never be sold, traded, brokered, licensed, or transferred to any third party for financial consideration — not to advertisers, data brokers, pharmaceutical companies, insurers, or anyone else.</li>
+        <li><strong>You own your data — always.</strong> Customer retains full intellectual property ownership of all Customer Data. InPursuit Health's role is custodian and operator, never owner. Your data rights do not transfer to us and cannot be acquired by us.</li>
+        <li><strong>Your data trains only your insights.</strong> We will never use Customer Data — including any de-identified, anonymized, or aggregated form of Customer Data — to train, fine-tune, benchmark, or develop AI models for any purpose other than clinical AI workflows within your own TETRA Vault, unless you provide explicit written authorization for a specific and described use. We will never pool your clinical data with any other customer's data for any purpose.</li>
+        <li><strong>Full transparency — always.</strong> You will always have direct access to real-time audit logs showing what data we hold, who accessed it, when, and for what purpose. There are no hidden processes, shadow analytics, or secondary uses you have not approved.</li>
+        <li><strong>Data is never our product.</strong> Our revenue model does not depend on the commercial value of Customer Data. We earn revenue from infrastructure subscriptions and outcome-based arrangements. Data monetization is prohibited — not deferred.</li>
+        <li><strong>Security is ongoing.</strong> We commit to continuous investment in penetration testing, vulnerability assessments, compliance audits, and emerging threat response. Your data protection does not have an expiration date.</li>
+      </ul>
 
-      <h3>7.2 License to Process Customer Data</h3>
-      <p>Customer grants InPursuit Health a limited, non-exclusive license to access, process, store, and transmit Customer Data solely to: (a) provide the Services; (b) comply with applicable law; (c) improve Service reliability and security; and (d) as otherwise directed by Customer. This license terminates upon expiration or termination of the applicable subscription.</p>
-
-      <h3>7.3 No Sale; No AI Training</h3>
-      <p>InPursuit Health will never sell Customer Data or PHI to third parties. InPursuit Health will never use PHI or identifiable Customer Data to train, fine-tune, or benchmark AI or machine learning models without explicit written authorization. These restrictions survive termination of the Agreement.</p>
-
-      <h3>7.4 Aggregated De-identified Data</h3>
-      <p>InPursuit Health may use aggregated, de-identified data derived from Customer Data (de-identified in accordance with 45 C.F.R. § 164.514) to improve the Services, develop benchmarks, and conduct research. Such de-identified data is not Customer Data and remains the property of InPursuit Health.</p>
-
-      <h3>7.5 Data Portability</h3>
-      <p>Upon request or upon termination of a subscription, InPursuit Health will make Customer Data available for export in a standard, machine-readable format for a period of 90 days following termination. After this period, InPursuit Health may securely destroy Customer Data in accordance with our data retention policy.</p>
-
-      <h2 id="hipaa">8. HIPAA Compliance</h2>
-      <p>For Customers that are HIPAA-covered entities or business associates, a Business Associate Agreement (BAA) must be executed prior to any processing of PHI through the Services. InPursuit Health will not process PHI without a duly executed BAA in place. To request a BAA, contact <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
-      <p>In its role as a Business Associate, InPursuit Health will comply with all applicable provisions of the HIPAA Privacy Rule, Security Rule, and Breach Notification Rule as set forth in the BAA. The BAA is incorporated into and governed by these Terms, but in the event of conflict, the BAA will control with respect to PHI-related matters.</p>
-
-      <h2 id="ip">9. Intellectual Property</h2>
-
-      <h3>9.1 InPursuit Health IP</h3>
-      <p>The Services, Platform, Documentation, and all underlying technology, software, algorithms, trade secrets, trademarks, service marks, and proprietary methodologies are and remain the exclusive intellectual property of InPursuit Health, Inc. and its licensors. These Terms grant you no right, title, or interest in InPursuit Health's intellectual property except the limited license to use the Services as expressly described herein.</p>
-
-      <h3>9.2 Trademarks</h3>
-      <p>TETRA&trade;, TETRA Ex&trade;, TETRA Conductor&trade;, TETRA Aegis&trade;, TETRA Sentinel&trade;, "Harness the Power of Your Data"&trade;, "Results Matter"&trade;, and InPursuit Health&trade; are trademarks and/or service marks of InPursuit Health, Inc. Unauthorized use of any InPursuit Health trademark is strictly prohibited.</p>
-
-      <h3>9.3 Feedback</h3>
-      <p>If you submit suggestions, ideas, or other feedback regarding the Services ("Feedback"), you grant InPursuit Health a perpetual, irrevocable, royalty-free, worldwide license to use, reproduce, modify, and incorporate such Feedback into the Services without compensation or attribution to you.</p>
-
-      <h2 id="fees">10. Fees and Payment</h2>
-
-      <h3>10.1 Subscription Fees</h3>
-      <p>Fees for the Services are set forth in the applicable Order Form or Subscription Agreement. All fees are in U.S. dollars unless otherwise specified. Fees are non-refundable except as expressly stated in the applicable agreement or required by law.</p>
-
-      <h3>10.2 Payment Terms</h3>
-      <p>Invoices are due and payable within 30 days of the invoice date unless otherwise specified in an Order Form. Past-due amounts accrue interest at 1.5% per month (or the maximum rate permitted by law, whichever is lower). InPursuit Health reserves the right to suspend Services for accounts with past-due balances following 10 days' written notice.</p>
-
-      <h3>10.3 Taxes</h3>
-      <p>You are responsible for all applicable taxes, duties, and similar charges arising from your use of the Services, excluding taxes based on InPursuit Health's net income.</p>
-
-      <h3>10.4 Pricing Changes</h3>
-      <p>InPursuit Health will provide at least 60 days' written notice of any changes to subscription pricing. Price changes will take effect at the start of the next subscription renewal period following notice.</p>
-
-      <h2 id="confidentiality">11. Confidentiality</h2>
-      <p>Each party agrees to hold the other party's Confidential Information in strict confidence using at least the same degree of care used to protect its own confidential information (but no less than reasonable care), and not to disclose it to any third party except as required by law or as necessary to perform obligations under these Terms. "Confidential Information" includes Customer Data, PHI, proprietary technology, business plans, pricing, and any information designated as confidential. Obligations of confidentiality do not apply to information that: (a) is or becomes publicly known without breach; (b) was lawfully known before disclosure; (c) is rightfully received from a third party without restriction; or (d) is required to be disclosed by law or court order, provided that the disclosing party gives reasonable prior notice and cooperates with the other party's efforts to obtain a protective order.</p>
-
-      <h2 id="disclaimers">12. Disclaimers</h2>
-      <div class="legal-warning">
-        <strong>THE SERVICES ARE PROVIDED "AS IS" AND "AS AVAILABLE."</strong> TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, INPURSUIT HEALTH DISCLAIMS ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, TITLE, AND NON-INFRINGEMENT. INPURSUIT HEALTH DOES NOT WARRANT THAT THE SERVICES WILL BE UNINTERRUPTED, ERROR-FREE, OR FREE OF HARMFUL COMPONENTS. THE SERVICES ARE NOT A SUBSTITUTE FOR PROFESSIONAL MEDICAL ADVICE, DIAGNOSIS, OR TREATMENT.
+      <div class="notice-block">
+        <p><strong>What this means for "de-identified data" clauses:</strong> Many technology agreements include a clause permitting the vendor to freely use "aggregated, de-identified data" derived from customer records for product improvement, benchmarking, and research. These Terms do not include that clause. We do not use your patient population's data — in any form — to build products or insights that benefit us commercially or benefit any other customer. The only internal technical data we use for platform improvement is non-clinical performance and reliability data (system latency, error rates) that cannot be linked to any patient, provider, or organization.</p>
       </div>
 
-      <h2 id="limitation">13. Limitation of Liability</h2>
-      <div class="legal-warning">
-        <strong>TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW:</strong> (A) INPURSUIT HEALTH WILL NOT BE LIABLE FOR ANY INDIRECT, INCIDENTAL, CONSEQUENTIAL, SPECIAL, PUNITIVE, OR EXEMPLARY DAMAGES, INCLUDING LOST PROFITS, LOSS OF DATA, OR BUSINESS INTERRUPTION, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES; AND (B) INPURSUIT HEALTH'S AGGREGATE LIABILITY ARISING OUT OF OR RELATED TO THESE TERMS WILL NOT EXCEED THE GREATER OF (i) THE TOTAL FEES PAID BY YOU TO INPURSUIT HEALTH IN THE 12 MONTHS PRECEDING THE CLAIM, OR (ii) ONE HUNDRED DOLLARS ($100). THESE LIMITATIONS APPLY REGARDLESS OF THE THEORY OF LIABILITY (CONTRACT, TORT, STRICT LIABILITY, OR OTHERWISE). SOME JURISDICTIONS DO NOT ALLOW EXCLUSION OF CERTAIN WARRANTIES OR LIMITATIONS ON CERTAIN TYPES OF DAMAGES, SO SOME OF THE ABOVE LIMITATIONS MAY NOT APPLY TO YOU.
+      <h2 id="data-ownership">9. Data Ownership and Rights</h2>
+
+      <h3>9.1 Customer Ownership</h3>
+      <p>As between InPursuit Health and Customer, Customer retains all right, title, and interest in and to Customer Data, including PHI. These rights are not transferable to InPursuit Health under any circumstance, including merger, acquisition, or insolvency.</p>
+
+      <h3>9.2 Limited Operating License</h3>
+      <p>Customer grants InPursuit Health a limited, non-exclusive, non-transferable license to access, process, store, and transmit Customer Data solely to: (a) provide the Services as described in this Agreement; (b) operate and maintain the security and reliability of the platform; and (c) comply with applicable law. This license is strictly limited to these purposes. It does not permit InPursuit Health to use Customer Data for its own commercial benefit, product development, or AI training. The license terminates immediately upon expiration or termination of the applicable subscription.</p>
+
+      <h3>9.3 Data Portability</h3>
+      <p>Customer may export all Customer Data at any time, in standard FHIR R4 or CSV formats, at no additional charge. Upon request or account termination, InPursuit Health will make a complete data export available within 72 hours and maintain it for 90 days. After that period, data is securely destroyed per NIST SP 800-88 guidelines, and Customer receives written confirmation of destruction.</p>
+
+      <h3>9.4 No Adverse Use of Customer Data</h3>
+      <p>InPursuit Health will not:</p>
+      <ul>
+        <li>Use Customer Data to compete with Customer;</li>
+        <li>Share Customer Data with any of Customer's competitors;</li>
+        <li>Analyze Customer Data to develop insights that are then sold to or shared with any other organization;</li>
+        <li>Use Customer Data in any way that is not expressly authorized in this Agreement or the applicable BAA.</li>
+      </ul>
+
+      <h2 id="hipaa-baa">10. HIPAA and Business Associate Agreement</h2>
+      <p>For Customers that are HIPAA-covered entities or business associates themselves, a signed BAA is required before any PHI is processed through the TETRA platform. This is not optional and cannot be waived. To request a BAA, contact <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a>.</p>
+      <p>As a Business Associate, InPursuit Health will comply with all applicable HIPAA Privacy Rule, Security Rule, and Breach Notification Rule requirements. In the event of conflict between these Terms and the BAA regarding PHI-specific obligations, the BAA controls.</p>
+      <p>InPursuit Health is HIPAA-ready — meaning our architecture and practices are designed and maintained to comply with HIPAA as a Business Associate for covered entities that have executed a BAA with us. We do not display "HIPAA Compliant" as an absolute credential for all users — HIPAA compliance is a bilateral obligation that requires a signed BAA to be operative for your organization.</p>
+
+      <h2 id="tetra-vault">11. TETRA Vault Architecture</h2>
+      <p>The TETRA Vault is the logical data isolation model underlying the TETRA platform. These are architectural facts, not marketing commitments:</p>
+      <ul>
+        <li><strong>Logical isolation:</strong> Each organization's data is logically isolated from every other organization's data at the storage, query, and API levels. Your data does not share a storage context with any other customer.</li>
+        <li><strong>No cross-customer pooling:</strong> Customer Data is never combined with, compared against, or aggregated with the data of any other customer for any purpose — analytical, commercial, or operational.</li>
+        <li><strong>Customer-controlled permissions:</strong> Access permissions to your TETRA Vault are set by you. InPursuit Health personnel access your Vault only for support purposes explicitly requested by you, and only with your authorization recorded in the audit log.</li>
+        <li><strong>Immutable audit logs:</strong> All access to Customer Data generates an immutable, timestamped audit record. These logs cannot be altered or deleted — by you or by InPursuit Health — during the applicable retention period. You have real-time access to your full audit log through the platform.</li>
+        <li><strong>TETRA Aegis&trade; enforcement:</strong> All AI model interactions with data in your Vault are mediated by TETRA Aegis&trade; before any data leaves your organization. TETRA Sentinel&trade; monitors continuously for anomalies, policy violations, and unauthorized access attempts.</li>
+      </ul>
+
+      <h2 id="ai-governance">12. AI Governance</h2>
+
+      <h3>12.1 The TETRA Conductor&trade; Principle</h3>
+      <p>InPursuit Health does not pick AI model winners. TETRA Conductor&trade; is model-agnostic infrastructure. Any AI model — commercial or open source — can operate within the TETRA orchestration layer. We are the rails, not the train. This means your organization is never locked into a single AI vendor and can migrate models without changing your data infrastructure.</p>
+
+      <h3>12.2 TETRA Aegis&trade; — Mandatory Supervisory Control</h3>
+      <p>Every AI interaction within the TETRA enterprise platform passes through TETRA Aegis&trade;. This is an architectural constraint, not a policy setting. No AI model — regardless of vendor — interacts with PHI or clinical data without passing through the TETRA Aegis supervisory layer. This layer intercepts, classifies, risk-scores, and mediates every interaction in under 200ms. You cannot opt out of this protection.</p>
+
+      <h3>12.3 No AI Black Boxes</h3>
+      <p>Every AI-generated recommendation, risk score, and care gap alert produced through the TETRA platform includes the full reasoning chain. Explainability is not optional and cannot be disabled. All AI decisions are logged in your immutable audit trail.</p>
+
+      <h3>12.4 Bias Monitoring</h3>
+      <p>We continuously test AI models operating within the TETRA platform for demographic bias in risk scoring, care recommendations, and patient outreach prioritization. Equitable care delivery is an engineering requirement, not a policy statement.</p>
+
+      <h3>12.5 What We Will Never Do With AI</h3>
+      <ul>
+        <li>Sell AI-derived insights built on your patient population to any third party</li>
+        <li>Share anonymized data sets, model weights, or predictive models trained on your data with any other organization</li>
+        <li>Allow third-party AI vendors to retain, train on, or analyze your clinical data without an explicit, described, written authorization from you</li>
+        <li>Deploy autonomous clinical AI that makes patient care decisions without a licensed provider in the loop</li>
+      </ul>
+
+      <h2 id="ip">13. Intellectual Property</h2>
+
+      <h3>13.1 InPursuit Health IP</h3>
+      <p>The TETRA platform, its underlying technology, software, algorithms, patent-pending architectures, trade secrets, trademarks, and proprietary methodologies are and remain the exclusive intellectual property of InPursuit Health, Inc. These Terms grant you no ownership rights in our intellectual property — only the right to use the Services as expressly described.</p>
+
+      <h3>13.2 Trademarks</h3>
+      <p>TETRA&trade;, TETRA Ex&trade;, TETRA Conductor&trade;, TETRA Aegis&trade;, TETRA Sentinel&trade;, "Harness the Power of Your Data"&trade;, "Results Matter"&trade;, and InPursuit Health&trade; are trademarks and service marks of InPursuit Health, Inc. Unauthorized use is prohibited.</p>
+
+      <h3>13.3 Patent-Pending Architecture</h3>
+      <p>Aspects of the TETRA platform are subject to pending patent applications, including: client-side supervisory AI mediation; risk scoring of prompt payloads; adaptive data redaction; dynamic policy enforcement; AI-to-AI safety filtering; and clinical supervisory control plane architecture. Use of the Services does not grant any rights under these pending or issued patents.</p>
+
+      <h3>13.4 Customer IP in Customer Data</h3>
+      <p>Customer retains all intellectual property rights in Customer Data. Nothing in these Terms grants InPursuit Health any intellectual property right in Customer Data, in derivative works of Customer Data, or in insights derived from Customer Data.</p>
+
+      <h3>13.5 Feedback</h3>
+      <p>If you provide suggestions or feedback about the Services, you grant InPursuit Health a perpetual, royalty-free license to incorporate that feedback into the Services. This license applies to functional improvements only and does not grant InPursuit Health any right to Customer Data.</p>
+
+      <h2 id="fees">14. Fees and Payment</h2>
+
+      <h3>14.1 Revenue Model Transparency</h3>
+      <p>InPursuit Health's revenue comes from infrastructure access subscriptions and outcome-based arrangements. We do not earn revenue from data monetization, data licensing, or advertising. Subscription fees pay for infrastructure, security, and support — not for access to a data monetization pipeline that subsidizes artificially low software fees.</p>
+
+      <h3>14.2 Subscription Fees</h3>
+      <p>Fees are set forth in the applicable Order Form or Subscription Agreement. All fees are in U.S. dollars. Fees are non-refundable except as expressly stated in the applicable agreement or required by law.</p>
+
+      <h3>14.3 Payment Terms</h3>
+      <p>Invoices are due within 30 days of the invoice date unless otherwise specified. Past-due amounts accrue interest at 1.5% per month or the maximum rate permitted by law. We will provide 10 days' written notice before suspending Services for non-payment.</p>
+
+      <h3>14.4 Price Changes</h3>
+      <p>We will provide at least 60 days' written notice of any subscription price changes. Price changes take effect at the start of the next renewal period following notice. You may terminate before the change takes effect without penalty.</p>
+
+      <h3>14.5 Taxes</h3>
+      <p>You are responsible for all applicable taxes, duties, and charges arising from your use of the Services, excluding taxes based on InPursuit Health's net income.</p>
+
+      <h2 id="confidentiality">15. Confidentiality</h2>
+      <p>Each party agrees to hold the other party's Confidential Information in strict confidence using at least the same degree of care it uses to protect its own most sensitive information (but no less than reasonable care), and not to disclose it to any third party except as necessary to perform obligations under this Agreement or as required by law.</p>
+      <p>"Confidential Information" includes: Customer Data, PHI, proprietary technology, business plans, pricing, and any information designated as confidential. It does not include information that: (a) is or becomes publicly known without breach; (b) was lawfully known before disclosure; (c) is lawfully received from a third party without restriction; or (d) must be disclosed by law or court order, with prompt prior notice to the other party where legally permitted.</p>
+
+      <h2 id="warranties">16. Warranties and Disclaimers</h2>
+
+      <h3>16.1 Our Warranties to You</h3>
+      <p>InPursuit Health represents and warrants that:</p>
+      <ul>
+        <li>The Services will be provided in a professional and workmanlike manner consistent with industry standards for healthcare infrastructure;</li>
+        <li>We will maintain all required HIPAA Business Associate obligations under any executed BAA;</li>
+        <li>We will not breach any of the six commitments in the Data Oath;</li>
+        <li>We have the right and authority to provide the Services and to enter into these Terms;</li>
+        <li>We will notify you of any material security incident affecting Customer Data within 60 hours of discovery.</li>
+      </ul>
+
+      <h3>16.2 Platform Availability</h3>
+      <p>While we invest heavily in reliability and uptime, the TETRA platform is provided subject to the service levels specified in your Order Form or Subscription Agreement. We do not warrant uninterrupted or error-free operation, but we commit to transparent communication, rapid response, and root-cause disclosure for any material availability event.</p>
+
+      <h3>16.3 No Medical Device Warranty</h3>
+      <p>The TETRA platform is not an FDA-cleared medical device. AI-generated clinical recommendations are decision support tools, not diagnostic instruments. InPursuit Health makes no warranty regarding clinical outcomes, diagnostic accuracy, or treatment efficacy.</p>
+
+      <h3>16.4 Disclaimer of Implied Warranties</h3>
+      <p>Except as expressly stated in Section 16.1, and to the maximum extent permitted by applicable law, InPursuit Health disclaims all implied warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement. These disclaimers do not limit our Data Oath obligations, which are unconditional.</p>
+
+      <h2 id="liability">17. Limitation of Liability</h2>
+
+      <div class="notice-block">
+        <p><strong>A note on liability caps in healthcare infrastructure agreements:</strong> Standard technology agreements cap vendor liability at a nominal amount (often 12 months of fees or $100). For a company handling PHI, that framing is incompatible with our mission. We do not take lightly the responsibility of operating as a Business Associate for covered entities. Our liability framework below reflects that.</p>
       </div>
-      <p>Nothing in these Terms limits or excludes either party's liability for: (a) death or personal injury caused by negligence; (b) fraud or fraudulent misrepresentation; (c) any liability that cannot be excluded by law; or (d) intentional misconduct or gross negligence.</p>
 
-      <h2 id="indemnification">14. Indemnification</h2>
-      <p>You agree to indemnify, defend, and hold harmless InPursuit Health and its officers, directors, employees, agents, licensors, and successors from and against any claims, liabilities, damages, judgments, losses, costs, expenses (including reasonable attorneys' fees), and penalties arising out of or related to: (a) your use or misuse of the Services; (b) your violation of these Terms or applicable law; (c) your violation of any third party's rights, including HIPAA; (d) inaccurate information you provide; or (e) any claim that Customer Data, as provided by you, infringes or violates any third party's intellectual property or privacy rights.</p>
+      <h3>17.1 Mutual Limitation</h3>
+      <p>Neither party will be liable to the other for any indirect, incidental, consequential, special, punitive, or exemplary damages — including loss of profits, loss of data, or business interruption — arising out of or related to this Agreement, except as provided in Section 17.2.</p>
 
-      <h2 id="termination">15. Termination</h2>
+      <h3>17.2 Cap on Liability</h3>
+      <p>InPursuit Health's aggregate liability to Customer for any and all claims arising out of or related to this Agreement in any 12-month period will not exceed the total fees paid by Customer to InPursuit Health in the 12 months preceding the claim giving rise to liability. This cap does not apply to: (a) breach of the Data Oath obligations in Section 8; (b) InPursuit Health's gross negligence or willful misconduct; (c) InPursuit Health's indemnification obligations; (d) breach of confidentiality obligations resulting in unauthorized disclosure of PHI; or (e) any liability that cannot be excluded by applicable law.</p>
 
-      <h3>15.1 Termination by Customer</h3>
-      <p>Customers may terminate their subscription at the end of the current subscription period by providing written notice at least 30 days prior to renewal. Enterprise agreements may have different termination provisions as set forth in the applicable Order Form.</p>
+      <h3>17.3 PHI Breach Liability</h3>
+      <p>In the event of a breach of PHI caused by InPursuit Health's failure to comply with its BAA obligations or these Terms, InPursuit Health's liability is not subject to the cap in Section 17.2. PHI breach liability is governed by the applicable BAA and applicable law.</p>
 
-      <h3>15.2 Termination by InPursuit Health</h3>
-      <p>InPursuit Health may suspend or terminate your access to the Services: (a) immediately, for material breach of these Terms (including unauthorized use, security incidents, or non-payment); (b) upon 30 days' written notice without cause; or (c) immediately upon discovery of activity that poses a risk to the security, integrity, or availability of the Services or PHI.</p>
+      <h2 id="indemnification">18. Indemnification</h2>
+      <p>Each party will indemnify, defend, and hold harmless the other party and its officers, directors, and employees from and against claims, liabilities, damages, and costs (including reasonable attorneys' fees) arising from:</p>
+      <ul>
+        <li><strong>Customer indemnifies InPursuit Health</strong> for: Customer's misuse of the Services; Customer's violation of these Terms or applicable law; inaccurate information Customer provides; or Customer Data that infringes any third party's rights.</li>
+        <li><strong>InPursuit Health indemnifies Customer</strong> for: InPursuit Health's breach of the Data Oath commitments in Section 8; InPursuit Health's negligent or wrongful handling of Customer Data or PHI; or claims that the TETRA platform infringes any third party's intellectual property rights.</li>
+      </ul>
 
-      <h3>15.3 Effect of Termination</h3>
-      <p>Upon termination: (a) all licenses granted under these Terms immediately cease; (b) you must cease all use of the Services; (c) InPursuit Health will make Customer Data available for export for 90 days; and (d) all provisions of these Terms that by their nature should survive termination will survive, including confidentiality, data rights restrictions, limitation of liability, and indemnification.</p>
+      <h2 id="termination">19. Termination</h2>
 
-      <h2 id="governing-law">16. Governing Law</h2>
-      <p>These Terms are governed by and construed in accordance with the laws of the State of Delaware, without regard to its conflict of law principles. The United Nations Convention on Contracts for the International Sale of Goods does not apply to these Terms. To the extent any dispute is not subject to arbitration under Section 17, you consent to the exclusive jurisdiction of the state and federal courts located in Delaware for resolution of such disputes.</p>
+      <h3>19.1 Termination by Customer</h3>
+      <p>Customer may terminate their subscription at the end of the current term by providing 30 days' written notice before renewal. Enterprise agreements may specify different notice periods. There are no early termination fees except as specified in an applicable Order Form.</p>
 
-      <h2 id="disputes">17. Dispute Resolution</h2>
+      <h3>19.2 Termination by InPursuit Health</h3>
+      <p>InPursuit Health may suspend or terminate access to the Services: (a) immediately for material breach that poses a security risk or compromises PHI integrity; (b) upon 30 days' written notice for uncured material breach; or (c) for non-payment following 10 days' written notice. We will not terminate for convenience without 90 days' advance notice.</p>
 
-      <h3>17.1 Informal Resolution</h3>
-      <p>Before initiating formal dispute resolution, you agree to contact InPursuit Health in writing at <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a> describing the nature of the dispute and your proposed resolution. The parties will attempt to resolve the dispute informally for a period of 30 days.</p>
+      <h3>19.3 Effect of Termination — Data Return</h3>
+      <p>Upon any termination: (a) all licenses granted under these Terms cease; (b) InPursuit Health will make a complete Customer Data export available within 72 hours; (c) Customer Data will be available for export for 90 days; (d) after 90 days, Customer Data will be securely destroyed per NIST SP 800-88 guidelines and Customer will receive written confirmation of destruction. InPursuit Health will not retain Customer Data after destruction except as required by applicable law.</p>
 
-      <h3>17.2 Binding Arbitration</h3>
-      <p>If informal resolution fails, any dispute, claim, or controversy arising out of or relating to these Terms (except for equitable relief for intellectual property infringement or breach of confidentiality obligations) will be resolved by binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. The arbitration will be conducted in Delaware (or remotely, by agreement). The arbitrator's decision will be final and binding and may be entered as a judgment in any court of competent jurisdiction.</p>
+      <h3>19.4 Survival</h3>
+      <p>The following provisions survive termination: Data Oath obligations (Section 8), Data Ownership (Section 9), Confidentiality (Section 15), Limitation of Liability (Section 17), Indemnification (Section 18), and Governing Law and Dispute Resolution (Sections 20–21).</p>
 
-      <h3>17.3 Class Action Waiver</h3>
-      <p>TO THE MAXIMUM EXTENT PERMITTED BY LAW, ALL CLAIMS MUST BE BROUGHT IN YOUR INDIVIDUAL CAPACITY AND NOT AS A CLASS MEMBER OR PARTICIPANT IN ANY CLASS, COLLECTIVE, OR REPRESENTATIVE PROCEEDING.</p>
+      <h2 id="governing-law">20. Governing Law</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of the State of Delaware, without regard to conflict of law principles. For disputes not subject to arbitration under Section 21, the parties consent to the exclusive jurisdiction of state and federal courts located in Delaware.</p>
 
-      <h3>17.4 Exceptions</h3>
-      <p>Either party may seek injunctive or other equitable relief from a court of competent jurisdiction for actual or threatened misappropriation of trade secrets, infringement of intellectual property rights, or breach of confidentiality obligations without first pursuing informal resolution or arbitration.</p>
+      <h2 id="disputes">21. Dispute Resolution</h2>
 
-      <h2 id="general">18. General Provisions</h2>
+      <h3>21.1 Informal Resolution First</h3>
+      <p>Before initiating formal dispute resolution, the complaining party will provide written notice of the dispute and a proposed resolution to the other party. The parties will attempt to resolve the dispute informally for 30 days from the date of that notice.</p>
 
-      <h3>18.1 Entire Agreement</h3>
-      <p>These Terms, together with any applicable Order Form, BAA, and documents incorporated by reference, constitute the entire agreement between the parties with respect to the subject matter and supersede all prior negotiations, representations, agreements, and understandings.</p>
+      <h3>21.2 Binding Arbitration</h3>
+      <p>If informal resolution fails, disputes arising out of or relating to these Terms (excluding equitable relief for IP infringement, Data Oath breach, or confidentiality violations) will be resolved by binding arbitration administered by the American Arbitration Association (AAA) under its Commercial Arbitration Rules. Arbitration will be conducted in Delaware, or remotely by agreement. The arbitrator's decision will be final and may be entered as a judgment in any court of competent jurisdiction.</p>
 
-      <h3>18.2 Severability</h3>
-      <p>If any provision of these Terms is found to be unenforceable, that provision will be modified to the minimum extent necessary to make it enforceable, and the remaining provisions will continue in full force and effect.</p>
+      <h3>21.3 Exceptions — Equitable Relief</h3>
+      <p>Either party may seek injunctive or other equitable relief from a court of competent jurisdiction, without first pursuing informal resolution or arbitration, for: actual or threatened breach of the Data Oath commitments; unauthorized use or disclosure of PHI; misappropriation of trade secrets; or infringement of intellectual property rights.</p>
 
-      <h3>18.3 Waiver</h3>
-      <p>Failure by InPursuit Health to enforce any right or provision of these Terms will not constitute a waiver of such right or provision.</p>
+      <h3>21.4 Class Action Waiver</h3>
+      <p>All claims must be brought in the individual capacity of the claimant. Neither party may bring or participate in a class, collective, or representative action arising under this Agreement. This waiver does not apply to regulatory enforcement actions by government agencies.</p>
 
-      <h3>18.4 Assignment</h3>
-      <p>You may not assign these Terms or any rights or obligations hereunder without InPursuit Health's prior written consent. InPursuit Health may assign these Terms in connection with a merger, acquisition, or sale of substantially all of its assets. These Terms are binding upon and inure to the benefit of each party's permitted successors and assigns.</p>
+      <h2 id="general">22. General Provisions</h2>
 
-      <h3>18.5 Force Majeure</h3>
-      <p>Neither party will be in default or liable for any delay or failure to perform resulting from causes beyond its reasonable control, including acts of God, pandemics, government actions, war, terrorism, or natural disasters, provided that the affected party gives prompt written notice and uses commercially reasonable efforts to resume performance.</p>
+      <h3>22.1 Entire Agreement</h3>
+      <p>These Terms, together with the Data Oath, Privacy Policy, and any applicable Order Form and BAA, constitute the entire agreement between the parties regarding the subject matter and supersede all prior negotiations, representations, and agreements. In the event of conflict: the BAA controls over these Terms for PHI-related matters; the Data Oath controls over all other documents for data use obligations; and these Terms control over all other conflicts.</p>
 
-      <h3>18.6 No Third-Party Beneficiaries</h3>
-      <p>These Terms do not create any third-party beneficiary rights.</p>
+      <h3>22.2 Severability</h3>
+      <p>If any provision of these Terms is found unenforceable, that provision will be modified to the minimum extent necessary to make it enforceable, and all remaining provisions will continue in full force.</p>
 
-      <h3>18.7 Notices</h3>
-      <p>Legal notices to InPursuit Health must be sent to <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a>. Notices to you will be sent to the email address associated with your account. Notices are deemed received upon delivery confirmation or, for email, 24 hours after sending if no delivery failure notification is received.</p>
+      <h3>22.3 Waiver</h3>
+      <p>Failure to enforce any right under these Terms is not a waiver of that right.</p>
+
+      <h3>22.4 Assignment</h3>
+      <p>Customer may not assign these Terms without InPursuit Health's prior written consent. InPursuit Health may assign these Terms in connection with a merger, acquisition, or asset sale — provided the successor entity is bound by all Data Oath obligations and existing BAAs as a condition of the transaction, and Customer is given 60 days' advance notice with the right to terminate and export data at no cost before the assignment takes effect.</p>
+
+      <h3>22.5 Force Majeure</h3>
+      <p>Neither party is liable for delay or failure to perform caused by circumstances beyond its reasonable control, including acts of God, pandemics, or government actions. The affected party will give prompt written notice and use commercially reasonable efforts to resume performance. Force majeure does not excuse InPursuit Health's obligation to protect PHI or notify Customer of a security incident.</p>
+
+      <h3>22.6 No Third-Party Beneficiaries</h3>
+      <p>These Terms do not create third-party beneficiary rights, except that patients whose PHI is handled under a BAA may enforce the PHI-related protections in these Terms against InPursuit Health to the extent permitted by HIPAA.</p>
+
+      <h3>22.7 Notices</h3>
+      <p>Legal notices to InPursuit Health: <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a>. Notices to Customer: sent to the email address on record. Email notices are effective 24 hours after sending absent delivery failure. For PHI breaches, notice timelines are governed by the BAA.</p>
 
       <div class="legal-contact-box" id="contact">
-        <h3>19. Contact</h3>
-        <p>For legal inquiries and contractual matters:</p>
-        <p><strong style="color:rgba(255,255,255,0.75);">InPursuit Health, Inc.</strong><br>
-        Legal Department: <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a><br>
-        Privacy Officer: <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a><br>
-        General Inquiries: <a href="mailto:info@InPursuitHealth.com">info@InPursuitHealth.com</a></p>
-        <p>To request a Business Associate Agreement: <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a></p>
+        <h3>23. Contact</h3>
+        <p>For questions about these Terms, to execute a BAA, or to report a potential Data Oath violation:</p>
+        <p><strong style="color:rgba(255,255,255,0.72);">InPursuit Health, Inc.</strong><br>
+        Legal: <a href="mailto:legal@InPursuitHealth.com">legal@InPursuitHealth.com</a><br>
+        Privacy / BAA: <a href="mailto:privacy@InPursuitHealth.com">privacy@InPursuitHealth.com</a><br>
+        Security: <a href="mailto:security@InPursuitHealth.com">security@InPursuitHealth.com</a><br>
+        General: <a href="mailto:info@InPursuitHealth.com">info@InPursuitHealth.com</a></p>
+        <p style="margin-top:16px; color:rgba(255,255,255,0.28); font-size:12px;">InPursuit Health, Inc. is a Delaware corporation. Veteran-Owned. DoD Validated. CMS Approved.</p>
       </div>
 
     </div>
@@ -474,7 +484,7 @@
       <a href="terms-of-service.html">Terms of Service</a>
       <a href="public/disclosures/InPursuit_Disclosures_General.pdf" target="_blank" rel="noopener">General Disclosures</a>
     </div>
-    <div class="legal-footer-copy">&copy; 2025 InPursuit Health, Inc. All rights reserved. &bull; Veteran-Owned &bull; HIPAA Compliant</div>
+    <div class="legal-footer-copy">&copy; 2025 InPursuit Health, Inc. All rights reserved. &bull; Veteran-Owned &bull; HIPAA-Ready &bull; DoD Validated</div>
   </div>
 </footer>
 
