@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clinical Delivery &amp; Corporate Structure — InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;--gold:#C5A44E;--gold-light:#D4B96A;--white:#FFFFFF;--cream:#FAF8F4;--red:#B22234;--green:#2E7D32;--text-dark:#1A1A2E;--text-muted:#6B7280;--border:rgba(10,22,40,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--text-dark);-webkit-font-smoothing:antialiased;}
+@media print{body{background:#fff;font-size:11px;} .page{box-shadow:none;margin:0;max-width:100%;} .cover{padding:48px 40px 36px;} .content{padding:32px 40px;} .doc-footer{padding:20px 40px;} .page-break{page-break-before:always;}}
+
+.page{max-width:900px;margin:0 auto;padding:0;}
+.page-break{height:2px;background:linear-gradient(90deg,transparent,rgba(197,164,78,0.2),transparent);margin:48px 0;}
+
+/* COVER */
+.cover{background:var(--navy);padding:72px 60px 56px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-80px;right:-80px;width:350px;height:350px;background:radial-gradient(circle,rgba(197,164,78,0.06),transparent 70%);pointer-events:none;}
+.cover::after{content:'';position:absolute;bottom:-120px;left:-60px;width:300px;height:300px;background:radial-gradient(circle,rgba(197,164,78,0.03),transparent 70%);pointer-events:none;}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 16px;background:rgba(197,164,78,0.06);border:1px solid rgba(197,164,78,0.2);border-radius:20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.cover-badge .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;}
+.cover-overline{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;opacity:0.7;}
+.cover h1{font-family:'Instrument Serif',serif;font-size:40px;color:var(--white);line-height:1.15;margin-bottom:16px;letter-spacing:-0.5px;}
+.cover h1 em{color:var(--gold);font-style:italic;}
+.cover-sub{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:620px;margin-bottom:28px;}
+.cover-meta{display:flex;gap:32px;flex-wrap:wrap;}
+.cover-meta-item{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;}
+.cover-meta-item strong{color:var(--gold);display:block;font-size:13px;margin-top:2px;letter-spacing:0;text-transform:none;}
+
+/* CONTENT */
+.content{padding:48px 60px;}
+.sect{margin-bottom:44px;}
+.sect-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.sect h2{font-family:'Instrument Serif',serif;font-size:26px;color:var(--navy);line-height:1.2;margin-bottom:14px;}
+.sect h3{font-family:'Instrument Serif',serif;font-size:19px;color:var(--navy);margin-bottom:10px;margin-top:24px;}
+.sect p{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:12px;}
+.sect p strong{color:var(--text-dark);}
+.sect p.callout{color:var(--navy);font-weight:600;font-size:15px;font-style:italic;font-family:'Instrument Serif',serif;margin:20px 0;line-height:1.5;}
+
+/* FLOW DIAGRAM */
+.flow{margin:28px 0;padding:0;display:flex;flex-direction:column;gap:0;}
+.flow-step{display:grid;grid-template-columns:140px 1fr;gap:0;position:relative;}
+.flow-left{padding:16px 20px 16px 0;text-align:right;border-right:3px solid var(--gold);position:relative;}
+.flow-left::after{content:'';position:absolute;right:-8px;top:50%;transform:translateY(-50%);width:13px;height:13px;border-radius:50%;background:var(--gold);border:3px solid var(--cream);}
+.flow-left .fl-entity{font-family:'Instrument Serif',serif;font-size:14px;color:var(--navy);line-height:1.2;}
+.flow-left .fl-type{font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-top:2px;}
+.flow-right{padding:14px 0 14px 28px;}
+.flow-right .fr-action{font-size:13px;color:var(--text-muted);line-height:1.5;}
+.flow-right .fr-amount{font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);margin-bottom:2px;}
+.flow-right .fr-note{font-size:11px;color:rgba(107,114,128,0.6);margin-top:3px;}
+
+/* ARROW CONNECTOR */
+.flow-arrow{display:flex;align-items:center;padding-left:150px;}
+.flow-arrow-line{width:3px;height:24px;background:linear-gradient(180deg,var(--gold),rgba(197,164,78,0.3));margin-left:7px;}
+
+/* COMPARABLES */
+.comp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:20px 0;}
+.comp-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:20px;text-align:center;transition:all 0.3s;}
+.comp-card:hover{border-color:rgba(197,164,78,0.3);transform:translateY(-2px);}
+.comp-name{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:4px;}
+.comp-val{font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);margin-bottom:4px;}
+.comp-desc{font-size:10px;color:var(--text-muted);line-height:1.4;letter-spacing:0.3px;}
+
+/* DARK BOX */
+.dark-box{background:var(--navy);border-radius:12px;padding:36px;margin:28px 0;}
+.dark-box .sect-label{color:var(--gold);}
+.dark-box h2,.dark-box h3{color:var(--white);}
+.dark-box p{color:rgba(255,255,255,0.5);}
+.dark-box p strong{color:var(--gold);}
+
+/* GOLD BOX */
+.gold-box{background:rgba(197,164,78,0.04);border:1px solid rgba(197,164,78,0.15);border-radius:10px;padding:24px;margin:20px 0;}
+.gold-box p{font-size:14px;color:var(--text-dark);line-height:1.7;margin:0;}
+.gold-box .gb-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+
+/* ALERT */
+.alert{background:rgba(46,125,50,0.04);border:1px solid rgba(46,125,50,0.15);border-radius:10px;padding:20px 24px;margin:20px 0;}
+.alert-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;}
+.alert p{font-size:13px;color:var(--text-dark);line-height:1.6;margin:0;}
+
+/* TWO COL */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0;}
+.col-card{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:24px;position:relative;overflow:hidden;}
+.col-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.col-card.mso::before{background:var(--gold);}
+.col-card.pc::before{background:var(--navy);}
+.col-card .cc-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.col-card.mso .cc-label{color:var(--gold);}
+.col-card.pc .cc-label{color:var(--navy);}
+.col-card h4{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);margin-bottom:10px;}
+.col-card p{font-size:12px;color:var(--text-muted);line-height:1.6;margin-bottom:6px;}
+.col-card ul{margin:8px 0 0 16px;font-size:12px;color:var(--text-muted);line-height:1.7;}
+
+/* PHASE CARDS */
+.phase-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin:20px 0;}
+.phase-card{border:1px solid var(--border);border-radius:10px;padding:24px;background:var(--white);position:relative;}
+.phase-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;border-radius:10px 10px 0 0;}
+.phase-card:nth-child(1)::before{background:var(--green);}
+.phase-card:nth-child(2)::before{background:var(--gold);}
+.phase-card:nth-child(3)::before{background:var(--navy);}
+.phase-num{font-family:'Instrument Serif',serif;font-size:32px;color:var(--gold);opacity:0.3;margin-bottom:8px;}
+.phase-title{font-family:'Instrument Serif',serif;font-size:16px;color:var(--navy);margin-bottom:8px;}
+.phase-time{font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.phase-desc{font-size:12px;color:var(--text-muted);line-height:1.6;}
+
+/* REVENUE EXAMPLE TABLE */
+.rev-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px;}
+.rev-tbl th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.rev-tbl td{padding:10px 14px;border-bottom:1px solid rgba(10,22,40,0.06);}
+.rev-tbl .amt{font-family:'Instrument Serif',serif;font-size:16px;color:var(--gold);}
+.rev-tbl .pct{font-family:'Instrument Serif',serif;font-size:14px;color:var(--navy);}
+.rev-tbl tfoot td{font-weight:700;border-top:2px solid var(--navy);}
+.rev-tbl tfoot .amt{font-size:20px;}
+
+/* FOOTER */
+.doc-footer{background:var(--navy);padding:28px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-left{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.6;}
+.footer-left strong{color:var(--gold);display:block;}
+.footer-right{text-align:right;font-size:10px;color:rgba(255,255,255,0.2);line-height:1.6;}
+.footer-right a{color:var(--gold);text-decoration:none;}
+
+@media(max-width:768px){
+  .cover,.content{padding-left:24px;padding-right:24px;}
+  .cover h1{font-size:28px;}
+  .two-col,.comp-grid,.phase-row{grid-template-columns:1fr;}
+  .flow-step{grid-template-columns:100px 1fr;}
+  .doc-footer{padding:24px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- ==================== COVER ==================== -->
+<div class="cover">
+  <div class="cover-badge"><span class="dot"></span> Clinical Delivery Architecture</div>
+  <div class="cover-overline">Corporate Structure &amp; Revenue Flow</div>
+  <h1>How InPursuit Delivers Care,<br>Bills Payers, and <em>Captures Revenue</em></h1>
+  <p class="cover-sub">The MSO–Professional Corporation structure is the industry-standard corporate architecture for technology-enabled healthcare delivery. It enables InPursuit to deliver clinical services nationally, bill Medicare and commercial payers directly, and consolidate revenue — while maintaining full regulatory compliance across all 50 states. This is how every scaled virtual care company in America operates.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Document<strong>Corporate Structure Brief</strong></div>
+    <div class="cover-meta-item">Date<strong>March 2026</strong></div>
+    <div class="cover-meta-item">Classification<strong>Confidential — Partners &amp; Investors</strong></div>
+    <div class="cover-meta-item">Structure<strong>MSO + Professional Corporation</strong></div>
+  </div>
+</div>
+
+<!-- ==================== PAGE 1 ==================== -->
+<div class="content">
+
+<div class="sect">
+  <div class="sect-label">The Structure</div>
+  <h2>Two entities. One business. All revenue flows to InPursuit Health.</h2>
+  <p>Most states prohibit non-physician companies from directly practicing medicine — a legal doctrine called the <strong>Corporate Practice of Medicine (CPOM)</strong>. This doctrine exists to protect clinical independence. It does not prevent technology companies from operating in healthcare. It simply requires a specific corporate structure.</p>
+  <p>The solution — used by every major virtual care company — is the <strong>MSO–PC model:</strong> a Management Services Organization (the technology and operations company) paired with a physician-owned Professional Corporation (the clinical compliance entity). The MSO runs the business. The PC provides the clinical governance. The revenue flows through the PC and is consolidated at the MSO.</p>
+</div>
+
+<!-- TWO ENTITIES SIDE BY SIDE -->
+<div class="two-col">
+  <div class="col-card mso">
+    <div class="cc-label">The MSO — InPursuit Health, LLC</div>
+    <h4>The Business. The Technology. The Revenue.</h4>
+    <p>InPursuit Health, LLC is the operating company. It owns all intellectual property, technology, data infrastructure, brand, consumer app, and non-clinical operations. It is the entity that raises capital, holds investor equity, and generates enterprise value.</p>
+    <p><strong>InPursuit Health owns and operates:</strong></p>
+    <ul>
+      <li>TETRA™ data orchestration infrastructure</li>
+      <li>InPursuit consumer health application</li>
+      <li>All intellectual property and patent-pending claims</li>
+      <li>Non-clinical staff (engineers, sales, operations, data)</li>
+      <li>Payer contracting and revenue cycle management</li>
+      <li>Clinical care coordination staff (non-physician)</li>
+      <li>Marketing, compliance infrastructure, and analytics</li>
+      <li>Provider partnership agreements</li>
+    </ul>
+  </div>
+  <div class="col-card pc">
+    <div class="cc-label">The PC — InPursuit Medical, PC</div>
+    <h4>The Clinical Compliance Wrapper.</h4>
+    <p>InPursuit Medical, PC is a physician-owned professional corporation. It is 100% owned by the Medical Director — a licensed physician who provides clinical governance and oversight. The PC exists to comply with CPOM laws. It is not an independent business.</p>
+    <p><strong>The PC holds:</strong></p>
+    <ul>
+      <li>Medical licenses and clinical authority</li>
+      <li>Physician supervision and clinical protocols</li>
+      <li>NPI and Medicare enrollment for clinical billing</li>
+      <li>Contracted or employed rendering clinicians</li>
+      <li>Clinical decision-making authority (independent from MSO)</li>
+    </ul>
+    <p style="margin-top:12px;font-size:11px;color:var(--gold);font-weight:600;">The PC has NO independent investors, NO separate fundraise, and NO separate strategic direction. It is managed by InPursuit Health under a Management Services Agreement.</p>
+  </div>
+</div>
+
+<div class="gold-box">
+  <div class="gb-label">The Key Principle</div>
+  <p>The MSO provides all non-clinical services to the PC under a Management Services Agreement at fair market value. The physician retains full clinical autonomy. The MSO retains operational and financial control of the business. <strong>This is not a workaround. This is the legally prescribed structure for technology-enabled healthcare delivery in the United States.</strong></p>
+</div>
+
+<!-- ==================== PAGE BREAK ==================== -->
+<div class="page-break"></div>
+
+<!-- REVENUE FLOW -->
+<div class="sect">
+  <div class="sect-label">Revenue Flow</div>
+  <h2>How a dollar moves from payer to InPursuit Health.</h2>
+  <p>The revenue path is simple, direct, and consolidated. Every clinical dollar billed by the PC flows to InPursuit Health, LLC through the Management Services Agreement — minus only the physician's clinical compensation and direct clinical costs.</p>
+</div>
+
+<div class="flow">
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="fl-entity">Medicare / BCBS / UHC / Aetna</div>
+      <div class="fl-type">Payer</div>
+    </div>
+    <div class="flow-right">
+      <div class="fr-amount">$100</div>
+      <div class="fr-action">Payer reimburses InPursuit Medical, PC for RPM, CCM, TCM, BHI, or telehealth services rendered to the patient.</div>
+    </div>
+  </div>
+  <div class="flow-arrow"><div class="flow-arrow-line"></div></div>
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="fl-entity">InPursuit Medical, PC</div>
+      <div class="fl-type">Professional Corporation</div>
+    </div>
+    <div class="flow-right">
+      <div class="fr-amount">$100 received</div>
+      <div class="fr-action">PC receives reimbursement. Immediately pays InPursuit Health, LLC its management fee per the MSA.</div>
+      <div class="fr-note">PC retains only clinical compensation + direct clinical costs.</div>
+    </div>
+  </div>
+  <div class="flow-arrow"><div class="flow-arrow-line"></div></div>
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="fl-entity">InPursuit Health, LLC</div>
+      <div class="fl-type">MSO — The Operating Company</div>
+    </div>
+    <div class="flow-right">
+      <div class="fr-amount">$80 – $90</div>
+      <div class="fr-action">MSO management fee at fair market value. Covers all technology, infrastructure, care coordination staff, billing, compliance, and operations.</div>
+      <div class="fr-note">This is InPursuit Health's revenue. This is the entity investors own.</div>
+    </div>
+  </div>
+  <div class="flow-arrow"><div class="flow-arrow-line"></div></div>
+  <div class="flow-step">
+    <div class="flow-left">
+      <div class="fl-entity">Medical Director</div>
+      <div class="fl-type">PC Owner — Physician</div>
+    </div>
+    <div class="flow-right">
+      <div class="fr-amount">$10 – $20</div>
+      <div class="fr-action">Physician compensation for clinical oversight + direct clinical costs (malpractice, clinical staff). Set at fair market value.</div>
+      <div class="fr-note">PC does not retain profits. All excess flows to MSO as management fee.</div>
+    </div>
+  </div>
+</div>
+
+<!-- REVENUE EXAMPLE -->
+<div class="sect">
+  <h3>Illustrative Revenue Flow — Annual (Based on 1,000 RPM/CCM Patients)</h3>
+  <table class="rev-tbl">
+    <thead><tr><th>Line Item</th><th>Annual Amount</th><th>% of Revenue</th></tr></thead>
+    <tbody>
+      <tr><td>Total clinical revenue (RPM + CCM + TCM + BHI)</td><td class="amt">$1,200,000</td><td class="pct">100%</td></tr>
+      <tr><td>MSO Management Fee → InPursuit Health, LLC</td><td class="amt">$1,020,000</td><td class="pct">85%</td></tr>
+      <tr><td>Medical Director Compensation</td><td class="amt">$120,000</td><td class="pct">10%</td></tr>
+      <tr><td>Direct Clinical Costs (malpractice, clinical licenses)</td><td class="amt">$60,000</td><td class="pct">5%</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td><strong>Net to InPursuit Health, LLC</strong></td><td class="amt">$1,020,000</td><td class="pct">85%</td></tr>
+    </tfoot>
+  </table>
+  <p style="font-size:12px;color:var(--text-muted);font-style:italic;">Note: Management fee percentage is illustrative. Actual fee will be set by independent fair market value assessment as required for AKS and CPOM compliance. Industry standard range: 75-90% of PC revenue.</p>
+</div>
+
+<div class="alert">
+  <div class="alert-label">Investor Clarity</div>
+  <p><strong>Investors own equity in InPursuit Health, LLC — the MSO.</strong> This is the entity that holds the SAFE and Convertible Note instruments, the entity that will convert to a C-Corp at Series A, and the entity that consolidates all revenue. The PC is a variable interest entity consolidated in InPursuit Health's financial statements. Investors do not fund, own equity in, or have obligations to the PC. There is one company. One cap table. One investment.</p>
+</div>
+
+<!-- ==================== PAGE BREAK ==================== -->
+<div class="page-break"></div>
+
+<!-- INDUSTRY PRECEDENT -->
+<div class="sect">
+  <div class="sect-label">Industry Precedent</div>
+  <h2>This is how every scaled virtual care company in America operates.</h2>
+  <p>The MSO–PC structure is not novel, experimental, or risky. It is the established, legally validated corporate architecture for technology-enabled healthcare delivery. The following publicly traded and venture-backed companies all use this exact structure — and their investors treat the MSO as the operating entity for valuation purposes.</p>
+</div>
+
+<div class="comp-grid">
+  <div class="comp-card">
+    <div class="comp-name">Hims &amp; Hers</div>
+    <div class="comp-val">$4.7B</div>
+    <div class="comp-desc">Public (NYSE: HIMS). MSO-PC structure. PCs disclosed as variable interest entities in 10-K. Revenue consolidated at MSO.</div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-name">Ro</div>
+    <div class="comp-val">$7B</div>
+    <div class="comp-desc">Private (Series D). MSO manages PC network across 50 states. All investor equity in the MSO entity.</div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-name">Nourish</div>
+    <div class="comp-val">$1B+</div>
+    <div class="comp-desc">Private (Series B). Nutritional care MSO-PC model. Uses contracted clinician network staffed through PC entities.</div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-name">Cerebral</div>
+    <div class="comp-val">$4.8B</div>
+    <div class="comp-desc">Private (peak valuation). Behavioral health MSO-PC. Clinicians employed by state PCs, managed by MSO.</div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-name">Thirty Madison</div>
+    <div class="comp-val">$560M</div>
+    <div class="comp-desc">Private (Series C). Chronic condition management. MSO-PC with multiple specialty PCs across states.</div>
+  </div>
+  <div class="comp-card">
+    <div class="comp-name">Done / Ahead</div>
+    <div class="comp-val">$400M+</div>
+    <div class="comp-desc">Private. ADHD and mental health telehealth. MSO-PC structure with national clinician network.</div>
+  </div>
+</div>
+
+<p class="callout" style="text-align:center;max-width:650px;margin:24px auto;">"When Hims &amp; Hers went public at a $1.6 billion valuation, no investor questioned the MSO-PC structure. It is the standard. InPursuit is using the same playbook."</p>
+
+<!-- HOW INPURSUIT GETS THERE -->
+<div class="sect">
+  <div class="sect-label">Phased Execution</div>
+  <h2>Two phases. Same investor entity. Revenue flows to InPursuit Health at every stage.</h2>
+  <p>InPursuit does not need the full MSO-PC structure on day one. The build starts with the simplest structure that generates revenue immediately, then scales into full national clinical delivery when volume demands it.</p>
+</div>
+
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0;">
+  <div class="phase-card" style="border:2px solid rgba(46,125,50,0.2);">
+    <div class="phase-num">1</div>
+    <div class="phase-title">Partner Model</div>
+    <div class="phase-time">Now — Immediate Revenue</div>
+    <div class="phase-desc">InPursuit Health, LLC obtains its own NPI and Medicare enrollment. Partner physicians (Honeycomb and future partners) provide clinical oversight via standard Medicare reassignment (CMS-855R). InPursuit bills Medicare and commercial payers directly under its own credentials. InPursuit's telehealth and virtual care capabilities serve patients between visits.<br><br><strong>One entity. Direct revenue. No PC required.</strong><br><br>Works in Tennessee and all non-CPOM states. Covers the entire partner practice model and initial D2C clinical services. This is how InPursuit generates its first clinical revenue.</div>
+  </div>
+  <div class="phase-card" style="border:2px solid rgba(197,164,78,0.2);">
+    <div class="phase-num">2</div>
+    <div class="phase-title">Own PC — National Scale</div>
+    <div class="phase-time">Volume-Dependent — Funded from Revenue or Series A</div>
+    <div class="phase-desc">When D2C clinical volume and multi-state expansion into CPOM states (California, Texas, New York, Illinois) justify the cost, InPursuit forms InPursuit Medical, PC — a physician-owned professional corporation managed by InPursuit Health under the MSA.<br><br><strong>Margin optimization move, not a structural requirement.</strong><br><br>The PC enables 50-state clinical delivery, full national telehealth capability, and direct payer billing in every jurisdiction. All revenue consolidates at InPursuit Health, LLC through the management fee. Standard MSO-PC agreements executed. Same playbook as Hims, Ro, Cerebral, and every scaled virtual care company.</div>
+  </div>
+</div>
+
+<div class="gold-box">
+  <div class="gb-label">The Investor Takeaway</div>
+  <p>Phase 1 generates revenue with zero additional corporate complexity — one entity, one NPI, direct payer billing. Phase 2 is a future scale decision funded by operating revenue or Series A proceeds — not a separate fundraise. <strong>At no point does the investor need to fund a second company. At every phase, all revenue flows to or is consolidated at InPursuit Health, LLC — the entity investors own.</strong></p>
+</div>
+
+<!-- LEGAL AGREEMENTS -->
+<div class="dark-box" style="padding:40px 40px 36px;">
+  <div class="sect-label">Legal Architecture (Phase 3, If Formed)</div>
+  <h3 style="margin-bottom:24px;">Five agreements govern the MSO-PC relationship.</h3>
+
+  <div style="display:flex;flex-direction:column;gap:20px;">
+    <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">1. Management Services Agreement (MSA)</div>
+      <p style="margin:0;">The cornerstone. Defines all services the MSO provides to the PC and the management fee structure. Fee set at fair market value by independent assessment.</p>
+    </div>
+
+    <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">2. Stock Transfer Restriction Agreement (STRA)</div>
+      <p style="margin:0;">Prevents the physician from transferring PC ownership without MSO consent. Requires transfer to an MSO-selected physician if the owner departs. Ensures continuity and alignment.</p>
+    </div>
+
+    <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">3. Employment Agreement</div>
+      <p style="margin:0;">The MSO employs the Medical Director (the PC owner). Compensation at fair market value. Creates financial and operational alignment between physician and MSO.</p>
+    </div>
+
+    <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">4. Technology Licensing Agreement</div>
+      <p style="margin:0;">MSO licenses TETRA, the consumer app, telehealth and virtual care capabilities, and all IP/trademarks to the PC. Part of the management fee justification.</p>
+    </div>
+
+    <div style="padding:18px 20px;background:rgba(255,255,255,0.03);border:1px solid rgba(197,164,78,0.1);border-radius:8px;">
+      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:6px;">5. Administrative Services Agreement</div>
+      <p style="margin:0;">Covers credentialing, payer contracting, compliance monitoring, and staffing coordination between MSO and PC.</p>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;padding:18px 20px;background:rgba(46,125,50,0.08);border:1px solid rgba(46,125,50,0.2);border-radius:8px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4ade80;margin-bottom:6px;">Federal Validation</div>
+    <p style="margin:0;color:rgba(255,255,255,0.6);"><strong style="color:#4ade80;">OIG Advisory Opinion 25-03 (June 2025)</strong> specifically reviewed and approved a telehealth MSO-PC arrangement under the Anti-Kickback Statute's personal services safe harbor — confirming this structure is compliant with federal fraud and abuse law when properly documented.</p>
+  </div>
+</div>
+
+<!-- BOTTOM LINE -->
+<div class="sect" style="margin-bottom:0;">
+  <div class="sect-label">Bottom Line</div>
+  <h2>One company. One cap table. One investment. Industry-standard structure. Revenue flows to InPursuit Health.</h2>
+  <p>The MSO-PC model is not a complication — it is the proven corporate architecture that enables InPursuit to deliver clinical services, bill payers directly, and scale nationally. Every dollar of clinical revenue is consolidated at InPursuit Health, LLC. Every investor owns equity in InPursuit Health, LLC. The Professional Corporation is a compliance entity — not a business, not a fundraise, not a distraction.</p>
+  <p>InPursuit is using the same structure that built Hims &amp; Hers into a $4.7 billion public company, that Ro used to reach a $7 billion valuation, and that every institutional healthcare investor expects to see. The structure is a feature, not a bug. It signals regulatory sophistication, not complexity.</p>
+  <p class="callout">InPursuit Health, LLC is the investment. The revenue flows here. The equity accrues here. The exit happens here.</p>
+</div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="footer-left">
+    <strong>InPursuit Health, LLC</strong>
+    Wyoming &nbsp;·&nbsp; CMS Health IT Ecosystem Member<br>
+    Harness the Power of Your Data&#8482; &nbsp;·&nbsp; Results Matter&#8482;
+  </div>
+  <div class="footer-right">
+    <a href="/cdn-cgi/l/email-protection#f69f9880938582b69f9886838485839f829e93979a829ed895999b"><span class="__cf_email__" data-cfemail="2d44435b485e596d44435d585f5e58445945484c415945034e4240">[email&#160;protected]</sp

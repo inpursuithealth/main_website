@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NPI &amp; Medicare Enrollment Roadmap — InPursuit Health</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--navy-deep:#060E1A;--navy-mid:#112240;--gold:#C5A44E;--gold-light:#D4B96A;--white:#FFFFFF;--cream:#FAF8F4;--red:#B22234;--green:#2E7D32;--text-dark:#1A1A2E;--text-muted:#6B7280;--border:rgba(10,22,40,0.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(--text-dark);-webkit-font-smoothing:antialiased;}
+@media print{body{background:#fff;} .page{box-shadow:none;margin:0;max-width:100%;}}
+
+.page{max-width:900px;margin:0 auto;padding:0;}
+
+/* COVER */
+.cover{background:var(--navy);padding:80px 60px 60px;position:relative;overflow:hidden;}
+.cover::before{content:'';position:absolute;top:-100px;right:-100px;width:400px;height:400px;background:radial-gradient(circle,rgba(197,164,78,0.06),transparent 70%);pointer-events:none;}
+.cover-overline{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;opacity:0.7;}
+.cover h1{font-family:'Instrument Serif',serif;font-size:42px;color:var(--white);line-height:1.15;margin-bottom:16px;letter-spacing:-0.5px;}
+.cover h1 em{color:var(--gold);font-style:italic;}
+.cover-sub{font-size:15px;color:rgba(255,255,255,0.45);line-height:1.7;max-width:600px;margin-bottom:32px;}
+.cover-meta{display:flex;gap:32px;flex-wrap:wrap;}
+.cover-meta-item{font-size:11px;color:rgba(255,255,255,0.3);letter-spacing:1px;text-transform:uppercase;}
+.cover-meta-item strong{color:var(--gold);display:block;font-size:13px;margin-top:2px;letter-spacing:0;}
+.cover-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(197,164,78,0.06);border:1px solid rgba(197,164,78,0.2);border-radius:20px;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.cover-badge .dot{width:6px;height:6px;background:var(--gold);border-radius:50%;}
+
+/* CONTENT */
+.content{padding:48px 60px;}
+.sect{margin-bottom:48px;}
+.sect-label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.sect h2{font-family:'Instrument Serif',serif;font-size:28px;color:var(--navy);line-height:1.2;margin-bottom:16px;}
+.sect h3{font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:12px;margin-top:28px;}
+.sect p{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:12px;}
+.sect p strong{color:var(--text-dark);}
+.sect p.gold-callout{color:var(--gold);font-weight:600;font-size:15px;font-style:italic;font-family:'Instrument Serif',serif;margin:20px 0;}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:48px;margin:32px 0;}
+.timeline::before{content:'';position:absolute;left:18px;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--gold),rgba(197,164,78,0.15));}
+.tl-item{position:relative;padding-bottom:32px;}
+.tl-item:last-child{padding-bottom:0;}
+.tl-dot{position:absolute;left:-48px;top:2px;width:36px;height:36px;border-radius:50%;background:var(--cream);border:3px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Instrument Serif',serif;font-size:14px;color:var(--gold);font-weight:400;z-index:2;}
+.tl-item.active .tl-dot{background:var(--gold);color:var(--navy);}
+.tl-header{display:flex;align-items:baseline;gap:12px;margin-bottom:6px;}
+.tl-time{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);}
+.tl-title{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);}
+.tl-body{font-size:13px;color:var(--text-muted);line-height:1.7;}
+.tl-body strong{color:var(--text-dark);}
+
+/* GATE CARDS */
+.gate{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden;}
+.gate::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;}
+.gate.g1::before{background:var(--green);}
+.gate.g2::before{background:var(--gold);}
+.gate.g3::before{background:var(--navy);}
+.gate-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;}
+.gate-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.gate.g1 .gate-label{color:var(--green);}
+.gate.g2 .gate-label{color:var(--gold);}
+.gate.g3 .gate-label{color:var(--navy);}
+.gate-time{font-family:'Instrument Serif',serif;font-size:24px;}
+.gate.g1 .gate-time{color:var(--green);}
+.gate.g2 .gate-time{color:var(--gold);}
+.gate.g3 .gate-time{color:var(--navy);}
+.gate h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:8px;}
+.gate p{font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:8px;}
+.gate-reqs{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.gate-req{font-size:12px;color:var(--text-dark);padding:8px 12px;background:rgba(10,22,40,0.02);border:1px solid rgba(10,22,40,0.05);border-radius:6px;line-height:1.4;}
+
+/* CHECKLIST */
+.checklist{margin:24px 0;}
+.check-item{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid rgba(10,22,40,0.04);}
+.check-item:last-child{border-bottom:none;}
+.check-box{width:20px;height:20px;border:2px solid var(--gold);border-radius:4px;flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--gold);}
+.check-text{font-size:13px;color:var(--text-dark);line-height:1.5;}
+.check-text span{color:var(--text-muted);font-size:12px;display:block;margin-top:2px;}
+
+/* COST TABLE */
+.cost-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:13px;}
+.cost-tbl th{background:var(--navy);color:var(--white);padding:10px 14px;text-align:left;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.cost-tbl td{padding:10px 14px;border-bottom:1px solid rgba(10,22,40,0.06);}
+.cost-tbl tr:hover td{background:rgba(197,164,78,0.03);}
+.cost-tbl .amt{font-family:'Instrument Serif',serif;font-size:16px;color:var(--gold);font-weight:400;}
+.cost-tbl tfoot td{font-weight:700;border-top:2px solid var(--navy);font-size:14px;}
+.cost-tbl tfoot .amt{font-size:20px;}
+
+/* PAYER TABLE */
+.payer-tbl{width:100%;border-collapse:collapse;margin:20px 0;font-size:12px;}
+.payer-tbl th{background:var(--navy);color:var(--white);padding:8px 12px;text-align:left;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.payer-tbl td{padding:8px 12px;border-bottom:1px solid rgba(10,22,40,0.06);vertical-align:top;}
+.payer-tbl .payer-name{font-weight:600;color:var(--navy);}
+.payer-tbl .payer-time{font-family:'Instrument Serif',serif;font-size:15px;color:var(--gold);}
+
+/* DARK SECTION */
+.dark-sect{background:var(--navy);padding:40px;border-radius:12px;margin:32px 0;}
+.dark-sect .sect-label{color:var(--gold);}
+.dark-sect h2{color:var(--white);}
+.dark-sect p{color:rgba(255,255,255,0.5);}
+.dark-sect p strong{color:var(--gold);}
+
+/* ALERT */
+.alert{background:rgba(178,34,52,0.04);border:1px solid rgba(178,34,52,0.15);border-radius:8px;padding:16px 20px;margin:20px 0;}
+.alert-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:6px;}
+.alert p{font-size:13px;color:var(--text-dark);line-height:1.6;margin:0;}
+
+/* FOOTER */
+.doc-footer{background:var(--navy);padding:32px 60px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
+.footer-left{font-size:11px;color:rgba(255,255,255,0.3);line-height:1.6;}
+.footer-left strong{color:var(--gold);display:block;}
+.footer-right{text-align:right;font-size:10px;color:rgba(255,255,255,0.2);line-height:1.6;}
+.footer-right a{color:var(--gold);text-decoration:none;}
+
+@media(max-width:768px){
+  .cover,.content{padding-left:24px;padding-right:24px;}
+  .cover h1{font-size:30px;}
+  .gate-reqs{grid-template-columns:1fr;}
+  .cover-meta{flex-direction:column;gap:16px;}
+  .doc-footer{padding:24px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-badge"><span class="dot"></span> Critical Path to Revenue</div>
+  <div class="cover-overline">Operational Roadmap</div>
+  <h1>NPI Credentialing &amp;<br>Medicare Enrollment<br><em>Roadmap</em></h1>
+  <p class="cover-sub">The complete operational pathway from application to first direct payer billing. NPI credentialing unlocks InPursuit's ability to bill Medicare and commercial payers directly under its own credentials — the foundational capability for Engines 2a and 2b of the revenue architecture.</p>
+  <div class="cover-meta">
+    <div class="cover-meta-item">Document<strong>Operational Roadmap</strong></div>
+    <div class="cover-meta-item">Date<strong>March 2026</strong></div>
+    <div class="cover-meta-item">Classification<strong>Confidential — Investor Use Only</strong></div>
+    <div class="cover-meta-item">Target Completion<strong>Q3 2026</strong></div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- WHY THIS MATTERS -->
+<div class="sect">
+  <div class="sect-label">Why This Matters</div>
+  <h2>NPI credentialing is the single most important operational milestone in InPursuit's path to revenue.</h2>
+  <p>InPursuit's corrected revenue architecture depends on the company's ability to bill Medicare and commercial payers directly — not through the provider, not as a percentage of provider payments, but independently under InPursuit's own National Provider Identifier (NPI) and Medicare Part B enrollment.</p>
+  <p>Without NPI and Medicare enrollment, InPursuit cannot:</p>
+  <p><strong>Bill Medicare directly</strong> for RPM, CCM, TCM, BHI, or other care management services (Engine 2b)</p>
+  <p><strong>Apply as an ACCESS Model Participant</strong> under its own TIN for Cohort 2 (Engine 2a)</p>
+  <p><strong>Credential with commercial payers</strong> — most require active Medicare enrollment before they will process an application (Engine 2b, commercial)</p>
+  <p><strong>Operate the $0-cost provider partnership model</strong> — the entire structure depends on InPursuit earning from payers directly rather than charging the provider</p>
+  <p class="gold-callout">Part of the $2M bridge round is explicitly allocated to fund NPI credentialing, Medicare enrollment, commercial payer credentialing, and the clinical infrastructure required to support direct billing.</p>
+</div>
+
+<!-- THREE GATES -->
+<div class="sect">
+  <div class="sect-label">The Three Sequential Gates</div>
+  <h2>Three gates. Overlapping timelines. One critical path.</h2>
+  <p>The credentialing process involves three sequential-but-overlapping gates. Each has its own timeline, requirements, and dependencies. Managed correctly, the total elapsed time from initiation to first billing is <strong>90-120 days</strong>.</p>
+
+  <!-- GATE 1 -->
+  <div class="gate g1">
+    <div class="gate-header">
+      <div class="gate-label">Gate 1 — NPI Number</div>
+      <div class="gate-time">1-10 days</div>
+    </div>
+    <h4>National Provider Identifier (Type 2 — Organizational)</h4>
+    <p>The NPI is a 10-digit unique identifier assigned by CMS to every healthcare entity that bills federal programs. InPursuit requires a <strong>Type 2 NPI</strong> (organizational), applied for through the National Plan and Provider Enumeration System (NPPES). The online application takes approximately 20 minutes. The NPI is typically issued within 1-10 business days. It is free.</p>
+    <p><strong>This is the prerequisite for everything else.</strong> Medicare enrollment will be rejected without an active NPI. Commercial payer applications require it. It should be filed immediately.</p>
+    <div class="gate-reqs">
+      <div class="gate-req">InPursuit Health LLC EIN/TIN</div>
+      <div class="gate-req">Business address (registered office)</div>
+      <div class="gate-req">Authorized Official (CEO — Bennett McPhatter)</div>
+      <div class="gate-req">Healthcare provider taxonomy code</div>
+      <div class="gate-req">Contact information</div>
+      <div class="gate-req">Application: NPPES.cms.hhs.gov (free)</div>
+    </div>
+  </div>
+
+  <!-- GATE 2 -->
+  <div class="gate g2">
+    <div class="gate-header">
+      <div class="gate-label">Gate 2 — Medicare Part B Enrollment</div>
+      <div class="gate-time">30-90 days</div>
+    </div>
+    <h4>CMS-855B via PECOS (Provider Enrollment, Chain, and Ownership System)</h4>
+    <p>After the NPI is issued, InPursuit files the CMS-855B application through PECOS — the online Medicare enrollment portal. This is the application for Clinics/Group Practices and Other Suppliers. PECOS applications process in <strong>30-60 days</strong> (paper applications take 90-120 days). The 2026 application fee is <strong>$750</strong>.</p>
+    <p>CMS conducts primary source verification of all ownership, licensure, and compliance information. A site visit to InPursuit's physical location may be required. Any deficiency in the application triggers a development letter, which must be responded to within 30 days or the application is withdrawn.</p>
+    <div class="gate-reqs">
+      <div class="gate-req">Active Type 2 NPI (from Gate 1)</div>
+      <div class="gate-req">Legal business name, TIN, structure (LLC)</div>
+      <div class="gate-req">Physical practice location(s)</div>
+      <div class="gate-req">Authorized Official + Managing Employee info</div>
+      <div class="gate-req">5%+ ownership disclosure (InPursuit Partners LLC, board members)</div>
+      <div class="gate-req">Organizational structure diagram / flowchart</div>
+      <div class="gate-req">Licensed supervising physician (Medical Director or contracted physician)</div>
+      <div class="gate-req">CMS-588 Electronic Funds Transfer authorization (voided check for Wells Fargo)</div>
+      <div class="gate-req">Professional liability / malpractice insurance</div>
+      <div class="gate-req">Adverse legal action history disclosure</div>
+      <div class="gate-req">$750 application fee (payable through PECOS)</div>
+      <div class="gate-req">State licensure requirements for Tennessee (initial market)</div>
+    </div>
+  </div>
+
+  <!-- GATE 3 -->
+  <div class="gate g3">
+    <div class="gate-header">
+      <div class="gate-label">Gate 3 — Commercial Payer Credentialing</div>
+      <div class="gate-time">45-120 days (parallel)</div>
+    </div>
+    <h4>Major Payer Panel Enrollment — Run Simultaneously with Gate 2</h4>
+    <p>Commercial payer credentialing can begin as soon as the NPI is active, running in parallel with Medicare enrollment. Most commercial payers pull information from <strong>CAQH ProView</strong> — a centralized credentialing database — which must be set up and attested before any applications are submitted. CAQH attestation must be renewed every 120 days.</p>
+
+    <table class="payer-tbl">
+      <thead><tr><th>Payer</th><th>Timeline</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td class="payer-name">UnitedHealthcare</td><td class="payer-time">30-120 days</td><td>45+ days once complete application received. Apply via Onboard Pro portal. 48M+ covered lives.</td></tr>
+        <tr><td class="payer-name">Blue Cross Blue Shield</td><td class="payer-time">60-120 days</td><td>Varies by state. Tennessee BCBS is the initial target. Strict verification process.</td></tr>
+        <tr><td class="payer-name">Aetna</td><td class="payer-time">60-90 days</td><td>Requires CAQH ProView attestation current within 120 days.</td></tr>
+        <tr><td class="payer-name">Cigna</td><td class="payer-time">45-90 days</td><td>Often one of the faster payers. Check panel status before applying (some panels closed).</td></tr>
+        <tr><td class="payer-name">Humana</td><td class="payer-time">60-90 days</td><td>Strong Medicare Advantage presence. Important for MA patient revenue.</td></tr>
+      </tbody>
+    </table>
+    <p>All applications should be submitted simultaneously. Some payers require active Medicare enrollment before they will process a commercial application — those will complete after Gate 2 closes.</p>
+  </div>
+</div>
+
+<!-- EXECUTION TIMELINE -->
+<div class="sect">
+  <div class="sect-label">Execution Timeline</div>
+  <h2>Week-by-week path from application to first billing.</h2>
+
+  <div class="timeline">
+    <div class="tl-item active">
+      <div class="tl-dot">1</div>
+      <div class="tl-header"><span class="tl-time">Week 1 (Immediate)</span><span class="tl-title">NPI Application + Foundation</span></div>
+      <div class="tl-body">Apply for Type 2 NPI through NPPES (<strong>20 minutes, free</strong>). Engage credentialing services firm. Identify and contract with Medical Director — a licensed physician who will serve as the supervising clinician. Obtain professional liability / malpractice insurance. File can begin as early as this week.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">2</div>
+      <div class="tl-header"><span class="tl-time">Weeks 2-3</span><span class="tl-title">NPI Received + Parallel Applications Begin</span></div>
+      <div class="tl-body">NPI typically issued within 1-10 business days. Immediately: set up <strong>CAQH ProView</strong> profile for the organization. Prepare organizational structure diagram for CMS-855B. Begin CMS-855B application through PECOS. Begin commercial payer applications simultaneously (UHC, BCBS-TN, Aetna, Cigna, Humana for Tennessee market).</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">3</div>
+      <div class="tl-header"><span class="tl-time">Week 4</span><span class="tl-title">CMS-855B Submitted + Commercial Applications Filed</span></div>
+      <div class="tl-body">CMS-855B filed via PECOS. <strong>$750 application fee paid.</strong> CMS-588 (EFT authorization) submitted with voided check. All commercial payer applications in queue. State-specific requirements for Tennessee initiated. Begin building billing infrastructure: claims submission system, clearinghouse, payment posting.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">4</div>
+      <div class="tl-header"><span class="tl-time">Weeks 5-12</span><span class="tl-title">Processing Period</span></div>
+      <div class="tl-body">Monitor PECOS status weekly. Respond to any CMS development letters within 30 days (delays most commonly occur when these go unanswered). Continue commercial payer follow-ups every 2 weeks. CAQH ProView re-attestation if approaching 120-day window. Prepare clinical protocols and documentation templates for RPM, CCM, TCM billing.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">5</div>
+      <div class="tl-header"><span class="tl-time">Weeks 8-12</span><span class="tl-title">First Commercial Approvals</span></div>
+      <div class="tl-body">Cigna and UHC typically approve fastest. First commercial payer credentialing completes. <strong>InPursuit can begin billing commercial payers for RPM and CCM services on Honeycomb's commercial patients.</strong> This is the first direct-from-payer revenue under the new model.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">6</div>
+      <div class="tl-header"><span class="tl-time">Weeks 10-16</span><span class="tl-title">Medicare Enrollment Approved</span></div>
+      <div class="tl-body"><strong>Medicare effective date assigned.</strong> InPursuit can now bill Medicare Part B directly for RPM, CCM, TCM, BHI, and other care management services. Remaining commercial payer approvals continue arriving through this period. Full billing capability across all major payers achieved.</div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-dot">7</div>
+      <div class="tl-header"><span class="tl-time">Month 5+</span><span class="tl-title">ACCESS Cohort 2 Application</span></div>
+      <div class="tl-body">With active NPI, Medicare enrollment, and operational billing history, InPursuit files ACCESS Model Cohort 2 application as a <strong>direct Participant</strong> under its own TIN. Target: October 1, 2026 application for January 1, 2027 go-live. CMS ecosystem membership and existing Medicare enrollment significantly strengthen the application.</div>
+    </div>
+  </div>
+</div>
+
+<!-- PARALLEL REQUIREMENTS -->
+<div class="sect">
+  <div class="sect-label">Parallel Requirements</div>
+  <h2>What else must be completed alongside credentialing.</h2>
+
+  <div class="checklist">
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Medical Director — Contracted licensed physician for clinical oversight and supervisory authority
+        <span>Required for Medicare enrollment and for signing care management orders. Can be one of Honeycomb's physicians under the oversight agreement, or a dedicated part-time/contracted Medical Director.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Professional Liability Insurance — Malpractice / E&O coverage
+        <span>Required by Medicare and all commercial payers. For a care management organization: $15,000-40,000/year depending on coverage limits and number of clinicians. Must be active before any enrollment application is submitted.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Compliance Program — Written policies, compliance officer, training, reporting mechanism
+        <span>Medicare requires enrolled entities to maintain a compliance program. SOC 2 Type II and HITRUST e1 certification (already on InPursuit's roadmap) will satisfy the majority of these requirements.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Clinical Protocols and Documentation Templates
+        <span>Standardized care plans, escalation protocols, and documentation workflows for each CPT code (99453/99454/99457 for RPM, 99490 for CCM, 99495/99496 for TCM, 99484/99492 for BHI). Must meet payer-specific requirements for billing.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Revenue Cycle Management (RCM) Infrastructure
+        <span>Claims submission system, clearinghouse enrollment, payment posting, eligibility verification, denial management, and AR follow-up. Can be outsourced to an RCM partner initially (4-8% of collections or $3-8 per claim).</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">State Licensure — Tennessee (initial market)
+        <span>Tennessee business license for healthcare entities. If InPursuit renders telehealth services across state lines as the provider network grows, each additional state requires compliance with that state's telehealth and corporate practice of medicine laws.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">Care Management Staff Hiring
+        <span>Minimum staffing: 1 care coordinator per 200-300 RPM/CCM patients, 1 supervising RN per 3-5 coordinators. Initial staff needed for Honeycomb launch: 2-3 care coordinators + 1 RN supervisor.</span>
+      </div>
+    </div>
+    <div class="check-item">
+      <div class="check-box"></div>
+      <div class="check-text">CAQH ProView Re-Attestation (every 120 days)
+        <span>Set recurring calendar reminder. Lapsed attestation causes immediate rejection of all pending commercial payer applications and resets the timeline.</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- COST -->
+<div class="sect">
+  <div class="sect-label">Investment Required</div>
+  <h2>Credentialing and enrollment cost breakdown.</h2>
+  <p>The following costs are included in the $250,000 NPI Credentialing line item in the bridge use-of-proceeds.</p>
+
+  <table class="cost-tbl">
+    <thead><tr><th>Item</th><th>Cost</th><th>Timing</th></tr></thead>
+    <tbody>
+      <tr><td>NPI Application (Type 2)</td><td class="amt">$0</td><td>Week 1</td></tr>
+      <tr><td>Medicare CMS-855B Application Fee</td><td class="amt">$750</td><td>Week 4</td></tr>
+      <tr><td>Credentialing Services Firm</td><td class="amt">$15,000 – $30,000</td><td>Ongoing (6 months)</td></tr>
+      <tr><td>Professional Liability Insurance (Year 1)</td><td class="amt">$20,000 – $40,000</td><td>Week 1</td></tr>
+      <tr><td>Medical Director Contract (6 months)</td><td class="amt">$40,000 – $60,000</td><td>Week 1</td></tr>
+      <tr><td>Compliance Program Development</td><td class="amt">$15,000 – $25,000</td><td>Months 1-3</td></tr>
+      <tr><td>RCM System Setup / Clearinghouse</td><td class="amt">$10,000 – $20,000</td><td>Months 2-3</td></tr>
+      <tr><td>Clinical Protocol Development</td><td class="amt">$10,000 – $15,000</td><td>Months 2-3</td></tr>
+      <tr><td>Legal Counsel (healthcare regulatory)</td><td class="amt">$25,000 – $40,000</td><td>Ongoing</td></tr>
+      <tr><td>State Licensure + Misc.</td><td class="amt">$5,000 – $10,000</td><td>Months 1-2</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td><strong>Total Estimated</strong></td><td class="amt">$141,000 – $241,000</td><td>Within $250K allocation</td></tr>
+    </tfoot>
+  </table>
+</div>
+
+<!-- ALERT -->
+<div class="alert">
+  <div class="alert-label">Critical Dependency</div>
+  <p>NPI credentialing is the prerequisite for Engines 2a (ACCESS OAPs) and 2b (direct FFS billing). Without it, InPursuit cannot bill any payer directly, cannot apply as an ACCESS Participant, and cannot operate the $0-cost provider partnership model. <strong>Every week of delay in filing the NPI application is a week of delay in reaching first revenue from direct payer billing.</strong></p>
+</div>
+
+<!-- DARK CALLOUT -->
+<div class="dark-sect">
+  <div class="sect-label">Strategic Alignment</div>
+  <h2>How credentialing maps to the revenue timeline.</h2>
+  <p><strong>April 2026:</strong> NPI application filed. CMS-855B submitted. Commercial applications in queue. Honeycomb files ACCESS Cohort 1 as Participant (InPursuit provides infrastructure).</p>
+  <p><strong>June-July 2026:</strong> First commercial payer approvals. InPursuit begins billing commercial payers for RPM/CCM on Honeycomb's commercial patients. First direct-from-payer revenue.</p>
+  <p><strong>Q3 2026:</strong> Medicare enrollment approved. InPursuit bills Medicare directly. Full payer coverage achieved. Series A evidence package: active billing, Cohort 1 outcomes data, consumer app live on Medicare.gov.</p>
+  <p><strong>September 2026:</strong> Series A close. All major payer credentials active.</p>
+  <p><strong>October 2026:</strong> ACCESS Cohort 2 application filed — InPursuit as direct Participant under own TIN/NPI. CMS ecosystem membership + active Medicare enrollment + operational billing history = strong application.</p>
+  <p><strong>January 2027:</strong> Cohort 2 go-live. InPursuit earns OAPs directly from CMS. Multi-model stacking begins.</p>
+</div>
+
+</div><!-- /content -->
+
+<!-- FOOTER -->
+<div class="doc-footer">
+  <div class="footer-left">
+    <strong>InPursuit Health, LLC</strong>
+    Wyoming &nbsp;·&nbsp; CMS Health IT Ecosystem Member<br>
+    Medicare App Library — All Three Patient-Facing Categories<br>
+    Harness the Power of Your Data&#8482; &nbsp;·&nbsp; Results Matter&#8482;
+  </div>
+  <div class="footer-right">
+    <a href="/cdn-cgi/l/email-protection#f1989f87948285b1989f818483828498859994909d8599df929e9c"><span class="__cf_email__" data-cfemail="3c55524a594f487c55524c494e4f49554854595d504854125f5351">[email&#160;protected]</s
