@@ -908,7 +908,7 @@
     .doc-grid { grid-template-columns: 1fr; }
   }
 
-  /* ═══ PATH TO REVENUE TIMELINE ═══ */
+  /* ═══ NEAR TERM STRATEGY / OPPORTUNITY TIMELINES ═══ */
   .ml-section { padding: 1.5rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
   .ml-label { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
   .ml-row { display: flex; gap: 0; position: relative; }
@@ -924,6 +924,32 @@
   .ml-txt strong { color: var(--text-on); }
   .ml-item.gold .ml-txt strong { color: var(--gold); }
   .ml-item.rev .ml-txt strong { color: var(--green); }
+
+  /* CMS Opportunity timeline */
+  .ml-opp-section { padding: 0 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .ml-opp-label { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: #7ec8f0; margin-bottom: 1rem; }
+  .ml-opp-row { display: flex; gap: 0; position: relative; }
+  .ml-opp-row::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: rgba(99,179,237,0.12); }
+  .ml-opp-item { flex: 1; position: relative; padding-top: 24px; }
+  .ml-opp-item::before { content: ''; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(99,179,237,0.25); background: var(--navy); }
+  .ml-opp-item.cms::before { border-color: #7ec8f0; background: #7ec8f0; box-shadow: 0 0 10px rgba(99,179,237,0.45); }
+  .ml-opp-item.cms-key::before { border-color: #3be8b0; background: #3be8b0; box-shadow: 0 0 12px rgba(59,232,176,0.5); }
+  .ml-opp-date { font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 3px; }
+  .ml-opp-item.cms .ml-opp-date { color: #7ec8f0; }
+  .ml-opp-item.cms-key .ml-opp-date { color: #3be8b0; }
+  .ml-opp-txt { font-size: .75rem; color: var(--text-dim); line-height: 1.45; padding-right: 12px; }
+  .ml-opp-txt strong { color: var(--text-on); }
+  .ml-opp-item.cms .ml-opp-txt strong { color: #7ec8f0; }
+  .ml-opp-item.cms-key .ml-opp-txt strong { color: #3be8b0; }
+  .ml-opp-badge { display: inline-block; font-family: var(--mono); font-size: .54rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; background: rgba(59,232,176,0.1); color: #3be8b0; border: 1px solid rgba(59,232,176,0.25); margin-bottom: 4px; }
+
+  @media (max-width: 600px) {
+    .ml-opp-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .ml-opp-row { flex-direction: column; gap: 1rem; }
+    .ml-opp-row::before { display: none; }
+    .ml-opp-item { padding-top: 0; padding-left: 28px; }
+    .ml-opp-item::before { top: 0; left: 0; }
+  }
 
   /* ═══ INSTRUMENT TABS ═══ */
   .inst-section { padding: 2.25rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
@@ -1258,9 +1284,9 @@
     </div>
   </div>
 
-  <!-- PATH TO REVENUE TIMELINE -->
+  <!-- NEAR TERM STRATEGY TIMELINE -->
   <div class="ml-section">
-    <div class="ml-label">Path to Revenue</div>
+    <div class="ml-label">Near Term Strategy</div>
     <div class="ml-row">
       <div class="ml-item gold">
         <div class="ml-date">Now</div>
@@ -1289,9 +1315,46 @@
     </div>
   </div>
 
+  <!-- NEAR TERM OPPORTUNITY TIMELINE -->
+  <div class="ml-opp-section">
+    <div class="ml-opp-label">Near Term Opportunity — CMS ACCESS Program</div>
+    <div class="ml-opp-row">
+      <div class="ml-opp-item cms">
+        <div class="ml-opp-date">Now – Apr</div>
+        <div class="ml-opp-txt"><strong>Application window open.</strong> CMS ACCESS Cohort 1 applications accepted. InPursuit positioned to apply as a Convener or partner under an existing applicant.</div>
+      </div>
+      <div class="ml-opp-item cms">
+        <div class="ml-opp-date">Apr – May</div>
+        <div class="ml-opp-txt"><strong>CMS review period.</strong> Applications evaluated. InPursuit engages prospective Convener partners and finalizes participation structure.</div>
+      </div>
+      <div class="ml-opp-item cms-key">
+        <div class="ml-opp-date">Jun 2025</div>
+        <div class="ml-opp-txt">
+          <div class="ml-opp-badge">Key Date</div><br>
+          <strong>Cohort 1 awards announced.</strong> CMS selects participants. InPursuit confirmed as Convener or aligned partner — formal ACCESS engagement begins.
+        </div>
+      </div>
+      <div class="ml-opp-item cms">
+        <div class="ml-opp-date">Jul – Sep</div>
+        <div class="ml-opp-txt"><strong>Program onboarding.</strong> Care delivery infrastructure aligned with ACCESS requirements. Patient attribution and RPM/CCM billing pathways activated under the model.</div>
+      </div>
+      <div class="ml-opp-item cms-key">
+        <div class="ml-opp-date">Q4 2025</div>
+        <div class="ml-opp-txt">
+          <div class="ml-opp-badge">Revenue</div><br>
+          <strong>First ACCESS revenue cycle.</strong> Shared savings and performance payments flowing. InPursuit operating as a CMS-recognized care model participant.
+        </div>
+      </div>
+      <div class="ml-opp-item cms">
+        <div class="ml-opp-date">Late 2026</div>
+        <div class="ml-opp-txt"><strong>Cohort 2 — direct filing.</strong> InPursuit applies under its own TIN/NPI as a direct Participant. Partner network expansion accelerates under the ACCESS framework.</div>
+      </div>
+    </div>
+  </div>
+
   <!-- PATH TO REVENUE SUPPORTING DOCS -->
   <div class="doc-section" style="padding-top:1rem;">
-    <div class="section-label" style="font-size:.62rem;letter-spacing:.18em;color:rgba(197,164,78,0.6);margin-bottom:1rem;">Supporting Resources — Path to Revenue</div>
+    <div class="section-label" style="font-size:.62rem;letter-spacing:.18em;color:rgba(197,164,78,0.6);margin-bottom:1rem;">Supporting Resources — Near Term Strategy</div>
     <div class="doc-grid">
       <a class="doc-card" href="data-room/NPI_Medicare_Enrollment_Roadmap_(1).html" target="_blank">
         <span class="doc-badge b-analysis">Roadmap</span>
