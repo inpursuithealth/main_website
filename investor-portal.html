@@ -1029,13 +1029,16 @@
 
   /* ═══ INSTRUMENT TABS ═══ */
   .inst-section { padding: 2.25rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
-  .inst-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--gold-line); margin-bottom: 1.75rem; }
+  .inst-tabs { display: flex; align-items: stretch; gap: 0; border-bottom: 1px solid var(--gold-line); margin-bottom: 1.75rem; }
   .inst-tab { flex: 1; padding: .9rem .5rem; text-align: center; font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mute); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; }
   .inst-tab:hover { color: var(--text-dim); }
   .inst-tab.on { color: var(--gold); border-bottom-color: var(--gold); }
   .inst-tab .tdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
   .inst-tab .tdot.g { background: var(--gold); }
   .inst-tab .tdot.s { background: var(--text-mute); }
+  .inst-or-divider { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.5rem; padding-bottom: 2px; gap: 5px; flex-shrink: 0; }
+  .inst-or-line { flex: 1; width: 1px; background: rgba(197,164,78,.2); }
+  .inst-or-label { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: rgba(197,164,78,.5); letter-spacing: -.01em; line-height: 1; }
   .inst-pane { display: none; }
   .inst-pane.on { display: block; }
   .inst-badge { display: inline-block; font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: .85rem; background: var(--gold-pale); color: var(--gold); }
@@ -1429,6 +1432,11 @@
 
     <div class="inst-tabs">
       <div class="inst-tab on" data-pane="pane-safe"><span class="tdot g"></span>SAFE Note</div>
+      <div class="inst-or-divider">
+        <div class="inst-or-line"></div>
+        <div class="inst-or-label">or</div>
+        <div class="inst-or-line"></div>
+      </div>
       <div class="inst-tab" data-pane="pane-note"><span class="tdot s"></span>Convertible Note</div>
     </div>
 
