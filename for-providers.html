@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Provider Solutions — InPursuit Health</title>
+<title>Better Patient Care. Better Outcomes. Better Revenue. — InPursuit Health</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -31,21 +31,22 @@
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-float-cards { position: relative; height: 540px; }
-.float-card { position: absolute; background: rgba(17,34,64,0.7); border: 1px solid rgba(197,164,78,0.15); border-radius: 12px; padding: 28px 24px; backdrop-filter: blur(12px); animation: floatCard 6s ease-in-out infinite; cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; }
-.float-card:hover { border-color: rgba(197,164,78,0.4); box-shadow: 0 8px 32px rgba(197,164,78,0.12); transform: translateY(-4px); animation-play-state: paused; }
-.float-card:nth-child(1) { top: 0; left: 8%; animation-delay: 0s; }
-.float-card:nth-child(2) { top: 10px; right: 5%; animation-delay: 1.5s; }
-.float-card:nth-child(3) { top: 200px; left: 3%; animation-delay: 3s; }
-.float-card:nth-child(4) { top: 180px; right: 8%; animation-delay: 4.5s; }
-.float-card:nth-child(5) { bottom: 0; left: calc(50% - 120px); animation-delay: 2s; }
+.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; padding-top: 32px; }
+.hero-float-cards > .fc-label-header { grid-column: 1 / -1; }
+.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 12px; padding: 14px 14px 12px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
+.float-card:nth-child(2) { animation-delay: 0s; }
+.float-card:nth-child(3) { animation-delay: 1s; }
+.float-card:nth-child(4) { animation-delay: 2s; }
+.float-card:nth-child(5) { animation-delay: 3s; }
+.float-card::before { content:''; position:absolute; top:0; left:20px; right:20px; height:1px; background: linear-gradient(90deg, transparent, rgba(197,164,78,0.3), transparent); }
+.float-card:hover { border-color: rgba(197,164,78,0.45); box-shadow: 0 12px 40px rgba(197,164,78,0.12), 0 4px 16px rgba(0,0,0,0.4); transform: translateY(-4px); animation-play-state: paused; }
 .float-card.fc-tech { border-color: rgba(46,125,50,0.3); background: rgba(46,125,50,0.08); }
 .float-card.fc-tech .fc-num { color: #66BB6A; }
 .float-card.fc-tech .fc-label { color: rgba(102,187,106,0.7); }
 .float-card.fc-tech:hover { border-color: rgba(102,187,106,0.5); box-shadow: 0 8px 32px rgba(46,125,50,0.15); }
 .float-card.fc-tech .fc-expand-hint { color: rgba(102,187,106,0.4); }
 .float-card.fc-tech:hover .fc-expand-hint { color: #66BB6A; }
-.float-card .fc-expand-hint { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(197,164,78,0.4); margin-top: 10px; display: flex; align-items: center; gap: 4px; transition: color 0.3s ease; }
+.float-card .fc-expand-hint { font-size: 8px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(197,164,78,0.4); margin-top: 8px; display: flex; align-items: center; gap: 4px; transition: color 0.3s ease; }
 .float-card:hover .fc-expand-hint { color: var(--gold); }
 /* Stat modal overlay */
 .stat-modal-overlay { position: fixed; inset: 0; background: rgba(6,14,26,0.85); backdrop-filter: blur(8px); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
@@ -65,13 +66,15 @@
 .stat-modal .sm-takeaway-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
 .stat-modal .sm-takeaway-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
 @keyframes floatCard { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
-.float-card .fc-num { font-family: 'Instrument Serif', serif; font-size: 36px; color: var(--gold); line-height: 1; }
-.float-card .fc-label { font-size: 11px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 6px; }
-.float-card .fc-desc { font-size: 12px; color: rgba(255,255,255,0.35); margin-top: 4px; line-height: 1.4; }
-.float-card .fc-source { font-size: 8px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(197,164,78,0.35); margin-top: 8px; padding-top: 8px; border-top: 1px solid rgba(197,164,78,0.08); }
-.float-card.fc-urgent { border-color: rgba(178,34,52,0.4); background: rgba(178,34,52,0.08); }
-.float-card.fc-urgent .fc-label { color: rgba(255,120,120,0.7); }
-.fc-countdown { font-family: 'Instrument Serif', serif; font-size: 42px; color: #ef5350; line-height: 1; }
+.float-card .fc-num { font-family: 'Instrument Serif', serif; font-size: 30px; color: var(--gold); line-height: 1; }
+.float-card .fc-label { font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 5px; line-height: 1.4; }
+.float-card .fc-desc { display: none; }
+.float-card .fc-source { display: none; }
+.float-card.fc-urgent { border-color: rgba(178,34,52,0.45); background: rgba(178,34,52,0.07); }
+.float-card.fc-urgent::before { background: linear-gradient(90deg, transparent, rgba(178,34,52,0.5), transparent); }
+.float-card.fc-urgent .fc-label { color: rgba(255,120,120,0.8); }
+.float-card.fc-urgent:hover { border-color: rgba(239,83,80,0.6); box-shadow: 0 12px 40px rgba(178,34,52,0.15), 0 4px 16px rgba(0,0,0,0.4); }
+.fc-countdown { font-family: 'Instrument Serif', serif; font-size: 30px; color: #ef5350; line-height: 1; }
 
 /* === PAIN POINTS === */
 .pain-section { background: var(--white); }
@@ -521,6 +524,16 @@
 </head>
 <body>
 
+<!-- PREVIEW BANNER -->
+<div style="position:fixed;top:0;left:0;right:0;z-index:99999;background:#C5A44E;color:#0A1628;text-align:center;padding:10px 20px;font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;box-shadow:0 2px 12px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;gap:16px;">
+  <span>PREVIEW — NOT LIVE</span>
+  <span style="opacity:0.5;">|</span>
+  <span style="font-weight:400;letter-spacing:1px;">This is a preview of proposed changes to for-providers.html. The live page is unchanged.</span>
+  <span style="opacity:0.5;">|</span>
+  <a href="for-providers.html" style="color:#0A1628;font-weight:700;text-decoration:underline;letter-spacing:1px;">View Live Page</a>
+</div>
+<div style="height:44px;"></div>
+
 <!-- Preloader -->
 <div class="preloader" id="preloader"><div class="preloader-wordmark">InPursuit Health</div></div>
 
@@ -533,36 +546,58 @@
   <div class="hero-particles" id="heroParticles"></div>
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge"><span class="pulse"></span> Value-Based Care — The Industry Is Moving. Move With It.</div>
-      <p class="hero-overline">For Providers Who Want More Revenue</p>
-      <h1>76% of health systems are moving to <em>value-based care.</em><br>Where's <em>your</em> practice?</h1>
-      <p class="hero-sub">The industry is shifting — and providers who move now capture new monthly CMS payments for managing chronic conditions they're already treating. The ones who wait get left behind. InPursuit handles the technology, implementation, and compliance. It costs you nothing.</p>
-      <div style="margin-top:28px;"><span style="font-family:'Instrument Serif',serif;font-size:32px;color:var(--gold);letter-spacing:2px;font-style:italic;display:block;">Results Matter&#8482;</span></div>
+      <div style="margin-bottom:20px;"><span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);letter-spacing:2px;font-style:italic;display:block;opacity:0.9;">Results Matter&#8482;</span></div>
+      <div class="hero-badge"><span class="pulse"></span> CMS Health IT Ecosystem Member — Medicare App Library Approved</div>
+      <p class="hero-overline">For Providers Who Put Patients First</p>
+      <h1>Your patients deserve better care <em>between visits.</em><br>Your practice deserves the growth that <em>comes with it.</em></h1>
+      <p class="hero-sub">Most patients leave your office and disappear until their next appointment — or until something goes wrong. InPursuit changes that. Better engagement drives better outcomes. Better outcomes drive better revenue. We handle everything. It costs you nothing.</p>
+      <div class="hero-ctas" style="margin-top:32px;">
+        <a class="btn-gold" href="mailto:providers@inpursuithealth.com?subject=Practice%20Analysis%20Request">Request a Practice Analysis →</a>
+        <a class="btn-outline" href="#proof">See It Working</a>
+      </div>
+      <div style="margin-top:28px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;">
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">CMS Credentialed</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">$0 Cost to Practice</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;">
+          <div style="width:6px;height:6px;border-radius:50%;background:var(--gold);opacity:0.7;"></div>
+          <span style="font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:1px;">Live in 6 Weeks</span>
+        </div>
+      </div>
     </div>
     <div class="hero-float-cards">
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(0)">
-        <div class="fc-num">76%</div>
-        <div class="fc-label">of C-Suites Moving to VBC</div>
+      <div class="fc-label-header" style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);margin-bottom:4px;">The Between-Visit Gap — Click Any Stat</div>
+      <div class="float-card fc-urgent" onclick="openStatModal(0)">
+        <div class="fc-countdown">500M+</div>
+        <div class="fc-label">Health App Downloads — 80% Abandoned Within 2 Weeks</div>
+        <div class="fc-desc">The demand is there. The apps just don't deliver anything worth coming back for.</div>
+        <div class="fc-source">IQVIA Institute / Rock Health</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(1)">
-        <div class="fc-num">32%</div>
-        <div class="fc-label">Fewer Hospitalizations</div>
+      <div class="float-card fc-tech" onclick="openStatModal(1)">
+        <div class="fc-num">70%+</div>
+        <div class="fc-label">of Patients Want Digital Tools to Manage Their Health</div>
+        <div class="fc-desc">The intent is proven. They've downloaded the apps. They just need one that's actually connected to their care.</div>
+        <div class="fc-source">Accenture Health Consumer Survey</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(2)">
-        <div class="fc-num">2:1</div>
-        <div class="fc-label">Paperwork vs. Patients</div>
+      <div class="float-card fc-tech" onclick="openStatModal(2)">
+        <div class="fc-num">86%</div>
+        <div class="fc-label">of Chronic Disease Managed Outside the Clinic</div>
+        <div class="fc-desc">Only 14% of chronic disease management happens in your office. The other 86% — where outcomes are actually determined — happens with no clinical support.</div>
+        <div class="fc-source">New England Journal of Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
-      <div class="float-card" style="width: 220px;" onclick="openStatModal(3)">
-        <div class="fc-num">$0</div>
-        <div class="fc-label">Your Investment</div>
-        <div class="fc-expand-hint">Read more →</div>
-      </div>
-      <div class="float-card fc-tech" style="width: 240px;" onclick="openStatModal(4)">
-        <div class="fc-num">81%</div>
-        <div class="fc-label">Saw VBC Contracts Grow with Tech</div>
+      <div class="float-card" onclick="openStatModal(3)">
+        <div class="fc-num">96%</div>
+        <div class="fc-label">of Eligible Medicare Patients Never Billed for CCM, RPM, or AWV</div>
+        <div class="fc-desc">Medicare has paid for chronic care management since 2015. The codes exist. The reimbursement is real. PCPs just don't have the infrastructure to use it.</div>
+        <div class="fc-source">CMS / JAMA Internal Medicine</div>
         <div class="fc-expand-hint">Read more →</div>
       </div>
     </div>
@@ -585,21 +620,84 @@
   </div>
 </section>
 
+<!-- Virtuous Cycle -->
+<section class="section" style="background:var(--white);padding:80px 24px;" id="virtuous-cycle">
+  <div class="section-inner" style="max-width:900px;">
+    <p class="section-overline reveal" style="text-align:center;">The InPursuit Difference</p>
+    <h2 class="section-headline reveal" style="text-align:center;">Better engagement. Better outcomes.<br><em>Better revenue follows.</em></h2>
+    <p class="section-desc reveal" style="text-align:center;">Every other healthcare vendor starts with billing. We start with the patient. When patients are genuinely engaged in their own care — monitoring their vitals, managing their conditions, showing up for screenings — outcomes improve. When outcomes improve, quality scores rise, care gaps close, and the billing codes that already exist but go uncaptured finally get used. The money is the result. The care is the product. The infrastructure is what was missing.</p>
+
+    <div style="display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:0;align-items:center;margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto;" class="reveal virtuous-cycle-grid">
+      <div style="text-align:center;padding:24px;">
+        <div style="width:80px;height:80px;border-radius:50%;background:rgba(197,164,78,0.06);border:2px solid var(--gold);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);">1</span>
+        </div>
+        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:8px;">Engage</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.6;">Patients use the InPursuit app daily — personalized insights, medication reminders, wearable data, AI coaching. Between-visit care becomes continuous, not episodic.</p>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);padding:0 8px;" class="cycle-arrow">→</div>
+      <div style="text-align:center;padding:24px;">
+        <div style="width:80px;height:80px;border-radius:50%;background:rgba(46,125,50,0.06);border:2px solid var(--green);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);">2</span>
+        </div>
+        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:8px;">Improve</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.6;">Engaged patients hit their targets. Blood pressure controlled. A1C down. Screenings completed. Medications adhered to. Hospitalizations prevented. Real clinical improvement.</p>
+      </div>
+      <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);padding:0 8px;" class="cycle-arrow">→</div>
+      <div style="text-align:center;padding:24px;">
+        <div style="width:80px;height:80px;border-radius:50%;background:rgba(10,22,40,0.06);border:2px solid var(--navy);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <span style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--navy);">3</span>
+        </div>
+        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:8px;">Earn</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.6;">Better outcomes unlock billing codes that already exist — CCM, RPM, AWV, BHI — plus quality bonuses, higher RAF scores, and value-based incentives. Revenue that was always available. Finally accessible.</p>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:16px;" class="reveal">
+      <div style="font-size:12px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;font-weight:700;">&#8635; And the cycle repeats — revenue funds more infrastructure, which drives more care, which earns more revenue</div>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:48px;" class="reveal virtuous-contrast-grid">
+      <div style="padding:24px;border:1px solid rgba(178,34,52,0.12);border-radius:10px;background:rgba(178,34,52,0.02);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--red);margin-bottom:10px;">Without InPursuit</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">Patients leave the office and disappear until their next appointment — or until they end up in the ER. 96% of eligible patients are never enrolled in CCM, RPM, or AWV. Not because they don't qualify. Because you don't have the infrastructure to run it.</p>
+      </div>
+      <div style="padding:24px;border:1px solid rgba(46,125,50,0.15);border-radius:10px;background:rgba(46,125,50,0.02);">
+        <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px;">With InPursuit</div>
+        <p style="font-size:13px;color:var(--text-muted);line-height:1.7;">InPursuit provides the infrastructure. Patients are enrolled in CCM, RPM, and AWV automatically. Wearable data streams in. AI flags deterioration before it becomes a crisis. Medications are tracked. Between-visit care is continuous — and every minute of it is documented, billed, and reimbursed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+@media(max-width:768px) {
+  .virtuous-cycle-grid { grid-template-columns: 1fr !important; }
+  .cycle-arrow { transform: rotate(90deg); }
+  .virtuous-contrast-grid { grid-template-columns: 1fr !important; }
+}
+</style>
+
 <!-- Ticker -->
 <div class="gold-ticker">
   <div class="ticker-track">
     <span class="ticker-item">76% of Health Systems Moving to VBC</span>
     <span class="ticker-item">32% Fewer Hospitalizations</span>
     <span class="ticker-item">$11B Saved by VBC in 2023</span>
-    <span class="ticker-item">Zero Cost to Providers</span>
+    <span class="ticker-item">$0 Cost to Providers — We Bill Payers Directly</span>
     <span class="ticker-item">81% Saw VBC Contracts Grow</span>
     <span class="ticker-item">Embeds in Your Existing EHR</span>
     <span class="ticker-item">Physicians Spend 2x More on Paperwork Than Patients</span>
     <span class="ticker-item">93% of Providers Increasing AI Usage</span>
     <span class="ticker-item">76% of Health Systems Moving to VBC</span>
-    <span class="ticker-item">32% Fewer Hospitalizations</span>
+     <span class="ticker-item">CMS Health IT Ecosystem Member</span>
+    <span class="ticker-item">Medicare App Library — All Three Categories</span>
+    <span class="ticker-item">We Bill Payers Directly — Provider Pays $0</span>
+    <span class="ticker-item">Selected Over IBM, Oracle, SAP, Informatica</span>
+    <span class="ticker-item">RPM + CCM + TCM Billed to Medicare AND Commercial Payers</span>
+   <span class="ticker-item">32% Fewer Hospitalizations</span>
     <span class="ticker-item">$11B Saved by VBC in 2023</span>
-    <span class="ticker-item">Zero Cost to Providers</span>
+    <span class="ticker-item">$0 Cost to Providers — We Bill Payers Directly</span>
     <span class="ticker-item">81% Saw VBC Contracts Grow</span>
     <span class="ticker-item">Embeds in Your Existing EHR</span>
     <span class="ticker-item">Physicians Spend 2x More on Paperwork Than Patients</span>
@@ -623,7 +721,7 @@
           <div class="pain-solution-label">InPursuit Solution</div>
           <div class="pain-solution-box">
             <span class="sol-highlight">$0</span>
-            <p>No implementation fees. No per-seat licenses. No monthly SaaS charges. InPursuit earns when you earn — through revenue sharing on outcome-based payments.</p>
+            <p>No implementation fees. No per-seat licenses. No monthly subscription costs. InPursuit bills Medicare and commercial payers directly under our own NPI. We earn independently. You earn independently.</p>
           </div>
         </div>
       </div>
@@ -666,39 +764,39 @@
     <div class="value-grid">
       <div class="value-card reveal">
         <div class="vc-inner">
-          <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <div class="vc-num">64%</div>
-          <div class="vc-label">Expect Higher VBC Revenue</div>
-          <div class="vc-desc">Nearly two-thirds of healthcare organizations expect higher revenue from value-based care this year vs. last. The revenue is real — and growing.</div>
+          <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="vc-num">Daily</div>
+          <div class="vc-label">Patient App Engagement</div>
+          <div class="vc-desc">Your patients interact with the InPursuit app every day — medication reminders, vitals tracking, wellness coaching, care gap alerts. Not a portal they open once and forget.</div>
         </div>
-        <div class="vc-source">NAACOS / Innovaccer 2025</div>
+        <div class="vc-source">vs. 80% of health apps abandoned within 2 weeks (IQVIA / Rock Health)</div>
       </div>
       <div class="value-card reveal">
         <div class="vc-inner">
           <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
           <div class="vc-num">32%</div>
           <div class="vc-label">Fewer Hospitalizations</div>
-          <div class="vc-desc">VBC patients have 32% fewer hospital admissions and 12% fewer ER visits. Better outcomes unlock higher CMS payments for your practice.</div>
+          <div class="vc-desc">Continuous monitoring and proactive intervention catches deterioration before it becomes an ER visit. Humana's data: 32% fewer inpatient admissions under VBC.</div>
         </div>
         <div class="vc-source">Humana VBC Report 2025</div>
       </div>
       <div class="value-card reveal">
         <div class="vc-inner">
-          <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
-          <div class="vc-num">49%</div>
-          <div class="vc-label">of Your Day in the EHR</div>
-          <div class="vc-desc">Only 27% is spent with patients. Our AI automates documentation, coding, outreach, and reporting — giving you hours back every day.</div>
+          <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+          <div class="vc-num">60%+</div>
+          <div class="vc-label">AWV Completion Rate</div>
+          <div class="vc-desc">National average: 25–30%. When patients are engaged and the app prompts them to schedule their own screenings, completion rates more than double.</div>
         </div>
-        <div class="vc-source">AMA / EvidenceCare</div>
+        <div class="vc-source">vs. 25–30% national average</div>
       </div>
       <div class="value-card reveal">
         <div class="vc-inner">
           <div class="vc-icon-wrap"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div class="vc-num">$11B</div>
-          <div class="vc-label">Saved by VBC in 2023</div>
-          <div class="vc-desc">Humana's VBC arrangements saved $11 billion in medical costs — 25.8% lower than Original Medicare. The system rewards outcomes.</div>
+          <div class="vc-num">$0</div>
+          <div class="vc-label">Your Investment</div>
+          <div class="vc-desc">Better care. Better outcomes. Better revenue. And it costs your practice nothing. We bill payers directly under our own credentials.</div>
         </div>
-        <div class="vc-source">Humana Annual Report 2023</div>
+        <div class="vc-source">InPursuit Clinical Partnership Model</div>
       </div>
     </div>
   </div>
@@ -815,8 +913,12 @@
 
     <!-- Bottom callout -->
     <div style="text-align:center;margin-top:40px;padding:20px;background:rgba(255,255,255,0.015);border:1px solid rgba(255,255,255,0.04);border-radius:12px;max-width:700px;margin-left:auto;margin-right:auto;" class="reveal">
-      <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;">Better outcomes for patients. Maximum revenue for providers.</div>
-      <div style="font-size:12px;color:rgba(255,255,255,0.25);line-height:1.7;">TETRA aligns every incentive &mdash; the same coordinated care that improves patient outcomes is the care that unlocks every eligible payment pathway. One deployment. Every model. Every dollar earned, every outcome earned.</div>
+      <div style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--white);margin-bottom:6px;">The same care that makes patients healthier is the care that unlocks every payment pathway.</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.25);line-height:1.7;">A patient whose blood pressure is controlled hits their ACCESS target. A patient who completes their AWV closes a care gap and a quality measure. A patient who adheres to medication avoids a hospitalization and generates RPM data. A patient who opens the app every day is a patient who stays with your practice. This isn't revenue optimization. It's what good medicine looks like when it's actually supported by infrastructure.</div>
+    </div>
+    <div style="text-align:center;margin-top:20px;padding:16px 24px;border:1px solid rgba(197,164,78,0.12);border-radius:10px;max-width:700px;margin-left:auto;margin-right:auto;background:rgba(197,164,78,0.03);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">How InPursuit Earns</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.45);line-height:1.7;">InPursuit bills Medicare and commercial payers directly under our own NPI and Medicare Part B enrollment. You don’t bill us. We don’t bill you. We each earn independently from payers for the services we provide. Your existing FFS revenue is untouched. RPM, CCM, TCM, and BHI codes are billed to UHC, BCBS, Aetna, Cigna, and Medicare at published rates — often 10-20% higher on commercial payers than Medicare.</div>
     </div>
   </div>
 
@@ -827,9 +929,9 @@
 <section class="section" id="revenue-levers" style="background:var(--navy-deep);position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%, rgba(197,164,78,0.04), transparent 60%);"></div>
   <div class="section-inner" style="position:relative;z-index:2;">
-    <p class="section-overline reveal">The Revenue Engine</p>
-    <h2 class="section-headline reveal" style="color:var(--white);">Twelve levers. One infrastructure. <em>The only patient bridge in value-based care.</em></h2>
-    <p class="section-desc reveal" style="color:rgba(255,255,255,0.5);margin-bottom:20px;">Every other VBC enabler gives providers a dashboard and hopes for the best. InPursuit creates a bidirectional bridge &mdash; where the patient is an active, revenue-generating participant through the InPursuit app &mdash; without the provider lifting a finger.</p>
+    <p class="section-overline reveal">The Care Engine</p>
+    <h2 class="section-headline reveal" style="color:var(--white);">Twelve levers that improve patient care. <em>Every one of them also drives revenue.</em></h2>
+    <p class="section-desc reveal" style="color:rgba(255,255,255,0.5);margin-bottom:20px;">Every lever below serves two purposes: it makes your patients healthier, and it captures revenue your practice is currently missing. The patient-facing InPursuit app creates a direct, continuous bridge between your practice and your patients' real lives — turning episodic care into proactive, personalized health management. The revenue is the natural result of patients who are genuinely engaged in their own care.</p>
 
     <!-- TIER 1: INFRASTRUCTURE -->
     <div class="reveal" style="margin-bottom:48px;">
@@ -862,13 +964,13 @@
           <div class="rl-num">04</div>
           <div class="rl-title">Outcome Attainment (OAPs)</div>
           <p class="rl-desc">CMS pays for results, not visits. Without infrastructure, providers hit targets for ~40% of patients. TETRA&rsquo;s continuous monitoring raises attainment to 60&ndash;75%.</p>
-          <div class="rl-uplift">$47 PMPM at 65% vs 40% = +63% OAPs</div>
+          <div class="rl-uplift">60–75% attainment vs ~40% baseline = significantly higher OAPs</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">05</div>
           <div class="rl-title">New Billable Services</div>
           <p class="rl-desc">CCM, RPM, TCM, and AWV represent massive untapped FFS revenue. Most providers capture less than 15% of eligible CCM and under 8% of RPM. TETRA automates enrollment and documentation.</p>
-          <div class="rl-uplift">$200K&ndash;$800K+ in new FFS annually</div>
+          <div class="rl-uplift">$200K&ndash;$800K+ in new FFS annually — Medicare AND commercial payers</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">06</div>
@@ -935,40 +1037,6 @@
 </section></section>
 
 <!-- ============================================== -->
-<!-- FOUR CMS MODELS — Navigate to Each -->
-<!-- ============================================== -->
-<section class="section" id="models" style="padding:80px 24px;">
-  <div style="max-width:1100px;margin:0 auto;">
-    <p class="section-overline reveal" style="text-align:center;">Four CMS Models. One Infrastructure.</p>
-    <h2 class="section-headline reveal" style="text-align:center;">Every model has a dedicated page <em>with its own calculator.</em></h2>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px;" class="reveal">
-      <a href="access.html" class="model-link" style="background:rgba(56,217,199,0.03);border:1px solid rgba(56,217,199,0.12);" onmouseover="this.style.borderColor='rgba(56,217,199,0.3)'" onmouseout="this.style.borderColor='rgba(56,217,199,0.12)'">
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#38d9c7;margin-bottom:6px;">CMS ACCESS Model</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:4px;">Disease-Specific OAPs</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:12px;">$35 PMPM + FFS optimization. 4 clinical tracks. Cohort 1 deadline: April 1, 2026.</div>
-        <div style="font-size:10px;color:#38d9c7;font-weight:600;">Explore ACCESS &rarr;</div>
-      </a>
-      <a href="mssp.html" class="model-link" style="background:rgba(78,140,255,0.03);border:1px solid rgba(78,140,255,0.12);" onmouseover="this.style.borderColor='rgba(78,140,255,0.3)'" onmouseout="this.style.borderColor='rgba(78,140,255,0.12)'">
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4e8cff;margin-bottom:6px;">MSSP — Shared Savings</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:4px;">TCOC + FFS Dual Stream</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:12px;">477 ACOs, 11.2M beneficiaries, $2.1B savings (2023). Open enrollment.</div>
-        <div style="font-size:10px;color:#4e8cff;font-weight:600;">Explore MSSP &rarr;</div>
-      </a>
-      <a href="lead.html" class="model-link" style="background:rgba(139,92,246,0.03);border:1px solid rgba(139,92,246,0.12);" onmouseover="this.style.borderColor='rgba(139,92,246,0.3)'" onmouseout="this.style.borderColor='rgba(139,92,246,0.12)'">
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#8b5cf6;margin-bottom:6px;">LEAD Model (Replaces ACO REACH)</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:4px;">10-Year Capitated ACO</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:12px;">No benchmark rebasing. Prospective capitation. RFA March 2026.</div>
-        <div style="font-size:10px;color:#8b5cf6;font-weight:600;">Explore LEAD &rarr;</div>
-      </a>
-      <a href="team.html" class="model-link" style="background:rgba(255,107,53,0.03);border:1px solid rgba(255,107,53,0.12);" onmouseover="this.style.borderColor='rgba(255,107,53,0.3)'" onmouseout="this.style.borderColor='rgba(255,107,53,0.12)'">
-        <div style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#ff6b35;margin-bottom:6px;">TEAM Model (Mandatory)</div>
-        <div style="font-family:'Instrument Serif',serif;font-size:20px;color:var(--navy);margin-bottom:4px;">Surgical Episode Bundles</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.5;margin-bottom:12px;">5 episode categories, 188 CBSAs. Live January 2026. Mandatory.</div>
-        <div style="font-size:10px;color:#ff6b35;font-weight:600;">Explore TEAM &rarr;</div>
-      </a>
-    </div>
-  </div>
-</section>
 
 <!-- TECHNOLOGY TOPOLOGY DIAGRAM -->
 <!-- ============================================== -->
@@ -1157,19 +1225,70 @@
       <span class="proof-logo-divider">×</span>
       <span class="proof-logo-ip">InPursuit Health</span>
     </div>
-    <h2 class="section-headline reveal">Honeycomb Medical: <em>$2.3M in projected new revenue. $0 invested.</em></h2>
+    <h2 class="section-headline reveal">Honeycomb Medical: <em>22,000 patients getting better care. And yes, $250K in new revenue Year 1.</em></h2>
     <div class="proof-layout reveal">
       <div>
-        <p class="section-desc" style="max-width:none;">Honeycomb Medical Group in Tennessee took one look at InPursuit's model and signed. 22,000 patients. 6,400 on Medicare. An estimated $2.3 million in annual CMS payments — and they didn't write a single check to make it happen. That's the model.</p>
+        <p class="section-desc" style="max-width:none;">Before InPursuit, Honeycomb's 22,000 patients left the office and disappeared between visits. eClinicalWorks sent appointment reminders. That was it. No monitoring. No engagement. No proactive outreach. Care gaps accumulated silently. Now, Honeycomb's patients have continuous engagement through the InPursuit app — medication tracking, vitals monitoring, AI health insights, care gap alerts that prompt patients to schedule their own screenings. Honeycomb's physicians see real-time patient data in the QB View inside their existing eClinicalWorks. Between-visit care went from nonexistent to continuous. The $250K in new Year 1 revenue isn't from billing tricks. It's from patients who are actually being managed.</p>
         <p style="font-size:14px; color:var(--text-muted); margin-top:16px; line-height:1.6;">InPursuit embedded the Quarterback View directly inside Honeycomb's eClinicalWorks — top 3 actions per patient, HCC coding nudges, care gap alerts, one-click scheduling. Leadership gets real-time scorecards. 80% of patient outreach is now automated. No new system. No disruption. Just results.</p>
       </div>
-      <div class="proof-stats">
-        <div class="proof-stat"><div class="ps-num">22,000</div><div class="ps-label">Total Patients</div></div>
-        <div class="proof-stat"><div class="ps-num">6,400</div><div class="ps-label">Medicare Patients</div></div>
-        <div class="proof-stat"><div class="ps-num">4,000</div><div class="ps-label">VBC Target</div></div>
-        <div class="proof-stat"><div class="ps-num">$2.3M</div><div class="ps-label">Projected OAPs / Year</div></div>
-        <div class="proof-stat"><div class="ps-num">$0</div><div class="ps-label">Upfront to Honeycomb</div></div>
-        <div class="proof-stat"><div class="ps-num">Feb '26</div><div class="ps-label">LOI Signed</div></div>
+      <div class="proof-stats" style="grid-template-columns:repeat(3,1fr);">
+        <div class="proof-stat"><div class="ps-num">22,000</div><div class="ps-label">Patients With Continuous Care</div></div>
+        <div class="proof-stat"><div class="ps-num">Daily</div><div class="ps-label">Patient App Engagement</div></div>
+        <div class="proof-stat"><div class="ps-num">60%+</div><div class="ps-label">AWV Completion Target</div></div>
+        <div class="proof-stat"><div class="ps-num">80%</div><div class="ps-label">Outreach Now Automated</div></div>
+        <div class="proof-stat"><div class="ps-num">$250K</div><div class="ps-label">New Revenue Year 1</div></div>
+        <div class="proof-stat"><div class="ps-num">$0</div><div class="ps-label">Cost to Honeycomb</div></div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:48px;">
+      <h3 style="font-family:'Instrument Serif',serif;font-size:22px;color:var(--navy);margin-bottom:24px;">How Honeycomb earns — at $0 cost</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+        <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Physician Oversight Income</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);margin-bottom:4px;">$59K — $297K/yr</div>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">InPursuit pays Honeycomb’s physicians fair market value for clinical supervision. 5-10 minutes per patient per month. New income for minimal effort.</p>
+        </div>
+        <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">AWV Capture Uplift</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);margin-bottom:4px;">$38K — $65K/yr</div>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">TETRA identifies every eligible patient, auto-generates scheduling. Honeycomb performs the visit, bills it, keeps 100%. National avg: 25%. With TETRA: 60%+.</p>
+        </div>
+        <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">CMS Co-Management Payments</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);margin-bottom:4px;">$200K — $400K/yr</div>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">Starting Year 2 (ACCESS Cohort 2). CMS pays the referring clinician ~$100/year per aligned beneficiary directly. Not from InPursuit — from CMS.</p>
+        </div>
+        <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">Quality Bonuses + HCC Recapture</div>
+          <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);margin-bottom:4px;">$125K — $500K/yr</div>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">Care gap closure improves MIPS and HEDIS scores. Better documentation captures missed HCC codes. Higher reimbursement across Medicare, MA, and commercial payers.</p>
+        </div>
+      </div>
+    </div>
+    <div class="reveal" style="margin-top:48px;background:var(--navy-deep);border:1px solid rgba(197,164,78,0.15);border-radius:16px;padding:48px;color:var(--white);">
+      <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;">Why the InPursuit App Changes Everything</div>
+      <h3 style="font-family:'Instrument Serif',serif;font-size:24px;color:var(--white);margin-bottom:20px;line-height:1.3;">Honeycomb’s eClinicalWorks portal had the industry-standard problem.<br><em style="color:var(--gold);">76% of patients opened it once and never came back.</em></h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-top:24px;">
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(178,34,52,0.8);margin-bottom:12px;">eCW Healow App (Before)</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.5);line-height:1.7;">
+            Appointment reminders and lab results. That’s it. No health intelligence. No unified record across providers. No between-visit engagement. No wearable integration. No behavioral nudges. No reason to open the app unless you’re checking a test result you already know about.
+          </div>
+        </div>
+        <div>
+          <div style="font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">InPursuit App (After)</div>
+          <div style="font-size:14px;color:rgba(255,255,255,0.7);line-height:1.7;">
+            A living health feed: personalized AI insights, medication reminders with refill coordination, care gap alerts that prompt patients to schedule their own AWV, wearable data streaming into the provider dashboard, complete longitudinal records across every provider and pharmacy, and behavioral coaching between visits. Patients open this app every day — because it’s actually useful.
+          </div>
+        </div>
+      </div>
+      <div style="margin-top:28px;padding:20px;background:rgba(197,164,78,0.06);border:1px solid rgba(197,164,78,0.12);border-radius:10px;">
+        <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.7;">
+          <strong style="color:var(--gold);">That engagement drives revenue.</strong> Patients who use the app complete more screenings, adhere to medications, hit outcome targets, and stay with their provider. Every interaction feeds data that improves HCC coding, care gap closure, and outcome attainment. The provider sees it all in the QB View — without lifting a finger.
+        </div>
+      </div>
+      <div style="margin-top:16px;text-align:center;">
+        <span style="font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.4);">CMS Medicare App Library — Approved Across All Three Patient-Facing Categories</span>
       </div>
     </div>
   </div>
@@ -1180,10 +1299,10 @@
   <div class="cta-content reveal">
     <p class="section-overline">Get Started</p>
     <h2>76% of your competitors are already moving.<br>The question is whether you'll lead or follow.</h2>
-    <p>Value-based care isn't coming — it's here. The providers who move now lock in new revenue streams, better outcomes, and less admin burden. InPursuit handles the technology, the implementation, and the compliance. You just have to say yes.</p>
+    <p>Value-based care isn't coming — it's here. The providers who move now capture new revenue from Medicare and commercial payers, improve outcomes, and reduce admin burden. InPursuit handles the technology, care management, and billing under our own credentials. You provide clinical oversight. It costs you nothing.</p>
     <div style="margin:16px 0 24px;"><span style="font-family:'Instrument Serif',serif;font-size:22px;color:var(--gold);letter-spacing:1px;font-style:italic;">Results Matter&#8482;</span></div>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a class="btn-gold" href="#calculator">Calculate Your Revenue →</a>
+      <a class="btn-gold" href="mailto:providers@inpursuithealth.com?subject=Practice%20Analysis%20Request">Request a Practice Analysis →</a>
       <a class="btn-outline" href="contact.html">Talk to Our Team</a>
     </div>
   </div>
@@ -1197,39 +1316,32 @@ window.addEventListener('load', () => { setTimeout(() => document.getElementById
 // ===== STAT MODAL =====
 const statData = [
   {
-    num: '76%',
-    label: 'of C-Suites Are Moving to Value-Based Care',
-    body: 'A December 2025 survey by Sage Growth Partners found that <strong>over three-quarters of hospital and health system C-suite executives</strong> plan to increase their value-based care participation within the next one to two years — up from 57% in the prior survey. Only 1% expect a decline. The message is clear: the industry\'s top decision-makers are betting on outcome-based models, not fee-for-service. Free-text responses from executives pointed to <strong>higher potential upside</strong> and growing pressure from payers and demographic shifts pushing organizations toward greater risk.',
-    source: 'Sage Growth Partners C-Suite Survey, Fierce Healthcare (December 2025)',
-    takeaway: 'Your competitors aren\'t waiting. Three out of four health system leaders are actively expanding VBC participation. Providers who lack the technology infrastructure to participate will watch revenue shift to those who have it. InPursuit gives you that infrastructure at zero cost.'
+    num: '500M+',
+    label: 'Health App Downloads — 80% Abandoned Within 2 Weeks',
+    body: 'The IQVIA Institute\'s annual Digital Health Trends report found that <strong>consumer health apps have surpassed 500 million global downloads</strong> — a number that keeps climbing. Yet Rock Health\'s digital health consumer adoption research found that <strong>80% of health app users abandon the app within two weeks of downloading it</strong>. The core reason isn\'t patient apathy. Patients actively want to engage with their health: surveys show over 70% of patients say they want digital tools to help manage their conditions. <strong>The apps simply don\'t deliver value in return for the attention they ask for.</strong> Step-counting apps, symptom checkers, and appointment schedulers give patients data with no context, action, or connection to their actual clinical care. They open it once, see a number that means nothing to them, and move on. The download is proof of intent. The abandonment is proof of failure.',
+    source: 'IQVIA Institute Digital Health Trends Report (2023); Rock Health Digital Health Consumer Adoption Survey; Accenture Health Consumer Survey',
+    takeaway: 'Your patients have already downloaded a health app. They already want to be engaged. They just need one that\'s connected to their actual care team, gives them personalized clinical insights, and gives them a reason to open it every single day. That\'s what the InPursuit app was built to be — not a portal, not a symptom tracker, but a daily health companion tied directly to their provider relationship and the clinical data that actually matters.'
   },
   {
-    num: '32%',
-    label: 'Fewer Hospitalizations Under VBC',
-    body: 'Humana\'s 2025 Value-Based Care Report — their 11th annual — found that Medicare Advantage patients in value-based care arrangements experienced <strong>32.1% fewer inpatient hospital admissions</strong> and <strong>11.6% fewer emergency department visits</strong> compared to Original Medicare. Patients also completed preventive screenings at a <strong>14.6% higher rate</strong>. The financial impact is staggering: Humana\'s VBC arrangements saved an estimated <strong>$11 billion in 2023 alone</strong> — 25.8% less than Original Medicare costs. These savings get reinvested into expanded benefits and better care.',
-    source: 'Humana 11th Annual Value-Based Care Report (November 2025)',
-    takeaway: 'Better outcomes aren\'t just good medicine — they\'re how you earn more under CMS payment models. Every prevented hospitalization and closed care gap directly increases your Outcome-Aligned Payments. InPursuit\'s AI flags at-risk patients before they end up in the ER.'
+    num: '70%+',
+    label: 'of Patients Want Digital Tools to Manage Their Health',
+    body: 'Accenture\'s annual health consumer survey found that <strong>more than 70% of patients say they want digital tools to help manage their health conditions</strong> — and that number climbs above 80% among patients with chronic disease. The demand for digital health engagement isn\'t a hypothesis. It\'s documented, consistent, and growing. <strong>The 500 million downloads prove it. The 80% abandonment rate also proves something:</strong> patients are willing to try. They download the apps. They create the accounts. They show up. And then the apps fail them — generic advice, no clinical connection, no reason to return. The market isn\'t waiting to be created. It\'s waiting to be served properly.',
+    source: 'Accenture Health Consumer Survey; IQVIA Institute Digital Health Trends; Rock Health Digital Health Consumer Adoption Survey',
+    takeaway: 'Your patients have already raised their hand. They want this. InPursuit is the first between-visit engagement platform built around the patient\'s relationship with their actual provider — not a wellness brand, not a step counter, not a symptom checker. The demand is proven. The question is whether they find it through you or somewhere else.'
   },
   {
-    num: '2:1',
-    label: 'Paperwork vs. Patient Time',
-    body: 'Research published in the Annals of Internal Medicine found that <strong>physicians spend twice as much time on paperwork and EHR documentation as they do face-to-face with patients</strong>. A separate time-allocation study showed physicians spend <strong>49% of their day in the EHR</strong>, with only <strong>27% spent caring for patients</strong>. The American Medical Association found that 63% of physicians report burnout — and administrative tasks are the <strong>#1 cited cause</strong>. The Canadian Federation of Independent Business calculated that family physicians spend 18.5 million hours per year on admin — equivalent to 55.6 million lost patient visits.',
-    source: 'PMC / Annals of Internal Medicine; AMA Physician Burnout Survey; EvidenceCare',
-    takeaway: 'You didn\'t go to medical school to fill out forms. InPursuit\'s TETRA infrastructure automates up to 80% of administrative tasks — coding recommendations, care gap alerts, patient outreach, quality reporting — all embedded inside your existing EHR. More time with patients, less time on paperwork.'
+    num: '86%',
+    label: 'of Chronic Disease Managed Outside the Clinic',
+    body: 'Research consistently demonstrates that <strong>approximately 85–90% of chronic disease management occurs outside clinical settings</strong> — in patients\' daily lives, homes, and communities. Dietary choices, physical activity, medication adherence, stress management, sleep hygiene, and social determinants of health collectively drive the vast majority of health outcomes. Yet the traditional healthcare system is designed almost exclusively around the <strong>14% of care that happens during clinical visits</strong>. This structural mismatch — caring intensively for a handful of minutes a year while patients are on their own for the rest — is the root cause of why chronic disease outcomes in America remain so poor despite massive healthcare spending. <strong>You can only manage what you can see. Right now, you can\'t see 86% of what\'s driving your patients\' health.</strong>',
+    source: 'New England Journal of Medicine; Institute for Healthcare Improvement; CDC Chronic Disease Report',
+    takeaway: 'InPursuit deploys infrastructure into that 86%: wearable device integration, AI behavioral coaching, medication tracking, remote vitals monitoring, and a daily engagement layer that keeps patients actively managing their conditions. The data surfaces back to you inside your existing EHR. You can only intervene when you know something is wrong — and right now, you don\'t find out until they show up in the ER.'
   },
   {
-    num: '$0',
-    label: 'Your Upfront Investment',
-    body: 'Most health IT implementations cost <strong>$50,000 to $200,000 upfront</strong> and take 6–18 months to deploy. InPursuit flips that model entirely. We charge <strong>zero implementation fees, zero monthly licenses, and zero SaaS subscriptions</strong>. Instead, we take a revenue share only when CMS Outcome-Aligned Payments flow to your practice. If you don\'t earn, we don\'t earn. Our full-service tier handles everything: the ACCESS application, infrastructure deployment, EHR integration, patient identification, enrollment support, compliance reporting, and ongoing optimization.',
-    source: 'InPursuit Health ACCESS-as-a-Service Model',
-    takeaway: 'No budget approval needed. No capital outlay. No IT staff required. InPursuit deploys in 6 weeks and you start receiving new CMS payments for the chronic care you\'re already delivering. It\'s the only model where the technology partner shares your risk.'
-  },
-  {
-    num: '81%',
-    label: 'of Providers Saw VBC Contracts Grow',
-    body: 'The 2025 State of Technology in Value-Based Care Report — a national survey by Reveleer, Mathematica, and The Harris Poll of 203 payer and provider organizations — found that <strong>81% of providers saw their VBC contracts grow in the past 12 months</strong>, with <strong>83% forecasting even more growth ahead</strong>. The key enabler? Technology. Every organization surveyed now uses AI, with <strong>93% of providers increasing AI usage</strong> in the past year. And <strong>98% view AI as critical</strong> to VBC success. Yet <strong>75% cited lack of data interoperability</strong> as the biggest barrier to capturing that growth.',
-    source: 'Reveleer / Mathematica / Harris Poll — State of Technology in VBC (August 2025)',
-    takeaway: 'The providers who invested in VBC technology saw their contracts — and revenue — grow. The ones who didn\'t are falling behind. InPursuit is purpose-built for this moment: federally validated interoperability, AI-powered analytics, and an infrastructure that solves the exact technology gap holding 75% of providers back.'
+    num: '96%',
+    label: 'of Eligible Medicare Patients Never Billed for CCM, RPM, or AWV',
+    body: 'Medicare introduced Chronic Care Management (CCM) reimbursement in 2015. Any patient with two or more chronic conditions qualifies. The average reimbursement is <strong>$62 per patient per month</strong> — fully covered, no cost-sharing required. A practice with 300 enrolled patients generates over <strong>$200,000 in new annual revenue</strong>. Yet CMS data and JAMA research consistently find that <strong>96% of eligible Medicare patients</strong> are never enrolled in CCM, RPM, or Annual Wellness Visits. This is not a coding problem. This is not a documentation problem. <strong>This is an infrastructure problem.</strong> Enrollment requires monthly care coordination, device management, clinical documentation, and billing workflows that a solo or small-group practice simply cannot staff. The revenue exists. The patients qualify. The barrier is operational — and it has locked PCPs out of an entirely new category of income for a decade. CCM stacked with RPM, AWV, BHI, and APCM codes can yield <strong>up to $1,883 per patient per year</strong> in new, recurring revenue on patients you are already seeing.',
+    source: 'CMS Physician Fee Schedule Data; JAMA Internal Medicine — Chronic Care Management Utilization Study; CMS Advanced Primary Care Management Fact Sheet',
+    takeaway: 'InPursuit\'s TETRA infrastructure is the operational layer that PCPs have never had. Automated patient identification, enrollment workflows, monthly monitoring, documentation, and billing — all running in the background of your existing practice. For the first time, every eligible patient in your panel can be enrolled, every month, without adding staff or changing how you practice. This isn\'t revenue recovery. This is revenue access — to programs that have existed for years but were never within reach.'
   }
 ];
 
