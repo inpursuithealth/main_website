@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Convertible Note One-Pager</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:8.5in 11in;margin:0;}
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:#fff;width:8.5in;min-height:11in;overflow:hidden;-webkit-font-smoothing:antialiased;}
+.top{background:var(--navy);padding:0 44px;height:40px;display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid var(--gold);}
+.top .wm{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:var(--gold);letter-spacing:1.5px;}
+.top .nav{font-size:9px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.35);}
+.hero{background:var(--navy);padding:28px 44px 20px;}
+.hero h1{font-family:'Instrument Serif',Georgia,serif;font-size:24px;font-weight:400;color:#fff;line-height:1.2;margin-bottom:8px;}
+.hero h1 em{font-style:italic;color:var(--gold);}
+.hero p{font-size:11px;color:rgba(255,255,255,.42);line-height:1.6;max-width:500px;}
+.stats{display:flex;background:var(--navy);padding:4px 44px 18px;gap:24px;}
+.st{text-align:center;}
+.st-n{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--gold);}
+.st-l{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:2px;}
+.st-d{width:1px;background:rgba(197,164,78,.15);align-self:stretch;}
+.content{padding:18px 44px 10px;}
+.sh{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;margin-top:16px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.sh:first-child{margin-top:0;}
+p.bd{font-size:11px;color:var(--text-mid);line-height:1.6;margin-bottom:14px;}
+p.bd strong{color:var(--navy);}
+.term-row{display:flex;border-bottom:1px solid var(--border);padding:5px 0;font-size:10.5px;}
+.term-row:last-child{border:none;}
+.term-key{width:130px;font-weight:600;color:var(--navy);flex-shrink:0;}
+.term-val{color:var(--text-mid);flex:1;}
+.term-val strong{color:var(--navy);}
+.rev-table{width:100%;border-collapse:collapse;margin-bottom:12px;}
+.rev-table th{background:var(--navy);color:rgba(255,255,255,.50);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:7px 10px;text-align:left;}
+.rev-table th.r{text-align:right;}
+.rev-table th:first-child{border-radius:3px 0 0 0;}
+.rev-table th:last-child{border-radius:0 3px 0 0;}
+.rev-table td{padding:6px 10px;border-bottom:1px solid var(--border);font-size:10.5px;color:var(--text-mid);}
+.rev-table td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:13px;}
+.rev-table td.r.gold{color:var(--gold);}
+.rev-table td.label{font-weight:600;color:var(--navy);}
+.rev-table tr.total{background:var(--gold-dim);}
+.rev-table tr.total td{font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);}
+.rev-table tr.total td.r{font-size:14px;color:var(--gold);}
+.rev-table .note{font-size:8px;color:var(--text-muted);display:block;}
+.traction{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.tr-item{border-left:2px solid var(--gold);padding-left:10px;}
+.tr-item h4{font-size:10px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.tr-item p{font-size:9px;color:var(--text-muted);line-height:1.4;}
+.tax-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:14px;}
+.tax-card{background:var(--cream);border:1px solid var(--border);border-radius:4px;padding:10px 12px;}
+.tax-card.highlight{border-top:2px solid var(--gold);}
+.tax-card h4{font-size:10px;font-weight:600;color:var(--navy);margin-bottom:2px;}
+.tax-card p{font-size:8.5px;color:var(--text-muted);line-height:1.4;}
+.ask{background:var(--navy);border-radius:4px;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;}
+.ask .a-label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold-light);}
+.ask .a-num{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:#fff;}
+.ask .a-detail{font-size:9px;color:rgba(255,255,255,.35);}
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:8px 44px;display:flex;justify-content:space-between;align-items:center;position:absolute;bottom:0;left:0;right:0;}
+.footer .fl{font-size:7.5px;color:rgba(255,255,255,.25);line-height:1.4;}
+.footer .fr{font-family:'Instrument Serif',Georgia,serif;font-size:11px;color:var(--gold);letter-spacing:1px;}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}}
+</style>
+</head>
+<body>
+
+<div class="top"><span class="wm">InPursuit Health</span><span class="nav">Convertible Note &middot; Bridge Financing &middot; Confidential</span></div>
+
+<div class="hero">
+  <h1>Convertible Note &mdash; <em>Same Upside. Downside Protection. Extra Tax Provision.</em></h1>
+  <p>$2M raise at $25M cap. 5% interest. 18-month maturity with repayment right. Same conversion terms as the SAFE, plus a legally enforceable backstop and &sect;166 bad debt deduction available now.</p>
+</div>
+
+<div class="stats">
+  <div class="st"><div class="st-n">$2M</div><div class="st-l">Note Raise</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">$25M</div><div class="st-l">Val. Cap</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">5%</div><div class="st-l">Interest</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">18 Mo</div><div class="st-l">Maturity</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">$50K</div><div class="st-l">Minimum</div></div>
+  <div class="st-d"></div>
+  <div class="st"><div class="st-n">$46.2M</div><div class="st-l">Yr 3 Rev</div></div>
+</div>
+
+<div class="content">
+
+<div class="sh">The Company</div>
+<p class="bd">InPursuit Health builds TETRA&trade;&mdash;a payer-agnostic clinical data infrastructure and orchestration layer. <strong>InPursuit bills payers directly under its own NPI</strong> for ACCESS OAPs, RPM, CCM, and telehealth. The consumer app is available to every American regardless of payer. CMS Health IT Ecosystem approved. All three Medicare App Library categories.</p>
+
+<div class="sh">Note Terms</div>
+<div class="term-row"><span class="term-key">Structure</span><span class="term-val"><strong>Convertible Promissory Note</strong> &mdash; senior unsecured debt</span></div>
+<div class="term-row"><span class="term-key">Total Raise / Cap</span><span class="term-val"><strong>$2,000,000</strong> / <strong>$25,000,000</strong> &middot; No discount</span></div>
+<div class="term-row"><span class="term-key">Interest</span><span class="term-val"><strong>5% simple</strong> &mdash; accrues, converts to equity (not paid in cash unless at maturity repayment)</span></div>
+<div class="term-row"><span class="term-key">Maturity</span><span class="term-val"><strong>18 months</strong> &mdash; at maturity: elect repayment (principal + interest) or conversion at cap</span></div>
+<div class="term-row"><span class="term-key">Min / Pro Rata</span><span class="term-val"><strong>$50,000</strong> minimum &middot; Pro rata at $100K+</span></div>
+<div class="term-row"><span class="term-key">Conversion</span><span class="term-val">At Equity Financing &ge;$1M &mdash; converts principal + interest at lower of financing price or cap</span></div>
+<div class="term-row"><span class="term-key">Execution</span><span class="term-val">DocuSign &middot; Wire to Wells Fargo</span></div>
+
+<div class="sh">Revenue Projections &mdash; Four Streams, One Infrastructure</div>
+<table class="rev-table">
+  <tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th></tr>
+  <tr><td class="label">ACCESS OAPs<span class="note">CMS direct billing</span></td><td class="r gold">$162.5K</td><td class="r gold">$3.4M</td><td class="r gold">$17.9M</td></tr>
+  <tr><td class="label">RPM + CCM<span class="note">All payers, own NPI</span></td><td class="r gold">$180K</td><td class="r gold">$1.8M</td><td class="r gold">$13.5M</td></tr>
+  <tr><td class="label">Telehealth<span class="note">InPursuit Medical PC (MSA)</span></td><td class="r gold">$18.75K</td><td class="r gold">$375K</td><td class="r gold">$2.8M</td></tr>
+  <tr><td class="label">D2C Subs + Commerce<span class="note">All payers, all app stores</span></td><td class="r gold">$480K</td><td class="r gold">$3.6M</td><td class="r gold">$12.0M</td></tr>
+  <tr class="total"><td>Total</td><td class="r">$841K</td><td class="r">$9.2M</td><td class="r">$46.2M</td></tr>
+</table>
+<p style="font-size:7.5px;color:var(--text-muted);margin-bottom:14px;">Conservative: 1 &rarr; 10 &rarr; 50 providers, 2,000 eligible/practice. 3-year cumulative: $56.2M. No % of VBC revenue.</p>
+
+<div class="sh">Tax Advantages &mdash; Three Provisions (One Available Now)</div>
+<div class="tax-row">
+  <div class="tax-card highlight"><h4>&sect;166 Bad Debt</h4><p><strong>Available NOW.</strong> Debt instrument qualifies for ordinary loss deduction with no annual cap. Not available to SAFE holders.</p></div>
+  <div class="tax-card"><h4>&sect;1202 QSBS</h4><p>Up to 100% capital gains exclusion on shares held 5+ years. Activates at C-Corp conversion.</p></div>
+  <div class="tax-card"><h4>&sect;1244 Stock</h4><p>Ordinary loss up to $50K ($100K joint). Activates at C-Corp conversion.</p></div>
+</div>
+
+<div class="sh">Traction &amp; Validation</div>
+<div class="traction">
+  <div class="tr-item"><h4>DoD/VA &mdash; 41,000 Servers</h4><p>Selected over IBM, Oracle, SAP, Informatica. Deployed at federal scale.</p></div>
+  <div class="tr-item"><h4>CMS App Library &mdash; All 3</h4><p>Conversational AI, Kill the Clipboard, Chronic Care. 140M+ beneficiaries.</p></div>
+  <div class="tr-item"><h4>Honeycomb &mdash; Signed</h4><p>First provider. Memphis, TN. ~22K patients. Revenue Jul 5, 2026.</p></div>
+</div>
+
+<div class="sh">The Ask</div>
+<div class="ask">
+  <div><div class="a-label">Note Raise</div><div class="a-num">$2,000,000</div></div>
+  <div style="text-align:center;"><div class="a-label">5% Interest &middot; 18-Mo Maturity</div><div class="a-num">$25M Cap</div></div>
+  <div style="text-align:right;"><div class="a-label">Series A Target</div><div class="a-num">$20M &middot; Sep 2026</div></div>
+</div>
+
+</div>
+
+<div class="footer">
+  <div class="fl">InPursuit Health, LLC &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member<br>Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; invest@inpursuithealth.com</div>
+  <div class="fr">InPursuit Health</div>
+</div>
+
+</body>
+</html>

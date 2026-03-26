@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; Convertible Note Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:0 48px;}
+.header{background:var(--navy);padding:56px 0 44px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:12px;max-width:680px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:14px;color:rgba(255,255,255,.40);max-width:560px;margin:0 auto;line-height:1.7;}
+section{padding:56px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--navy);line-height:1.2;margin:10px 0 20px;}
+.stitle em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.85;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark .stitle{color:#fff;}
+.dark .stitle em{color:var(--gold-light);}
+.dark p.body{color:rgba(255,255,255,.55);}
+.dark p.body strong{color:var(--gold-light);}
+.stat-row{display:flex;gap:36px;margin:32px 0;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.dark .stat-row{border-color:rgba(255,255,255,.06);}
+.stat-item{text-align:center;flex:1;}
+.stat-num{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--gold);line-height:1;}
+.stat-lab{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+.dark .stat-lab{color:rgba(255,255,255,.30);}
+.callout{background:var(--gold-dim);border-left:3px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;margin:28px 0;font-size:14px;line-height:1.7;color:var(--text-mid);}
+.callout strong{color:var(--navy);}
+.dark .callout{background:rgba(197,164,78,.06);border-color:var(--gold);}
+.dark .callout strong{color:var(--gold-light);}
+.fin-table{width:100%;border-collapse:collapse;margin:24px 0;}
+.fin-table th{text-align:left;padding:12px 14px;background:var(--navy);color:rgba(255,255,255,.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.fin-table th.r{text-align:right;}
+.fin-table th:first-child{border-radius:4px 0 0 0;}
+.fin-table th:last-child{border-radius:0 4px 0 0;}
+.fin-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);}
+.fin-table td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:16px;}
+.fin-table td.r.gold{color:var(--gold);}
+.fin-table td.label-cell{font-weight:600;color:var(--navy);}
+.fin-table tr.total{background:var(--gold-dim);}
+.fin-table tr.total td{font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);}
+.fin-table tr.total td.r{font-size:18px;color:var(--gold);}
+.fin-table .note{font-size:11px;color:var(--text-muted);display:block;margin-top:2px;}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin:28px 0;}
+.compare-card{border:1px solid var(--border);border-radius:4px;padding:24px;background:#fff;}
+.compare-card.highlight{border-top:3px solid var(--gold);}
+.compare-card h3{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:12px;}
+.compare-card p{font-size:13px;color:var(--text-mid);line-height:1.6;margin-bottom:8px;}
+.compare-card .advantage{font-size:12px;color:var(--gold);font-weight:600;margin-top:12px;}
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:28px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}body{background:#fff;}section{padding:36px 0 !important;page-break-inside:avoid;}}
+@media(max-width:768px){.container{padding:0 24px;}.stat-row{flex-direction:column;gap:16px;}.compare-grid{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Confidential &mdash; Qualified Investors Only</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>Convertible Note <em>Executive Summary</em></h1>
+  <p class="header-sub">Same upside as the SAFE. 5% interest accrual. 18-month maturity with repayment right. Three IRC tax provisions&mdash;one available immediately.</p>
+</div>
+
+<!-- WHY THE NOTE -->
+<section>
+  <div class="container">
+    <div class="label">Why the Convertible Note</div>
+    <div class="stitle">Same Upside. <em>Stronger Downside Protection.</em></div>
+    <p class="body">The Convertible Note and the SAFE offer the same investment opportunity: $25,000,000 valuation cap, conversion to Series A Preferred, and identical exposure to InPursuit's four revenue streams. The Note adds three structural advantages for investors who want the same upside with stronger protection.</p>
+
+    <div class="compare-grid">
+      <div class="compare-card">
+        <h3>SAFE</h3>
+        <p>Equity-like instrument. No maturity. No interest. Converts at financing or liquidity event.</p>
+        <p>Two tax provisions (&sect;1202 + &sect;1244), both deferred to C-Corp conversion.</p>
+        <div class="advantage">2 provisions &middot; No downside protection</div>
+      </div>
+      <div class="compare-card highlight">
+        <h3>Convertible Note</h3>
+        <p>Debt instrument. 5% interest accrues on principal. 18-month maturity creates a legally enforceable repayment right if no financing occurs.</p>
+        <p>Three tax provisions: &sect;166 bad debt deduction available immediately (as a debt instrument), plus &sect;1202 and &sect;1244 at C-Corp conversion.</p>
+        <div class="advantage">3 provisions &middot; Maturity protection &middot; Interest accrual</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE COMPANY -->
+<section class="dark">
+  <div class="container">
+    <div class="label">The Company</div>
+    <div class="stitle">InPursuit Health builds the infrastructure beneath <em>every payer, every provider, every patient.</em></div>
+    <p class="body">TETRA&trade; is a payer-agnostic clinical data infrastructure and orchestration layer that connects fragmented healthcare data, governs AI safely, and powers the transition from fee-for-service to outcome-based care. InPursuit is not an app&mdash;it is the infrastructure that apps, AI systems, EHR vendors, and payer systems sit on top of.</p>
+    <p class="body"><strong>InPursuit bills payers directly under its own NPI</strong> for ACCESS OAPs, RPM, CCM, and telehealth. Referring providers earn CMS co-management payments independently (~$100/patient/year/track). InPursuit never charges a percentage of VBC revenue. The consumer app is available to every American regardless of payer.</p>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">$5.6T</div><div class="stat-lab">U.S. Healthcare</div></div>
+      <div class="stat-item"><div class="stat-num">300K</div><div class="stat-lab">Physicians</div></div>
+      <div class="stat-item"><div class="stat-num">140M+</div><div class="stat-lab">CMS Beneficiaries</div></div>
+      <div class="stat-item"><div class="stat-num">41K</div><div class="stat-lab">DoD/VA Servers</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Model</div>
+    <div class="stitle">Four Independent Streams. <em>Conservative Projections.</em></div>
+    <table class="fin-table">
+      <tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th></tr>
+      <tr><td class="label-cell">ACCESS OAPs<span class="note">CMS direct billing</span></td><td class="r gold">$162.5K</td><td class="r gold">$3.4M</td><td class="r gold">$17.9M</td></tr>
+      <tr><td class="label-cell">RPM + CCM<span class="note">All payers, own NPI</span></td><td class="r gold">$180K</td><td class="r gold">$1.8M</td><td class="r gold">$13.5M</td></tr>
+      <tr><td class="label-cell">Telehealth<span class="note">InPursuit Medical PC (MSA)</span></td><td class="r gold">$18.75K</td><td class="r gold">$375K</td><td class="r gold">$2.8M</td></tr>
+      <tr><td class="label-cell">D2C Subscriptions + Commerce<span class="note">All payers, all app stores</span></td><td class="r gold">$480K</td><td class="r gold">$3.6M</td><td class="r gold">$12.0M</td></tr>
+      <tr class="total"><td>Total</td><td class="r">$841K</td><td class="r">$9.2M</td><td class="r">$46.2M</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--text-muted);line-height:1.5;">Conservative: 1 &rarr; 10 &rarr; 50 providers. 2,000 eligible patients per practice. 3-year cumulative: $56.2M.</p>
+  </div>
+</section>
+
+<!-- TAX -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Tax Advantages</div>
+    <div class="stitle">Three IRC Provisions. <em>One Available Now.</em></div>
+    <p class="body"><strong>&sect;166 Bad Debt Deduction (available immediately):</strong> As a debt instrument, the Convertible Note qualifies for bad debt deduction under IRC &sect;166 if the investment results in a loss. Business bad debts are deductible as ordinary losses with no annual cap. This provision is not available to SAFE holders and does not require C-Corp conversion.</p>
+    <p class="body"><strong>&sect;1202 QSBS (deferred to C-Corp conversion):</strong> Upon conversion to equity at the Series A, investors may exclude up to 100% of capital gains (up to $10M or 10x basis) on shares held 5+ years.</p>
+    <p class="body"><strong>&sect;1244 Stock (deferred to C-Corp conversion):</strong> If the investment results in a loss after conversion, investors may deduct up to $50,000 ($100,000 joint) as an ordinary loss rather than a capital loss.</p>
+    <div class="callout">
+      <strong>Note:</strong> InPursuit Health, LLC is currently taxed as a partnership. C-Corp conversion planned at Series A close (September 1, 2026). Investors should consult their own tax advisor.
+    </div>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section>
+  <div class="container">
+    <div class="label">Traction &amp; Validation</div>
+    <div class="stitle">Federal Proof Points. <em>First Revenue in Sight.</em></div>
+    <p class="body"><strong>DoD/VA:</strong> Selected over IBM, Oracle, SAP, Informatica in formal Analysis of Alternatives. TETRA deployed on 41,000 servers.</p>
+    <p class="body"><strong>CMS Ecosystem:</strong> Approved member. All three Medicare App Library patient-facing categories. 140M+ beneficiaries.</p>
+    <p class="body"><strong>Honeycomb Medical Group:</strong> First signed provider. Memphis, TN. ~22,000 patients. ACCESS Cohort 1. Revenue July 5, 2026.</p>
+    <p class="body"><strong>IP:</strong> TETRA Aegis provisional patent filed February 2026. Six-layer stack protected by trade secret and patent.</p>
+  </div>
+</section>
+
+<!-- NOTE TERMS -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Note Terms</div>
+    <div class="stitle">Clean. Enforceable. <em>Investor-Friendly.</em></div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">$2M</div><div class="stat-lab">Note Raise</div></div>
+      <div class="stat-item"><div class="stat-num">$25M</div><div class="stat-lab">Valuation Cap</div></div>
+      <div class="stat-item"><div class="stat-num">5%</div><div class="stat-lab">Interest Rate</div></div>
+      <div class="stat-item"><div class="stat-num">18 Mo</div><div class="stat-lab">Maturity</div></div>
+      <div class="stat-item"><div class="stat-num">$50K</div><div class="stat-lab">Minimum</div></div>
+    </div>
+    <p class="body">Converts to Series A Preferred at Equity Financing &ge;$1M gross proceeds. Principal plus accrued interest converts at the lower of the financing price or the Valuation Cap. MFN provision. Pro rata rights at $100K+.</p>
+    <p class="body"><strong>Execution:</strong> DocuSign. Note Subscription Agreement + Convertible Note + Accredited Investor Questionnaire. Wire to Wells Fargo.</p>
+    <p class="body" style="text-align:center;margin-top:32px;"><strong style="color:var(--gold-light);font-size:17px;">invest@inpursuithealth.com &nbsp;&middot;&nbsp; inpursuithealth.com</strong></p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Categories<br><br>Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities</p>
+  </div>
+</div>
+
+</body>
+</html>

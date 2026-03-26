@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health &mdash; SAFE Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.6;}
+.container{max-width:800px;margin:0 auto;padding:0 48px;}
+.header{background:var(--navy);padding:56px 0 44px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:24px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(28px,4vw,42px);font-weight:400;color:#fff;line-height:1.2;margin-bottom:12px;max-width:680px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:14px;color:rgba(255,255,255,.40);max-width:560px;margin:0 auto;line-height:1.7;}
+section{padding:56px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);}
+.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(22px,3vw,30px);font-weight:400;color:var(--navy);line-height:1.2;margin:10px 0 20px;}
+.stitle em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.85;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark .stitle{color:#fff;}
+.dark .stitle em{color:var(--gold-light);}
+.dark p.body{color:rgba(255,255,255,.55);}
+.dark p.body strong{color:var(--gold-light);}
+.stat-row{display:flex;gap:36px;margin:32px 0;padding:28px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.dark .stat-row{border-color:rgba(255,255,255,.06);}
+.stat-item{text-align:center;flex:1;}
+.stat-num{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--gold);line-height:1;}
+.stat-lab{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);margin-top:6px;}
+.dark .stat-lab{color:rgba(255,255,255,.30);}
+.callout{background:var(--gold-dim);border-left:3px solid var(--gold);padding:24px 28px;border-radius:0 4px 4px 0;margin:28px 0;font-size:14px;line-height:1.7;color:var(--text-mid);}
+.callout strong{color:var(--navy);}
+.dark .callout{background:rgba(197,164,78,.06);border-color:var(--gold);}
+.dark .callout strong{color:var(--gold-light);}
+.fin-table{width:100%;border-collapse:collapse;margin:24px 0;}
+.fin-table th{text-align:left;padding:12px 14px;background:var(--navy);color:rgba(255,255,255,.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.fin-table th.r{text-align:right;}
+.fin-table th:first-child{border-radius:4px 0 0 0;}
+.fin-table th:last-child{border-radius:0 4px 0 0;}
+.fin-table td{padding:12px 14px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);}
+.fin-table td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:16px;}
+.fin-table td.r.gold{color:var(--gold);}
+.fin-table td.label-cell{font-weight:600;color:var(--navy);}
+.fin-table tr.total{background:var(--gold-dim);}
+.fin-table tr.total td{font-weight:700;color:var(--navy);border-bottom:2px solid var(--gold);}
+.fin-table tr.total td.r{font-size:18px;color:var(--gold);}
+.fin-table .note{font-size:11px;color:var(--text-muted);display:block;margin-top:2px;}
+.layer-row{display:grid;grid-template-columns:repeat(6,1fr);gap:4px;margin:24px 0;}
+.layer{background:var(--navy);border-radius:4px;padding:12px 8px;text-align:center;}
+.layer h4{font-family:'Instrument Serif',Georgia,serif;font-size:12px;color:var(--gold);}
+.layer span{font-size:7px;color:rgba(255,255,255,.30);letter-spacing:1.5px;text-transform:uppercase;}
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:28px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);letter-spacing:2px;margin-bottom:8px;}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}body{background:#fff;}section{padding:36px 0 !important;page-break-inside:avoid;}}
+@media(max-width:768px){.container{padding:0 24px;}.stat-row{flex-direction:column;gap:16px;}.layer-row{grid-template-columns:repeat(3,1fr);}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Confidential &mdash; Qualified Investors Only</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>SAFE Bridge <em>Executive Summary</em></h1>
+  <p class="header-sub">$2,000,000 SAFE at $25,000,000 post-money cap. Bridge capital deploying at the inflection point of American healthcare's infrastructure transformation.</p>
+</div>
+
+<!-- OPPORTUNITY -->
+<section>
+  <div class="container">
+    <div class="label">The Opportunity</div>
+    <div class="stitle">The $5.6 Trillion System Needs <em>New Infrastructure.</em></div>
+    <p class="body">The U.S. healthcare system was built for billing, not patients. Every payer&mdash;CMS, commercial, Medicare Advantage&mdash;is mandating outcome-based care. AI is entering healthcare faster than anyone can govern it. The transition requires a new orchestration layer that connects providers, payers, and patients across every system, every payer, and every care setting.</p>
+    <p class="body"><strong>InPursuit Health builds that layer.</strong> TETRA&trade; is a payer-agnostic clinical data infrastructure and orchestration layer. It is not an app&mdash;it is the infrastructure that apps, AI systems, EHR vendors, and payer systems sit on top of. The consumer app and provider tools are outputs of the TETRA stack.</p>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">$5.6T</div><div class="stat-lab">U.S. Healthcare Spend</div></div>
+      <div class="stat-item"><div class="stat-num">300K</div><div class="stat-lab">Physicians Addressable</div></div>
+      <div class="stat-item"><div class="stat-num">140M+</div><div class="stat-lab">CMS Beneficiaries</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TETRA STACK -->
+<section class="dark">
+  <div class="container">
+    <div class="label">The Infrastructure Moat</div>
+    <div class="stitle">Six Layers. <em>Payer-Agnostic. Model-Agnostic.</em></div>
+    <div class="layer-row">
+      <div class="layer"><h4>TETRA&trade;</h4><span>Data Fabric</span></div>
+      <div class="layer"><h4>eX&trade;</h4><span>Exchange</span></div>
+      <div class="layer"><h4>Conductor&trade;</h4><span>AI Orch.</span></div>
+      <div class="layer"><h4>Vault&trade;</h4><span>Consumer</span></div>
+      <div class="layer"><h4>Aegis&trade;</h4><span>Protection</span></div>
+      <div class="layer"><h4>Sentinel&trade;</h4><span>AI Agent</span></div>
+    </div>
+    <div class="callout">
+      <strong>InPursuit is the infrastructure for AI.</strong> Every major AI company is building toward healthcare. None have the interoperability, clinical governance, or regulatory positioning to operate safely. TETRA Conductor routes interactions to the optimal AI model. Aegis governs access. Sentinel monitors behavior. When AI enters healthcare at scale, it runs on TETRA.
+    </div>
+  </div>
+</section>
+
+<!-- REVENUE MODEL -->
+<section>
+  <div class="container">
+    <div class="label">Revenue Model</div>
+    <div class="stitle">Direct Payer Billing. <em>Four Independent Streams.</em></div>
+    <p class="body">InPursuit partners with small-to-mid-size physician groups who refer patients with chronic conditions. InPursuit delivers technology-enabled care and <strong>bills payers directly under its own NPI</strong> for ACCESS OAPs, RPM, CCM, and telehealth. Referring providers earn CMS co-management payments (~$100/patient/year/track) paid by CMS independently. InPursuit never charges a percentage of VBC revenue.</p>
+    <table class="fin-table">
+      <tr><th>Revenue Stream</th><th class="r">Year 1</th><th class="r">Year 2</th><th class="r">Year 3</th></tr>
+      <tr><td class="label-cell">ACCESS OAPs<span class="note">CMS direct billing as ACCESS participant</span></td><td class="r gold">$162.5K</td><td class="r gold">$3.4M</td><td class="r gold">$17.9M</td></tr>
+      <tr><td class="label-cell">RPM + CCM<span class="note">Commercial, MA, Medicaid at partner practices</span></td><td class="r gold">$180K</td><td class="r gold">$1.8M</td><td class="r gold">$13.5M</td></tr>
+      <tr><td class="label-cell">Telehealth<span class="note">InPursuit Medical PC with MSA</span></td><td class="r gold">$18.75K</td><td class="r gold">$375K</td><td class="r gold">$2.8M</td></tr>
+      <tr><td class="label-cell">D2C Subscriptions + Commerce<span class="note">All payers, all app stores</span></td><td class="r gold">$480K</td><td class="r gold">$3.6M</td><td class="r gold">$12.0M</td></tr>
+      <tr class="total"><td>Total InPursuit Revenue</td><td class="r">$841K</td><td class="r">$9.2M</td><td class="r">$46.2M</td></tr>
+    </table>
+    <p style="font-size:12px;color:var(--text-muted);line-height:1.5;">Conservative: 1 &rarr; 10 &rarr; 50 providers over 3 years. 2,000 eligible patients per practice. 3-year cumulative: $56.2M.</p>
+  </div>
+</section>
+
+<!-- TRACTION -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Traction &amp; Validation</div>
+    <div class="stitle">Federal Proof Points. <em>First Revenue in Sight.</em></div>
+    <p class="body"><strong>DoD/VA:</strong> Selected over IBM, Oracle, SAP, and Informatica in a formal Analysis of Alternatives. TETRA deployed on 41,000 servers across the federal healthcare system.</p>
+    <p class="body"><strong>CMS Health IT Ecosystem:</strong> Approved member. Selected for all three patient-facing categories in the Medicare App Library&mdash;Conversational AI, Kill the Clipboard, and Chronic Care Management.</p>
+    <p class="body"><strong>Honeycomb Medical Group:</strong> First signed provider partner. Memphis, Tennessee. ~22,000 patients. Submitting ACCESS Cohort 1 application. Revenue begins July 5, 2026.</p>
+    <p class="body"><strong>IP:</strong> TETRA Aegis provisional patent filed February 2026. Six-layer infrastructure stack protected by trade secret and patent.</p>
+  </div>
+</section>
+
+<!-- SAFE TERMS -->
+<section>
+  <div class="container">
+    <div class="label">SAFE Terms</div>
+    <div class="stitle">Simple. Clean. <em>Investor-Friendly.</em></div>
+    <div class="stat-row">
+      <div class="stat-item"><div class="stat-num">$2M</div><div class="stat-lab">SAFE Raise</div></div>
+      <div class="stat-item"><div class="stat-num">$25M</div><div class="stat-lab">Post-Money Cap</div></div>
+      <div class="stat-item"><div class="stat-num">$50K</div><div class="stat-lab">Minimum</div></div>
+      <div class="stat-item"><div class="stat-num">Sep 2026</div><div class="stat-lab">Series A Close</div></div>
+    </div>
+    <p class="body">Post-money SAFE adapted for LLC, based on the Y Combinator template. No discount&mdash;cap only. MFN provision ensures holders receive any better terms issued subsequently. Pro rata rights at $100K+. Converts to Series A Preferred at Equity Financing of &ge;$1M gross proceeds.</p>
+    <p class="body"><strong>Tax advantages (deferred to C-Corp conversion at Series A):</strong> &sect;1202 QSBS exclusion (up to 100% capital gains exclusion on shares held 5+ years) and &sect;1244 ordinary loss treatment (up to $50K/$100K joint deduction if investment results in loss).</p>
+    <p class="body"><strong>Execution:</strong> DocuSign. Wire to Wells Fargo. Subscription Agreement + SAFE Agreement + Accredited Investor Questionnaire.</p>
+  </div>
+</section>
+
+<!-- USE OF FUNDS -->
+<section class="dark">
+  <div class="container">
+    <div class="label">Use of Funds</div>
+    <div class="stitle">Bridge Capital Deploying at <em>the Inflection Point</em></div>
+    <p class="body">SAFE capital funds the critical window between now and first revenue (July 5, 2026). Every dollar deployed compounds across the CMS timeline.</p>
+    <p class="body"><strong>CMS MVP Demonstration (March 31)</strong> &mdash; working product delivered to CMS across all three app categories.</p>
+    <p class="body"><strong>ACCESS Cohort 1 Preparation (April 1)</strong> &mdash; Honeycomb Medical Group application with InPursuit as technology backbone.</p>
+    <p class="body"><strong>CMS In-Person Demo (April 9)</strong> &mdash; live demonstration to CMS evaluation team.</p>
+    <p class="body"><strong>Provider Acquisition</strong> &mdash; pipeline development for Cohort 2 and LEAD Model applications.</p>
+    <p class="body"><strong>Consumer App Launch (July 4)</strong> &mdash; Medicare App Library listing + Apple/Google Play for all Americans.</p>
+    <p class="body"><strong>TETRA Infrastructure</strong> &mdash; continued build-out of the six-layer stack.</p>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section>
+  <div class="container" style="text-align:center;">
+    <div class="label">Invest</div>
+    <div class="stitle">SAFE investors receive preferential conversion terms <em>when the Series A closes.</em></div>
+    <p class="body" style="max-width:560px;margin:0 auto 32px;">The earliest capital at the most critical moment. SAFE bridge investors are rewarded with the best entry point into the infrastructure layer that healthcare's transformation depends on.</p>
+    <p style="font-size:15px;color:var(--gold);font-weight:600;">invest@inpursuithealth.com &nbsp;&middot;&nbsp; inpursuithealth.com</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Categories<br><br>Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; This document does not constitute an offer to sell securities</p>
+  </div>
+</div>
+
+</body>
+</html>
