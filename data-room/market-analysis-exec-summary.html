@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Market Analysis Executive Summary</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+@page{size:8.5in 11in;margin:0.6in 0.7in;}
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:#fff;-webkit-font-smoothing:antialiased;line-height:1.6;}
+.container{max-width:860px;margin:0 auto;padding:0 40px;}
+
+/* Header */
+.header{background:var(--navy);padding:36px 40px 28px;border-bottom:2px solid var(--gold);}
+.header-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);letter-spacing:2px;}
+.header-conf{font-size:8px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.30);}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:26px;font-weight:400;color:#fff;line-height:1.25;margin-bottom:10px;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:12px;color:rgba(255,255,255,.40);line-height:1.6;max-width:600px;}
+
+/* Stats bar */
+.stats-bar{display:flex;background:var(--navy);padding:10px 40px 16px;gap:0;border-bottom:1px solid rgba(197,164,78,.15);}
+.sb-item{flex:1;text-align:center;padding:8px 0;}
+.sb-item+.sb-item{border-left:1px solid rgba(197,164,78,.12);}
+.sb-n{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--gold);}
+.sb-l{font-size:7.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.28);margin-top:2px;}
+
+/* Content */
+.content{padding:24px 40px 16px;}
+.label{font-size:8px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;margin-top:20px;padding-bottom:4px;border-bottom:1px solid var(--border);}
+.label:first-child{margin-top:0;}
+p.b{font-size:11.5px;color:var(--text-mid);line-height:1.7;margin-bottom:12px;}
+p.b strong{color:var(--navy);}
+.src{font-size:8.5px;color:var(--text-muted);font-style:italic;margin-top:-6px;margin-bottom:12px;}
+
+/* Pillar grid */
+.pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0;}
+.pcard{border:1px solid var(--border);border-top:2px solid var(--gold);border-radius:0 0 3px 3px;padding:14px 16px;}
+.pcard h4{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--navy);margin-bottom:2px;font-weight:400;}
+.pcard .pn{font-family:'Instrument Serif',Georgia,serif;font-size:22px;color:var(--gold);margin-bottom:6px;}
+.pcard p{font-size:10px;color:var(--text-mid);line-height:1.5;}
+.pcard strong{color:var(--navy);}
+
+/* Mini table */
+.mt{width:100%;border-collapse:collapse;margin:12px 0;}
+.mt th{text-align:left;padding:7px 10px;background:var(--navy);color:rgba(255,255,255,.50);font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.mt th.r{text-align:right;}
+.mt th:first-child{border-radius:3px 0 0 0;}
+.mt th:last-child{border-radius:0 3px 0 0;}
+.mt td{padding:7px 10px;border-bottom:1px solid var(--border);font-size:10.5px;color:var(--text-mid);}
+.mt td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:13px;color:var(--gold);}
+.mt td:first-child{font-weight:600;color:var(--navy);font-size:10.5px;}
+.mt .nt{font-size:8px;color:var(--text-muted);display:block;font-weight:400;}
+.mt tr:last-child{background:var(--gold-dim);}
+.mt tr:last-child td{font-weight:600;color:var(--navy);}
+
+/* Comp table */
+.ct{width:100%;border-collapse:collapse;margin:12px 0;}
+.ct th{text-align:left;padding:5px 8px;background:var(--navy);color:rgba(255,255,255,.50);font-size:7.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
+.ct th:first-child{border-radius:3px 0 0 0;}
+.ct th:last-child{border-radius:0 3px 0 0;}
+.ct td{padding:5px 8px;border-bottom:1px solid var(--border);font-size:9.5px;color:var(--text-mid);}
+.ct td:first-child{font-weight:600;color:var(--navy);}
+.ct tr:last-child{background:var(--gold-dim);}
+
+/* Callout */
+.co{background:var(--gold-dim);border-left:2px solid var(--gold);padding:12px 16px;border-radius:0 3px 3px 0;margin:14px 0;font-size:10.5px;line-height:1.6;color:var(--text-mid);}
+.co strong{color:var(--navy);}
+
+/* Column layout */
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:14px 0;}
+.col h4{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:4px;}
+.col p{font-size:10px;color:var(--text-mid);line-height:1.55;margin-bottom:6px;}
+.col strong{color:var(--navy);}
+
+/* Page breaks */
+.page-break{page-break-after:always;border-bottom:1px solid var(--border);margin:8px 0;padding-bottom:8px;}
+
+/* Footer */
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:10px 40px;display:flex;justify-content:space-between;align-items:center;}
+.footer .fl{font-size:7.5px;color:rgba(255,255,255,.25);line-height:1.5;}
+.footer .fr{font-family:'Instrument Serif',Georgia,serif;font-size:11px;color:var(--gold);letter-spacing:1px;}
+
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}}
+</style>
+</head>
+<body>
+
+<!-- ═══ PAGE 1 ═══ -->
+<div class="header">
+  <div class="header-top">
+    <span class="header-wm">InPursuit Health</span>
+    <span class="header-conf">Market Analysis &middot; Executive Summary &middot; Confidential</span>
+  </div>
+  <h1>Four Converging Markets. One Infrastructure <em>Dependency.</em></h1>
+  <p class="header-sub">Healthcare's $5.6 trillion transition from volume to value requires a new orchestration layer. Four independently massive markets are converging on the same infrastructure need. This summary condenses the full institutional market analysis.</p>
+</div>
+
+<div class="stats-bar">
+  <div class="sb-item"><div class="sb-n">$4.45T</div><div class="sb-l">VBC Market 2030</div></div>
+  <div class="sb-item"><div class="sb-n">$208B</div><div class="sb-l">Wellness Tech 2035</div></div>
+  <div class="sb-item"><div class="sb-n">$110B</div><div class="sb-l">Healthcare AI 2030</div></div>
+  <div class="sb-item"><div class="sb-n">$57B</div><div class="sb-l">RPM Market 2030</div></div>
+  <div class="sb-item"><div class="sb-n">$8.6B</div><div class="sb-l">Interop. 2030</div></div>
+</div>
+
+<div class="content">
+
+<div class="label">The Thesis</div>
+<p class="b">The United States spends $5.6 trillion annually on healthcare with outcomes that rank among the worst in the developed world. The root cause is structural: the fee-for-service model pays for volume, not value. Every major payer&mdash;CMS, UnitedHealthcare, Aetna, Cigna, Blue Cross, state Medicaid programs&mdash;is now actively building the replacement. CMS mandates 100% of Medicare beneficiaries in accountable care by 2030. The number of VBC-aligned patients is expected to double from 43 million (2022) to 90 million by 2027. Two-thirds of provider organizations have already increased VBC participation.</p>
+<p class="src">Sources: CMS Innovation Center, McKinsey, Mordor Intelligence, KFF</p>
+
+<p class="b">This transition cannot happen on existing infrastructure. Provider data is siloed across thousands of incompatible EHRs. Only 69% of U.S. inpatient settings have FHIR-based APIs. AI is entering clinical workflows with only 15% of organizations prepared. 129 million Americans have at least one chronic disease. The infrastructure gap between the mandate and reality is the opportunity.</p>
+
+<div class="label">The Four Converging Markets</div>
+
+<div class="pillar-grid">
+  <div class="pcard">
+    <h4>I. Provider &amp; Value-Based Care</h4>
+    <div class="pn">$4.45T by 2030</div>
+    <p><strong>300,000 physicians</strong> on fragmented EHR systems need infrastructure to transition to VBC. CMS ACCESS Model (July 2026, 10-year), LEAD (Jan 2027), MSSP (511 ACOs, $2.1B savings in 2023), TEAM. Commercial payers following: Optum manages 4.7M patients under VBC. MA enrollment at 54% of eligible beneficiaries (35.7M). Same infrastructure serves every model.</p>
+  </div>
+  <div class="pcard">
+    <h4>II. Direct-to-Consumer Health</h4>
+    <div class="pn">$208B by 2035</div>
+    <p><strong>330M+ Americans</strong> with smartphones. 35%+ already use health apps/wearables but data is fragmented across dozens of point solutions. No app unifies the full record. Four subscription tiers (Free/$14.99/$34.99/$49.99) + transaction-moment commerce ($12/user/yr). Medicare App Library (all 3 categories) + app stores + provider referral flywheel.</p>
+  </div>
+  <div class="pcard">
+    <h4>III. Healthcare AI Infrastructure</h4>
+    <div class="pn">$110B by 2030</div>
+    <p><strong>38.6% CAGR</strong>&mdash;fastest-growing healthcare segment. PwC projects $868B total AI impact by 2030. Every major AI company building toward healthcare; none have the governance layer. TETRA Conductor (model-agnostic orchestration), Aegis (patent-pending governance), Sentinel (behavioral surveillance). AI needs infrastructure beneath it.</p>
+  </div>
+  <div class="pcard">
+    <h4>IV. Interoperability &amp; RPM</h4>
+    <div class="pn">$57B RPM + $8.6B Interop.</div>
+    <p><strong>TEFCA live since 2024</strong>, 625+ hospitals connected. $1M/violation info-blocking penalties. 142M U.S. patients projected on RPM by 2030 (~40% of population). RPM+CCM reimbursement: $150/patient/month. Compounds with VBC: ACCESS patients + non-ACCESS RPM/CCM patients at same practices through same infrastructure.</p>
+  </div>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ═══ PAGE 2 ═══ -->
+<div class="label">ACCESS Model: The Primary Revenue Accelerant</div>
+<p class="b">The ACCESS Model is a 10-year voluntary national model (July 2026&ndash;June 2036) testing Outcome-Aligned Payments for technology-enabled chronic care. CMS pays participating organizations fixed monthly payments per patient per clinical track, with full payment tied to measurable health outcomes. Four tracks target conditions affecting ~67% of Medicare beneficiaries: eCKM ($360/yr initial), CKM ($420/yr), MSK ($180/yr), BH ($180/yr). Patients can enroll in multiple tracks. CMS pays 50% monthly; remaining 50% reconciled on outcomes (50% attainment threshold in Year 1). Referring providers earn CMS co-management payments (~$100/patient/year/track) independently.</p>
+<p class="src">Source: ACCESS RFA v1.1 (Feb 12, 2026), CMS Technical FAQ, CMS Model Payment Amounts</p>
+
+<p class="b"><strong>Why ACCESS needs infrastructure:</strong> Participants must use FHIR-based APIs, electronically share clinical updates with referring clinicians, and demonstrate technology-enabled care. Small-to-mid-size practices (2,000 eligible patients average) cannot build this. They need a technology partner who provides the infrastructure, handles the billing complexity, and manages the outcomes reporting at zero upfront cost. Over 250 organizations expressed interest at the December 2025 MAHA announcement. MA plans may independently adopt similar arrangements.</p>
+
+<div class="label">TAM / SAM by Market Layer</div>
+<table class="mt">
+  <tr><th>Market Layer</th><th class="r">TAM</th><th class="r">SAM (U.S.)</th><th>Key Assumptions</th></tr>
+  <tr><td>Provider / VBC<span class="nt">ACCESS, LEAD, MSSP, commercial</span></td><td class="r">$4.45T</td><td class="r">$300B+</td><td style="font-size:9px;">200K+ practices, 2,000 eligible/practice, $325 blended OAP</td></tr>
+  <tr><td>RPM / CCM<span class="nt">All payers, own NPI</span></td><td class="r">$57B</td><td class="r">$15B+</td><td style="font-size:9px;">Non-ACCESS patients at partner practices, $150/pt/mo</td></tr>
+  <tr><td>Consumer D2C<span class="nt">Subscriptions + commerce</span></td><td class="r">$208B</td><td class="r">$25B+</td><td style="font-size:9px;">330M+ smartphone users, $30/mo ARPU + $12/yr commerce</td></tr>
+  <tr><td>Healthcare AI<span class="nt">Orchestration + governance</span></td><td class="r">$110B</td><td class="r">$20B+</td><td style="font-size:9px;">15&ndash;20% of AI spend to infrastructure/governance layer</td></tr>
+  <tr><td>Interoperability<span class="nt">TEFCA, FHIR, exchange</span></td><td class="r">$8.6B</td><td class="r">$3B+</td><td style="font-size:9px;">Provider-facing interop deployed via VBC relationships</td></tr>
+</table>
+
+<div class="label">Competitive Landscape: Single-Lane vs. Six-Layer</div>
+<table class="ct">
+  <tr><th>Company</th><th>Focus</th><th>Raised</th><th>Valuation</th><th>Layers</th></tr>
+  <tr><td>Datavant</td><td>Data linkage &amp; de-ID</td><td>$83M</td><td>$7B (post merger)</td><td>1</td></tr>
+  <tr><td>Redox</td><td>EHR APIs</td><td>$98M</td><td>250+ clients</td><td>1</td></tr>
+  <tr><td>Zus Health</td><td>Shared data infra</td><td>$74M</td><td>a16z-backed</td><td>1</td></tr>
+  <tr><td>Particle Health</td><td>Exchange APIs</td><td>$49M</td><td>$145M</td><td>1</td></tr>
+  <tr><td>Health Gorilla</td><td>HIE network</td><td>$75M</td><td>Undisclosed</td><td>1</td></tr>
+  <tr><td>Lila Sciences</td><td>AI life sciences</td><td>$550M</td><td>$1.3B (2 yrs old)</td><td>1</td></tr>
+  <tr><td>InPursuit Health</td><td>AI orch. + VBC + D2C + governance</td><td>$20M target</td><td>Opportunity-based</td><td>6</td></tr>
+</table>
+
+<p class="b">Every comparable operates in a single lane. None combine interoperability + AI orchestration + AI governance + consumer engagement + direct clinical billing under their own NPI. None have federal validation at 41,000-server scale (selected over IBM, Oracle, SAP, Informatica in formal Analysis of Alternatives). None are approved for all three CMS Medicare App Library categories.</p>
+
+<div class="page-break"></div>
+
+<!-- ═══ PAGE 3 ═══ -->
+<div class="label">The Infrastructure Moat: TETRA Stack</div>
+<p class="b">TETRA is not an app. It is payer-agnostic, model-agnostic, EHR-agnostic infrastructure. Six layers that other systems sit on top of:</p>
+
+<div class="cols">
+  <div class="col">
+    <h4>TETRA&trade; Data Fabric</h4>
+    <p>Foundation layer. Ingests, normalizes, and orchestrates health data across EHRs, payers, labs, pharmacies, and devices.</p>
+    <h4>TETRA eX&trade; Exchange</h4>
+    <p>Bidirectional TEFCA/QHIN-compliant data exchange. Connects to national health information networks.</p>
+    <h4>TETRA Conductor&trade; AI Orchestration</h4>
+    <p>Model-agnostic. Routes each clinical interaction to the optimal AI model with appropriate data access and governance.</p>
+  </div>
+  <div class="col">
+    <h4>TETRA Vault&trade; Consumer Data</h4>
+    <p>Zero-knowledge consumer health data container. Patient owns and controls their unified record.</p>
+    <h4>TETRA Aegis&trade; AI Governance</h4>
+    <p>Autonomous supervisory control plane. Patent-pending (Feb 2026). Governs what data AI can access and what outputs are permissible.</p>
+    <h4>TETRA Sentinel&trade; Protectionary AI</h4>
+    <p>Continuous behavioral surveillance of AI systems. Hallucination detection, drift monitoring, adversarial defense. Independent of supervised models.</p>
+  </div>
+</div>
+
+<div class="label">Market Dynamics: Accelerants &amp; Risk Factors</div>
+<div class="cols">
+  <div class="col">
+    <h4>Accelerants</h4>
+    <p><strong>CMS regulatory momentum:</strong> ACCESS (Jul 2026), LEAD (Jan 2027), expanding MSSP, TEFCA mandates create compounding urgency.</p>
+    <p><strong>Commercial payer adoption:</strong> UHC, Aetna, BCBS building VBC modeled on CMS. Same infrastructure, no modification.</p>
+    <p><strong>AI governance demand:</strong> 85% of organizations unprepared. Governance infrastructure demand grows faster than AI market itself.</p>
+    <p><strong>Info-blocking enforcement:</strong> $1M/violation penalties create board-level urgency.</p>
+    <p><strong>Medicare App Library:</strong> Government-backed distribution at scale no marketing budget replicates.</p>
+  </div>
+  <div class="col">
+    <h4>Risk Factors</h4>
+    <p><strong>Provider adoption pace:</strong> Small practices risk-averse. Conservative 1 &rarr; 10 &rarr; 50 ramp reflects this. Education and demonstrated results required.</p>
+    <p><strong>CMS model execution:</strong> ACCESS is new. Rates and thresholds may adjust. 10-year duration and rolling admissions mitigate.</p>
+    <p><strong>Regulatory changes:</strong> Administration shifts could alter CMMI priorities. OBBBA (Jul 2025) provides legislative anchoring.</p>
+    <p><strong>Competitive entry:</strong> Large EHR vendors could build competing layers. None currently combine all six. Federal validation creates proof-point moat.</p>
+    <p><strong>Reimbursement risk:</strong> OAP rates or RPM codes could change. Four revenue streams diversify dependence.</p>
+  </div>
+</div>
+
+<div class="co">
+  <strong>Revenue projections are detailed in the 3-Year Pro Forma, distributed separately.</strong> Conservative model: 1 &rarr; 10 &rarr; 50 providers, 2,000 eligible patients per practice, 10K &rarr; 75K &rarr; 250K D2C users. The market opportunity dwarfs the conservative assumptions by orders of magnitude.
+</div>
+
+<p style="font-size:8px;color:var(--text-muted);line-height:1.5;margin-top:12px;">Sources: Mordor Intelligence, Grand View Research, MarketsandMarkets, PwC Strategy&amp;, McKinsey, IQVIA, KFF, CMS Innovation Center, ASTP/ONC, AMA, CDC, Precedence Research. Full source list in Complete Market Analysis.</p>
+
+</div>
+
+<div class="footer">
+  <div class="fl">InPursuit Health, LLC &nbsp;|&nbsp; CMS Health IT Ecosystem &mdash; Approved Member<br>Confidential &mdash; For Qualified Investors Only &nbsp;|&nbsp; invest@inpursuithealth.com</div>
+  <div class="fr">InPursuit Health</div>
+</div>
+
+</body>
+</html>

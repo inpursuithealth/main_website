@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Interoperability &amp; Remote Patient Monitoring Market Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.65;}
+.container{max-width:920px;margin:0 auto;padding:0 48px;}
+
+/* Header */
+.header{background:var(--navy);padding:72px 0 60px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,4.5vw,48px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:18px;max-width:760px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:15px;color:rgba(255,255,255,.42);max-width:620px;margin:0 auto;line-height:1.75;}
+
+/* Sections */
+section{padding:72px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+h2.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3.5vw,38px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:28px;}
+h2.stitle em{font-style:italic;color:var(--gold);}
+h3.sub{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(20px,2.5vw,26px);font-weight:400;color:var(--navy);line-height:1.25;margin:48px 0 20px;padding-top:24px;border-top:1px solid var(--border);}
+h3.sub em{font-style:italic;color:var(--gold);}
+h3.sub:first-child{margin-top:0;padding-top:0;border:none;}
+h4.subsub{font-family:'Instrument Serif',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin:32px 0 12px;}
+h4.subsub em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.9;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+p.src{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:-16px;margin-bottom:28px;}
+
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark h2.stitle,.dark h3.sub,.dark h4.subsub{color:#fff;}
+.dark h2.stitle em,.dark h3.sub em,.dark h4.subsub em{color:var(--gold-light);}
+.dark h3.sub{border-color:rgba(255,255,255,.06);}
+.dark p.body{color:rgba(255,255,255,.58);}
+.dark p.body strong{color:var(--gold-light);}
+.dark p.src{color:rgba(255,255,255,.22);}
+
+/* Stat grids */
+.sg{display:grid;gap:20px;margin:36px 0;}
+.sg3{grid-template-columns:repeat(3,1fr);}
+.sg4{grid-template-columns:repeat(4,1fr);}
+.sg5{grid-template-columns:repeat(5,1fr);}
+.sc{border-radius:4px;padding:28px 20px;text-align:center;}
+.sc.c{background:#fff;border:1px solid var(--border);}
+.sc.n{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+.sc.gt{border-top:3px solid var(--gold);}
+.sn{font-family:'Instrument Serif',Georgia,serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:8px;}
+.sl{font-size:12px;color:var(--text-muted);line-height:1.45;}
+.dark .sl{color:rgba(255,255,255,.40);}
+.ss{font-size:9px;color:var(--text-muted);margin-top:8px;font-style:italic;}
+.dark .ss{color:rgba(255,255,255,.18);}
+
+/* Content cards */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:36px 0;}
+.cc{border:1px solid var(--border);border-radius:4px;padding:32px;background:#fff;}
+.dark .cc{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+.cc h4{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:12px;font-weight:400;}
+.dark .cc h4{color:#fff;}
+.cc p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:10px;}
+.cc p:last-child{margin:0;}
+.dark .cc p{color:rgba(255,255,255,.45);}
+.cc strong{color:var(--navy);}
+.dark .cc strong{color:var(--gold-light);}
+
+/* Full-width cards */
+.fw{border:1px solid var(--border);border-radius:4px;padding:36px;background:#fff;margin:32px 0;}
+.dark .fw{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+
+/* Callout */
+.co{background:var(--gold-dim);border-left:3px solid var(--gold);padding:28px 32px;border-radius:0 4px 4px 0;margin:40px 0;font-size:14.5px;line-height:1.8;color:var(--text-mid);}
+.co strong{color:var(--navy);}
+.dark .co{background:rgba(197,164,78,.06);border-color:var(--gold);color:rgba(255,255,255,.55);}
+.dark .co strong{color:var(--gold-light);}
+
+/* Tables */
+.dt{width:100%;border-collapse:collapse;margin:32px 0;}
+.dt caption{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:0 0 14px;caption-side:top;}
+.dt th{text-align:left;padding:14px 16px;background:var(--navy);color:rgba(255,255,255,.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.dt th.r{text-align:right;}
+.dt th:first-child{border-radius:4px 0 0 0;}
+.dt th:last-child{border-radius:0 4px 0 0;}
+.dt td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);vertical-align:top;line-height:1.6;}
+.dt td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:17px;color:var(--gold);}
+.dt td:first-child{font-weight:600;color:var(--navy);}
+.dt tbody tr:nth-child(even){background:rgba(10,22,40,.015);}
+.dt .nt{font-size:11px;color:var(--text-muted);display:block;margin-top:3px;font-weight:400;}
+.dark .dt th{background:rgba(255,255,255,.04);color:var(--gold-light);}
+.dark .dt td{border-color:rgba(255,255,255,.06);color:rgba(255,255,255,.55);}
+.dark .dt td:first-child{color:#fff;}
+.dark .dt tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+.dt-highlight td{background:var(--gold-dim) !important;color:var(--navy) !important;font-weight:600 !important;}
+.dt-highlight td.r{color:var(--gold) !important;}
+
+/* Model cards */
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:40px 0;}
+.mc{border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:32px;background:#fff;}
+.mc h4{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:6px;font-weight:400;}
+.mc .meta{font-size:11px;color:var(--text-muted);margin-bottom:16px;}
+.mc p{font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:12px;}
+.mc p:last-child{margin:0;}
+.mc strong{color:var(--navy);}
+
+/* Provider segments */
+.segg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:36px 0;}
+.seg{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:28px;}
+.seg h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px;}
+.seg .segn{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.seg p{font-size:12.5px;color:rgba(255,255,255,.42);line-height:1.6;}
+
+/* Tier cards */
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0;}
+.tc{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:24px 20px;text-align:center;}
+.tc.free{border-top-color:var(--border);}
+.tn{font-family:'Instrument Serif',Georgia,serif;font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.tc.free .tn{color:var(--text-muted);}
+.tp{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--navy);line-height:1;margin-bottom:4px;}
+.tper{font-size:10px;color:var(--text-muted);margin-bottom:14px;}
+.td{font-size:11px;color:var(--text-mid);line-height:1.55;}
+
+/* Layers */
+.lr{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:36px 0;}
+.ly{background:var(--navy);border-radius:4px;padding:18px 10px;text-align:center;}
+.ly h4{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);}
+.ly span{font-size:8px;color:rgba(255,255,255,.30);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-top:3px;}
+
+/* Pillar header */
+.pillar{display:flex;gap:32px;align-items:flex-start;margin-bottom:36px;}
+.pnum{font-family:'Instrument Serif',Georgia,serif;font-size:72px;color:var(--gold);line-height:1;flex-shrink:0;opacity:.2;}
+.dark .pnum{color:var(--gold-light);}
+
+/* Footer */
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:40px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:var(--gold);letter-spacing:2px;margin-bottom:12px;}
+
+@media(max-width:900px){.container{padding:0 24px;}.sg3,.sg4,.sg5,.cg,.mg,.segg,.tg{grid-template-columns:1fr;}.lr{grid-template-columns:repeat(3,1fr);}}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}body{background:#fff;}section{padding:48px 0 !important;page-break-inside:avoid;}.header{page-break-after:always;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Market Analysis &mdash; Pillar IV &mdash; Confidential</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>Healthcare Data Interoperability &amp; <em>Remote Patient Monitoring</em></h1>
+  <p class="header-sub">TEFCA went live in 2024 with 625+ hospitals connected. Information-blocking penalties reach $1M per violation. The RPM market grows to $57 billion by 2030 with 142 million U.S. patients. The regulatory tailwind and clinical billing opportunity are accelerating simultaneously.</p>
+</div>
+
+<!-- PILLAR IV: INTEROPERABILITY & RPM                                   -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div>
+      <div>
+        
+        <h2 class="stitle">Healthcare Data Interoperability &amp; <em>Remote Patient Monitoring</em></h2>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top:0;padding-top:0;border:none;">The Interoperability Market: <em>Regulatory Tailwind at Full Force</em></h3>
+
+    <p class="body">The healthcare interoperability solutions market reached $5.04 billion in 2025 and is projected to grow to $8.62 billion by 2030 at an 11.31% CAGR, with some estimates projecting the broader healthcare data interoperability market reaching $14 billion by 2032 at 13.4% CAGR. In the U.S. specifically, the interoperability market is expected to grow from $1.82 billion in 2025 to $6.29 billion by 2035 at a 13.2% CAGR. The regulatory environment is the primary accelerant, with multiple federal mandates creating compliance urgency that translates directly into infrastructure spending.</p>
+    <p class="src">Sources: Mordor Intelligence (2025), PS Market Research (2025), SNS Insider (2026)</p>
+
+    <p class="body"><strong>TEFCA (Trusted Exchange Framework and Common Agreement)</strong> went live in 2024 and is rapidly becoming the national standard for health data exchange. Epic's subsidiary Epic Nexus was among the first organizations to achieve Qualified Health Information Network (QHIN) designation, connecting over 625 hospitals through TEFCA in 2024 alone. Oracle Health achieved QHIN status in November 2025. CMS requires FHIR-based APIs for prior authorization and patient access by 2026. HHS finalized HTI-2 and HTI-3 rules establishing TEFCA governance and reproductive-health data protections in January 2025. The framework is no longer aspirational&mdash;it is operational and expanding rapidly.</p>
+    <p class="src">Sources: Epic (2024), ONC/ASTP (2025), Ropes &amp; Gray analysis (Jan 2025)</p>
+
+    <p class="body">The adoption metrics confirm the acceleration. According to the ASTP/ONC, standardized FHIR-based API adoption in U.S. inpatient settings rose to 69%. Eighty-one percent of U.S. hospitals now allow third-party application access to health records, enabling modular, multi-vendor ecosystem connectivity. Microsoft Azure's FHIR service surpassed 1 billion monthly API calls in 2024, demonstrating elastic cloud-scale performance. Information-blocking penalties of up to $1 million per violation under the 21st Century Cures Act have made API standardization a board-level imperative for every hospital CIO in the country.</p>
+    <p class="src">Sources: ASTP/ONC (2025), Microsoft (2024), Mordor Intelligence (2025)</p>
+
+    <div class="sg sg4">
+      <div class="sc c gt">
+        <div class="sn" style="font-size:26px;">625+</div>
+        <div class="sl">Hospitals connected<br>via TEFCA (2024)</div>
+        <div class="ss">Epic Nexus alone</div>
+      </div>
+      <div class="sc c gt">
+        <div class="sn" style="font-size:26px;">69%</div>
+        <div class="sl">U.S. inpatient FHIR<br>API adoption</div>
+        <div class="ss">ASTP/ONC (2025)</div>
+      </div>
+      <div class="sc c gt">
+        <div class="sn" style="font-size:26px;">81%</div>
+        <div class="sl">Hospitals allowing<br>third-party app access</div>
+        <div class="ss">ASTP/ONC (2025)</div>
+      </div>
+      <div class="sc c gt">
+        <div class="sn" style="font-size:26px;">$1M</div>
+        <div class="sl">Max penalty per<br>info-blocking violation</div>
+        <div class="ss">21st Century Cures Act</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Remote Patient Monitoring: <em>Clinical Billing at Scale</em></h3>
+
+    <p class="body">The global remote patient monitoring market was valued at $27.7 billion in 2024 and is projected to reach $56.9 billion by 2030 at a 12.7% CAGR. The growth drivers are structural: rising chronic disease prevalence, an aging population, the shift to value-based care, and the post-pandemic normalization of virtual care delivery. By 2030, IQVIA projects that over 142 million U.S. patients&mdash;nearly 40% of the population&mdash;will be using RPM technologies.</p>
+    <p class="src">Sources: MarketsandMarkets (2025), IQVIA</p>
+
+    <p class="body">The reimbursement structure makes RPM a compelling revenue stream. CMS CPT codes allow providers to bill approximately $110&ndash;150 per patient per month for combined RPM (CPT 99453/54/57/58) and chronic care management (CPT 99490) services. CMS introduced new CPT codes in 2025 further expanding the financial viability of RPM, especially for chronic care programs. A VA health services study found that RPM for chronic diseases reduced hospital admissions by up to 25% and achieved cost savings of $2,000 per patient per year. Eighty-five percent of physicians recognize RPM as beneficial for chronic disease management.</p>
+    <p class="src">Sources: CMS (2025), U.S. Department of Veterans Affairs, AMA (2023)</p>
+
+    <p class="body">The intersection of RPM and value-based care creates compound revenue. A provider practice connected to infrastructure can bill ACCESS OAPs for enrolled Medicare beneficiaries AND bill RPM/CCM codes for non-ACCESS patients (commercial, Medicare Advantage, Medicaid) at the same practice under the same infrastructure. These are not competing revenue streams&mdash;they are additive. The ACCESS patient generates OAP revenue. The commercially insured patient at the same practice generates RPM/CCM revenue. The same data infrastructure, the same devices, the same clinical workflows serve both populations.</p>
+
+    <div class="sg sg3">
+      <div class="sc c gt">
+        <div class="sn">$57B</div>
+        <div class="sl">Global RPM market<br>by 2030</div>
+        <div class="ss">MarketsandMarkets, 12.7% CAGR</div>
+      </div>
+      <div class="sc c gt">
+        <div class="sn">142M</div>
+        <div class="sl">U.S. patients projected to<br>use RPM by 2030</div>
+        <div class="ss">IQVIA (~40% of population)</div>
+      </div>
+      <div class="sc c gt">
+        <div class="sn">$150</div>
+        <div class="sl">Per patient/month<br>RPM + CCM billing</div>
+        <div class="ss">CMS CPT code schedule</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<section class="dark">
+  <div class="container">
+    <div class="label">The Compound Revenue Opportunity</div>
+    <h2 class="stitle">Interoperability + RPM + VBC = <em>Infrastructure Compounding</em></h2>
+
+    <p class="body">The interoperability and RPM markets are not standalone opportunities for TETRA&mdash;they are the enabling infrastructure layers that make the VBC and D2C markets accessible. A provider practice connected through TETRA eX (interoperability) can simultaneously participate in ACCESS (VBC), bill RPM/CCM codes for non-ACCESS patients (RPM), refer patients to the consumer app (D2C), and have all AI interactions governed (AI Infrastructure). The four markets are not additive&mdash;they are multiplicative. Each infrastructure layer enables revenue from the others.</p>
+
+    <p class="body">The TEFCA regulatory tailwind is particularly significant because it creates urgency. Information-blocking penalties of up to $1 million per violation mean that every hospital CIO, every health system CEO, and every practice administrator is now asking the same question: are we compliant? The compliance urgency creates the opening. The infrastructure relationship created for compliance becomes the foundation for VBC participation, RPM billing, consumer referrals, and AI governance. One infrastructure deployment. Four revenue streams. Every payer.</p>
+
+    <div class="co">
+      <strong>Revenue projections are detailed in the 3-Year Pro Forma, distributed separately.</strong> RPM + CCM revenue in the conservative model: $180K (Y1) &rarr; $1.8M (Y2) &rarr; $13.5M (Y3), scaling with provider count (100 &rarr; 1,000 &rarr; 7,500 patients at $150/pt/mo). This represents a fraction of the 142 million Americans projected to use RPM by 2030. See the Complete Market Analysis for the other three converging markets.
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,.35);line-height:1.6;margin-top:24px;">Sources: Mordor Intelligence, MarketsandMarkets, PS Market Research, SNS Insider, ASTP/ONC, Epic, IQVIA, AMA, U.S. Department of Veterans Affairs, CMS.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Categories<br><br>Confidential &mdash; For Qualified Investors Only</p>
+  </div>
+</div>
+
+</body>
+</html>

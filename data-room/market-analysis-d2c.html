@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — D2C Health &amp; Wellness Market Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.65;}
+.container{max-width:920px;margin:0 auto;padding:0 48px;}
+
+/* Header */
+.header{background:var(--navy);padding:72px 0 60px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,4.5vw,48px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:18px;max-width:760px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:15px;color:rgba(255,255,255,.42);max-width:620px;margin:0 auto;line-height:1.75;}
+
+/* Sections */
+section{padding:72px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+h2.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3.5vw,38px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:28px;}
+h2.stitle em{font-style:italic;color:var(--gold);}
+h3.sub{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(20px,2.5vw,26px);font-weight:400;color:var(--navy);line-height:1.25;margin:48px 0 20px;padding-top:24px;border-top:1px solid var(--border);}
+h3.sub em{font-style:italic;color:var(--gold);}
+h3.sub:first-child{margin-top:0;padding-top:0;border:none;}
+h4.subsub{font-family:'Instrument Serif',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin:32px 0 12px;}
+h4.subsub em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.9;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+p.src{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:-16px;margin-bottom:28px;}
+
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark h2.stitle,.dark h3.sub,.dark h4.subsub{color:#fff;}
+.dark h2.stitle em,.dark h3.sub em,.dark h4.subsub em{color:var(--gold-light);}
+.dark h3.sub{border-color:rgba(255,255,255,.06);}
+.dark p.body{color:rgba(255,255,255,.58);}
+.dark p.body strong{color:var(--gold-light);}
+.dark p.src{color:rgba(255,255,255,.22);}
+
+/* Stat grids */
+.sg{display:grid;gap:20px;margin:36px 0;}
+.sg3{grid-template-columns:repeat(3,1fr);}
+.sg4{grid-template-columns:repeat(4,1fr);}
+.sg5{grid-template-columns:repeat(5,1fr);}
+.sc{border-radius:4px;padding:28px 20px;text-align:center;}
+.sc.c{background:#fff;border:1px solid var(--border);}
+.sc.n{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+.sc.gt{border-top:3px solid var(--gold);}
+.sn{font-family:'Instrument Serif',Georgia,serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:8px;}
+.sl{font-size:12px;color:var(--text-muted);line-height:1.45;}
+.dark .sl{color:rgba(255,255,255,.40);}
+.ss{font-size:9px;color:var(--text-muted);margin-top:8px;font-style:italic;}
+.dark .ss{color:rgba(255,255,255,.18);}
+
+/* Content cards */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:36px 0;}
+.cc{border:1px solid var(--border);border-radius:4px;padding:32px;background:#fff;}
+.dark .cc{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+.cc h4{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:12px;font-weight:400;}
+.dark .cc h4{color:#fff;}
+.cc p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:10px;}
+.cc p:last-child{margin:0;}
+.dark .cc p{color:rgba(255,255,255,.45);}
+.cc strong{color:var(--navy);}
+.dark .cc strong{color:var(--gold-light);}
+
+/* Full-width cards */
+.fw{border:1px solid var(--border);border-radius:4px;padding:36px;background:#fff;margin:32px 0;}
+.dark .fw{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+
+/* Callout */
+.co{background:var(--gold-dim);border-left:3px solid var(--gold);padding:28px 32px;border-radius:0 4px 4px 0;margin:40px 0;font-size:14.5px;line-height:1.8;color:var(--text-mid);}
+.co strong{color:var(--navy);}
+.dark .co{background:rgba(197,164,78,.06);border-color:var(--gold);color:rgba(255,255,255,.55);}
+.dark .co strong{color:var(--gold-light);}
+
+/* Tables */
+.dt{width:100%;border-collapse:collapse;margin:32px 0;}
+.dt caption{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:0 0 14px;caption-side:top;}
+.dt th{text-align:left;padding:14px 16px;background:var(--navy);color:rgba(255,255,255,.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.dt th.r{text-align:right;}
+.dt th:first-child{border-radius:4px 0 0 0;}
+.dt th:last-child{border-radius:0 4px 0 0;}
+.dt td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);vertical-align:top;line-height:1.6;}
+.dt td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:17px;color:var(--gold);}
+.dt td:first-child{font-weight:600;color:var(--navy);}
+.dt tbody tr:nth-child(even){background:rgba(10,22,40,.015);}
+.dt .nt{font-size:11px;color:var(--text-muted);display:block;margin-top:3px;font-weight:400;}
+.dark .dt th{background:rgba(255,255,255,.04);color:var(--gold-light);}
+.dark .dt td{border-color:rgba(255,255,255,.06);color:rgba(255,255,255,.55);}
+.dark .dt td:first-child{color:#fff;}
+.dark .dt tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+.dt-highlight td{background:var(--gold-dim) !important;color:var(--navy) !important;font-weight:600 !important;}
+.dt-highlight td.r{color:var(--gold) !important;}
+
+/* Model cards */
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:40px 0;}
+.mc{border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:32px;background:#fff;}
+.mc h4{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:6px;font-weight:400;}
+.mc .meta{font-size:11px;color:var(--text-muted);margin-bottom:16px;}
+.mc p{font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:12px;}
+.mc p:last-child{margin:0;}
+.mc strong{color:var(--navy);}
+
+/* Provider segments */
+.segg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:36px 0;}
+.seg{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:28px;}
+.seg h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px;}
+.seg .segn{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.seg p{font-size:12.5px;color:rgba(255,255,255,.42);line-height:1.6;}
+
+/* Tier cards */
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0;}
+.tc{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:24px 20px;text-align:center;}
+.tc.free{border-top-color:var(--border);}
+.tn{font-family:'Instrument Serif',Georgia,serif;font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.tc.free .tn{color:var(--text-muted);}
+.tp{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--navy);line-height:1;margin-bottom:4px;}
+.tper{font-size:10px;color:var(--text-muted);margin-bottom:14px;}
+.td{font-size:11px;color:var(--text-mid);line-height:1.55;}
+
+/* Layers */
+.lr{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:36px 0;}
+.ly{background:var(--navy);border-radius:4px;padding:18px 10px;text-align:center;}
+.ly h4{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);}
+.ly span{font-size:8px;color:rgba(255,255,255,.30);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-top:3px;}
+
+/* Pillar header */
+.pillar{display:flex;gap:32px;align-items:flex-start;margin-bottom:36px;}
+.pnum{font-family:'Instrument Serif',Georgia,serif;font-size:72px;color:var(--gold);line-height:1;flex-shrink:0;opacity:.2;}
+.dark .pnum{color:var(--gold-light);}
+
+/* Footer */
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:40px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:var(--gold);letter-spacing:2px;margin-bottom:12px;}
+
+@media(max-width:900px){.container{padding:0 24px;}.sg3,.sg4,.sg5,.cg,.mg,.segg,.tg{grid-template-columns:1fr;}.lr{grid-template-columns:repeat(3,1fr);}}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}body{background:#fff;}section{padding:48px 0 !important;page-break-inside:avoid;}.header{page-break-after:always;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Market Analysis &mdash; Pillar II &mdash; Confidential</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>The Direct-to-Consumer <em>Health &amp; Wellness Market</em></h1>
+  <p class="header-sub">330 million Americans with smartphones. $208 billion wellness technology market by 2035. Two revenue engines: subscriptions and transaction-moment commerce. Available to every American on every app store. The Medicare App Library is one distribution channel — not the ceiling.</p>
+</div>
+
+<!-- PILLAR II: DIRECT-TO-CONSUMER                                      -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div>
+      <div>
+        
+        <h2 class="stitle">Direct-to-Consumer <em>Health &amp; Wellness</em></h2>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top:0;padding-top:0;border:none;">Market Sizing: <em>A Massive, Fragmented Opportunity</em></h3>
+
+    <p class="body">The consumer health and wellness technology market is among the fastest-growing segments of the global economy, driven by rising chronic disease prevalence, an aging population, increasing health consciousness, and the proliferation of connected devices. Over 35% of American adults already use health apps and wearables, generating enormous volumes of personal health data. Yet that data sits in silos&mdash;disconnected from actionable intelligence and disconnected from each other. The market is fragmented across thousands of point solutions with no unifying infrastructure layer beneath them.</p>
+
+    <table class="dt">
+      <caption>Consumer Health &amp; Wellness Market Sizing</caption>
+      <tr><th>Market Segment</th><th class="r">2025 Value</th><th class="r">2030-2035 Projected</th><th class="r">CAGR</th><th>Relevance to InPursuit</th></tr>
+      <tr>
+        <td>Wellness Technology<span class="nt">Apps, platforms, coaching, nutrition, fitness</span></td>
+        <td class="r">$57B</td>
+        <td class="r">$208B (2035)</td>
+        <td class="r">13.8%</td>
+        <td style="font-size:12px;">Core addressable market for consumer app subscriptions</td>
+      </tr>
+      <tr>
+        <td>Digital Health Apps<span class="nt">Mobile health, patient engagement, chronic care apps</span></td>
+        <td class="r">$18.6B</td>
+        <td class="r">$81.5B (2035)</td>
+        <td class="r">15.9%</td>
+        <td style="font-size:12px;">Direct competitive category; InPursuit differentiates on infrastructure</td>
+      </tr>
+      <tr>
+        <td>Wearable Technology<span class="nt">Smartwatches, fitness trackers, CGMs, biosensors</span></td>
+        <td class="r">$92.9B</td>
+        <td class="r">$230B+ (2035)</td>
+        <td class="r">9.5%</td>
+        <td style="font-size:12px;">Integration layer: TETRA connects wearable data to clinical records</td>
+      </tr>
+      <tr>
+        <td>Digital Therapeutics<span class="nt">FDA-cleared software for treating conditions</span></td>
+        <td class="r">$6.1B</td>
+        <td class="r">$26B+ (2035)</td>
+        <td class="r">15.6%</td>
+        <td style="font-size:12px;">DTx products can run on TETRA Conductor; governance via Aegis</td>
+      </tr>
+      <tr>
+        <td>Telehealth / Virtual Care<span class="nt">Video visits, async messaging, remote consults</span></td>
+        <td class="r">$115B</td>
+        <td class="r">$280B+ (2030)</td>
+        <td class="r">19.5%</td>
+        <td style="font-size:12px;">InPursuit delivers telehealth via Medical PC with MSA</td>
+      </tr>
+    </table>
+
+    <h3 class="sub">The Fragmentation Problem: <em>Everyone Has Data. No One Can Use It.</em></h3>
+
+    <p class="body">The average American interacts with 18 or more healthcare providers across their lifetime. Their data is scattered across incompatible systems: one electronic health record at their cardiologist, another at their primary care physician, a pharmacy system at CVS, a lab portal at Quest, an insurance portal at Aetna, an Apple Watch on their wrist, and a Fitbit in their drawer. No consumer application today unifies all of this data into a single, actionable, longitudinal health record. The fragmentation is not a feature of the market&mdash;it is the fundamental problem the market has failed to solve.</p>
+
+    <p class="body">The reason is infrastructure. Consumer health apps can access some data through SMART on FHIR integrations, but they cannot orchestrate it across the entire care continuum. They cannot pull prescription history from every pharmacy, lab results from every lab, clinical notes from every provider, and insurance claims from every payer into a unified record. They cannot do this because they are not connected to the interoperability layer that would make it possible. And even when data is accessible, no consumer app has the AI governance infrastructure to make that data safely actionable through artificial intelligence without exposing the user to privacy, accuracy, and safety risks.</p>
+
+    <p class="body">The consequence is that the 100+ million Americans who use health apps and wearables are generating data that helps no one&mdash;not their doctors, not their insurers, not themselves. Step counts sit in Apple Health. Blood glucose readings sit in Dexcom. Lab results sit in MyChart. Prescription history sits in GoodRx. Each application knows one fragment of a person's health. None knows the whole picture. The infrastructure to connect these fragments does not exist in the consumer market.</p>
+
+    <h3 class="sub">Competitive Landscape: <em>Point Solutions Without Infrastructure</em></h3>
+
+    <p class="body">The consumer health app market is crowded with point solutions, each solving one problem in isolation. Understanding what these products do&mdash;and what they fundamentally cannot do&mdash;is essential for positioning an infrastructure-powered consumer experience.</p>
+
+    <div class="cg">
+      <div class="cc">
+        <h4>Apple Health / Google Health</h4>
+        <p>Apple Health aggregates some device data (steps, heart rate, sleep from Apple Watch) and a limited set of clinical data through HealthKit integrations with participating health systems. Google Health has pivoted multiple times and currently focuses on AI research rather than a consumer product. Neither can orchestrate data across the full care continuum. Neither has an NPI, cannot bill payers, cannot participate in VBC, and has no commerce model. They are device companions, not health infrastructure.</p>
+      </div>
+      <div class="cc">
+        <h4>Epic MyChart</h4>
+        <p>MyChart is the patient portal for Epic Systems, the largest EHR vendor (installed at 250+ major health systems). It shows records from health systems that use Epic&mdash;but cannot unify records across different EHR vendors, different health systems, or non-Epic providers. A patient who sees a cardiologist on Epic and a PCP on eClinicalWorks has two separate portals. MyChart has no wearable intelligence, no AI health insights, no commerce model, and no personal AI firewall.</p>
+      </div>
+      <div class="cc">
+        <h4>GoodRx</h4>
+        <p>Prescription price comparison. GoodRx solves one problem exceptionally well: showing consumers the lowest price for a medication across pharmacies. But it has no health record unification, no clinical data, no AI intelligence, no wearable integration, no provider relationship, and no VBC participation. It is a single-feature utility. GoodRx reached $800M+ in revenue in 2023 by solving one narrow problem&mdash;an indicator of the revenue potential available to an app that solves the broader problem.</p>
+      </div>
+      <div class="cc">
+        <h4>Noom / Headspace / Calm</h4>
+        <p>Coaching and wellness apps focused on weight management (Noom), meditation (Headspace/Calm), and behavioral health. These are content-first products with no interoperability layer, no clinical data connection, no unified health record, and no infrastructure beneath them. They solve specific engagement problems but cannot connect their interventions to clinical outcomes, payer data, or the broader care continuum. Noom reached a $4B+ valuation based on a single-condition coaching model.</p>
+      </div>
+    </div>
+
+    <p class="body">The pattern is clear: point solutions that solve a single consumer health problem well can reach hundreds of millions or billions in revenue and valuation. But none of them sit on infrastructure that connects everything. An infrastructure-powered consumer app that unifies the health record, integrates wearable data, delivers AI intelligence, provides prescription savings, and creates a commerce layer is not competing with any single point solution. It is creating a new category.</p>
+
+    <h3 class="sub">The InPursuit Consumer App: <em>Infrastructure-Powered, Payer-Agnostic</em></h3>
+
+    <p class="body">The InPursuit consumer app is not a standalone product&mdash;it is the consumer-facing output of the TETRA infrastructure stack. That distinction is critical. Because it sits on TETRA, the consumer app can do things that no standalone app can: pull data from every provider through TEFCA-compliant interoperability (via TETRA eX), govern AI interactions with that data safely (via TETRA Aegis), deliver personalized intelligence from the unified record (via TETRA Conductor), and store all of it in a consumer-controlled data container (via TETRA Vault). The infrastructure is the product. The app is the experience layer.</p>
+
+    <p class="body">The app is available to every American on Apple App Store and Google Play, regardless of payer status. It serves Medicare beneficiaries, commercially insured patients, Medicaid enrollees, Medicare Advantage members, and the uninsured equally. The Medicare App Library on Medicare.gov&mdash;where InPursuit is approved for all three patient-facing categories (Conversational AI, Kill the Clipboard, and Chronic Care Management)&mdash;is one distribution channel among many, not the identity of the app. This payer-agnostic positioning is essential: the consumer opportunity is not limited to Medicare's 140 million beneficiaries. It encompasses every American with a smartphone.</p>
+
+    <div class="tg">
+      <div class="tc free">
+        <div class="tn">Free</div>
+        <div class="tp">$0</div>
+        <div class="tper">Unified health record</div>
+        <div class="td">All providers, labs, Rx in one place. The acquisition funnel. Generates commerce revenue (~$12/user/year).</div>
+      </div>
+      <div class="tc">
+        <div class="tn">Plus</div>
+        <div class="tp">$14.99</div>
+        <div class="tper">/month</div>
+        <div class="td">AI health intelligence, wearable integration, Rx savings engine. Core paid experience.</div>
+      </div>
+      <div class="tc">
+        <div class="tn">Family</div>
+        <div class="tp">$34.99</div>
+        <div class="tper">/month</div>
+        <div class="td">Unlimited household including elderly parents. Full caregiver permissions and visibility.</div>
+      </div>
+      <div class="tc">
+        <div class="tn">Total Intelligence</div>
+        <div class="tp">$49.99</div>
+        <div class="tper">/month</div>
+        <div class="td">Grocery loyalty, healthy food access, lifestyle-clinical correlation, full intelligence suite.</div>
+      </div>
+    </div>
+
+    <h3 class="sub">Dual Revenue Model: <em>Subscriptions + Transaction-Moment Commerce</em></h3>
+
+    <p class="body"><strong>Subscription revenue</strong> is generated by paid tiers (Plus, Family, Total Intelligence) at a blended average revenue per user of $30/month across paid subscribers. Conservative modeling assumes a 20% paid conversion rate from the free tier&mdash;comparable to successful freemium health apps. The free tier serves as the acquisition funnel: by providing genuine value (unified health record, basic AI insights), it converts a meaningful percentage of users into paid subscribers who want deeper intelligence, wearable integration, and the full feature set.</p>
+
+    <p class="body"><strong>Commerce revenue (offers and cashback)</strong> is generated through a transaction-moment model inspired by Rokt and Venmo-style contextual commerce. Brands bid on anonymized health signals&mdash;never raw data. When a user completes a health-related action (logs a workout, fills a prescription, achieves a health milestone), brands compete to present relevant offers at that moment. Users choose their redemption format: direct cashback, product discounts, HSA/FSA credits, or gift cards. Every user&mdash;free and paid&mdash;generates commerce revenue at approximately $12 per user per year. This revenue is independent of subscription status, meaning the free tier is not a cost center&mdash;it is a revenue stream.</p>
+
+    <p class="body"><strong>The compound effect with clinical billing:</strong> A single patient referred through the ACCESS Model generates clinical billing revenue for InPursuit (OAPs, RPM, CCM) on the provider side. If that same patient also uses the consumer app, they generate subscription and/or commerce revenue on the consumer side. These are independent revenue streams on the same person. Clinical billing and consumer revenue never conflict. This dual-door model means that every provider partnership creates a natural referral channel into the consumer product, compounding user acquisition at zero marginal cost.</p>
+
+    <h3 class="sub">Distribution Channels: <em>Medicare.gov Is the Beachhead, Not the Ceiling</em></h3>
+
+    <div class="cg">
+      <div class="cc">
+        <h4>Medicare App Library (Medicare.gov)</h4>
+        <p>CMS launched the Medicare App Library in February 2026 as part of the CMS Health Tech Ecosystem (450+ participants). InPursuit was selected for <strong>all three patient-facing categories</strong>: Conversational AI, Kill the Clipboard, and Chronic Care Management. This is a government-backed customer acquisition channel reaching 140M+ CMS beneficiaries at a scale no startup marketing budget could replicate. The listing carries implicit CMS endorsement of quality and interoperability standards. Target: July 2026 listing.</p>
+      </div>
+      <div class="cc">
+        <h4>Provider Network Referrals</h4>
+        <p>Every provider partnership is a natural referral channel. Patients referred for clinical care through ACCESS or RPM/CCM discover the consumer app as part of their care experience. A practice with 2,000 eligible patients is also 2,000 potential app users. As the provider network grows from 1 to 10 to 50 practices, the organic user acquisition funnel compounds. This is the zero-cost acquisition flywheel that transforms clinical billing growth into consumer growth automatically.</p>
+      </div>
+    </div>
+
+    <div class="co">
+      <strong>The consumer app is not the product. The infrastructure is the product.</strong> Apple Health is a device companion. MyChart is a portal for one EHR vendor. GoodRx is a price comparison tool. None sit on six layers of governed, interoperable healthcare infrastructure. The InPursuit consumer app is the only consumer health experience that is simultaneously an output of clinical-grade data infrastructure, a beneficiary of CMS App Library distribution, a recipient of provider network referrals, and a participant in transaction-moment commerce. The infrastructure makes everything else possible.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<section class="dark">
+  <div class="container">
+    <div class="co">
+      <strong>Revenue projections are detailed in the 3-Year Pro Forma, distributed separately.</strong> Conservative D2C user ramp: 10K &rarr; 75K &rarr; 250K total users over three years, 20% paid conversion, $30/mo ARPU, $12/yr commerce per user. The consumer market opportunity is orders of magnitude larger. See the Complete Market Analysis for the other three converging markets (VBC, AI Infrastructure, Interoperability/RPM).
+    </div>
+    <p style="font-size:11px;color:rgba(255,255,255,.35);line-height:1.6;margin-top:24px;">Sources: Industry research reports, CMS Medicare App Library, ACCESS RFA v1.1.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Categories<br><br>Confidential &mdash; For Qualified Investors Only</p>
+  </div>
+</div>
+
+</body>
+</html>

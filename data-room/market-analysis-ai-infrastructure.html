@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Healthcare AI Infrastructure &amp; Governance Market Analysis</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1628;--gold:#C5A44E;--gold-light:#D4BA7A;--gold-dim:rgba(197,164,78,.10);--gold-border:rgba(197,164,78,.25);--cream:#FAF8F4;--text:#1A1A1A;--text-mid:#3D3D3D;--text-muted:#8A8A7A;--border:rgba(10,22,40,.08);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;color:var(--text);background:var(--cream);-webkit-font-smoothing:antialiased;line-height:1.65;}
+.container{max-width:920px;margin:0 auto;padding:0 48px;}
+
+/* Header */
+.header{background:var(--navy);padding:72px 0 60px;text-align:center;border-bottom:2px solid var(--gold);}
+.header-conf{display:inline-block;border:1px solid var(--gold-border);padding:6px 24px;border-radius:2px;font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:32px;}
+.header-wm{font-family:'Instrument Serif',Georgia,serif;font-size:16px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.header h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(30px,4.5vw,48px);font-weight:400;color:#fff;line-height:1.15;margin-bottom:18px;max-width:760px;margin-left:auto;margin-right:auto;}
+.header h1 em{font-style:italic;color:var(--gold);}
+.header-sub{font-size:15px;color:rgba(255,255,255,.42);max-width:620px;margin:0 auto;line-height:1.75;}
+
+/* Sections */
+section{padding:72px 0;}
+.label{font-size:9px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:8px;}
+h2.stitle{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(26px,3.5vw,38px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:28px;}
+h2.stitle em{font-style:italic;color:var(--gold);}
+h3.sub{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(20px,2.5vw,26px);font-weight:400;color:var(--navy);line-height:1.25;margin:48px 0 20px;padding-top:24px;border-top:1px solid var(--border);}
+h3.sub em{font-style:italic;color:var(--gold);}
+h3.sub:first-child{margin-top:0;padding-top:0;border:none;}
+h4.subsub{font-family:'Instrument Serif',Georgia,serif;font-size:18px;font-weight:400;color:var(--navy);margin:32px 0 12px;}
+h4.subsub em{font-style:italic;color:var(--gold);}
+p.body{font-size:15px;line-height:1.9;color:var(--text-mid);margin-bottom:24px;}
+p.body strong{color:var(--navy);}
+p.src{font-size:11px;color:var(--text-muted);font-style:italic;margin-top:-16px;margin-bottom:28px;}
+
+.dark{background:var(--navy);color:#fff;}
+.dark .label{color:var(--gold-light);}
+.dark h2.stitle,.dark h3.sub,.dark h4.subsub{color:#fff;}
+.dark h2.stitle em,.dark h3.sub em,.dark h4.subsub em{color:var(--gold-light);}
+.dark h3.sub{border-color:rgba(255,255,255,.06);}
+.dark p.body{color:rgba(255,255,255,.58);}
+.dark p.body strong{color:var(--gold-light);}
+.dark p.src{color:rgba(255,255,255,.22);}
+
+/* Stat grids */
+.sg{display:grid;gap:20px;margin:36px 0;}
+.sg3{grid-template-columns:repeat(3,1fr);}
+.sg4{grid-template-columns:repeat(4,1fr);}
+.sg5{grid-template-columns:repeat(5,1fr);}
+.sc{border-radius:4px;padding:28px 20px;text-align:center;}
+.sc.c{background:#fff;border:1px solid var(--border);}
+.sc.n{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);}
+.sc.gt{border-top:3px solid var(--gold);}
+.sn{font-family:'Instrument Serif',Georgia,serif;font-size:36px;color:var(--gold);line-height:1;margin-bottom:8px;}
+.sl{font-size:12px;color:var(--text-muted);line-height:1.45;}
+.dark .sl{color:rgba(255,255,255,.40);}
+.ss{font-size:9px;color:var(--text-muted);margin-top:8px;font-style:italic;}
+.dark .ss{color:rgba(255,255,255,.18);}
+
+/* Content cards */
+.cg{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin:36px 0;}
+.cc{border:1px solid var(--border);border-radius:4px;padding:32px;background:#fff;}
+.dark .cc{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+.cc h4{font-family:'Instrument Serif',Georgia,serif;font-size:18px;color:var(--navy);margin-bottom:12px;font-weight:400;}
+.dark .cc h4{color:#fff;}
+.cc p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:10px;}
+.cc p:last-child{margin:0;}
+.dark .cc p{color:rgba(255,255,255,.45);}
+.cc strong{color:var(--navy);}
+.dark .cc strong{color:var(--gold-light);}
+
+/* Full-width cards */
+.fw{border:1px solid var(--border);border-radius:4px;padding:36px;background:#fff;margin:32px 0;}
+.dark .fw{background:rgba(255,255,255,.03);border-color:rgba(255,255,255,.06);}
+
+/* Callout */
+.co{background:var(--gold-dim);border-left:3px solid var(--gold);padding:28px 32px;border-radius:0 4px 4px 0;margin:40px 0;font-size:14.5px;line-height:1.8;color:var(--text-mid);}
+.co strong{color:var(--navy);}
+.dark .co{background:rgba(197,164,78,.06);border-color:var(--gold);color:rgba(255,255,255,.55);}
+.dark .co strong{color:var(--gold-light);}
+
+/* Tables */
+.dt{width:100%;border-collapse:collapse;margin:32px 0;}
+.dt caption{text-align:left;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);padding:0 0 14px;caption-side:top;}
+.dt th{text-align:left;padding:14px 16px;background:var(--navy);color:rgba(255,255,255,.55);font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.dt th.r{text-align:right;}
+.dt th:first-child{border-radius:4px 0 0 0;}
+.dt th:last-child{border-radius:0 4px 0 0;}
+.dt td{padding:14px 16px;border-bottom:1px solid var(--border);font-size:14px;color:var(--text-mid);vertical-align:top;line-height:1.6;}
+.dt td.r{text-align:right;font-family:'Instrument Serif',Georgia,serif;font-size:17px;color:var(--gold);}
+.dt td:first-child{font-weight:600;color:var(--navy);}
+.dt tbody tr:nth-child(even){background:rgba(10,22,40,.015);}
+.dt .nt{font-size:11px;color:var(--text-muted);display:block;margin-top:3px;font-weight:400;}
+.dark .dt th{background:rgba(255,255,255,.04);color:var(--gold-light);}
+.dark .dt td{border-color:rgba(255,255,255,.06);color:rgba(255,255,255,.55);}
+.dark .dt td:first-child{color:#fff;}
+.dark .dt tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+.dt-highlight td{background:var(--gold-dim) !important;color:var(--navy) !important;font-weight:600 !important;}
+.dt-highlight td.r{color:var(--gold) !important;}
+
+/* Model cards */
+.mg{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin:40px 0;}
+.mc{border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:32px;background:#fff;}
+.mc h4{font-family:'Instrument Serif',Georgia,serif;font-size:20px;color:var(--navy);margin-bottom:6px;font-weight:400;}
+.mc .meta{font-size:11px;color:var(--text-muted);margin-bottom:16px;}
+.mc p{font-size:13.5px;color:var(--text-mid);line-height:1.7;margin-bottom:12px;}
+.mc p:last-child{margin:0;}
+.mc strong{color:var(--navy);}
+
+/* Provider segments */
+.segg{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:36px 0;}
+.seg{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:4px;padding:28px;}
+.seg h4{font-size:15px;font-weight:600;color:#fff;margin-bottom:6px;}
+.seg .segn{font-family:'Instrument Serif',Georgia,serif;font-size:28px;color:var(--gold);margin-bottom:12px;}
+.seg p{font-size:12.5px;color:rgba(255,255,255,.42);line-height:1.6;}
+
+/* Tier cards */
+.tg{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:36px 0;}
+.tc{background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:0 0 4px 4px;padding:24px 20px;text-align:center;}
+.tc.free{border-top-color:var(--border);}
+.tn{font-family:'Instrument Serif',Georgia,serif;font-size:12px;color:var(--gold);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.tc.free .tn{color:var(--text-muted);}
+.tp{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:var(--navy);line-height:1;margin-bottom:4px;}
+.tper{font-size:10px;color:var(--text-muted);margin-bottom:14px;}
+.td{font-size:11px;color:var(--text-mid);line-height:1.55;}
+
+/* Layers */
+.lr{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:36px 0;}
+.ly{background:var(--navy);border-radius:4px;padding:18px 10px;text-align:center;}
+.ly h4{font-family:'Instrument Serif',Georgia,serif;font-size:14px;color:var(--gold);}
+.ly span{font-size:8px;color:rgba(255,255,255,.30);letter-spacing:1.5px;text-transform:uppercase;display:block;margin-top:3px;}
+
+/* Pillar header */
+.pillar{display:flex;gap:32px;align-items:flex-start;margin-bottom:36px;}
+.pnum{font-family:'Instrument Serif',Georgia,serif;font-size:72px;color:var(--gold);line-height:1;flex-shrink:0;opacity:.2;}
+.dark .pnum{color:var(--gold-light);}
+
+/* Footer */
+.footer{background:var(--navy);border-top:2px solid var(--gold);padding:40px 0;text-align:center;}
+.footer p{font-size:11px;color:rgba(255,255,255,.25);line-height:1.8;}
+.footer .brand{font-family:'Instrument Serif',Georgia,serif;font-size:15px;color:var(--gold);letter-spacing:2px;margin-bottom:12px;}
+
+@media(max-width:900px){.container{padding:0 24px;}.sg3,.sg4,.sg5,.cg,.mg,.segg,.tg{grid-template-columns:1fr;}.lr{grid-template-columns:repeat(3,1fr);}}
+@media print{*{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}body{background:#fff;}section{padding:48px 0 !important;page-break-inside:avoid;}.header{page-break-after:always;}}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-conf">Market Analysis &mdash; Pillar III &mdash; Confidential</div>
+  <div class="header-wm">InPursuit Health</div>
+  <h1>Healthcare AI <em>Infrastructure &amp; Governance</em></h1>
+  <p class="header-sub">The global AI in healthcare market grows from $21.66 billion (2025) to $110+ billion by 2030 at 38.6% CAGR — the fastest growth in healthcare. PwC projects $868 billion in total AI impact. Every major AI company is building toward healthcare. None have the governance layer. This is the infrastructure they need beneath them.</p>
+</div>
+
+<!-- PILLAR III: HEALTHCARE AI INFRASTRUCTURE                           -->
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+<section class="dark">
+  <div class="container">
+    <div>
+      <div>
+        
+        <h2 class="stitle">Healthcare AI <em>Infrastructure &amp; Governance</em></h2>
+      </div>
+    </div>
+
+    <h3 class="sub" style="margin-top:0;padding-top:0;border:none;">Market Sizing: <em>The Fastest-Growing Segment in Healthcare</em></h3>
+
+    <p class="body">The global AI in healthcare market was valued at $21.66 billion in 2025 and is projected to reach $110.61 billion by 2030 at a compound annual growth rate of 38.6%&mdash;the fastest growth rate of any healthcare technology segment. In the United States alone, the AI healthcare market was valued at $8.41 billion in 2024 and is projected to reach $195 billion by 2034 at a 36.94% CAGR. PwC Strategy&amp; projects that AI's total impact on healthcare will reach $868 billion by 2030, comprising $646 billion in cost savings and $222 billion in revenue gains across the global healthcare system. North America alone is predicted to harness an AI potential of $479 billion by 2030.</p>
+    <p class="src">Sources: MarketsandMarkets (2025), Precedence Research (2025), PwC Strategy&amp; (2025)</p>
+
+    <p class="body">The growth is not hypothetical. Clinical AI applications held the largest market share in 2024, with U.S. hospitals deploying AI in sepsis prediction, ICU deterioration alerts, radiology triage, stroke routing, diabetic retinopathy screening, and oncology treatment planning. Cloud-based AI deployment is the fastest-growing segment as health systems shift imaging workloads, ambient documentation engines, and predictive analytics to cloud environments. AI agents in healthcare specifically&mdash;autonomous systems that handle patient engagement, appointment scheduling, clinical decision support, and documentation&mdash;are growing at 44.1% CAGR, from $1.11 billion in 2025 to a projected $6.92 billion by 2030.</p>
+    <p class="src">Sources: MarketsandMarkets (2025, 2026)</p>
+
+    <div class="sg sg3">
+      <div class="sc n">
+        <div class="sn">$868B</div>
+        <div class="sl">Total AI impact on<br>healthcare by 2030</div>
+        <div class="ss">PwC Strategy&amp; (2025)</div>
+      </div>
+      <div class="sc n">
+        <div class="sn">38.6%</div>
+        <div class="sl">AI in healthcare<br>CAGR 2025–2030</div>
+        <div class="ss">MarketsandMarkets</div>
+      </div>
+      <div class="sc n">
+        <div class="sn">15%</div>
+        <div class="sl">of organizations feel<br>prepared for AI</div>
+        <div class="ss">PwC Strategy&amp;</div>
+      </div>
+    </div>
+
+    <h3 class="sub">The Governance Gap: <em>Existential, Urgent, and Unfilled</em></h3>
+
+    <p class="body">Healthcare AI is entering clinical workflows at unprecedented speed with virtually no governance infrastructure beneath it. The disconnect between AI capability and AI governance is not a future risk&mdash;it is a current crisis. The average healthcare data breach costs $7.42 million, the highest of any industry. Shadow AI usage&mdash;employees using AI tools without organizational approval or governance&mdash;is widespread and growing. Regulatory frameworks are fragmented: the International Telecommunication Union emphasizes six key governance areas (transparency, risk management, data quality, clinical validation, post-market surveillance, and ethical governance), while the International Medical Device Regulators Forum outlines 10 guiding principles for AI/ML-enabled medical devices. But the operational infrastructure to implement these frameworks in real clinical environments does not exist.</p>
+
+    <p class="body">The PwC Strategy&amp; finding is the most telling: only 15% of healthcare organizations feel fully prepared to implement AI business models. The remaining 85% lack comprehensive strategies, struggle with scalability, and cannot expand beyond internal efficiencies to commercial applications. The barrier is not the AI models themselves&mdash;every major technology company is building capable AI. The barrier is the governed, interoperable infrastructure that makes AI safe and useful in healthcare. AI models need to know what data they can access. They need to know what outputs are permissible. They need to be monitored for hallucination, drift, and adversarial manipulation in real time. None of this infrastructure exists as a standard layer today.</p>
+
+    <h3 class="sub">TETRA: <em>The Infrastructure AI Companies Need Beneath Them</em></h3>
+
+    <p class="body">Every major AI company&mdash;Anthropic, OpenAI, Google, Microsoft, NVIDIA&mdash;is building toward healthcare. None of them have the interoperability layer, the clinical data governance, or the regulatory positioning to operate safely in healthcare environments without infrastructure beneath them. They are building the AI. Someone needs to build the infrastructure the AI sits on top of. This is not a competitive relationship. It is a dependency relationship.</p>
+
+    <div class="lr">
+      <div class="ly"><h4>TETRA&trade;</h4><span>Data Fabric</span></div>
+      <div class="ly"><h4>eX&trade;</h4><span>Exchange</span></div>
+      <div class="ly"><h4>Conductor&trade;</h4><span>AI Orch.</span></div>
+      <div class="ly"><h4>Vault&trade;</h4><span>Consumer</span></div>
+      <div class="ly"><h4>Aegis&trade;</h4><span>Protection</span></div>
+      <div class="ly"><h4>Sentinel&trade;</h4><span>AI Agent</span></div>
+    </div>
+
+    <p class="body"><strong>TETRA Conductor&trade;</strong> is a model-agnostic AI orchestration layer. It evaluates clinical context in real time and routes each interaction to the optimal AI model, agent, or capability. When a hospital uses Claude for clinical documentation, GPT for coding assistance, a proprietary model for imaging analysis, and a different model for predictive analytics, Conductor routes each interaction to the right model with the right data access and the right governance applied. There is no vendor lock-in. Conductor is not an AI model&mdash;it is the layer that decides which AI model to use and ensures it operates safely.</p>
+
+    <p class="body"><strong>TETRA Aegis&trade;</strong> is an autonomous supervisory AI control plane with patent-pending claims across six domains. It governs what health data AI systems can access, how they process it, what outputs are permissible, and under what conditions access can be revoked. Provisional patent filed February 2026 covering the Autonomous Supervisory AI Control Plane for Safe Clinical Autonomy. When healthcare organizations need to demonstrate that their AI systems comply with governance requirements, Aegis provides the auditable control layer.</p>
+
+    <p class="body"><strong>TETRA Sentinel&trade;</strong> is a protectionary AI agent that conducts continuous behavioral surveillance of AI systems operating in clinical environments. Hallucination detection, model drift monitoring, bias detection, and adversarial defense&mdash;all structurally independent from the models it supervises. Sentinel does not replace human oversight. It provides the real-time machine-speed monitoring layer that human oversight cannot achieve alone. When an AI system begins producing anomalous outputs or accessing data outside its governance parameters, Sentinel detects it in milliseconds, not days.</p>
+
+    <p class="body"><strong>Federal validation at scale:</strong> The DoD and VA selected TETRA over IBM, Oracle, SAP, and Informatica in a formal Analysis of Alternatives to solve the largest healthcare data interoperability challenge in the federal government. The technology was deployed on 41,000 servers across the federal healthcare system. This is not a pilot or proof of concept. It is the largest competitive selection and deployment in federal healthcare data infrastructure, validating the technology at a scale that no other early-stage company can claim.</p>
+
+    <div class="co">
+      <strong>The dependency stack model:</strong> TETRA is not competing with AI companies for market share. TETRA is the infrastructure that AI companies need beneath them to operate safely in healthcare. As the healthcare AI market grows from $21.66 billion to $110+ billion, the demand for governed, interoperable infrastructure grows proportionally. The AI companies build the intelligence. TETRA builds the foundation it runs on. When AI enters healthcare at scale&mdash;and it will&mdash;it runs on governed infrastructure. That infrastructure is TETRA.
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════════ -->
+
+<section>
+  <div class="container">
+    <div class="co">
+      <strong>The healthcare AI governance market does not yet have a category leader.</strong> The infrastructure that makes AI safe, interoperable, and governable in clinical environments is a multi-billion-dollar necessity that no existing company has addressed as a complete six-layer stack. TETRA builds the category. See the Complete Market Analysis for the other three converging markets (VBC, D2C, Interoperability/RPM). Revenue projections in the 3-Year Pro Forma.
+    </div>
+    <p style="font-size:11px;color:var(--text-muted);line-height:1.6;margin-top:24px;">Sources: MarketsandMarkets, PwC Strategy&amp;, Precedence Research, ITU, IMDRF, ASTP/ONC.</p>
+  </div>
+</section>
+
+<div class="footer">
+  <div class="container">
+    <p class="brand">InPursuit Health</p>
+    <p>Harness the Power of Your Data&trade; &nbsp;|&nbsp; Results Matter&trade;<br>CMS Health IT Ecosystem &mdash; Approved Member &nbsp;|&nbsp; Medicare App Library &mdash; All Three Categories<br><br>Confidential &mdash; For Qualified Investors Only</p>
+  </div>
+</div>
+
+</body>
+</html>
