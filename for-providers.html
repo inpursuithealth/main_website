@@ -31,9 +31,9 @@
 .hero h1 em { font-style: italic; color: var(--gold); }
 .hero-sub { font-size: 17px; color: rgba(255,255,255,0.55); line-height: 1.7; margin-bottom: 36px; max-width: 540px; }
 .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
-.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-content: start; padding-top: 32px; }
+.hero-float-cards { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-content: start; padding-top: 32px; }
 .hero-float-cards > .fc-label-header { grid-column: 1 / -1; }
-.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 12px; padding: 14px 14px 12px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
+.float-card { background: rgba(10,22,40,0.82); border: 1px solid rgba(197,164,78,0.18); border-radius: 14px; padding: 24px 22px 20px; backdrop-filter: blur(16px); cursor: pointer; transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease; box-shadow: 0 4px 24px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.04); position: relative; animation: floatCard 6s ease-in-out infinite; }
 .float-card:nth-child(2) { animation-delay: 0s; }
 .float-card:nth-child(3) { animation-delay: 1s; }
 .float-card:nth-child(4) { animation-delay: 2s; }
@@ -46,7 +46,7 @@
 .float-card.fc-tech:hover { border-color: rgba(102,187,106,0.5); box-shadow: 0 8px 32px rgba(46,125,50,0.15); }
 .float-card.fc-tech .fc-expand-hint { color: rgba(102,187,106,0.4); }
 .float-card.fc-tech:hover .fc-expand-hint { color: #66BB6A; }
-.float-card .fc-expand-hint { font-size: 8px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(197,164,78,0.4); margin-top: 8px; display: flex; align-items: center; gap: 4px; transition: color 0.3s ease; }
+.float-card .fc-expand-hint { font-size: 9px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(197,164,78,0.4); margin-top: 14px; display: flex; align-items: center; gap: 4px; transition: color 0.3s ease; }
 .float-card:hover .fc-expand-hint { color: var(--gold); }
 /* Stat modal overlay */
 .stat-modal-overlay { position: fixed; inset: 0; background: rgba(6,14,26,0.85); backdrop-filter: blur(8px); z-index: 9000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
@@ -66,15 +66,15 @@
 .stat-modal .sm-takeaway-label { font-size: 9px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
 .stat-modal .sm-takeaway-text { font-size: 14px; color: rgba(255,255,255,0.6); line-height: 1.6; }
 @keyframes floatCard { 0%, 100% { translate: 0 0; } 50% { translate: 0 -12px; } }
-.float-card .fc-num { font-family: 'Instrument Serif', serif; font-size: 30px; color: var(--gold); line-height: 1; }
-.float-card .fc-label { font-size: 10px; font-weight: 600; letter-spacing: 1.2px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-top: 5px; line-height: 1.4; }
+.float-card .fc-num { font-family: 'Instrument Serif', serif; font-size: 40px; color: var(--gold); line-height: 1; }
+.float-card .fc-label { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-top: 10px; line-height: 1.5; }
 .float-card .fc-desc { display: none; }
 .float-card .fc-source { display: none; }
 .float-card.fc-urgent { border-color: rgba(178,34,52,0.45); background: rgba(178,34,52,0.07); }
 .float-card.fc-urgent::before { background: linear-gradient(90deg, transparent, rgba(178,34,52,0.5), transparent); }
 .float-card.fc-urgent .fc-label { color: rgba(255,120,120,0.8); }
 .float-card.fc-urgent:hover { border-color: rgba(239,83,80,0.6); box-shadow: 0 12px 40px rgba(178,34,52,0.15), 0 4px 16px rgba(0,0,0,0.4); }
-.fc-countdown { font-family: 'Instrument Serif', serif; font-size: 30px; color: #ef5350; line-height: 1; }
+.fc-countdown { font-family: 'Instrument Serif', serif; font-size: 40px; color: #ef5350; line-height: 1; }
 
 /* === PAIN POINTS === */
 .pain-section { background: var(--white); }
