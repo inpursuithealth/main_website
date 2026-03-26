@@ -1015,6 +1015,12 @@
   .ml-opp-item.cms .ml-opp-txt strong { color: #7ec8f0; }
   .ml-opp-item.cms-key .ml-opp-txt strong { color: #3be8b0; }
   .ml-opp-badge { display: inline-block; font-family: var(--mono); font-size: .54rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; background: rgba(59,232,176,0.1); color: #3be8b0; border: 1px solid rgba(59,232,176,0.25); margin-bottom: 4px; }
+  .ml-opp-badge--access { background: rgba(197,164,78,0.12); color: var(--gold); border-color: rgba(197,164,78,0.35); text-transform: none; letter-spacing: .05em; }
+  .ml-opp-item.access-done::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 12px rgba(197,164,78,0.55); }
+  .ml-opp-item.access-done .ml-opp-date { color: var(--gold); }
+  .ml-opp-item.access-done .ml-opp-txt strong { color: var(--gold-lt, #D4BA7A); }
+  .ml-opp-badge--revenue { background: rgba(59,232,176,0.15); color: #3be8b0; border-color: rgba(59,232,176,0.35); text-transform: none; letter-spacing: .05em; font-size: .56rem; }
+  .ml-opp-item.access-billing::before { border-color: #3be8b0; background: #3be8b0; box-shadow: 0 0 14px rgba(59,232,176,0.6); }
 
   @media (max-width: 600px) {
     .ml-opp-section { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -1368,11 +1374,18 @@
 
   <!-- NEAR TERM GROWTH OPPORTUNITY TIMELINE -->
   <div class="ml-opp-section">
-    <div class="ml-opp-label">Near Term Growth Opportunity — InPursuit Health Patient App</div>
+    <div class="ml-opp-label">Near Term Growth Opportunity — Patient App &nbsp;·&nbsp; ACCESS Model</div>
     <div class="ml-opp-row">
       <div class="ml-opp-item cms">
         <div class="ml-opp-date">Now</div>
         <div class="ml-opp-txt"><strong>App in active development.</strong> Patient-facing MVP under construction. Core navigation, care coordination, and provider discovery flows being finalized.</div>
+      </div>
+      <div class="ml-opp-item cms-key access-done">
+        <div class="ml-opp-date">Mar 19</div>
+        <div class="ml-opp-txt">
+          <div class="ml-opp-badge ml-opp-badge--access">&#10003;&nbsp; ACCESS Submitted</div><br>
+          <strong>ACCESS Model application submitted.</strong> Honeycomb Medical Group + InPursuit Health application filed with CMS. Cohort 1 application complete.
+        </div>
       </div>
       <div class="ml-opp-item cms-key">
         <div class="ml-opp-date">Mar 31</div>
@@ -1397,6 +1410,13 @@
         <div class="ml-opp-txt">
           <div class="ml-opp-badge">Launch</div><br>
           <strong>Medicare App Store release.</strong> InPursuit Health app listed on the CMS Medicare App Store — direct distribution to Medicare beneficiaries nationwide.
+        </div>
+      </div>
+      <div class="ml-opp-item cms-key access-billing">
+        <div class="ml-opp-date">Jul 5</div>
+        <div class="ml-opp-txt">
+          <div class="ml-opp-badge ml-opp-badge--revenue">&#36;&nbsp; First Revenue</div><br>
+          <strong>ACCESS Model billing begins.</strong> InPursuit bills CMS directly under its own NPI. Honeycomb Cohort 1 patients enrolled. Revenue clock starts.
         </div>
       </div>
       <div class="ml-opp-item cms">
