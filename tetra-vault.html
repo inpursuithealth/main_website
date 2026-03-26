@@ -835,70 +835,282 @@ body {
   var canvas = document.getElementById('heroCanvas');
   if (!canvas) return;
   var ctx = canvas.getContext('2d');
-  var W, H, particles = [];
+  var W, H, cx, cy, t = 0;
+
+  /* ---- RINGS ---- */
+  var rings = [
+    { r: 220, speed:  0.00018, tick: 24, phase: 0, notchCount: 24, locked: false, lockFlash: 0 },
+    { r: 165, speed: -0.00030, tick: 16, phase: 0.8, notchCount: 16, locked: false, lockFlash: 0 },
+    { r: 118, speed:  0.00050, tick: 12, phase: 1.8, notchCount: 12, locked: false, lockFlash: 0 },
+    { r:  78, speed: -0.00080, tick:  8, phase: 3.0, notchCount:  8, locked: false, lockFlash: 0 },
+    { r:  46, speed:  0.00120, tick:  6, phase: 4.5, notchCount:  6, locked: false, lockFlash: 0 },
+  ];
+
+  /* ---- DATA MOTES (ingestion particles) ---- */
+  var MOTE_COUNT = 55;
+  var motes = [];
+
+  function spawnMote() {
+    var edge = Math.floor(Math.random() * 4);
+    var x, y;
+    if (edge === 0) { x = Math.random() * W; y = -6; }
+    else if (edge === 1) { x = W + 6; y = Math.random() * H; }
+    else if (edge === 2) { x = Math.random() * W; y = H + 6; }
+    else { x = -6; y = Math.random() * H; }
+    return {
+      x: x, y: y,
+      locked: false,
+      lockX: 0, lockY: 0,
+      lockLife: 0,
+      alpha: Math.random() * 0.3 + 0.1,
+      r: Math.random() * 1.2 + 0.4,
+      speed: Math.random() * 0.28 + 0.12,
+      trail: [],
+      trailMax: 10 + Math.floor(Math.random() * 14),
+    };
+  }
+
+  /* ---- LOCK FLARES ---- */
+  var flares = [];
+
+  /* ---- GRID DOTS (locked data at rest) ---- */
+  var gridDots = [];
+  function buildGrid() {
+    gridDots = [];
+    var spacing = 38;
+    var innerR = 38;
+    var cols = Math.ceil(W / spacing) + 1;
+    var rows = Math.ceil(H / spacing) + 1;
+    var offX = ((W % spacing) / 2);
+    var offY = ((H % spacing) / 2);
+    for (var r = 0; r < rows; r++) {
+      for (var c = 0; c < cols; c++) {
+        var gx = offX + c * spacing;
+        var gy = offY + r * spacing;
+        var dist = Math.sqrt(Math.pow(gx - cx, 2) + Math.pow(gy - cy, 2));
+        if (dist > innerR && dist < W * 0.52) {
+          gridDots.push({ x: gx, y: gy, baseA: Math.random() * 0.06 + 0.02 });
+        }
+      }
+    }
+  }
 
   function resize() {
     W = canvas.width = canvas.offsetWidth;
     H = canvas.height = canvas.offsetHeight;
+    cx = W / 2; cy = H / 2;
+    motes = [];
+    for (var i = 0; i < MOTE_COUNT; i++) motes.push(spawnMote());
+    buildGrid();
   }
 
-  function Particle() {
-    this.reset();
-  }
+  /* ---- DRAW RING ---- */
+  function drawRing(ring, now) {
+    var angle = ring.phase + now * ring.speed;
+    var notchStep = (Math.PI * 2) / ring.notchCount;
 
-  Particle.prototype.reset = function () {
-    this.x = Math.random() * W;
-    this.y = Math.random() * H;
-    this.r = Math.random() * 1.2 + 0.3;
-    this.vx = (Math.random() - 0.5) * 0.18;
-    this.vy = (Math.random() - 0.5) * 0.18;
-    this.a = Math.random() * 0.35 + 0.05;
-  };
+    ctx.save();
+    ctx.translate(cx, cy);
 
-  Particle.prototype.update = function () {
-    this.x += this.vx;
-    this.y += this.vy;
-    if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-  };
+    /* ring track */
+    ctx.beginPath();
+    ctx.arc(0, 0, ring.r, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(197,164,78,0.10)';
+    ctx.lineWidth = 1;
+    ctx.stroke();
 
-  function init() {
-    resize();
-    particles = [];
-    for (var i = 0; i < 90; i++) particles.push(new Particle());
-  }
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    particles.forEach(function (p) {
-      p.update();
+    /* notches */
+    for (var i = 0; i < ring.notchCount; i++) {
+      var a = angle + i * notchStep;
+      var cos = Math.cos(a), sin = Math.sin(a);
+      var inner = ring.r - 5, outer = ring.r + 5;
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(197,164,78,' + p.a + ')';
-      ctx.fill();
-    });
+      ctx.moveTo(cos * inner, sin * inner);
+      ctx.lineTo(cos * outer, sin * outer);
+      ctx.strokeStyle = 'rgba(197,164,78,0.18)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
 
-    for (var i = 0; i < particles.length; i++) {
-      for (var j = i + 1; j < particles.length; j++) {
-        var dx = particles[i].x - particles[j].x;
-        var dy = particles[i].y - particles[j].y;
-        var dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = 'rgba(197,164,78,' + (0.06 * (1 - dist / 100)) + ')';
-          ctx.lineWidth = 0.5;
-          ctx.stroke();
-        }
+      /* alignment flare when notch 0 passes 12 o'clock */
+      var normA = ((a % (Math.PI * 2)) + Math.PI * 2) % (Math.PI * 2);
+      if (i === 0 && normA < 0.04) {
+        var f = 1 - normA / 0.04;
+        ctx.beginPath();
+        ctx.arc(cos * ring.r, sin * ring.r, 4, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(197,164,78,' + (0.65 * f) + ')';
+        ctx.fill();
       }
     }
+
+    /* lock flash */
+    if (ring.lockFlash > 0) {
+      ctx.beginPath();
+      ctx.arc(0, 0, ring.r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(197,164,78,' + (ring.lockFlash * 0.45) + ')';
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+      ring.lockFlash -= 0.025;
+    }
+
+    ctx.restore();
+  }
+
+  /* ---- DRAW KEYHOLE ---- */
+  function drawKeyhole() {
+    ctx.save();
+    ctx.translate(cx, cy);
+    var kr = 18;
+    /* outer circle */
+    ctx.beginPath();
+    ctx.arc(0, 0, kr, 0, Math.PI * 2);
+    ctx.strokeStyle = 'rgba(197,164,78,0.55)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+    /* fill */
+    ctx.beginPath();
+    ctx.arc(0, 0, kr, 0, Math.PI * 2);
+    var grd = ctx.createRadialGradient(0, 0, 2, 0, 0, kr);
+    grd.addColorStop(0, 'rgba(197,164,78,0.18)');
+    grd.addColorStop(1, 'rgba(197,164,78,0.02)');
+    ctx.fillStyle = grd;
+    ctx.fill();
+    /* keyhole stem */
+    ctx.beginPath();
+    ctx.moveTo(-6, 4);
+    ctx.lineTo(-6, 16);
+    ctx.lineTo(6, 16);
+    ctx.lineTo(6, 4);
+    ctx.arc(0, 4, 6, 0, Math.PI, true);
+    ctx.closePath();
+    ctx.fillStyle = 'rgba(197,164,78,0.35)';
+    ctx.fill();
+    /* inner circle hole */
+    ctx.beginPath();
+    ctx.arc(0, -2, 5, 0, Math.PI * 2);
+    ctx.fillStyle = 'rgba(6,14,30,0.85)';
+    ctx.fill();
+    ctx.restore();
+  }
+
+  /* ---- UPDATE + DRAW MOTES ---- */
+  function updateMotes() {
+    for (var i = 0; i < motes.length; i++) {
+      var m = motes[i];
+
+      if (m.locked) {
+        m.lockLife -= 0.018;
+        if (m.lockLife <= 0) { motes[i] = spawnMote(); }
+        else {
+          /* draw locked crystal dot */
+          var ca = Math.min(m.lockLife, 0.6);
+          ctx.beginPath();
+          ctx.rect(m.lockX - 2, m.lockY - 2, 4, 4);
+          ctx.fillStyle = 'rgba(197,164,78,' + ca + ')';
+          ctx.fill();
+          ctx.beginPath();
+          ctx.rect(m.lockX - 1, m.lockY - 1, 2, 2);
+          ctx.fillStyle = 'rgba(255,240,180,' + (ca * 0.8) + ')';
+          ctx.fill();
+        }
+        continue;
+      }
+
+      /* pull toward center */
+      var dx = cx - m.x, dy = cy - m.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 1) dist = 1;
+      var pull = m.speed * (1 + (W * 0.4) / (dist + 20));
+      m.x += (dx / dist) * pull;
+      m.y += (dy / dist) * pull;
+
+      /* trail */
+      m.trail.push({ x: m.x, y: m.y });
+      if (m.trail.length > m.trailMax) m.trail.shift();
+
+      /* draw trail */
+      for (var k = 1; k < m.trail.length; k++) {
+        var progress = k / m.trail.length;
+        ctx.beginPath();
+        ctx.moveTo(m.trail[k - 1].x, m.trail[k - 1].y);
+        ctx.lineTo(m.trail[k].x, m.trail[k].y);
+        ctx.strokeStyle = 'rgba(197,164,78,' + (m.alpha * progress * 0.5) + ')';
+        ctx.lineWidth = m.r * 0.7;
+        ctx.stroke();
+      }
+
+      /* draw head */
+      ctx.beginPath();
+      ctx.arc(m.x, m.y, m.r, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(220,190,100,' + m.alpha + ')';
+      ctx.fill();
+
+      /* absorb when reaching innermost ring */
+      if (dist < 50) {
+        m.locked = true;
+        m.lockLife = 1.0;
+        /* snap to nearest grid point near center */
+        var angle = Math.atan2(m.y - cy, m.x - cx);
+        var snapR = 30 + Math.random() * 14;
+        m.lockX = cx + Math.cos(angle) * snapR;
+        m.lockY = cy + Math.sin(angle) * snapR;
+        /* trigger ring flash */
+        rings[rings.length - 1].lockFlash = 1.0;
+        flares.push({ x: m.lockX, y: m.lockY, life: 1.0, r: 0 });
+      }
+    }
+  }
+
+  /* ---- DRAW FLARES ---- */
+  function updateFlares() {
+    for (var i = flares.length - 1; i >= 0; i--) {
+      var f = flares[i];
+      f.r += 3; f.life -= 0.045;
+      if (f.life <= 0) { flares.splice(i, 1); continue; }
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.strokeStyle = 'rgba(197,164,78,' + (f.life * 0.4) + ')';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+    }
+  }
+
+  /* ---- OCCASIONAL LOCK PULSE on outer rings ---- */
+  var lastPulse = 0;
+  function maybePulse(now) {
+    if (now - lastPulse > 2200 + Math.random() * 1800) {
+      var ri = Math.floor(Math.random() * rings.length);
+      rings[ri].lockFlash = 1.0;
+      lastPulse = now;
+    }
+  }
+
+  function draw(now) {
+    ctx.clearRect(0, 0, W, H);
+
+    /* grid dots */
+    for (var g = 0; g < gridDots.length; g++) {
+      var gd = gridDots[g];
+      ctx.beginPath();
+      ctx.arc(gd.x, gd.y, 0.8, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(197,164,78,' + gd.baseA + ')';
+      ctx.fill();
+    }
+
+    /* rings */
+    for (var ri = 0; ri < rings.length; ri++) drawRing(rings[ri], now);
+
+    /* motes */
+    updateMotes();
+    updateFlares();
+    maybePulse(now);
+    drawKeyhole();
 
     requestAnimationFrame(draw);
   }
 
-  window.addEventListener('resize', init);
-  init();
-  draw();
+  window.addEventListener('resize', resize);
+  resize();
+  requestAnimationFrame(draw);
 })();
 </script>
 </body>
