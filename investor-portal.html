@@ -783,7 +783,7 @@
   }
 
   /* ── DOCSEND PANEL ── */
-  .carta-panel {
+  .invest-panel {
     display: grid;
     grid-template-columns: 1fr 340px;
     gap: 2rem;
@@ -795,14 +795,14 @@
     overflow: hidden;
   }
 
-  .carta-panel::before {
+  .invest-panel::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; height: 1.5px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
 
-  .carta-eyebrow {
+  .invest-eyebrow {
     display: flex;
     align-items: center;
     gap: .45rem;
@@ -814,7 +814,7 @@
     margin-bottom: 1rem;
   }
 
-  .carta-title {
+  .invest-title {
     font-family: var(--serif);
     font-size: 1.45rem;
     line-height: 1.2;
@@ -823,7 +823,7 @@
     margin-bottom: .75rem;
   }
 
-  .carta-desc {
+  .invest-desc {
     font-size: .845rem;
     color: var(--text-dim);
     line-height: 1.7;
@@ -831,13 +831,13 @@
     max-width: 520px;
   }
 
-  .carta-terms {
+  .invest-terms {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: .65rem;
   }
 
-  .carta-term {
+  .invest-term {
     background: rgba(255,255,255,.04);
     border: 1px solid rgba(255,255,255,.07);
     border-radius: 8px;
@@ -859,13 +859,13 @@
     color: var(--text-on);
   }
 
-  .carta-right {
+  .invest-right {
     display: flex;
     align-items: center;
     justify-content: center;
   }
 
-  .carta-cta-box {
+  .invest-cta-box {
     background: var(--navy-card);
     border: 1px solid rgba(197,164,78,.25);
     border-radius: 14px;
@@ -878,7 +878,7 @@
     gap: .85rem;
   }
 
-  .carta-logo-mark {
+  .invest-logo-mark {
     width: 52px; height: 52px;
     border-radius: 14px;
     background: rgba(197,164,78,.1);
@@ -886,20 +886,20 @@
     display: flex; align-items: center; justify-content: center;
   }
 
-  .carta-cta-title {
+  .invest-cta-title {
     font-family: var(--serif);
     font-size: 1.1rem;
     color: #fff;
     letter-spacing: -.015em;
   }
 
-  .carta-cta-sub {
+  .invest-cta-sub {
     font-size: .775rem;
     color: var(--text-dim);
     line-height: 1.55;
   }
 
-  .btn-carta {
+  .btn-invest {
     display: inline-flex;
     align-items: center;
     gap: .5rem;
@@ -916,25 +916,25 @@
     width: 100%;
     justify-content: center;
   }
-  .btn-carta:hover {
+  .btn-invest:hover {
     transform: translateY(-1px);
     box-shadow: 0 6px 20px rgba(197,164,78,.28);
   }
 
-  .carta-sub-action {
+  .invest-sub-action {
     font-size: .73rem;
     color: var(--text-mute);
   }
-  .carta-sub-action a {
+  .invest-sub-action a {
     color: var(--gold-lt);
     text-decoration: none;
     margin-left: .3rem;
   }
-  .carta-sub-action a:hover { text-decoration: underline; }
+  .invest-sub-action a:hover { text-decoration: underline; }
 
   @media (max-width: 860px) {
-    .carta-panel { grid-template-columns: 1fr; }
-    .carta-terms { grid-template-columns: 1fr 1fr; }
+    .invest-panel { grid-template-columns: 1fr; }
+    .invest-terms { grid-template-columns: 1fr 1fr; }
     .stat-item { padding: 0 1.5rem; }
   }
 
@@ -1436,7 +1436,7 @@
     <div class="inst-pane on" id="pane-safe">
       <div class="inst-badge">&bull; Live — accepting subscriptions</div>
       <div class="inst-title">SAFE Bridge — $2M at $25M Cap</div>
-      <div class="inst-desc">InPursuit Health is raising a $2M SAFE bridge at a $25M valuation cap with no discount. The SAFE converts to Series A Preferred equity when the Series A closes (target: September 1, 2026). This is the primary fundraising instrument and is execution-ready via Carta.</div>
+      <div class="inst-desc">InPursuit Health is raising a $2M SAFE bridge at a $25M valuation cap with no discount. The SAFE converts to Series A Preferred equity when the Series A closes (target: September 1, 2026). This is the primary fundraising instrument and is execution-ready via DocuSign.</div>
 
       <div class="inst-stats">
         <div class="ist"><div class="ist-l">Instrument</div><div class="ist-v">SAFE</div></div>
@@ -1444,7 +1444,7 @@
         <div class="ist"><div class="ist-l">Discount Rate</div><div class="ist-v">None</div></div>
         <div class="ist"><div class="ist-l">Total Raise</div><div class="ist-v">$2,000,000</div></div>
         <div class="ist"><div class="ist-l">Minimum Check</div><div class="ist-v">$50,000</div></div>
-        <div class="ist"><div class="ist-l">Execution</div><div class="ist-v">Carta / DocuSign</div></div>
+        <div class="ist"><div class="ist-l">Execution</div><div class="ist-v">DocuSign (electronic)</div></div>
       </div>
 
       <!-- Key Terms accordion -->
@@ -1491,7 +1491,7 @@
           <div class="inst-cta-h">Ready to subscribe? Execute here.</div>
           <div class="inst-cta-s">Sign your SAFE subscription agreement securely via DocuSign.</div>
         </div>
-        <a class="btn-carta" href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=98bb49d2-965c-4412-b67a-a5e0e1e97224&env=na4&acct=6a3e7c58-1fd0-42b0-942a-b6c7c928bc58&v=2" target="_blank" rel="noopener" style="width:auto;white-space:nowrap;">
+        <a class="btn-invest" href="https://na4.docusign.net/Member/PowerFormSigning.aspx?PowerFormId=98bb49d2-965c-4412-b67a-a5e0e1e97224&env=na4&acct=6a3e7c58-1fd0-42b0-942a-b6c7c928bc58&v=2" target="_blank" rel="noopener" style="width:auto;white-space:nowrap;">
           Execute Subscription Documents&nbsp;
           <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </a>
@@ -1537,44 +1537,44 @@
       <!-- SAFE-Specific Capitalization -->
       <div style="margin-top:2.5rem;">
         <div class="section-label">Capitalization — SAFE Conversion Scenario</div>
-        <div class="carta-panel" style="grid-template-columns:1fr 300px;">
-          <div class="carta-left">
-            <div class="carta-eyebrow">
+        <div class="invest-panel" style="grid-template-columns:1fr 300px;">
+          <div class="invest-left">
+            <div class="invest-eyebrow">
               <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="flex-shrink:0"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm2 0a1 1 0 011-1h2a1 1 0 110 2H10a1 1 0 01-1-1zm-2 4a1 1 0 000 2h.01a1 1 0 100-2H7zm2 0a1 1 0 011-1h2a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
               Capitalization Table · SAFE Conversion at $25M Cap
             </div>
-            <h3 class="carta-title">SAFE Conversion — Before &amp; After</h3>
-            <p class="carta-desc">See how your SAFE converts at the $25M cap and how it affects ownership. The cap table shows current member units, SAFE conversion shares, and the fully-diluted post-Series A structure — so you can see exactly what your position looks like before and after conversion.</p>
-            <div class="carta-terms" style="grid-template-columns:repeat(3,1fr);">
-              <div class="carta-term">
+            <h3 class="invest-title">SAFE Conversion — Before &amp; After</h3>
+            <p class="invest-desc">See how your SAFE converts at the $25M cap and how it affects ownership. The cap table shows current member units, SAFE conversion shares, and the fully-diluted post-Series A structure — so you can see exactly what your position looks like before and after conversion.</p>
+            <div class="invest-terms" style="grid-template-columns:repeat(3,1fr);">
+              <div class="invest-term">
                 <div class="ct-label">Pre-Conversion</div>
                 <div class="ct-val">LLC Member Units</div>
               </div>
-              <div class="carta-term">
+              <div class="invest-term">
                 <div class="ct-label">SAFE Converts At</div>
                 <div class="ct-val">$25M Cap · No Discount</div>
               </div>
-              <div class="carta-term">
+              <div class="invest-term">
                 <div class="ct-label">Post-Series A</div>
                 <div class="ct-val">Pro-Forma Fully Diluted</div>
               </div>
             </div>
           </div>
-          <div class="carta-right">
-            <div class="carta-cta-box">
-              <div class="carta-logo-mark">
+          <div class="invest-right">
+            <div class="invest-cta-box">
+              <div class="invest-logo-mark">
                 <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                   <rect width="32" height="32" rx="8" fill="rgba(197,164,78,.12)"/>
                   <path d="M7 9h18M7 13h10M7 17h14M7 21h8" stroke="#C5A44E" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="carta-cta-title">View SAFE Cap Table</div>
-              <div class="carta-cta-sub">SAFE conversion scenarios at the $25M cap, ownership dilution, and post-round pro-forma.</div>
-              <a class="btn-carta" href="data-room/FINAL_cap-table.html" target="_blank">
+              <div class="invest-cta-title">View SAFE Cap Table</div>
+              <div class="invest-cta-sub">SAFE conversion scenarios at the $25M cap, ownership dilution, and post-round pro-forma.</div>
+              <a class="btn-invest" href="data-room/FINAL_cap-table.html" target="_blank">
                 Open Cap Table
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
               </a>
-              <div class="carta-sub-action">
+              <div class="invest-sub-action">
                 Questions? <a href="mailto:invest@inpursuithealth.com">invest@inpursuithealth.com</a>
               </div>
             </div>
@@ -1651,7 +1651,7 @@
           <div class="inst-cta-h">Ready to subscribe? Execute here.</div>
           <div class="inst-cta-s">Our team will prepare custom note documents consistent with the SAFE terms.</div>
         </div>
-        <a class="btn-carta" href="mailto:invest@inpursuithealth.com?subject=Convertible%20Note%20—%20InPursuit%20Health" style="width:auto;white-space:nowrap;">
+        <a class="btn-invest" href="mailto:invest@inpursuithealth.com?subject=Convertible%20Note%20—%20InPursuit%20Health" style="width:auto;white-space:nowrap;">
           Request Note Terms&nbsp;
           <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
         </a>
@@ -1684,6 +1684,12 @@
             <div class="doc-title">Note Conversion Explained</div>
             <div class="doc-desc">Plain-language walkthrough of how your convertible note converts at the $25M cap — with interest accrual scenarios showing ownership, dilution, and return mechanics.</div>
             <div class="doc-foot"><span class="doc-tag">Education</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+          </a>
+          <a class="doc-card" href="data-room/note-conversion-detailed-scenarios.html" target="_blank">
+            <span class="doc-badge b-note">Conv. Note</span>
+            <div class="doc-title">Detailed Conversion Scenarios</div>
+            <div class="doc-desc">Six complete scenarios — from conservative base case through $1B exit — with exact ownership, Day 1 equity value, interest accrual mechanics, and debt backstop breakdown.</div>
+            <div class="doc-foot"><span class="doc-tag">Deep Dive</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
           </a>
         </div>
       </div>
@@ -1734,44 +1740,44 @@
       <!-- Note-Specific Capitalization -->
       <div style="margin-top:2.5rem;">
         <div class="section-label">Capitalization — Note Conversion Scenario</div>
-        <div class="carta-panel" style="grid-template-columns:1fr 300px;">
-          <div class="carta-left">
-            <div class="carta-eyebrow">
+        <div class="invest-panel" style="grid-template-columns:1fr 300px;">
+          <div class="invest-left">
+            <div class="invest-eyebrow">
               <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor" style="flex-shrink:0"><path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z"/><path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm2 0a1 1 0 011-1h2a1 1 0 110 2H10a1 1 0 01-1-1zm-2 4a1 1 0 000 2h.01a1 1 0 100-2H7zm2 0a1 1 0 011-1h2a1 1 0 110 2H10a1 1 0 01-1-1z" clip-rule="evenodd"/></svg>
               Capitalization Table · Note Conversion at $25M Cap
             </div>
-            <h3 class="carta-title">Note Conversion — Before &amp; After</h3>
-            <p class="carta-desc">See how your convertible note converts at the $25M cap with accrued interest. The cap table shows current ownership, note conversion shares (principal + 5% interest), and the fully-diluted post-Series A structure — including additional equity from interest accrual.</p>
-            <div class="carta-terms" style="grid-template-columns:repeat(3,1fr);">
-              <div class="carta-term">
+            <h3 class="invest-title">Note Conversion — Before &amp; After</h3>
+            <p class="invest-desc">See how your convertible note converts at the $25M cap with accrued interest. The cap table shows current ownership, note conversion shares (principal + 5% interest), and the fully-diluted post-Series A structure — including additional equity from interest accrual.</p>
+            <div class="invest-terms" style="grid-template-columns:repeat(3,1fr);">
+              <div class="invest-term">
                 <div class="ct-label">Pre-Conversion</div>
                 <div class="ct-val">LLC Member Units</div>
               </div>
-              <div class="carta-term">
+              <div class="invest-term">
                 <div class="ct-label">Note Converts At</div>
                 <div class="ct-val">$25M Cap + 5% Interest</div>
               </div>
-              <div class="carta-term">
+              <div class="invest-term">
                 <div class="ct-label">Post-Series A</div>
                 <div class="ct-val">Pro-Forma Fully Diluted</div>
               </div>
             </div>
           </div>
-          <div class="carta-right">
-            <div class="carta-cta-box">
-              <div class="carta-logo-mark">
+          <div class="invest-right">
+            <div class="invest-cta-box">
+              <div class="invest-logo-mark">
                 <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
                   <rect width="32" height="32" rx="8" fill="rgba(197,164,78,.12)"/>
                   <path d="M7 9h18M7 13h10M7 17h14M7 21h8" stroke="#C5A44E" stroke-width="2" stroke-linecap="round"/>
                 </svg>
               </div>
-              <div class="carta-cta-title">View Note Cap Table</div>
-              <div class="carta-cta-sub">Note conversion scenarios with interest accrual, ownership dilution, and post-round pro-forma.</div>
-              <a class="btn-carta" href="data-room/FINAL_cap-table-note.html" target="_blank">
+              <div class="invest-cta-title">View Note Cap Table</div>
+              <div class="invest-cta-sub">Note conversion scenarios with interest accrual, ownership dilution, and post-round pro-forma.</div>
+              <a class="btn-invest" href="data-room/FINAL_cap-table-note.html" target="_blank">
                 Open Cap Table
                 <svg width="14" height="14" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
               </a>
-              <div class="carta-sub-action">
+              <div class="invest-sub-action">
                 Questions? <a href="mailto:invest@inpursuithealth.com">invest@inpursuithealth.com</a>
               </div>
             </div>
@@ -2191,7 +2197,7 @@ function wireDocTracking() {
     });
   });
 
-  document.querySelectorAll('a.btn-carta[href]').forEach(link => {
+  document.querySelectorAll('a.btn-invest[href]').forEach(link => {
     const href = link.getAttribute('href');
 
     if (href.includes('docusign')) {
@@ -2201,7 +2207,7 @@ function wireDocTracking() {
       });
     } else if (href.startsWith('data-room/')) {
       const slug  = href.split('/').pop().replace('.html', '');
-      const title = link.closest('.carta-panel')?.querySelector('.carta-cta-title')?.textContent?.trim() || slug;
+      const title = link.closest('.invest-panel')?.querySelector('.invest-cta-title')?.textContent?.trim() || slug;
       const sectionLabel = link.closest('[style]')?.querySelector('.section-label')?.textContent || '';
       let category = 'Cap Table';
       if (sectionLabel.includes('SAFE'))        category = 'SAFE Bridge';
