@@ -2270,10 +2270,6 @@ function openDataRoom() {
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
 
-  localStorage.setItem('ip_portal_unlocked', '1');
-  localStorage.setItem('ip_portal_contact', JSON.stringify(contact));
-  localStorage.setItem('ip_portal_code', accessCode);
-
   history.pushState({ portal: true }, '', window.location.pathname);
 
   const gate = document.getElementById('gate-container');
@@ -2301,23 +2297,7 @@ window.addEventListener('popstate', (e) => {
   }
 });
 
-(function restoreSession() {
-  if (localStorage.getItem('ip_portal_unlocked') !== '1') return;
-  try {
-    contact    = JSON.parse(localStorage.getItem('ip_portal_contact') || '{}');
-    accessCode = localStorage.getItem('ip_portal_code') || '';
-  } catch(e) { return; }
-  if (!contact.first) return;
-  document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
-  document.getElementById('display-email').textContent = contact.email;
-  const gate = document.getElementById('gate-container');
-  gate.style.display = 'none';
-  const room = document.getElementById('data-room');
-  room.style.display = 'block';
-  room.style.opacity = '1';
-  history.pushState({ portal: true }, '', window.location.pathname);
-  wireDocTracking();
-})();
+['ip_portal_unlocked','ip_portal_contact','ip_portal_code'].forEach(k => localStorage.removeItem(k));
 
 // ── INSTRUMENT TABS ──────────────────────────────
 document.querySelectorAll('.inst-tab').forEach(tab => {
