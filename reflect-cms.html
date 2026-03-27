@@ -1985,14 +1985,14 @@ container.innerHTML=`
     <div style="font-size:11px;font-weight:700;color:${B.gold};letter-spacing:0.18em;margin-bottom:4px">PATIENT EXPERIENCE</div>
     <div style="font-family:'Instrument Serif',serif;font-size:22px;font-weight:300;color:${B.cream}">Robert's InPursuit Reflect™ Journey</div>
   </div>
-  <div style="width:375px;min-height:812px;background:${B.navy};border-radius:44px;overflow:hidden;position:relative;box-shadow:0 30px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(250,247,240,0.06);font-family:'Instrument Sans',-apple-system,sans-serif;display:flex;flex-direction:column">
+  <div style="width:375px;transform-origin:top center;transform:scale(0.72);margin-bottom:calc((812px * 0.72) - 812px)"><div style="width:375px;min-height:812px;background:${B.navy};border-radius:44px;overflow:hidden;position:relative;box-shadow:0 30px 100px rgba(0,0,0,0.7),0 0 0 1px rgba(250,247,240,0.06);font-family:'Instrument Sans',-apple-system,sans-serif;display:flex;flex-direction:column">
     <div style="padding:12px 28px 6px;display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:600;color:${B.cream};flex-shrink:0;position:relative;z-index:10">
       <span>9:41</span>
       <div style="width:126px;height:32px;background:#000;border-radius:20px;position:absolute;left:50%;transform:translateX(-50%);top:4px"></div>
       <div style="display:flex;gap:5px;align-items:center"><span style="font-size:10px">5G</span><span style="font-size:13px">|||</span></div>
     </div>
     <div id="${containerId}_screen" style="flex:1;display:flex;flex-direction:column;overflow:hidden"></div>
-  </div>
+  </div></div>
   <div id="${containerId}_tabs" style="display:flex;gap:5px;margin-top:18px;flex-wrap:wrap;justify-content:center;max-width:420px"></div>
 </div>`;
 
