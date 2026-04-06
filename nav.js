@@ -22,17 +22,7 @@
           <a href="for-providers.html">Results Matter &#8482;</a>
         </div>
       </div>
-      <div class="iph-dropdown">
-        <a class="iph-nav-item iph-dropdown-toggle" href="tetra.html" aria-haspopup="true">TETRA <span class="iph-caret">&#9660;</span></a>
-        <div class="iph-dropdown-menu">
-          <a href="tetra.html">TETRA&#8482; &mdash; Data Orchestration</a>
-          <a href="tetra-ex.html">TETRA Ex&#8482; &mdash; Health Data Exchange</a>
-          <a href="tetra-conductor.html">TETRA Conductor&#8482; &mdash; AI Orchestration</a>
-          <a href="tetra-vault.html">TETRA Vault&#8482; &mdash; Sovereign Data Infrastructure</a>
-          <a href="tetra-aegis.html" class="iph-sub-dropdown-toggle">TETRA Aegis&#8482; &mdash; AI Governance</a>
-          <a href="tetra-aegis.html#sentinel">TETRA Sentinel&#8482; &mdash; Behavioral Surveillance</a>
-        </div>
-      </div>
+      <a class="iph-nav-item" href="powered-by-tetra.html">Powered by TETRA&#8482;</a>
       <a class="iph-nav-item" href="veterans-first.html">Veterans First</a>
       <a class="iph-nav-item" href="data-oath.html">Data Oath</a>
       <div class="iph-dropdown">
