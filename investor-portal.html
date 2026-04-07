@@ -561,7 +561,7 @@
   }
   .portal-hero-inner {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 3rem;
   }
   .portal-hero-text {
@@ -665,7 +665,7 @@
 
   .portal-desc {
     font-size: .9rem; color: var(--text-dim);
-    max-width: 620px; line-height: 1.7;
+    line-height: 1.7;
   }
 
   .room-divider {
@@ -1037,6 +1037,30 @@
   .ml-opp-item.access-done .ml-opp-txt strong { color: var(--gold-lt, #D4BA7A); }
   .ml-opp-badge--revenue { background: rgba(59,232,176,0.15); color: #3be8b0; border-color: rgba(59,232,176,0.35); text-transform: none; letter-spacing: .05em; font-size: .56rem; }
   .ml-opp-item.access-billing::before { border-color: #3be8b0; background: #3be8b0; box-shadow: 0 0 14px rgba(59,232,176,0.6); }
+
+  .mvp-selected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    background: rgba(59,232,176,0.1);
+    border: 1px solid rgba(59,232,176,0.3);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-family: var(--mono);
+    letter-spacing: .08em;
+    color: #3be8b0;
+  }
+  .mvp-check { font-size: 11px; }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(59,232,176,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(59,232,176,0.15), 0 0 18px rgba(59,232,176,0.7); }
+  }
+  .ml-opp-item--pulse::before {
+    animation: dot-pulse 1.8s ease-in-out infinite;
+  }
 
   @media (max-width: 600px) {
     .ml-opp-section { padding-left: 1.25rem; padding-right: 1.25rem; }
@@ -1415,9 +1439,10 @@
         <div class="ml-opp-txt">
           <div class="ml-opp-badge">Milestone</div><br>
           <strong>MVP complete.</strong> InPursuit Health patient app MVP delivered. Internal review and stakeholder demo ready.
+          <div class="mvp-selected-badge"><span class="mvp-check">&#10003;</span> MVP selected for Apr 9 event</div>
         </div>
       </div>
-      <div class="ml-opp-item cms-key">
+      <div class="ml-opp-item cms-key ml-opp-item--pulse">
         <div class="ml-opp-date">Apr 9</div>
         <div class="ml-opp-txt">
           <div class="ml-opp-badge">Live Event</div><br>
