@@ -779,11 +779,14 @@ body {
 }
 
 .ecosystem-canvas {
-  position: relative;
   max-width: 900px;
   margin: 0 auto;
-  min-height: 820px;
-  padding-bottom: 100px;
+  padding-bottom: 40px;
+}
+
+.ecosystem-svg-wrap {
+  position: relative;
+  width: 100%;
 }
 
 .person-center {
@@ -1735,7 +1738,7 @@ body {
   </div>
 
   <div class="ecosystem-canvas">
-    
+    <div class="ecosystem-svg-wrap">
     <svg class="ecosystem-svg" viewBox="0 0 900 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:auto;display:block;">
       <defs>
         <filter id="ecoNodeGlow" x="-100%" y="-100%" width="300%" height="300%">
@@ -1803,10 +1806,6 @@ body {
         <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="3.5s" begin="2.8s" repeatCount="indefinite"/>
       </circle>
 
-      <g transform="translate(450, 50)">
-        <rect x="-72" y="-15" width="144" height="30" rx="15" fill="rgba(10,22,40,0.85)" stroke="#C5A44E" stroke-width="1"/>
-        <text x="0" y="6" text-anchor="middle" fill="#e8c968" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2" font-weight="600">TETRA™ MEMBRANE</text>
-      </g>
 
       <g>
         <circle cx="450" cy="100" r="40" fill="rgba(10,22,40,0.95)" stroke="#C5A44E" stroke-width="1.5" filter="url(#ecoNodeGlow)"/>
@@ -1889,6 +1888,7 @@ body {
         <div class="person-label person-label-4"><div class="person-name">David</div><div class="person-context">prevention before diagnosis</div></div>
         <div class="person-label person-label-5"><div class="person-name">Elena</div><div class="person-context">a lifetime of records · one place</div></div>
       </div>
+    </div>
     </div>
 
   </div>
