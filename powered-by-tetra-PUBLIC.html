@@ -276,12 +276,22 @@ body {
 }
 
 .broken-header p {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.8;
   color: var(--cream-70);
-  max-width: 620px;
+  max-width: 660px;
   margin: 0 auto;
   text-shadow: 0 2px 16px rgba(5,13,26,0.85);
+}
+
+.broken-header p em.broken-stat,
+.new-bridge-intro em.broken-stat {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.15em;
+  color: rgba(250, 248, 244, 0.92);
+  font-weight: 400;
+  text-shadow: 0 0 30px rgba(5,13,26,0.9);
 }
 
 /* Floating data labels — same structure as §02 but with rust accent */
@@ -1557,30 +1567,8 @@ body {
         </div>
         <h2>A modern infrastructure<br>spanning the <em>impossible gap</em></h2>
         <p class="new-bridge-intro">
-          Data becomes the bridge. Live, secure, bidirectional — flowing between the two sides 
-          of American health for the first time, with you at the center of it all.
+          Data becomes the bridge. Live, secure, bidirectional — your <em class="broken-stat">$1.8T</em> in daily wellness signals, wearables, nutrition, and sleep finally informing your care team in real time, while your <em class="broken-stat">$4.9T</em> in records, claims, and labs flow back to you — unified, owned, and accessible for the first time.
         </p>
-      </div>
-      
-      <!-- Floating data labels -->
-      <div class="dreamsand-label dreamsand-label-left">
-        <div class="dreamsand-label-header">
-          <div class="dreamsand-label-eyebrow">WELLNESS DATA</div>
-          <div class="dreamsand-label-value-inline">$1.8T</div>
-        </div>
-        <div class="dreamsand-label-divider"></div>
-        <div class="dreamsand-label-tagline">Your daily life,<br><em>finally clinical</em></div>
-        <div class="dreamsand-label-detail">Wearables, nutrition,<br>sleep — informing your<br>care team in real time</div>
-      </div>
-      
-      <div class="dreamsand-label dreamsand-label-right">
-        <div class="dreamsand-label-header">
-          <div class="dreamsand-label-eyebrow">HEALTHCARE DATA</div>
-          <div class="dreamsand-label-value-inline">$4.9T</div>
-        </div>
-        <div class="dreamsand-label-divider"></div>
-        <div class="dreamsand-label-tagline">Your full record,<br><em>finally yours</em></div>
-        <div class="dreamsand-label-detail">Records, claims, labs —<br>unified across providers,<br>owned by you</div>
       </div>
       
     </div>
