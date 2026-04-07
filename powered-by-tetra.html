@@ -246,7 +246,7 @@ body {
   padding: 90px 24px 100px;
   max-width: 1200px;
   margin: 0 auto;
-  min-height: 1200px;
+  min-height: 680px;
   display: flex;
   flex-direction: column;
 }
@@ -276,12 +276,21 @@ body {
 }
 
 .broken-header p {
-  font-size: 16px;
-  line-height: 1.7;
+  font-size: 17px;
+  line-height: 1.8;
   color: var(--cream-70);
-  max-width: 620px;
+  max-width: 660px;
   margin: 0 auto;
   text-shadow: 0 2px 16px rgba(5,13,26,0.85);
+}
+
+.broken-header p em.broken-stat {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: 1.15em;
+  color: rgba(250, 248, 244, 0.92);
+  font-weight: 400;
+  text-shadow: 0 0 30px rgba(5,13,26,0.9);
 }
 
 /* Borderless typographic overlays — no card chrome */
@@ -1380,31 +1389,8 @@ body {
         </div>
         <h2>The bridge between healthcare and wellness<br><em>is fractured at the center</em></h2>
         <p>
-          Two trillion-dollar economies. The same patient. Pouring money, time, and technology 
-          into infrastructure that fractures at the center — leaving you stranded 
-          between the two sides of your own health.
+          Two trillion-dollar economies. The same patient. On one side, <em class="broken-stat">$1.8T</em> in wellness data — wearables, nutrition, sleep — trapped in apps your care team can never see. On the other, <em class="broken-stat">$4.9T</em> in healthcare records, claims, and labs fragmented across providers you'll never reach. The same person. Stranded in the middle.
         </p>
-      </div>
-      
-      <!-- Floating broken-state labels -->
-      <div class="broken-label broken-label-left">
-        <div class="broken-label-header">
-          <div class="broken-label-eyebrow">WELLNESS DATA</div>
-          <div class="broken-label-value-inline">$1.8T</div>
-        </div>
-        <div class="broken-label-divider"></div>
-        <div class="broken-label-tagline">Your daily life,<br><em>scattered everywhere</em></div>
-        <div class="broken-label-detail">Wearables, nutrition,<br>sleep — trapped in apps<br>your care team can't see</div>
-      </div>
-      
-      <div class="broken-label broken-label-right">
-        <div class="broken-label-header">
-          <div class="broken-label-eyebrow">HEALTHCARE DATA</div>
-          <div class="broken-label-value-inline">$4.9T</div>
-        </div>
-        <div class="broken-label-divider"></div>
-        <div class="broken-label-tagline">Your full record,<br><em>locked in silos</em></div>
-        <div class="broken-label-detail">Records, claims, labs —<br>fragmented across<br>providers you'll never reach</div>
       </div>
       
     </div>
