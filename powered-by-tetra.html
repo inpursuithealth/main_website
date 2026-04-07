@@ -284,47 +284,41 @@ body {
   text-shadow: 0 2px 16px rgba(5,13,26,0.85);
 }
 
-/* Floating data labels — same structure as §02 but with rust accent */
+/* Borderless typographic overlays — no card chrome */
 .broken-label {
   position: absolute;
   z-index: 5;
-  padding: 18px 22px;
-  background: rgba(5, 13, 26, 0.55);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(154, 74, 37, 0.35);
-  border-radius: 12px;
-  min-width: 220px;
+  min-width: 200px;
+  max-width: 260px;
 }
 
 .broken-label-left {
-  top: 380px;
-  left: 60px;
+  top: 340px;
+  left: 72px;
 }
 
 .broken-label-right {
-  top: 380px;
-  right: 60px;
+  top: 340px;
+  right: 72px;
   text-align: right;
 }
 
 .broken-label-eyebrow {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 600;
-  letter-spacing: 2.5px;
-  color: var(--cream-70);
-  margin-bottom: 8px;
+  letter-spacing: 3px;
+  color: rgba(250, 248, 244, 0.4);
   text-transform: uppercase;
+  margin-bottom: 10px;
+  text-shadow: 0 0 20px rgba(5,13,26,0.9);
 }
 
-/* Inline header — eyebrow label and dollar value on the same row */
 .broken-label-header {
   display: flex;
   align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 4px;
+  gap: 10px;
+  margin-bottom: 0;
 }
 
 .broken-label-right .broken-label-header {
@@ -338,18 +332,26 @@ body {
 .broken-label-value-inline {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 28px;
-  color: rgba(250, 248, 244, 0.7);
+  font-size: 52px;
+  color: rgba(250, 248, 244, 0.88);
   line-height: 1;
+  text-shadow:
+    0 0 60px rgba(5,13,26,0.95),
+    0 0 120px rgba(5,13,26,0.8),
+    0 2px 8px rgba(5,13,26,0.9);
 }
 
 .broken-label-value {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 36px;
-  color: rgba(250, 248, 244, 0.85);
+  font-size: 52px;
+  color: rgba(250, 248, 244, 0.88);
   line-height: 1;
-  margin-bottom: 6px;
+  margin-bottom: 0;
+  text-shadow:
+    0 0 60px rgba(5,13,26,0.95),
+    0 0 120px rgba(5,13,26,0.8),
+    0 2px 8px rgba(5,13,26,0.9);
 }
 
 .broken-label-subtitle {
@@ -363,34 +365,36 @@ body {
 
 .broken-label-divider {
   height: 1px;
-  background: linear-gradient(to right, transparent, rgba(154, 74, 37, 0.4), transparent);
-  margin: 0 0 12px 0;
+  background: linear-gradient(to right, rgba(154, 74, 37, 0.5), transparent);
+  margin: 14px 0 14px 0;
 }
 
 .broken-label-right .broken-label-divider {
-  background: linear-gradient(to left, transparent, rgba(154, 74, 37, 0.4), transparent);
+  background: linear-gradient(to left, rgba(154, 74, 37, 0.5), transparent);
 }
 
 .broken-label-tagline {
   font-family: 'Instrument Serif', serif;
   font-style: italic;
-  font-size: 16px;
-  color: rgba(250, 248, 244, 0.75);
-  line-height: 1.25;
-  margin-bottom: 8px;
+  font-size: 18px;
+  color: rgba(250, 248, 244, 0.8);
+  line-height: 1.3;
+  margin-bottom: 10px;
+  text-shadow: 0 0 30px rgba(5,13,26,0.95), 0 2px 8px rgba(5,13,26,0.9);
 }
 
 .broken-label-tagline em {
-  color: rgba(198, 104, 56, 0.9);
+  color: rgba(198, 104, 56, 0.95);
   font-style: italic;
 }
 
 .broken-label-detail {
   font-family: 'Instrument Sans', sans-serif;
-  font-size: 10px;
+  font-size: 11px;
   color: rgba(250, 248, 244, 0.45);
   letter-spacing: 0.3px;
-  line-height: 1.5;
+  line-height: 1.65;
+  text-shadow: 0 0 20px rgba(5,13,26,0.9);
 }
 
 /* ═══════════ 02 — THE INFRASTRUCTURE ═══════════ */
@@ -1301,10 +1305,15 @@ body {
   .dreamsand-label, .broken-label {
     position: static;
     margin: 16px auto;
-    max-width: 260px;
+    max-width: 280px;
     text-align: center;
   }
+  .broken-label-divider {
+    background: linear-gradient(to right, transparent, rgba(154, 74, 37, 0.5), transparent) !important;
+  }
   .dreamsand-label-right, .broken-label-right { text-align: center; }
+  .broken-label-right .broken-label-header,
+  .broken-label-right .broken-label-divider { flex-direction: row; }
   .new-bridge-header, .broken-header { margin-bottom: 32px; }
 }
 
@@ -1313,7 +1322,8 @@ body {
   .broken-section, .infra-section, .built-on, .ecosystem, .unlocks, .closing { padding-left: 20px; padding-right: 20px; }
   .layer { padding: 30px 26px; }
   .ecosystem-legend, .new-bridge-status { gap: 16px; font-size: 9px; }
-  .dreamsand-label-value, .broken-label-value { font-size: 30px; }
+  .dreamsand-label-value, .broken-label-value { font-size: 36px; }
+  .broken-label-value-inline { font-size: 36px; }
 }
 </style>
 </head>
