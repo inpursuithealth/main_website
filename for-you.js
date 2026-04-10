@@ -478,3 +478,64 @@ function toggleFaq(btn) {
 document.querySelectorAll('img').forEach(img => {
   img.onerror = function() { this.style.display = 'none'; };
 });
+
+// ===== WAITLIST =====
+(function() {
+  const SUPA_URL  = 'https://xmmztwstxlthdxulcwxe.supabase.co';
+  const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtbXp0d3N0eGx0aGR4dWxjd3hlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NTMwMTEsImV4cCI6MjA5MTMyOTAxMX0.zpz7JlPcUIsd3iW9OiD1Z9I68SkoBmiM3cNqDDSUOSA';
+  const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
+
+  const emailEl   = document.getElementById('earlyEmail');
+  const btn       = document.getElementById('earlyBtn');
+  const msgEl     = document.getElementById('earlyMsg');
+  const formEl    = document.getElementById('earlyForm');
+  const successEl = document.getElementById('earlySuccess');
+  const noteEl    = document.getElementById('earlyNote');
+
+  function showMsg(text, type) {
+    msgEl.textContent = text;
+    msgEl.className = 'early-msg show early-msg--' + type;
+  }
+
+  function clearMsg() {
+    msgEl.className = 'early-msg';
+    msgEl.textContent = '';
+  }
+
+  async function joinWaitlist() {
+    const email = (emailEl.value || '').trim();
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showMsg('Please enter a valid email address.', 'error');
+      emailEl.focus();
+      return;
+    }
+
+    clearMsg();
+    btn.disabled = true;
+    btn.classList.add('loading');
+
+    const { error } = await supa.from('waitlist').insert({
+      email,
+      source: 'for-you-page',
+      user_agent: navigator.userAgent
+    });
+
+    btn.classList.remove('loading');
+    btn.disabled = false;
+
+    if (!error) {
+      formEl.style.display = 'none';
+      noteEl.style.display = 'none';
+      successEl.classList.add('show');
+    } else if (error.code === '23505') {
+      showMsg("You're already on the list \u2014 we'll be in touch soon.", 'info');
+    } else {
+      showMsg('Something went wrong. Please try again.', 'error');
+    }
+  }
+
+  btn.addEventListener('click', joinWaitlist);
+  emailEl.addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') joinWaitlist();
+  });
+})();

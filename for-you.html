@@ -877,11 +877,22 @@
     </div>
     <h2>Sign up now.<br><em>Year 1 is on us.</em></h2>
     <p>We&rsquo;re launching soon and we want you there from day one. Join the waitlist today and receive your <strong style="color:var(--gold);">entire first year of InPursuit completely free</strong> &mdash; every feature, every connection, every insight. No credit card. No catch.</p>
-    <div class="early-form">
-      <input type="email" class="early-input" placeholder="Enter your email address" aria-label="Email address">
-      <button class="early-btn" onclick="this.textContent='You\\'re on the list \u2713';this.style.background='#22C55E'">Join Free</button>
+    <div class="early-form" id="earlyForm">
+      <input type="email" class="early-input" id="earlyEmail" placeholder="Enter your email address" aria-label="Email address">
+      <button class="early-btn" id="earlyBtn">
+        <span id="earlyBtnText">Join Free</span>
+        <span class="early-spinner" id="earlySpinner"></span>
+      </button>
     </div>
-    <div class="early-note">No spam. No data sold. Just early access to everything InPursuit &mdash; free for your entire first year.</div>
+    <div class="early-msg" id="earlyMsg"></div>
+    <div class="early-success-state" id="earlySuccess">
+      <div class="early-success-icon">
+        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <div class="early-success-title">You're on the list.</div>
+      <div class="early-success-sub">We'll reach out when your founding member access is ready. Year 1 is completely free.</div>
+    </div>
+    <div class="early-note" id="earlyNote">No spam. No data sold. Just early access to everything InPursuit &mdash; free for your entire first year.</div>
     <div class="early-trust">
       <span class="early-trust-item"><span class="chk">&#10003;</span> Year 1 completely free</span>
       <span class="early-trust-item"><span class="chk">&#10003;</span> Veteran-owned</span>
@@ -893,6 +904,7 @@
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script src="for-you.js" defer></script>
 <!-- ===== SITE FOOTER ===== -->
 <footer class="site-footer">
