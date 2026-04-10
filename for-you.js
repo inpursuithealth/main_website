@@ -1,7 +1,7 @@
 // Preloader
-window.addEventListener('load', () => {
-  setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 800);
-  setTimeout(() => switchView(0), 1200);
+document.addEventListener('DOMContentLoaded', () => {
+  setTimeout(() => document.getElementById('preloader').classList.add('hidden'), 200);
+  setTimeout(() => switchView(0), 400);
 });
 
 // Top bar scroll shadow

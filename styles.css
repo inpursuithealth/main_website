@@ -52,7 +52,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 .section-desc{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto;}
 
 /* ===== PRELOADER ===== */
-.preloader{position:fixed;inset:0;background:var(--navy-deep);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s;}
+.preloader{position:fixed;inset:0;background:var(--navy-deep);z-index:10000;display:flex;align-items:center;justify-content:center;transition:opacity .3s,visibility .3s;}
 .preloader.hidden{opacity:0;visibility:hidden;pointer-events:none;}
 .preloader-wordmark{font-family:'Instrument Serif',serif;font-size:28px;color:var(--gold);letter-spacing:2px;animation:pulseFade 1.2s ease-in-out infinite;}
 @keyframes pulseFade{0%,100%{opacity:.3}50%{opacity:1}}
