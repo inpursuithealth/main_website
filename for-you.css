@@ -715,7 +715,7 @@
 }
 .phone-notch::before {
   content: ''; position: absolute;
-  left: 50px; top: 50%; transform: translate(-50%, -50%);
+  left: 63px; top: 50%; transform: translate(-50%, -50%);
   width: 10px; height: 10px; border-radius: 50%;
   background: radial-gradient(circle, #1a1a2e 30%, #0d0d15 70%);
   box-shadow: inset 0 0 2px rgba(255,255,255,0.1);
