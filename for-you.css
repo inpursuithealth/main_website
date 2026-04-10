@@ -2440,7 +2440,7 @@
   .results-grid { grid-template-columns: 1fr; }
   .persona-intro { grid-template-columns: 1fr; }
   .phone-mock { max-width: 100%; border-radius: 24px; }
-  .phone-notch { width: 100px; height: 22px; }
+  .phone-notch { width: 126px; height: 22px; }
   .view-tabs { flex-wrap: wrap; }
   .results-grid { grid-template-columns: 1fr; }
   .pipe-src { grid-template-columns: 40px 1fr; }
