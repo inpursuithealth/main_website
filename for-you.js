@@ -481,8 +481,8 @@ document.querySelectorAll('img').forEach(img => {
 
 // ===== WAITLIST =====
 (function() {
-  const SUPA_URL  = 'https://xmmztwstxlthdxulcwxe.supabase.co';
-  const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtbXp0d3N0eGx0aGR4dWxjd3hlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzU3NTMwMTEsImV4cCI6MjA5MTMyOTAxMX0.zpz7JlPcUIsd3iW9OiD1Z9I68SkoBmiM3cNqDDSUOSA';
+  const SUPA_URL  = 'https://weaektyawlgxhqusjymw.supabase.co';
+  const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYWVrdHlhd2xneGhxdXNqeW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4NzEsImV4cCI6MjA4ODY4MDg3MX0.W7Zu3CueXLGOHaeUmuKDkduquaJzUpZCrXQ4jp9IYi4';
   const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
 
   const emailEl   = document.getElementById('earlyEmail');
