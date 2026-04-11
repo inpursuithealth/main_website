@@ -187,7 +187,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 #iph-toggle span:nth-child(3){top:22px;}
 
 /* ===== UNIVERSAL FOOTER ===== */
-.site-footer{background:#060E1A;border-top:1px solid rgba(197,164,78,0.1);padding:48px 40px 32px;margin-top:80px;}
+.site-footer{background:#060E1A;border-top:1px solid rgba(197,164,78,0.1);padding:48px 40px 32px;}
 .footer-inner{max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;}
 .footer-wordmark{font-family:'Instrument Serif',serif;font-size:18px;color:#C5A44E;letter-spacing:1px;}
 .footer-legal{font-size:11px;color:rgba(255,255,255,0.3);}
