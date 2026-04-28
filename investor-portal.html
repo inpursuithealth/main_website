@@ -1354,6 +1354,70 @@
     .inst-stats { grid-template-columns: repeat(2, 1fr); }
     .ml-section, .inst-section { padding-left: 1.25rem; padding-right: 1.25rem; }
   }
+
+  /* ── INVESTOR ARCHIVE ── */
+  .archive-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 3rem 2.5rem; }
+  .archive-toggle {
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    padding: 10px 0; user-select: none; width: fit-content;
+  }
+  .archive-toggle-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: border-color 0.2s;
+  }
+  .archive-toggle:hover .archive-toggle-icon { border-color: rgba(255,255,255,0.28); }
+  .archive-toggle-icon svg { transition: transform 0.3s; }
+  .archive-toggle[aria-expanded="true"] .archive-toggle-icon svg { transform: rotate(90deg); }
+  .archive-toggle-label {
+    font-family: var(--mono); font-size: .58rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.18); transition: color 0.2s;
+  }
+  .archive-toggle:hover .archive-toggle-label { color: rgba(255,255,255,0.35); }
+  .archive-body { display: none; margin-top: 1.5rem; }
+  .archive-body.open { display: block; }
+  .archive-section-label {
+    font-family: var(--mono); font-size: .58rem; letter-spacing: .18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+    margin-bottom: .85rem; margin-top: 1.75rem;
+  }
+  .archive-section-label:first-child { margin-top: 0; }
+  .archive-doc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; }
+  .archive-doc-card {
+    display: block; text-decoration: none;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 14px 16px 12px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .archive-doc-card:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+  .archive-doc-badge {
+    display: inline-block; font-family: var(--mono); font-size: .5rem;
+    font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 3px; margin-bottom: 7px;
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .archive-doc-title { font-family: var(--serif); font-size: .85rem; color: rgba(250,248,244,0.4); line-height: 1.35; margin-bottom: 5px; }
+  .archive-doc-foot { font-family: var(--mono); font-size: .58rem; letter-spacing: .07em; color: rgba(255,255,255,0.18); margin-top: 8px; }
+  .archive-ml-row { display: flex; gap: 0; position: relative; margin-top: .5rem; }
+  .archive-ml-row::before { content: ''; position: absolute; top: 7px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.06); }
+  .archive-ml-item { flex: 1; position: relative; padding-top: 22px; }
+  .archive-ml-item::before { content: ''; position: absolute; top: 1px; left: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.12); background: var(--navy); }
+  .archive-ml-date { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 3px; }
+  .archive-ml-txt { font-size: .7rem; color: rgba(255,255,255,0.2); line-height: 1.45; padding-right: 10px; }
+  .archive-ml-txt strong { color: rgba(255,255,255,0.28); }
+  @media (max-width: 800px) {
+    .archive-doc-grid { grid-template-columns: repeat(2,1fr); }
+    .archive-wrapper { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .archive-ml-row { flex-direction: column; gap: .75rem; }
+    .archive-ml-row::before { display: none; }
+    .archive-ml-item { padding-top: 0; padding-left: 22px; }
+    .archive-ml-item::before { top: 0; left: 0; }
+  }
+  @media (max-width: 500px) { .archive-doc-grid { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body>
@@ -1823,24 +1887,6 @@
       <div style="margin-top:2.5rem;">
         <div class="section-label">SAFE Bridge — $2M at $25M Valuation Cap</div>
         <div class="doc-grid">
-          <a class="doc-card" href="data-room/safe-one-pager.html" target="_blank">
-            <span class="doc-badge b-safe">SAFE Bridge</span>
-            <div class="doc-title">SAFE One-Pager</div>
-            <div class="doc-desc">Single-page summary of instrument terms, valuation cap, use of proceeds, and deployment timeline.</div>
-            <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-          </a>
-          <a class="doc-card" href="data-room/safe-exec-summary.html" target="_blank">
-            <span class="doc-badge b-safe">SAFE Bridge</span>
-            <div class="doc-title">SAFE Executive Summary</div>
-            <div class="doc-desc">Full executive summary covering the bridge opportunity, investment thesis, use of proceeds, and federal validation.</div>
-            <div class="doc-foot"><span class="doc-tag">6 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-          </a>
-          <a class="doc-card" href="data-room/FINAL_safe-revenue-projections.html" target="_blank">
-            <span class="doc-badge b-safe">SAFE Bridge</span>
-            <div class="doc-title">SAFE Revenue Projections</div>
-            <div class="doc-desc">Honeycomb unit economics, provider scaling model, and CMS ACCESS Model financial projections through 2028.</div>
-            <div class="doc-foot"><span class="doc-tag">Financials</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-          </a>
           <a class="doc-card" href="data-room/safe-conversion-explained_(2).html" target="_blank">
             <span class="doc-badge b-safe">SAFE Bridge</span>
             <div class="doc-title">SAFE Conversion Explained</div>
@@ -2113,37 +2159,6 @@
 
   <hr class="room-divider">
 
-  <!-- GROWTH STRATEGY TIMELINE -->
-  <div class="ml-section">
-    <div class="ml-label">Growth Strategy</div>
-    <div class="ml-row">
-      <div class="ml-item gold">
-        <div class="ml-date">Now</div>
-        <div class="ml-txt"><strong>Bridge funding active.</strong> $250K allocated. NPI Type 2 application filed. InPursuit Medical, PC formation underway.</div>
-      </div>
-      <div class="ml-item gold">
-        <div class="ml-date">Wk 1–2</div>
-        <div class="ml-txt"><strong>NPI issued.</strong> Type 2 organizational NPI in hand. CAQH ProView re-attested. Medical Director contract executed.</div>
-      </div>
-      <div class="ml-item gold">
-        <div class="ml-date">Wk 2–6</div>
-        <div class="ml-txt"><strong>Medicare Part B enrollment.</strong> CMS-855B / PECOS submitted. Commercial payer credentialing (UHC, BCBS, Aetna, Cigna, Humana) launched in parallel.</div>
-      </div>
-      <div class="ml-item gold">
-        <div class="ml-date">Wk 6–10</div>
-        <div class="ml-txt"><strong>First commercial approvals.</strong> RCM infrastructure live. RPM device procurement begins. Patient enrollment pipeline ready.</div>
-      </div>
-      <div class="ml-item rev">
-        <div class="ml-date">Wk 10–16</div>
-        <div class="ml-txt"><strong>Medicare enrollment approved.</strong> Direct billing to Medicare and commercial payers begins. RPM + CCM + TCM revenue cycle active.</div>
-      </div>
-      <div class="ml-item">
-        <div class="ml-date">Sep 1</div>
-        <div class="ml-txt"><strong>Series A close.</strong> Armed and billing. Unit economics validated. Bridge converts. Scale begins.</div>
-      </div>
-    </div>
-  </div>
-
   <!-- GROWTH STRATEGY SUPPORTING DOCS -->
   <div class="doc-section" style="padding-top:1rem;">
     <div class="section-label" style="font-size:.62rem;letter-spacing:.18em;color:rgba(197,164,78,0.6);margin-bottom:1rem;">Supporting Resources — Growth Strategy</div>
@@ -2164,56 +2179,6 @@
   </div>
 
   <hr class="room-divider">
-
-  <!-- ── SERIES A DOCS ── -->
-  <div class="doc-section">
-    <div class="section-label" style="font-size:.62rem;letter-spacing:.18em;color:rgba(197,164,78,0.6);margin-bottom:1rem;">Series A — $20M Target &nbsp;·&nbsp; September 2026</div>
-    <div class="doc-grid">
-
-      <a class="doc-card" href="data-room/series-a-one-pager.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">Series A One-Pager</div>
-        <div class="doc-desc">Concise overview of the round, target raise, key milestones, and investor return scenario.</div>
-        <div class="doc-foot"><span class="doc-tag">One Page</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-      <a class="doc-card" href="data-room/series-a-exec-summary.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">Series A Executive Summary</div>
-        <div class="doc-desc">Market opportunity, TETRA™ infrastructure, federal validation, revenue model, and growth plan — the full narrative.</div>
-        <div class="doc-foot"><span class="doc-tag">8 Pages</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-      <a class="doc-card" href="data-room/series-a-pitch-deck.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">10-Page Pitch Deck</div>
-        <div class="doc-desc">Visual pitch narrative — problem, solution, infrastructure, market, traction, and the ask. Built for partner meetings.</div>
-        <div class="doc-foot"><span class="doc-tag">Presentation</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-      <a class="doc-card" href="data-room/series-a-investor-pamphlet copy.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">Investor Deck (Light)</div>
-        <div class="doc-desc">Condensed investor presentation — key highlights, thesis, and ask in a streamlined format for quick review.</div>
-        <div class="doc-foot"><span class="doc-tag">Presentation</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-      <a class="doc-card" href="data-room/series-a-proforma.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">3-Year Proforma</div>
-        <div class="doc-desc">Detailed financial model with revenue by segment, margin expansion, provider acquisition schedule, and cash flow bridge.</div>
-        <div class="doc-foot"><span class="doc-tag">Financials</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-      <a class="doc-card" href="data-room/series-a-investor-pamphlet copy.html" target="_blank">
-        <span class="doc-badge b-series">Series A</span>
-        <div class="doc-title">Series A Investor Pamphlet</div>
-        <div class="doc-desc">The complete investment case — team, technology, market, and terms in one comprehensive document.</div>
-        <div class="doc-foot"><span class="doc-tag">Full Document</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-
-    </div>
-  </div>
 
   <hr class="room-divider">
 
@@ -2328,6 +2293,111 @@
       </a>
     </div>
   </div>
+
+  <!-- ── INVESTOR PORTAL ARCHIVE (HIDDEN) ── -->
+  <div class="archive-wrapper">
+    <div class="archive-toggle" aria-expanded="false" onclick="toggleArchive(this)">
+      <div class="archive-toggle-icon">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M2 1.5L5.5 4 2 6.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="archive-toggle-label">Investor Portal Archive</span>
+    </div>
+    <div class="archive-body" id="archive-body">
+
+      <!-- SAFE Archive -->
+      <div class="archive-section-label">SAFE Bridge — Archived Documents</div>
+      <div class="archive-doc-grid">
+        <a class="archive-doc-card" href="data-room/safe-one-pager.html" target="_blank">
+          <div class="archive-doc-badge">SAFE Bridge</div>
+          <div class="archive-doc-title">SAFE One-Pager</div>
+          <div class="archive-doc-foot">One Page</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/safe-exec-summary.html" target="_blank">
+          <div class="archive-doc-badge">SAFE Bridge</div>
+          <div class="archive-doc-title">SAFE Executive Summary</div>
+          <div class="archive-doc-foot">6 Pages</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/FINAL_safe-revenue-projections.html" target="_blank">
+          <div class="archive-doc-badge">SAFE Bridge</div>
+          <div class="archive-doc-title">SAFE Revenue Projections</div>
+          <div class="archive-doc-foot">Financials</div>
+        </a>
+      </div>
+
+      <!-- Growth Strategy Timeline Archive -->
+      <div class="archive-section-label">Growth Strategy Timeline — Archived</div>
+      <div class="archive-ml-row">
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Now</div>
+          <div class="archive-ml-txt"><strong>Bridge funding active.</strong> $250K allocated. NPI Type 2 application filed. InPursuit Medical, PC formation underway.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 1–2</div>
+          <div class="archive-ml-txt"><strong>NPI issued.</strong> Type 2 organizational NPI in hand. CAQH ProView re-attested. Medical Director contract executed.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 2–6</div>
+          <div class="archive-ml-txt"><strong>Medicare Part B enrollment.</strong> CMS-855B / PECOS submitted. Commercial payer credentialing (UHC, BCBS, Aetna, Cigna, Humana) launched in parallel.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 6–10</div>
+          <div class="archive-ml-txt"><strong>First commercial approvals.</strong> RCM infrastructure live. RPM device procurement begins. Patient enrollment pipeline ready.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 10–16</div>
+          <div class="archive-ml-txt"><strong>Medicare enrollment approved.</strong> Direct billing to Medicare and commercial payers begins. RPM + CCM + TCM revenue cycle active.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Sep 1</div>
+          <div class="archive-ml-txt"><strong>Series A close.</strong> Armed and billing. Unit economics validated. Bridge converts. Scale begins.</div>
+        </div>
+      </div>
+
+      <!-- Series A Archive -->
+      <div class="archive-section-label">Series A — Archived Documents</div>
+      <div class="archive-doc-grid">
+        <a class="archive-doc-card" href="data-room/series-a-one-pager.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">Series A One-Pager</div>
+          <div class="archive-doc-foot">One Page</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/series-a-exec-summary.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">Series A Executive Summary</div>
+          <div class="archive-doc-foot">8 Pages</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/series-a-pitch-deck.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">10-Page Pitch Deck</div>
+          <div class="archive-doc-foot">Presentation</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/series-a-investor-pamphlet copy.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">Investor Deck (Light)</div>
+          <div class="archive-doc-foot">Presentation</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/series-a-proforma.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">3-Year Proforma</div>
+          <div class="archive-doc-foot">Financials</div>
+        </a>
+        <a class="archive-doc-card" href="data-room/series-a-investor-pamphlet.html" target="_blank">
+          <div class="archive-doc-badge">Series A</div>
+          <div class="archive-doc-title">Series A Investor Pamphlet</div>
+          <div class="archive-doc-foot">Full Document</div>
+        </a>
+      </div>
+
+    </div><!-- /archive-body -->
+  </div><!-- /archive-wrapper -->
+
+  <script>
+    function toggleArchive(el) {
+      const expanded = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', !expanded);
+      document.getElementById('archive-body').classList.toggle('open', !expanded);
+    }
+  </script>
 
   <!-- FOOTER -->
   <div style="text-align:center; padding: 0 1.5rem 1.5rem; position:relative; z-index:1;">
