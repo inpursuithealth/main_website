@@ -120,7 +120,7 @@
 .topo-header .section-headline { color: var(--white); }
 .topo-header .section-desc { color: rgba(255,255,255,0.5); margin: 0 auto; }
 
-/* 3-panel layout: QB View | TETRA Hub | iPhone */
+/* 3-panel layout: QB View | our orchestration hub | iPhone */
 .topo-stage { display: grid; grid-template-columns: 280px 1fr 260px; gap: 32px; align-items: center; min-height: 680px; position: relative; }
 .topo-stage-canvas { position: absolute; inset: 0; z-index: 0; pointer-events: none; }
 
@@ -166,7 +166,7 @@
 .qb-device-label { text-align: center; margin-top: 16px; font-size: 10px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: rgba(197,164,78,0.5); }
 .qb-device-sublabel { text-align: center; font-size: 11px; color: rgba(255,255,255,0.3); margin-top: 4px; }
 
-/* ---- CENTER: TETRA Hub ---- */
+/* ---- CENTER: our orchestration hub ---- */
 .topo-hub { position: relative; z-index: 5; display: flex; align-items: center; justify-content: center; min-height: 600px; }
 .topo-hub-canvas { position: absolute; inset: 0; z-index: 1; }
 
@@ -176,7 +176,7 @@
 .topo-orbit.r2 { width: 320px; height: 320px; border-style: dashed; }
 .topo-orbit.r3 { width: 460px; height: 460px; }
 
-/* Center TETRA node */
+/* Center our orchestration hub node */
 .topo-center { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 20; width: 110px; height: 110px; border-radius: 50%; background: radial-gradient(circle, rgba(17,34,64,0.98) 40%, rgba(6,14,26,0.95) 100%); border: 2px solid rgba(197,164,78,0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 0 60px rgba(197,164,78,0.08), 0 0 120px rgba(197,164,78,0.04); cursor: default; transition: box-shadow 0.4s ease; }
 .topo-center:hover { box-shadow: 0 0 80px rgba(197,164,78,0.15), 0 0 160px rgba(197,164,78,0.06); }
 .topo-center-ring { position: absolute; inset: -8px; border-radius: 50%; border: 1px solid rgba(197,164,78,0.15); animation: centerPulse 4s ease-in-out infinite; }
@@ -502,7 +502,7 @@
 .route-card-anim{opacity:0;transform:translateX(24px);transition:all 0.6s cubic-bezier(0.23,1,0.32,1);}
 .route-card-anim.visible{opacity:1;transform:translateX(0);}
 
-/* TETRA hub pulse */
+/* our orchestration hub pulse */
 @keyframes hubPulse{0%,100%{box-shadow:0 0 30px rgba(201,151,0,0.05),0 0 60px rgba(201,151,0,0.02);}50%{box-shadow:0 0 50px rgba(201,151,0,0.1),0 0 100px rgba(201,151,0,0.04);}}
 .router-hub{animation:hubPulse 4s ease-in-out infinite;}
 
@@ -808,9 +808,9 @@
 <section class="router-section" id="payment-router">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 50% 40%,rgba(201,151,0,0.03),transparent 60%);"></div>
   <div style="max-width:1100px;margin:0 auto;position:relative;z-index:2;">
-    <p class="section-overline reveal" style="text-align:center;color:rgba(201,151,0,0.5);">The TETRA Difference</p>
+    <p class="section-overline reveal" style="text-align:center;color:rgba(201,151,0,0.5);">The Our Platform Difference</p>
     <h2 class="section-headline reveal" style="text-align:center;color:var(--white);max-width:700px;margin:0 auto 12px;">One patient. Four models.<br><em style="color:var(--gold);">Every dollar captured.</em></h2>
-    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,0.3);max-width:640px;margin:0 auto 48px;line-height:1.7;" class="reveal">Every other VBC vendor wants you to pick their model. TETRA evaluates every patient against every eligible CMS payment pathway and routes each service to the optimal model &mdash; in real time.</p>
+    <p style="text-align:center;font-size:14px;color:rgba(255,255,255,0.3);max-width:640px;margin:0 auto 48px;line-height:1.7;" class="reveal">Every other VBC vendor wants you to pick their model. Our platform evaluates every patient against every eligible CMS payment pathway and routes each service to the optimal model &mdash; in real time.</p>
 
     <div class="router-grid reveal" id="routerGraphic">
 
@@ -853,7 +853,7 @@
         </div>
       </div>
 
-      <!-- CENTER: TETRA ROUTER with animated orbits -->
+      <!-- CENTER: our orchestration layer with animated orbits -->
       <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:0 20px;">
         <!-- Animated flow lines -->
         <div class="router-flow left"><div class="flow-particle"></div><div class="flow-particle p2"></div><div class="flow-particle p3"></div></div>
@@ -867,7 +867,7 @@
           <div class="router-orbit o2"><div class="router-orbit-dot"></div></div>
 
           <div style="position:relative;z-index:3;">
-            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">TETRA&trade; Orchestration</div>
+            <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Our Orchestration Layer</div>
             <div style="font-family:'Instrument Serif',serif;font-size:26px;color:var(--white);line-height:1.3;margin-bottom:8px;">Analyze. Route.<br>Optimize.</div>
             <div style="font-size:12px;color:rgba(255,255,255,0.3);line-height:1.6;margin-bottom:18px;">Every interaction routed to the optimal payment pathway</div>
 
@@ -925,7 +925,7 @@
 
 
 <!-- ============================================== -->
-<!-- How TETRA Increases Revenue — 12 Levers -->
+<!-- How Our Platform Increases Revenue — 12 Levers -->
 <section class="section" id="revenue-levers" style="background:var(--navy-deep);position:relative;overflow:hidden;">
   <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 30% 60%, rgba(197,164,78,0.04), transparent 60%);"></div>
   <div class="section-inner" style="position:relative;z-index:2;">
@@ -938,44 +938,44 @@
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
         <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);">Infrastructure Levers</div>
         <div style="flex:1;height:1px;background:rgba(197,164,78,0.15);"></div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;">TETRA&trade; on the Provider Side</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;">Our infrastructure on the Provider Side</div>
       </div>
 
       <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" class="lever-grid">
         <div class="rl-card">
           <div class="rl-num">01</div>
           <div class="rl-title">Patient Identification</div>
-          <p class="rl-desc">Most providers identify only 50&ndash;65% of VBC-eligible patients. TETRA scans your entire panel and surfaces every qualifying beneficiary &mdash; raising identification to 85&ndash;95%.</p>
+          <p class="rl-desc">Most providers identify only 50&ndash;65% of VBC-eligible patients. Our platform scans your entire panel and surfaces every qualifying beneficiary &mdash; raising identification to 85&ndash;95%.</p>
           <div class="rl-uplift">+30&ndash;40% more enrolled patients</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">02</div>
           <div class="rl-title">HCC Coding Accuracy</div>
-          <p class="rl-desc">20&ndash;30% of diagnosable HCC conditions go uncoded each year. TETRA&rsquo;s AI-driven coding recommendations at point of care raise recapture by as much as 70% to 90%+.</p>
+          <p class="rl-desc">20&ndash;30% of diagnosable HCC conditions go uncoded each year. Our platform&rsquo;s AI-driven coding recommendations at point of care raise recapture by as much as 70% to 90%+.</p>
           <div class="rl-uplift">+15&ndash;25% higher RAF scores</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">03</div>
           <div class="rl-title">Care Gap Closure</div>
-          <p class="rl-desc">Average practices close 45&ndash;55% of care gaps. TETRA automates identification, outreach, and tracking &mdash; pushing closure to 70&ndash;85% and driving quality bonuses.</p>
+          <p class="rl-desc">Average practices close 45&ndash;55% of care gaps. Our platform automates identification, outreach, and tracking &mdash; pushing closure to 70&ndash;85% and driving quality bonuses.</p>
           <div class="rl-uplift">+20&ndash;35% quality score improvement</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">04</div>
           <div class="rl-title">Outcome Attainment (OAPs)</div>
-          <p class="rl-desc">CMS pays for results, not visits. Without infrastructure, providers hit targets for ~40% of patients. TETRA&rsquo;s continuous monitoring raises attainment to 60&ndash;75%.</p>
+          <p class="rl-desc">CMS pays for results, not visits. Without infrastructure, providers hit targets for ~40% of patients. Our platform&rsquo;s continuous monitoring raises attainment to 60&ndash;75%.</p>
           <div class="rl-uplift">60–75% attainment vs ~40% baseline = significantly higher OAPs</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">05</div>
           <div class="rl-title">New Billable Services</div>
-          <p class="rl-desc">CCM, RPM, TCM, and AWV represent massive untapped FFS revenue. Most providers capture less than 15% of eligible CCM and under 8% of RPM. TETRA automates enrollment and documentation.</p>
+          <p class="rl-desc">CCM, RPM, TCM, and AWV represent massive untapped FFS revenue. Most providers capture less than 15% of eligible CCM and under 8% of RPM. Our platform automates enrollment and documentation.</p>
           <div class="rl-uplift">$200K&ndash;$800K+ in new FFS annually — Medicare AND commercial payers</div>
         </div>
         <div class="rl-card">
           <div class="rl-num">06</div>
           <div class="rl-title">Admin Efficiency</div>
-          <p class="rl-desc">TETRA automates 80% of VBC admin: quality tracking, documentation, outreach, coding, and compliance reporting. More capacity, same headcount.</p>
+          <p class="rl-desc">Our platform automates 80% of VBC admin: quality tracking, documentation, outreach, coding, and compliance reporting. More capacity, same headcount.</p>
           <div class="rl-uplift">2&ndash;4 FTE equivalent savings</div>
         </div>
       </div>
@@ -986,7 +986,7 @@
       <div style="display:flex;align-items:center;gap:12px;margin-bottom:24px;">
         <div style="font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#38d9c7;">The Bridge &mdash; What No One Else Has</div>
         <div style="flex:1;height:1px;background:rgba(56,217,199,0.15);"></div>
-        <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;">The InPursuit App &times; TETRA <em>ex</em>&trade;</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.25);letter-spacing:1px;">The InPursuit App &times; Our Health Data Exchange</div>
       </div>
       <p style="font-size:14px;color:rgba(255,255,255,0.4);line-height:1.65;margin-bottom:24px;max-width:800px;">The InPursuit patient app creates a direct, continuous link between your practice and the patient&rsquo;s real life. Device data, medication adherence, self-reported symptoms, engagement, and complete multi-provider records &mdash; all flowing into your dashboard in real time, <em style="color:rgba(56,217,199,0.8);">without you building or staffing anything.</em></p>
 
@@ -994,7 +994,7 @@
         <div class="rl-card rl-bridge">
           <div class="rl-num" style="color:#38d9c7;">07</div>
           <div class="rl-title">Patient-Generated Health Data</div>
-          <p class="rl-desc">Wearables, glucose monitors, BP cuffs, activity trackers &mdash; all streaming from the patient&rsquo;s app directly into your dashboard via TETRA Ex&trade;. Continuous RPM-quality data without RPM setup costs. Supports stronger HCC documentation and richer OAP evidence.</p>
+          <p class="rl-desc">Wearables, glucose monitors, BP cuffs, activity trackers &mdash; all streaming from the patient&rsquo;s app directly into your dashboard via Our Health Data Exchange. Continuous RPM-quality data without RPM setup costs. Supports stronger HCC documentation and richer OAP evidence.</p>
           <div class="rl-uplift rl-uplift-bridge">Passive data capture &mdash; zero provider effort</div>
         </div>
         <div class="rl-card rl-bridge">
@@ -1011,7 +1011,7 @@
         </div>
         <div class="rl-card rl-bridge">
           <div class="rl-num" style="color:#38d9c7;">10</div>
-          <div class="rl-title">Complete Record via TETRA Ex&trade;</div>
+          <div class="rl-title">Complete Record via Our Health Data Exchange</div>
           <p class="rl-desc">The patient&rsquo;s entire longitudinal record &mdash; labs from other providers, imaging from specialists, pharmacy data across all pharmacies, claims history &mdash; flows into your view. Eliminates blind spots causing missed HCCs, duplicate testing, and incomplete risk profiles.</p>
           <div class="rl-uplift rl-uplift-bridge">+8% RAF improvement from complete data</div>
         </div>
@@ -1024,7 +1024,7 @@
         <div class="rl-card rl-bridge">
           <div class="rl-num" style="color:#38d9c7;">12</div>
           <div class="rl-title">AI Self-Management (Aegis&trade;)</div>
-          <p class="rl-desc">Patients use AI coaching through the app &mdash; with TETRA Aegis&trade; protecting their data &mdash; for personalized condition management between visits. A patient managing diabetes via AI coaching hits their A1c target more often, without additional provider touchpoints.</p>
+          <p class="rl-desc">Patients use AI coaching through the app &mdash; with Our AI Governance Layer protecting their data &mdash; for personalized condition management between visits. A patient managing diabetes via AI coaching hits their A1c target more often, without additional provider touchpoints.</p>
           <div class="rl-uplift rl-uplift-bridge">Better outcomes, zero incremental clinical cost</div>
         </div>
       </div>
@@ -1045,7 +1045,7 @@
     <div class="topo-header reveal">
       <p class="section-overline">Technology Architecture</p>
       <h2 class="section-headline">One orchestration layer. <em>Two powerful outputs.</em></h2>
-      <p class="section-desc">TETRA sits at the center — connecting EHRs, payers, labs, pharmacies, and wearables. Providers get the Quarterback View inside their existing EMR. Patients get a personalized health and wellness feed on their phone.</p>
+      <p class="section-desc">Our platform sits at the center — connecting EHRs, payers, labs, pharmacies, and wearables. Providers get the Quarterback View inside their existing EMR. Patients get a personalized health and wellness feed on their phone.</p>
     </div>
 
     <div class="topo-stage" id="topoStage">
@@ -1097,7 +1097,7 @@
         <div class="qb-device-sublabel">Embedded inside your existing EMR</div>
       </div>
 
-      <!-- ====== CENTER: TETRA Hub + Nodes ====== -->
+      <!-- ====== CENTER: our orchestration hub + Nodes ====== -->
       <div class="topo-hub" id="topoHub">
         <canvas class="topo-hub-canvas" id="topoCanvas"></canvas>
 
@@ -1107,7 +1107,7 @@
 
         <div class="topo-center" id="topoCenter">
           <div class="topo-center-ring"></div>
-          <div class="topo-center-label">TETRA</div>
+          <div class="topo-center-label">Our Platform</div>
           <div class="topo-center-sub">Orchestration</div>
         </div>
 
@@ -1191,7 +1191,7 @@
 
     <div class="topo-legend reveal">
       <div class="topo-legend-item"><div class="topo-legend-dot qb"></div><div class="topo-legend-label">Provider QB View</div></div>
-      <div class="topo-legend-item"><div class="topo-legend-dot hub"></div><div class="topo-legend-label">TETRA Core</div></div>
+      <div class="topo-legend-item"><div class="topo-legend-dot hub"></div><div class="topo-legend-label">Our Core Platform</div></div>
       <div class="topo-legend-item"><div class="topo-legend-dot cap"></div><div class="topo-legend-label">Capabilities</div></div>
       <div class="topo-legend-item"><div class="topo-legend-dot ext"></div><div class="topo-legend-label">External Systems</div></div>
       <div class="topo-legend-item"><div class="topo-legend-dot phone"></div><div class="topo-legend-label">Patient App</div></div>
@@ -1207,7 +1207,7 @@
     <p class="section-desc reveal">Traditional health IT takes 6–18 months and costs $50K–$200K. We deploy in 6 weeks and it costs you nothing. Your first CMS payments can start within months of go-live.</p>
     <div class="timeline-grid reveal">
       <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 1</div><div class="tl-title">Discovery</div><div class="tl-desc">Patient data extract, workflow mapping, EHR assessment</div></div>
-      <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 2</div><div class="tl-title">Configuration</div><div class="tl-desc">TETRA setup, clinical track mapping, user accounts</div></div>
+      <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 2</div><div class="tl-title">Configuration</div><div class="tl-desc">Our platform setup, clinical track mapping, user accounts</div></div>
       <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 3</div><div class="tl-title">Integration</div><div class="tl-desc">EHR connection or standalone setup, data validation</div></div>
       <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 4</div><div class="tl-title">Training</div><div class="tl-desc">Staff training, workflow walkthroughs, pilot testing</div></div>
       <div class="tl-step"><div class="tl-dot"></div><div class="tl-week">Week 5</div><div class="tl-title">Go-Live</div><div class="tl-desc">Launch with patient subset, real-time support</div></div>
@@ -1251,7 +1251,7 @@
         <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
           <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">AWV Capture Uplift</div>
           <div style="font-family:'Instrument Serif',serif;font-size:28px;color:var(--green);margin-bottom:4px;">$38K — $65K/yr</div>
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">TETRA identifies every eligible patient, auto-generates scheduling. Honeycomb performs the visit, bills it, keeps 100%. National avg: 25%. With TETRA: 60%+.</p>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.5;">Our platform identifies every eligible patient, auto-generates scheduling. Honeycomb performs the visit, bills it, keeps 100%. National avg: 25%. With our platform: 60%+.</p>
         </div>
         <div style="background:var(--white);border:1px solid rgba(0,0,0,0.06);border-radius:10px;padding:24px;">
           <div style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;">CMS Co-Management Payments</div>
@@ -1341,7 +1341,7 @@ const statData = [
     label: 'of Eligible Medicare Patients Never Billed for CCM, RPM, or AWV',
     body: 'Medicare introduced Chronic Care Management (CCM) reimbursement in 2015. Any patient with two or more chronic conditions qualifies. The average reimbursement is <strong>$62 per patient per month</strong> — fully covered, no cost-sharing required. A practice with 300 enrolled patients generates over <strong>$200,000 in new annual revenue</strong>. Yet CMS data and JAMA research consistently find that <strong>96% of eligible Medicare patients</strong> are never enrolled in CCM, RPM, or Annual Wellness Visits. This is not a coding problem. This is not a documentation problem. <strong>This is an infrastructure problem.</strong> Enrollment requires monthly care coordination, device management, clinical documentation, and billing workflows that a solo or small-group practice simply cannot staff. The revenue exists. The patients qualify. The barrier is operational — and it has locked PCPs out of an entirely new category of income for a decade. CCM stacked with RPM, AWV, BHI, and APCM codes can yield <strong>up to $1,883 per patient per year</strong> in new, recurring revenue on patients you are already seeing.',
     source: 'CMS Physician Fee Schedule Data; JAMA Internal Medicine — Chronic Care Management Utilization Study; CMS Advanced Primary Care Management Fact Sheet',
-    takeaway: 'InPursuit\'s TETRA infrastructure is the operational layer that PCPs have never had. Automated patient identification, enrollment workflows, monthly monitoring, documentation, and billing — all running in the background of your existing practice. For the first time, every eligible patient in your panel can be enrolled, every month, without adding staff or changing how you practice. This isn\'t revenue recovery. This is revenue access — to programs that have existed for years but were never within reach.'
+    takeaway: 'InPursuit\'s our infrastructure is the operational layer that PCPs have never had. Automated patient identification, enrollment workflows, monthly monitoring, documentation, and billing — all running in the background of your existing practice. For the first time, every eligible patient in your panel can be enrolled, every month, without adding staff or changing how you practice. This isn\'t revenue recovery. This is revenue access — to programs that have existed for years but were never within reach.'
   }
 ];
 
@@ -1996,7 +1996,7 @@ document.getElementById('npiInput').addEventListener('keypress', function(e) {
     const adherenceAttainmentBoost = 0.08;
     const lever9 = Math.round(ipIdentified * PMPM * 12 * adherenceAttainmentBoost * appAdopt);
 
-    // LEVER 10: Bidirectional Data Completeness (TETRA Ex)
+    // LEVER 10: Bidirectional Data Completeness (Our Health Data Exchange)
     // Complete records → +8% RAF improvement + $45/patient duplicate test savings
     const dataCompleteRAF = 0.08;
     const dupTestSavings = 45;
@@ -2008,7 +2008,7 @@ document.getElementById('npiInput').addEventListener('keypress', function(e) {
     const avgPatientValue = 1200; // avg annual Medicare patient value
     const lever11 = Math.round(appUsers * churnReduction * avgPatientValue);
 
-    // LEVER 12: AI Self-Management (TETRA Aegis)
+    // LEVER 12: AI Self-Management (Our AI Governance Layer)
     // AI coaching → +5% OAP attainment without clinical touchpoints
     const aiAttainmentBoost = 0.05;
     const lever12 = Math.round(ipIdentified * PMPM * 12 * aiAttainmentBoost * appAdopt);
@@ -2161,7 +2161,7 @@ document.getElementById('npiInput').addEventListener('keypress', function(e) {
   }
   setInterval(spawnPulse, 800);
 
-  // Cross-panel flow pulses (TETRA → QB and TETRA → iPhone)
+  // Cross-panel flow pulses (our platform → QB and our platform → iPhone)
   const crossPulses = [];
   function spawnCrossPulse() {
     const stage = document.getElementById('topoStage');
@@ -2392,13 +2392,6 @@ document.getElementById('npiInput').addEventListener('keypress', function(e) {
         </div>
       </div>
       <div class="footer-links-col">
-        <div class="footer-link-group">
-          <div class="footer-link-group-label">Platform</div>
-          <a href="tetra.html">TETRA&trade;</a>
-          <a href="tetra-ex.html">TETRA Ex&trade;</a>
-          <a href="tetra-conductor.html">TETRA Conductor&trade;</a>
-          <a href="tetra-aegis.html">TETRA Aegis&trade;</a>
-        </div>
         <div class="footer-link-group">
           <div class="footer-link-group-label">Company</div>
           <a href="about.html">About Us</a>

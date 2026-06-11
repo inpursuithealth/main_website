@@ -22,7 +22,6 @@
           <a href="for-providers.html">Results Matter &#8482;</a>
         </div>
       </div>
-      <a class="iph-nav-item" href="powered-by-tetra.html">Powered by TETRA&#8482;</a>
       <a class="iph-nav-item" href="veterans-first.html">Veterans First</a>
       <a class="iph-nav-item" href="data-oath.html">Data Oath</a>
       <div class="iph-dropdown">
