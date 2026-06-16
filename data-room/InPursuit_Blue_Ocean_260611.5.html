@@ -1,0 +1,1752 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — The Blue Ocean</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#0A1628;--navy-deep:#060E1A;--cream:#FAF8F4;--paper:#FFFFFF;--gold:#C5A44E;--gold-light:#D4B85E;--gold-dark:#9a7a30;--ink:#1c2330;--muted:#5b6473;--line:rgba(10,22,40,.12);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{-webkit-text-size-adjust:100%;}
+  body{background:var(--cream);color:var(--ink);font-family:'Instrument Sans',system-ui,sans-serif;line-height:1.6;padding:40px 20px;-webkit-font-smoothing:antialiased;}
+  .sheet{max-width:800px;margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:6px;box-shadow:0 30px 80px rgba(10,22,40,.10);overflow:hidden;}
+  .head{background:var(--navy-deep);color:#fff;padding:34px 46px 30px;position:relative;overflow:hidden;}
+  .head::after{content:'';position:absolute;top:-40%;right:-8%;width:460px;height:460px;background:radial-gradient(circle,rgba(197,164,78,.12) 0%,transparent 65%);pointer-events:none;}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;position:relative;z-index:1;}
+  .wordmark{font-family:'Instrument Serif',serif;font-size:21px;color:var(--gold);letter-spacing:.5px;margin-bottom:16px;position:relative;z-index:1;}
+  .head h1{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(28px,4.8vw,40px);line-height:1.1;color:#fff;position:relative;z-index:1;max-width:600px;}
+  .head h1 em{font-style:italic;color:var(--gold);}
+  .body{padding:34px 46px 14px;}
+  .thesis{font-size:16.5px;line-height:1.55;color:var(--navy);padding-bottom:24px;border-bottom:1px solid var(--line);margin-bottom:26px;}
+  .thesis strong{color:var(--gold-dark);font-weight:600;}
+  .slabel{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+  .slabel b{color:var(--gold-dark);}
+  .lead{font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:18px;max-width:680px;}
+  .lead strong{color:var(--ink);font-weight:600;}
+  /* PROOF WALL */
+  .proof{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;}
+  .pcard{border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:8px;padding:16px 16px 15px;background:var(--cream);}
+  .pcard .pn{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);line-height:1.1;margin-bottom:8px;}
+  .pcard .pv{font-family:'Instrument Serif',serif;font-size:26px;color:var(--gold-dark);line-height:1;margin-bottom:8px;}
+  .pcard .pt{font-size:11.5px;color:var(--muted);line-height:1.5;}
+  .proof-foot{margin-top:14px;font-size:12.5px;color:var(--muted);line-height:1.6;padding-top:13px;border-top:1px solid var(--line);}
+  .proof-foot strong{color:var(--ink);font-weight:600;}
+  /* JUXTAPOSITION BAR */
+  .jux{display:flex;align-items:stretch;background:var(--navy-deep);border-radius:10px;overflow:hidden;margin:2px 0 18px;}
+  .jux-half{flex:1;padding:18px 22px;text-align:center;}
+  .jux-half.b{border-left:1px solid rgba(197,164,78,.25);}
+  .jux .jv{font-family:'Instrument Serif',serif;font-size:30px;line-height:1;margin-bottom:6px;}
+  .jux-half.a .jv{color:#fff;}
+  .jux-half.b .jv{color:var(--gold);}
+  .jux .jl{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(250,248,244,.55);}
+  /* DOT FIELD */
+  .dpanel{background:var(--navy-deep);border-radius:10px;padding:18px 22px 14px;}
+  .field{display:grid;grid-template-columns:repeat(32,1fr);gap:10px 0;align-content:center;}
+  .d{width:6px;height:6px;border-radius:50%;background:rgba(160,180,210,.10);justify-self:center;}
+  .d.on{width:8px;height:8px;background:radial-gradient(circle at 35% 30%,#E8D89E,var(--gold));box-shadow:0 0 7px 1px rgba(197,164,78,.7);}
+  .dfootnote{font-size:11.5px;color:rgba(250,248,244,.55);line-height:1.5;margin-top:12px;padding-top:10px;border-top:1px solid rgba(197,164,78,.15);}
+  .dfootnote strong{color:var(--gold-light);font-weight:600;}
+  .dfsrc{color:rgba(250,248,244,.35);font-size:10px;}
+  .dcap{font-size:12px;color:rgba(250,248,244,.6);line-height:1.5;margin-top:14px;padding-top:12px;border-top:1px solid rgba(197,164,78,.18);}
+  .dcap b{color:var(--gold-light);font-weight:600;}
+  .dstats{display:flex;gap:30px;margin-top:14px;}
+  .ds .dv{font-family:'Instrument Serif',serif;font-size:24px;color:var(--gold-dark);line-height:1;}
+  .ds .dl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:.8px;text-transform:uppercase;color:var(--muted);margin-top:5px;line-height:1.5;}
+  /* TWO FRONTS · COMPETITOR FIELD */
+  .fronts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:16px;}
+  .front{border:1px solid var(--line);border-top:3px solid var(--gold);border-radius:10px;background:var(--cream);overflow:hidden;display:flex;flex-direction:column;}
+  .front-foot{margin-top:auto;}
+  .front-h{padding:14px 18px 11px;border-bottom:1px solid var(--line);}
+  .front-h .fk{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:4px;}
+  .front-h h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:18px;color:var(--navy);line-height:1.2;}
+  .comp{padding:10px 18px 9px;border-bottom:1px solid var(--line);}
+  .comp:last-of-type{border-bottom:none;}
+  .comp .cn{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:2px;}
+  .comp .cn h4{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:12.5px;color:var(--navy);}
+  .comp .cn .cf{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.5px;color:var(--gold-dark);white-space:nowrap;}
+  .comp p{font-size:11px;color:var(--muted);line-height:1.45;}
+  .comp p .hl{color:var(--ink);font-weight:600;}
+  .zlabel{font-family:'JetBrains Mono',monospace;font-size:8px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-dark);padding:8px 18px 5px;background:rgba(197,164,78,.07);border-bottom:1px solid var(--line);}
+  .comp.tw{background:rgba(197,164,78,.045);}
+  .comp .cn .cf.twf{color:var(--gold-dark);background:rgba(197,164,78,.14);padding:2px 7px;border-radius:3px;}
+  .front-foot{padding:11px 18px 13px;background:rgba(197,164,78,.06);border-top:1px solid var(--line);font-size:11px;line-height:1.5;color:var(--ink);}
+  .front-foot strong{color:var(--gold-dark);font-weight:700;}
+  /* VERDICT */
+  .verdict{background:var(--navy-deep);border-radius:10px;padding:22px 26px 20px;color:#fff;}
+  .verdict .vq{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+  .verdict h3{font-family:'Instrument Serif',serif;font-weight:400;font-size:clamp(20px,3.4vw,26px);line-height:1.25;color:#fff;margin-bottom:14px;}
+  .verdict h3 em{font-style:italic;color:var(--gold);}
+  .vgrid{display:grid;grid-template-columns:1fr 1fr;gap:9px 14px;margin-bottom:14px;}
+  .vitem{display:grid;grid-template-columns:18px 1fr;gap:9px;align-items:start;}
+  .vitem .vk{width:16px;height:16px;border-radius:50%;background:rgba(197,164,78,.18);display:flex;align-items:center;justify-content:center;margin-top:2px;}
+  .vitem .vk svg{width:10px;height:10px;fill:var(--gold);}
+  .vitem p{font-size:11.5px;line-height:1.45;color:rgba(250,248,244,.78);}
+  .vitem p strong{color:#fff;font-weight:600;}
+  .verdict .vfoot{font-family:'Instrument Serif',serif;font-style:italic;font-size:14.5px;line-height:1.5;color:rgba(250,248,244,.7);border-top:1px solid rgba(197,164,78,.25);padding-top:12px;}
+  .verdict .vfoot span{color:var(--gold);}
+  /* CAPITAL STRIP */
+  .cap-strip{display:flex;align-items:center;gap:22px;background:var(--navy-deep);border-radius:10px;padding:16px 24px;margin-bottom:18px;flex-wrap:wrap;}
+  .cap-strip .cv{font-family:'Instrument Serif',serif;font-size:38px;color:var(--gold);line-height:1;white-space:nowrap;}
+  .cap-strip .ct{flex:1;min-width:220px;}
+  .cap-strip .ct .c1{font-size:13px;color:#fff;line-height:1.45;font-weight:600;}
+  .cap-strip .ct .c2{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(250,248,244,.5);margin-top:5px;line-height:1.6;}
+  .sublabel{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold-dark);margin:18px 0 8px;}
+  /* TAM BAND */
+  .tam{display:flex;align-items:stretch;background:var(--navy-deep);border-radius:10px;overflow:hidden;margin-bottom:18px;}
+  .tam-l{padding:20px 26px;min-width:200px;display:flex;flex-direction:column;justify-content:center;border-right:1px solid rgba(197,164,78,.25);}
+  .tam-l .tv{font-family:'Instrument Serif',serif;font-size:44px;color:var(--gold);line-height:1;}
+  .tam-l .tl{font-family:'JetBrains Mono',monospace;font-size:8.5px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(250,248,244,.6);margin-top:7px;line-height:1.6;}
+  .tam-r{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:0;}
+  .tmkt{padding:12px 18px;border-bottom:1px solid rgba(197,164,78,.12);}
+  .tmkt:nth-child(odd){border-right:1px solid rgba(197,164,78,.12);}
+  .tmkt:nth-child(3),.tmkt:nth-child(4){border-bottom:none;}
+  .tmkt .tk{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:1.2px;text-transform:uppercase;color:rgba(250,248,244,.5);margin-bottom:3px;}
+  .tmkt .tn{font-family:'Instrument Serif',serif;font-size:17px;color:#fff;line-height:1.1;}
+  .tmkt .tn b{color:var(--gold);font-weight:400;}
+  .tmkt .tc{font-family:'JetBrains Mono',monospace;font-size:7.5px;letter-spacing:1px;color:rgba(250,248,244,.4);margin-top:3px;}
+  /* US DOT MAP */
+  .usfield{display:grid;grid-template-columns:repeat(52,1fr);grid-template-rows:repeat(26,1fr);aspect-ratio:1.9;max-width:600px;margin:0 auto;padding:4px 0 0;}
+  .usfield .d{width:5px;height:5px;justify-self:center;align-self:center;background:rgba(160,180,210,.16);}
+  .usfield .d.off{background:transparent;}
+  .usfield .d.on{background:radial-gradient(circle at 35% 30%,#E8D89E,var(--gold));}
+  .usfield .d.off{background:transparent;}
+  .usfield .d.on{width:7px;height:7px;}
+  /* CATEGORY OF ONE */
+  .cat{border:1px solid var(--line);border-radius:8px;overflow:hidden;}
+  .crow{display:grid;grid-template-columns:26px 1fr;gap:13px;padding:14px 18px;border-bottom:1px solid var(--line);align-items:start;}
+  .crow:last-child{border-bottom:none;}
+  .crow .ck{width:22px;height:22px;border-radius:50%;background:rgba(197,164,78,.12);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+  .crow .ck svg{width:13px;height:13px;fill:var(--gold-dark);}
+  .crow h4{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:14px;color:var(--navy);margin-bottom:3px;}
+  .crow p{font-size:12.5px;color:var(--muted);line-height:1.5;}
+  .crow p .hl{color:var(--ink);font-weight:600;}
+  .cat-foot{margin-top:14px;font-family:'Instrument Serif',serif;font-style:italic;font-size:17px;color:var(--navy);line-height:1.4;}
+  .cat-foot span{color:var(--gold-dark);}
+  /* TOOLKIT */
+  .toolkit{display:grid;grid-template-columns:1fr 1fr 1fr;gap:11px;}
+  .tool{border:1px solid var(--line);border-radius:8px;padding:13px 15px;background:var(--cream);}
+  .tool .ac{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:600;letter-spacing:1.5px;color:var(--gold-dark);margin-bottom:4px;}
+  .tool h4{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:12.5px;color:var(--navy);margin-bottom:3px;}
+  .tool p{font-size:11px;line-height:1.45;color:var(--muted);}
+  /* APPROACH */
+  .flow{background:var(--cream);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:8px;padding:18px 22px;margin-bottom:16px;}
+  .flow h4{font-family:'Instrument Serif',serif;font-weight:400;font-size:19px;color:var(--navy);margin-bottom:7px;}
+  .flow p{font-size:13px;color:var(--muted);line-height:1.6;}
+  .flow p .hl{color:var(--ink);font-weight:600;}
+  .flow p strong{color:var(--gold-dark);font-weight:600;}
+  .pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+  .pill{border-top:2px solid var(--gold);padding-top:11px;}
+  .pill .pk{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-dark);margin-bottom:6px;}
+  .pill h4{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:13px;color:var(--navy);margin-bottom:5px;}
+  .pill p{font-size:11.5px;color:var(--muted);line-height:1.5;}
+  /* ONE LINER */
+  .oneliner{text-align:center;padding:24px 30px 26px;}
+  .oneliner blockquote{font-family:'Instrument Serif',serif;font-style:italic;font-size:clamp(20px,3.6vw,26px);line-height:1.4;color:var(--navy);max-width:600px;margin:0 auto;}
+  .oneliner blockquote span{color:var(--gold-dark);}
+  .foot{border-top:1px solid var(--line);padding:18px 46px 26px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;font-family:'JetBrains Mono',monospace;font-size:9.5px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);}
+  .foot .dot{color:var(--gold-dark);}
+  @media(max-width:560px){
+    body{padding:18px 12px;}
+    .head{padding:26px 22px 22px;}
+    .body{padding:26px 22px 8px;}
+    .foot{padding:16px 22px 22px;}
+    .proof,.toolkit,.pillars{grid-template-columns:1fr;}
+    .fronts,.vgrid{grid-template-columns:1fr;}
+    .tam{flex-direction:column;}
+    .tam-l{border-right:none;border-bottom:1px solid rgba(197,164,78,.25);}
+    .jux{flex-direction:column;}
+    .jux-half.b{border-left:none;border-top:1px solid rgba(197,164,78,.25);}
+    .thesis{font-size:15px;}
+  }
+  @media print{
+    @page{size:Letter;margin:0.42in;}
+    body{background:#fff;padding:0;}
+    .sheet{box-shadow:none;border:none;max-width:100%;border-radius:0;}
+    .head,.pcard,.tool,.jux,.dpanel,.flow,.crow,.front,.front-foot,.verdict{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .front{break-inside:avoid;}
+    .comp{padding:7px 14px 6px;}
+    .front-h{padding:10px 14px 8px;}
+    .front-foot{padding:8px 14px 10px;}
+    .verdict{padding:15px 20px 13px;break-inside:avoid;}
+    .verdict h3{font-size:21px;margin-bottom:10px;}
+    .vgrid{gap:6px 12px;margin-bottom:10px;}
+    .head{padding:18px 34px 14px;}
+    .head h1{font-size:29px;}
+    .body{padding:16px 34px 4px;}
+    .thesis{font-size:13.5px;line-height:1.45;padding-bottom:12px;margin-bottom:12px;}
+    .lead{font-size:12.5px;margin-bottom:12px;}
+    .pcard{padding:11px 13px;break-inside:avoid;}
+    .pcard .pv{font-size:23px;}
+    .proof-foot{font-size:11.5px;margin-top:10px;padding-top:9px;}
+    .jux{margin:2px 0 12px;}.jux-half{padding:12px;}
+    .dpanel{padding:14px 18px 11px;break-inside:avoid;}
+    .dstats{margin-top:10px;}
+    .crow{padding:9px 16px;break-inside:avoid;}
+    .tool{padding:10px 12px;break-inside:avoid;}
+    .flow{padding:11px 16px;margin-bottom:8px;break-inside:avoid;}
+    .pill{break-inside:avoid;}
+    .pill p{font-size:11px;line-height:1.45;}
+    .pillars{gap:12px;}
+    .oneliner{padding:7px 20px 5px;break-inside:avoid;}
+    .foot{padding:12px 34px 14px;}
+    .slabel{margin-top:8px !important;}
+    .brk{break-before:page;}
+    .cap-strip{padding:8px 16px;margin-bottom:8px;gap:14px;break-inside:avoid;}
+    .cap-strip .cv{font-size:25px;}
+    .cap-strip .ct .c1{font-size:11.5px;line-height:1.4;}
+    .sublabel{margin:8px 0 4px;font-size:8px;}
+    .tam{margin-bottom:8px;break-inside:avoid;}
+    .tam-l{padding:8px 15px;min-width:145px;}
+    .tam-l .tv{font-size:25px;}
+    .tmkt{padding:4px 11px;}
+    .tmkt .tn{font-size:12.5px;}
+    .usfield{max-width:280px;width:280px;padding:0;}
+    .dfootnote{grid-column:2;font-size:8.5px;line-height:1.3;margin-top:4px;padding-top:4px;}
+    .dfsrc{font-size:8px;}
+    .usfield .d{width:2.6px;height:2.6px;}
+    .usfield .d.on{width:4.5px;height:4.5px;box-shadow:0 0 3px 1px rgba(197,164,78,.6);}
+    /* 3-page compression */
+    .thesis{font-size:11.5px;line-height:1.4;padding-bottom:7px;margin-bottom:7px;}
+    .lead{font-size:11px;line-height:1.4;margin-bottom:7px;}
+    .slabel{margin-top:7px !important;margin-bottom:4px;}
+    .pcard{padding:8px 11px;}
+    .pcard .pn{font-size:14px;margin-bottom:3px;}
+    .pcard .pv{font-size:19px;margin-bottom:3px;}
+    .pcard .pt{font-size:9.5px;line-height:1.38;}
+    .proof{gap:9px;}
+    .proof-foot{font-size:10.5px;margin-top:7px;padding-top:6px;}
+    .jux{margin:0 0 10px;}.jux-half{padding:10px;}
+    .jux .jv{font-size:25px;margin-bottom:4px;}
+    .dpanel{padding:8px 15px 8px;display:grid;grid-template-columns:282px 1fr;column-gap:20px;align-items:center;grid-template-rows:auto auto auto;}
+    .usfield{grid-row:1/4;grid-column:1;}
+    .dcap{grid-column:2;border-top:none !important;padding-top:0 !important;margin-top:0 !important;align-self:end;font-size:9px !important;line-height:1.3 !important;}
+    .dstats{grid-column:2;align-self:start;margin-top:4px;gap:18px;}
+    .field{gap:7px 0;}
+    .d{width:5px;height:5px;}
+    .d.on{width:6px;height:6px;box-shadow:0 0 4px 1px rgba(197,164,78,.6);}
+    .dstats{margin-top:5px;gap:20px;}
+    .ds .dv{font-size:14px;}
+    .ds .dl{font-size:8px;margin-top:3px;}
+    .dfoot{font-size:9.5px !important;margin-top:5px !important;}
+    .dcap{font-size:9.5px !important;margin-top:4px !important;padding-top:6px !important;line-height:1.35 !important;}
+    .comp{padding:10px 16px 9px;}
+    .comp p{font-size:11px;line-height:1.48;}
+    .comp .cn h4{font-size:12px;}
+    .comp .cn .cf{font-size:8.5px;}
+    .front-h{padding:11px 16px 9px;}
+    .zlabel{padding:4px 14px 2px;font-size:7.5px;}
+    .front-h h3{font-size:17px;}
+    .front-foot{padding:10px 16px 12px;font-size:11px;}
+    .fronts{gap:12px;margin-bottom:11px;}
+    .verdict{padding:17px 22px 15px;}
+    .verdict h3{font-size:21px;margin-bottom:11px;}
+    .vitem p{font-size:11px;line-height:1.48;}
+    .vgrid{gap:8px 13px;margin-bottom:11px;}
+    .verdict .vfoot{font-size:12.5px;padding-top:9px;}
+    .crow{padding:6px 14px;}
+    .crow h4{font-size:12px;margin-bottom:2px;}
+    .crow p{font-size:10.5px;line-height:1.4;}
+    .cat-foot{font-size:13.5px;margin-top:8px;}
+    .tool{padding:7px 10px;}
+    .tool .ac{font-size:9.5px;margin-bottom:2px;}
+    .tool h4{font-size:11px;margin-bottom:1px;}
+    .tool p{font-size:9.5px;line-height:1.35;}
+    .toolkit{gap:8px;}
+    .flow{padding:9px 14px;margin-bottom:7px;}
+    .flow h4{font-size:15px;margin-bottom:4px;}
+    .flow p{font-size:11px;line-height:1.45;}
+    .pillars{gap:10px;}
+    .pill{padding-top:7px;}
+    .pill .pk{font-size:8px;margin-bottom:3px;}
+    .pill h4{font-size:11px;margin-bottom:2px;}
+    .pill p{font-size:10px;line-height:1.4;}
+    .oneliner{padding:5px 16px 3px;}
+    .oneliner blockquote{font-size:18px;}
+    .head{padding:11px 34px 9px;}
+    .head h1{font-size:24px;}
+    .head .wordmark{margin-bottom:10px;}
+    .body{padding:10px 34px 2px;}
+    .foot{padding:9px 34px 11px;}
+  }
+</style></head><body>
+<div class="sheet">
+  <header class="head">
+    <div class="eyebrow">The Blue Ocean &middot; Investment Strategy &middot; Confidential</div>
+    <div class="wordmark">InPursuit Health</div>
+    <h1>Billions proved the market. <em>No one has taken it.</em></h1>
+  </header>
+  <div class="body">
+    <p class="thesis">Since 2023, <strong>$35 billion</strong> of venture capital has poured into U.S. digital health. The six companies operating closest to InPursuit&rsquo;s position are collectively worth <strong>~$20 billion</strong> &mdash; and every one of them is locked in a single niche. Together they&rsquo;ve reached <strong>less than four percent</strong> of the patients who qualify. The market is proven. It is barely touched. And the position InPursuit holds, <strong>no competitor even occupies.</strong></p>
+
+    <div class="slabel"><b>01</b> &middot; The market, the capital, and the proof</div>
+    <div class="sublabel" style="margin-top:0;">The market</div>
+    <div class="tam">
+      <div class="tam-l"><div class="tv">$365B</div><div class="tl">Converging U.S. markets<br>One patient at the center</div></div>
+      <div class="tam-r">
+        <div class="tmkt"><div class="tk">Digital Health (U.S.)</div><div class="tn">$92B &rarr; <b>$266B</b></div><div class="tc">11.2% CAGR &middot; 2025&ndash;2035</div></div>
+        <div class="tmkt"><div class="tk">RPM &middot; CCM &middot; Care Mgmt</div><div class="tn">$14.7B &rarr; <b>$33.3B</b></div><div class="tc">14.8% CAGR &middot; 2024&ndash;2030</div></div>
+        <div class="tmkt"><div class="tk">Concierge Medicine (U.S.)</div><div class="tn">$8.1B &rarr; <b>$21.6B</b></div><div class="tc">10.3% CAGR &middot; 2025&ndash;2035</div></div>
+        <div class="tmkt"><div class="tk">Corporate Wellness (U.S.)</div><div class="tn">$23B &rarr; <b>$44B</b></div><div class="tc">6.6% CAGR &middot; 2026&ndash;2035</div></div>
+      </div>
+    </div>
+    <div class="sublabel">The capital flowing in</div>
+    <div class="cap-strip">
+      <div class="cv">$35B</div>
+      <div class="ct">
+        <div class="c1">Deployed into U.S. digital health since 2023 &mdash; led by Andreessen Horowitz, General Catalyst, and Kleiner Perkins.</div>
+        <div class="c2">Rock Health &middot; $10.7B (2023) + $10.1B (2024) + $14.2B (2025)</div>
+      </div>
+    </div>
+    <div class="sublabel">The value already created around us</div>
+    <p class="lead">Six representative companies &mdash; each operating <strong>around InPursuit&rsquo;s position, none in its lane</strong> &mdash; are collectively worth <strong>~$20B in enterprise value.</strong></p>
+    <div class="proof">
+      <div class="pcard"><div class="pn">One Medical</div><div class="pv">$3.9B</div><div class="pt">Consumers will pay for better primary care. Acquired by Amazon, 2023.</div></div>
+      <div class="pcard"><div class="pn">Commure / Athelas</div><div class="pv">~$6B</div><div class="pt">Practices will outsource monitoring and back-office operations.</div></div>
+      <div class="pcard"><div class="pn">Aledade</div><div class="pv">~$3.5B</div><div class="pt">Practices will outsource value-based care. 2M+ patient lives.</div></div>
+      <div class="pcard"><div class="pn">Privia Health</div><div class="pv">~$2.7B</div><div class="pt">Independent practices will join a network. Public on the NASDAQ.</div></div>
+      <div class="pcard"><div class="pn">Hinge Health</div><div class="pv">~$2.6B</div><div class="pt">Digital-first care management scales to an IPO.</div></div>
+      <div class="pcard"><div class="pn">Cadence</div><div class="pv">~$1B</div><div class="pt">Remote monitoring is a venture-scale business. Unicorn at Series B.</div></div>
+    </div>
+    <p class="proof-foot"><strong>~$20B of collective enterprise value &mdash; priced 2021&ndash;2025</strong> by Amazon, the public markets, and top-tier venture investors. One slice each; the whole remains unowned. The direct competitors &mdash; named on the next page &mdash; are private, sub-scale, and structurally locked out of the position InPursuit occupies.</p>
+
+    <div class="slabel" style="margin-top:22px;"><b>02</b> &middot; And barely touched &mdash; across every payer</div>
+    <div class="dpanel">
+      <div class="usfield">
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d on"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+          <span class="d off"></span>
+      </div>
+      <div class="dcap">America, unlit. Every dot is a community of Americans whose chronic-care management is already funded &mdash; by Medicare, Medicare Advantage, commercial insurance, or Medicaid. <b>The gold are the only ones receiving it.</b></div>
+      <div class="dstats">
+        <div class="ds"><div class="dv">~4%</div><div class="dl">Eligible patients<br>receiving CCM&Dagger;</div></div>
+        <div class="ds"><div class="dv">&lt;2%</div><div class="dl">Beneficiaries<br>receiving RPM&Dagger;</div></div>
+        <div class="ds"><div class="dv">~12K</div><div class="dl">of ~1M providers<br>bill CCM at all</div></div>
+      </div>
+      <p class="dfootnote">The care-management codes now span <strong>every major payer</strong> &mdash; Medicare, Medicare Advantage, commercial, Medicaid. <strong>The revenue is permanent and already funded; it simply goes uncollected,</strong> because the practices entitled to it cannot staff it. <span class="dfsrc">&Dagger;Medicare, the best-measured slice. Mathematica/KFF 2024 &middot; HHS OIG 2025.</span></p>
+    </div>
+
+    <div class="slabel brk" style="margin-top:26px;"><b>03</b> &middot; Two fronts under attack &mdash; and who&rsquo;s attacking them</div>
+    <p class="lead">Capital is flowing at both ends of the market &mdash; vendors selling tools into practices, and apps organizing the consumer&rsquo;s record. <strong>Every one stops at the same wall &mdash; and the two biggest are educating our market for free.</strong></p>
+    <div class="fronts">
+      <div class="front">
+        <div class="front-h"><div class="fk">Front 01 &middot; The small &amp; mid-size practice</div><h3>The vendors selling into practices.</h3></div>
+        <div class="comp"><div class="cn"><h4>ChartSpan</h4><span class="cf">CLOSEST COMPETITOR</span></div><p>Self-described largest CCM provider in the U.S. &mdash; 100+ practices, ~$15M raised. A vendor: <span class="hl">the practice still bills under its own NPI</span> and carries the compliance burden. Medicare-centric. No consumer product.</p></div>
+        <div class="comp"><div class="cn"><h4>HealthSnap</h4><span class="cf">$48.5M RAISED</span></div><p>RPM + CCM service out of Miami. Same structure &mdash; <span class="hl">billed under the provider&rsquo;s NPI;</span> the practice stays in the billing chain. No consumer side.</p></div>
+        <div class="comp"><div class="cn"><h4>Signallamp Health</h4><span class="cf">REVENUE-SPLIT MODEL</span></div><p>Embedded remote nurses &mdash; funded, in its own words, via <span class="hl">profit-sharing in the practice&rsquo;s CCM/RPM reimbursements.</span> The exact split structure we refuse on Anti-Kickback grounds.</p></div>
+        <div class="comp"><div class="cn"><h4>CareHarmony</h4><span class="cf">VENDOR MODEL</span></div><p>Outsourced care coordinators as an &ldquo;extension of the practice.&rdquo; <span class="hl">The practice bills; the practice owns the risk.</span></p></div>
+        <div class="comp"><div class="cn"><h4>Cadence &middot; Commure/Athelas</h4><span class="cf">~$1B &middot; ~$6B</span></div><p>The category&rsquo;s funded leaders &mdash; built for <span class="hl">large health systems and enterprise,</span> not the 230K independent practices.</p></div>
+        <div class="front-foot"><strong>The wall:</strong> every one is a vendor inside the practice&rsquo;s billing. None delivers under its own NPI. None ever touches the consumer.</div>
+      </div>
+      <div class="front">
+        <div class="front-h"><div class="fk">Front 02 &middot; The consumer&rsquo;s record</div><h3>The viewers &mdash; and the giants training consumers to use them.</h3></div>
+        <div class="zlabel">The tailwinds &middot; educating our market, at their expense</div>
+        <div class="comp tw"><div class="cn"><h4>Apple Health</h4><span class="cf twf">Tailwind &middot; The awareness engine</span></div><p>National &ldquo;Listen to your body&rdquo; campaign; clinical-grade alerts projected to flag <span class="hl">1M+ undiagnosed Americans a year</span> &mdash; each ending &ldquo;talk to your provider.&rdquo; Then Apple shelved its own orchestration subscription. <span class="hl">Apple captures the signal &mdash; and stepped back from the layer that acts on it.</span></p></div>
+        <div class="comp tw"><div class="cn"><h4>ChatGPT Health &middot; OpenAI</h4><span class="cf twf">Tailwind &middot; 800M+ users</span></div><p>Launched Jan 2026. 1 in 4 of 800M+ weekly users already ask health questions; records connect via b.well. By OpenAI&rsquo;s own words, <span class="hl">&ldquo;not intended for diagnosis or treatment.&rdquo;</span> The largest consumer-education engine for connected health data ever shipped &mdash; and it stops exactly where InPursuit begins.</p></div>
+        <div class="zlabel">The pipe beneath them all</div>
+        <div class="comp"><div class="cn"><h4>b.well Connected Health</h4><span class="cf">~$100M+ RAISED</span></div><p>The connectivity layer behind the viewers &mdash; including ChatGPT Health&rsquo;s record sync across ~2.2M providers. Sells to enterprises; <span class="hl">the consumer is the user, never the customer.</span> No clinical delivery, no payer billing, no payback.</p></div>
+        <div class="front-foot"><strong>The wall &mdash; and the gift:</strong> every one stops at the record, by design or by its own admission. The two biggest companies in tech are spending billions teaching consumers to connect their health data &mdash; then handing them to whoever can act on it. That action layer is the one InPursuit occupies.</div>
+      </div>
+    </div>
+    <div class="verdict">
+      <div class="vq">The question every investor asks</div>
+      <h3>Is anyone doing this the way InPursuit does it? <em>No.</em></h3>
+      <div class="vgrid">
+        <div class="vitem"><div class="vk"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><p><strong>Both engines on one infrastructure</strong> &mdash; consumer record and clinical delivery, feeding each other.</p></div>
+        <div class="vitem"><div class="vk"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><p><strong>Bills under its own NPI, all-payer</strong> &mdash; the practice is never in the billing chain.</p></div>
+        <div class="vitem"><div class="vk"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><p><strong>Zero revenue share</strong> &mdash; one flat fair-market-value agreement. Anti-Kickback-clean by design.</p></div>
+        <div class="vitem"><div class="vk"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><p><strong>Returns value to the consumer</strong> &mdash; the record pays its owner back in offers and cashback.</p></div>
+      </div>
+      <div class="vfoot">One front is full of <span>vendors.</span> The other is full of <span>viewers</span> &mdash; with Apple and OpenAI training the world to use them. Nobody owns the lane between: <span>clinical delivery, on consumer-owned data, billed under its own NPI.</span></div>
+    </div>
+
+    <div class="slabel brk" style="margin-top:26px;"><b>04</b> &middot; And no one is actually in our lane</div>
+    <p class="lead">Every competitor owns one row. InPursuit is the only company that owns all of them.</p>
+    <div class="cat">
+      <div class="crow"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><h4>A consumer-owned health record &mdash; that pays the user back</h4><p>Apple Health holds the record. It never holds the <span class="hl">clinical relationship, the billing, or the rewards.</span></p></div></div>
+      <div class="crow"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><h4>Chronic care delivered &amp; billed under its own NPI &mdash; additive to the practice</h4><p>ChartSpan and HealthSnap sell practices a CCM tool; <span class="hl">the practice still staffs and bills.</span> Neither is consumer-facing.</p></div></div>
+      <div class="crow"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><h4>No revenue share, no risk &mdash; Anti-Kickback-clean by design</h4><p>Aledade and Privia take <span class="hl">a percentage of shared savings</span> and tie practices into risk contracts. We take none of it.</p></div></div>
+      <div class="crow"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><h4>All-payer from day one</h4><p>Most are Medicare- or value-based-care-centric. InPursuit bills <span class="hl">every payer &mdash; Medicare, MA, commercial, Medicaid, cash.</span></p></div></div>
+      <div class="crow"><div class="ck"><svg viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div><div><h4>Distribution in place before launch</h4><p>CMS Health IT Ecosystem First Wave participant; Medicare App Library, Apple App Store, and Google Play on day one; an employer-benefits broker channel behind them. <span class="hl">No competitor enters the market with this.</span></p></div></div>
+    </div>
+    <p class="cat-foot">Each competitor owns one row. InPursuit owns all five &mdash; <span>which makes it not a better product in an existing category, but a category with one company in it.</span></p>
+
+    <div class="slabel" style="margin-top:26px;"><b>05</b> &middot; The specific market we&rsquo;re going after</div>
+    <p class="lead">Not a new pool of money to win &mdash; <strong>a standing one no one is reaching.</strong> Continuous, permanent, fully-funded Medicare care-management revenue, payable on fee-schedule codes that exist regardless of any demonstration model.</p>
+    <div class="toolkit">
+      <div class="tool"><div class="ac">CCM</div><h4>Chronic Care Management</h4><p>Ongoing management for patients with two or more chronic conditions.</p></div>
+      <div class="tool"><div class="ac">RPM</div><h4>Remote Physiologic Monitoring</h4><p>Device-based tracking of vitals between visits.</p></div>
+      <div class="tool"><div class="ac">APCM</div><h4>Advanced Primary Care Mgmt</h4><p>Bundled primary-care management &mdash; added by CMS in 2025.</p></div>
+      <div class="tool"><div class="ac">RTM</div><h4>Remote Therapeutic Monitoring</h4><p>Musculoskeletal and respiratory therapy adherence.</p></div>
+      <div class="tool"><div class="ac">BHI</div><h4>Behavioral Health Integration</h4><p>Collaborative management of depression and anxiety.</p></div>
+      <div class="tool"><div class="ac">TCM</div><h4>Transitional Care Management</h4><p>Post-discharge coordination that prevents readmission.</p></div>
+    </div>
+
+    <div class="slabel" style="margin-top:22px;"><b>06</b> &middot; The way we go after it</div>
+    <div class="flow">
+      <h4>The practice refers in. InPursuit bills.</h4>
+      <p>The referring practice sends eligible patients in. <span class="hl">InPursuit bills directly under its own NPI across every payer</span> &mdash; RPM, CCM, APCM, TCM, BHI. The practice earns <span class="hl">CMS co-management payments</span>, paid by CMS, plus new digital-service revenue. <strong>No revenue share. No split.</strong> One flat fair-market-value agreement; the practice keeps its panel and takes no risk.</p>
+    </div>
+    <div class="pillars">
+      <div class="pill"><div class="pk">Two engines</div><h4>The app feeds the network</h4><p>A consumer membership (Engine 1) pulls patients into the same infrastructure that delivers provider care (Engine 2) &mdash; D2C reach without a D2C team.</p></div>
+      <div class="pill"><div class="pk">Distribution</div><h4>Reach without acquisition cost</h4><p>Existing patient panels, the CMS Health IT Ecosystem and Medicare App Library (67M lives), and employer-benefits brokers &mdash; not paid acquisition.</p></div>
+      <div class="pill"><div class="pk">Built on rails</div><h4>A decade, already behind us</h4><p>The infrastructure is built and proven at scale, TEFCA exchange is live, the codes are permanent, and AI orchestration runs the delivery. We start where incumbents spent ten years arriving.</p></div>
+    </div>
+
+    <div class="oneliner">
+      <div class="slabel" style="text-align:center;margin-bottom:10px;">The one-line version</div>
+      <blockquote>&ldquo;The market is proven. The lane is empty. <span>We&rsquo;re the only one built to run it.&rdquo;</span></blockquote>
+    </div>
+  </div>
+  <footer class="foot">
+    <span>InPursuit Health <span class="dot">&middot;</span> The Blue Ocean</span>
+    <span>Confidential <span class="dot">&middot;</span> [260611.5]</span>
+  </footer>
+</div>
+</body></html>
