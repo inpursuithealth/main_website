@@ -1527,60 +1527,107 @@
     </div>
   </div>
 
-  <!-- NEAR TERM GROWTH OPPORTUNITY TIMELINE -->
-  <div class="ml-opp-section">
-    <div class="ml-opp-label">Near Term Growth Opportunity — Patient App &nbsp;·&nbsp; ACCESS Model</div>
-    <div class="ml-opp-row">
-      <div class="ml-opp-item cms ml-opp-item--pulse">
-        <div class="ml-opp-date">Now</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge" style="background:rgba(197,164,78,0.15);color:#C5A44E;border-color:rgba(197,164,78,0.4);">&#9654;&nbsp; App Launch Phase</div><br>
-          <strong>Moving toward public launch.</strong> Post-CMS demo momentum. App refinement, compliance review, and CMS App Store submission in progress. Bridge financing actively deploying.
+  <!-- ACTIVATION TIMELINE -->
+  <style>
+    #act-tl{padding:2.5rem 0 1rem;}
+    #act-tl .act-head{font-family:var(--serif);font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(197,164,78,.55);margin-bottom:2.75rem;text-align:left;}
+    #act-tl .act-tl{position:relative;display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-bottom:1rem;}
+    #act-tl .act-tl::-webkit-scrollbar{height:4px;}
+    #act-tl .act-tl::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
+    #act-tl .act-tl::-webkit-scrollbar-thumb{background:rgba(197,164,78,.25);border-radius:2px;}
+    #act-tl .act-rail{position:absolute;top:22px;left:0;right:0;height:2px;pointer-events:none;display:flex;}
+    #act-tl .act-rail-done{background:#C5A44E;flex:4;}
+    #act-tl .act-rail-future{flex:4;background:repeating-linear-gradient(90deg,rgba(197,164,78,.35) 0,rgba(197,164,78,.35) 6px,transparent 6px,transparent 12px);}
+    #act-tl .act-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:90px;position:relative;z-index:1;}
+    #act-tl .act-dot{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+    #act-tl .act-dot.done{background:#C5A44E;border:2px solid #C5A44E;}
+    #act-tl .act-dot.done svg{width:18px;height:18px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.now{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 6px rgba(197,164,78,.18),0 0 0 12px rgba(197,164,78,.07);}
+    #act-tl .act-dot.now svg{width:18px;height:18px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.next{background:transparent;border:2px solid rgba(197,164,78,.4);}
+    #act-tl .act-dot.dest{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 5px rgba(197,164,78,.15),0 0 0 10px rgba(197,164,78,.06);}
+    #act-tl .act-dot.dest svg{width:18px;height:18px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-info{margin-top:.9rem;text-align:center;padding:0 .25rem;}
+    #act-tl .act-badge{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;padding:.2rem .55rem;border-radius:3px;margin-bottom:.45rem;}
+    #act-tl .act-badge.done{background:rgba(197,164,78,.12);color:#C5A44E;border:1px solid rgba(197,164,78,.3);}
+    #act-tl .act-badge.now{background:rgba(197,164,78,.2);color:#C5A44E;border:1px solid rgba(197,164,78,.5);}
+    #act-tl .act-badge.next{background:rgba(255,255,255,.05);color:rgba(255,255,255,.45);border:1px solid rgba(255,255,255,.1);}
+    #act-tl .act-badge.dest{background:rgba(197,164,78,.18);color:#C5A44E;border:1px solid rgba(197,164,78,.4);}
+    #act-tl .act-date{font-family:var(--mono);font-size:.7rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.75);margin-bottom:.25rem;}
+    #act-tl .act-date.dim{color:rgba(255,255,255,.35);}
+    #act-tl .act-desc{font-family:var(--sans);font-size:.72rem;line-height:1.45;color:rgba(255,255,255,.45);max-width:96px;}
+    @media(max-width:700px){#act-tl .act-tl{gap:0;min-width:700px;}}
+  </style>
+  <div id="act-tl">
+    <div class="act-head">Activation Timeline &nbsp;·&nbsp; InPursuit Health</div>
+    <div class="act-tl">
+      <div class="act-rail">
+        <div class="act-rail-done"></div>
+        <div class="act-rail-future"></div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">Accepted</div>
+          <div class="act-date">Dec 2025</div>
+          <div class="act-desc">CMS Health IT Ecosystem</div>
         </div>
       </div>
-      <div class="ml-opp-item cms-key access-done">
-        <div class="ml-opp-date">Mar 19</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge ml-opp-badge--access">&#10003;&nbsp; ACCESS Submitted</div><br>
-          <strong>ACCESS Model application submitted.</strong> Honeycomb Medical Group + InPursuit Health application filed with CMS. Cohort 1 application complete.
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">MVP Complete</div>
+          <div class="act-date">Mar 31</div>
+          <div class="act-desc">Patient App Delivered</div>
         </div>
       </div>
-      <div class="ml-opp-item cms-key">
-        <div class="ml-opp-date">Mar 31</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge">Milestone</div><br>
-          <strong>MVP complete.</strong> InPursuit Health patient app MVP delivered. Internal review and stakeholder demo ready.
-          <div class="mvp-selected-badge"><span class="mvp-check">&#10003;</span> MVP selected for Apr 9 event</div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">First Wave</div>
+          <div class="act-date">Apr 9</div>
+          <div class="act-desc">CMS Health IT First Wave Launch</div>
         </div>
       </div>
-      <div class="ml-opp-item cms-key access-done">
-        <div class="ml-opp-date">Apr 9</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge ml-opp-badge--access">&#10003;&nbsp; Demo Complete</div><br>
-          <strong>CMS HealthIT Ecosystem — Success.</strong> InPursuit Health named a leader at the CMS HealthIT Ecosystem demo event. FHIR integration validated. Recognized by CMS stakeholders.
+      <div class="act-node">
+        <div class="act-dot now"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge now">Now</div>
+          <div class="act-date">Jun 19</div>
+          <div class="act-desc">Distribution Goes Live</div>
         </div>
       </div>
-      <div class="ml-opp-item cms">
-        <div class="ml-opp-date">Apr – Jun</div>
-        <div class="ml-opp-txt"><strong>App launch preparation.</strong> CMS demo feedback incorporated. App Store submission requirements finalized. Security, compliance, and onboarding flows polished for public release.</div>
-      </div>
-      <div class="ml-opp-item cms-key">
-        <div class="ml-opp-date">Mid-Jul</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge">Launch</div><br>
-          <strong>Medicare App Store release.</strong> InPursuit Health app listed on the CMS Medicare App Store — direct distribution to Medicare beneficiaries nationwide.
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Launch</div>
+          <div class="act-date dim">Mid-July</div>
+          <div class="act-desc">White House + App Launch</div>
         </div>
       </div>
-      <div class="ml-opp-item cms-key access-billing">
-        <div class="ml-opp-date">Jul 5</div>
-        <div class="ml-opp-txt">
-          <div class="ml-opp-badge ml-opp-badge--revenue">&#36;&nbsp; First Revenue</div><br>
-          <strong>ACCESS Model billing begins.</strong> InPursuit bills CMS directly under its own NPI. Honeycomb Cohort 1 patients enrolled. Revenue clock starts.
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Go-Live</div>
+          <div class="act-date dim">Late July</div>
+          <div class="act-desc">Honeycomb Medical Group</div>
         </div>
       </div>
-      <div class="ml-opp-item cms">
-        <div class="ml-opp-date">Q3–Q4</div>
-        <div class="ml-opp-txt"><strong>Scale &amp; monetization.</strong> Patient enrollment accelerates. RPM, CCM, and care coordination revenue tied directly to app-acquired patients. Series A milestone validated.</div>
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Scale</div>
+          <div class="act-date dim">Q3 2026</div>
+          <div class="act-desc">Delivery &amp; Credentialing</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot dest"><svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge dest">Series A</div>
+          <div class="act-date">Q4 2026</div>
+          <div class="act-desc">Series A Close — Up to $13M</div>
+        </div>
       </div>
     </div>
   </div>
