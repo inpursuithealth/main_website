@@ -2467,6 +2467,9 @@ function showStep(n) {
 }
 
 function openDataRoom() {
+  localStorage.setItem('ip_portal_unlocked', '1');
+  localStorage.setItem('ip_portal_contact', JSON.stringify(contact));
+
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
 
@@ -2497,7 +2500,16 @@ window.addEventListener('popstate', (e) => {
   }
 });
 
-['ip_portal_unlocked','ip_portal_contact','ip_portal_code'].forEach(k => localStorage.removeItem(k));
+// ── AUTO-UNLOCK ON RETURN VISIT ─────────────────
+(function() {
+  if (localStorage.getItem('ip_portal_unlocked') === '1') {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ip_portal_contact') || '{}');
+      if (saved.first) contact = saved;
+    } catch(e) {}
+    openDataRoom();
+  }
+})();
 
 // ── INSTRUMENT TABS ──────────────────────────────
 document.querySelectorAll('.inst-tab').forEach(tab => {
