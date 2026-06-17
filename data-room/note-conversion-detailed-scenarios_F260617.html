@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Convertible Note Conversion: Detailed Scenarios</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1628;--navy-deep:#060E1A;--cream:#FAF8F4;--gold:#C5A44E;--gold-light:#E8D48B;
+  --white:#ffffff;--ink:#1a2436;--muted:#5d6b7e;--line:rgba(10,22,40,.08);--line-gold:rgba(197,164,78,.25);
+  --green:#3f9a6d;--red:#b4593f;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page{max-width:840px;margin:0 auto;background:var(--cream);}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* MASTHEAD */
+.masthead{background:var(--navy-deep);color:var(--white);padding:44px 56px 40px;position:relative;overflow:hidden;}
+.masthead::before{content:'';position:absolute;top:-120px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(197,164,78,.10) 0%,transparent 65%);pointer-events:none;}
+.mh-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;position:relative;z-index:2;}
+.mh-wordmark{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:.5px;color:var(--gold);}
+.mh-doctag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.mh-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;position:relative;z-index:2;}
+.mh-title{font-family:'Instrument Serif',serif;font-size:46px;font-weight:400;line-height:1.12;margin-bottom:16px;position:relative;z-index:2;}
+.mh-title em{font-style:italic;color:var(--gold);}
+.mh-sub{font-size:15.5px;color:rgba(255,255,255,.62);max-width:620px;line-height:1.7;position:relative;z-index:2;}
+
+/* TERMS STRIP */
+.terms-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--navy);border-top:1px solid var(--line-gold);}
+.term-cell{padding:18px 22px;border-right:1px solid rgba(197,164,78,.12);border-bottom:1px solid rgba(197,164,78,.12);}
+.term-cell:nth-child(3n){border-right:none;}
+.term-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px;}
+.term-v{font-family:'Instrument Serif',serif;font-size:22px;color:var(--white);line-height:1.1;}
+.term-v em{font-style:italic;font-size:13px;color:var(--gold);}
+.term-v small{font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,.55);}
+
+/* BODY */
+.body{padding:48px 56px 8px;}
+.sec{margin-bottom:42px;}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.sec-h{font-family:'Instrument Serif',serif;font-size:27px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px;}
+.sec-h em{font-style:italic;color:var(--gold);}
+.sec p{font-size:15px;color:var(--ink);margin-bottom:14px;line-height:1.72;}
+.sec p.muted{color:var(--muted);font-size:14px;}
+.lead{font-size:16.5px;color:var(--ink);line-height:1.72;}
+strong{font-weight:700;color:var(--navy);}
+
+/* three levers */
+.levers{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px;}
+.lever{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 22px;}
+.lever-n{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--gold);margin-bottom:10px;}
+.lever h4{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);font-weight:400;margin-bottom:8px;line-height:1.25;}
+.lever p{font-size:13px;color:var(--muted);margin:0;line-height:1.6;}
+.lever .eq{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--navy);background:rgba(197,164,78,.08);border:1px solid var(--line-gold);border-radius:6px;padding:8px 10px;margin-top:10px;display:block;text-align:center;}
+
+/* MATRIX TABLE */
+.matrix{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:8px;}
+.matrix-head{background:var(--navy);color:var(--white);padding:16px 26px;}
+.matrix-head .t{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.matrix-head .t .g{color:var(--gold);}
+.matrix-head .s{font-size:12px;color:rgba(255,255,255,.55);margin-top:5px;}
+table.mx{width:100%;border-collapse:collapse;}
+table.mx th{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.1px;text-transform:uppercase;color:var(--muted);padding:13px 18px;border-bottom:1px solid var(--line);background:rgba(10,22,40,.02);text-align:right;}
+table.mx th:first-child{text-align:left;}
+table.mx td{padding:15px 18px;font-size:14px;border-bottom:1px solid var(--line);text-align:right;}
+table.mx td:first-child{text-align:left;}
+table.mx tr:last-child td{border-bottom:none;}
+.mx-scn{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);}
+.mx-val{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy);}
+.mx-mult{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);}
+.mx-pos{font-family:'JetBrains Mono',monospace;font-size:13.5px;color:var(--ink);}
+.mx-row-cap{background:rgba(197,164,78,.04);}
+.mx-pre{font-size:11px;color:var(--muted);}
+.matrix-foot{padding:14px 26px;font-size:11.5px;color:var(--muted);background:rgba(197,164,78,.04);border-top:1px solid var(--line-gold);line-height:1.6;}
+
+/* worked example — step ledger */
+.ledger{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:8px;}
+.ledger-head{background:var(--navy);color:var(--white);padding:16px 26px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;}
+.ledger-head .t{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.ledger-head .t .g{color:var(--gold);}
+.ledger-head .res{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);}
+.lrow{display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:13px 26px;border-bottom:1px solid var(--line);font-size:14px;}
+.lrow:last-child{border-bottom:none;}
+.lrow .ll{color:var(--ink);}
+.lrow .ll small{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;}
+.lrow .lv{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy);white-space:nowrap;}
+.lrow.tot{background:rgba(197,164,78,.06);border-top:1px solid var(--line-gold);}
+.lrow.tot .ll{font-weight:700;color:var(--navy);}
+.lrow.tot .lv{font-family:'Instrument Serif',serif;font-weight:400;font-size:20px;color:var(--gold);}
+.ledger-foot{padding:13px 26px;font-size:11.5px;color:var(--muted);background:rgba(10,22,40,.02);line-height:1.6;}
+
+/* scenario narrative cards */
+.scn-card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:26px 28px;margin-bottom:14px;border-left:3px solid var(--gold);}
+.scn-card.down{border-left-color:var(--red);}
+.scn-top{display:flex;justify-content:space-between;align-items:baseline;gap:14px;margin-bottom:12px;flex-wrap:wrap;}
+.scn-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--gold);}
+.scn-card.down .scn-tag{color:var(--red);}
+.scn-mult{font-family:'Instrument Serif',serif;font-size:24px;color:var(--gold);line-height:1;}
+.scn-card.down .scn-mult{color:var(--red);font-size:18px;}
+.scn-card h3{font-family:'Instrument Serif',serif;font-size:22px;color:var(--navy);font-weight:400;margin-bottom:10px;line-height:1.2;}
+.scn-card p{font-size:14px;color:var(--ink);margin-bottom:10px;line-height:1.68;}
+.scn-card p:last-child{margin-bottom:0;}
+.scn-card p.m{color:var(--muted);font-size:13.5px;}
+
+/* downside / 1244 box */
+.dd-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:14px;}
+.dd-box{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:20px 22px;}
+.dd-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--gold);margin-bottom:9px;}
+.dd-box h4{font-family:'Instrument Serif',serif;font-size:17px;color:var(--navy);font-weight:400;margin-bottom:8px;}
+.dd-box p{font-size:13px;color:var(--muted);margin:0;line-height:1.6;}
+
+/* callout */
+.callout{background:var(--navy-deep);border-radius:12px;padding:24px 28px;margin-top:8px;position:relative;overflow:hidden;}
+.callout::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(197,164,78,.06),transparent 60%);}
+.callout-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;position:relative;}
+.callout p{font-size:14.5px;color:rgba(255,255,255,.78);margin:0;line-height:1.7;position:relative;}
+.callout strong{color:var(--white);}
+
+/* FOOTER */
+.docfoot{background:var(--navy-deep);color:rgba(255,255,255,.5);padding:30px 56px;margin-top:40px;}
+.df-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:18px;}
+.df-mark{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);margin-bottom:4px;}
+.df-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.df-contact{text-align:right;font-size:12px;line-height:1.7;}
+.df-contact a{color:var(--gold);text-decoration:none;}
+.df-disc{font-size:10.5px;color:rgba(255,255,255,.38);line-height:1.65;border-top:1px solid rgba(197,164,78,.15);padding-top:16px;}
+.df-meta{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.3);margin-top:12px;}
+
+@media print{.page{max-width:none;}}
+@media(max-width:680px){
+  .masthead,.body,.docfoot{padding-left:24px;padding-right:24px;}
+  .mh-title{font-size:33px;}
+  .terms-strip{grid-template-columns:1fr 1fr;}
+  .term-cell:nth-child(3n){border-right:1px solid rgba(197,164,78,.12);}
+  .term-cell:nth-child(2n){border-right:none;}
+  .levers,.dd-grid{grid-template-columns:1fr;}
+  table.mx th,table.mx td{padding:11px 12px;font-size:12.5px;}
+  .hide-narrow{display:none;}
+  .df-top{flex-direction:column;}
+  .df-contact{text-align:left;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mh-top">
+      <div class="mh-wordmark">InPursuit Health</div>
+      <div class="mh-doctag">Bridge Round · Investor Brief</div>
+    </div>
+    <div class="mh-eyebrow">Convertible Note — Detailed Conversion Scenarios</div>
+    <h1 class="mh-title">What conversion <em>looks like</em> — across outcomes.</h1>
+    <p class="mh-sub">The companion to "How Your Note Converts." This walks the exact math for a $50,000 and $100,000 investment across a range of illustrative Series A outcomes — including accrued interest — and the downside case if a priced round never closes.</p>
+  </div>
+
+  <!-- TERMS STRIP -->
+  <div class="terms-strip">
+    <div class="term-cell"><div class="term-l">Valuation Cap</div><div class="term-v">$20M <em>post-money</em></div></div>
+    <div class="term-cell"><div class="term-l">Interest</div><div class="term-v">5% <em>/ yr</em></div></div>
+    <div class="term-cell"><div class="term-l">Maturity</div><div class="term-v">18 <em>months</em></div></div>
+    <div class="term-cell"><div class="term-l">Minimum Check</div><div class="term-v">$50,000</div></div>
+    <div class="term-cell"><div class="term-l">Series A Target</div><div class="term-v"><small>$13M · Q4 2026</small></div></div>
+    <div class="term-cell"><div class="term-l">Execution</div><div class="term-v"><small>DocuSign</small></div></div>
+  </div>
+
+  <div class="body">
+
+    <!-- HOW TO READ -->
+    <div class="sec">
+      <div class="sec-num">01 — HOW TO READ THESE SCENARIOS</div>
+      <h2 class="sec-h">Three levers drive every outcome.</h2>
+      <p class="lead">Your note locks in at a $20M post-money cap. What that's worth at the Series A depends on three things — all of which follow from simple arithmetic, not from any forecast of the company's value.</p>
+      <div class="levers">
+        <div class="lever">
+          <div class="lever-n">LEVER 1</div>
+          <h4>Your ownership floor</h4>
+          <p>Set the day you sign and grown by interest. Principal plus 5% accrued interest, divided by the post-money cap.</p>
+          <span class="eq">(Principal + interest) ÷ $20M</span>
+        </div>
+        <div class="lever">
+          <div class="lever-n">LEVER 2</div>
+          <h4>The cap advantage</h4>
+          <p>Your paper markup at conversion — how far the Series A prices above the $20M you locked in.</p>
+          <span class="eq">Series A pre-money ÷ $20M</span>
+        </div>
+        <div class="lever">
+          <div class="lever-n">LEVER 3</div>
+          <h4>Dilution</h4>
+          <p>New Series A money and any option-pool top-up dilute every holder, including you.</p>
+          <span class="eq">Reduces final %</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- THE MATRIX -->
+    <div class="sec">
+      <div class="sec-num">02 — THE SCENARIO MATRIX</div>
+      <h2 class="sec-h">From $50K to $500K, across illustrative rounds.</h2>
+      <p class="muted">The Series A pre-money figures below are <strong>hypothetical illustration points</strong> — InPursuit's actual Series A price is set in term-sheet negotiation, not now. They are not a forecast of the company's value. Positions are shown on the <strong>principal basis</strong> for clean comparability; 5% accrued interest converts on top, adding proportionally to every figure (up to +7.5% at the 18-month maturity ceiling).</p>
+      <div class="matrix">
+        <div class="matrix-head">
+          <div class="t">Conversion at the <span class="g">$20M post-money cap</span></div>
+          <div class="s">Floor: $50K = 0.25% · $100K = 0.50% · $250K = 1.25% · $500K = 2.50% · multiple = Series A pre-money ÷ $20M</div>
+        </div>
+        <table class="mx">
+          <thead>
+            <tr>
+              <th>Illustrative Series A</th><th>Cap Adv.</th>
+              <th>$50K</th><th>$100K</th>
+              <th class="hide-narrow">$250K</th><th class="hide-narrow">$500K</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="mx-row-cap">
+              <td><span class="mx-scn">At the cap</span><br><span class="mono mx-pre">$20M pre-money</span></td>
+              <td><span class="mx-mult">1.0×</span></td>
+              <td><span class="mx-pos">$50,000</span></td><td><span class="mx-pos">$100,000</span></td>
+              <td class="hide-narrow"><span class="mx-pos">$250,000</span></td><td class="hide-narrow"><span class="mx-pos">$500,000</span></td>
+            </tr>
+            <tr>
+              <td><span class="mx-scn">Modest step-up</span><br><span class="mono mx-pre">$30M pre-money</span></td>
+              <td><span class="mx-mult">1.5×</span></td>
+              <td><span class="mx-pos">$75,000</span></td><td><span class="mx-pos">$150,000</span></td>
+              <td class="hide-narrow"><span class="mx-pos">$375,000</span></td><td class="hide-narrow"><span class="mx-pos">$750,000</span></td>
+            </tr>
+            <tr>
+              <td><span class="mx-scn">Step-up</span><br><span class="mono mx-pre">$40M pre-money</span></td>
+              <td><span class="mx-mult">2.0×</span></td>
+              <td><span class="mx-pos">$100,000</span></td><td><span class="mx-pos">$200,000</span></td>
+              <td class="hide-narrow"><span class="mx-pos">$500,000</span></td><td class="hide-narrow"><span class="mx-pos">$1,000,000</span></td>
+            </tr>
+            <tr>
+              <td><span class="mx-scn">Strong round</span><br><span class="mono mx-pre">$50M pre-money</span></td>
+              <td><span class="mx-mult">2.5×</span></td>
+              <td><span class="mx-pos">$125,000</span></td><td><span class="mx-pos">$250,000</span></td>
+              <td class="hide-narrow"><span class="mx-pos">$625,000</span></td><td class="hide-narrow"><span class="mx-pos">$1,250,000</span></td>
+            </tr>
+            <tr>
+              <td><span class="mx-scn">Very strong round</span><br><span class="mono mx-pre">$60M pre-money</span></td>
+              <td><span class="mx-mult">3.0×</span></td>
+              <td><span class="mx-pos">$150,000</span></td><td><span class="mx-pos">$300,000</span></td>
+              <td class="hide-narrow"><span class="mx-pos">$750,000</span></td><td class="hide-narrow"><span class="mx-pos">$1,500,000</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="matrix-foot">Illustrative arithmetic only, shown on the principal basis before 5% accrued interest and before option-pool top-up and other dilution. Interest converts into additional equity on top of every figure — up to +7.5% at the 18-month maturity ceiling. "Position" is the cap advantage applied to your principal — not realized value and not a return; equity is illiquid until a later liquidity event. Each position already reflects dilution from the $13M of Series A money, then equals (your principal ÷ $20M) × the Series A pre-money. On phones the $250K and $500K columns are hidden — the PDF shows all four.</div>
+      </div>
+    </div>
+
+    <!-- WORKED EXAMPLE -->
+    <div class="sec">
+      <div class="sec-num">03 — A WORKED EXAMPLE, LINE BY LINE</div>
+      <h2 class="sec-h">$100,000 into a $40M Series A.</h2>
+      <p class="muted">One concrete case, every step shown — including accrued interest and the dilution from the $13M of new Series A money, so nothing is hidden behind the shortcut.</p>
+      <div class="ledger">
+        <div class="ledger-head"><div class="t">$100K note · illustrative <span class="g">$40M pre-money</span> Series A</div><div class="res">≈ $215,000 position</div></div>
+        <div class="lrow"><div class="ll">Your principal</div><div class="lv">$100,000</div></div>
+        <div class="lrow"><div class="ll">Accrued interest<small>5% / yr, illustrative 18-month accrual</small></div><div class="lv">$7,500</div></div>
+        <div class="lrow"><div class="ll">Converting amount<small>principal + accrued interest</small></div><div class="lv">$107,500</div></div>
+        <div class="lrow"><div class="ll">Post-money cap</div><div class="lv">$20,000,000</div></div>
+        <div class="lrow"><div class="ll">Ownership floor<small>converting amount ÷ cap</small></div><div class="lv">0.5375%</div></div>
+        <div class="lrow"><div class="ll">Cap advantage<small>Series A pre-money ÷ cap — your paper markup</small></div><div class="lv">2.0×</div></div>
+        <div class="lrow"><div class="ll">Series A new money<small>the target raise that triggers conversion</small></div><div class="lv">$13,000,000</div></div>
+        <div class="lrow"><div class="ll">Post-money after Series A<small>$40M pre + $13M new = $53M</small></div><div class="lv">$53,000,000</div></div>
+        <div class="lrow"><div class="ll">Dilution from new money<small>$40M ÷ $53M — new investors take ~24.5%</small></div><div class="lv">×75.5%</div></div>
+        <div class="lrow"><div class="ll">Your ownership after the round<small>0.5375% × 75.5%</small></div><div class="lv">0.406%</div></div>
+        <div class="lrow tot"><div class="ll">Position value<small>0.406% × $53M — equals $107,500 × 2.0× cap advantage</small></div><div class="lv">$215,000</div></div>
+      </div>
+      <div class="ledger-foot" style="background:rgba(197,164,78,.04);border-top:1px solid var(--line-gold);border-radius:0 0 12px 12px;margin-top:-1px;padding:14px 26px;font-size:11.5px;color:var(--muted);line-height:1.6;">The same $100K as a SAFE would hold ≈ $200,000 here; the ~$15,000 difference is the accrued interest, itself marked up by the cap advantage. A typical 10–15% option-pool refresh at the Series A would dilute the 0.406% further. The $40M pre-money is a hypothetical illustration point, not a forecast. This is paper value in an illiquid security — not realized return.</div>
+    </div>
+
+    <!-- SCENARIO NARRATIVES -->
+    <div class="sec">
+      <div class="sec-num">04 — SCENARIO BY SCENARIO</div>
+      <h2 class="sec-h">The same Note, four endings.</h2>
+
+      <div class="scn-card">
+        <div class="scn-top"><span class="scn-tag">Scenario A · At the cap</span><span class="scn-mult">1.0×</span></div>
+        <h3>The Series A prices at the $20M cap.</h3>
+        <p>Your note converts at the same price new investors pay. No markup, no penalty — principal plus accrued interest convert into Series A preferred at your ownership floor. A $50K note holds ≈ 0.27% and a $100K note ≈ 0.54% at the 18-month interest ceiling, each subject to dilution from the new round.</p>
+        <p class="m">This is the floor case for an at-or-above-cap round. You are now a preferred shareholder alongside the Series A.</p>
+      </div>
+
+      <div class="scn-card">
+        <div class="scn-top"><span class="scn-tag">Scenario B · Step-up</span><span class="scn-mult">2.0×</span></div>
+        <h3>The Series A prices at roughly twice the cap.</h3>
+        <p>New investors come in at the higher round price; you keep the $20M cap. That spread is the early-investor advantage the note exists to capture — and it applies to your accrued interest as well as your principal, marking your conversion basis up about 2× before dilution.</p>
+        <p class="m">This is the range a disciplined Series A is most often defended in, given the cap-to-raise ratio. It remains illustrative, not a forecast.</p>
+      </div>
+
+      <div class="scn-card">
+        <div class="scn-top"><span class="scn-tag">Scenario C · Strong round</span><span class="scn-mult">3.0×</span></div>
+        <h3>The Series A prices well above the cap.</h3>
+        <p>The same mechanics, amplified: the further the Series A prices above $20M, the larger the markup your locked-in cap captures on both principal and interest relative to new money entering the round.</p>
+        <p class="m">Upside is unbounded by the cap on the high side — but it is paper value in an illiquid security until a liquidity event, and dilution still applies.</p>
+      </div>
+
+      <div class="scn-card down">
+        <div class="scn-top"><span class="scn-tag">Scenario D · Maturity / downside</span><span class="scn-mult">Backstop</span></div>
+        <h3>The priced round never happens.</h3>
+        <p>Here is where the note differs from a SAFE. If no qualifying Equity Financing closes within 18 months, the note <strong>matures</strong>: principal plus accrued interest becomes due as a repayment obligation. In a wind-down you rank as a creditor — ahead of SAFE holders and equity — a senior claim a SAFE does not carry. Recovery may still be partial or zero, and if the debt becomes worthless a §166 bad-debt deduction may apply.</p>
+        <p class="m">This is the central risk of early-stage investing: you can still lose your entire investment. The note's seniority and maturity improve your position relative to equity — they do not eliminate the risk.</p>
+      </div>
+    </div>
+
+    <!-- BELOW CAP + 1244 -->
+    <div class="sec">
+      <div class="sec-num">05 — TWO THINGS WORTH KNOWING</div>
+      <h2 class="sec-h">Below the cap, and the debt backstop.</h2>
+      <div class="dd-grid">
+        <div class="dd-box">
+          <div class="dd-l">If the round prices below $20M</div>
+          <h4>You convert lower — and get more</h4>
+          <p>With no discount and cap-only terms, a Series A priced under $20M means you convert at that lower round price, receiving a larger ownership stake than the cap floor implies — on principal and accrued interest alike.</p>
+        </div>
+        <div class="dd-box">
+          <div class="dd-l">IRC §166 — Bad-debt deduction</div>
+          <h4>A path only debt holders have</h4>
+          <p>Because the note is bona fide debt, if it becomes wholly or partially worthless you may be able to claim an ordinary-loss bad-debt deduction — available to debt holders without waiting for a C-Corp conversion. Eligibility depends on a worthlessness determination and your circumstances — consult your tax advisor.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMPARE TO NOTE -->
+    <div class="sec">
+      <div class="callout">
+        <div class="callout-l">If maximum simplicity matters to you</div>
+        <p>The bridge is also offered as a <strong>SAFE</strong> — same $20M cap and conversion mechanics, but with no interest, no maturity, and no repayment obligation: the simplest possible terms. The Note adds debt seniority over the SAFE in a wind-down, 5% accruing interest that increases conversion shares, an 18-month maturity backstop, and a §166 bad-debt path. <strong>Same upside basis, more protection.</strong> Ask for the SAFE brief to compare side by side.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="docfoot">
+    <div class="df-top">
+      <div>
+        <div class="df-mark">InPursuit Health</div>
+        <div class="df-tag">Harness the Power of Your Data™</div>
+      </div>
+      <div class="df-contact">
+        Investment inquiries<br>
+        <a href="mailto:invest@InPursuitHealth.com">invest@InPursuitHealth.com</a>
+      </div>
+    </div>
+    <div class="df-disc">
+      This document is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security. All valuation points and position figures are hypothetical illustrations of conversion mechanics, are shown before dilution, and are not forecasts of the company's value or any return. Any offering is made solely to accredited investors pursuant to definitive transaction documents, which govern in all respects and control over any summary here. Equity is illiquid and you may lose your entire investment. Nothing herein is legal, tax, or investment advice; consult your own advisors.
+    </div>
+    <div class="df-meta">CONVERTIBLE NOTE CONVERSION — DETAILED SCENARIOS · $20M POST-MONEY CAP · 5% · 18-MO · SERIES A TARGET $13M Q4 2026 · F260617</div>
+  </div>
+
+</div>
+</body>
+</html>

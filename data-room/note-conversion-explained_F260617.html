@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InPursuit Health — Convertible Note Conversion Explained</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0A1628;--navy-deep:#060E1A;--cream:#FAF8F4;--gold:#C5A44E;--gold-light:#E8D48B;
+  --white:#ffffff;--ink:#1a2436;--muted:#5d6b7e;--line:rgba(10,22,40,.08);--line-gold:rgba(197,164,78,.25);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Instrument Sans',system-ui,sans-serif;background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;}
+.page{max-width:840px;margin:0 auto;background:var(--cream);}
+.mono{font-family:'JetBrains Mono',monospace;}
+
+/* ===== MASTHEAD ===== */
+.masthead{background:var(--navy-deep);color:var(--white);padding:44px 56px 40px;position:relative;overflow:hidden;}
+.masthead::before{content:'';position:absolute;top:-120px;right:-80px;width:420px;height:420px;background:radial-gradient(circle,rgba(197,164,78,.10) 0%,transparent 65%);pointer-events:none;}
+.mh-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:34px;position:relative;z-index:2;}
+.mh-wordmark{font-family:'Instrument Serif',serif;font-size:22px;letter-spacing:.5px;color:var(--gold);}
+.mh-doctag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.45);}
+.mh-eyebrow{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;position:relative;z-index:2;}
+.mh-title{font-family:'Instrument Serif',serif;font-size:46px;font-weight:400;line-height:1.12;margin-bottom:16px;position:relative;z-index:2;}
+.mh-title em{font-style:italic;color:var(--gold);}
+.mh-sub{font-size:15.5px;color:rgba(255,255,255,.62);max-width:600px;line-height:1.7;position:relative;z-index:2;}
+
+/* ===== TERMS STRIP ===== */
+.terms-strip{display:grid;grid-template-columns:repeat(3,1fr);background:var(--navy);border-top:1px solid var(--line-gold);}
+.term-cell{padding:20px 22px;border-right:1px solid rgba(197,164,78,.12);border-bottom:1px solid rgba(197,164,78,.12);}
+.term-cell:nth-child(3n){border-right:none;}
+.term-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:7px;}
+.term-v{font-family:'Instrument Serif',serif;font-size:23px;color:var(--white);line-height:1.1;}
+.term-v em{font-style:italic;font-size:13px;color:var(--gold);}
+.term-v small{font-family:'Instrument Sans',sans-serif;font-size:12px;font-weight:600;color:rgba(255,255,255,.55);}
+
+/* ===== BODY ===== */
+.body{padding:48px 56px 8px;}
+.sec{margin-bottom:42px;}
+.sec-num{font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--gold);margin-bottom:8px;}
+.sec-h{font-family:'Instrument Serif',serif;font-size:27px;font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:16px;}
+.sec-h em{font-style:italic;color:var(--gold);}
+.sec p{font-size:15px;color:var(--ink);margin-bottom:14px;line-height:1.72;}
+.sec p.muted{color:var(--muted);font-size:14px;}
+.lead{font-size:16.5px;color:var(--ink);line-height:1.72;}
+strong{font-weight:700;color:var(--navy);}
+
+/* plain-language card */
+.plain{background:var(--white);border:1px solid var(--line);border-left:3px solid var(--gold);border-radius:10px;padding:26px 28px;margin:4px 0 6px;}
+.plain-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.plain p{font-size:15.5px;margin-bottom:12px;}
+.plain p:last-child{margin-bottom:0;}
+
+/* mechanism steps */
+.steps{display:flex;flex-direction:column;gap:0;margin-top:6px;}
+.step{display:flex;gap:20px;padding:20px 0;border-bottom:1px solid var(--line);}
+.step:last-child{border-bottom:none;}
+.step-n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--navy);color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.step-b h4{font-family:'Instrument Sans',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:5px;}
+.step-b p{font-size:14px;color:var(--muted);margin:0;line-height:1.6;}
+.step-b strong{color:var(--navy);}
+
+/* formula */
+.formula{background:var(--navy-deep);border-radius:12px;padding:30px 32px;margin:10px 0 4px;text-align:center;position:relative;overflow:hidden;}
+.formula::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(197,164,78,.06),transparent 60%);}
+.formula-l{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;position:relative;}
+.formula-eq{font-family:'Instrument Serif',serif;font-size:25px;color:var(--white);line-height:1.5;position:relative;}
+.formula-eq .frac{display:inline-flex;flex-direction:column;vertical-align:middle;margin:0 6px;text-align:center;}
+.formula-eq .frac .num{border-bottom:1.5px solid var(--gold);padding:0 12px 4px;}
+.formula-eq .frac .den{padding:4px 12px 0;color:var(--gold);}
+.formula-eq .op{color:var(--gold);margin:0 4px;}
+.formula-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:rgba(255,255,255,.5);margin-top:18px;position:relative;line-height:1.7;}
+
+/* worked example table */
+.ex-wrap{background:var(--white);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-top:8px;}
+.ex-head{background:var(--navy);color:var(--white);padding:16px 26px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;}
+.ex-head .g{color:var(--gold);}
+.ex-table{width:100%;border-collapse:collapse;}
+.ex-table th{text-align:left;font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--muted);padding:14px 26px;border-bottom:1px solid var(--line);background:rgba(10,22,40,.02);}
+.ex-table th.r,.ex-table td.r{text-align:right;}
+.ex-table td{padding:15px 26px;font-size:14.5px;border-bottom:1px solid var(--line);}
+.ex-table tr:last-child td{border-bottom:none;}
+.ex-table td.amt{font-family:'JetBrains Mono',monospace;font-weight:700;color:var(--navy);}
+.ex-table td.pct{font-family:'Instrument Serif',serif;font-size:19px;color:var(--gold);}
+.ex-foot{padding:14px 26px;font-size:12px;color:var(--muted);background:rgba(197,164,78,.04);border-top:1px solid var(--line-gold);line-height:1.6;}
+
+/* upside box */
+.upside{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:8px;}
+.up-card{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:22px 24px;}
+.up-card.hi{border-color:var(--line-gold);background:rgba(197,164,78,.04);}
+.up-tag{font-family:'JetBrains Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;}
+.up-card h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:8px;font-weight:400;}
+.up-card p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.6;}
+
+/* feature list */
+.flist{display:flex;flex-direction:column;gap:14px;margin-top:6px;}
+.fitem{display:flex;gap:14px;align-items:flex-start;}
+.fcheck{flex-shrink:0;width:22px;height:22px;border-radius:50%;background:rgba(197,164,78,.12);display:flex;align-items:center;justify-content:center;margin-top:1px;}
+.fcheck svg{width:11px;height:11px;}
+.fitem p{font-size:14.5px;margin:0;line-height:1.6;}
+
+/* tax cards */
+.tax-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-top:6px;}
+.tax-card{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:24px 26px;}
+.tax-code{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;color:var(--gold);margin-bottom:10px;}
+.tax-card h4{font-family:'Instrument Serif',serif;font-size:18px;color:var(--navy);margin-bottom:10px;font-weight:400;}
+.tax-card p{font-size:13.5px;color:var(--muted);margin:0;line-height:1.62;}
+.tax-pill{display:inline-block;font-family:'JetBrains Mono',monospace;font-size:8.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--gold);background:rgba(197,164,78,.1);border:1px solid var(--line-gold);border-radius:20px;padding:4px 10px;margin-top:12px;}
+.tax-note{background:var(--navy-deep);border-radius:10px;padding:20px 24px;margin-top:16px;}
+.tax-note p{font-size:13px;color:rgba(255,255,255,.7);margin:0;line-height:1.65;}
+.tax-note strong{color:var(--gold);}
+
+/* ===== FOOTER ===== */
+.docfoot{background:var(--navy-deep);color:rgba(255,255,255,.5);padding:30px 56px;margin-top:40px;}
+.df-top{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap;margin-bottom:18px;}
+.df-mark{font-family:'Instrument Serif',serif;font-size:18px;color:var(--gold);margin-bottom:4px;}
+.df-tag{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+.df-contact{text-align:right;font-size:12px;line-height:1.7;}
+.df-contact a{color:var(--gold);text-decoration:none;}
+.df-disc{font-size:10.5px;color:rgba(255,255,255,.38);line-height:1.65;border-top:1px solid rgba(197,164,78,.15);padding-top:16px;}
+.df-meta{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;color:rgba(255,255,255,.3);margin-top:12px;}
+
+@media print{.page{max-width:none;}}
+@media(max-width:680px){
+  .masthead,.body,.docfoot{padding-left:24px;padding-right:24px;}
+  .mh-title{font-size:34px;}
+  .terms-strip{grid-template-columns:1fr 1fr;}
+  .term-cell:nth-child(3n){border-right:1px solid rgba(197,164,78,.12);}
+  .term-cell:nth-child(2n){border-right:none;}
+  .upside,.tax-grid{grid-template-columns:1fr;}
+  .df-top{flex-direction:column;}
+  .df-contact{text-align:left;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- MASTHEAD -->
+  <div class="masthead">
+    <div class="mh-top">
+      <div class="mh-wordmark">InPursuit Health</div>
+      <div class="mh-doctag">Bridge Round · Investor Brief</div>
+    </div>
+    <div class="mh-eyebrow">Convertible Note — Bridge Financing</div>
+    <h1 class="mh-title">How your Note <em>converts.</em></h1>
+    <p class="mh-sub">A plain-language explanation of what a convertible note is, what triggers conversion, how the math works, and exactly what you receive — with the current terms of the InPursuit bridge round.</p>
+  </div>
+
+  <!-- TERMS STRIP -->
+  <div class="terms-strip">
+    <div class="term-cell"><div class="term-l">Instrument</div><div class="term-v">Conv. Note</div></div>
+    <div class="term-cell"><div class="term-l">Valuation Cap</div><div class="term-v">$20M <em>post-money</em></div></div>
+    <div class="term-cell"><div class="term-l">Interest</div><div class="term-v">5% <em>/ yr</em></div></div>
+    <div class="term-cell"><div class="term-l">Maturity</div><div class="term-v">18 <em>months</em></div></div>
+    <div class="term-cell"><div class="term-l">Minimum Check</div><div class="term-v">$50,000</div></div>
+    <div class="term-cell"><div class="term-l">Execution</div><div class="term-v"><small>DocuSign</small></div></div>
+  </div>
+
+  <div class="body">
+
+    <!-- 01 WHAT IT IS -->
+    <div class="sec">
+      <div class="sec-num">01 — WHAT A CONVERTIBLE NOTE IS</div>
+      <h2 class="sec-h">A short-term loan that becomes equity — with a <em>backstop</em> either way.</h2>
+      <p class="lead">A convertible note is a loan you make to InPursuit today that is designed to convert into equity at a future financing — InPursuit's Series A. Unlike a SAFE, the note is debt: it carries interest and a maturity date, which means you hold a repayment claim if the priced round never closes.</p>
+      <div class="plain">
+        <div class="plain-l">In one sentence</div>
+        <p>You lend today at a <strong>$20M post-money valuation cap</strong>. When the Series A closes, your principal <strong>plus accrued interest</strong> automatically converts into preferred equity priced at that cap — regardless of how high the Series A is valued.</p>
+        <p>Interest accrues at <strong>5% per year</strong>. If no qualifying financing closes by the <strong>18-month maturity</strong>, the note comes due as a repayment obligation rather than simply waiting.</p>
+      </div>
+    </div>
+
+    <!-- 02 TRIGGER -->
+    <div class="sec">
+      <div class="sec-num">02 — WHAT TRIGGERS CONVERSION</div>
+      <h2 class="sec-h">The Series A is the conversion event.</h2>
+      <p>Your note converts automatically upon the closing of a qualified <strong>Equity Financing</strong> — defined as a priced equity round raising at least $1,000,000 in gross proceeds. InPursuit's Series A is targeted at <strong>$13M, closing in Q4 2026.</strong></p>
+      <p class="muted">When that round closes, conversion is automatic — it requires no action on your part. If no qualifying financing closes within <strong>18 months</strong>, the note matures: principal plus accrued interest becomes due, giving you a creditor's claim a SAFE does not carry.</p>
+    </div>
+
+    <!-- 03 MECHANISM -->
+    <div class="sec">
+      <div class="sec-num">03 — HOW CONVERSION WORKS</div>
+      <h2 class="sec-h">Four steps, fully automatic.</h2>
+      <div class="steps">
+        <div class="step"><div class="step-n">1</div><div class="step-b"><h4>Series A closes</h4><p>A qualified equity financing of $1M+ triggers the conversion. Target: $13M, Q4 2026.</p></div></div>
+        <div class="step"><div class="step-n">2</div><div class="step-b"><h4>Conversion price is set at the cap</h4><p>Your conversion price is the <strong>$20M post-money cap</strong> divided by the company's capitalization — <strong>not</strong> the (higher) Series A price. The cap alone governs.</p></div></div>
+        <div class="step"><div class="step-n">3</div><div class="step-b"><h4>Principal + accrued interest converts to preferred equity</h4><p>(Principal + 5% accrued interest) ÷ Conversion Price = the equity you receive, issued as Note Preferred — the same class and series as Series A investors. The accrued interest converts into additional shares.</p></div></div>
+        <div class="step"><div class="step-n">4</div><div class="step-b"><h4>You hold Series A preferred stock</h4><p>Upon InPursuit's planned C-Corp conversion at the Series A, your preferred units become preferred stock, with the rights of that round.</p></div></div>
+      </div>
+    </div>
+
+    <!-- FORMULA -->
+    <div class="sec">
+      <div class="formula">
+        <div class="formula-l">The Conversion Math</div>
+        <div class="formula-eq">
+          Equity received <span class="op">=</span>
+          <span class="frac"><span class="num">Principal + Accrued Interest</span><span class="den">$20M Cap ÷ Company Capitalization</span></span>
+        </div>
+        <div class="formula-note">Because this is a post-money cap, your share of the company is known up front:<br>(Principal + 5% accrued interest) ÷ $20M = your ownership floor at conversion.</div>
+      </div>
+    </div>
+
+    <!-- 04 WORKED EXAMPLE -->
+    <div class="sec">
+      <div class="sec-num">04 — WORKED EXAMPLE</div>
+      <h2 class="sec-h">What your check buys.</h2>
+      <p class="muted">A post-money note fixes your ownership floor at the cap — and your accrued interest converts on top of it. The table shows the floor each check size locks in if the Series A prices at or above the $20M cap, including interest accrued to the 18-month maturity ceiling.</p>
+      <div class="ex-wrap">
+        <div class="ex-head">Ownership at the <span class="g">$20M post-money cap</span></div>
+        <table class="ex-table">
+          <thead><tr><th>Your Investment</th><th class="r">+ 5% to maturity</th><th class="r">÷ Cap</th><th class="r">Ownership Floor</th></tr></thead>
+          <tbody>
+            <tr><td class="amt">$50,000</td><td class="r mono">$53,750</td><td class="r mono">$20,000,000</td><td class="r pct">0.27%</td></tr>
+            <tr><td class="amt">$100,000</td><td class="r mono">$107,500</td><td class="r mono">$20,000,000</td><td class="r pct">0.54%</td></tr>
+            <tr><td class="amt">$250,000</td><td class="r mono">$268,750</td><td class="r mono">$20,000,000</td><td class="r pct">1.34%</td></tr>
+            <tr><td class="amt">$500,000</td><td class="r mono">$537,500</td><td class="r mono">$20,000,000</td><td class="r pct">2.69%</td></tr>
+          </tbody>
+        </table>
+        <div class="ex-foot">Illustrative. Interest accrues from the note's issue date to conversion; the "+ 5% to maturity" column shows the 18-month ceiling — if the Series A closes sooner, less interest accrues and the floor moves toward the principal-only figures (0.25% / 0.50% / 1.25% / 2.50%). Final ownership is computed at conversion against the company's then-current capitalization, inclusive of the option pool and other convertibles. If the Series A prices below the cap, you convert at the lower round price and receive more. Figures are not a projection of value or return.</div>
+      </div>
+    </div>
+
+    <!-- 05 UPSIDE -->
+    <div class="sec">
+      <div class="sec-num">05 — WHY THE CAP MATTERS</div>
+      <h2 class="sec-h">You enter early. You're priced early.</h2>
+      <div class="upside">
+        <div class="up-card">
+          <div class="up-tag">If Series A prices at the cap</div>
+          <h4>You convert at $20M</h4>
+          <p>Your note converts at the same price as the new round. Your ownership floor holds exactly as shown above.</p>
+        </div>
+        <div class="up-card hi">
+          <div class="up-tag">If Series A prices above the cap</div>
+          <h4>You still convert at $20M</h4>
+          <p>New investors pay the higher Series A price; you keep the $20M cap. That spread — applied to your principal and your accrued interest alike — is the early-investor advantage the note is built to capture.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 06 WHAT ELSE -->
+    <div class="sec">
+      <div class="sec-num">06 — KEY TERMS</div>
+      <h2 class="sec-h">What else the Note carries.</h2>
+      <div class="flist">
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>Legally enforceable debt.</strong> The note creates a repayment obligation. In a wind-down you rank ahead of SAFE holders and equity as a creditor — a senior claim the SAFE does not carry.</p></div>
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>5% interest accrues — and converts.</strong> Interest accrues at 5% per year and, at the Series A, converts into additional equity at the cap, increasing the shares you receive beyond principal.</p></div>
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>18-month maturity backstop.</strong> If no qualifying financing closes, the note matures and principal plus accrued interest becomes due.</p></div>
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>Same $20M post-money cap.</strong> Converts at the same price as SAFE holders — cap parity is preserved, with no separate discount rate.</p></div>
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>MFN protection.</strong> If InPursuit later issues a note or convertible instrument on more favorable terms, you may elect to adopt those terms.</p></div>
+        <div class="fitem"><div class="fcheck"><svg viewBox="0 0 10 10" fill="none" stroke="#C5A44E" stroke-width="1.6"><path d="M2 5l2 2 4-4"/></svg></div><p><strong>Executed entirely via DocuSign.</strong> Subscription Agreement, Convertible Note, and Accredited Investor Questionnaire — no separate cap-table software required.</p></div>
+      </div>
+    </div>
+
+    <!-- 07 TAX -->
+    <div class="sec">
+      <div class="sec-num">07 — TAX TREATMENT</div>
+      <h2 class="sec-h">Three provisions — one available <em>now.</em></h2>
+      <p class="muted">A convertible note is debt, which gives it a downside provision a SAFE never has. §166 attaches to the debt itself; the other two activate once the note converts to stock and InPursuit completes its planned C-Corp conversion at the Series A.</p>
+      <div class="tax-grid">
+        <div class="tax-card">
+          <div class="tax-code">IRC §166 — Bad Debt</div>
+          <h4>Available now</h4>
+          <p>Because the note is bona fide debt, if it becomes wholly or partially worthless you may be able to claim an ordinary-loss bad-debt deduction — a path open to debt holders that SAFE holders never have.</p>
+          <span class="tax-pill">Available to debt holders</span>
+        </div>
+        <div class="tax-card">
+          <div class="tax-code">IRC §1202 — QSBS</div>
+          <h4>Capital-gains exclusion</h4>
+          <p>On conversion to qualifying C-Corp stock held five-plus years, gains may be eligible for exclusion of up to 100% (capped at the greater of $10M or 10× basis), subject to the statute's requirements.</p>
+          <span class="tax-pill">Upon C-Corp conversion</span>
+        </div>
+        <div class="tax-card">
+          <div class="tax-code">IRC §1244 — Ordinary Loss</div>
+          <h4>Downside protection</h4>
+          <p>If the investment results in a loss after conversion, §1244 may allow up to $50,000 ($100,000 for joint filers) to be deducted as an ordinary loss rather than a capital loss.</p>
+          <span class="tax-pill">Upon C-Corp conversion</span>
+        </div>
+      </div>
+      <div class="tax-note">
+        <p><strong>Not tax advice.</strong> §166 requires a bona fide debt and a determination of worthlessness; §1202 and §1244 depend on the company's final tax election and structure at conversion, holding periods, and your individual circumstances. InPursuit Health, LLC's entity tax status is being confirmed with counsel. Consult your own tax advisor before relying on any treatment described here.</p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- FOOTER -->
+  <div class="docfoot">
+    <div class="df-top">
+      <div>
+        <div class="df-mark">InPursuit Health</div>
+        <div class="df-tag">Harness the Power of Your Data™</div>
+      </div>
+      <div class="df-contact">
+        Investment inquiries<br>
+        <a href="mailto:invest@InPursuitHealth.com">invest@InPursuitHealth.com</a>
+      </div>
+    </div>
+    <div class="df-disc">
+      This document is for informational purposes only and does not constitute an offer to sell or a solicitation of an offer to buy any security. Any offering is made solely to accredited investors pursuant to definitive transaction documents, which govern in all respects and control over any summary here. Terms are subject to change. Forward-looking statements involve risk and uncertainty. Nothing herein is legal, tax, or investment advice.
+    </div>
+    <div class="df-meta">CONVERTIBLE NOTE CONVERSION EXPLAINED · $20M POST-MONEY CAP · 5% · 18-MO · SERIES A TARGET $13M Q4 2026 · F260617</div>
+  </div>
+
+</div>
+</body>
+</html>
