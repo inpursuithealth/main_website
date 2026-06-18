@@ -9,15 +9,15 @@ Every HTML file added to `data-room/` must include a fixed "Return to Data Room"
 ```
 
 - The button links to `../investor-portal.html` (one level up from `data-room/`).
-- The investor portal uses `localStorage` key `ip_portal_unlocked` to remember authenticated sessions — returning investors skip the gate automatically.
+- The investor portal uses `localStorage` key `ip_portal_unlocked` to remember authenticated sessions — returning investors skip the gate automatically within 3 hours of login.
 - Never add this button to files outside of `data-room/`.
 
 ## Investor Portal Auth
 
-- Auth state is persisted in `localStorage` under `ip_portal_unlocked` (value `'1'`) and `ip_portal_contact` (JSON of `{first, last, email}`).
-- Set both keys in `openDataRoom()` on successful login.
-- The auto-unlock block at the bottom of the portal script checks these keys on page load and skips the gate if present.
-- Do NOT clear these keys on page load — only clear them on explicit logout.
+- Auth state is persisted in `localStorage` under `ip_portal_unlocked` (value `'1'`), `ip_portal_contact` (JSON of `{first, last, email}`), and `ip_portal_ts` (login timestamp as ms string).
+- Set all three keys in `openDataRoom()` on successful login.
+- Sessions expire after **3 hours**. The auto-unlock block checks `ip_portal_ts` on page load; if missing or older than 3 hours, all three keys are cleared and the gate is shown.
+- Do NOT clear these keys on page load unless the session has expired — only clear on expiry or explicit logout.
 
 ## Stat Cards (for-providers.html)
 

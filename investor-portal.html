@@ -2470,6 +2470,7 @@ function showStep(n) {
 function openDataRoom() {
   localStorage.setItem('ip_portal_unlocked', '1');
   localStorage.setItem('ip_portal_contact', JSON.stringify(contact));
+  localStorage.setItem('ip_portal_ts', Date.now().toString());
 
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
@@ -2501,8 +2502,17 @@ window.addEventListener('popstate', (e) => {
   }
 });
 
-// ── AUTO-UNLOCK ON RETURN VISIT ─────────────────
+// ── AUTO-UNLOCK ON RETURN VISIT (3-hour session) ─────────────────
 (function() {
+  const SESSION_MS = 3 * 60 * 60 * 1000; // 3 hours
+  const ts = parseInt(localStorage.getItem('ip_portal_ts') || '0', 10);
+  const expired = !ts || (Date.now() - ts) > SESSION_MS;
+  if (expired) {
+    localStorage.removeItem('ip_portal_unlocked');
+    localStorage.removeItem('ip_portal_contact');
+    localStorage.removeItem('ip_portal_ts');
+    return;
+  }
   if (localStorage.getItem('ip_portal_unlocked') === '1') {
     try {
       const saved = JSON.parse(localStorage.getItem('ip_portal_contact') || '{}');
