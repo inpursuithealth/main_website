@@ -129,6 +129,9 @@
 
 /* ===== GLANCE ===== */
 .glance-section{background:var(--white);}
+.glance-icon{width:52px;height:52px;border-radius:14px;background:rgba(197,164,78,.08);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.glance-icon svg{width:26px;height:26px;fill:var(--gold);}
+.glance-title{font-family:'Instrument Serif',serif;font-size:21px;color:var(--navy);line-height:1.2;margin-bottom:10px;}
 .glance-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-top:48px;}
 .glance-card{padding:32px 24px;border:1px solid rgba(0,0,0,.06);border-radius:8px;text-align:center;transition:all .3s;}
 .glance-card:hover{border-color:rgba(197,164,78,.3);box-shadow:0 8px 32px rgba(197,164,78,.08);transform:translateY(-4px);}
@@ -337,46 +340,27 @@
       </div>
     </div>
 
-    <!-- SLIDE 3 (was 5): Value-Based Care Providers -->
+    <!-- SLIDE 2: J. Krug Distribution Partnership -->
     <div class="hero-slide" data-slide="2">
       <div class="hero-content">
         <div class="hero-text">
-          <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.35);">
-            <span class="pulse-dot" style="background:var(--gold);box-shadow:0 0 0 0 rgba(197,164,78,0.4);"></span>
-            VBC &middot; OAP &middot; HEOR
-          </div>
-          <div class="slide-overline">YOUR BIGGEST OPPORTUNITY IN HEALTHCARE&trade;</div>
-          <h1>Better care.<br><em>Better reimbursement.</em></h1>
-          <p class="hero-tagline">Value-based and outcome-based contracts are rewriting how providers get paid — closes care gaps before periods end, and puts you in the strongest negotiating position of your career.</p>
-          <p class="hero-tagline-bold">"The data advantage is already there.<br>We make sure you get credit for it."</p>
-          <div class="hero-cta-row">
-            <a class="btn-gold" href="for-providers.html">See Your VBC Opportunity →</a>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- SLIDE 4 (was 2): Main Infrastructure Thesis -->
-    <div class="hero-slide" data-slide="3">
-      <div class="hero-content">
-        <div class="hero-text">
-          <div class="hero-badge">
+          <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
             <span class="pulse-dot"></span>
-            Enterprise Healthcare Orchestration
+            Distribution Partnership
           </div>
-          <h1><em>InPursuit Orchestrates Patient-First Healthcare and Wellness.</em></h1>
-          <p class="hero-tagline">Our infrastructure closes the gap between clinical intent and patient outcomes — delivering HIPAA-compliant care coordination, federally validated chronic disease management, and real-time population health intelligence across every care setting.</p>
-          <p class="hero-tagline-bold">"We don't compete with AI.<br>We're the layer AI needs to exist in healthcare."</p>
+          <div class="slide-overline">NOW REACHING EMPLOYERS &amp; THEIR TEAMS</div>
+          <h1>Proud to partner with<br><em>J. Krug.</em></h1>
+          <p class="hero-tagline">Our first benefits-broker distribution partner is bringing the InPursuit app to employers and the people they cover — putting one complete, owned health record into more hands, through the benefits channel they already trust.</p>
+          <p class="hero-tagline-bold">One record. Owned by you.<br>Now through your benefits.</p>
           <div class="hero-cta-row">
-            <a class="btn-gold" href="for-providers.html">Explore Our Architecture →</a>
-
+            <a class="btn-gold" href="#" onclick="event.preventDefault(); document.getElementById('contactModal').classList.add('show');">Explore Partnership →</a>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- SLIDE 5 (was 3): MAHA Alignment -->
-    <div class="hero-slide" data-slide="4">
+    <!-- SLIDE 3: MAHA Alignment -->
+    <div class="hero-slide" data-slide="3">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -403,7 +387,6 @@
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
-      <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -420,27 +403,27 @@
 
 <div class="trust-bar reveal">
   <div class="trust-bar-inner">
-    <div class="trust-bar-label">Federally Validated Technology</div>
+    <div class="trust-bar-label">Built on the standards that move your health data</div>
     <div class="trust-logos">
       <div class="trust-logo">
         <div class="trust-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg></div>
-        <span>Dept. of Defense</span>
+        <span>HIPAA Aligned</span>
       </div>
       <div class="trust-logo">
         <div class="trust-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-        <span>Veterans Affairs</span>
+        <span>TEFCA Connected</span>
       </div>
       <div class="trust-logo">
         <div class="trust-logo-icon"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-        <span>CMS Health IT</span>
+        <span>CMS Health IT Ecosystem</span>
       </div>
       <div class="trust-logo">
         <div class="trust-logo-icon"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93z"/></svg></div>
-        <span>TEFCA Compliant</span>
+        <span>FHIR Native</span>
       </div>
       <div class="trust-logo">
         <div class="trust-logo-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
-        <span>FHIR Native</span>
+        <span>Your Data, Owned</span>
       </div>
     </div>
   </div>
@@ -468,9 +451,9 @@
           <svg viewBox="0 0 24 24"><path d="M20 6h-4V4c0-1.1-.9-2-2-2h-4c-1.1 0-2 .9-2 2v2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-6 0h-4V4h4v2z"></path></svg>
         </div>
         <div class="apply-card-tag">For Providers</div>
-        <h3>Succeed in Value-Based Care.</h3>
+        <h3>Value-based care, without building it yourself.</h3>
         <p style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;">Results Matter&trade;</p>
-        <p>You're being graded on patients you can't see, on data you can't access, in time you don't have.<br><br>Value-based care works on paper. In practice it's 47 open care gaps, a quality report that's three months old, and a shared savings check that didn't come.<br><br>Our platform closes the gaps automatically. You just see the patients, increase margins and produce better outcomes!</p>
+        <p>You're being graded on patients you can't see, on data you can't access, in time you don't have.<br><br>The InPursuit Partner Network gives independent practices the continuous-care capability — chronic care, remote monitoring, advanced primary care — they could never build alone. You don't buy a product. You join a network.<br><br>Additive, not extractive: you keep your patients and 100% of your fee-for-service.</p>
         <a class="apply-card-link" href="for-providers.html">Provider Solutions →</a>
       </div>
     </div>
@@ -542,27 +525,27 @@
 <section class="section glance-section" id="glance">
   <div class="section-inner">
     <p class="section-overline reveal visible">At a Glance</p>
-    <h2 class="section-headline reveal visible">Built different. <em>Proven</em> at scale.</h2>
+    <h2 class="section-headline reveal visible">Built different. <em>Built</em> for you.</h2>
     <div class="glance-grid reveal visible">
       <div class="glance-card">
-        <div class="glance-num">41K+</div>
-        <div class="glance-label">Server Instances</div>
-        <div class="glance-desc">Our platform worked so well inside DoD/VA infrastructure the government expanded it to 41,000+ server instances — validated by the U.S. Court of Federal Claims.</div>
+        <div class="glance-icon"><svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg></div>
+        <div class="glance-title">CMS Health IT Ecosystem</div>
+        <div class="glance-desc">Selected as a First Wave participant to help modernize how Americans access and own their health data.</div>
       </div>
       <div class="glance-card">
-        <div class="glance-num">1.8M+</div>
-        <div class="glance-label">Transactions / Hour</div>
-        <div class="glance-desc">Real-time data orchestration at federal scale — built for the most demanding healthcare environment on Earth.</div>
+        <div class="glance-icon"><svg viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg></div>
+        <div class="glance-title">On Every App Store</div>
+        <div class="glance-desc">Launching on the Apple App Store, Google Play, and the Medicare App Library — mid-July 2026.</div>
       </div>
       <div class="glance-card">
-        <div class="glance-num">140M+</div>
-        <div class="glance-label">Beneficiaries Accessible</div>
-        <div class="glance-desc">CMS Health Tech Ecosystem approval grants access to Medicare &amp; Medicaid populations.</div>
+        <div class="glance-icon"><svg viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/></svg></div>
+        <div class="glance-title">TEFCA &amp; FHIR Native</div>
+        <div class="glance-desc">Built from the ground up on the national standards for moving health data — not retrofitted.</div>
       </div>
       <div class="glance-card">
-        <div class="glance-num">20+</div>
-        <div class="glance-label">Years of Innovation</div>
-        <div class="glance-desc">Two decades of healthcare technology expertise, from federal to commercial markets.</div>
+        <div class="glance-icon"><svg viewBox="0 0 24 24"><path d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z"/></svg></div>
+        <div class="glance-title">Never Sold. Ever.</div>
+        <div class="glance-desc">Your data is yours. Our infrastructure is our product — never your information.</div>
       </div>
     </div>
   </div>
@@ -572,15 +555,15 @@
 <section class="section why-section" id="why">
   <div class="section-inner">
     <p class="section-overline reveal visible">Why InPursuit</p>
-    <h2 class="section-headline reveal visible">Federally validated. <em>Market</em> ready.</h2>
-    <p class="section-desc reveal visible">We didn’t start in a garage. We started in the Department of Defense — and proved it works at the highest stakes in healthcare.</p>
+    <h2 class="section-headline reveal visible">Not another app. The <em>infrastructure</em> underneath.</h2>
+    <p class="section-desc reveal visible">We’re not another wellness app or another patient portal. We’re the orchestration layer that finally connects your health data — and lets you, not a data broker, decide what happens to it.</p>
     <div class="why-grid">
-      <div class="why-card reveal visible"><div class="why-num">01</div><h4>Court-Validated IP</h4><p>Our platform worked so well inside DoD/VA infrastructure the government expanded deployment to 41,000+ server instances — they just chose not to pay for it. The U.S. Court of Federal Claims confirmed the widespread usage of our technology, and ordered severe sanctions for evidence destruction.</p></div>
-      <div class="why-card reveal visible"><div class="why-num">02</div><h4>CMS Approved</h4><p>Health Tech Ecosystem approval provides direct access to 140M+ Medicare and Medicaid beneficiaries.</p></div>
-      <div class="why-card reveal visible"><div class="why-num">03</div><h4>Model-Agnostic</h4><p>We don’t pick winners. Any AI model — GPT, Claude, Gemini, open source — can plug into our orchestration layer. We are the rails, not the train.</p></div>
-      <div class="why-card reveal visible"><div class="why-num">04</div><h4>Former HHS CIO Leadership</h4><p>Jose Arietta, former HHS Chief Information Officer, on our leadership team providing unmatched federal healthcare insight.</p></div>
+      <div class="why-card reveal visible"><div class="why-num">01</div><h4>You Own Your Data</h4><p>One complete health record — every provider, every lab, every prescription — that follows you for life. You decide who sees it, and you can take it with you anywhere.</p></div>
+      <div class="why-card reveal visible"><div class="why-num">02</div><h4>Model-Agnostic</h4><p>We don’t pick winners. Any AI model — GPT, Claude, Gemini, open source — can plug into our orchestration layer. We are the rails, not the train.</p></div>
+      <div class="why-card reveal visible"><div class="why-num">03</div><h4>CMS Health IT Ecosystem</h4><p>Selected as a First Wave participant to help modernize how Americans access and use their health data — chosen for what we’ve already built.</p></div>
+      <div class="why-card reveal visible"><div class="why-num">04</div><h4>Federal-Health Leadership</h4><p>Jose Arrieta, former HHS Chief Information Officer, on our leadership team — bringing unmatched insight into how health data moves at national scale.</p></div>
       <div class="why-card reveal visible"><div class="why-num">05</div><h4>TEFCA &amp; FHIR Native</h4><p>Built from the ground up on modern interoperability standards — not retrofitted. Designed for where healthcare is going.</p></div>
-      <div class="why-card reveal visible"><div class="why-num">06</div><h4>Data Oath</h4><p>We will never sell patient data. Ever. Your data is not our product. Our infrastructure is our product. That’s the difference.</p></div>
+      <div class="why-card reveal visible"><div class="why-num">06</div><h4>The Data Oath</h4><p>We will never sell patient data. Ever. Your data is not our product. Our infrastructure is. That’s the difference.</p></div>
     </div>
   </div>
 </section>
@@ -590,7 +573,7 @@
   <div class="cms-inner">
 
     <!-- The Indictment -->
-    <div class="cms-overline reveal">CMS Health Tech Ecosystem &middot; Approved Member</div>
+    <div class="cms-overline reveal">CMS Health IT Ecosystem &middot; Approved Member</div>
     <h2 class="cms-headline reveal">The moment healthcare finally<br>moves in the right <em>direction.</em></h2>
     <div class="cms-subhead reveal">
       In July 2025, the White House and CMS launched the Health Tech Ecosystem &mdash; a call to modernize how 140+ million Americans access their health data. InPursuit was selected as an approved member. <strong>Not because of our size, but because of what we&rsquo;ve already built.</strong> While others are pledging to solve interoperability, data ownership, and patient access, InPursuit has been delivering it &mdash; <strong>in production, for real patients, right now.</strong>
@@ -605,7 +588,7 @@
           <div class="cms-stamp-shield">
             <svg viewBox="0 0 24 24"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/></svg>
           </div>
-          <div class="cms-stamp-label">CMS Health<br>Tech Ecosystem</div>
+          <div class="cms-stamp-label">CMS Health<br>IT Ecosystem</div>
           <div class="cms-stamp-status">&#10003; Pledge</div>
         </div>
 
@@ -745,7 +728,7 @@
   <div class="cta-content reveal">
     <p class="section-overline">Get Started</p>
     <h2>Your health data has been<br>locked away long enough.</h2>
-    <p>Whether you&rsquo;re a patient taking control of your wellness or a provider transitioning to value-based care &mdash; InPursuit is the platform that connects it all.</p>
+    <p>Whether you&rsquo;re a patient taking control of your wellness or a provider transitioning to value-based care &mdash; InPursuit is the infrastructure that connects it all.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
       <a class="btn-gold btn-cta-large" href="#" onclick="event.preventDefault(); document.getElementById('forYouDialog').classList.add('show');">
         <span class="btn-cta-label">For You</span>
@@ -842,7 +825,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=5,stm=null,sp=false,SMS=10000;
+var sc=0,st=4,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
