@@ -1211,6 +1211,84 @@
     .archive-ml-item::before { top: 0; left: 0; }
   }
   @media (max-width: 500px) { .archive-doc-grid { grid-template-columns: 1fr; } }
+
+  /* ── PATH SELECTOR (step-0) ── */
+  .path-choice-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: .25rem;
+  }
+
+  .path-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .55rem;
+    background: rgba(255,255,255,.04);
+    border: 1.5px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    padding: 1.25rem 1.1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color .22s, background .22s, transform .18s, box-shadow .22s;
+    position: relative;
+    overflow: hidden;
+  }
+  .path-choice::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity .22s;
+  }
+  .path-choice:hover {
+    border-color: rgba(197,164,78,.35);
+    background: rgba(197,164,78,.04);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  }
+  .path-choice:hover::before { opacity: 1; }
+  .path-choice:active { transform: translateY(0); }
+
+  .path-choice-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: rgba(197,164,78,.1);
+    border: 1px solid rgba(197,164,78,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .path-choice-label {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+
+  .path-choice-sub {
+    font-size: .72rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .path-choice-arrow {
+    position: absolute;
+    right: 1rem; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(197,164,78,.35);
+    transition: color .2s, transform .2s;
+  }
+  .path-choice:hover .path-choice-arrow {
+    color: var(--gold);
+    transform: translateY(-50%) translateX(2px);
+  }
+
+  @media (max-width: 500px) {
+    .path-choice-row { grid-template-columns: 1fr; }
+  }
 </style>
 </head>
 <body>
@@ -1220,8 +1298,47 @@
 ══════════════════════════════════════ -->
 <div id="gate-container">
 
+  <!-- ── STEP 0: PATH SELECTOR ── -->
+  <div class="step active" id="step-0">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Secure Portal</div>
+        <h2 class="card-title">Welcome</h2>
+        <p class="card-sub">Please select how you are accessing this portal. You will need an invitation code for either path.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="path-choice-row">
+          <button class="path-choice" id="path-investor">
+            <div class="path-choice-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div class="path-choice-label">Accredited Investor</div>
+            <div class="path-choice-sub">I am reviewing this as a potential investor in InPursuit Health.</div>
+            <svg class="path-choice-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <button class="path-choice" id="path-advocate">
+            <div class="path-choice-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="path-choice-label">InPursuit Advocate</div>
+            <div class="path-choice-sub">I am an advocate, advisor, or strategic partner of InPursuit Health.</div>
+            <svg class="path-choice-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <p class="gate-note">
+      All materials are confidential.
+      Questions? <a href="/cdn-cgi/l/email-protection#563f3820332522163f3826232425233f223e33373a223e7835393b">invest&#64;inpursuithealth.com</a>
+    </p>
+  </div>
+
   <!-- ── STEP 1: ACCESS CODE ── -->
-  <div class="step active" id="step-1">
+  <div class="step" id="step-1">
     <div class="gate-logo">
       <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
     </div>
@@ -1432,6 +1549,53 @@
       </div>
     </div>
     <p class="gate-note">Confidential · For Accredited Investors Only</p>
+  </div>
+
+  <!-- ── STEP ADV: ADVOCATE ACKNOWLEDGMENT ── -->
+  <div class="step" id="step-adv">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card" style="max-width:540px;width:100%">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Advocate Portal</div>
+        <h2 class="card-title">Confidentiality Acknowledgment</h2>
+        <p class="card-sub">Before accessing these materials, please confirm your understanding of their confidential nature and your role as an advocate.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="cert-box">
+          <h4>Access as an Advocate or Strategic Partner</h4>
+          <p>The materials in this portal have been shared with you as an advocate, advisor, or strategic partner of <strong>InPursuit Health, LLC</strong>. These materials are provided for informational and relationship purposes only.</p>
+
+          <h4>Important — Not an Investment Offer</h4>
+          <p>These materials <strong>do not constitute an offer to sell or solicitation of an offer to buy any security</strong>. Access as an advocate does not establish any investor relationship with InPursuit Health.</p>
+
+          <h4>Confidentiality</h4>
+          <p>All materials you access are strictly confidential. You agree not to reproduce, distribute, or disclose any content to any third party without the prior written consent of InPursuit Health, LLC.</p>
+          <p>Unauthorized distribution of these materials is prohibited and may result in legal liability.</p>
+        </div>
+
+        <label class="check-wrap">
+          <input type="checkbox" id="adv-check">
+          <span>I understand that I am accessing these materials as an <strong>advocate or strategic partner</strong>, not as an investor, and I agree to maintain strict confidentiality of all materials in this portal.</span>
+        </label>
+
+        <div class="err-msg" id="adv-err">You must acknowledge the above to proceed.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+        </div>
+        <button class="btn-go" id="btn-adv" disabled>
+          <span class="btn-text">Enter Portal →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Confidential · Advocate Access</p>
   </div>
 
 </div><!-- /gate-container -->
@@ -2271,7 +2435,9 @@ const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
 const LOGO = null;
 
 // ── ACCESS CODES ───────────────────────────────
-const VALID_CODES = ['julio','shawn','omega','fsm','robert','flournoy','zolezzi','dealright','corsi','carson','logan','holt','malik','lane','haymon','blaino','gargan'];
+const ADVOCATE_CODES  = ['flournoy','haymon'];
+const INVESTOR_CODES  = ['julio','shawn','omega','fsm','robert','zolezzi','dealright','corsi','carson','logan','holt','malik','lane','blaino','gargan'];
+const VALID_CODES     = [...INVESTOR_CODES, ...ADVOCATE_CODES];
 
 // ── FORMSPREE ──────────────────────────────────
 const FORMSPREE = 'https://formspree.io/f/mvzwobkj';
@@ -2280,6 +2446,7 @@ const FORMSPREE = 'https://formspree.io/f/mvzwobkj';
 let accessCode = '';
 let contact    = {};
 let sessionId  = null;
+let portalPath = 'investor'; // 'investor' | 'advocate'
 
 // ── INJECT LOGOS ───────────────────────────────
 // Logo: replace img tags with styled text mark
@@ -2305,6 +2472,19 @@ eye.addEventListener('click', () => {
 // Enter key on code
 codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('btn-s1').click(); });
 
+// ── STEP 0: PATH SELECTOR ──────────────────────
+document.getElementById('path-investor').addEventListener('click', () => {
+  portalPath = 'investor';
+  document.getElementById('code-err').textContent = 'Invalid access code. Please contact your InPursuit Health representative.';
+  showStep(1);
+});
+
+document.getElementById('path-advocate').addEventListener('click', () => {
+  portalPath = 'advocate';
+  document.getElementById('code-err').textContent = 'Invalid advocate access code. Please contact your InPursuit Health representative.';
+  showStep(1);
+});
+
 // ── STEP 1 ─────────────────────────────────────
 document.getElementById('btn-s1').addEventListener('click', () => {
   const val = codeInput.value.trim().toLowerCase();
@@ -2312,7 +2492,8 @@ document.getElementById('btn-s1').addEventListener('click', () => {
   codeInput.classList.remove('error','ok');
   err.classList.remove('show');
 
-  if (!VALID_CODES.includes(val)) {
+  const pool = portalPath === 'advocate' ? ADVOCATE_CODES : INVESTOR_CODES;
+  if (!pool.includes(val)) {
     codeInput.classList.add('error');
     err.classList.add('show');
     return;
@@ -2384,7 +2565,7 @@ document.getElementById('btn-s2').addEventListener('click', () => {
   }
 
   contact = { first, last, email, phone: '', firm: '' };
-  showStep(3);
+  showStep(portalPath === 'advocate' ? 'adv' : 3);
 });
 
 // ── STEP 3: DISCLOSURES ────────────────────────
@@ -2410,6 +2591,7 @@ document.getElementById('btn-s4').addEventListener('click', async () => {
   const payload = {
     _subject: `Investor Portal Access — ${contact.first} ${contact.last}`,
     'Access Code': accessCode.charAt(0).toUpperCase() + accessCode.slice(1),
+    'Portal Path': 'Accredited Investor',
     'First Name': contact.first,
     'Last Name': contact.last,
     'Email': contact.email,
@@ -2417,6 +2599,40 @@ document.getElementById('btn-s4').addEventListener('click', async () => {
     'Firm': contact.firm || '—',
     'Disclosures Acknowledged': 'Yes',
     'Accredited Investor Certified': 'Yes',
+    'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
+    '_replyto': contact.email,
+  };
+
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Formspree error:', e); }
+
+  await createSession();
+  openDataRoom();
+});
+
+// ── STEP ADV: ADVOCATE ACKNOWLEDGMENT ──────────
+document.getElementById('adv-check').addEventListener('change', function() {
+  document.getElementById('btn-adv').disabled = !this.checked;
+  document.getElementById('adv-err').classList.remove('show');
+});
+
+document.getElementById('btn-adv').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-adv');
+  btn.classList.add('loading'); btn.disabled = true;
+
+  const payload = {
+    _subject: `Advocate Portal Access — ${contact.first} ${contact.last}`,
+    'Access Code': accessCode.charAt(0).toUpperCase() + accessCode.slice(1),
+    'Portal Path': 'Advocate',
+    'First Name': contact.first,
+    'Last Name': contact.last,
+    'Email': contact.email,
+    'Confidentiality Acknowledged': 'Yes',
     'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
     '_replyto': contact.email,
   };
@@ -2552,7 +2768,7 @@ function wireDocTracking() {
 function showStep(n) {
   document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
   const el = document.getElementById('step-' + n);
-  el.classList.add('active');
+  if (el) el.classList.add('active');
 }
 
 function openDataRoom() {
@@ -2562,6 +2778,9 @@ function openDataRoom() {
 
   document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
   document.getElementById('display-email').textContent = contact.email;
+
+  const badge = document.querySelector('.portal-badge');
+  if (badge) badge.lastChild.textContent = portalPath === 'advocate' ? 'Advocate Access' : 'Verified Investor Access';
 
   history.pushState({ portal: true }, '', window.location.pathname);
 
