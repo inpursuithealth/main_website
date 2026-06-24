@@ -2732,6 +2732,35 @@ function wireDocTracking() {
     });
   });
 
+  document.querySelectorAll('a.archive-doc-card[href]').forEach(link => {
+    const title    = link.querySelector('.archive-doc-title')?.textContent?.trim() || link.href;
+    const badge    = link.querySelector('.archive-doc-badge')?.textContent?.trim() || 'Archive';
+    const slug     = link.getAttribute('href').split('/').pop().replace('.html','');
+
+    link.addEventListener('click', async (e) => {
+      if (!sessionId) return;
+      const viewId   = await trackDocOpen(slug, title, badge);
+      const openedAt = Date.now();
+
+      if (!viewId) return;
+
+      const poll = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, 500);
+
+      window.addEventListener('visibilitychange', function onVis() {
+        if (document.visibilityState === 'visible') {
+          window.removeEventListener('visibilitychange', onVis);
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, { once: true });
+    });
+  });
+
   document.querySelectorAll('a.btn-invest[href]').forEach(link => {
     const href = link.getAttribute('href');
 
