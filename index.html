@@ -6,7 +6,7 @@
 <title>InPursuit Health — Harness the Power of Your Data™</title>
 <link rel="icon" type="image/x-icon" href="/favicon.ico">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 <style>
 /* ===== HERO ===== */
@@ -250,6 +250,26 @@
   .app-preview-inner{gap:40px;}
   .app-phone-img{max-width:280px;}
 }
+
+/* ===== IDENTITY LEAD SLIDE ===== */
+.hero-slide-identity h1 em{color:inherit;font-style:italic;}
+.hero-slide-identity .hero-tagline{max-width:540px;margin-left:auto;margin-right:auto;}
+.hero-identity-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:10px;}
+.hi-cta{display:flex;flex-direction:column;align-items:flex-start;gap:3px;
+  padding:15px 26px;border-radius:8px;text-decoration:none;min-width:230px;
+  transition:transform .25s,box-shadow .25s;}
+.hi-cta:hover{transform:translateY(-2px);}
+.hi-cta-label{font-size:15px;font-weight:700;letter-spacing:.3px;}
+.hi-cta-tag{font-family:'JetBrains Mono',monospace;font-size:9.5px;font-weight:500;
+  letter-spacing:1.4px;text-transform:uppercase;}
+.hi-cta-gold{background:var(--gold,#C5A44E);color:var(--navy-deep,#060E1A);
+  box-shadow:0 8px 28px rgba(197,164,78,.22);}
+.hi-cta-gold:hover{box-shadow:0 12px 34px rgba(197,164,78,.3);}
+.hi-cta-gold .hi-cta-tag{color:rgba(6,14,26,.7);}
+.hi-cta-outline{background:transparent;border:1px solid rgba(197,164,78,.4);color:var(--white,#fff);}
+.hi-cta-outline:hover{border-color:var(--gold,#C5A44E);}
+.hi-cta-outline .hi-cta-tag{color:var(--gold,#C5A44E);}
+@media(max-width:680px){.hi-cta{min-width:100%;}}
 </style>
   <meta property="og:image" content="https://bolt.new/static/og_default.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -267,8 +287,32 @@
   <!-- ===== HERO SLIDER ===== -->
   <div class="hero-slider" id="heroSlider">
 
+    <!-- SLIDE 1 (NEW LEAD): Identity -->
+    <div class="hero-slide hero-slide-identity active" data-slide="0">
+      <div class="hero-content">
+        <div class="hero-text">
+
+          <h1>One healthcare company.<br><em>Two ways in.</em></h1>
+
+          <p class="hero-tagline">InPursuit delivers person-centric<br>healthcare and wellness services.</p>
+
+          <div class="hero-cta-row hero-identity-cta">
+            <a class="hi-cta hi-cta-gold" href="for-you.html">
+              <span class="hi-cta-label">For You</span>
+              <span class="hi-cta-tag">Harness the Power of Your Data&trade;</span>
+            </a>
+            <a class="hi-cta hi-cta-outline" href="for-providers.html">
+              <span class="hi-cta-label">For Providers</span>
+              <span class="hi-cta-tag">Results Matter&trade;</span>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- SLIDE 0: The Download Trap -->
-    <div class="hero-slide active" data-slide="0">
+    <div class="hero-slide" data-slide="1">
       <div class="hero-content">
         <div class="hero-text">
 
@@ -322,8 +366,8 @@
     </div>
     <!-- END SLIDE 0 -->
 
-    <!-- SLIDE 2 (was 4): For You -->
-    <div class="hero-slide" data-slide="1">
+    <!-- SLIDE 3: For You -->
+    <div class="hero-slide" data-slide="2">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.2);">
@@ -340,8 +384,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 2: J. Krug Distribution Partnership -->
-    <div class="hero-slide" data-slide="2">
+    <!-- SLIDE 4: J. Krug Distribution Partnership -->
+    <div class="hero-slide" data-slide="3">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -359,8 +403,8 @@
       </div>
     </div>
 
-    <!-- SLIDE 3: MAHA Alignment -->
-    <div class="hero-slide" data-slide="3">
+    <!-- SLIDE 5: MAHA Alignment -->
+    <div class="hero-slide" data-slide="4">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -387,6 +431,7 @@
       <button class="slider-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
+      <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -825,7 +870,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=4,stm=null,sp=false,SMS=10000;
+var sc=0,st=5,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
