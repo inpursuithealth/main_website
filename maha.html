@@ -331,6 +331,29 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 .img-strip-text h3 em{font-style:italic;color:var(--gold);}
 .img-strip-text p{font-size:14px;color:var(--text-dim);line-height:1.6;}
 @media(max-width:600px){.img-strip{height:280px;}.img-strip-text{bottom:24px;left:24px;right:24px;}.img-strip-text h3{font-size:22px;}}
+
+/* RHTP */
+.rhtp{position:relative;padding:120px 60px;background:linear-gradient(180deg,var(--navy-deep) 0%,#071020 100%);border-top:1px solid var(--gold-border);overflow:hidden;}
+.rhtp::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 80% 50%,rgba(197,164,78,0.06),transparent 60%);pointer-events:none;}
+.rhtp-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;}
+.rhtp .section-overline{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.rhtp-stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--gold-border);border:1px solid var(--gold-border);border-radius:12px;overflow:hidden;margin:52px 0 48px;}
+.rhtp-stat{background:rgba(10,22,40,0.9);padding:32px 24px;text-align:center;}
+.rhtp-stat-num{font-family:'Instrument Serif',serif;font-size:clamp(2rem,3.5vw,2.8rem);color:var(--gold);letter-spacing:-0.02em;line-height:1;margin-bottom:8px;}
+.rhtp-stat-label{font-size:12px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;line-height:1.4;}
+.rhtp-model{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:16px;padding:40px 44px;}
+.rhtp-model-label{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin-bottom:28px;}
+.rhtp-steps{display:flex;flex-direction:column;gap:0;}
+.rhtp-step{display:flex;gap:24px;align-items:flex-start;padding:20px 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.rhtp-step:last-child{border-bottom:none;padding-bottom:0;}
+.rhtp-step-num{font-family:'Instrument Serif',serif;font-size:2rem;color:rgba(197,164,78,0.25);line-height:1;min-width:44px;padding-top:2px;}
+.rhtp-step-body h4{font-size:15px;font-weight:600;color:var(--white);margin-bottom:6px;letter-spacing:.01em;}
+.rhtp-step-body p{font-size:14px;color:var(--text-dim);line-height:1.65;margin:0;}
+.rhtp-footer{margin-top:40px;text-align:center;}
+.rhtp-link{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--gold);text-decoration:none;letter-spacing:.04em;border:1px solid rgba(197,164,78,0.3);padding:11px 22px;border-radius:8px;transition:background .2s,border-color .2s;}
+.rhtp-link:hover{background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.7);}
+@media(max-width:900px){.rhtp{padding:80px 32px;}.rhtp-stat-row{grid-template-columns:repeat(2,1fr);}.rhtp-model{padding:28px 24px;}}
+@media(max-width:600px){.rhtp{padding:60px 20px;}.rhtp-stat-row{grid-template-columns:repeat(2,1fr);}.rhtp-stat{padding:24px 16px;}.rhtp-step-num{font-size:1.5rem;min-width:36px;}}
 </style>
 </head>
 <body>
@@ -554,6 +577,25 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 <div class="pr-card rv rv-d1"><div class="pr-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>AI Supervisory Control</h4><p>Our AI governance layer — the supervision framework for clinical AI. Hallucination detection, drift monitoring, immutable audit trails.</p><span class="pr-tag">AI Governance Ready</span></div>
 <div class="pr-card rv rv-d2"><div class="pr-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div><h4>Pre-Built ACCESS Application</h4><p>InPursuit pre-populates ~40% of the CMS ACCESS application. Ready for both Cohort 1 and Cohort 2.</p><span class="pr-tag">Both Cohorts</span></div>
 </div></div></section>
+
+<section class="rhtp" id="rural-health"><div class="rhtp-inner">
+<div class="s-header rv"><div class="section-overline">New Initiative · Rural Health Transformation Program</div><h2 class="s-h2">$50 billion is moving to rural America.<br><em>The deadline is October 2026.</em></h2><p class="s-desc">CMS is deploying the Rural Health Transformation Program across all 50 states. Every dollar must be obligated by October 30, 2026 — which means money is flowing to providers right now. InPursuit is positioned as the technology partner at the point of entry.</p></div>
+<div class="rhtp-stat-row rv rv-d1">
+<div class="rhtp-stat"><div class="rhtp-stat-num">$50B</div><div class="rhtp-stat-label">Federal commitment over 5 years</div></div>
+<div class="rhtp-stat"><div class="rhtp-stat-num">~$200M</div><div class="rhtp-stat-label">Average first-year state award</div></div>
+<div class="rhtp-stat"><div class="rhtp-stat-num">Oct 30</div><div class="rhtp-stat-label">2026 obligation deadline</div></div>
+<div class="rhtp-stat"><div class="rhtp-stat-num">50</div><div class="rhtp-stat-label">States receiving RHTP funds</div></div>
+</div>
+<div class="rhtp-model rv rv-d2">
+<div class="rhtp-model-label">How InPursuit Captures This Market</div>
+<div class="rhtp-steps">
+<div class="rhtp-step"><div class="rhtp-step-num">01</div><div class="rhtp-step-body"><h4>Rural Provider as Applicant</h4><p>In-state rural providers apply directly for RHTP state funding — we provide the infrastructure they need to qualify and execute.</p></div></div>
+<div class="rhtp-step"><div class="rhtp-step-num">02</div><div class="rhtp-step-body"><h4>InPursuit as Technology Partner</h4><p>We pair with rural providers as the named tech infrastructure partner — interoperability, AI supervision, and outcomes reporting built in.</p></div></div>
+<div class="rhtp-step"><div class="rhtp-step-num">03</div><div class="rhtp-step-body"><h4>State Window Timing Drives Execution</h4><p>Each state has its own application window. We're mapping submission timelines across all 50 states — active targeting starts now.</p></div></div>
+</div>
+</div>
+<div class="rhtp-footer rv rv-d3"><a href="data-room/InPursuit_RHTP_National_Targets_260616.6.html" class="rhtp-link">View RHTP National Targets Document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div>
+</div></section>
 
 <section class="cta"><div class="cta-content rv">
 <h2>The window is open.<br><em>The infrastructure exists.</em><br>The market is forming.</h2>
