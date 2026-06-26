@@ -139,15 +139,15 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 .eco-n7{top:50%;left:calc(50% - 270px);}
 .eco-n8{top:calc(50% - 191px);left:calc(50% - 191px);}
 
-/* TETRA orchestration ring — triple ring effect */
-.eco-tetra-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;border:1.5px solid rgba(197,164,78,0.28);pointer-events:none;z-index:2;box-shadow:0 0 50px rgba(197,164,78,0.07),inset 0 0 50px rgba(197,164,78,0.04);}
-.eco-tetra-ring::before{content:'';position:absolute;inset:12px;border-radius:50%;border:1px dashed rgba(197,164,78,0.14);}
-.eco-tetra-ring::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(197,164,78,0.08);}
+/* Orchestration ring — triple ring effect */
+.eco-orch-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:300px;height:300px;border-radius:50%;border:1.5px solid rgba(197,164,78,0.28);pointer-events:none;z-index:2;box-shadow:0 0 50px rgba(197,164,78,0.07),inset 0 0 50px rgba(197,164,78,0.04);}
+.eco-orch-ring::before{content:'';position:absolute;inset:12px;border-radius:50%;border:1px dashed rgba(197,164,78,0.14);}
+.eco-orch-ring::after{content:'';position:absolute;inset:-14px;border-radius:50%;border:1px solid rgba(197,164,78,0.08);}
 
-/* TETRA badge */
-.eco-tetra-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,116px);text-align:center;pointer-events:none;z-index:3;}
-.eco-tetra-name{font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;color:var(--gold);letter-spacing:0.5px;display:block;}
-.eco-tetra-desc{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(197,164,78,0.38);display:block;margin-top:3px;}
+/* Orchestration badge */
+.eco-orch-badge{position:absolute;top:50%;left:50%;transform:translate(-50%,116px);text-align:center;pointer-events:none;z-index:3;}
+.eco-orch-name{font-family:'Instrument Serif',serif;font-size:14px;font-style:italic;color:var(--gold);letter-spacing:0.5px;display:block;}
+.eco-orch-desc{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:rgba(197,164,78,0.38);display:block;margin-top:3px;}
 
 /* Center patient node */
 .eco-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;}
@@ -189,8 +189,8 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
   .eco-node{gap:8px;}
   .eco-center-inner{width:90px;height:90px;}
   .eco-center-label{font-size:14px;}
-  .eco-tetra-ring{width:164px;height:164px;}
-  .eco-tetra-badge{transform:translate(-50%,55px);}
+  .eco-orch-ring{width:164px;height:164px;}
+  .eco-orch-badge{transform:translate(-50%,55px);}
   .eco-pillars{grid-template-columns:1fr;}
   .eco-orbit-dot,.eco-orbit-dot-2,.eco-orbit-dot-3,.eco-orbit-dot-inner{display:none;}
   .eco-diagram-panel{padding:32px 12px 32px;}
@@ -412,7 +412,7 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
       <circle cx="340" cy="340" r="320" stroke="rgba(197,164,78,0.04)" stroke-width="1" stroke-dasharray="2 12"/>
       <!-- Outer orbit ring -->
       <circle cx="340" cy="340" r="270" stroke="rgba(197,164,78,0.1)" stroke-width="1" stroke-dasharray="3 8"/>
-      <!-- TETRA mid ring (matches .eco-tetra-ring) -->
+      <!-- Orchestration mid ring -->
       <circle cx="340" cy="340" r="150" stroke="rgba(197,164,78,0.15)" stroke-width="1" stroke-dasharray="5 5"/>
       <!-- Inner glow ring -->
       <circle cx="340" cy="340" r="80" stroke="rgba(197,164,78,0.2)" stroke-width="1.5"/>
@@ -492,11 +492,11 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
       <span class="eco-node-label">Wearables &amp; Devices</span>
     </div>
 
-    <!-- TETRA orchestration ring -->
-    <div class="eco-tetra-ring"></div>
-    <div class="eco-tetra-badge">
-      <span class="eco-tetra-name">Our Orchestration Hub</span>
-      <span class="eco-tetra-desc">Orchestration Layer</span>
+    <!-- Orchestration ring -->
+    <div class="eco-orch-ring"></div>
+    <div class="eco-orch-badge">
+      <span class="eco-orch-name">Our Orchestration Hub</span>
+      <span class="eco-orch-desc">Orchestration Layer</span>
     </div>
 
     <!-- Center: Patient -->
@@ -567,7 +567,7 @@ body{background:var(--navy-deep);color:var(--white);-webkit-font-smoothing:antia
 <div class="p-card rv rv-d3"><div class="p-num">04</div><h3>DOGE Efficiency Mandate</h3><p>Every federal health IT dollar must justify measurable ROI. Legacy systems are being defunded. Modern infrastructure is fast-tracked.</p></div>
 </div></div></section>
 
-<section class="proof" id="tetra"><div class="proof-inner">
+<section class="proof" id="infrastructure-proof"><div class="proof-inner">
 <div class="s-header rv"><h2 class="s-h2">Our orchestration hub is the only proven solution<br><em>already validated</em> for this moment.</h2><p class="s-desc">InPursuit Health delivers federally-proven infrastructure to the ACCESS Model, the CMS Interoperability Framework, and every MAHA mandate. This isn't a startup pitch. It's a deployment.</p></div>
 <div class="pr-grid">
 <div class="pr-card rv"><div class="pr-icon"><svg viewBox="0 0 24 24"><path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><h4>CMS-Approved Infrastructure</h4><p>Our infrastructure supports 140M+ beneficiaries through proven federal health data orchestration. Already operational.</p><span class="pr-tag">Production Validated</span></div>
