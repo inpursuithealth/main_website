@@ -271,6 +271,45 @@
 .hi-cta-outline:hover{box-shadow:0 12px 34px rgba(197,164,78,.3);}
 .hi-cta-outline .hi-cta-tag{color:rgba(6,14,26,.7);}
 @media(max-width:680px){.hi-cta{min-width:100%;}}
+
+/* ===== DiMe SEAL PLACEMENTS ===== */
+.dime-slide-layout{display:grid;grid-template-columns:220px 1fr;gap:44px;align-items:center;max-width:840px;margin:0 auto;text-align:left;}
+.dime-seal-img{width:220px;height:auto;display:block;}
+.dime-chips{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0 24px;}
+.dime-chip{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1.6px;text-transform:uppercase;border:1px solid rgba(197,164,78,.22);border-radius:4px;padding:7px 12px;display:inline-flex;gap:6px;align-items:center;}
+.dime-chip-label{color:rgba(255,255,255,.55);}
+.dime-chip-val{color:#D9BE7A;font-weight:700;}
+.dime-cta-row{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-ghost{display:inline-flex;align-items:center;padding:12px 24px;border:1px solid rgba(197,164,78,.4);border-radius:8px;font-size:13px;font-weight:600;letter-spacing:.5px;color:var(--gold-light);text-decoration:none;background:transparent;transition:background .2s,border-color .2s;}
+.btn-ghost:hover{background:rgba(197,164,78,.08);border-color:var(--gold);}
+@media(max-width:700px){
+  .dime-slide-layout{grid-template-columns:1fr;text-align:center;gap:20px;}
+  .dime-seal-img{max-width:180px;margin:0 auto;}
+  .dime-chips{justify-content:center;}
+  .dime-cta-row{flex-direction:column;width:100%;}
+  .dime-cta-row .btn-gold,.dime-cta-row .btn-ghost{width:100%;justify-content:center;}
+}
+
+/* Reusable seal strip */
+.seal-strip{display:inline-flex;align-items:center;gap:16px;padding:12px 22px 12px 12px;border:1px solid rgba(197,164,78,.25);background:rgba(197,164,78,.05);border-radius:10px;max-width:fit-content;}
+.seal-strip-img{width:56px;height:auto;flex-shrink:0;}
+.seal-strip-text{display:flex;flex-direction:column;gap:3px;}
+.seal-strip-l1{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:2.2px;text-transform:uppercase;color:var(--gold);}
+.seal-strip-l2{font-family:'Instrument Sans',sans-serif;font-size:14px;color:rgba(255,255,255,.78);line-height:1.4;}
+.seal-strip-l2 strong{font-weight:700;}
+@media(max-width:700px){
+  .seal-strip-img{width:46px;}
+  .seal-strip-l2{font-size:12.5px;}
+}
+
+/* DiMe tile in CMS cloud */
+.cms-logo-tile.dime-tile{border-color:rgba(197,164,78,.35);}
+.dime-tile-img{width:18px;height:18px;border-radius:3px;}
+
+/* Footer credential block */
+.footer-dime-block{display:flex;align-items:flex-start;gap:12px;margin-top:16px;}
+.footer-dime-seal{width:44px;height:auto;flex-shrink:0;}
+.footer-dime-text{font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(255,255,255,.42);line-height:1.9;}
 </style>
   <meta property="og:image" content="https://bolt.new/static/og_default.png">
     <meta name="twitter:card" content="summary_large_image">
@@ -367,13 +406,48 @@
     </div>
     <!-- END SLIDE 0 -->
 
-    <!-- SLIDE 3: For You -->
+    <!-- SLIDE 2: DiMe Seal Award -->
     <div class="hero-slide" data-slide="2">
+      <div class="hero-content">
+        <div class="hero-text">
+          <div class="dime-slide-layout">
+            <img class="dime-seal-img" src="Assets/DiMe-Seal-2026.svg" alt="2026 DiMe Seal">
+            <div>
+              <div class="hero-badge" style="background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.2);">
+                <span class="pulse-dot"></span>
+                Announcement
+              </div>
+              <h1>InPursuit Health has earned the <em>DiMe Seal.</em></h1>
+              <p class="hero-tagline" style="text-align:left;margin-left:0;">The Digital Medicine Society awarded the InPursuit Health App its 2026 Seal, an independent standard for quality, privacy, and trust in digital health software. Independent review. Verifiable standard. No self attestation.</p>
+              <div class="dime-chips">
+                <span class="dime-chip"><span class="dime-chip-label">Awarded</span><span class="dime-chip-val">July 14, 2026</span></span>
+                <span class="dime-chip"><span class="dime-chip-label">Valid through</span><span class="dime-chip-val">July 13, 2027</span></span>
+                <span class="dime-chip"><span class="dime-chip-label">ID</span><span class="dime-chip-val">DS25dcc61d7f0d51</span></span>
+              </div>
+              <div class="dime-cta-row">
+                <a class="btn-gold" href="data-oath.html">Why It Matters &rarr;</a>
+                <a class="btn-ghost" href="#" onclick="event.preventDefault();">Verify the Seal</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3: For You -->
+    <div class="hero-slide" data-slide="3">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.08);border-color:rgba(197,164,78,0.2);">
             <span class="pulse-dot"></span>
             For You &amp; Your Family
+          </div>
+          <div class="seal-strip" style="margin-bottom:16px;">
+            <img class="seal-strip-img" src="Assets/DiMe-Seal-2026.svg" alt="2026 DiMe Seal">
+            <div class="seal-strip-text">
+              <div class="seal-strip-l1">Newly Awarded · 2026</div>
+              <div class="seal-strip-l2"><strong>DiMe Seal</strong>, independently recognized by the Digital Medicine Society</div>
+            </div>
           </div>
           <div class="slide-overline">HARNESS THE POWER OF YOUR DATA™</div>
           <h1>Your Health. Your Data.<br>Your Feed. Your <em>Rewards.</em></h1>
@@ -386,7 +460,7 @@
     </div>
 
     <!-- SLIDE 4: J. Krug Distribution Partnership -->
-    <div class="hero-slide" data-slide="3">
+    <div class="hero-slide" data-slide="4">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -405,7 +479,7 @@
     </div>
 
     <!-- SLIDE 5: MAHA Alignment -->
-    <div class="hero-slide" data-slide="4">
+    <div class="hero-slide" data-slide="5">
       <div class="hero-content">
         <div class="hero-text">
           <div class="hero-badge" style="background:rgba(197,164,78,0.1);border-color:rgba(197,164,78,0.3);">
@@ -433,6 +507,7 @@
       <button class="slider-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
       <button class="slider-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
       <button class="slider-dot" onclick="goToSlide(4)" aria-label="Slide 5"></button>
+      <button class="slider-dot" onclick="goToSlide(5)" aria-label="Slide 6"></button>
     </div>
     <button class="slider-pause-btn" id="sliderPauseBtn" onclick="toggleSliderPause()" aria-label="Pause slideshow">
       <svg id="pauseIcon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><rect x="5" y="4" width="4" height="16" rx="1"/><rect x="15" y="4" width="4" height="16" rx="1"/></svg>
@@ -513,6 +588,13 @@
       <p class="app-preview-overline reveal">The InPursuit App</p>
       <h2 class="app-preview-headline reveal">Everything that matters.<br><em>In your pocket.</em></h2>
       <p class="app-preview-desc reveal">Most health apps show you fragments. InPursuit shows you the full picture — your complete record, your coverage, your costs, and your AI health guide, all in one place. Protected by our AI governance layer so your data never leaves your vault.</p>
+      <div class="seal-strip reveal" style="margin-bottom:24px;">
+        <img class="seal-strip-img" src="Assets/DiMe-Seal-2026.svg" alt="2026 DiMe Seal">
+        <div class="seal-strip-text">
+          <div class="seal-strip-l1">2026 DiMe Seal Recipient</div>
+          <div class="seal-strip-l2"><strong>InPursuit Health App</strong>, independently reviewed by the Digital Medicine Society</div>
+        </div>
+      </div>
 
       <div class="app-value-list reveal">
         <div class="app-value-item">
@@ -687,6 +769,10 @@
         <div class="cms-logo-tile ip-hero">
           <img class="tile-icon" src="Assets/favicon-32x32.png" alt="" onerror="this.style.display='none'">
           InPursuit Health
+        </div>
+        <div class="cms-logo-tile dime-tile">
+          <img class="tile-icon dime-tile-img" src="Assets/DiMe-Seal-2026.svg" alt="2026 DiMe Seal">
+          2026 DiMe Seal · InPursuit Health App
         </div>
         <div class="cms-logo-tile">
           <img class="tile-icon" src="https://www.google.com/s2/favicons?domain=amazon.com&sz=64" alt="" onerror="this.style.display='none'">
@@ -871,7 +957,7 @@ x.beginPath();x.arc(p.x,p.y,p.sz,0,Math.PI*2);x.fillStyle='rgba(197,164,78,'+al+
 if(p.l>=p.ml||p.y<-10)ps.splice(i,1);}requestAnimationFrame(an);}an();})();
 
 // Slider
-var sc=0,st=5,stm=null,sp=false,SMS=10000;
+var sc=0,st=6,stm=null,sp=false,SMS=10000;
 function goToSlide(n){var s=document.querySelectorAll('.hero-slide'),d=document.querySelectorAll('.slider-dot');
 s[sc].classList.remove('active');d[sc].classList.remove('active');sc=((n%st)+st)%st;
 s[sc].classList.add('active');d[sc].classList.add('active');startST();}
@@ -954,6 +1040,14 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')document.que
         <span class="footer-compliance-badge">HIPAA Compliant</span>
         <span class="footer-compliance-badge">Veteran-Owned</span>
         <span class="footer-compliance-badge">DoD Validated</span>
+      </div>
+    </div>
+    <div class="footer-dime-block">
+      <img class="footer-dime-seal" src="Assets/DiMe-Seal-2026.svg" alt="2026 DiMe Seal">
+      <div class="footer-dime-text">
+        2026 DiMe Seal · InPursuit Health App<br>
+        Valid July 14, 2026 through July 13, 2027<br>
+        Award ID DS25dcc61d7f0d51
       </div>
     </div>
   </div>
