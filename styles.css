@@ -48,7 +48,8 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 .section-inner{max-width:1200px;margin:0 auto;}
 .section-overline{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
 .section-headline{font-family:'Instrument Serif',serif;font-size:clamp(28px,3.5vw,44px);font-weight:400;color:var(--navy);line-height:1.2;margin-bottom:20px;}
-.section-headline em{font-style:italic;color:var(--gold);}
+.section-headline em{font-style:italic;}
+h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{color:inherit!important;}
 .section-desc{font-size:16px;color:var(--text-muted);line-height:1.7;max-width:640px;margin-left:auto;margin-right:auto;}
 
 /* ===== PRELOADER ===== */
@@ -142,7 +143,7 @@ body{font-family:'Instrument Sans',sans-serif;background:var(--cream);color:var(
 .page-hero-inner{max-width:900px;margin:0 auto;text-align:center;}
 .page-hero-overline{font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
 .page-hero h1{font-family:'Instrument Serif',serif;font-size:clamp(32px,5vw,64px);font-weight:400;color:var(--white);line-height:1.1;margin-bottom:24px;}
-.page-hero h1 em{font-style:italic;color:var(--gold);}
+.page-hero h1 em{font-style:italic;}
 .page-hero-desc{font-size:17px;color:rgba(255,255,255,.6);line-height:1.7;max-width:640px;margin:0 auto;}
 
 /* ===== UNIVERSAL NAV ===== */
