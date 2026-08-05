@@ -749,6 +749,19 @@
   }
   .doc-card:hover .doc-foot svg { opacity: 1; transform: translateX(0); }
 
+  .doc-pdf-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-family: var(--mono); font-size: .62rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(197,164,78,.7); text-decoration: none;
+    border: 1px solid rgba(197,164,78,.25); border-radius: 6px;
+    padding: .32rem .7rem;
+    transition: color .2s, border-color .2s, background .2s;
+    margin-top: .3rem; width: fit-content;
+  }
+  .doc-pdf-btn:hover { color: #C5A44E; border-color: rgba(197,164,78,.55); background: rgba(197,164,78,.06); }
+  .doc-pdf-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+
   .portal-footer {
     border-top: 1px solid rgba(255,255,255,.07);
     padding: 1.75rem 3rem;
@@ -1915,30 +1928,27 @@
   <div class="doc-section">
     <div class="section-label">Company Overview, Investment Overview &amp; Pitch Deck</div>
     <div class="doc-grid">
-      <a class="doc-card" href="data-room/InPursuit_Company_Overview_[F.202608.05].html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Company_Overview_[F.202608.05].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Company Overview</span>
         <div class="doc-title">InPursuit Health — Company Overview</div>
         <div class="doc-desc">Updated company overview with CMS General Availability and three CMS awards achieved July 2025, J. Krug Insurance broker partnership delivering for testing, Honeycomb Medical $300K RHTP application submitted, and Year 3 base case of $35M revenue at 25 members.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Company_Overview_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
         <div class="doc-foot"><span class="doc-tag">Updated Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].pdf" target="_blank">
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Seed Investment Overview</span>
         <div class="doc-title">InPursuit Health — Seed Investment Overview</div>
         <div class="doc-desc">$3.5M Class C equity raise at $20M pre-money, $25K minimum, single close. Full investment overview with use of proceeds, revenue projections, traction milestones, and the $50B Rural Health Transformation federal funding window.</div>
-        <div class="doc-foot"><span class="doc-tag">PDF · Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/F260618_InPursuit_Operating_Model.html" target="_blank">
-        <span class="doc-badge b-series">Operating Model</span>
-        <div class="doc-title">InPursuit Operating Model</div>
-        <div class="doc-desc">One healthcare company, two delivery channels: D2C consumer app and provider-facing B2B platform, both running on a single orchestration layer. Covers revenue mechanics, channel economics, and how InPursuit captures value across both access points.</div>
-        <div class="doc-foot"><span class="doc-tag">Operations</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/InPursuit_Pitch_Deck_[F260610].html" target="_blank">
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Pitch_Deck_[F260610].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Pitch Deck</span>
         <div class="doc-title">InPursuit Health — Pitch Deck</div>
         <div class="doc-desc">Problem, solution, market, traction, team, financials, and ask. Designed for institutional investors and strategic partners.</div>
-        <div class="doc-foot"><span class="doc-tag">PDF available inside</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Pitch_Deck_[F260610].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Jun 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
     </div>
   </div>
 
@@ -1946,18 +1956,18 @@
   <div class="doc-section">
     <div class="section-label">Our Healthcare Organization Structure</div>
     <div class="doc-grid">
-      <a class="doc-card" href="data-room/InPursuit_Clinical_Delivery_Corporate_Structure_[260611.1].html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Clinical_Delivery_Corporate_Structure_[260611.1].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Structure</span>
         <div class="doc-title">MSO Corporate Structure &amp; Revenue Flow</div>
         <div class="doc-desc">How InPursuit delivers care, bills payers, and captures revenue — the MSO/PC model used by Hims &amp; Hers, Ro, and Cerebral. Includes revenue flow mechanics, OIG-validated legal structure, and illustrative per-patient economics.</div>
         <div class="doc-foot"><span class="doc-tag">Corporate</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/InPursuit_NPI_Enrollment_Roadmap_[260611.1].html" target="_blank">
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_NPI_Enrollment_Roadmap_[260611.1].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Roadmap</span>
         <div class="doc-title">NPI Enrollment Roadmap</div>
         <div class="doc-desc">Complete week-by-week execution pathway: NPI Type 2 issuance, Medicare Part B enrollment via PECOS, commercial payer credentialing, and first direct billing — all within the Class C round allocation.</div>
         <div class="doc-foot"><span class="doc-tag">Operational</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -1967,24 +1977,24 @@
   <div class="doc-section">
     <div class="section-label">Supplemental Documents</div>
     <div class="doc-grid">
-      <a class="doc-card" href="data-room/InPursuit_Infrastructure_Commercial_Readiness_[260611.7].html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Infrastructure_Commercial_Readiness_[260611.7].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Commercial</span>
         <div class="doc-title">Infrastructure &amp; Commercial Readiness</div>
         <div class="doc-desc">Detailed breakdown of InPursuit's technical infrastructure, compliance posture, and commercial readiness — from FHIR integration to billing infrastructure and payer contracting pipeline.</div>
         <div class="doc-foot"><span class="doc-tag">Infrastructure</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/InPursuit_Blue_Ocean_260611.5.html" target="_blank">
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Blue_Ocean_260611.5.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Strategy</span>
         <div class="doc-title">Blue Ocean Strategy</div>
         <div class="doc-desc">How InPursuit creates uncontested market space by combining CMS model participation, direct-to-consumer app distribution, and MSO infrastructure into a single platform no competitor has assembled.</div>
         <div class="doc-foot"><span class="doc-tag">Strategy</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
-      <a class="doc-card" href="data-room/InPursuit_Distribution_Channel_—_Investor_Update_[F260610.2].html" target="_blank">
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Distribution_Channel_—_Investor_Update_[F260610.2].html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-series">Distribution</span>
         <div class="doc-title">Distribution Channel — Investor Update</div>
         <div class="doc-desc">CMS Medicare App Store, White House Health Initiative, and Honeycomb Medical Group distribution partnerships. Patient acquisition economics, channel velocity, and projected enrollment ramp.</div>
         <div class="doc-foot"><span class="doc-tag">Distribution</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
     </div>
   </div>
 
@@ -1999,12 +2009,12 @@
     <div class="section-label">Market Analysis &mdash; Executive Summary</div>
     <div class="doc-grid">
 
-      <a class="doc-card" href="data-room/market-analysis-exec-summary.html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-exec-summary.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-analysis">Analysis</span>
         <div class="doc-title">Complete Market Analysis &mdash; Executive Summary</div>
         <div class="doc-desc">Four converging markets, one infrastructure dependency. $4.45T VBC, $208B wellness tech, $110B healthcare AI, $57B RPM. TAM/SAM sizing, competitive landscape, infrastructure moat, and risk factors condensed into a single institutional-grade summary.</div>
         <div class="doc-foot"><span class="doc-tag">Executive Summary</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
 
     </div>
   </div>
@@ -2014,33 +2024,33 @@
     <div class="section-label">Detailed Market Analysis &mdash; By Pillar</div>
     <div class="doc-grid">
 
-      <a class="doc-card" href="data-room/market-analysis-vbc.html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-vbc.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-analysis">Analysis</span>
         <div class="doc-title">Pillar I: Value-Based Care &amp; Outcome-Based Payments</div>
         <div class="doc-desc">$4.45T global VBC market by 2030. CMS ACCESS Model deep dive (10-year, 4 clinical tracks, OAP rates), LEAD, MSSP, TEAM. Commercial payer adoption. 300,000 physicians need infrastructure to transition. Provider segmentation and addressable market.</div>
         <div class="doc-foot"><span class="doc-tag">Provider Market</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
 
-      <a class="doc-card" href="data-room/market-analysis-d2c.html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-d2c.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-analysis">Analysis</span>
         <div class="doc-title">Pillar II: Direct-to-Consumer Health &amp; Wellness</div>
         <div class="doc-desc">$208B wellness technology market by 2035. 330M+ Americans with smartphones. Fragmentation problem, competitive landscape (Apple Health, MyChart, GoodRx, Noom), subscription tiers, transaction-moment commerce, and Medicare App Library distribution.</div>
         <div class="doc-foot"><span class="doc-tag">Consumer Market</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
 
-      <a class="doc-card" href="data-room/market-analysis-ai-infrastructure.html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-ai-infrastructure.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-analysis">Analysis</span>
         <div class="doc-title">Pillar III: Healthcare AI Infrastructure &amp; Governance</div>
         <div class="doc-desc">$110B healthcare AI market by 2030 at 38.6% CAGR. PwC projects $868B total AI impact. The governance gap: 85% of organizations unprepared. Our Conductor, Aegis, and Sentinel governance layers as the dependency stack AI companies need beneath them.</div>
         <div class="doc-foot"><span class="doc-tag">AI Infrastructure</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
 
-      <a class="doc-card" href="data-room/market-analysis-interop-rpm.html" target="_blank">
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-interop-rpm.html','_blank')" style="cursor:pointer;">
         <span class="doc-badge b-analysis">Analysis</span>
         <div class="doc-title">Pillar IV: Interoperability &amp; Remote Patient Monitoring</div>
         <div class="doc-desc">$57B RPM market + $8.6B interoperability market by 2030. TEFCA live with 625+ hospitals. $1M/violation info-blocking penalties. 142M U.S. patients on RPM by 2030. Compound revenue with VBC: same infrastructure, four revenue streams.</div>
         <div class="doc-foot"><span class="doc-tag">Interop &amp; RPM</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
-      </a>
+      </div>
 
     </div>
   </div>
