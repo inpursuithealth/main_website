@@ -2827,7 +2827,7 @@ async function submitSubscription(event) {
     'Last Name': last,
     'Email': email,
     'Phone': phone || '—',
-    'Investment Amount': '
+    'Investment Amount': '$' + parseInt(amount).toLocaleString(),
     'Investing Entity': entity || 'Individual',
     'Notes': notes || '—',
     'Portal Access Code': accessCode ? accessCode.charAt(0).toUpperCase() + accessCode.slice(1) : '—',
@@ -2850,8 +2850,7 @@ async function submitSubscription(event) {
       await supa.from('investor_doc_views').insert({
         session_id: sessionId,
         doc_slug: 'subscription-request',
-        doc_title: 'Class C Subscription Request — 
- + parseInt(amount).toLocaleString(),
+        doc_title: 'Class C Subscription Request — $' + parseInt(amount).toLocaleString(),
         doc_category: 'Subscription',
         opened_at: new Date().toISOString()
       });
