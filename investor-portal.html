@@ -2828,9 +2828,6 @@ async function submitSubscription(event) {
     'Email': email,
     'Phone': phone || '—',
     'Investment Amount': '
-</body>
-</html>
- + parseInt(amount).toLocaleString(),
     'Investing Entity': entity || 'Individual',
     'Notes': notes || '—',
     'Portal Access Code': accessCode ? accessCode.charAt(0).toUpperCase() + accessCode.slice(1) : '—',
@@ -2854,8 +2851,6 @@ async function submitSubscription(event) {
         session_id: sessionId,
         doc_slug: 'subscription-request',
         doc_title: 'Class C Subscription Request — 
-</body>
-</html>
  + parseInt(amount).toLocaleString(),
         doc_category: 'Subscription',
         opened_at: new Date().toISOString()
