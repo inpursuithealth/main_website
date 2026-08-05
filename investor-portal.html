@@ -1995,7 +1995,7 @@
             </div>
           </div>
         </div>
-        <a class="ipx-cta" href="#" onclick="alert('DocuSign envelope will be linked here once ready. This placeholder will be replaced with a live signing link.');return false;">
+        <a class="ipx-cta" href="#" onclick="openSubscriptionModal();return false;">
           <div class="ipx-cta-inner">
             <div class="ipx-cta-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
             <div class="ipx-cta-text">
@@ -2257,6 +2257,76 @@
   </footer>
 
 </div><!-- /data-room -->
+
+<!-- SUBSCRIPTION MODAL -->
+<div id="sub-modal-overlay" onclick="closeSubscriptionModal(event)" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,12,22,.82);backdrop-filter:blur(6px);opacity:0;transition:opacity .3s ease;">
+  <div id="sub-modal" onclick="event.stopPropagation()" style="position:relative;max-width:560px;width:calc(100% - 32px);margin:5vh auto;background:linear-gradient(180deg,#0d1a2e 0%,#0a1628 100%);border:1px solid rgba(197,164,78,.28);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.5);transform:translateY(20px) scale(.97);transition:transform .35s cubic-bezier(.16,1,.3,1);overflow:hidden;">
+    <!-- Header with Patrick's photo -->
+    <div style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-bottom:1px solid rgba(197,164,78,.15);">
+      <div style="width:56px;height:56px;border-radius:50%;overflow:hidden;border:2px solid rgba(197,164,78,.4);flex-shrink:0;">
+        <img src="Assets/patrick-truxillo.jpg" alt="Patrick Truxillo" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+      </div>
+      <div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:#C5A44E;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">Request Subscription Documents</div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,.92);">Patrick Truxillo &middot; Co-Founder &amp; Chief Strategy Officer</div>
+      </div>
+      <button onclick="closeSubscriptionModal(event)" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <!-- Intro text -->
+    <div style="padding:20px 28px 0;">
+      <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.6);line-height:1.55;margin:0;">Fill out the form below and Patrick will personally send your DocuSign envelope for Class C subscription. The details you provide go directly to Patrick and the InPursuit Health investment team.</p>
+    </div>
+    <!-- Form -->
+    <form id="sub-form" onsubmit="submitSubscription(event)" style="padding:20px 28px 28px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">First Name *</label>
+          <input type="text" id="sub-first" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Last Name *</label>
+          <input type="text" id="sub-last" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Email *</label>
+          <input type="email" id="sub-email" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Phone</label>
+          <input type="tel" id="sub-phone" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Investment Amount ($) *</label>
+          <input type="number" id="sub-amount" required min="25000" step="100" placeholder="25,000 minimum" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Entity / Firm</label>
+          <input type="text" id="sub-entity" placeholder="Individual, LLC, Trust, etc." style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Notes / Questions</label>
+        <textarea id="sub-notes" rows="2" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;resize:vertical;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'"></textarea>
+      </div>
+      <button type="submit" id="sub-submit-btn" style="width:100%;padding:14px;background:linear-gradient(135deg,#C5A44E 0%,#b89238 100%);border:none;border-radius:8px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:#0a1628;letter-spacing:.03em;cursor:pointer;transition:opacity .2s,transform .1s;" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">
+        Request DocuSign Envelope
+      </button>
+      <div id="sub-success" style="display:none;text-align:center;padding:20px 0 0;">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,.9);margin:0 0 6px;">Request Received</p>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;margin:0;">Patrick will send your personalized DocuSign envelope to the email you provided. Check your inbox within 24 hours.</p>
+      </div>
+    </form>
+  </div>
+</div>
 
 <div id="toast"></div>
 
@@ -2688,6 +2758,116 @@ window.addEventListener('popstate', (e) => {
 document.querySelectorAll('.iacc-h').forEach(h => {
   h.addEventListener('click', () => h.parentElement.classList.toggle('op'));
 });
+
+// ── SUBSCRIPTION MODAL ─────────────────────────
+function openSubscriptionModal() {
+  const overlay = document.getElementById('sub-modal-overlay');
+  const modal   = document.getElementById('sub-modal');
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'flex-start';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    overlay.style.opacity = '1';
+    modal.style.transform = 'translateY(0) scale(1)';
+  });
+  // Pre-fill from portal contact if available
+  if (contact && contact.first) {
+    document.getElementById('sub-first').value = contact.first || '';
+    document.getElementById('sub-last').value  = contact.last || '';
+    document.getElementById('sub-email').value = contact.email || '';
+  }
+}
+
+function closeSubscriptionModal(event) {
+  if (event && event.target && event.target.closest('#sub-modal')) return;
+  const overlay = document.getElementById('sub-modal-overlay');
+  const modal   = document.getElementById('sub-modal');
+  overlay.style.opacity = '0';
+  modal.style.transform = 'translateY(20px) scale(.97)';
+  document.body.style.overflow = '';
+  setTimeout(() => { overlay.style.display = 'none'; }, 300);
+}
+
+async function submitSubscription(event) {
+  event.preventDefault();
+  const btn = document.getElementById('sub-submit-btn');
+  const form = document.getElementById('sub-form');
+  const successDiv = document.getElementById('sub-success');
+
+  const first   = document.getElementById('sub-first').value.trim();
+  const last    = document.getElementById('sub-last').value.trim();
+  const email   = document.getElementById('sub-email').value.trim();
+  const phone   = document.getElementById('sub-phone').value.trim();
+  const amount  = document.getElementById('sub-amount').value;
+  const entity  = document.getElementById('sub-entity').value.trim();
+  const notes   = document.getElementById('sub-notes').value.trim();
+
+  if (parseInt(amount, 10) < 25000) {
+    btn.textContent = 'Minimum investment is $25,000';
+    btn.style.background = 'rgba(255,107,107,.15)';
+    btn.style.color = '#ff6b6b';
+    btn.style.border = '1px solid rgba(255,107,107,.4)';
+    setTimeout(() => {
+      btn.textContent = 'Request DocuSign Envelope';
+      btn.style.background = 'linear-gradient(135deg,#C5A44E 0%,#b89238 100%)';
+      btn.style.color = '#0a1628';
+      btn.style.border = 'none';
+    }, 2500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '.7';
+
+  const payload = {
+    _subject: `Subscription Document Request — ${first} ${last} (${parseInt(amount).toLocaleString()})`,
+    'Type': 'Class C Subscription Document Request',
+    'First Name': first,
+    'Last Name': last,
+    'Email': email,
+    'Phone': phone || '—',
+    'Investment Amount': '
+</body>
+</html>
+ + parseInt(amount).toLocaleString(),
+    'Investing Entity': entity || 'Individual',
+    'Notes': notes || '—',
+    'Portal Access Code': accessCode ? accessCode.charAt(0).toUpperCase() + accessCode.slice(1) : '—',
+    'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
+    '_replyto': email,
+    '_cc': 'invest@inpursuithealth.com'
+  };
+
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Formspree error:', e); }
+
+  // Track in Supabase if session exists
+  if (sessionId) {
+    try {
+      await supa.from('investor_doc_views').insert({
+        session_id: sessionId,
+        doc_slug: 'subscription-request',
+        doc_title: 'Class C Subscription Request — 
+</body>
+</html>
+ + parseInt(amount).toLocaleString(),
+        doc_category: 'Subscription',
+        opened_at: new Date().toISOString()
+      });
+    } catch(e) { console.warn('Supabase track error:', e); }
+  }
+
+  btn.style.display = 'none';
+  form.querySelectorAll('input,textarea').forEach(el => el.style.display = 'none');
+  form.querySelectorAll('label').forEach(el => el.style.display = 'none');
+  successDiv.style.display = 'block';
+}
 </script>
 </body>
 </html>
