@@ -1687,39 +1687,50 @@
     </div>
   </div>
 
-<!-- INVESTOR ORIENTATION BLOCK — Investment Snapshot + Use of Proceeds (DARK). Source: Exec Summary [F260610]. -->
+<!-- INVESTOR ORIENTATION BLOCK — Investment Snapshot (DARK) -->
 <section class="ipx-orient">
   <style>
     .ipx-orient{background:#0A1628;padding:64px 40px;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;}
     .ipx-wrap{max-width:1100px;margin:0 auto;}
-    .ipx-head{display:flex;align-items:center;gap:14px;margin-bottom:20px;}
+    .ipx-head{display:flex;align-items:center;gap:14px;margin-bottom:28px;}
     .ipx-eyebrow{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C5A44E;white-space:nowrap;}
     .ipx-rule{flex:1;height:1px;background:rgba(197,164,78,.18);}
     .ipx-title{font-family:'Instrument Serif',Georgia,serif;font-size:24px;font-weight:400;color:#fff;white-space:nowrap;margin:0;}
-    .ipx-snap{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-    .ipx-col-head{font-family:'JetBrains Mono','SF Mono',monospace;font-size:9.5px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.42);margin-bottom:10px;padding-left:2px;}
-    .ipx-col-body{background:#0E1B30;border:1px solid rgba(197,164,78,.18);border-radius:10px;overflow:hidden;}
-    .ipx-row{padding:16px 18px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid rgba(255,255,255,.07);}
-    .ipx-row:last-child{border-bottom:none;}
-    .ipx-cell-label{font-size:15px;font-weight:600;color:#fff;}
-    .ipx-pill{display:inline-flex;align-items:center;gap:7px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:10.5px;font-weight:700;letter-spacing:1px;text-transform:uppercase;}
-    .ipx-pill svg{width:13px;height:13px;flex-shrink:0;}
-    .ipx-pill.done{color:#C5A44E;}
-    .ipx-pill.active{color:#C5A44E;}
-    .ipx-pill.plan{color:rgba(255,255,255,.45);}
-    .ipx-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
-    .ipx-dot.active{background:#C5A44E;box-shadow:0 0 0 3px rgba(197,164,78,.20);}
-    .ipx-dot.plan{background:#6b7585;}
-    .ipx-alloc{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;}
-    .ipx-card{background:#0E1B30;border:1px solid rgba(197,164,78,.18);border-top:2px solid #C5A44E;border-radius:10px;padding:18px;}
-    .ipx-amt{font-family:'Instrument Serif',Georgia,serif;font-size:32px;color:#C5A44E;line-height:1;margin-bottom:9px;}
-    .ipx-desc{font-size:12.5px;color:rgba(255,255,255,.62);line-height:1.45;font-weight:500;}
-    .ipx-note{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;letter-spacing:.5px;color:rgba(255,255,255,.4);margin-top:14px;text-transform:uppercase;}
-    @media(max-width:900px){.ipx-alloc{grid-template-columns:repeat(3,1fr);}}
+
+    /* Progress bar */
+    .ipx-progress{margin-bottom:36px;}
+    .ipx-progress-track{height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden;position:relative;}
+    .ipx-progress-fill{height:100%;width:78%;background:linear-gradient(90deg,#C5A44E,rgba(197,164,78,.6));border-radius:3px;position:relative;}
+    .ipx-progress-fill::after{content:'';position:absolute;top:0;right:0;width:20px;height:100%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4));border-radius:3px;animation:ipx-shimmer 2.5s ease-in-out infinite;}
+    @keyframes ipx-shimmer{0%,100%{opacity:0;}50%{opacity:1;}}
+    .ipx-progress-meta{display:flex;justify-content:space-between;margin-top:10px;font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+    .ipx-progress-meta strong{color:#C5A44E;font-weight:700;}
+
+    /* Category cards */
+    .ipx-snap{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+    .ipx-cat{background:linear-gradient(180deg,#0E1B30 0%,#0A1628 100%);border:1px solid rgba(197,164,78,.15);border-radius:14px;overflow:hidden;transition:border-color .3s,transform .3s;}
+    .ipx-cat:hover{border-color:rgba(197,164,78,.35);transform:translateY(-2px);}
+    .ipx-cat-head{padding:18px 20px 14px;border-bottom:1px solid rgba(197,164,78,.12);display:flex;align-items:center;gap:10px;}
+    .ipx-cat-icon{width:32px;height:32px;border-radius:8px;background:rgba(197,164,78,.1);border:1px solid rgba(197,164,78,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .ipx-cat-icon svg{width:16px;height:16px;stroke:#C5A44E;stroke-width:2;fill:none;}
+    .ipx-cat-name{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.5);}
+    .ipx-cat-body{padding:8px 0;}
+    .ipx-item{padding:14px 20px;display:flex;align-items:center;gap:14px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .ipx-item:last-child{border-bottom:none;}
+    .ipx-item-status{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .ipx-item-status.done{background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);}
+    .ipx-item-status.done svg{width:14px;height:14px;stroke:#C5A44E;stroke-width:3;fill:none;}
+    .ipx-item-status.active{background:rgba(197,164,78,.15);border:1px solid rgba(197,164,78,.4);}
+    .ipx-item-status.active .ipx-pulse{width:10px;height:10px;border-radius:50%;background:#C5A44E;animation:ipx-pulse 2s ease-in-out infinite;}
+    @keyframes ipx-pulse{0%,100%{box-shadow:0 0 0 0 rgba(197,164,78,.5);}50%{box-shadow:0 0 0 6px rgba(197,164,78,0);}}
+    .ipx-item-text{flex:1;display:flex;flex-direction:column;gap:3px;}
+    .ipx-item-label{font-size:14px;font-weight:600;color:#fff;line-height:1.2;}
+    .ipx-item-meta{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#C5A44E;}
+    .ipx-item-meta.muted{color:rgba(255,255,255,.35);}
+
     @media(max-width:680px){
       .ipx-orient{padding:44px 20px;}
-      .ipx-snap{grid-template-columns:1fr;gap:20px;}
-      .ipx-alloc{grid-template-columns:1fr 1fr;}
+      .ipx-snap{grid-template-columns:1fr;gap:16px;}
       .ipx-title{font-size:20px;}
     }
   </style>
@@ -1729,44 +1740,75 @@
       <span class="ipx-rule"></span>
       <h2 class="ipx-title">Investment Snapshot</h2>
     </div>
+
+    <div class="ipx-progress">
+      <div class="ipx-progress-track"><div class="ipx-progress-fill"></div></div>
+      <div class="ipx-progress-meta">
+        <span><strong>7 of 9</strong> milestones complete</span>
+        <span>Class C Round &mdash; Open</span>
+      </div>
+    </div>
+
     <div class="ipx-snap">
-      <div class="ipx-col">
-        <div class="ipx-col-head">Product &amp; Regulatory</div>
-        <div class="ipx-col-body">
-          <div class="ipx-row"><span class="ipx-cell-label">CMS General Availability</span><span class="ipx-pill done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>Achieved Jul 27</span></div>
-          <div class="ipx-row"><span class="ipx-cell-label">3 CMS Awards</span><span class="ipx-pill done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>Listed on CMS.gov</span></div>
-          <div class="ipx-row"><span class="ipx-cell-label">Consumer App</span><span class="ipx-pill done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>Built</span></div>
+      <div class="ipx-cat">
+        <div class="ipx-cat-head">
+          <div class="ipx-cat-icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 3.5 8.5 9 10 5.5-1.5 9-5 9-10V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <div class="ipx-cat-name">Product &amp; Regulatory</div>
+        </div>
+        <div class="ipx-cat-body">
+          <div class="ipx-item">
+            <div class="ipx-item-status done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">CMS General Availability</span><span class="ipx-item-meta">Achieved Jul 27</span></div>
+          </div>
+          <div class="ipx-item">
+            <div class="ipx-item-status done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">3 CMS Awards</span><span class="ipx-item-meta">Listed on CMS.gov</span></div>
+          </div>
+          <div class="ipx-item">
+            <div class="ipx-item-status done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">Consumer App</span><span class="ipx-item-meta">Built &amp; Ready</span></div>
+          </div>
         </div>
       </div>
-      <div class="ipx-col">
-        <div class="ipx-col-head">Partners &amp; Commercial</div>
-        <div class="ipx-col-body">
-          <div class="ipx-row"><span class="ipx-cell-label">Honeycomb Medical</span><span class="ipx-pill active"><span class="ipx-dot active"></span>$300K RHTP Submitted Jul 15</span></div>
-          <div class="ipx-row"><span class="ipx-cell-label">J. Krug Insurance</span><span class="ipx-pill active"><span class="ipx-dot active"></span>App Delivering Jul 31</span></div>
-          <div class="ipx-row"><span class="ipx-cell-label">Commercialization Model</span><span class="ipx-pill done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>Complete</span></div>
+
+      <div class="ipx-cat">
+        <div class="ipx-cat-head">
+          <div class="ipx-cat-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+          <div class="ipx-cat-name">Partners &amp; Commercial</div>
+        </div>
+        <div class="ipx-cat-body">
+          <div class="ipx-item">
+            <div class="ipx-item-status active"><div class="ipx-pulse"></div></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">Honeycomb Medical</span><span class="ipx-item-meta">$300K RHTP Submitted Jul 15</span></div>
+          </div>
+          <div class="ipx-item">
+            <div class="ipx-item-status active"><div class="ipx-pulse"></div></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">J. Krug Insurance</span><span class="ipx-item-meta">App Delivering Jul 31</span></div>
+          </div>
+          <div class="ipx-item">
+            <div class="ipx-item-status done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">Commercialization Model</span><span class="ipx-item-meta">Complete</span></div>
+          </div>
         </div>
       </div>
-      <div class="ipx-col">
-        <div class="ipx-col-head">Execution &amp; Capital</div>
-        <div class="ipx-col-body">
-          <div class="ipx-row"><span class="ipx-cell-label">Credentialing Plan</span><span class="ipx-pill done"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12l5 5L20 6"/></svg>Complete</span></div>
-          <div class="ipx-row"><span class="ipx-cell-label">Class C Round</span><span class="ipx-pill active"><span class="ipx-dot active"></span>Open</span></div>
+
+      <div class="ipx-cat">
+        <div class="ipx-cat-head">
+          <div class="ipx-cat-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.6-2.7L7 14"/></svg></div>
+          <div class="ipx-cat-name">Execution &amp; Capital</div>
+        </div>
+        <div class="ipx-cat-body">
+          <div class="ipx-item">
+            <div class="ipx-item-status done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">Credentialing Plan</span><span class="ipx-item-meta">Complete</span></div>
+          </div>
+          <div class="ipx-item">
+            <div class="ipx-item-status active"><div class="ipx-pulse"></div></div>
+            <div class="ipx-item-text"><span class="ipx-item-label">Class C Round</span><span class="ipx-item-meta">Open &mdash; $3.5M Target</span></div>
+          </div>
         </div>
       </div>
     </div>
-    <div class="ipx-head" style="margin-top:48px;">
-      <span class="ipx-eyebrow">Use of Proceeds</span>
-      <span class="ipx-rule"></span>
-      <h2 class="ipx-title">What the $3.5M Activates</h2>
-    </div>
-    <div class="ipx-alloc">
-      <div class="ipx-card"><div class="ipx-amt">$500K</div><div class="ipx-desc">Phase 1 clinical stand-up · NPI · CMS-855B · CAQH</div></div>
-      <div class="ipx-card"><div class="ipx-amt">$500K</div><div class="ipx-desc">Production launch &amp; payer integrations</div></div>
-      <div class="ipx-card"><div class="ipx-amt">$300K</div><div class="ipx-desc">Honeycomb onboarding · 22K-panel migration</div></div>
-      <div class="ipx-card"><div class="ipx-amt">$300K</div><div class="ipx-desc">Compliance &amp; GTM · SOC 2 · HITRUST e1</div></div>
-      <div class="ipx-card"><div class="ipx-amt">$400K</div><div class="ipx-desc">OpEx &amp; reserve · runway through close</div></div>
-    </div>
-    <p class="ipx-note">$3,500,000 Class C · $25,000 minimum · priced equity · one close · request materials at invest@inpursuithealth.com</p>
   </div>
 </section>
 
