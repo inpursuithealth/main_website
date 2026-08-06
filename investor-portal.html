@@ -824,6 +824,186 @@
     flex-shrink: 0;
   }
 
+  /* ── REVENUE PROJECTIONS PANEL ── */
+  .rev-proj {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 3rem 2.5rem;
+  }
+  .rev-proj-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+  .rev-proj-eyebrow {
+    font-family: var(--mono);
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+  }
+  .rev-proj-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.15; letter-spacing: -.025em;
+    color: #fff; margin: 0;
+  }
+  .rev-proj-rule {
+    flex: 1; height: 1px; background: rgba(255,255,255,.07);
+  }
+
+  /* engine cards */
+  .rev-engines {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 2rem;
+  }
+  .rev-eng {
+    background: linear-gradient(180deg, #0E1B30 0%, #0A1628 100%);
+    border: 1px solid rgba(197,164,78,.15);
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color .3s, transform .3s;
+  }
+  .rev-eng:hover { border-color: rgba(197,164,78,.35); transform: translateY(-2px); }
+  .rev-eng-name {
+    font-family: var(--mono); font-size: .62rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .rev-eng-amt {
+    font-family: var(--serif); font-size: 2rem; color: var(--gold);
+    line-height: 1; letter-spacing: -.02em;
+  }
+  .rev-eng-amt .rev-eng-per {
+    font-family: var(--sans); font-size: .75rem; font-weight: 400;
+    color: var(--text-dim); letter-spacing: 0;
+  }
+  .rev-eng-sub {
+    font-size: .76rem; color: var(--text-dim); line-height: 1.55;
+  }
+  .rev-hub {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0 20px; position: relative;
+  }
+  .rev-hub::before, .rev-hub::after {
+    content: ''; position: absolute; top: 50%; width: 20px; height: 1px;
+    background: rgba(197,164,78,.25);
+  }
+  .rev-hub::before { left: 0; }
+  .rev-hub::after { right: 0; }
+  .rev-hub-mark {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--gold);
+    white-space: nowrap;
+  }
+  .rev-hub-sub {
+    font-family: var(--mono); font-size: .55rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-mute); margin-top: 4px;
+  }
+
+  /* rungs ladder */
+  .rev-rungs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .rev-rung {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    padding: 20px 18px;
+    text-align: center;
+    transition: border-color .3s, background .3s, transform .3s;
+    position: relative;
+  }
+  .rev-rung:hover {
+    border-color: rgba(197,164,78,.2);
+    background: rgba(197,164,78,.03);
+    transform: translateY(-2px);
+  }
+  .rev-rung.hot {
+    border-color: rgba(197,164,78,.3);
+    background: rgba(197,164,78,.05);
+  }
+  .rev-rung-tag {
+    position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: .55rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); background: var(--navy);
+    padding: 2px 10px; border: 1px solid rgba(197,164,78,.25);
+    border-radius: 100px; white-space: nowrap;
+  }
+  .rev-rung-mult {
+    font-family: var(--mono); font-size: .6rem; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+  .rev-rung-num {
+    font-family: var(--serif); font-size: 2.2rem; color: #fff;
+    line-height: 1; letter-spacing: -.02em; margin-bottom: 6px;
+  }
+  .rev-rung.hot .rev-rung-num { color: var(--gold); }
+  .rev-rung-math {
+    font-family: var(--mono); font-size: .58rem;
+    color: var(--text-mute); letter-spacing: .02em;
+  }
+
+  /* equation + punchline */
+  .rev-eq {
+    font-family: var(--mono); font-size: .72rem;
+    color: var(--text-dim); text-align: center;
+    margin-bottom: 1.25rem; letter-spacing: .02em;
+  }
+  .rev-eq strong { color: var(--gold); font-weight: 500; }
+  .rev-punch {
+    text-align: center; margin-bottom: 1.5rem;
+  }
+  .rev-punch-big {
+    font-family: var(--serif); font-size: 1.4rem; color: #fff;
+    line-height: 1.2; margin-bottom: 6px;
+  }
+  .rev-punch-sub {
+    font-size: .82rem; color: var(--text-dim); line-height: 1.55;
+  }
+  .rev-punch-sub strong { color: var(--gold); }
+
+  /* footnote + link */
+  .rev-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .rev-foot-note {
+    font-size: .7rem; color: var(--text-mute); line-height: 1.5;
+    max-width: 620px;
+  }
+  .rev-foot-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: .66rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border: 1px solid rgba(197,164,78,.25); border-radius: 8px;
+    padding: 10px 18px;
+    transition: color .2s, border-color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .rev-foot-link:hover {
+    color: var(--gold-lt); border-color: rgba(197,164,78,.5);
+    background: rgba(197,164,78,.06);
+  }
+  .rev-foot-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  @media(max-width:768px) {
+    .rev-proj { padding: 2.25rem 1.25rem 2rem; }
+    .rev-engines { grid-template-columns: 1fr; gap: 12px; }
+    .rev-hub { flex-direction: row; padding: 8px 0; }
+    .rev-hub::before, .rev-hub::after { display: none; }
+    .rev-rungs { grid-template-columns: repeat(2, 1fr); }
+    .rev-rung-num { font-size: 1.8rem; }
+    .rev-foot { flex-direction: column; align-items: flex-start; }
+  }
+
   /* ── DOCSEND PANEL ── */
   .invest-panel {
     display: grid;
@@ -1711,6 +1891,68 @@
     <div class="stat-divider"></div>
     <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
       <a href="#" onclick="openSubscriptionModal();return false;" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C5A44E 0%,#B89638 100%);color:#0A1628;border:1px solid rgba(197,164,78,.5);border-radius:8px;padding:12px 22px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(197,164,78,.18);transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 24px rgba(197,164,78,.3)';this.style.background='linear-gradient(135deg,#D0B05A 0%,#C5A44E 100%)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(197,164,78,.18)';this.style.background='linear-gradient(135deg,#C5A44E 0%,#B89638 100%)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Execute Subscription Documents</a>
+    </div>
+  </div>
+
+  <!-- REVENUE PROJECTIONS PANEL -->
+  <div class="rev-proj">
+    <div class="rev-proj-head">
+      <span class="rev-proj-eyebrow">Revenue Projections</span>
+      <h2 class="rev-proj-title">The Infrastructure That Compounds</h2>
+      <span class="rev-proj-rule"></span>
+    </div>
+
+    <div class="rev-engines">
+      <div class="rev-eng">
+        <div class="rev-eng-name">Consumer Engine</div>
+        <div class="rev-eng-amt">~$5.3M</div>
+        <div class="rev-eng-sub">App membership + cash-pay clinical care delivered directly under our own NPI</div>
+      </div>
+      <div class="rev-hub">
+        <div class="rev-hub-mark">InPursuit</div>
+        <div class="rev-hub-sub">One Infrastructure</div>
+      </div>
+      <div class="rev-eng">
+        <div class="rev-eng-name">Provider Engine</div>
+        <div class="rev-eng-amt">~$1.248M<span class="rev-eng-per"> / provider</span></div>
+        <div class="rev-eng-sub">RPM, CCM &amp; APCM delivered through the Partner Network &middot; all-payer, 2026 CMS rates</div>
+      </div>
+    </div>
+
+    <div class="rev-rungs">
+      <div class="rev-rung">
+        <div class="rev-rung-mult">5 Members</div>
+        <div class="rev-rung-num">$9.9M</div>
+        <div class="rev-rung-math">$6.2M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung hot">
+        <div class="rev-rung-tag">Year 3 base case</div>
+        <div class="rev-rung-mult">25 Members</div>
+        <div class="rev-rung-num">$35M</div>
+        <div class="rev-rung-math">$31.2M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung">
+        <div class="rev-rung-mult">50 Members</div>
+        <div class="rev-rung-num">$66M</div>
+        <div class="rev-rung-math">$62.4M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung">
+        <div class="rev-rung-mult">100 Members</div>
+        <div class="rev-rung-num">$128M</div>
+        <div class="rev-rung-math">$124.8M network + $3.7M app</div>
+      </div>
+    </div>
+
+    <div class="rev-eq">members &times; <strong>~$1.248M</strong> network + <strong>~$3.67M</strong> app = <strong>the rung</strong></div>
+
+    <div class="rev-punch">
+      <div class="rev-punch-big">25 practices out of ~230,000</div>
+      <div class="rev-punch-sub">A <strong>~$35M</strong> run-rate needs <strong>0.011%</strong> of the market. This is a floor, not a forecast.</div>
+    </div>
+
+    <div class="rev-foot">
+      <div class="rev-foot-note">Steady-state at full ramp &middot; members modeled at ~10K panels, half of Honeycomb&rsquo;s actual ~22K &middot; the app figure is Engine 1&rsquo;s app line only; its cash-pay clinical (~$1.61M of the ~$5.3M) is additive and not in the rungs &middot; no revenue share &middot; complete rate-by-rate build in diligence.</div>
+      <a class="rev-foot-link" href="data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].html" target="_blank">Full Build in Investment Overview <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
     </div>
   </div>
 
