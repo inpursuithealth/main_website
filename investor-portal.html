@@ -1644,8 +1644,12 @@
     <div class="portal-hero-inner">
       <div class="portal-hero-text">
         <div class="portal-kicker">Confidential Data Room &nbsp;·&nbsp; Class C Equity Round</div>
+        <div style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,rgba(197,164,78,.18) 0%,rgba(197,164,78,.08) 100%);border:1px solid rgba(197,164,78,.45);border-radius:6px;padding:6px 14px;margin-bottom:14px;">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+          <span style="font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#C5A44E;">Seed Round &middot; Now Open</span>
+        </div>
         <h1 class="portal-headline">InPursuit Health<br><em>Investor Materials</em></h1>
-        <p class="portal-desc">InPursuit Health is raising $3.5M in a single round of new Class C units at a $20M pre-money valuation. Priced equity, $25K minimum, one close.</p>
+        <p class="portal-desc">InPursuit Health is raising <strong style="color:var(--gold-lt);">$3.5M in seed funding</strong> through a single round of new Class C units at a $20M pre-money valuation. Priced equity, $25K minimum, one close.</p>
         <p class="portal-desc" style="margin-top:1rem;">Year 3 base case: $35M revenue at 25 enrolled members &mdash; just 25 of the 230,000+ physician practices across the country, with Honeycomb Medical Group already signed as our first. Request materials at <a href="mailto:invest@inpursuithealth.com" style="color:var(--gold-lt);text-decoration:underline;">invest@inpursuithealth.com</a>.</p>
       </div>
       <div class="portal-hero-card" style="padding:0;overflow:hidden;position:relative;">
@@ -1679,6 +1683,10 @@
             style="position:absolute;top:0;left:0;width:100%;height:100%;">
           </iframe>
         </div>
+        <!-- Execute Subscription Documents — centered under video -->
+        <div style="padding:16px 20px 20px;display:flex;justify-content:center;">
+          <a href="#" onclick="openSubscriptionModal();return false;" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C5A44E 0%,#B89638 100%);color:#0A1628;border:1px solid rgba(197,164,78,.5);border-radius:8px;padding:12px 22px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(197,164,78,.18);transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 24px rgba(197,164,78,.3)';this.style.background='linear-gradient(135deg,#D0B05A 0%,#C5A44E 100%)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(197,164,78,.18)';this.style.background='linear-gradient(135deg,#C5A44E 0%,#B89638 100%)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Execute Subscription Documents</a>
+        </div>
       </div>
       <script>
         function loadHeroVideo() {
@@ -1708,9 +1716,7 @@
       <div class="stat-label">Minimum Check</div>
     </div>
     <div class="stat-divider"></div>
-    <div style="display:flex;align-items:center;gap:12px;padding:0 0 0 4px;flex-wrap:wrap;">
-      <a href="#" onclick="openSubscriptionModal();return false;" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C5A44E 0%,#B89638 100%);color:#0A1628;border:1px solid rgba(197,164,78,.5);border-radius:8px;padding:10px 18px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(197,164,78,.18);transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 24px rgba(197,164,78,.3)';this.style.background='linear-gradient(135deg,#D0B05A 0%,#C5A44E 100%)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(197,164,78,.18)';this.style.background='linear-gradient(135deg,#C5A44E 0%,#B89638 100%)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Execute Subscription Documents</a>
-    </div>
+
   </div>
 
   <hr class="room-divider">
@@ -2777,7 +2783,27 @@ window.addEventListener('popstate', (e) => {
       if (saved.first) contact = saved;
     } catch(e) {}
     openDataRoom();
+    // Restore scroll position saved before opening a document
+    const savedScroll = parseInt(localStorage.getItem('ip_portal_scroll') || '0', 10);
+    if (savedScroll > 0) {
+      requestAnimationFrame(() => {
+        window.scrollTo(0, savedScroll);
+        localStorage.removeItem('ip_portal_scroll');
+      });
+    }
   }
+})();
+
+// ── SAVE SCROLL POSITION BEFORE OPENING DOCUMENTS ───────────────
+(function() {
+  document.addEventListener('click', function(e) {
+    const card = e.target.closest('[onclick]');
+    if (!card) return;
+    const handler = card.getAttribute('onclick') || '';
+    if (handler.includes("window.open('data-room/")) {
+      localStorage.setItem('ip_portal_scroll', String(window.scrollY));
+    }
+  }, true);
 })();
 
 // ── ACCORDION TOGGLE ─────────────────────────────
