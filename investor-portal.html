@@ -1701,102 +1701,52 @@
     </div>
   </div>
 
-  <!-- ACTIVATION TIMELINE -->
-  <style>
-    #act-tl{padding:2.5rem 3rem 1.5rem;max-width:1200px;margin:0 auto;}
-    #act-tl .act-head{font-family:var(--serif);font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(197,164,78,.55);margin-bottom:2.5rem;text-align:left;}
-    #act-tl .act-tl{position:relative;display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-top:.75rem;padding-bottom:1.25rem;}
-    #act-tl .act-tl::-webkit-scrollbar{height:4px;}
-    #act-tl .act-tl::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
-    #act-tl .act-tl::-webkit-scrollbar-thumb{background:rgba(197,164,78,.25);border-radius:2px;}
-    #act-tl .act-rail{position:absolute;top:32px;left:5%;right:5%;height:2px;pointer-events:none;display:flex;}
-    #act-tl .act-rail-done{background:#C5A44E;flex:3.5;}
-    #act-tl .act-rail-future{flex:4.5;background:repeating-linear-gradient(90deg,rgba(197,164,78,.4) 0,rgba(197,164,78,.4) 6px,transparent 6px,transparent 14px);}
-    #act-tl .act-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:96px;position:relative;z-index:1;}
-    #act-tl .act-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
-    #act-tl .act-dot.done{background:#C5A44E;border:2px solid #C5A44E;}
-    #act-tl .act-dot.done svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
-    #act-tl .act-dot.now{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 6px rgba(197,164,78,.2),0 0 0 12px rgba(197,164,78,.08);}
-    #act-tl .act-dot.now svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
-    #act-tl .act-dot.next{width:28px;height:28px;margin:6px;background:rgba(197,164,78,.06);border:1.5px solid rgba(197,164,78,.35);}
-    #act-tl .act-dot.dest{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 5px rgba(197,164,78,.18),0 0 0 10px rgba(197,164,78,.07);}
-    #act-tl .act-dot.dest svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
-    #act-tl .act-info{margin-top:1rem;text-align:center;padding:0 .25rem;}
-    #act-tl .act-badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;margin-bottom:.4rem;}
-    #act-tl .act-badge.done{background:rgba(197,164,78,.12);color:#C5A44E;border:1px solid rgba(197,164,78,.3);}
-    #act-tl .act-badge.now{background:rgba(197,164,78,.22);color:#C5A44E;border:1px solid rgba(197,164,78,.55);}
-    #act-tl .act-badge.next{background:rgba(255,255,255,.04);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);}
-    #act-tl .act-badge.dest{background:rgba(197,164,78,.18);color:#C5A44E;border:1px solid rgba(197,164,78,.45);}
-    #act-tl .act-date{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:.2rem;}
-    #act-tl .act-date.dim{color:rgba(255,255,255,.3);}
-    #act-tl .act-desc{font-family:var(--sans);font-size:.7rem;line-height:1.45;color:rgba(255,255,255,.4);max-width:92px;}
-    @media(max-width:900px){#act-tl{padding-left:1.25rem;padding-right:1.25rem;} #act-tl .act-tl{min-width:680px;}}
-  </style>
-  <div id="act-tl">
-    <div class="act-head">Activation Timeline &nbsp;·&nbsp; InPursuit Health</div>
-    <div class="act-tl">
-      <div class="act-rail">
-        <div class="act-rail-done"></div>
-        <div class="act-rail-future"></div>
+  <hr class="room-divider">
+
+  <!-- EXECUTIVE SUMMARY + PITCH DECK -->
+  <div class="doc-section">
+    <div class="section-label">Company Overview, Investment Overview &amp; Pitch Deck</div>
+    <div class="doc-grid">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Company_Overview_[F.202608.05].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Company Overview</span>
+        <div class="doc-title">InPursuit Health — Company Overview</div>
+        <div class="doc-desc">Updated company overview with CMS General Availability and three CMS awards achieved July 2025, J. Krug Insurance broker partnership delivering for testing, Honeycomb Medical $300K RHTP application submitted, and Year 3 base case of $35M revenue at 25 members.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Company_Overview_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Updated Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </div>
-      <div class="act-node">
-        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="act-info">
-          <div class="act-badge done">Accepted</div>
-          <div class="act-date">Dec 2025</div>
-          <div class="act-desc">CMS Health IT Ecosystem</div>
-        </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Seed Investment Overview</span>
+        <div class="doc-title">InPursuit Health — Seed Investment Overview</div>
+        <div class="doc-desc">$3.5M Class C equity raise at $20M pre-money, $25K minimum, single close. Full investment overview with use of proceeds, revenue projections, traction milestones, and the $50B Rural Health Transformation federal funding window.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </div>
-      <div class="act-node">
-        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="act-info">
-          <div class="act-badge done">MVP Complete</div>
-          <div class="act-date">Mar 31</div>
-          <div class="act-desc">Patient App Delivered</div>
-        </div>
-      </div>
-      <div class="act-node">
-        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="act-info">
-          <div class="act-badge done">First Wave</div>
-          <div class="act-date">Apr 9</div>
-          <div class="act-desc">CMS Health IT First Wave Launch</div>
-        </div>
-      </div>
-      <div class="act-node">
-        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="act-info">
-          <div class="act-badge done">CMS GA</div>
-          <div class="act-date">Jul 27</div>
-          <div class="act-desc">CMS General Availability + 3 Awards</div>
-        </div>
-      </div>
-      <div class="act-node">
-        <div class="act-dot now"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <div class="act-info">
-          <div class="act-badge now">Now</div>
-          <div class="act-date">Jul 31</div>
-          <div class="act-desc">J. Krug App Delivering for Testing</div>
-        </div>
-      </div>
-      <div class="act-node">
-        <div class="act-dot next"></div>
-        <div class="act-info">
-          <div class="act-badge next">Award</div>
-          <div class="act-date dim">Aug 2026</div>
-          <div class="act-desc">Honeycomb RHTP Awards Projected</div>
-        </div>
-      </div>
-      <div class="act-node">
-        <div class="act-dot next"></div>
-        <div class="act-info">
-          <div class="act-badge next">Scale</div>
-          <div class="act-date dim">Q3 2026</div>
-          <div class="act-desc">Delivery &amp; Credentialing</div>
-        </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Pitch_Deck_[F260610].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Pitch Deck</span>
+        <div class="doc-title">InPursuit Health — Pitch Deck</div>
+        <div class="doc-desc">Problem, solution, market, traction, team, financials, and ask. Designed for institutional investors and strategic partners.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Pitch_Deck_[F260610].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Jun 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
       </div>
     </div>
+
+  <!-- CAP TABLE C2A BAR -->
+  <div onclick="window.open('data-room/FINAL_cap-table.html','_blank')" style="margin-top:20px;padding:20px 28px;background:linear-gradient(135deg,#0a1628 0%,#132040 100%);border:1px solid rgba(197,164,78,.28);border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;transition:border-color .2s,box-shadow .2s;" onmouseover="this.style.borderColor='rgba(197,164,78,.6)';this.style.boxShadow='0 4px 24px rgba(197,164,78,.12)'" onmouseout="this.style.borderColor='rgba(197,164,78,.28)';this.style.boxShadow='none'">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="width:40px;height:40px;border-radius:8px;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 9v12M15 9v12"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:#C5A44E;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px;">Capitalization Table</div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.55);line-height:1.4;">Current state &amp; post-Class C pro-forma &nbsp;&middot;&nbsp; 3,085 units outstanding &nbsp;&middot;&nbsp; Founders retain 81.1% post-round &nbsp;&middot;&nbsp; Class C + Class C-1 advisory pool</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <span style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:#C5A44E;white-space:nowrap;">View Cap Table</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
   </div>
+
 
 <!-- INVESTOR ORIENTATION BLOCK — Countdown to Launch (DARK) -->
 <section class="ipx-orient">
@@ -2026,54 +1976,102 @@
       <div class="ipx-capital-note-amount">$3.5M<span>Class C &mdash; Closing Now</span></div>
     </div>
   </div>
-</section>
 
-  <hr class="room-divider">
-
-  <!-- EXECUTIVE SUMMARY + PITCH DECK -->
-  <div class="doc-section">
-    <div class="section-label">Company Overview, Investment Overview &amp; Pitch Deck</div>
-    <div class="doc-grid">
-      <div class="doc-card" onclick="window.open('data-room/InPursuit_Company_Overview_[F.202608.05].html','_blank')" style="cursor:pointer;">
-        <span class="doc-badge b-series">Company Overview</span>
-        <div class="doc-title">InPursuit Health — Company Overview</div>
-        <div class="doc-desc">Updated company overview with CMS General Availability and three CMS awards achieved July 2025, J. Krug Insurance broker partnership delivering for testing, Honeycomb Medical $300K RHTP application submitted, and Year 3 base case of $35M revenue at 25 members.</div>
-        <a class="doc-pdf-btn" href="data-room/InPursuit_Company_Overview_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
-        <div class="doc-foot"><span class="doc-tag">Updated Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+  <!-- ACTIVATION TIMELINE -->
+  <style>
+    #act-tl{padding:2.5rem 3rem 1.5rem;max-width:1200px;margin:0 auto;}
+    #act-tl .act-head{font-family:var(--serif);font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(197,164,78,.55);margin-bottom:2.5rem;text-align:left;}
+    #act-tl .act-tl{position:relative;display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-top:.75rem;padding-bottom:1.25rem;}
+    #act-tl .act-tl::-webkit-scrollbar{height:4px;}
+    #act-tl .act-tl::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
+    #act-tl .act-tl::-webkit-scrollbar-thumb{background:rgba(197,164,78,.25);border-radius:2px;}
+    #act-tl .act-rail{position:absolute;top:32px;left:5%;right:5%;height:2px;pointer-events:none;display:flex;}
+    #act-tl .act-rail-done{background:#C5A44E;flex:3.5;}
+    #act-tl .act-rail-future{flex:4.5;background:repeating-linear-gradient(90deg,rgba(197,164,78,.4) 0,rgba(197,164,78,.4) 6px,transparent 6px,transparent 14px);}
+    #act-tl .act-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:96px;position:relative;z-index:1;}
+    #act-tl .act-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+    #act-tl .act-dot.done{background:#C5A44E;border:2px solid #C5A44E;}
+    #act-tl .act-dot.done svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.now{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 6px rgba(197,164,78,.2),0 0 0 12px rgba(197,164,78,.08);}
+    #act-tl .act-dot.now svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.next{width:28px;height:28px;margin:6px;background:rgba(197,164,78,.06);border:1.5px solid rgba(197,164,78,.35);}
+    #act-tl .act-dot.dest{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 5px rgba(197,164,78,.18),0 0 0 10px rgba(197,164,78,.07);}
+    #act-tl .act-dot.dest svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-info{margin-top:1rem;text-align:center;padding:0 .25rem;}
+    #act-tl .act-badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;margin-bottom:.4rem;}
+    #act-tl .act-badge.done{background:rgba(197,164,78,.12);color:#C5A44E;border:1px solid rgba(197,164,78,.3);}
+    #act-tl .act-badge.now{background:rgba(197,164,78,.22);color:#C5A44E;border:1px solid rgba(197,164,78,.55);}
+    #act-tl .act-badge.next{background:rgba(255,255,255,.04);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);}
+    #act-tl .act-badge.dest{background:rgba(197,164,78,.18);color:#C5A44E;border:1px solid rgba(197,164,78,.45);}
+    #act-tl .act-date{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:.2rem;}
+    #act-tl .act-date.dim{color:rgba(255,255,255,.3);}
+    #act-tl .act-desc{font-family:var(--sans);font-size:.7rem;line-height:1.45;color:rgba(255,255,255,.4);max-width:92px;}
+    @media(max-width:900px){#act-tl{padding-left:1.25rem;padding-right:1.25rem;} #act-tl .act-tl{min-width:680px;}}
+  </style>
+  <div id="act-tl">
+    <div class="act-head">Activation Timeline &nbsp;·&nbsp; InPursuit Health</div>
+    <div class="act-tl">
+      <div class="act-rail">
+        <div class="act-rail-done"></div>
+        <div class="act-rail-future"></div>
       </div>
-      <div class="doc-card" onclick="window.open('data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].html','_blank')" style="cursor:pointer;">
-        <span class="doc-badge b-series">Seed Investment Overview</span>
-        <div class="doc-title">InPursuit Health — Seed Investment Overview</div>
-        <div class="doc-desc">$3.5M Class C equity raise at $20M pre-money, $25K minimum, single close. Full investment overview with use of proceeds, revenue projections, traction milestones, and the $50B Rural Health Transformation federal funding window.</div>
-        <a class="doc-pdf-btn" href="data-room/InPursuit_Health_Seed_Investment_Overview[F2026.08.04].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
-        <div class="doc-foot"><span class="doc-tag">Aug 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">Accepted</div>
+          <div class="act-date">Dec 2025</div>
+          <div class="act-desc">CMS Health IT Ecosystem</div>
+        </div>
       </div>
-      <div class="doc-card" onclick="window.open('data-room/InPursuit_Pitch_Deck_[F260610].html','_blank')" style="cursor:pointer;">
-        <span class="doc-badge b-series">Pitch Deck</span>
-        <div class="doc-title">InPursuit Health — Pitch Deck</div>
-        <div class="doc-desc">Problem, solution, market, traction, team, financials, and ask. Designed for institutional investors and strategic partners.</div>
-        <a class="doc-pdf-btn" href="data-room/InPursuit_Pitch_Deck_[F260610].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
-        <div class="doc-foot"><span class="doc-tag">Jun 2025</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">MVP Complete</div>
+          <div class="act-date">Mar 31</div>
+          <div class="act-desc">Patient App Delivered</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">First Wave</div>
+          <div class="act-date">Apr 9</div>
+          <div class="act-desc">CMS Health IT First Wave Launch</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">CMS GA</div>
+          <div class="act-date">Jul 27</div>
+          <div class="act-desc">CMS General Availability + 3 Awards</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot now"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge now">Now</div>
+          <div class="act-date">Jul 31</div>
+          <div class="act-desc">J. Krug App Delivering for Testing</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Award</div>
+          <div class="act-date dim">Aug 2026</div>
+          <div class="act-desc">Honeycomb RHTP Awards Projected</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Scale</div>
+          <div class="act-date dim">Q3 2026</div>
+          <div class="act-desc">Delivery &amp; Credentialing</div>
+        </div>
       </div>
     </div>
-
-  <!-- CAP TABLE C2A BAR -->
-  <div onclick="window.open('data-room/FINAL_cap-table.html','_blank')" style="margin-top:20px;padding:20px 28px;background:linear-gradient(135deg,#0a1628 0%,#132040 100%);border:1px solid rgba(197,164,78,.28);border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;transition:border-color .2s,box-shadow .2s;" onmouseover="this.style.borderColor='rgba(197,164,78,.6)';this.style.boxShadow='0 4px 24px rgba(197,164,78,.12)'" onmouseout="this.style.borderColor='rgba(197,164,78,.28)';this.style.boxShadow='none'">
-    <div style="display:flex;align-items:center;gap:16px;">
-      <div style="width:40px;height:40px;border-radius:8px;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 9v12M15 9v12"/></svg>
-      </div>
-      <div>
-        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:#C5A44E;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px;">Capitalization Table</div>
-        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.55);line-height:1.4;">Current state &amp; post-Class C pro-forma &nbsp;&middot;&nbsp; 3,085 units outstanding &nbsp;&middot;&nbsp; Founders retain 81.1% post-round &nbsp;&middot;&nbsp; Class C + Class C-1 advisory pool</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
-      <span style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:#C5A44E;white-space:nowrap;">View Cap Table</span>
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-    </div>
-  </div>
-
   </div>
 
   <!-- TRUMP ADMINISTRATION INITIATIVES -->
