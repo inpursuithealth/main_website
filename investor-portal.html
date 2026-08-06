@@ -2779,13 +2779,25 @@ window.addEventListener('popstate', (e) => {
       if (saved.first) contact = saved;
     } catch(e) {}
     openDataRoom();
-    // Restore scroll position saved before opening a document
+    // Restore scroll position saved before opening a document.
+    // Retry over several frames and again on load so heavy/async layout
+    // (fonts, images, accordions) doesn't leave us short of the target.
     const savedScroll = parseInt(localStorage.getItem('ip_portal_scroll') || '0', 10);
     if (savedScroll > 0) {
-      requestAnimationFrame(() => {
+      let attempts = 0;
+      const tryScroll = () => {
+        window.scrollTo(0, savedScroll);
+        if (Math.abs(window.scrollY - savedScroll) < 5) {
+          localStorage.removeItem('ip_portal_scroll');
+          return;
+        }
+        if (++attempts < 30) requestAnimationFrame(tryScroll);
+      };
+      requestAnimationFrame(tryScroll);
+      window.addEventListener('load', () => {
         window.scrollTo(0, savedScroll);
         localStorage.removeItem('ip_portal_scroll');
-      });
+      }, { once: true });
     }
   }
 })();
