@@ -28,7 +28,7 @@
 .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--gold);animation:blink 2s ease-in-out infinite}
 @keyframes blink{0%,100%{opacity:1;box-shadow:0 0 8px rgba(197,164,78,.6)}50%{opacity:.3;box-shadow:none}}
 .hero h1{font-family:var(--serif);font-size:clamp(42px,6vw,80px);font-weight:400;line-height:1.05;letter-spacing:-0.02em;max-width:950px;margin-bottom:28px;position:relative;z-index:2;animation:fu .8s ease .15s both;color:var(--white)}
-.hero h1 em{font-style:italic}
+.hero h1 em{font-style:italic;color:var(--gold)}
 .hero-sub{font-size:clamp(16px,1.6vw,20px);color:rgba(255,255,255,.45);line-height:1.75;max-width:700px;margin-bottom:20px;position:relative;z-index:2;animation:fu .8s ease .3s both}
 .hero-sub strong{color:rgba(255,255,255,.75);font-weight:600}
 .hero-tagline{font-family:var(--serif);font-size:20px;font-style:italic;color:var(--gold-light);margin-bottom:48px;position:relative;z-index:2;animation:fu .8s ease .4s both}
@@ -41,7 +41,7 @@
 /* ===== SECTION UTILITIES ===== */
 .s-overline{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);margin-bottom:20px}
 .s-headline{font-family:var(--serif);font-size:clamp(28px,3.5vw,52px);font-weight:400;line-height:1.15;margin-bottom:16px}
-.s-headline em{font-style:italic}
+.s-headline em{font-style:italic;color:var(--gold)}
 .s-desc{font-size:16px;color:rgba(255,255,255,.4);line-height:1.75;max-width:640px;margin-bottom:56px}
 
 /* ===== TRUST BAR ===== */
@@ -55,7 +55,7 @@
 .manifesto::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 45%,rgba(197,164,78,0.025),transparent);pointer-events:none}
 .manifesto-inner{max-width:800px;margin:0 auto;position:relative;z-index:1}
 .manifesto blockquote{font-family:var(--serif);font-size:clamp(22px,3vw,36px);font-weight:400;line-height:1.45;color:var(--white);margin-bottom:24px}
-.manifesto blockquote em{font-style:italic}
+.manifesto blockquote em{font-style:italic;color:var(--gold)}
 .manifesto .attr{font-size:12px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(197,164,78,0.5)}
 
 /* ===== WHAT IS TETRA ===== */
@@ -80,11 +80,11 @@
 .eco-explain-card h4{font-family:var(--serif);font-size:18px;margin-bottom:8px}
 .eco-explain-card p{font-size:13px;color:var(--text-muted);line-height:1.7}
 .eco-explain-card p strong{color:var(--text-dark)}
-.eco-explain-card p em{font-style:italic}
+.eco-explain-card p em{font-style:italic;color:var(--text-dark)}
 .family-inner{max-width:1200px;margin:0 auto}
 .family-header{text-align:center;margin-bottom:64px}
 .family-header h2{font-family:var(--serif);font-size:clamp(28px,3.5vw,48px);color:var(--text-dark);line-height:1.2;margin-bottom:16px}
-.family-header h2 em{font-style:italic}
+.family-header h2 em{font-style:italic;color:var(--gold)}
 .family-header p{font-size:15px;color:var(--text-muted);line-height:1.7;max-width:600px;margin:0 auto}
 .family-grid{display:grid;grid-template-columns:1fr;gap:0;position:relative}
 .family-core{display:grid;grid-template-columns:1fr;gap:2px;margin-bottom:2px}
@@ -115,7 +115,7 @@
 .fc-blue .family-chip{background:rgba(37,99,235,.05);color:var(--blue);border:1px solid rgba(37,99,235,.1)}
 .family-callout{margin-top:48px;padding:36px 40px;border-radius:12px;background:var(--navy-deep);text-align:center}
 .family-callout p{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--white);line-height:1.45}
-.family-callout em{font-style:italic}
+.family-callout em{font-style:italic;color:var(--gold)}
 
 /* ===== ARCHITECTURE ===== */
 .arch-section{padding:120px 40px;background:var(--navy)}
@@ -139,7 +139,7 @@
 .layer-comply{background:rgba(37,99,235,.02)}.layer-comply .layer-label-sub{color:var(--blue)}.layer-comply .layer-chip{background:rgba(37,99,235,.05);color:#93C5FD;border:1px solid rgba(37,99,235,.1)}
 .arch-callout{margin-top:48px;padding:36px 40px;border-radius:12px;border:1px solid rgba(197,164,78,.08);background:rgba(197,164,78,.02);text-align:center}
 .arch-callout p{font-family:var(--serif);font-size:clamp(18px,2vw,24px);color:var(--white);line-height:1.45}
-.arch-callout em{font-style:italic}
+.arch-callout em{font-style:italic;color:var(--gold)}
 
 /* ===== PERFORMANCE ===== */
 .perf-section{padding:120px 40px;background:var(--navy-deep)}
@@ -178,7 +178,7 @@
 .cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 60%,rgba(197,164,78,.04),transparent);pointer-events:none}
 .cta-inner{max-width:700px;margin:0 auto;position:relative;z-index:2}
 .cta-inner h2{font-family:var(--serif);font-size:clamp(30px,3.5vw,48px);font-weight:400;line-height:1.2;margin-bottom:20px}
-.cta-inner h2 em{font-style:italic}
+.cta-inner h2 em{font-style:italic;color:var(--gold)}
 .cta-inner>p{font-size:16px;color:rgba(255,255,255,.4);line-height:1.7;margin-bottom:40px}
 
 /* ===== VALUE STREAMS ===== */
@@ -272,8 +272,7 @@
   section{padding:60px 20px!important}
 }
 </style>
-<style>h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{color:inherit!important;}
-</style></head>
+</head>
 <body>
 
 <!-- PRELOADER -->
