@@ -149,6 +149,12 @@ h1 em{font-style:italic;}
 .notify button:hover{background:var(--gold-light);}
 .notify button:focus-visible{outline:2px solid var(--gold-light);outline-offset:2px;}
 .notify-note{font-size:12.5px;color:var(--ink-45);margin-top:14px;}
+.notify-msg{font-size:13.5px;margin-top:14px;display:none;}
+.notify-msg.show{display:block;}
+.notify-msg--success{color:var(--gold-light);}
+.notify-msg--error{color:#e57373;}
+.notify-msg--info{color:var(--ink-60);}
+.notify button:disabled{opacity:.6;cursor:default;}
 @media(max-width:480px){
   .notify{flex-direction:column;}
   .notify button{padding:14px;}
@@ -273,11 +279,12 @@ footer{
     <h1>Harness the Power of <em>Your Data</em>&trade;</h1>
     <p class="tag">The most personalized healthcare and wellness for you and your family, powered by one secure, complete health record you own for life. The infrastructure is built. Now we bring it to everyone.</p>
     <p class="cms-line">An approved member of the CMS Health Tech Ecosystem.</p>
-    <form class="notify" onsubmit="notifyMe(event)">
+    <form class="notify" id="notifyForm">
       <input type="email" id="notify-email" placeholder="Your email address" required autocomplete="email" aria-label="Email address">
-      <button type="submit">Keep me posted</button>
+      <button type="submit" id="notifyBtn">Keep me posted</button>
     </form>
-    <p class="notify-note">Be the first to know when we launch. No spam, ever.</p>
+    <p class="notify-note" id="notifyNote">Be the first to know when we launch. No spam, ever.</p>
+    <p class="notify-msg" id="notifyMsg" role="status" aria-live="polite"></p>
   </div>
 </main>
 
@@ -300,15 +307,56 @@ footer{
   </div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
-function notifyMe(e){
-  e.preventDefault();
-  var email = document.getElementById('notify-email').value.trim();
-  if(!email) return;
-  window.location.href = 'mailto:info@InPursuitHealth.com?subject=' +
-    encodeURIComponent('Launch list: keep me posted') +
-    '&body=' + encodeURIComponent('Please add me to the InPursuit Health launch list.\n\nEmail: ' + email);
-}
+(function(){
+  var SUPA_URL  = 'https://weaektyawlgxhqusjymw.supabase.co';
+  var SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYWVrdHlhd2xneGhxdXNqeW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4NzEsImV4cCI6MjA4ODY4MDg3MX0.W7Zu3CueXLGOHaeUmuKDkduquaJzUpZCrXQ4jp9IYi4';
+  var supa = supabase.createClient(SUPA_URL, SUPA_ANON);
+
+  var formEl  = document.getElementById('notifyForm');
+  var emailEl = document.getElementById('notify-email');
+  var btn     = document.getElementById('notifyBtn');
+  var msgEl   = document.getElementById('notifyMsg');
+  var noteEl  = document.getElementById('notifyNote');
+
+  function showMsg(text, type){
+    msgEl.textContent = text;
+    msgEl.className = 'notify-msg show notify-msg--' + type;
+  }
+
+  formEl.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var email = (emailEl.value || '').trim();
+    if(!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)){
+      showMsg('Please enter a valid email address.', 'error');
+      emailEl.focus();
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Submitting…';
+
+    var { error } = await supa.from('waitlist').insert({
+      email: email,
+      source: 'index-page',
+      user_agent: navigator.userAgent
+    });
+
+    btn.disabled = false;
+    btn.textContent = 'Keep me posted';
+
+    if(!error){
+      formEl.style.display = 'none';
+      noteEl.style.display = 'none';
+      showMsg("You're on the list! We'll be in touch soon.", 'success');
+    } else if(error.code === '23505'){
+      showMsg("You're already on the list — we'll be in touch soon.", 'info');
+    } else {
+      showMsg('Something went wrong. Please try again.', 'error');
+    }
+  });
+})();
 </script>
 
 </body>
