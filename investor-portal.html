@@ -1,0 +1,3171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Data Room — InPursuit Health</title>
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Instrument+Sans:wght@400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:      #0A1628;
+    --navy-mid:  #111f35;
+    --navy-card: #152236;
+    --gold:      #C5A44E;
+    --gold-lt:   #d4b86a;
+    --gold-pale: rgba(197,164,78,.10);
+    --gold-line: rgba(197,164,78,.22);
+    --text-on:   rgba(255,255,255,.90);
+    --text-dim:  rgba(255,255,255,.48);
+    --text-mute: rgba(255,255,255,.28);
+    --green:     #2ecc71;
+    --red:       #e05252;
+    --serif:     'Instrument Serif', Georgia, serif;
+    --sans:      'Instrument Sans', system-ui, sans-serif;
+    --mono:      'DM Mono', monospace;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--navy);
+    color: var(--text-on);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ambient glow */
+  body::before {
+    content: '';
+    position: fixed; inset: 0; pointer-events: none; z-index: 0;
+    background:
+      radial-gradient(ellipse 70% 55% at 50% -5%, rgba(197,164,78,.09) 0%, transparent 65%),
+      radial-gradient(ellipse 35% 35% at 88% 85%, rgba(197,164,78,.04) 0%, transparent 55%);
+  }
+
+  /* ══════════════════════════════════════
+     GATE
+  ══════════════════════════════════════ */
+  #gate-container {
+    position: fixed; inset: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 1.5rem;
+    background: var(--navy);
+  }
+
+  /* ── STEP WRAPPER ── */
+  .step {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    position: relative; z-index: 2;
+    animation: stepIn .45s cubic-bezier(.22,.68,0,1.15) both;
+  }
+  .step.active { display: flex; }
+
+  @keyframes stepIn {
+    from { opacity: 0; transform: translateY(22px) scale(.975); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  /* ── LOGO ABOVE CARD ── */
+  .gate-logo {
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  .gate-logo img { height: 56px; width: auto; }
+
+  /* ── UNIFIED CARD ── */
+  .gate-card {
+    width: 100%;
+    background: var(--navy-card);
+    border: 1px solid rgba(197,164,78,.18);
+    border-radius: 16px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 24px 64px rgba(0,0,0,.45);
+  }
+
+  /* gold top line */
+  .gate-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, transparent 0%, var(--gold) 40%, var(--gold-lt) 60%, transparent 100%);
+  }
+
+  /* ── CARD HEADER ── */
+  .card-header {
+    padding: 2rem 2.25rem 1.75rem;
+  }
+
+  .card-eyebrow {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .85rem;
+  }
+
+  .card-title {
+    font-family: var(--serif);
+    font-size: 1.85rem;
+    line-height: 1.1;
+    letter-spacing: -.025em;
+    color: #fff;
+    margin-bottom: .65rem;
+  }
+
+  .card-sub {
+    font-size: .845rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  /* ── DIVIDER ── */
+  .card-divider {
+    height: 1px;
+    background: rgba(255,255,255,.07);
+    margin: 0 2.25rem;
+  }
+
+  /* ── CARD BODY ── */
+  .card-body {
+    padding: 1.75rem 2.25rem 2rem;
+  }
+
+  /* ── FORM FIELDS ── */
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: .85rem;
+    margin-bottom: .85rem;
+  }
+
+  .field { display: flex; flex-direction: column; gap: .38rem; }
+
+  .field label {
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .field input {
+    background: rgba(255,255,255,.055);
+    border: 1.5px solid rgba(255,255,255,.10);
+    border-radius: 8px;
+    padding: .7rem .95rem;
+    font-family: var(--sans);
+    font-size: .875rem;
+    color: #fff;
+    outline: none;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    -webkit-appearance: none;
+    width: 100%;
+  }
+  .field input::placeholder { color: var(--text-mute); }
+  .field input:focus {
+    border-color: rgba(197,164,78,.55);
+    background: rgba(197,164,78,.04);
+    box-shadow: 0 0 0 3px rgba(197,164,78,.08);
+  }
+  .field input.error {
+    border-color: rgba(224,82,82,.6);
+    background: rgba(224,82,82,.04);
+  }
+
+  .field-full { margin-bottom: .85rem; }
+  .field-full input {
+    background: rgba(255,255,255,.055);
+    border: 1.5px solid rgba(255,255,255,.10);
+    border-radius: 8px;
+    padding: .7rem .95rem;
+    font-family: var(--sans);
+    font-size: .875rem;
+    color: #fff;
+    outline: none;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    -webkit-appearance: none;
+    width: 100%;
+  }
+  .field-full input::placeholder { color: var(--text-mute); }
+  .field-full input:focus {
+    border-color: rgba(197,164,78,.55);
+    background: rgba(197,164,78,.04);
+    box-shadow: 0 0 0 3px rgba(197,164,78,.08);
+  }
+  .field-full label {
+    display: block;
+    font-size: .68rem;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    margin-bottom: .38rem;
+  }
+  .field-full input.error { border-color: rgba(224,82,82,.6); }
+
+  /* ── CODE INPUT ── */
+  .code-wrap { position: relative; margin-bottom: .85rem; }
+
+  .code-input {
+    width: 100%;
+    background: rgba(255,255,255,.055);
+    border: 1.5px solid rgba(255,255,255,.10);
+    border-radius: 8px;
+    padding: .78rem 3rem .78rem 1rem;
+    font-family: var(--mono);
+    font-size: 1rem;
+    letter-spacing: .1em;
+    color: #fff;
+    outline: none;
+    transition: border-color .2s, background .2s, box-shadow .2s;
+    -webkit-appearance: none;
+    text-transform: uppercase;
+  }
+  .code-input::placeholder {
+    color: var(--text-mute);
+    font-size: .82rem;
+    letter-spacing: .04em;
+    text-transform: none;
+  }
+  .code-input:focus {
+    border-color: rgba(197,164,78,.55);
+    background: rgba(197,164,78,.04);
+    box-shadow: 0 0 0 3px rgba(197,164,78,.08);
+  }
+  .code-input.error  { border-color: rgba(224,82,82,.6); animation: shake .35s ease; }
+  .code-input.ok     { border-color: rgba(46,204,113,.5); }
+
+  .code-eye {
+    position: absolute; right: .85rem; top: 50%;
+    transform: translateY(-50%);
+    background: none; border: none; cursor: pointer;
+    color: var(--text-dim); padding: .25rem;
+    transition: color .2s;
+  }
+  .code-eye:hover { color: var(--gold); }
+
+  @keyframes shake {
+    0%,100% { transform: translateX(0); }
+    25%,75%  { transform: translateX(-5px); }
+    50%      { transform: translateX(5px); }
+  }
+
+
+  /* ── CAPTCHA ── */
+  .captcha-wrap {
+    display: flex;
+    align-items: center;
+    gap: .85rem;
+    background: rgba(255,255,255,.055);
+    border: 1.5px solid rgba(255,255,255,.10);
+    border-radius: 8px;
+    padding: .7rem 1rem;
+    transition: border-color .2s;
+  }
+  .captcha-wrap:focus-within {
+    border-color: rgba(197,164,78,.55);
+    background: rgba(197,164,78,.04);
+    box-shadow: 0 0 0 3px rgba(197,164,78,.08);
+  }
+  .captcha-wrap.error { border-color: rgba(224,82,82,.6); }
+  .captcha-eq {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--gold-lt);
+    letter-spacing: .04em;
+    white-space: nowrap;
+  }
+  .captcha-sep {
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: var(--text-dim);
+  }
+  .captcha-wrap input[type="number"] {
+    background: rgba(255,255,255,.08);
+    border: 1.5px solid rgba(255,255,255,.15);
+    border-radius: 6px;
+    padding: .4rem .65rem;
+    font-family: var(--mono);
+    font-size: 1rem;
+    color: #fff;
+    outline: none;
+    width: 80px;
+    text-align: center;
+    -moz-appearance: textfield;
+    transition: border-color .2s;
+  }
+  .captcha-wrap input[type="number"]::-webkit-outer-spin-button,
+  .captcha-wrap input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; }
+  .captcha-wrap input[type="number"]:focus { border-color: rgba(197,164,78,.55); }
+  .captcha-wrap input[type="number"].error { border-color: rgba(224,82,82,.6); }
+
+  /* ── DISCLOSURE SCROLL BOX ── */
+  .disc-scroll-box {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    padding: 1.35rem;
+    max-height: 240px;
+    overflow-y: auto;
+    margin-bottom: 1.1rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-line) transparent;
+  }
+  .disc-scroll-box::-webkit-scrollbar { width: 3px; }
+  .disc-scroll-box::-webkit-scrollbar-thumb { background: var(--gold-line); border-radius: 3px; }
+  .disc-scroll-box h4 {
+    font-family: var(--serif);
+    font-size: .98rem;
+    color: var(--gold-lt);
+    margin-bottom: .6rem;
+    margin-top: 1rem;
+  }
+  .disc-scroll-box h4:first-child { margin-top: 0; }
+  .disc-scroll-box p {
+    font-size: .875rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,.7);
+    margin-bottom: .9rem;
+  }
+  .disc-scroll-box p:last-child { margin-bottom: 0; }
+  .disc-scroll-box strong { color: rgba(255,255,255,.9); }
+
+  /* ── DISCLOSURE PDF BUTTON ── */
+  .disc-pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    background: rgba(197,164,78,.12);
+    border: 1px solid rgba(197,164,78,.3);
+    border-radius: 8px;
+    color: var(--gold-lt);
+    font-size: .835rem;
+    font-weight: 500;
+    letter-spacing: .015em;
+    padding: .6rem 1rem;
+    text-decoration: none;
+    transition: background .2s, border-color .2s, color .2s;
+    margin-bottom: .5rem;
+  }
+  .disc-pdf-btn:hover {
+    background: rgba(197,164,78,.2);
+    border-color: rgba(197,164,78,.5);
+    color: #fff;
+  }
+
+  /* ── CERT BOX ── */
+  .cert-box {
+    background: rgba(255,255,255,.035);
+    border: 1px solid rgba(255,255,255,.08);
+    border-radius: 10px;
+    padding: 1.35rem;
+    max-height: 260px;
+    overflow-y: auto;
+    margin-bottom: 1.25rem;
+    scrollbar-width: thin;
+    scrollbar-color: var(--gold-line) transparent;
+  }
+  .cert-box::-webkit-scrollbar { width: 3px; }
+  .cert-box::-webkit-scrollbar-thumb { background: var(--gold-line); border-radius: 3px; }
+
+  .cert-box h4 {
+    font-family: var(--serif);
+    font-size: .98rem;
+    color: var(--gold-lt);
+    margin-bottom: .6rem;
+  }
+
+  .cert-box p {
+    font-size: .875rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,.7);
+    margin-bottom: .9rem;
+  }
+  .cert-box p:last-child { margin-bottom: 0; }
+
+  .cert-box ul {
+    padding-left: 1.1rem;
+    font-size: .875rem;
+    line-height: 1.72;
+    color: rgba(255,255,255,.7);
+    margin-bottom: .9rem;
+  }
+  .cert-box li { margin-bottom: .3rem; }
+  .cert-box strong { color: rgba(255,255,255,.9); }
+
+  /* ── CHECKBOX ── */
+  .check-wrap {
+    display: flex;
+    align-items: flex-start;
+    gap: .8rem;
+    margin-bottom: 1.35rem;
+    cursor: pointer;
+  }
+  .check-wrap input[type="checkbox"] {
+    width: 18px; height: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    accent-color: var(--gold);
+    cursor: pointer;
+  }
+  .check-wrap span {
+    font-size: .845rem;
+    line-height: 1.6;
+    color: rgba(255,255,255,.68);
+  }
+  .check-wrap strong { color: rgba(255,255,255,.92); }
+
+  /* ── ERROR MSG ── */
+  .err-msg {
+    font-size: .775rem;
+    color: #e87878;
+    margin-bottom: .8rem;
+    display: none;
+    animation: fadeUp .2s ease;
+  }
+  .err-msg.show { display: block; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(-3px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── CARD FOOTER (dots + button) ── */
+  .card-footer {
+    padding: 0 2.25rem 1.75rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* ── DOTS ── */
+  .dot-row {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+  }
+
+  .dot {
+    width: 7px; height: 7px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.18);
+    transition: background .3s, transform .3s;
+  }
+  .dot.active {
+    background: var(--gold);
+    transform: scale(1.2);
+  }
+  .dot.done {
+    background: rgba(197,164,78,.5);
+  }
+
+  /* ── BUTTON ── */
+  .btn-go {
+    background: linear-gradient(135deg, var(--gold) 0%, #b8913e 100%);
+    border: none;
+    border-radius: 8px;
+    padding: .72rem 1.75rem;
+    font-family: var(--sans);
+    font-size: .84rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--navy);
+    cursor: pointer;
+    transition: opacity .2s, transform .2s, box-shadow .25s;
+    position: relative; overflow: hidden;
+    white-space: nowrap;
+  }
+  .btn-go:hover:not(:disabled) {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 22px rgba(197,164,78,.28);
+  }
+  .btn-go:active { transform: translateY(0); }
+  .btn-go:disabled { opacity: .4; cursor: not-allowed; transform: none; }
+
+  .btn-go .spinner {
+    display: none;
+    width: 14px; height: 14px;
+    border: 2px solid rgba(10,22,40,.25);
+    border-top-color: var(--navy);
+    border-radius: 50%;
+    animation: spin .65s linear infinite;
+    margin: 0 auto;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .btn-go.loading .btn-text { display: none; }
+  .btn-go.loading .spinner  { display: block; }
+
+  /* ── BELOW CARD ── */
+  .gate-note {
+    margin-top: 1.25rem;
+    font-size: .73rem;
+    color: var(--text-mute);
+    text-align: center;
+    line-height: 1.6;
+  }
+  .gate-note a { color: rgba(197,164,78,.65); text-decoration: none; }
+  .gate-note a:hover { color: var(--gold-lt); }
+
+  /* ══════════════════════════════════════
+     DATA ROOM
+  ══════════════════════════════════════ */
+  #data-room { display: none; min-height: 100vh; position: relative; z-index: 1; }
+  #data-room.visible { display: block; }
+
+  .portal-header {
+    background: rgba(10,22,40,.96);
+    border-bottom: 1px solid var(--gold-line);
+    padding: 0 3rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 70px;
+    position: sticky; top: 0; z-index: 50;
+    backdrop-filter: blur(18px);
+  }
+
+  .portal-logo { text-decoration: none; }
+  .portal-logo img { height: 42px; width: auto; }
+
+  .portal-badge {
+    display: flex; align-items: center; gap: .5rem;
+    font-family: var(--mono);
+    font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--gold);
+    border: 1px solid var(--gold-line);
+    padding: .3rem .8rem; border-radius: 100px;
+    background: var(--gold-pale);
+  }
+  .portal-badge::before {
+    content: ''; width: 5px; height: 5px;
+    border-radius: 50%; background: var(--gold);
+    animation: blink 2s ease-in-out infinite;
+  }
+  @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:.3; } }
+
+  .portal-user { font-size: .78rem; color: var(--text-dim); text-align: right; }
+  .portal-user strong { display: block; color: var(--text-on); font-size: .82rem; }
+
+  .portal-hero {
+    padding: 3.5rem 3rem 2rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .portal-hero-inner {
+    display: flex;
+    align-items: flex-start;
+    gap: 3rem;
+  }
+  .portal-hero-text {
+    flex: 0 0 50%;
+    max-width: 50%;
+    min-width: 0;
+  }
+  .portal-hero-card {
+    flex: 1 1 0;
+    min-width: 0;
+    background: rgba(10,22,40,0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(197,164,78,0.25);
+    border-radius: 14px;
+    padding: 36px 32px;
+    text-align: center;
+  }
+
+  .cms-badge {
+    position: absolute;
+    top: 2.75rem; right: 5.5rem;
+    display: flex; flex-direction: column; align-items: center;
+    background: rgba(8,12,22,0.88);
+    border: 1px solid rgba(197,164,78,0.22);
+    border-radius: 16px;
+    padding: 1.6rem 1.75rem 1.4rem;
+    width: 218px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    text-align: center;
+    box-shadow: 0 2px 0 0 rgba(197,164,78,0.4) inset, 0 8px 40px rgba(0,0,0,0.55), 0 0 80px rgba(197,164,78,0.04);
+  }
+  .cms-badge-eyebrow {
+    font-family: var(--mono);
+    font-size: .52rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(197,164,78,0.5);
+    margin-bottom: .7rem;
+  }
+  .cms-badge-rank {
+    font-family: var(--serif);
+    font-size: 4.5rem;
+    line-height: .9;
+    color: var(--gold);
+    letter-spacing: -.04em;
+    text-shadow: 0 0 60px rgba(197,164,78,0.25);
+  }
+  .cms-badge-rank sup {
+    font-family: var(--sans);
+    font-size: .85rem;
+    font-weight: 400;
+    vertical-align: super;
+    letter-spacing: .02em;
+    color: rgba(197,164,78,0.55);
+    margin-left: .1em;
+  }
+  .cms-badge-pip {
+    width: 32px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(197,164,78,0.45), transparent);
+    margin: 1rem auto .9rem;
+  }
+  .cms-badge-label {
+    font-family: var(--sans);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: rgba(235,215,165,0.95);
+    line-height: 1.4;
+    margin-bottom: .5rem;
+  }
+  .cms-badge-desc {
+    font-family: var(--sans);
+    font-size: .7rem;
+    font-weight: 400;
+    color: rgba(180,195,215,0.65);
+    line-height: 1.5;
+    letter-spacing: 0;
+  }
+  .cms-badge-of {
+    display: none;
+  }
+  @media (max-width: 768px) {
+    .cms-badge { display: none; }
+  }
+
+  .portal-kicker {
+    font-family: var(--mono);
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: .85rem;
+  }
+
+  .portal-headline {
+    font-family: var(--serif);
+    font-size: clamp(1.9rem, 3vw, 2.8rem);
+    line-height: 1.1; letter-spacing: -.03em;
+    color: #fff; margin-bottom: .85rem;
+  }
+  .portal-headline em { color: inherit; font-style: italic; }
+
+  .portal-desc {
+    font-size: .9rem; color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .room-divider {
+    max-width: 1200px; margin: 0 auto;
+    padding: 0 3rem;
+    border: none; border-top: 1px solid rgba(255,255,255,.07);
+  }
+
+  .doc-section {
+    padding: 2.25rem 3rem 3.5rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: .66rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1.35rem;
+    display: flex; align-items: center; gap: .75rem;
+  }
+  .section-label::after {
+    content: ''; flex: 1; height: 1px;
+    background: rgba(255,255,255,.07);
+  }
+
+  .doc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+    gap: 1.1rem;
+  }
+
+  .doc-card {
+    background: var(--navy-card);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none; color: inherit;
+    display: flex; flex-direction: column; gap: .65rem;
+    position: relative; overflow: hidden;
+    transition: border-color .25s, transform .2s, box-shadow .25s;
+    cursor: pointer;
+  }
+  .doc-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0; transition: opacity .25s;
+  }
+  .doc-card:hover {
+    border-color: rgba(197,164,78,.22);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(0,0,0,.3);
+  }
+  .doc-card:hover::before { opacity: 1; }
+
+  .doc-badge {
+    display: inline-flex; align-items: center; gap: .35rem;
+    font-family: var(--mono); font-size: .62rem; letter-spacing: .1em;
+    text-transform: uppercase; padding: .22rem .55rem;
+    border-radius: 100px; width: fit-content;
+  }
+  .b-safe   { background: rgba(46,204,113,.08);  color: #5dd48a; border: 1px solid rgba(46,204,113,.18); }
+  .b-series { background: rgba(197,164,78,.08);  color: var(--gold-lt); border: 1px solid var(--gold-line); }
+  .b-analysis { background: rgba(99,179,237,.08); color: #7ec8f0; border: 1px solid rgba(99,179,237,.18); }
+
+  .doc-title { font-family: var(--serif); font-size: 1.05rem; line-height: 1.25; color: #fff; }
+  .doc-desc  { font-size: .775rem; color: var(--text-dim); line-height: 1.6; flex: 1; }
+
+  .doc-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    margin-top: .2rem;
+  }
+  .doc-tag { font-family: var(--mono); font-size: .62rem; color: var(--text-mute); letter-spacing: .06em; }
+
+  .doc-foot svg {
+    width: 14px; height: 14px; color: var(--gold);
+    opacity: 0; transform: translateX(-4px);
+    transition: opacity .2s, transform .2s;
+  }
+  .doc-card:hover .doc-foot svg { opacity: 1; transform: translateX(0); }
+
+  .doc-pdf-btn {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-family: var(--mono); font-size: .62rem; font-weight: 600;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: rgba(197,164,78,.7); text-decoration: none;
+    border: 1px solid rgba(197,164,78,.25); border-radius: 6px;
+    padding: .32rem .7rem;
+    transition: color .2s, border-color .2s, background .2s;
+    margin-top: .3rem; width: fit-content;
+  }
+  .doc-pdf-btn:hover { color: #C5A44E; border-color: rgba(197,164,78,.55); background: rgba(197,164,78,.06); }
+  .doc-pdf-btn svg { width: 11px; height: 11px; flex-shrink: 0; }
+
+  .doc-thumb {
+    width: 100%; height: 140px; object-fit: cover;
+    border-radius: 8px; margin-bottom: .35rem;
+    border: 1px solid rgba(255,255,255,.06);
+  }
+
+  .portal-footer {
+    border-top: 1px solid rgba(255,255,255,.07);
+    padding: 1.75rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: .73rem; color: var(--text-mute);
+    max-width: 1200px; margin: 0 auto;
+  }
+  .portal-footer a { color: rgba(197,164,78,.6); text-decoration: none; }
+  .portal-footer a:hover { color: var(--gold-lt); }
+
+
+  /* ── STATS STRIP ── */
+  .stats-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    padding: 1.5rem 3rem;
+    background: rgba(197,164,78,.04);
+    border-top: 1px solid rgba(197,164,78,.12);
+    border-bottom: 1px solid rgba(197,164,78,.12);
+    flex-wrap: wrap;
+    row-gap: 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0 2.5rem;
+  }
+
+  .stat-val {
+    font-family: var(--serif);
+    font-size: 1.55rem;
+    color: #fff;
+    letter-spacing: -.02em;
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+
+  .stat-label {
+    font-family: var(--mono);
+    font-size: .62rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 36px;
+    background: rgba(255,255,255,.1);
+    flex-shrink: 0;
+  }
+
+  /* ── REVENUE PROJECTIONS PANEL ── */
+  .rev-proj {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 3rem 3rem 2.5rem;
+  }
+  .rev-proj-head {
+    display: flex; align-items: baseline; gap: 14px;
+    margin-bottom: 1.5rem;
+  }
+  .rev-proj-eyebrow {
+    font-family: var(--mono);
+    font-size: .68rem; letter-spacing: .2em; text-transform: uppercase;
+    color: var(--gold); white-space: nowrap;
+  }
+  .rev-proj-title {
+    font-family: var(--serif);
+    font-size: clamp(1.5rem, 2.5vw, 2rem);
+    line-height: 1.15; letter-spacing: -.025em;
+    color: #fff; margin: 0;
+  }
+  .rev-proj-rule {
+    flex: 1; height: 1px; background: rgba(255,255,255,.07);
+  }
+
+  /* engine cards */
+  .rev-engines {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    gap: 0;
+    align-items: stretch;
+    margin-bottom: 2rem;
+  }
+  .rev-eng {
+    background: linear-gradient(180deg, #0E1B30 0%, #0A1628 100%);
+    border: 1px solid rgba(197,164,78,.15);
+    border-radius: 14px;
+    padding: 24px 28px;
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color .3s, transform .3s;
+  }
+  .rev-eng:hover { border-color: rgba(197,164,78,.35); transform: translateY(-2px); }
+  .rev-eng-name {
+    font-family: var(--mono); font-size: .62rem; font-weight: 500;
+    letter-spacing: .14em; text-transform: uppercase;
+    color: var(--text-dim);
+  }
+  .rev-eng-amt {
+    font-family: var(--serif); font-size: 2rem; color: var(--gold);
+    line-height: 1; letter-spacing: -.02em;
+  }
+  .rev-eng-amt .rev-eng-per {
+    font-family: var(--sans); font-size: .75rem; font-weight: 400;
+    color: var(--text-dim); letter-spacing: 0;
+  }
+  .rev-eng-sub {
+    font-size: .76rem; color: var(--text-dim); line-height: 1.55;
+  }
+  .rev-hub {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    padding: 0 20px; position: relative;
+  }
+  .rev-hub::before, .rev-hub::after {
+    content: ''; position: absolute; top: 50%; width: 20px; height: 1px;
+    background: rgba(197,164,78,.25);
+  }
+  .rev-hub::before { left: 0; }
+  .rev-hub::after { right: 0; }
+  .rev-hub-mark {
+    font-family: var(--serif); font-size: 1.1rem; color: var(--gold);
+    white-space: nowrap;
+  }
+  .rev-hub-sub {
+    font-family: var(--mono); font-size: .55rem; letter-spacing: .12em;
+    text-transform: uppercase; color: var(--text-mute); margin-top: 4px;
+  }
+
+  /* rungs ladder */
+  .rev-rungs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .rev-rung {
+    background: rgba(255,255,255,.025);
+    border: 1px solid rgba(255,255,255,.06);
+    border-radius: 12px;
+    padding: 20px 18px;
+    text-align: center;
+    transition: border-color .3s, background .3s, transform .3s;
+    position: relative;
+  }
+  .rev-rung:hover {
+    border-color: rgba(197,164,78,.2);
+    background: rgba(197,164,78,.03);
+    transform: translateY(-2px);
+  }
+  .rev-rung.hot {
+    border-color: rgba(197,164,78,.3);
+    background: rgba(197,164,78,.05);
+  }
+  .rev-rung-tag {
+    position: absolute; top: -9px; left: 50%; transform: translateX(-50%);
+    font-family: var(--mono); font-size: .55rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); background: var(--navy);
+    padding: 2px 10px; border: 1px solid rgba(197,164,78,.25);
+    border-radius: 100px; white-space: nowrap;
+  }
+  .rev-rung-mult {
+    font-family: var(--mono); font-size: .6rem; font-weight: 500;
+    letter-spacing: .12em; text-transform: uppercase;
+    color: var(--text-dim); margin-bottom: 8px;
+  }
+  .rev-rung-num {
+    font-family: var(--serif); font-size: 2.2rem; color: #fff;
+    line-height: 1; letter-spacing: -.02em; margin-bottom: 6px;
+  }
+  .rev-rung.hot .rev-rung-num { color: var(--gold); }
+  .rev-rung-math {
+    font-family: var(--mono); font-size: .58rem;
+    color: var(--text-mute); letter-spacing: .02em;
+  }
+
+  /* equation + punchline */
+  .rev-eq {
+    font-family: var(--mono); font-size: .72rem;
+    color: var(--text-dim); text-align: center;
+    margin-bottom: 1.25rem; letter-spacing: .02em;
+  }
+  .rev-eq strong { color: var(--gold); font-weight: 500; }
+  .rev-punch {
+    text-align: center; margin-bottom: 1.5rem;
+  }
+  .rev-punch-big {
+    font-family: var(--serif); font-size: 1.4rem; color: #fff;
+    line-height: 1.2; margin-bottom: 6px;
+  }
+  .rev-punch-sub {
+    font-size: .82rem; color: var(--text-dim); line-height: 1.55;
+  }
+  .rev-punch-sub strong { color: var(--gold); }
+
+  /* footnote + link */
+  .rev-foot {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding-top: 1.25rem; border-top: 1px solid rgba(255,255,255,.06);
+  }
+  .rev-foot-note {
+    font-size: .7rem; color: var(--text-mute); line-height: 1.5;
+    max-width: 620px;
+  }
+  .rev-foot-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--mono); font-size: .66rem; font-weight: 500;
+    letter-spacing: .1em; text-transform: uppercase;
+    color: var(--gold); text-decoration: none;
+    border: 1px solid rgba(197,164,78,.25); border-radius: 8px;
+    padding: 10px 18px;
+    transition: color .2s, border-color .2s, background .2s;
+    white-space: nowrap;
+  }
+  .rev-foot-link:hover {
+    color: var(--gold-lt); border-color: rgba(197,164,78,.5);
+    background: rgba(197,164,78,.06);
+  }
+  .rev-foot-link svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  @media(max-width:768px) {
+    .rev-proj { padding: 2.25rem 1.25rem 2rem; }
+    .rev-engines { grid-template-columns: 1fr; gap: 12px; }
+    .rev-hub { flex-direction: row; padding: 8px 0; }
+    .rev-hub::before, .rev-hub::after { display: none; }
+    .rev-rungs { grid-template-columns: repeat(2, 1fr); }
+    .rev-rung-num { font-size: 1.8rem; }
+    .rev-foot { flex-direction: column; align-items: flex-start; }
+  }
+
+  /* ── DOCSEND PANEL ── */
+  .invest-panel {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 2rem;
+    background: linear-gradient(135deg, rgba(197,164,78,.06) 0%, rgba(197,164,78,.02) 100%);
+    border: 1px solid rgba(197,164,78,.2);
+    border-radius: 16px;
+    padding: 2.25rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .invest-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .invest-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: .45rem;
+    font-family: var(--mono);
+    font-size: .65rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+
+  .invest-title {
+    font-family: var(--serif);
+    font-size: 1.45rem;
+    line-height: 1.2;
+    letter-spacing: -.02em;
+    color: #fff;
+    margin-bottom: .75rem;
+  }
+
+  .invest-desc {
+    font-size: .845rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+    max-width: 520px;
+  }
+
+  .invest-terms {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: .65rem;
+  }
+
+  .invest-term {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.07);
+    border-radius: 8px;
+    padding: .65rem .85rem;
+  }
+
+  .ct-label {
+    font-family: var(--mono);
+    font-size: .6rem;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--text-mute);
+    margin-bottom: .3rem;
+  }
+
+  .ct-val {
+    font-size: .82rem;
+    font-weight: 600;
+    color: var(--text-on);
+  }
+
+  .invest-right {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .invest-cta-box {
+    background: var(--navy-card);
+    border: 1px solid rgba(197,164,78,.25);
+    border-radius: 14px;
+    padding: 2rem 1.75rem;
+    text-align: center;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: .85rem;
+  }
+
+  .invest-logo-mark {
+    width: 52px; height: 52px;
+    border-radius: 14px;
+    background: rgba(197,164,78,.1);
+    border: 1px solid rgba(197,164,78,.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  .invest-cta-title {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    color: #fff;
+    letter-spacing: -.015em;
+  }
+
+  .invest-cta-sub {
+    font-size: .775rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .btn-invest {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    background: linear-gradient(135deg, var(--gold) 0%, #b8913e 100%);
+    color: var(--navy);
+    font-family: var(--sans);
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .04em;
+    padding: .72rem 1.5rem;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: transform .2s, box-shadow .25s;
+    width: 100%;
+    justify-content: center;
+  }
+  .btn-invest:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(197,164,78,.28);
+  }
+
+  .invest-sub-action {
+    font-size: .73rem;
+    color: var(--text-mute);
+  }
+  .invest-sub-action a {
+    color: var(--gold-lt);
+    text-decoration: none;
+    margin-left: .3rem;
+  }
+  .invest-sub-action a:hover { text-decoration: underline; }
+
+  @media (max-width: 860px) {
+    .invest-panel { grid-template-columns: 1fr; }
+    .invest-terms { grid-template-columns: 1fr 1fr; }
+    .stat-item { padding: 0 1.5rem; }
+  }
+
+  /* ── PLACEHOLDER CARDS ── */
+  .doc-card.doc-placeholder {
+    opacity: .52;
+    cursor: default;
+    pointer-events: none;
+  }
+  .doc-card.doc-placeholder:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: rgba(255,255,255,.07);
+  }
+  .doc-card.doc-placeholder:hover::before { opacity: 0; }
+  .doc-tag-pending {
+    color: var(--text-mute);
+    font-style: italic;
+  }
+
+  /* ── TOAST ── */
+  #toast {
+    position: fixed; bottom: 1.75rem; left: 50%;
+    transform: translateX(-50%) translateY(60px);
+    background: var(--navy-card);
+    border: 1px solid var(--gold-line);
+    border-radius: 9px;
+    padding: .65rem 1.35rem;
+    font-size: .8rem; color: var(--text-on);
+    z-index: 9999;
+    transition: transform .4s cubic-bezier(.22,.68,0,1.2);
+    white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .portal-header, .portal-hero, .doc-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .field-row { grid-template-columns: 1fr; }
+    .gate-card-inner, .card-header, .card-body, .card-footer { padding-left: 1.5rem; padding-right: 1.5rem; }
+    .doc-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ═══ NEAR TERM STRATEGY / OPPORTUNITY TIMELINES ═══ */
+  .ml-section { padding: 1.5rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .ml-label { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1rem; }
+  .ml-row { display: flex; gap: 0; position: relative; }
+  .ml-row::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: rgba(197,164,78,0.12); }
+  .ml-item { flex: 1; position: relative; padding-top: 24px; }
+  .ml-item::before { content: ''; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--text-mute); background: var(--navy); }
+  .ml-item.gold::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 8px rgba(197,164,78,0.3); }
+  .ml-item.rev::before { border-color: var(--green); background: var(--green); box-shadow: 0 0 8px rgba(46,204,113,0.3); }
+  .ml-date { font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-dim); margin-bottom: 3px; }
+  .ml-item.gold .ml-date { color: var(--gold); }
+  .ml-item.rev .ml-date { color: var(--green); }
+  .ml-txt { font-size: .75rem; color: var(--text-dim); line-height: 1.45; padding-right: 12px; }
+  .ml-txt strong { color: var(--text-on); }
+  .ml-item.gold .ml-txt strong { color: var(--gold); }
+  .ml-item.rev .ml-txt strong { color: var(--green); }
+
+  /* CMS Opportunity timeline */
+  .ml-opp-section { padding: 2.5rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .ml-opp-label { font-family: var(--mono); font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: #7ec8f0; margin-bottom: 1rem; }
+  .ml-opp-row { display: flex; gap: 0; position: relative; }
+  .ml-opp-row::before { content: ''; position: absolute; top: 8px; left: 0; right: 0; height: 2px; background: rgba(99,179,237,0.12); }
+  .ml-opp-item { flex: 1; position: relative; padding-top: 24px; }
+  .ml-opp-item::before { content: ''; position: absolute; top: 2px; left: 0; width: 14px; height: 14px; border-radius: 50%; border: 2px solid rgba(99,179,237,0.25); background: var(--navy); }
+  .ml-opp-item.cms::before { border-color: #7ec8f0; background: #7ec8f0; box-shadow: 0 0 10px rgba(99,179,237,0.45); }
+  .ml-opp-item.cms-key::before { border-color: #3be8b0; background: #3be8b0; box-shadow: 0 0 12px rgba(59,232,176,0.5); }
+  .ml-opp-date { font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--text-mute); margin-bottom: 3px; }
+  .ml-opp-item.cms .ml-opp-date { color: #7ec8f0; }
+  .ml-opp-item.cms-key .ml-opp-date { color: #3be8b0; }
+  .ml-opp-txt { font-size: .75rem; color: var(--text-dim); line-height: 1.45; padding-right: 12px; }
+  .ml-opp-txt strong { color: var(--text-on); }
+  .ml-opp-item.cms .ml-opp-txt strong { color: #7ec8f0; }
+  .ml-opp-item.cms-key .ml-opp-txt strong { color: #3be8b0; }
+  .ml-opp-badge { display: inline-block; font-family: var(--mono); font-size: .54rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: 2px 7px; border-radius: 3px; background: rgba(59,232,176,0.1); color: #3be8b0; border: 1px solid rgba(59,232,176,0.25); margin-bottom: 4px; }
+  .ml-opp-badge--access { background: rgba(197,164,78,0.12); color: var(--gold); border-color: rgba(197,164,78,0.35); text-transform: none; letter-spacing: .05em; }
+  .ml-opp-item.access-done::before { border-color: var(--gold); background: var(--gold); box-shadow: 0 0 12px rgba(197,164,78,0.55); }
+  .ml-opp-item.access-done .ml-opp-date { color: var(--gold); }
+  .ml-opp-item.access-done .ml-opp-txt strong { color: var(--gold-lt, #D4BA7A); }
+  .ml-opp-badge--revenue { background: rgba(59,232,176,0.15); color: #3be8b0; border-color: rgba(59,232,176,0.35); text-transform: none; letter-spacing: .05em; font-size: .56rem; }
+  .ml-opp-item.access-billing::before { border-color: #3be8b0; background: #3be8b0; box-shadow: 0 0 14px rgba(59,232,176,0.6); }
+
+  .mvp-selected-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 8px;
+    background: rgba(59,232,176,0.1);
+    border: 1px solid rgba(59,232,176,0.3);
+    border-radius: 4px;
+    padding: 3px 8px;
+    font-size: 10px;
+    font-family: var(--mono);
+    letter-spacing: .08em;
+    color: #3be8b0;
+  }
+  .mvp-check { font-size: 11px; }
+
+  @keyframes dot-pulse {
+    0%, 100% { box-shadow: 0 0 12px rgba(59,232,176,0.5); }
+    50% { box-shadow: 0 0 0 6px rgba(59,232,176,0.15), 0 0 18px rgba(59,232,176,0.7); }
+  }
+  @keyframes dot-pulse-gold {
+    0%, 100% { box-shadow: 0 0 10px rgba(197,164,78,0.55); }
+    50% { box-shadow: 0 0 0 6px rgba(197,164,78,0.15), 0 0 20px rgba(197,164,78,0.75); }
+  }
+  .ml-opp-item--pulse::before {
+    animation: dot-pulse 1.8s ease-in-out infinite;
+  }
+  .ml-opp-item.cms.ml-opp-item--pulse::before {
+    border-color: var(--gold);
+    background: var(--gold);
+    animation: dot-pulse-gold 1.8s ease-in-out infinite;
+  }
+  .ml-opp-item.cms.ml-opp-item--pulse .ml-opp-date { color: var(--gold); }
+
+  @media (max-width: 600px) {
+    .ml-opp-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .ml-opp-row { flex-direction: column; gap: 1rem; }
+    .ml-opp-row::before { display: none; }
+    .ml-opp-item { padding-top: 0; padding-left: 28px; }
+    .ml-opp-item::before { top: 0; left: 0; }
+  }
+
+  /* ═══ INSTRUMENT TABS ═══ */
+  .inst-section { padding: 2.25rem 3rem 2rem; max-width: 1200px; margin: 0 auto; }
+  .inst-tabs { display: flex; align-items: stretch; gap: 0; border-bottom: 1px solid var(--gold-line); margin-bottom: 1.75rem; }
+  .inst-tab { flex: 1; padding: .9rem .5rem; text-align: center; font-family: var(--mono); font-size: .65rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--text-mute); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s; }
+  .inst-tab:hover { color: var(--text-dim); }
+  .inst-tab.on { color: var(--gold); border-bottom-color: var(--gold); }
+  .inst-tab .tdot { display: inline-block; width: 6px; height: 6px; border-radius: 50%; margin-right: 6px; vertical-align: middle; }
+  .inst-tab .tdot.g { background: var(--gold); }
+  .inst-tab .tdot.s { background: var(--text-mute); }
+  .inst-or-divider { display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 0 1.5rem; padding-bottom: 2px; gap: 5px; flex-shrink: 0; }
+  .inst-or-line { flex: 1; width: 1px; background: rgba(197,164,78,.2); }
+  .inst-or-label { font-family: var(--serif); font-size: 1.6rem; font-style: italic; color: rgba(197,164,78,.5); letter-spacing: -.01em; line-height: 1; }
+  .inst-pane { display: none; }
+  .inst-pane.on { display: block; }
+  .inst-badge { display: inline-block; font-family: var(--mono); font-size: .6rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 3px 10px; border-radius: 4px; margin-bottom: .85rem; background: var(--gold-pale); color: var(--gold); }
+  .inst-title { font-family: var(--serif); font-size: 1.35rem; color: #fff; margin-bottom: .4rem; }
+  .inst-desc { font-size: .82rem; color: var(--text-dim); line-height: 1.7; margin-bottom: 1.25rem; max-width: 640px; }
+  .inst-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: .65rem; margin-bottom: 1.25rem; }
+  .ist { background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.07); border-radius: 8px; padding: .65rem .85rem; }
+  .ist-l { font-family: var(--mono); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; color: var(--text-mute); margin-bottom: .25rem; }
+  .ist-v { font-family: var(--serif); font-size: 1rem; color: #fff; }
+
+  /* ═══ ACCORDION ═══ */
+  .iacc { border: 1px solid rgba(255,255,255,.07); border-radius: 10px; margin-bottom: .85rem; overflow: hidden; }
+  .iacc-h { display: flex; align-items: center; justify-content: space-between; padding: .85rem 1.15rem; cursor: pointer; transition: background .2s; }
+  .iacc-h:hover { background: rgba(255,255,255,.02); }
+  .iacc-t { font-family: var(--mono); font-size: .62rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .iacc-c { width: 16px; height: 16px; display: flex; align-items: center; justify-content: center; transition: transform .25s; }
+  .iacc-c svg { width: 12px; height: 12px; }
+  .iacc.op .iacc-c { transform: rotate(180deg); }
+  .iacc-b { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+  .iacc.op .iacc-b { max-height: 5000px; }
+  .iacc-i { padding: 0 1.15rem 1.15rem; }
+  .ifeat { display: flex; align-items: flex-start; gap: .65rem; padding: .5rem 0; border-bottom: 1px solid rgba(255,255,255,.04); }
+  .ifeat:last-child { border: none; }
+  .ifeat-ck { flex-shrink: 0; width: 16px; height: 16px; border-radius: 50%; background: var(--gold-pale); display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+  .ifeat-ck svg { width: 10px; height: 10px; }
+  .ifeat-t { font-size: .78rem; color: var(--text-dim); line-height: 1.5; }
+  .ifeat-t strong { color: var(--text-on); }
+  .itax { background: rgba(255,255,255,.03); border-left: 3px solid var(--gold); border-radius: 0 6px 6px 0; padding: .85rem 1rem; margin-bottom: .65rem; }
+  .itax:last-of-type { margin-bottom: 0; }
+  .itax-c { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .25rem; }
+  .itax-h { font-family: var(--serif); font-size: .95rem; color: #fff; margin-bottom: .25rem; }
+  .itax-d { font-size: .72rem; color: var(--text-dim); line-height: 1.6; }
+  .itax-d strong { color: rgba(255,255,255,.75); }
+  .ipill { display: inline-block; font-family: var(--serif); font-size: .85rem; background: var(--gold-pale); border: 1px solid var(--gold-line); border-radius: 4px; padding: 1px 6px; color: var(--gold); margin-top: 4px; margin-right: 3px; }
+  .ireq { display: inline-block; font-family: var(--mono); font-size: .56rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: 2px 6px; border-radius: 3px; margin-top: 4px; }
+  .ireq.now { background: rgba(46,204,113,.1); color: #5dd48a; }
+  .ireq.cc { background: rgba(99,179,237,.1); color: #7ec8f0; }
+  .itax-note { font-size: .68rem; color: var(--text-mute); font-style: italic; line-height: 1.5; margin-top: .65rem; }
+  .itax-intro { font-size: .78rem; color: var(--text-dim); line-height: 1.6; margin-bottom: .85rem; }
+  .inst-cta { display: flex; align-items: center; gap: 1rem; background: var(--gold-pale); border: 1px solid var(--gold-line); border-radius: 10px; padding: 1rem 1.25rem; margin-top: 1.25rem; }
+  .inst-cta-h { font-family: var(--serif); font-size: .95rem; color: #fff; margin-bottom: .2rem; }
+  .inst-cta-s { font-size: .72rem; color: var(--text-dim); }
+  .b-note { background: rgba(99,179,237,.08); color: #7ec8f0; border: 1px solid rgba(99,179,237,.18); }
+  .b-equity { background: rgba(168,130,60,.08); color: var(--gold-lt); border: 1px solid rgba(197,164,78,.22); }
+
+  @media (max-width: 600px) {
+    .ml-row { flex-direction: column; gap: 1rem; }
+    .ml-row::before { display: none; }
+    .ml-item { padding-top: 0; padding-left: 28px; }
+    .ml-item::before { top: 0; left: 0; }
+    .inst-stats { grid-template-columns: repeat(2, 1fr); }
+    .ml-section, .inst-section { padding-left: 1.25rem; padding-right: 1.25rem; }
+  }
+
+  /* ── INVESTOR ARCHIVE ── */
+  .archive-wrapper { max-width: 1200px; margin: 0 auto; padding: 0 3rem 2.5rem; }
+  .archive-toggle {
+    display: flex; align-items: center; gap: 10px; cursor: pointer;
+    padding: 10px 0; user-select: none; width: fit-content;
+  }
+  .archive-toggle-icon {
+    width: 18px; height: 18px; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,0.12);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; transition: border-color 0.2s;
+  }
+  .archive-toggle:hover .archive-toggle-icon { border-color: rgba(255,255,255,0.28); }
+  .archive-toggle-icon svg { transition: transform 0.3s; }
+  .archive-toggle[aria-expanded="true"] .archive-toggle-icon svg { transform: rotate(90deg); }
+  .archive-toggle-label {
+    font-family: var(--mono); font-size: .58rem; font-weight: 600;
+    letter-spacing: .18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.18); transition: color 0.2s;
+  }
+  .archive-toggle:hover .archive-toggle-label { color: rgba(255,255,255,0.35); }
+  .archive-body { display: none; margin-top: 1.5rem; }
+  .archive-body.open { display: block; }
+  .archive-section-label {
+    font-family: var(--mono); font-size: .58rem; letter-spacing: .18em;
+    text-transform: uppercase; color: rgba(255,255,255,0.2);
+    margin-bottom: .85rem; margin-top: 1.75rem;
+  }
+  .archive-section-label:first-child { margin-top: 0; }
+  .archive-doc-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: .75rem; }
+  .archive-doc-card {
+    display: block; text-decoration: none;
+    background: rgba(255,255,255,0.025);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 10px; padding: 14px 16px 12px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .archive-doc-card:hover { background: rgba(255,255,255,0.045); border-color: rgba(255,255,255,0.1); }
+  .archive-doc-badge {
+    display: inline-block; font-family: var(--mono); font-size: .5rem;
+    font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+    padding: 2px 6px; border-radius: 3px; margin-bottom: 7px;
+    background: rgba(255,255,255,0.05); color: rgba(255,255,255,0.25);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+  .archive-doc-title { font-family: var(--serif); font-size: .85rem; color: rgba(250,248,244,0.4); line-height: 1.35; margin-bottom: 5px; }
+  .archive-doc-foot { font-family: var(--mono); font-size: .58rem; letter-spacing: .07em; color: rgba(255,255,255,0.18); margin-top: 8px; }
+  .archive-ml-row { display: flex; gap: 0; position: relative; margin-top: .5rem; }
+  .archive-ml-row::before { content: ''; position: absolute; top: 7px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.06); }
+  .archive-ml-item { flex: 1; position: relative; padding-top: 22px; }
+  .archive-ml-item::before { content: ''; position: absolute; top: 1px; left: 0; width: 12px; height: 12px; border-radius: 50%; border: 2px solid rgba(255,255,255,0.12); background: var(--navy); }
+  .archive-ml-date { font-family: var(--mono); font-size: .58rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,0.22); margin-bottom: 3px; }
+  .archive-ml-txt { font-size: .7rem; color: rgba(255,255,255,0.2); line-height: 1.45; padding-right: 10px; }
+  .archive-ml-txt strong { color: rgba(255,255,255,0.28); }
+  @media (max-width: 800px) {
+    .archive-doc-grid { grid-template-columns: repeat(2,1fr); }
+    .archive-wrapper { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .archive-ml-row { flex-direction: column; gap: .75rem; }
+    .archive-ml-row::before { display: none; }
+    .archive-ml-item { padding-top: 0; padding-left: 22px; }
+    .archive-ml-item::before { top: 0; left: 0; }
+  }
+  @media (max-width: 500px) { .archive-doc-grid { grid-template-columns: 1fr; } }
+
+  /* ── PATH SELECTOR (step-0) ── */
+  .path-choice-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: .25rem;
+  }
+
+  .path-choice {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: .55rem;
+    background: rgba(255,255,255,.04);
+    border: 1.5px solid rgba(255,255,255,.09);
+    border-radius: 12px;
+    padding: 1.25rem 1.1rem;
+    cursor: pointer;
+    text-align: left;
+    transition: border-color .22s, background .22s, transform .18s, box-shadow .22s;
+    position: relative;
+    overflow: hidden;
+  }
+  .path-choice::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1.5px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+    opacity: 0;
+    transition: opacity .22s;
+  }
+  .path-choice:hover {
+    border-color: rgba(197,164,78,.35);
+    background: rgba(197,164,78,.04);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(0,0,0,.25);
+  }
+  .path-choice:hover::before { opacity: 1; }
+  .path-choice:active { transform: translateY(0); }
+
+  .path-choice-icon {
+    width: 36px; height: 36px;
+    border-radius: 9px;
+    background: rgba(197,164,78,.1);
+    border: 1px solid rgba(197,164,78,.2);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .path-choice-label {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    color: #fff;
+    line-height: 1.2;
+    letter-spacing: -.01em;
+  }
+
+  .path-choice-sub {
+    font-size: .72rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .path-choice-arrow {
+    position: absolute;
+    right: 1rem; top: 50%;
+    transform: translateY(-50%);
+    color: rgba(197,164,78,.35);
+    transition: color .2s, transform .2s;
+  }
+  .path-choice:hover .path-choice-arrow {
+    color: var(--gold);
+    transform: translateY(-50%) translateX(2px);
+  }
+
+  @media (max-width: 500px) {
+    .path-choice-row { grid-template-columns: 1fr; }
+  }
+</style>
+<style>h1 em,h2 em,h3 em,h4 em,h5 em,h6 em{color:inherit!important;}
+</style></head>
+<body>
+
+<!-- ══════════════════════════════════════
+     GATE
+══════════════════════════════════════ -->
+<div id="gate-container">
+
+  <!-- ── STEP 0: PATH SELECTOR ── -->
+  <div class="step active" id="step-0">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Secure Portal</div>
+        <h2 class="card-title">Welcome</h2>
+        <p class="card-sub">Please select how you are accessing this portal. You will need an invitation code for either path.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="path-choice-row">
+          <button class="path-choice" id="path-investor">
+            <div class="path-choice-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+            </div>
+            <div class="path-choice-label">Accredited Investor</div>
+            <div class="path-choice-sub">I am reviewing this as a potential investor in InPursuit Health.</div>
+            <svg class="path-choice-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+          <button class="path-choice" id="path-advocate">
+            <div class="path-choice-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <div class="path-choice-label">InPursuit Advocate</div>
+            <div class="path-choice-sub">I am an advocate, advisor, or strategic partner of InPursuit Health.</div>
+            <svg class="path-choice-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    <p class="gate-note">
+      All materials are confidential.
+      Questions? <a href="/cdn-cgi/l/email-protection#563f3820332522163f3826232425233f223e33373a223e7835393b">invest&#64;inpursuithealth.com</a>
+    </p>
+  </div>
+
+  <!-- ── STEP 1: ACCESS CODE ── -->
+  <div class="step" id="step-1">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Investor Portal</div>
+        <h2 class="card-title">Restricted Access</h2>
+        <p class="card-sub">This portal contains confidential investment materials distributed by invitation only. You must have received an access code to proceed.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="code-wrap">
+          <input type="password" class="code-input" id="code-input"
+            placeholder="Enter your access code"
+            autocomplete="off" spellcheck="false">
+          <button class="code-eye" id="code-eye" tabindex="-1" aria-label="Toggle visibility">
+            <svg id="eye-open" viewBox="0 0 20 20" fill="currentColor" width="17" height="17">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/>
+            </svg>
+          </button>
+        </div>
+        <div class="err-msg" id="code-err">Invalid access code. Please contact your InPursuit Health representative.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <button class="btn-go" id="btn-s1">
+          <span class="btn-text">Continue →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">
+      All materials are confidential and subject to NDA.
+      Questions? <a href="/cdn-cgi/l/email-protection#563f3820332522163f3826232425233f223e33373a223e7835393b">invest&#64;inpursuithealth.com</a>
+    </p>
+  </div>
+
+  <!-- ── STEP 2: CONTACT INFO ── -->
+  <div class="step" id="step-2">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Investor Portal</div>
+        <h2 class="card-title">Contact Information</h2>
+        <p class="card-sub">Please introduce yourself. Your information is kept strictly confidential and used only to facilitate your investor review.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="field-row">
+          <div class="field">
+            <label>First Name</label>
+            <input type="text" id="f-first" placeholder="First name" autocomplete="given-name">
+          </div>
+          <div class="field">
+            <label>Last Name</label>
+            <input type="text" id="f-last" placeholder="Last name" autocomplete="family-name">
+          </div>
+        </div>
+        <div class="field-full">
+          <label>Email</label>
+          <input type="email" id="f-email" placeholder="you@company.com" autocomplete="email">
+        </div>
+        <div class="field-full" style="margin-bottom:.5rem">
+          <label>Human Verification</label>
+          <div class="captcha-wrap">
+            <span class="captcha-eq" id="captcha-label">10 × 5</span>
+            <span class="captcha-sep">=</span>
+            <input type="number" id="captcha-input" placeholder="?" autocomplete="off">
+          </div>
+        </div>
+        <div class="err-msg" id="contact-err">Please complete all required fields with a valid email.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+        <button class="btn-go" id="btn-s2">
+          <span class="btn-text">Continue →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Your information is never shared or sold.</p>
+  </div>
+
+  <!-- ── STEP 3: DISCLOSURES ── -->
+  <div class="step" id="step-3">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card" style="max-width:540px;width:100%">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Investor Portal</div>
+        <h2 class="card-title">Required Disclosures</h2>
+        <p class="card-sub">Before proceeding, you must review the required disclosures for this offering. Please read the document below or download the full PDF.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="disc-scroll-box">
+          <h4>Notice to Recipients</h4>
+          <p>This offering memorandum provides information about an offer to sell securities of <strong>InPursuit Health, LLC</strong> to a limited number of accredited investors, in a manner defined by Regulation D promulgated by the SEC. The Company in its sole discretion may accept or reject any subscription, in whole or in part, at any time prior to completion of this offering.</p>
+
+          <h4>Confidentiality</h4>
+          <p>This memorandum is submitted on a confidential basis solely for consideration of the securities described herein in a private placement. The acceptance of this memorandum constitutes an agreement to maintain strict confidentiality of all information contained herein. This memorandum may not be reproduced in whole or in part, and its use for any purpose other than an investment in the described securities is not authorized and is prohibited.</p>
+
+          <h4>Non-Registration &amp; Transfer Restrictions</h4>
+          <p>The offered securities have not been registered under the Securities Act of 1933 or any state securities laws. This offering is made in reliance upon an exemption from registration pursuant to Rule 506(b) of Regulation D. The securities are restricted and may not be transferred without an effective registration statement or an opinion of counsel acceptable to the Company.</p>
+
+          <h4>Risk Factors</h4>
+          <p>Investment in a small business involves a <strong>high degree of risk</strong>. Investors should not invest any funds in this offering unless they can afford to lose their entire investment. Key risks include: early-stage development with no assurance of profitability; risk of total loss; dependence on key personnel; need for additional financing; extensive government regulation including HIPAA; reimbursement uncertainty; illiquidity of the investment; and no public market for the securities.</p>
+
+          <h4>Investor Suitability</h4>
+          <p>The securities are suitable only for long-term investment by persons who have sufficient financial means to bear the risk of total loss and who have no need for liquidity. Each investor must qualify as an <strong>Accredited Investor</strong> as defined under Rule 501(a) of Regulation D, and must have the financial ability to bear the economic risks of the entire investment for an indefinite period.</p>
+
+          <h4>Forward-Looking Statements</h4>
+          <p>Certain information constitutes forward-looking statements. Due to various risks and uncertainties, actual events or results may differ materially from those reflected in such statements. The information contained in this memorandum has been compiled by the Company as of March 1, 2026.</p>
+        </div>
+
+        <a class="disc-pdf-btn" href="/public/disclosures/InPursuit_Disclosures_General.pdf" target="_blank" rel="noopener">
+          <svg viewBox="0 0 20 20" fill="currentColor" width="15" height="15"><path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+          Download Full Disclosures (PDF)
+        </a>
+
+        <label class="check-wrap" style="margin-top:1.1rem">
+          <input type="checkbox" id="disc-check">
+          <span>I have read and understand the required disclosures for this offering, and I agree to maintain strict confidentiality of all materials in this data room.</span>
+        </label>
+
+        <div class="err-msg" id="disc-err">You must acknowledge the disclosures to proceed.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+          <div class="dot"></div>
+        </div>
+        <button class="btn-go" id="btn-s3" disabled>
+          <span class="btn-text">Continue →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Confidential · For Accredited Investors Only</p>
+  </div>
+
+  <!-- ── STEP 4: CERTIFICATION ── -->
+  <div class="step" id="step-4">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card" style="max-width:540px;width:100%">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Investor Portal</div>
+        <h2 class="card-title">Investor Certification</h2>
+        <p class="card-sub">You must certify your accredited investor status before accessing confidential offering materials. Please read carefully before proceeding.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="cert-box">
+          <h4>Regulation D — Accredited Investor Status</h4>
+          <p>The materials in this data room constitute confidential information pertaining to a private securities offering by <strong>InPursuit Health, LLC</strong>, a Wyoming limited liability company. Access is restricted to <strong>Accredited Investors</strong> as defined under Rule 501 of Regulation D under the Securities Act of 1933, as amended.</p>
+
+          <h4>You qualify as an Accredited Investor if you meet one or more of the following:</h4>
+          <ul>
+            <li><strong>Individual Income:</strong> Annual income exceeding $200,000 (or $300,000 jointly with spouse) in each of the two most recent calendar years, with reasonable expectation of the same for the current year.</li>
+            <li><strong>Net Worth:</strong> Individual or joint net worth exceeding $1,000,000, excluding your primary residence.</li>
+            <li><strong>Professional Certification:</strong> Holder of a valid Series 7, Series 65, or Series 82 license in good standing.</li>
+            <li><strong>Entity:</strong> An entity with total assets exceeding $5,000,000, or in which all equity owners are individually accredited investors.</li>
+            <li><strong>Knowledgeable Employee:</strong> A knowledgeable employee of a registered investment fund (where applicable).</li>
+          </ul>
+
+          <h4>Important Disclosures</h4>
+          <p>These materials are provided for informational purposes only and do not constitute an offer to sell or solicitation of an offer to buy any security. Any such offer will be made only through definitive offering documents delivered to qualified investors.</p>
+          <p>Investing in early-stage companies involves a <strong>high degree of risk</strong>, including the possibility of total loss. Past performance at DoD/VA scale is not indicative of future results. Forward-looking statements are subject to material risks and uncertainties.</p>
+          <p>These materials are <strong>strictly confidential</strong>. Unauthorized distribution or disclosure is prohibited. By accessing this data room you agree to maintain strict confidentiality. These materials have not been reviewed or approved by the SEC or any state regulator.</p>
+        </div>
+
+        <label class="check-wrap">
+          <input type="checkbox" id="cert-check">
+          <span>I certify that I am an <strong>Accredited Investor</strong> as defined above, that I have read and understood all disclosures, and that I agree to maintain the strict confidentiality of all materials in this data room.</span>
+        </label>
+
+        <div class="err-msg" id="cert-err">You must certify your accredited investor status to proceed.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+        </div>
+        <button class="btn-go" id="btn-s4" disabled>
+          <span class="btn-text">Access Data Room →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Confidential · For Accredited Investors Only</p>
+  </div>
+
+  <!-- ── STEP ADV: ADVOCATE ACKNOWLEDGMENT ── -->
+  <div class="step" id="step-adv">
+    <div class="gate-logo">
+      <img src="LOGO_PLACEHOLDER" alt="InPursuit Health">
+    </div>
+    <div class="gate-card" style="max-width:540px;width:100%">
+      <div class="card-header">
+        <div class="card-eyebrow">InPursuit Health — Advocate Portal</div>
+        <h2 class="card-title">Confidentiality Acknowledgment</h2>
+        <p class="card-sub">Before accessing these materials, please confirm your understanding of their confidential nature and your role as an advocate.</p>
+      </div>
+      <div class="card-divider"></div>
+      <div class="card-body">
+        <div class="cert-box">
+          <h4>Access as an Advocate or Strategic Partner</h4>
+          <p>The materials in this portal have been shared with you as an advocate, advisor, or strategic partner of <strong>InPursuit Health, LLC</strong>. These materials are provided for informational and relationship purposes only.</p>
+
+          <h4>Important — Not an Investment Offer</h4>
+          <p>These materials <strong>do not constitute an offer to sell or solicitation of an offer to buy any security</strong>. Access as an advocate does not establish any investor relationship with InPursuit Health.</p>
+
+          <h4>Confidentiality</h4>
+          <p>All materials you access are strictly confidential. You agree not to reproduce, distribute, or disclose any content to any third party without the prior written consent of InPursuit Health, LLC.</p>
+          <p>Unauthorized distribution of these materials is prohibited and may result in legal liability.</p>
+        </div>
+
+        <label class="check-wrap">
+          <input type="checkbox" id="adv-check">
+          <span>I understand that I am accessing these materials as an <strong>advocate or strategic partner</strong>, not as an investor, and I agree to maintain strict confidentiality of all materials in this portal.</span>
+        </label>
+
+        <div class="err-msg" id="adv-err">You must acknowledge the above to proceed.</div>
+      </div>
+      <div class="card-footer">
+        <div class="dot-row">
+          <div class="dot done"></div>
+          <div class="dot done"></div>
+          <div class="dot active"></div>
+        </div>
+        <button class="btn-go" id="btn-adv" disabled>
+          <span class="btn-text">Enter Portal →</span>
+          <span class="spinner"></span>
+        </button>
+      </div>
+    </div>
+    <p class="gate-note">Confidential · Advocate Access</p>
+  </div>
+
+</div><!-- /gate-container -->
+
+
+<!-- ══════════════════════════════════════
+     DATA ROOM
+══════════════════════════════════════ -->
+<div id="data-room">
+
+  <!-- HEADER -->
+  <header class="portal-header">
+    <a class="portal-logo" href="/"><img src="LOGO_PLACEHOLDER" alt="InPursuit Health"></a>
+    <div class="portal-badge">Verified Investor Access</div>
+    <div style="display:flex;align-items:center;gap:1rem;">
+      <div class="portal-user">
+        <strong id="display-name">—</strong>
+        <span id="display-email"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="portal-hero">
+    <div class="portal-hero-inner">
+      <div class="portal-hero-text">
+        <div class="portal-kicker">Confidential Data Room</div>
+        <h1 class="portal-headline">InPursuit Health<br><em>Investor Materials</em></h1>
+        <p class="portal-desc">InPursuit Health is raising <strong style="color:var(--gold-lt);">$3.5M in seed funding</strong> through a single round of new Class C units at a $20M pre-money valuation. Priced equity, $25K minimum, one close.</p>
+        <p class="portal-desc" style="margin-top:1rem;">Year 3 base case: $35M revenue at 25 enrolled members &mdash; just 25 of the 230,000+ physician practices across the country, with Honeycomb Medical Group already signed as our first. Request materials at <a href="mailto:invest@inpursuithealth.com" style="color:var(--gold-lt);text-decoration:underline;">invest@inpursuithealth.com</a>.</p>
+      </div>
+      <div class="portal-hero-card" style="padding:0;overflow:hidden;position:relative;">
+        <!-- Thumbnail overlay — click to load video -->
+        <div id="video-overlay" onclick="loadHeroVideo()" style="position:relative;width:100%;aspect-ratio:16/9;background:#060d1a;cursor:pointer;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;">
+          <!-- YouTube thumbnail -->
+          <img src="https://img.youtube.com/vi/XRdFK_aVZC8/maxresdefault.jpg" alt="InPursuit Health CMS video" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.35;transition:opacity 0.3s;" onmouseover="this.style.opacity='0.45'" onmouseout="this.style.opacity='0.35'">
+          <!-- Dark gradient overlay -->
+          <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(6,13,26,0.45) 0%,rgba(6,13,26,0.72) 100%);pointer-events:none;"></div>
+          <!-- Badge strip -->
+          <div style="position:relative;z-index:2;display:flex;align-items:center;gap:10px;background:rgba(197,164,78,0.12);border:1px solid rgba(197,164,78,0.35);border-radius:100px;padding:6px 14px 6px 10px;margin-bottom:18px;">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="#C5A44E"/><path d="M5 4.5l5 2.5-5 2.5V4.5z" fill="#C5A44E"/></svg>
+            <span style="font-family:'Instrument Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#C5A44E;">Watch Now</span>
+          </div>
+          <!-- Headline -->
+          <div style="position:relative;z-index:2;font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-size:22px;color:#FAF8F4;line-height:1.35;text-align:center;padding:0 28px;margin-bottom:12px;">InPursuit Health chosen as a leader in the new<br><em style="color:#C5A44E;">CMS HealthIT Ecosystem</em></div>
+          <!-- Play button -->
+          <div style="position:relative;z-index:2;width:52px;height:52px;border-radius:50%;background:rgba(197,164,78,0.15);border:1.5px solid rgba(197,164,78,0.5);display:flex;align-items:center;justify-content:center;transition:transform 0.25s,background 0.25s;" onmouseover="this.style.background='rgba(197,164,78,0.28)';this.style.transform='scale(1.08)'" onmouseout="this.style.background='rgba(197,164,78,0.15)';this.style.transform='scale(1)'">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M5 3.5l11 5.5-11 5.5V3.5z" fill="#C5A44E"/></svg>
+          </div>
+        </div>
+        <!-- Inline iframe (hidden until play clicked) -->
+        <div id="video-frame" style="display:none;position:relative;width:100%;aspect-ratio:16/9;">
+          <iframe
+            id="yt-iframe"
+            src=""
+            title="InPursuit Health CMS HealthIT Ecosystem"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            style="position:absolute;top:0;left:0;width:100%;height:100%;">
+          </iframe>
+        </div>
+
+      </div>
+      <script>
+        function loadHeroVideo() {
+          document.getElementById('video-overlay').style.display = 'none';
+          const frame = document.getElementById('video-frame');
+          frame.style.display = 'block';
+          document.getElementById('yt-iframe').src = 'https://www.youtube.com/embed/XRdFK_aVZC8?rel=0&modestbranding=1&autoplay=1&color=white';
+        }
+      </script>
+    </div>
+  </div>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip" style="justify-content:flex-start;gap:0;flex-wrap:wrap;">
+    <div class="stat-item" style="text-align:left;">
+      <div class="stat-val">$3.5M</div>
+      <div class="stat-label">Seed Equity Raise</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" style="text-align:left;">
+      <div class="stat-val">$20M</div>
+      <div class="stat-label">Pre-Money Valuation</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item" style="text-align:left;">
+      <div class="stat-val">$25K</div>
+      <div class="stat-label">Minimum Check</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
+      <a href="#" onclick="openSubscriptionModal();return false;" style="display:inline-flex;align-items:center;gap:8px;background:linear-gradient(135deg,#C5A44E 0%,#B89638 100%);color:#0A1628;border:1px solid rgba(197,164,78,.5);border-radius:8px;padding:12px 22px;font-family:'Instrument Sans',sans-serif;font-size:13px;font-weight:700;letter-spacing:.3px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 16px rgba(197,164,78,.18);transition:transform .2s,box-shadow .2s,background .2s,border-color .2s;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 6px 24px rgba(197,164,78,.3)';this.style.background='linear-gradient(135deg,#D0B05A 0%,#C5A44E 100%)'" onmouseout="this.style.transform='';this.style.boxShadow='0 4px 16px rgba(197,164,78,.18)';this.style.background='linear-gradient(135deg,#C5A44E 0%,#B89638 100%)'"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0A1628" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="16" y2="17"/></svg>Execute Subscription Documents</a>
+    </div>
+  </div>
+
+  <!-- REVENUE PROJECTIONS PANEL -->
+  <div class="rev-proj">
+    <div class="rev-proj-head">
+      <span class="rev-proj-eyebrow">Revenue Projections</span>
+      <h2 class="rev-proj-title">The Infrastructure That Compounds</h2>
+      <span class="rev-proj-rule"></span>
+    </div>
+
+    <div class="rev-engines">
+      <div class="rev-eng">
+        <div class="rev-eng-name">Consumer Engine</div>
+        <div class="rev-eng-amt">~$5.3M</div>
+        <div class="rev-eng-sub">App membership + cash-pay clinical care delivered directly under our own NPI</div>
+      </div>
+      <div class="rev-hub">
+        <div class="rev-hub-mark">InPursuit</div>
+        <div class="rev-hub-sub">One Infrastructure</div>
+      </div>
+      <div class="rev-eng">
+        <div class="rev-eng-name">Provider Engine</div>
+        <div class="rev-eng-amt">~$1.248M<span class="rev-eng-per"> / provider</span></div>
+        <div class="rev-eng-sub">RPM, CCM &amp; APCM delivered through the Partner Network &middot; all-payer, 2026 CMS rates</div>
+      </div>
+    </div>
+
+    <div class="rev-rungs">
+      <div class="rev-rung">
+        <div class="rev-rung-mult">5 Members</div>
+        <div class="rev-rung-num">$9.9M</div>
+        <div class="rev-rung-math">$6.2M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung hot">
+        <div class="rev-rung-tag">Year 3 base case</div>
+        <div class="rev-rung-mult">25 Members</div>
+        <div class="rev-rung-num">$35M</div>
+        <div class="rev-rung-math">$31.2M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung">
+        <div class="rev-rung-mult">50 Members</div>
+        <div class="rev-rung-num">$66M</div>
+        <div class="rev-rung-math">$62.4M network + $3.7M app</div>
+      </div>
+      <div class="rev-rung">
+        <div class="rev-rung-mult">100 Members</div>
+        <div class="rev-rung-num">$128M</div>
+        <div class="rev-rung-math">$124.8M network + $3.7M app</div>
+      </div>
+    </div>
+
+    <div class="rev-eq">members &times; <strong>~$1.248M</strong> network + <strong>~$3.67M</strong> app = <strong>the rung</strong></div>
+
+    <div class="rev-punch">
+      <div class="rev-punch-big">25 practices out of ~230,000</div>
+      <div class="rev-punch-sub">A <strong>~$35M</strong> run-rate needs <strong>0.011%</strong> of the market. This is a floor, not a forecast.</div>
+    </div>
+
+    <div class="rev-foot">
+      <div class="rev-foot-note">Steady-state at full ramp &middot; members modeled at ~10K panels, half of Honeycomb&rsquo;s actual ~22K &middot; the app figure is Engine 1&rsquo;s app line only; its cash-pay clinical (~$1.61M of the ~$5.3M) is additive and not in the rungs &middot; no revenue share &middot; complete rate-by-rate build in diligence.</div>
+      <a class="rev-foot-link" href="data-room/InPursuit_Revenue_Model_Methodology_[F.202608.11].html" target="_blank">Revenue Projections Methodology <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- EXECUTIVE SUMMARY + PITCH DECK -->
+  <div class="doc-section">
+    <div class="section-label">Company Overview, Investment Overview &amp; Pitch Deck</div>
+    <div class="doc-grid">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Company_Overview_[F.202608.05].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Company Overview</span>
+        <div class="doc-title">InPursuit Health — Company Overview</div>
+        <div class="doc-desc">Updated company overview with CMS General Availability and three CMS awards achieved July 2025, J. Krug Insurance broker partnership delivering for testing, Honeycomb Medical $300K RHTP application submitted, and Year 3 base case of $35M revenue at 25 members.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Company_Overview_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Updated Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Health_Seed_Investment_Overview[F.202608.04].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Seed Investment Overview</span>
+        <div class="doc-title">InPursuit Health — Seed Investment Overview</div>
+        <div class="doc-desc">$3.5M Class C equity raise at $20M pre-money, $25K minimum, single close. Full investment overview with use of proceeds, revenue projections, traction milestones, and the $50B Rural Health Transformation federal funding window.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Health_Seed_Investment_Overview[F.202608.04].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Pitch_Deck_[F.202608.11]_(1).html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Pitch Deck</span>
+        <div class="doc-title">InPursuit Health — Pitch Deck</div>
+        <div class="doc-desc">Problem, solution, market, traction, team, financials, and ask. Designed for institutional investors and strategic partners.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Pitch_Deck_[F.202608.11]_(1).pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+    </div>
+
+  <!-- CAP TABLE C2A BAR -->
+  <div onclick="window.open('data-room/FINAL_cap-table.html','_blank')" style="margin-top:20px;padding:20px 28px;background:linear-gradient(135deg,#0a1628 0%,#132040 100%);border:1px solid rgba(197,164,78,.28);border-radius:10px;display:flex;align-items:center;justify-content:space-between;gap:20px;cursor:pointer;transition:border-color .2s,box-shadow .2s;" onmouseover="this.style.borderColor='rgba(197,164,78,.6)';this.style.boxShadow='0 4px 24px rgba(197,164,78,.12)'" onmouseout="this.style.borderColor='rgba(197,164,78,.28)';this.style.boxShadow='none'">
+    <div style="display:flex;align-items:center;gap:16px;">
+      <div style="width:40px;height:40px;border-radius:8px;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 9v12M15 9v12"/></svg>
+      </div>
+      <div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;font-weight:700;color:#C5A44E;letter-spacing:.04em;text-transform:uppercase;margin-bottom:3px;">Capitalization Table</div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.55);line-height:1.4;">Current state &amp; post-Class C pro-forma &nbsp;&middot;&nbsp; 3,085 units outstanding &nbsp;&middot;&nbsp; Founders retain 81.1% post-round &nbsp;&middot;&nbsp; Class C + Class C-1 advisory pool</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;flex-shrink:0;">
+      <span style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:#C5A44E;white-space:nowrap;">View Cap Table</span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </div>
+
+
+<!-- INVESTOR ORIENTATION BLOCK — Countdown to Launch (DARK) -->
+<section class="ipx-orient">
+  <style>
+    .ipx-orient{background:#0A1628;padding:64px 40px;font-family:'Instrument Sans',-apple-system,BlinkMacSystemFont,sans-serif;color:#fff;}
+    .ipx-wrap{max-width:1100px;margin:0 auto;}
+    .ipx-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+    .ipx-eyebrow{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:#C5A44E;white-space:nowrap;}
+    .ipx-rule{flex:1;height:1px;background:rgba(197,164,78,.18);}
+    .ipx-title{font-family:'Instrument Serif',Georgia,serif;font-size:24px;font-weight:400;color:#fff;white-space:nowrap;margin:0;}
+
+    /* Launch hero */
+    .ipx-launch{margin-bottom:40px;}
+    .ipx-launch-statement{font-family:'Instrument Serif',Georgia,serif;font-size:30px;line-height:1.25;color:rgba(255,255,255,.92);margin:0 0 24px;max-width:780px;}
+    .ipx-launch-statement em{color:#fff;font-style:normal;font-weight:600;}
+    .ipx-launch-strike{text-decoration:line-through;text-decoration-color:rgba(255,255,255,.25);color:rgba(255,255,255,.4);}
+
+    /* Readiness ring */
+    .ipx-ring-row{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+    .ipx-ring{position:relative;width:120px;height:120px;flex-shrink:0;}
+    .ipx-ring svg{transform:rotate(-90deg);}
+    .ipx-ring-bg{stroke:rgba(255,255,255,.06);}
+    .ipx-ring-fg{stroke:#C5A44E;stroke-linecap:round;transition:stroke-dashoffset 1.5s ease;}
+    .ipx-ring-val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+    .ipx-ring-num{font-family:'JetBrains Mono','SF Mono',monospace;font-size:28px;font-weight:700;color:#C5A44E;line-height:1;}
+    .ipx-ring-lbl{font-family:'JetBrains Mono','SF Mono',monospace;font-size:8px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+    .ipx-ring-text{flex:1;min-width:240px;}
+    .ipx-ring-text h3{font-family:'Instrument Sans',sans-serif;font-size:16px;font-weight:700;color:#fff;margin:0 0 6px;}
+    .ipx-ring-text p{font-size:14px;line-height:1.5;color:rgba(255,255,255,.55);margin:0;}
+    .ipx-ring-text strong{color:#C5A44E;}
+
+    /* Phase columns */
+    .ipx-phases{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;}
+    .ipx-phase{background:linear-gradient(180deg,#0E1B30 0%,#0A1628 100%);border:1px solid rgba(197,164,78,.15);border-radius:14px;overflow:hidden;transition:border-color .3s,transform .3s;display:flex;flex-direction:column;}
+    .ipx-phase:hover{border-color:rgba(197,164,78,.35);transform:translateY(-2px);}
+    .ipx-phase-head{padding:20px 20px 16px;border-bottom:1px solid rgba(197,164,78,.12);display:flex;align-items:center;gap:12px;}
+    .ipx-phase-num{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'JetBrains Mono','SF Mono',monospace;font-size:11px;font-weight:700;flex-shrink:0;}
+    .ipx-phase-num.done{background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);color:#C5A44E;}
+    .ipx-phase-num.flight{background:rgba(197,164,78,.15);border:1px solid rgba(197,164,78,.4);color:#C5A44E;}
+    .ipx-phase-num.capital{background:rgba(197,164,78,.2);border:1px solid rgba(197,164,78,.5);color:#C5A44E;animation:ipx-pulse-num 2s ease-in-out infinite;}
+    @keyframes ipx-pulse-num{0%,100%{box-shadow:0 0 0 0 rgba(197,164,78,.4);}50%{box-shadow:0 0 0 8px rgba(197,164,78,0);}}
+    .ipx-phase-name{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.55);}
+    .ipx-phase-status{margin-left:auto;font-family:'JetBrains Mono','SF Mono',monospace;font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:4px;}
+    .ipx-phase-status.done{background:rgba(197,164,78,.1);color:#C5A44E;border:1px solid rgba(197,164,78,.2);}
+    .ipx-phase-status.flight{background:rgba(255,255,255,.04);color:rgba(255,255,255,.5);border:1px solid rgba(255,255,255,.08);}
+    .ipx-phase-status.capital{background:rgba(197,164,78,.15);color:#C5A44E;border:1px solid rgba(197,164,78,.35);}
+    .ipx-phase-body{padding:8px 0;flex:1;}
+    .ipx-row{padding:14px 20px;display:flex;align-items:flex-start;gap:14px;border-bottom:1px solid rgba(255,255,255,.04);}
+    .ipx-row:last-child{border-bottom:none;}
+    .ipx-check{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+    .ipx-check.done{background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.3);}
+    .ipx-check.done svg{width:12px;height:12px;stroke:#C5A44E;stroke-width:3;fill:none;}
+    .ipx-check.flight{background:rgba(197,164,78,.15);border:1px solid rgba(197,164,78,.4);}
+    .ipx-check.flight .ipx-pulse{width:8px;height:8px;border-radius:50%;background:#C5A44E;animation:ipx-pulse 2s ease-in-out infinite;}
+    @keyframes ipx-pulse{0%,100%{box-shadow:0 0 0 0 rgba(197,164,78,.5);}50%{box-shadow:0 0 0 6px rgba(197,164,78,0);}}
+    .ipx-check.capital{background:rgba(197,164,78,.2);border:1px solid rgba(197,164,78,.5);}
+    .ipx-check.capital svg{width:12px;height:12px;stroke:#C5A44E;stroke-width:2.5;fill:none;}
+    .ipx-row-text{flex:1;display:flex;flex-direction:column;gap:3px;}
+    .ipx-row-label{font-size:14px;font-weight:600;color:#fff;line-height:1.2;}
+    .ipx-row-meta{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:#C5A44E;}
+    .ipx-row-meta.muted{color:rgba(255,255,255,.35);}
+
+    /* Capital callout */
+    .ipx-capital-note{margin-top:20px;padding:24px 28px;background:linear-gradient(135deg,rgba(197,164,78,.08) 0%,rgba(197,164,78,.02) 100%);border:1px solid rgba(197,164,78,.2);border-radius:14px;display:flex;align-items:center;gap:20px;flex-wrap:wrap;}
+    .ipx-capital-note-icon{width:48px;height:48px;border-radius:12px;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.25);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .ipx-capital-note-icon svg{width:22px;height:22px;stroke:#C5A44E;stroke-width:2;fill:none;}
+    .ipx-capital-note-text{flex:1;min-width:260px;}
+    .ipx-capital-note-text h4{font-family:'Instrument Sans',sans-serif;font-size:15px;font-weight:700;color:#fff;margin:0 0 4px;}
+    .ipx-capital-note-text p{font-size:13px;line-height:1.5;color:rgba(255,255,255,.5);margin:0;}
+    .ipx-capital-note-text strong{color:#C5A44E;}
+    .ipx-capital-note-amount{font-family:'Instrument Serif',Georgia,serif;font-size:36px;font-weight:400;color:#C5A44E;line-height:1;white-space:nowrap;}
+    .ipx-capital-note-amount span{font-family:'JetBrains Mono','SF Mono',monospace;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.4);display:block;margin-top:4px;text-align:center;}
+
+    /* Subscription CTA button */
+    .ipx-cta{margin:16px 20px 20px;display:block;text-decoration:none;border-radius:10px;padding:16px 20px;background:linear-gradient(135deg,#C5A44E 0%,#B89638 100%);border:1px solid rgba(197,164,78,.5);box-shadow:0 4px 20px rgba(197,164,78,.15);transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;}
+    .ipx-cta:hover{transform:translateY(-1px);box-shadow:0 6px 28px rgba(197,164,78,.25);background:linear-gradient(135deg,#D0B05A 0%,#C5A44E 100%);}
+    .ipx-cta-inner{display:flex;align-items:center;gap:14px;}
+    .ipx-cta-icon{width:40px;height:40px;border-radius:10px;background:rgba(10,22,40,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+    .ipx-cta-icon svg{width:20px;height:20px;stroke:#0A1628;stroke-width:2;fill:none;}
+    .ipx-cta-text{flex:1;display:flex;flex-direction:column;gap:2px;}
+    .ipx-cta-label{font-family:'Instrument Sans',sans-serif;font-size:15px;font-weight:700;color:#0A1628;line-height:1.2;}
+    .ipx-cta-sub{font-family:'JetBrains Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(10,22,40,.55);}
+    .ipx-cta-arrow{flex-shrink:0;}
+    .ipx-cta-arrow svg{width:18px;height:18px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    .ipx-cta-secure{display:flex;align-items:center;gap:6px;margin-top:10px;padding-top:10px;border-top:1px solid rgba(10,22,40,.1);}
+    .ipx-cta-secure svg{width:12px;height:12px;stroke:rgba(10,22,40,.45);stroke-width:2;fill:none;}
+    .ipx-cta-secure span{font-family:'JetBrains Mono','SF Mono',monospace;font-size:9px;font-weight:600;letter-spacing:.5px;text-transform:uppercase;color:rgba(10,22,40,.45);}
+
+    @media(max-width:680px){
+      .ipx-orient{padding:44px 20px;}
+      .ipx-phases{grid-template-columns:1fr;gap:16px;}
+      .ipx-title{font-size:20px;}
+      .ipx-launch-statement{font-size:22px;}
+      .ipx-ring{width:100px;height:100px;}
+      .ipx-ring-num{font-size:22px;}
+      .ipx-capital-note-amount{font-size:28px;}
+    }
+  </style>
+  <div class="ipx-wrap">
+    <div class="ipx-head">
+      <span class="ipx-eyebrow">Where We Stand</span>
+      <span class="ipx-rule"></span>
+      <h2 class="ipx-title">Countdown to Launch</h2>
+    </div>
+
+    <div class="ipx-launch">
+      <p class="ipx-launch-statement">Every milestone is complete. The platform is built, CMS-cleared, and commercially ready. Partners are delivering. <em>The only thing standing between today and launch is capital.</em></p>
+      <div class="ipx-ring-row">
+        <div class="ipx-ring">
+          <svg width="120" height="120" viewBox="0 0 120 120" fill="none">
+            <circle class="ipx-ring-bg" cx="60" cy="60" r="52" stroke-width="8"/>
+            <circle class="ipx-ring-fg" cx="60" cy="60" r="52" stroke-width="8" stroke-dasharray="327" stroke-dashoffset="16"/>
+          </svg>
+          <div class="ipx-ring-val">
+            <span class="ipx-ring-num">95%</span>
+            <span class="ipx-ring-lbl">Launch Ready</span>
+          </div>
+        </div>
+        <div class="ipx-ring-text">
+          <h3>Derisked. Commercially ready. One dependency remains.</h3>
+          <p>Product, regulatory, infrastructure, and commercialization are <strong>done</strong>. Two partnerships are in-flight and progressing on schedule. The single remaining dependency is the <strong>$3.5M Class C close</strong> &mdash; capital to execute the launch.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="ipx-phases">
+      <!-- Phase 1: Derisked -->
+      <div class="ipx-phase">
+        <div class="ipx-phase-head">
+          <div class="ipx-phase-num done">&#10003;</div>
+          <div class="ipx-phase-name">Derisked</div>
+          <div class="ipx-phase-status done">Complete</div>
+        </div>
+        <div class="ipx-phase-body">
+          <div class="ipx-row">
+            <div class="ipx-check done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">CMS General Availability</span><span class="ipx-row-meta">Achieved Jul 27</span></div>
+          </div>
+          <div class="ipx-row">
+            <div class="ipx-check done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">3 CMS Awards</span><span class="ipx-row-meta">Listed on CMS.gov</span></div>
+          </div>
+          <div class="ipx-row">
+            <div class="ipx-check done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">Consumer App</span><span class="ipx-row-meta">Built &amp; Ready</span></div>
+          </div>
+          <div class="ipx-row">
+            <div class="ipx-check done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">Commercialization Model</span><span class="ipx-row-meta">Complete</span></div>
+          </div>
+          <div class="ipx-row">
+            <div class="ipx-check done"><svg viewBox="0 0 24 24" fill="none"><path d="M5 12l5 5L20 6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">Credentialing Plan</span><span class="ipx-row-meta">Complete</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 2: In Flight -->
+      <div class="ipx-phase">
+        <div class="ipx-phase-head">
+          <div class="ipx-phase-num flight">&#8594;</div>
+          <div class="ipx-phase-name">In Flight</div>
+          <div class="ipx-phase-status flight">On Schedule</div>
+        </div>
+        <div class="ipx-phase-body">
+          <div class="ipx-row">
+            <div class="ipx-check flight"><div class="ipx-pulse"></div></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">Honeycomb Medical</span><span class="ipx-row-meta">$300K RHTP Submitted Jul 15</span></div>
+          </div>
+          <div class="ipx-row">
+            <div class="ipx-check flight"><div class="ipx-pulse"></div></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">J. Krug Insurance</span><span class="ipx-row-meta">App Delivering for Testing Aug 6</span></div>
+          </div>
+          <div class="ipx-row" style="border-bottom:none;padding-bottom:6px;">
+            <div class="ipx-row-text" style="margin-left:38px;">
+              <span class="ipx-row-meta muted" style="font-size:11px;letter-spacing:.3px;text-transform:none;font-family:'Instrument Sans',sans-serif;font-weight:400;color:rgba(255,255,255,.35);line-height:1.45;">Both partnerships are progressing on schedule and do not block launch &mdash; they accelerate revenue from day one.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Phase 3: The Missing Piece -->
+      <div class="ipx-phase">
+        <div class="ipx-phase-head">
+          <div class="ipx-phase-num capital">!</div>
+          <div class="ipx-phase-name">The Missing Piece</div>
+          <div class="ipx-phase-status capital">Capital</div>
+        </div>
+        <div class="ipx-phase-body">
+          <div class="ipx-row">
+            <div class="ipx-check capital"><svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="ipx-row-text"><span class="ipx-row-label">Class C Round</span><span class="ipx-row-meta">Open &mdash; $3.5M Target</span></div>
+          </div>
+          <div class="ipx-row" style="border-bottom:none;">
+            <div class="ipx-row-text" style="margin-left:38px;">
+              <span class="ipx-row-meta muted" style="font-size:11px;letter-spacing:.3px;text-transform:none;font-family:'Instrument Sans',sans-serif;font-weight:400;color:rgba(255,255,255,.45);line-height:1.5;">This is the <strong style="color:#C5A44E;">only</strong> dependency between today and launch. Every other milestone &mdash; product, regulatory, infrastructure, partnerships, commercialization &mdash; is complete or progressing on schedule. Capital converts readiness into revenue.</span>
+            </div>
+          </div>
+        </div>
+        <a class="ipx-cta" href="#" onclick="openSubscriptionModal();return false;">
+          <div class="ipx-cta-inner">
+            <div class="ipx-cta-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg></div>
+            <div class="ipx-cta-text">
+              <span class="ipx-cta-label">Execute Subscription Documents</span>
+              <span class="ipx-cta-sub">Class C &middot; DocuSign Envelope Ready</span>
+            </div>
+            <div class="ipx-cta-arrow"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
+          </div>
+          <div class="ipx-cta-secure">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Secure electronic signature via DocuSign</span>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <div class="ipx-capital-note">
+      <div class="ipx-capital-note-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.6-2.7L7 14"/></svg></div>
+      <div class="ipx-capital-note-text">
+        <h4>Capital is the last milestone &mdash; not the first.</h4>
+        <p>Most startups raise capital to <em>build</em> the product. InPursuit raised capital to <em>launch</em> a finished one. This is the <strong>only</strong> dependency between today and launch. Every other milestone &mdash; product, regulatory, infrastructure, partnerships, commercialization &mdash; is complete or progressing on schedule. Capital converts readiness into revenue.</p>
+      </div>
+      <div class="ipx-capital-note-amount">$3.5M<span>Class C &mdash; Closing Now</span></div>
+    </div>
+  </div>
+
+  <!-- ACTIVATION TIMELINE -->
+  <style>
+    #act-tl{padding:2.5rem 3rem 1.5rem;max-width:1200px;margin:0 auto;}
+    #act-tl .act-head{font-family:var(--serif);font-size:1.05rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(197,164,78,.55);margin-bottom:2.5rem;text-align:left;}
+    #act-tl .act-tl{position:relative;display:flex;align-items:flex-start;gap:0;overflow-x:auto;padding-top:.75rem;padding-bottom:1.25rem;}
+    #act-tl .act-tl::-webkit-scrollbar{height:4px;}
+    #act-tl .act-tl::-webkit-scrollbar-track{background:rgba(255,255,255,.04);}
+    #act-tl .act-tl::-webkit-scrollbar-thumb{background:rgba(197,164,78,.25);border-radius:2px;}
+    #act-tl .act-rail{position:absolute;top:32px;left:5%;right:5%;height:2px;pointer-events:none;display:flex;}
+    #act-tl .act-rail-done{background:#C5A44E;flex:3.5;}
+    #act-tl .act-rail-future{flex:4.5;background:repeating-linear-gradient(90deg,rgba(197,164,78,.4) 0,rgba(197,164,78,.4) 6px,transparent 6px,transparent 14px);}
+    #act-tl .act-node{display:flex;flex-direction:column;align-items:center;flex:1;min-width:96px;position:relative;z-index:1;}
+    #act-tl .act-dot{width:40px;height:40px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;}
+    #act-tl .act-dot.done{background:#C5A44E;border:2px solid #C5A44E;}
+    #act-tl .act-dot.done svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.now{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 6px rgba(197,164,78,.2),0 0 0 12px rgba(197,164,78,.08);}
+    #act-tl .act-dot.now svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-dot.next{width:28px;height:28px;margin:6px;background:rgba(197,164,78,.06);border:1.5px solid rgba(197,164,78,.35);}
+    #act-tl .act-dot.dest{background:#C5A44E;border:2px solid #C5A44E;box-shadow:0 0 0 5px rgba(197,164,78,.18),0 0 0 10px rgba(197,164,78,.07);}
+    #act-tl .act-dot.dest svg{width:16px;height:16px;stroke:#0A1628;stroke-width:2.5;fill:none;}
+    #act-tl .act-info{margin-top:1rem;text-align:center;padding:0 .25rem;}
+    #act-tl .act-badge{display:inline-block;font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;padding:.18rem .5rem;border-radius:3px;margin-bottom:.4rem;}
+    #act-tl .act-badge.done{background:rgba(197,164,78,.12);color:#C5A44E;border:1px solid rgba(197,164,78,.3);}
+    #act-tl .act-badge.now{background:rgba(197,164,78,.22);color:#C5A44E;border:1px solid rgba(197,164,78,.55);}
+    #act-tl .act-badge.next{background:rgba(255,255,255,.04);color:rgba(255,255,255,.35);border:1px solid rgba(255,255,255,.1);}
+    #act-tl .act-badge.dest{background:rgba(197,164,78,.18);color:#C5A44E;border:1px solid rgba(197,164,78,.45);}
+    #act-tl .act-date{font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:.2rem;}
+    #act-tl .act-date.dim{color:rgba(255,255,255,.3);}
+    #act-tl .act-desc{font-family:var(--sans);font-size:.7rem;line-height:1.45;color:rgba(255,255,255,.4);max-width:92px;}
+    @media(max-width:900px){#act-tl{padding-left:1.25rem;padding-right:1.25rem;} #act-tl .act-tl{min-width:680px;}}
+  </style>
+  <div id="act-tl">
+    <div class="act-head">Activation Timeline &nbsp;·&nbsp; InPursuit Health</div>
+    <div class="act-tl">
+      <div class="act-rail">
+        <div class="act-rail-done"></div>
+        <div class="act-rail-future"></div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">Accepted</div>
+          <div class="act-date">Dec 2025</div>
+          <div class="act-desc">CMS Health IT Ecosystem</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">MVP Complete</div>
+          <div class="act-date">Mar 31</div>
+          <div class="act-desc">Patient App Delivered</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">First Wave</div>
+          <div class="act-date">Apr 9</div>
+          <div class="act-desc">CMS Health IT First Wave Launch</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot done"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge done">CMS GA</div>
+          <div class="act-date">Jul 27</div>
+          <div class="act-desc">CMS General Availability + 3 Awards</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot now"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <div class="act-info">
+          <div class="act-badge now">Now</div>
+          <div class="act-date">Jul 31</div>
+          <div class="act-desc">J. Krug App Delivering for Testing</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Award</div>
+          <div class="act-date dim">Aug 2026</div>
+          <div class="act-desc">Honeycomb RHTP Awards Projected</div>
+        </div>
+      </div>
+      <div class="act-node">
+        <div class="act-dot next"></div>
+        <div class="act-info">
+          <div class="act-badge next">Scale</div>
+          <div class="act-date dim">Q3 2026</div>
+          <div class="act-desc">Delivery &amp; Credentialing</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TRUMP ADMINISTRATION INITIATIVES -->
+  <div class="doc-section">
+    <div class="section-label">Purpose Built for the Shift to Person-Centric Care</div>
+    <div class="doc-grid" style="grid-template-columns:repeat(2,1fr);gap:1rem;max-width:1200px;">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_CMS_Health_Tech_Ecosystem_Recognition_[F.202608.05].html','_blank')" style="cursor:pointer;padding:1.1rem 1.25rem;">
+        <img class="doc-thumb" src="Assets/Trump/Trump_HealthIT.jpeg" alt="CMS Health IT">
+        <span class="doc-badge b-series">Initiative</span>
+        <div class="doc-title">CMS Health Tech Ecosystem Recognition</div>
+        <div class="doc-desc">American healthcare is a $5.7 trillion system moving decisively toward the person. The shift is funded and in law: CMS interoperability mandates, $50 billion for rural health, a record $445 billion VA budget, and drug pricing agreements covering 86% of the branded market. Federal dollars build the rails. The private market adopts them. InPursuit is already on them, inside four federal programs, delivering where the value is created. These are not contracts won. This is proof of position.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_CMS_Health_Tech_Ecosystem_Recognition_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Veterans_First_Investor_Three_Pager_[260805.4].html','_blank')" style="cursor:pointer;padding:1.1rem 1.25rem;">
+        <img class="doc-thumb" src="Assets/Trump/trump_va.jpeg" alt="Veterans Affairs">
+        <span class="doc-badge b-series">Initiative</span>
+        <div class="doc-title">Veterans First</div>
+        <div class="doc-desc">Dedicated initiative supporting veteran healthcare access and coordinated benefits through federal partnerships &mdash; bridging VA, DoD, and community care for those who served.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_Veterans_First_Investor_Three_Pager_[260805.4].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_RHTP_National_Targets_[260805.2]_(2).html','_blank')" style="cursor:pointer;padding:1.1rem 1.25rem;">
+        <img class="doc-thumb" src="Assets/Trump/Trump_Rural_Health.jpeg" alt="Rural Health">
+        <span class="doc-badge b-series">Initiative</span>
+        <div class="doc-title">Rural Health &mdash; RHTP National Targets</div>
+        <div class="doc-desc">Advancing rural healthcare delivery through the $50B Rural Health Transformation federal funding window and telehealth infrastructure.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_RHTP_National_Targets_[260805.2]_(2).pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_TrumpRx_In_App_Delivery_[F.202608.05].html','_blank')" style="cursor:pointer;padding:1.1rem 1.25rem;">
+        <img class="doc-thumb" src="Assets/Trump/TrumpRx.jpeg" alt="TrumpRx" style="object-position:75% 15%;">
+        <span class="doc-badge b-series">Initiative</span>
+        <div class="doc-title">TrumpRx &mdash; In-App Drug Pricing</div>
+        <div class="doc-desc">TrumpRx.gov manufacturer-direct savings, delivered inside the InPursuit Health App. Members' medication lists matched automatically against TrumpRx pricing &mdash; savings shown on the medication card, one tap to act.</div>
+        <a class="doc-pdf-btn" href="data-room/InPursuit_TrumpRx_In_App_Delivery_[F.202608.05].pdf" download onclick="event.stopPropagation();"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 11h8"/></svg>Download PDF</a>
+        <div class="doc-foot"><span class="doc-tag">Aug 2026</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- OUR HEALTHCARE ORGANIZATION STRUCTURE -->
+  <div class="doc-section">
+    <div class="section-label">Our Healthcare Organization Structure</div>
+    <div class="doc-grid">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Clinical_Delivery_Corporate_Structure_[260611.1].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Structure</span>
+        <div class="doc-title">MSO Corporate Structure &amp; Revenue Flow</div>
+        <div class="doc-desc">How InPursuit delivers care, bills payers, and captures revenue — the MSO/PC model used by Hims &amp; Hers, Ro, and Cerebral. Includes revenue flow mechanics, OIG-validated legal structure, and illustrative per-patient economics.</div>
+        <div class="doc-foot"><span class="doc-tag">Corporate</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_NPI_Enrollment_Roadmap_[260611.1].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Roadmap</span>
+        <div class="doc-title">NPI Enrollment Roadmap</div>
+        <div class="doc-desc">Complete week-by-week execution pathway: NPI Type 2 issuance, Medicare Part B enrollment via PECOS, commercial payer credentialing, and first direct billing — all within the Class C round allocation.</div>
+        <div class="doc-foot"><span class="doc-tag">Operational</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- SUPPLEMENTAL DOCUMENTS -->
+  <div class="doc-section">
+    <div class="section-label">Supplemental Documents</div>
+    <div class="doc-grid">
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Infrastructure_Commercial_Readiness_[260611.7].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Commercial</span>
+        <div class="doc-title">Infrastructure &amp; Commercial Readiness</div>
+        <div class="doc-desc">Detailed breakdown of InPursuit's technical infrastructure, compliance posture, and commercial readiness — from FHIR integration to billing infrastructure and payer contracting pipeline.</div>
+        <div class="doc-foot"><span class="doc-tag">Infrastructure</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Blue_Ocean_260611.5.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Strategy</span>
+        <div class="doc-title">Blue Ocean Strategy</div>
+        <div class="doc-desc">How InPursuit creates uncontested market space by combining CMS model participation, direct-to-consumer app distribution, and MSO infrastructure into a single platform no competitor has assembled.</div>
+        <div class="doc-foot"><span class="doc-tag">Strategy</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+      <div class="doc-card" onclick="window.open('data-room/InPursuit_Distribution_Channel_—_Investor_Update_[F260610.2].html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-series">Distribution</span>
+        <div class="doc-title">Distribution Channel — Investor Update</div>
+        <div class="doc-desc">CMS Medicare App Store, White House Health Initiative, and Honeycomb Medical Group distribution partnerships. Patient acquisition economics, channel velocity, and projected enrollment ramp.</div>
+        <div class="doc-foot"><span class="doc-tag">Distribution</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+    </div>
+  </div>
+
+  <hr class="room-divider">
+
+  <!-- ── MARKET ANALYSIS: EXECUTIVE SUMMARY ── -->
+  <div class="doc-section">
+    <div class="section-label">Market Analysis &mdash; Executive Summary</div>
+    <div class="doc-grid">
+
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-exec-summary.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-analysis">Analysis</span>
+        <div class="doc-title">Complete Market Analysis &mdash; Executive Summary</div>
+        <div class="doc-desc">Four converging markets, one infrastructure dependency. $4.45T VBC, $208B wellness tech, $110B healthcare AI, $57B RPM. TAM/SAM sizing, competitive landscape, infrastructure moat, and risk factors condensed into a single institutional-grade summary.</div>
+        <div class="doc-foot"><span class="doc-tag">Executive Summary</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── MARKET ANALYSIS: DETAILED BY PILLAR ── -->
+  <div class="doc-section">
+    <div class="section-label">Detailed Market Analysis &mdash; By Pillar</div>
+    <div class="doc-grid">
+
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-vbc.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-analysis">Analysis</span>
+        <div class="doc-title">Pillar I: Value-Based Care &amp; Outcome-Based Payments</div>
+        <div class="doc-desc">$4.45T global VBC market by 2030. CMS ACCESS Model deep dive (10-year, 4 clinical tracks, OAP rates), LEAD, MSSP, TEAM. Commercial payer adoption. 300,000 physicians need infrastructure to transition. Provider segmentation and addressable market.</div>
+        <div class="doc-foot"><span class="doc-tag">Provider Market</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-d2c.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-analysis">Analysis</span>
+        <div class="doc-title">Pillar II: Direct-to-Consumer Health &amp; Wellness</div>
+        <div class="doc-desc">$208B wellness technology market by 2035. 330M+ Americans with smartphones. Fragmentation problem, competitive landscape (Apple Health, MyChart, GoodRx, Noom), subscription tiers, transaction-moment commerce, and Medicare App Library distribution.</div>
+        <div class="doc-foot"><span class="doc-tag">Consumer Market</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-ai-infrastructure.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-analysis">Analysis</span>
+        <div class="doc-title">Pillar III: Healthcare AI Infrastructure &amp; Governance</div>
+        <div class="doc-desc">$110B healthcare AI market by 2030 at 38.6% CAGR. PwC projects $868B total AI impact. The governance gap: 85% of organizations unprepared. Our Conductor, Aegis, and Sentinel governance layers as the dependency stack AI companies need beneath them.</div>
+        <div class="doc-foot"><span class="doc-tag">AI Infrastructure</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+
+      <div class="doc-card" onclick="window.open('data-room/market-analysis-interop-rpm.html','_blank')" style="cursor:pointer;">
+        <span class="doc-badge b-analysis">Analysis</span>
+        <div class="doc-title">Pillar IV: Interoperability &amp; Remote Patient Monitoring</div>
+        <div class="doc-desc">$57B RPM market + $8.6B interoperability market by 2030. TEFCA live with 625+ hospitals. $1M/violation info-blocking penalties. 142M U.S. patients on RPM by 2030. Compound revenue with VBC: same infrastructure, four revenue streams.</div>
+        <div class="doc-foot"><span class="doc-tag">Interop &amp; RPM</span><svg viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/></svg></div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ── INVESTOR PORTAL ARCHIVE (HIDDEN FROM USERS) ── -->
+  <div class="archive-wrapper" style="display:none">
+    <div class="archive-toggle" aria-expanded="false" onclick="toggleArchive(this)">
+      <div class="archive-toggle-icon">
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none"><path d="M2 1.5L5.5 4 2 6.5" stroke="rgba(255,255,255,0.4)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <span class="archive-toggle-label">Investor Portal Archive</span>
+    </div>
+    <div class="archive-body" id="archive-body">
+
+      <!-- Growth Strategy Timeline Archive -->
+      <div class="archive-section-label">Growth Strategy Timeline — Archived</div>
+      <div class="archive-ml-row">
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Now</div>
+          <div class="archive-ml-txt"><strong>CMS General Availability achieved.</strong> Three CMS awards listed on CMS.gov. Consumer app built and ready. Class C round open.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 1–2</div>
+          <div class="archive-ml-txt"><strong>NPI issued.</strong> Type 2 organizational NPI in hand. CAQH ProView re-attested. Medical Director contract executed.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 2–6</div>
+          <div class="archive-ml-txt"><strong>Medicare Part B enrollment.</strong> CMS-855B / PECOS submitted. Commercial payer credentialing (UHC, BCBS, Aetna, Cigna, Humana) launched in parallel.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 6–10</div>
+          <div class="archive-ml-txt"><strong>First commercial approvals.</strong> RCM infrastructure live. RPM device procurement begins. Patient enrollment pipeline ready.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Wk 10–16</div>
+          <div class="archive-ml-txt"><strong>Medicare enrollment approved.</strong> Direct billing to Medicare and commercial payers begins. RPM + CCM + TCM revenue cycle active.</div>
+        </div>
+        <div class="archive-ml-item">
+          <div class="archive-ml-date">Sep 1</div>
+          <div class="archive-ml-txt"><strong>Round closed.</strong> Armed and billing. Unit economics validated. Scale begins.</div>
+        </div>
+      </div>
+
+    </div><!-- /archive-body -->
+  </div><!-- /archive-wrapper -->
+
+  <script>
+    function toggleArchive(el) {
+      const expanded = el.getAttribute('aria-expanded') === 'true';
+      el.setAttribute('aria-expanded', !expanded);
+      document.getElementById('archive-body').classList.toggle('open', !expanded);
+    }
+  </script>
+
+  <!-- FOOTER -->
+  <div style="text-align:center; padding: 0 1.5rem 1.5rem; position:relative; z-index:1;">
+    <a href="/disclosures/InPursuit_Disclosures_General.pdf" target="_blank" download style="display:inline-flex; align-items:center; gap:0.45rem; font-family:var(--sans); font-size:11px; font-weight:500; color:rgba(197,164,78,.55); text-decoration:none; border:1px solid rgba(197,164,78,.18); border-radius:4px; padding:6px 14px; transition:color 0.2s, border-color 0.2s;" onmouseover="this.style.color='rgba(197,164,78,.85)';this.style.borderColor='rgba(197,164,78,.4)'" onmouseout="this.style.color='rgba(197,164,78,.55)';this.style.borderColor='rgba(197,164,78,.18)'">
+      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style="opacity:0.7"><path d="M6 1v7M3.5 5.5L6 8l2.5-2.5M2 10h8" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      General Disclosures
+    </a>
+  </div>
+  <footer class="portal-footer">
+    <span>© 2026 InPursuit Health, LLC &nbsp;·&nbsp; All materials confidential &nbsp;·&nbsp; For accredited investors only</span>
+    <a href="/cdn-cgi/l/email-protection#a3cacdd5c6d0d7e3cacdd3d6d1d0d6cad7cbc6c2cfd7cb8dc0ccce"><span class="__cf_email__" data-cfemail="91f8ffe7f4e2e5d1f8ffe1e4e3e2e4f8e5f9f4f0fde5f9bff2fefc">[email&#160;protected]</span></a>
+  </footer>
+
+</div><!-- /data-room -->
+
+<!-- SUBSCRIPTION MODAL -->
+<div id="sub-modal-overlay" onclick="closeSubscriptionModal(event)" style="display:none;position:fixed;inset:0;z-index:10000;background:rgba(5,12,22,.82);backdrop-filter:blur(6px);opacity:0;transition:opacity .3s ease;">
+  <div id="sub-modal" onclick="event.stopPropagation()" style="position:relative;max-width:560px;width:calc(100% - 32px);margin:5vh auto;background:linear-gradient(180deg,#0d1a2e 0%,#0a1628 100%);border:1px solid rgba(197,164,78,.28);border-radius:14px;box-shadow:0 24px 64px rgba(0,0,0,.5);transform:translateY(20px) scale(.97);transition:transform .35s cubic-bezier(.16,1,.3,1);overflow:hidden;">
+    <!-- Header with Patrick's photo -->
+    <div style="display:flex;align-items:center;gap:16px;padding:24px 28px;border-bottom:1px solid rgba(197,164,78,.15);">
+      <div style="width:56px;height:56px;border-radius:50%;overflow:hidden;border:2px solid rgba(197,164,78,.4);flex-shrink:0;">
+        <img src="Assets/patrick-truxillo.jpg" alt="Patrick Truxillo" style="width:100%;height:100%;object-fit:cover;object-position:center 20%;">
+      </div>
+      <div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:#C5A44E;letter-spacing:.06em;text-transform:uppercase;margin-bottom:2px;">Request Subscription Documents</div>
+        <div style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,.92);">Patrick Truxillo &middot; Co-Founder &amp; Chief Strategy Officer</div>
+      </div>
+      <button data-close-sub onclick="closeSubscriptionModal(event)" style="position:absolute;top:16px;right:16px;background:none;border:none;cursor:pointer;padding:4px;color:rgba(255,255,255,.4);transition:color .2s;" onmouseover="this.style.color='rgba(255,255,255,.85)'" onmouseout="this.style.color='rgba(255,255,255,.4)'">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <!-- Intro text -->
+    <div style="padding:20px 28px 0;">
+      <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.6);line-height:1.55;margin:0;">Fill out the form below and Patrick will personally send your DocuSign envelope for Class C subscription. The details you provide go directly to Patrick and the InPursuit Health investment team.</p>
+    </div>
+    <!-- Form -->
+    <form id="sub-form" onsubmit="submitSubscription(event)" style="padding:20px 28px 28px;">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">First Name *</label>
+          <input type="text" id="sub-first" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Last Name *</label>
+          <input type="text" id="sub-last" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Email *</label>
+          <input type="email" id="sub-email" required style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Phone</label>
+          <input type="tel" id="sub-phone" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;">
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Investment Amount ($) *</label>
+          <input type="number" id="sub-amount" required min="25000" step="100" placeholder="25,000 minimum" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+        <div>
+          <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Entity / Firm</label>
+          <input type="text" id="sub-entity" placeholder="Individual, LLC, Trust, etc." style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'">
+        </div>
+      </div>
+      <div style="margin-bottom:20px;">
+        <label style="display:block;font-family:'Instrument Sans',system-ui,sans-serif;font-size:11px;font-weight:600;color:rgba(255,255,255,.5);letter-spacing:.04em;text-transform:uppercase;margin-bottom:6px;">Notes / Questions</label>
+        <textarea id="sub-notes" rows="2" style="width:100%;box-sizing:border-box;background:rgba(255,255,255,.04);border:1px solid rgba(197,164,78,.2);border-radius:8px;padding:10px 14px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:13px;color:rgba(255,255,255,.9);outline:none;transition:border-color .2s;resize:vertical;" onfocus="this.style.borderColor='rgba(197,164,78,.5)'" onblur="this.style.borderColor='rgba(197,164,78,.2)'"></textarea>
+      </div>
+      <button type="submit" id="sub-submit-btn" style="width:100%;padding:14px;background:linear-gradient(135deg,#C5A44E 0%,#b89238 100%);border:none;border-radius:8px;font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:700;color:#0a1628;letter-spacing:.03em;cursor:pointer;transition:opacity .2s,transform .1s;" onmouseover="this.style.opacity='.9'" onmouseout="this.style.opacity='1'">
+        Request DocuSign Envelope
+      </button>
+      <div id="sub-success" style="display:none;text-align:center;padding:20px 0 0;">
+        <div style="width:48px;height:48px;border-radius:50%;background:rgba(197,164,78,.12);border:1px solid rgba(197,164,78,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C5A44E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+        </div>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:14px;font-weight:600;color:rgba(255,255,255,.9);margin:0 0 6px;">Request Received</p>
+        <p style="font-family:'Instrument Sans',system-ui,sans-serif;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;margin:0;">Patrick will send your personalized DocuSign envelope to the email you provided. Check your inbox within 24 hours.</p>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+// ── SUPABASE ────────────────────────────────────
+const SUPA_URL  = 'https://weaektyawlgxhqusjymw.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndlYWVrdHlhd2xneGhxdXNqeW13Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMxMDQ4NzEsImV4cCI6MjA4ODY4MDg3MX0.W7Zu3CueXLGOHaeUmuKDkduquaJzUpZCrXQ4jp9IYi4';
+const supa = supabase.createClient(SUPA_URL, SUPA_ANON);
+
+// ── LOGO ───────────────────────────────────────
+const LOGO = null;
+
+// ── ACCESS CODES ───────────────────────────────
+const SHARED_CODES    = ['julio','shawn','omega','fsm','robert','zolezzi','dealright','corsi','carson','logan','holt','malik','lane','blaino','gargan','tampa','maha','redzke','vince','flournoy','haymon'];
+const ADVOCATE_CODES  = SHARED_CODES;
+const INVESTOR_CODES  = SHARED_CODES;
+const VALID_CODES     = [...INVESTOR_CODES, ...ADVOCATE_CODES];
+
+// ── FORMSPREE ──────────────────────────────────
+const FORMSPREE = 'https://formspree.io/f/mvzwobkj';
+
+// ── STATE ──────────────────────────────────────
+let accessCode = '';
+let contact    = {};
+let sessionId  = null;
+let portalPath = 'investor'; // 'investor' | 'advocate'
+
+// ── INJECT LOGOS ───────────────────────────────
+// Logo: replace img tags with styled text mark
+document.querySelectorAll('img[src="LOGO_PLACEHOLDER"]').forEach(img => {
+  const span = document.createElement('span');
+  span.textContent = 'InPursuit Health';
+  span.style.cssText = 'font-family:"Instrument Serif",serif;font-size:1.15rem;color:#FAF8F4;letter-spacing:-0.01em;';
+  img.replaceWith(span);
+});
+
+// ── EYE TOGGLE ────────────────────────────────
+const codeInput = document.getElementById('code-input');
+const eye       = document.getElementById('code-eye');
+
+eye.addEventListener('click', () => {
+  const show = codeInput.type === 'password';
+  codeInput.type = show ? 'text' : 'password';
+  eye.innerHTML = show
+    ? `<svg viewBox="0 0 20 20" fill="currentColor" width="17" height="17"><path fill-rule="evenodd" d="M3.707 2.293a1 1 0 00-1.414 1.414l14 14a1 1 0 001.414-1.414l-1.473-1.473A10.014 10.014 0 0019.542 10C18.268 5.943 14.478 3 10 3a9.958 9.958 0 00-4.512 1.074l-1.78-1.781zm4.261 4.26l1.514 1.515a2.003 2.003 0 012.45 2.45l1.514 1.514a4 4 0 00-5.478-5.478z" clip-rule="evenodd"/><path d="M12.454 16.697L9.75 13.992a4 4 0 01-3.742-3.741L2.335 6.578A9.98 9.98 0 00.458 10c1.274 4.057 5.064 7 9.542 7 .847 0 1.669-.105 2.454-.303z"/></svg>`
+    : `<svg viewBox="0 0 20 20" fill="currentColor" width="17" height="17"><path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/><path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd"/></svg>`;
+});
+
+// Enter key on code
+codeInput.addEventListener('keydown', e => { if (e.key === 'Enter') document.getElementById('btn-s1').click(); });
+
+// ── STEP 0: PATH SELECTOR ──────────────────────
+document.getElementById('path-investor').addEventListener('click', () => {
+  portalPath = 'investor';
+  document.getElementById('code-err').textContent = 'Invalid access code. Please contact your InPursuit Health representative.';
+  showStep(1);
+});
+
+document.getElementById('path-advocate').addEventListener('click', () => {
+  portalPath = 'advocate';
+  document.getElementById('code-err').textContent = 'Invalid advocate access code. Please contact your InPursuit Health representative.';
+  showStep(1);
+});
+
+// ── STEP 1 ─────────────────────────────────────
+document.getElementById('btn-s1').addEventListener('click', () => {
+  const val = codeInput.value.trim().toLowerCase();
+  const err = document.getElementById('code-err');
+  codeInput.classList.remove('error','ok');
+  err.classList.remove('show');
+
+  const pool = portalPath === 'advocate' ? ADVOCATE_CODES : INVESTOR_CODES;
+  if (!pool.includes(val)) {
+    codeInput.classList.add('error');
+    err.classList.add('show');
+    return;
+  }
+  accessCode = val;
+  codeInput.classList.add('ok');
+  setTimeout(() => showStep(2), 380);
+});
+
+// ── STEP 2 ─────────────────────────────────────
+['f-first','f-last','f-email'].forEach(id => {
+  document.getElementById(id).addEventListener('keydown', e => {
+    if (e.key === 'Enter') document.getElementById('btn-s2').click();
+  });
+});
+
+// ── CAPTCHA ────────────────────────────────────
+let captchaAnswer = 0;
+
+function generateCaptcha() {
+  const a = Math.floor(Math.random() * 10) + 1;
+  const b = Math.floor(Math.random() * 10) + 1;
+  const mul = Math.random() > 0.5;
+  if (mul) {
+    document.getElementById('captcha-label').textContent = a + ' \u00d7 ' + b;
+    captchaAnswer = a * b;
+  } else {
+    document.getElementById('captcha-label').textContent = a + ' + ' + b;
+    captchaAnswer = a + b;
+  }
+}
+
+generateCaptcha();
+
+document.getElementById('btn-s2').addEventListener('click', () => {
+  const first = document.getElementById('f-first').value.trim();
+  const last  = document.getElementById('f-last').value.trim();
+  const email = document.getElementById('f-email').value.trim();
+  const captchaVal = parseInt(document.getElementById('captcha-input').value, 10);
+  const err   = document.getElementById('contact-err');
+
+  // clear errors
+  ['f-first','f-last','f-email'].forEach(id => document.getElementById(id).classList.remove('error'));
+  document.querySelector('.captcha-wrap').classList.remove('error');
+  document.getElementById('captcha-input').classList.remove('error');
+  err.classList.remove('show');
+
+  let ok = true;
+  if (!first) { document.getElementById('f-first').classList.add('error'); ok = false; }
+  if (!last)  { document.getElementById('f-last').classList.add('error');  ok = false; }
+  if (!email) { document.getElementById('f-email').classList.add('error'); ok = false; }
+
+  if (!ok) { err.textContent = 'Please complete all required fields.'; err.classList.add('show'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+    document.getElementById('f-email').classList.add('error');
+    err.textContent = 'Please enter a valid email address.';
+    err.classList.add('show');
+    return;
+  }
+  if (captchaVal !== captchaAnswer) {
+    document.querySelector('.captcha-wrap').classList.add('error');
+    document.getElementById('captcha-input').classList.add('error');
+    err.textContent = 'Incorrect answer. Please try again.';
+    err.classList.add('show');
+    // generate new captcha
+    generateCaptcha();
+    document.getElementById('captcha-input').value = '';
+    return;
+  }
+
+  contact = { first, last, email, phone: '', firm: '' };
+  showStep(portalPath === 'advocate' ? 'adv' : 3);
+});
+
+// ── STEP 3: DISCLOSURES ────────────────────────
+document.getElementById('disc-check').addEventListener('change', function() {
+  document.getElementById('btn-s3').disabled = !this.checked;
+  document.getElementById('disc-err').classList.remove('show');
+});
+
+document.getElementById('btn-s3').addEventListener('click', () => {
+  showStep(4);
+});
+
+// ── STEP 4: CERTIFICATION ──────────────────────
+document.getElementById('cert-check').addEventListener('change', function() {
+  document.getElementById('btn-s4').disabled = !this.checked;
+  document.getElementById('cert-err').classList.remove('show');
+});
+
+document.getElementById('btn-s4').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-s4');
+  btn.classList.add('loading'); btn.disabled = true;
+
+  const payload = {
+    _subject: `Investor Portal Access — ${contact.first} ${contact.last}`,
+    'Access Code': accessCode.charAt(0).toUpperCase() + accessCode.slice(1),
+    'Portal Path': 'Accredited Investor',
+    'First Name': contact.first,
+    'Last Name': contact.last,
+    'Email': contact.email,
+    'Phone': contact.phone || '—',
+    'Firm': contact.firm || '—',
+    'Disclosures Acknowledged': 'Yes',
+    'Accredited Investor Certified': 'Yes',
+    'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
+    '_replyto': contact.email,
+  };
+
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Formspree error:', e); }
+
+  await createSession();
+  openDataRoom();
+});
+
+// ── STEP ADV: ADVOCATE ACKNOWLEDGMENT ──────────
+document.getElementById('adv-check').addEventListener('change', function() {
+  document.getElementById('btn-adv').disabled = !this.checked;
+  document.getElementById('adv-err').classList.remove('show');
+});
+
+document.getElementById('btn-adv').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-adv');
+  btn.classList.add('loading'); btn.disabled = true;
+
+  const payload = {
+    _subject: `Advocate Portal Access — ${contact.first} ${contact.last}`,
+    'Access Code': accessCode.charAt(0).toUpperCase() + accessCode.slice(1),
+    'Portal Path': 'Advocate',
+    'First Name': contact.first,
+    'Last Name': contact.last,
+    'Email': contact.email,
+    'Confidentiality Acknowledged': 'Yes',
+    'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
+    '_replyto': contact.email,
+  };
+
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Formspree error:', e); }
+
+  await createSession();
+  openDataRoom();
+});
+
+// ── SUPABASE TRACKING ──────────────────────────
+
+async function createSession() {
+  try {
+    const { data, error } = await supa
+      .from('investor_sessions')
+      .insert({
+        access_code: accessCode,
+        first_name:  contact.first,
+        last_name:   contact.last,
+        email:       contact.email,
+        user_agent:  navigator.userAgent.slice(0, 300),
+        referrer:    document.referrer.slice(0, 300)
+      })
+      .select('id')
+      .single();
+    if (!error && data) sessionId = data.id;
+  } catch(e) { console.warn('Supabase session error:', e); }
+}
+
+async function trackDocOpen(slug, title, category) {
+  if (!sessionId) return null;
+  try {
+    const { data, error } = await supa
+      .from('investor_doc_views')
+      .insert({
+        session_id:   sessionId,
+        doc_slug:     slug,
+        doc_title:    title,
+        doc_category: category,
+        opened_at:    new Date().toISOString()
+      })
+      .select('id')
+      .single();
+    if (!error && data) return data.id;
+  } catch(e) { console.warn('Supabase doc view error:', e); }
+  return null;
+}
+
+async function trackDocClose(viewId, openedAt) {
+  if (!viewId) return;
+  try {
+    const seconds = Math.round((Date.now() - openedAt) / 1000);
+    await supa
+      .from('investor_doc_views')
+      .update({
+        closed_at:    new Date().toISOString(),
+        seconds_open: seconds
+      })
+      .eq('id', viewId);
+  } catch(e) { console.warn('Supabase doc close error:', e); }
+}
+
+function wireDocTracking() {
+  document.querySelectorAll('a.doc-card[href]').forEach(link => {
+    const title    = link.querySelector('.doc-title')?.textContent?.trim() || link.href;
+    const badge    = link.querySelector('.doc-badge')?.textContent?.trim() || 'General';
+    const slug     = link.getAttribute('href').split('/').pop().replace('.html','');
+
+    link.addEventListener('click', async (e) => {
+      if (!sessionId) return;
+      const viewId   = await trackDocOpen(slug, title, badge);
+      const openedAt = Date.now();
+
+      if (!viewId) return;
+
+      const poll = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, 500);
+
+      window.addEventListener('visibilitychange', function onVis() {
+        if (document.visibilityState === 'visible') {
+          window.removeEventListener('visibilitychange', onVis);
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, { once: true });
+    });
+  });
+
+  document.querySelectorAll('a.archive-doc-card[href]').forEach(link => {
+    const title    = link.querySelector('.archive-doc-title')?.textContent?.trim() || link.href;
+    const badge    = link.querySelector('.archive-doc-badge')?.textContent?.trim() || 'Archive';
+    const slug     = link.getAttribute('href').split('/').pop().replace('.html','');
+
+    link.addEventListener('click', async (e) => {
+      if (!sessionId) return;
+      const viewId   = await trackDocOpen(slug, title, badge);
+      const openedAt = Date.now();
+
+      if (!viewId) return;
+
+      const poll = setInterval(() => {
+        if (document.visibilityState === 'visible') {
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, 500);
+
+      window.addEventListener('visibilitychange', function onVis() {
+        if (document.visibilityState === 'visible') {
+          window.removeEventListener('visibilitychange', onVis);
+          clearInterval(poll);
+          trackDocClose(viewId, openedAt);
+        }
+      }, { once: true });
+    });
+  });
+
+  document.querySelectorAll('a.btn-invest[href]').forEach(link => {
+    const href = link.getAttribute('href');
+
+    if (href.startsWith('data-room/')) {
+      const slug  = href.split('/').pop().replace('.html', '');
+      const title = link.closest('.invest-panel')?.querySelector('.invest-cta-title')?.textContent?.trim() || slug;
+      link.addEventListener('click', async () => {
+        if (!sessionId) return;
+        await trackDocOpen(slug, title, 'Cap Table');
+      });
+    } else if (href.startsWith('mailto:')) {
+      const btnText = link.textContent?.trim().replace(/\s+/g, ' ') || 'Contact';
+      const slug    = btnText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/-+$/, '');
+      link.addEventListener('click', async () => {
+        if (!sessionId) return;
+        await trackDocOpen(slug, btnText, 'General');
+      });
+    }
+  });
+}
+
+// ── HELPERS ────────────────────────────────────
+function showStep(n) {
+  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById('step-' + n);
+  if (el) el.classList.add('active');
+}
+
+function openDataRoom() {
+  localStorage.setItem('ip_portal_unlocked', '1');
+  localStorage.setItem('ip_portal_contact', JSON.stringify(contact));
+  localStorage.setItem('ip_portal_ts', Date.now().toString());
+
+  document.getElementById('display-name').textContent  = contact.first + ' ' + contact.last;
+  document.getElementById('display-email').textContent = contact.email;
+
+  const badge = document.querySelector('.portal-badge');
+  if (badge) badge.lastChild.textContent = portalPath === 'advocate' ? 'Advocate Access' : 'Verified Investor Access';
+
+  history.pushState({ portal: true }, '', window.location.pathname);
+
+  const gate = document.getElementById('gate-container');
+  gate.style.transition = 'opacity .45s ease, transform .45s ease';
+  gate.style.opacity    = '0';
+
+  setTimeout(() => {
+    gate.style.display = 'none';
+    const room = document.getElementById('data-room');
+    room.style.display = 'block';
+    room.style.opacity = '0';
+    room.style.transition = 'opacity .5s ease';
+    setTimeout(() => {
+      room.style.opacity = '1';
+      wireDocTracking();
+    }, 20);
+  }, 460);
+}
+
+window.addEventListener('popstate', (e) => {
+  if (document.getElementById('data-room').style.display === 'block' ||
+      document.getElementById('data-room').classList.contains('visible')) {
+    history.pushState({ portal: true }, '', window.location.pathname);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+});
+
+// ── AUTO-UNLOCK ON RETURN VISIT (3-hour session) ─────────────────
+(function() {
+  const SESSION_MS = 3 * 60 * 60 * 1000; // 3 hours
+  const ts = parseInt(localStorage.getItem('ip_portal_ts') || '0', 10);
+  const expired = !ts || (Date.now() - ts) > SESSION_MS;
+  if (expired) {
+    localStorage.removeItem('ip_portal_unlocked');
+    localStorage.removeItem('ip_portal_contact');
+    localStorage.removeItem('ip_portal_ts');
+    return;
+  }
+  if (localStorage.getItem('ip_portal_unlocked') === '1') {
+    try {
+      const saved = JSON.parse(localStorage.getItem('ip_portal_contact') || '{}');
+      if (saved.first) contact = saved;
+    } catch(e) {}
+    openDataRoom();
+    // Restore scroll position saved before opening a document.
+    // Retry over several frames and again on load so heavy/async layout
+    // (fonts, images, accordions) doesn't leave us short of the target.
+    const savedScroll = parseInt(localStorage.getItem('ip_portal_scroll') || '0', 10);
+    if (savedScroll > 0) {
+      let attempts = 0;
+      const tryScroll = () => {
+        window.scrollTo(0, savedScroll);
+        if (Math.abs(window.scrollY - savedScroll) < 5) {
+          localStorage.removeItem('ip_portal_scroll');
+          return;
+        }
+        if (++attempts < 30) requestAnimationFrame(tryScroll);
+      };
+      requestAnimationFrame(tryScroll);
+      window.addEventListener('load', () => {
+        window.scrollTo(0, savedScroll);
+        localStorage.removeItem('ip_portal_scroll');
+      }, { once: true });
+    }
+  }
+})();
+
+// ── SAVE SCROLL POSITION BEFORE OPENING DOCUMENTS ───────────────
+(function() {
+  document.addEventListener('click', function(e) {
+    const card = e.target.closest('[onclick]');
+    if (!card) return;
+    const handler = card.getAttribute('onclick') || '';
+    if (handler.includes("window.open('data-room/")) {
+      localStorage.setItem('ip_portal_scroll', String(window.scrollY));
+    }
+  }, true);
+})();
+
+// ── ACCORDION TOGGLE ─────────────────────────────
+document.querySelectorAll('.iacc-h').forEach(h => {
+  h.addEventListener('click', () => h.parentElement.classList.toggle('op'));
+});
+
+// ── SUBSCRIPTION MODAL ─────────────────────────
+function openSubscriptionModal() {
+  const overlay = document.getElementById('sub-modal-overlay');
+  const modal   = document.getElementById('sub-modal');
+  overlay.style.display = 'flex';
+  overlay.style.alignItems = 'flex-start';
+  document.body.style.overflow = 'hidden';
+  requestAnimationFrame(() => {
+    overlay.style.opacity = '1';
+    modal.style.transform = 'translateY(0) scale(1)';
+  });
+  // Pre-fill from portal contact if available
+  if (contact && contact.first) {
+    document.getElementById('sub-first').value = contact.first || '';
+    document.getElementById('sub-last').value  = contact.last || '';
+    document.getElementById('sub-email').value = contact.email || '';
+  }
+}
+
+function closeSubscriptionModal(event) {
+  if (event && event.target && event.target.closest('#sub-modal') && !event.target.closest('[data-close-sub]')) return;
+  const overlay = document.getElementById('sub-modal-overlay');
+  const modal   = document.getElementById('sub-modal');
+  overlay.style.opacity = '0';
+  modal.style.transform = 'translateY(20px) scale(.97)';
+  document.body.style.overflow = '';
+  setTimeout(() => { overlay.style.display = 'none'; }, 300);
+}
+
+async function submitSubscription(event) {
+  event.preventDefault();
+  const btn = document.getElementById('sub-submit-btn');
+  const form = document.getElementById('sub-form');
+  const successDiv = document.getElementById('sub-success');
+
+  const first   = document.getElementById('sub-first').value.trim();
+  const last    = document.getElementById('sub-last').value.trim();
+  const email   = document.getElementById('sub-email').value.trim();
+  const phone   = document.getElementById('sub-phone').value.trim();
+  const amount  = document.getElementById('sub-amount').value;
+  const entity  = document.getElementById('sub-entity').value.trim();
+  const notes   = document.getElementById('sub-notes').value.trim();
+
+  if (parseInt(amount, 10) < 25000) {
+    btn.textContent = 'Minimum investment is $25,000';
+    btn.style.background = 'rgba(255,107,107,.15)';
+    btn.style.color = '#ff6b6b';
+    btn.style.border = '1px solid rgba(255,107,107,.4)';
+    setTimeout(() => {
+      btn.textContent = 'Request DocuSign Envelope';
+      btn.style.background = 'linear-gradient(135deg,#C5A44E 0%,#b89238 100%)';
+      btn.style.color = '#0a1628';
+      btn.style.border = 'none';
+    }, 2500);
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  btn.style.opacity = '.7';
+
+  const payload = {
+    _subject: `Subscription Document Request — ${first} ${last} (${parseInt(amount).toLocaleString()})`,
+    'Type': 'Class C Subscription Document Request',
+    'First Name': first,
+    'Last Name': last,
+    'Email': email,
+    'Phone': phone || '—',
+    'Investment Amount': '$' + parseInt(amount).toLocaleString(),
+    'Investing Entity': entity || 'Individual',
+    'Notes': notes || '—',
+    'Portal Access Code': accessCode ? accessCode.charAt(0).toUpperCase() + accessCode.slice(1) : '—',
+    'Timestamp': new Date().toLocaleString('en-US', { timeZone: 'America/Chicago', dateStyle: 'full', timeStyle: 'long' }),
+    '_replyto': email,
+    '_cc': 'invest@inpursuithealth.com'
+  };
+
+  try {
+    await fetch(FORMSPREE, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.warn('Formspree error:', e); }
+
+  // Track in Supabase if session exists
+  if (sessionId) {
+    try {
+      await supa.from('investor_doc_views').insert({
+        session_id: sessionId,
+        doc_slug: 'subscription-request',
+        doc_title: 'Class C Subscription Request — $' + parseInt(amount).toLocaleString(),
+        doc_category: 'Subscription',
+        opened_at: new Date().toISOString()
+      });
+    } catch(e) { console.warn('Supabase track error:', e); }
+  }
+
+  btn.style.display = 'none';
+  form.querySelectorAll('input,textarea').forEach(el => el.style.display = 'none');
+  form.querySelectorAll('label').forEach(el => el.style.display = 'none');
+  successDiv.style.display = 'block';
+}
+</script>
+</body>
+</html>
